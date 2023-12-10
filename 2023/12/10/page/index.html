@@ -13,7 +13,7 @@
 
 
 
-<title>Test1 | Hexo</title>
+<title>page | Hexo</title>
 
 
 
@@ -127,76 +127,11 @@
                 <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    var tocbot_timer;
-    var DEPTH_MAX = 6; // 为 6 时展开所有
-    var tocbot_default_config = {
-        tocSelector: '.tocbot-list',
-        contentSelector: '.post-content',
-        headingSelector: 'h1, h2, h3, h4, h5',
-        orderedList: false,
-        scrollSmooth: true,
-        onClick: extend_click,
-    };
-
-    function extend_click() {
-        clearTimeout(tocbot_timer);
-        tocbot_timer = setTimeout(function() {
-            tocbot.refresh(obj_merge(tocbot_default_config, {
-                hasInnerContainers: true
-            }));
-        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
-    }
-
-    document.ready(function() {
-        tocbot.init(obj_merge(tocbot_default_config, {
-            collapseDepth: 1
-        }));
-    });
-
-    function expand_toc() {
-        var b = document.querySelector('.tocbot-toc-expand');
-        var expanded = b.getAttribute('data-expanded');
-        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-        tocbot.refresh(obj_merge(tocbot_default_config, {
-            collapseDepth: expanded ? 1 : DEPTH_MAX
-        }));
-        b.innerText = expanded ? 'Expand all' : 'Collapse all';
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-    function obj_merge(target, source) {
-        for (var item in source) {
-            if (source.hasOwnProperty(item)) {
-                target[item] = source[item];
-            }
-        }
-        return target;
-    }
-</script>
-    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Test1</h1>
+            <h1 class="post-title">page</h1>
             
                 <div class="post-meta">
                     
@@ -205,30 +140,16 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">December 10, 2023&nbsp;&nbsp;20:11:29</a>
+                        Date: <a href="#">December 10, 2023&nbsp;&nbsp;20:19:52</a>
                         </span>
                     
-                    
-                        <span class="post-category">
-                    Category:
-                            
-                                <a href="/categories/blog1/">blog1</a>
-                            
-                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <h3 id="1-This-is-a-blog-Test"><a href="#1-This-is-a-blog-Test" class="headerlink" title="1.This is a blog Test"></a>1.This is a blog Test</h3><hr>
-<h3 id="2-show-Text"><a href="#2-show-Text" class="headerlink" title="2.show Text"></a>2.show Text</h3><ul>
-<li><strong>这是加粗</strong><blockquote>
-<p><em>这是斜体</em></p>
-</blockquote>
-</li>
-</ul>
-<h3 id="3-tag"><a href="#3-tag" class="headerlink" title="3.tag"></a>3.tag</h3>
+            
         </div>
 
         
@@ -242,7 +163,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://odiws.github.io/2023/12/10/Test1/">http://odiws.github.io/2023/12/10/Test1/</a></span>
+                        <span><a href="http://odiws.github.io/2023/12/10/page/">http://odiws.github.io/2023/12/10/page/</a></span>
                     </p>
                 
                 
@@ -265,12 +186,6 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
-                    
-                        <a href="/tags/test/"># test</a>
-                    
-                        <a href="/tags/tag2/"># tag2</a>
-                    
-                        
                 </span>
             </div>
             <div>
@@ -281,10 +196,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2023/12/10/page/">page</a>
             
-            
-            <a class="next" rel="next" href="/2023/12/10/hello-world/">Hello World</a>
+            <a class="next" rel="next" href="/2023/12/10/Test1/">Test1</a>
             
         </section>
 
