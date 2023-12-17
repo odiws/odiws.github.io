@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+<title>Test1 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Test1</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">John Doe</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">December 17, 2023&nbsp;&nbsp;20:45:29</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/blog1/">blog1</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>软件架构：<br>1.C&#x2F;S<br>客户端，服务端。<br>2.B&#x2F;S<br>浏览器，服务端。<br>WAMP架构解读<br>Windows + apache +mysql+php<br>LAMP&#x2F;LNMP架构解读<br>Linux + apache  +mysql + php<br>Linux + nginx  + mysql + php<br>PHP基础语法：<br>输出：<br>echo<br>&lt;?php<br>第一个输出：echo ‘  ’;</p>
+<p>第二个输出：var_dump (‘ ’);  注意：（该输出会输出有该绝对路径以及该空格中的数据类型）。<br>比如我写：var_dump(‘我是第一次接触php’);<br>则会输出： C:\wamp64\www\base\02\01\index.php:5:string ‘我是第一次接触php’ (length&#x3D;24)</p>
+<pre><code>                    变量：
+</code></pre>
+<p>使用方法：<br>$变量名&#x3D;  值   ;</p>
+<p>如何使用：<br>输出：<br>echo $变量名;</p>
+<p>变量定义的规则：<br>1.变量以￥符号开始，后面跟着变量的名称。<br>2.变量名必须以字母或者下划线字符开始。<br>3.变量名只能包含字母数字字符一级下划线（A-z，0-9和_）<br>4.变量名不能包含空格。<br>5.变量名是区分大小写的（$y与$Y是不一样的变量）。</p>
+<p>注意：Php是弱类型的语言，所以变量使用起来比较随意。</p>
+<pre><code>                         数据类型：
+</code></pre>
+<p>String ：字符串Integer（整型）Float(浮点型) Boolean（布尔型）Array（数组）Object（对象） null<br>数组的创建<br>$bo &#x3D;array(‘wad’,”dadw”,”daw”);   注意：（可以是不同的数据对象）。<br>注意数组是不能进行echo的。<br>对象的创建：<br>$bo &#x3D; new Person();<br>注意对象也是不能进行echo的。</p>
+<pre><code>                    运算符：
+</code></pre>
+<p>加：+   减：-   乘：*   除：&#x2F;   模（除法的余数）：%   取反：-<br>并置：a.b   用于连接两个字符串。</p>
+<pre><code>                   If else（非0即为真）
+</code></pre>
+<p>1.if语句。<br>2.If else语句<br>3.If elseif else语句<br>                      Switch语句：<br>switch（n）<br>{<br>case label1:<br>    …..;<br>Break;<br>Case label2:<br>….;<br>Break;<br>Default:<br>    如果n既不等于label1也不等于label2，此处代码将被执行。</p>
+<p>}</p>
+<pre><code>                        For循环
+</code></pre>
+<p>For(初始值；条件；增量)<br>{<br>    要执行的代码;<br>}<br>                          foreach循环：<br>用于遍历数组。<br>语法：<br>foreach($array as $value)<br>{<br>要执行代码;<br>}<br>用一个例子便于理解：</p>
+<p>$girl &#x3D; array(‘芳芳’,’阿达’,’唐嫣’);<br>foreach($girl as $key &#x3D;&gt; $value)<br>{<br>    echo $key.’:’.$value.’<br>‘;<br>}</p>
+<pre><code>              while循环：
+</code></pre>
+<p>1.while循环：<br>语法：<br>while(条件)<br>{<br>    要执行的代码;<br>}<br>2.do…while语句：<br>语法：<br>do<br>{<br>    要执行的代码;<br>}<br>while( 限制条件)</p>
+<pre><code>                             函数：
+</code></pre>
+<p>如何创建一个函数：<br>function 函数名(形参)      ！！！：形参可以用默认值即：$形参&#x3D;’  ’,中间的用都好隔开。<br>{<br>     &#x2F;&#x2F;要执行的代码;<br>}<br>函数命名要求：<br>1.函数的名称应该提示它的功能。<br>2.函数名称以字母或下划线开头。（不能以数字开头）。</p>
+<p>如何获取时间：<br>data(‘Y-m-d H:i:s’)            。<br>(T代表者年份，m代表者月份，d代表日期，H代表时 i代表分钟，s代表秒)。</p>
+<pre><code>                       （10）数组：
+</code></pre>
+<p>有三类数组：<br>1.数值数组：带有数字id键的数组<br>2.关联数组：带有指定的键的数组，每个键关联一个值<br>$shuzu&#x3D;array(“Peter”&#x3D;&gt;”35”,”Ben”&#x3D;&gt;”37”,”Joe”&#x3D;&gt;”43”);<br>3.多维数组：包含一个或多个数组的数组。<br>二维数组：<br>$cars &#x3D;array<br>(<br>array(“asf”,100,96).<br>    Array(“das”,123,ture),<br>    Array(“adaw”,100,100)<br>);</p>
+<pre><code>                   （12）字符串函数：
+</code></pre>
+<p>常用函数：<br>explode()    &#x2F;&#x2F;把字符串打散为数组。<br>函数原型：<br>explode(separator,string,limit);<br>参数：<br>Separator   :规定在哪里分割字符串。<br>String     ：要分割的字符串。<br>Limit     ：规定所返回的数组元素的数目。</p>
+<p>implode()    &#x2F;&#x2F;返回一个由数组元素组合成的字符串。<br>函数原型：</p>
+<p>Implode(separator,array);<br>参数：<br>Separator:  规定数组元素之间繁殖的内容，默认为””（空字符串）。<br>Array:   必须。要结合为字符串的数组。</p>
+<p>join()  implode()    &#x2F;&#x2F;合并成数组。</p>
+<p>trim()    &#x2F;&#x2F;去掉字符串两边    ——：ltrim代表着去除左边的charlist.rtrim代表着去除右边的charlist。<br>函数原型：<br>trim(string,chalist);<br>参数：<br>String  :必须，规定要检查的字符串。<br>Charlist：可选：规定从字符串中删除哪些字符。如果被省略，则一处一些所有字符：<br>”\0” - NULL<br>”\t” - 制表符<br>”\n” - 换行<br>”\x0B” - 垂直制表符<br>”\r” - 回车<br>” “ - 空格</p>
+<p>md5()    &#x2F;&#x2F; 计算字符串MD5散列<br>str_replace()    &#x2F;&#x2F;	替换字符串中的一些字符（大小写敏感）。</p>
+<pre><code>                    数组函数：
+</code></pre>
+<p>常见函数：<br>Array_keys()    &#x2F;&#x2F;返回数组中的所有的键名。<br>Array_pop()    &#x2F;&#x2F;删除数组中的最后一个元素（出栈）。<br>函数原型：<br>Array_pop(array);     (从被取的数组中取出最后一个元素（原数组中已经没有这个元素了），用一个新数组接的是被取走的元素)。</p>
+<p>Array_push()    &#x2F;&#x2F;将一个或多个元素插入数组的末尾。<br>Array_rand()    &#x2F;&#x2F;从数组中随机玄机选出一个或多个元素，返回键名。<br>Array_shift()    &#x2F;&#x2F;删除数组中的第一个元素，并返回被删除的元素的值。<br>Count()    &#x2F;&#x2F;返回数组中的元素的数目。<br>In_array()    &#x2F;&#x2F;检查数组中是否存在指定的值。</p>
+<pre><code>                       （03/01） 简单表单制作：
+</code></pre>
+<p>分为两部分：<br>Login.html ：登陆部分。<br>Index.php  :转为的页面。<br>接收login的内容用$_GET或$_POST或$_REQUEST。<br>差别：<br>1.用GET会将输入信息暴露在网页上面（接在？后面）。<br>2.用POST不会暴露信息在网页上，（？？？：但会在控制台上显示）。</p>
+<p>文件函数：<br>Move_uploaded_file($_FILES[‘name属性’][‘tmp_name’],’新文件夹的名字（带后缀）’)</p>
+<p>若失败：则：<br>$_FILES[‘userfile’][‘error’]      :<br>若值为0，则成功，文件上传成功；<br>若值为1，则上传的文件超过了php.ini中_upload_max_filesize选项限制的值；<br>若值为2，则上传的文件的大小超过了HTML表单中MAX_FILE_SIZE选项指定的值；<br>若值为3，则文件只有部分上传；<br>若值为4，则没有文件上传；<br>若值为6，则找不到临时文件夹，PHP4.3.10和PHP5.0.3引进；<br>若值为7，则文件写入失败，PHP。1.0引进。</p>
+<pre><code>                                  简单文件操作：
+</code></pre>
+<p> 函数：<br>1.file_put_contents函数：将一个字符串写入文件。<br>file_put_contents(file,data,mode,context)<br>参数：<br>file:规定要写入数据的文件。（必须）<br>Data：规定要写入文件的数据。<br>Mode：规定如何打开&#x2F;写入文件。可能值：FILE_USE_INCLUDE_PATH&#x2F;FILE_APPEND&#x2F;LOCK_EX。<br>Context: 规定文件句柄的环境。若使用null，则忽略。</p>
+<p>file_put_contents(‘文件名.后缀’,字符串)       （创建文件名闭并写入字符串），若重复会被覆盖。<br>file_put_contents(‘文件名.后缀’,字符串,FILE_APPEND);       （追加模式：可以添加字符串。） </p>
+<pre><code>               创建文件：
+</code></pre>
+<p>Touch(‘文件名（加后缀）’);<br>$handle &#x3D;fopen(‘文件名’,’操作简写’);<br>其中换行为：<br>例如：<br>Fwrite($handle,’wda’.”\r\n”);<br>关闭文件：<br>fclose($handle);</p>
+<p>读取文件：<br>header(‘Content-Type:text&#x2F;html;charset&#x3D;utf8’);<br>$file&#x3D;fopen(‘ooxx.txt’,’r’);<br>While(!feof($file))<br>{<br>    Echo fgets($file);<br>}<br>标签可以被标注为字符串。<br>常见函数：<br>mkdir(‘文件名’);   &#x2F;&#x2F;创建一个文件夹。<br>Is_file(‘文件名’);    &#x2F;&#x2F;判断是否为一个文件。是返回ture 否返回false。</p>
+<pre><code>            认识GD库
+</code></pre>
+<p>$file&#x3D; Imagecreate（(长为)100,(宽为)50）; &#x2F;&#x2F;生成图片资源。<br>$color &#x3D;imagecolorallocate($file,(),(),())   &#x2F;&#x2F;括号中写的是RGB的颜色0-255.<br>Imagefill（$file,0,0,color）;<br>Header(‘Content-Type:image&#x2F;png’);  &#x2F;&#x2F;输出png格式的图片。<br>此为固定格式，需要什么格式的图片，就可以改变格式。<br>Imagepng($file);</p>
+<pre><code>              正则表达式：
+</code></pre>
+<?php
+$str ='abcd1234';
+$pattern='/\d/';   //匹配有没有数字。$pattern=’/\w/’  //判断有没有字母。两个’/’中间是\代表是否有（逻辑关系为&），是[]中则是匹配中间的范围（逻辑关系为|）。^代表只有，{}即使重复还是只能重复多少次。$是断言目标的结束位置。
+$result= preg_match($pattern,$str);
+var_dump($result);
+方括号外的元字符
+元字符	描述
+\	一般用于转义字符
+^	断言目标的开始位置(或在多行模式下是行首)
+$	断言目标的结束位置(或在多行模式下是行尾)
+.	匹配除换行符外的任何字符(默认)
+[	开始字符类定义
+]	结束字符类定义
+|	开始一个可选分支
+(	子组的开始标记
+)	子组的结束标记
+?	作为量词，表示 0 次或 1 次匹配。位于量词后面用于改变量词的贪婪特性。 (查阅量词)
+*	量词，0 次或多次匹配
++	量词，1 次或多次匹配
+{	自定义量词开始标记
+}	自定义量词结束标记
+
+方括号内的元字符（字符类）
+元字符	描述
+\	转义字符
+^	仅在作为第一个字符(方括号内)时，表明字符类取反
+-	标记字符范围
+
+
+                         Cookie的使用：
+Setcookie();
+空格中的参数：
+1.名字
+2.值
+3.过期时间
+4.Path cookie路径，针对ur1的路径。
+5. Domain 域名，针对那个域名生效。
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>John Doe</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://odiws.github.io/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/test/"># test</a>
+                    
+                        <a href="/tags/tag2/"># tag2</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2023/12/10/page/">page</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© John Doe | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
