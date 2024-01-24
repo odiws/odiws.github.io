@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>mysql学习笔记 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">mysql学习笔记</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 24, 2024&nbsp;&nbsp;11:01:28</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <pre><code>             Mysql数据库：
+</code></pre>
+<p>常见的操作：<br>clear     (\c) Clear the current input statement.<br>connect   (\r) Reconnect to the server. Optional arguments are db and host.<br>delimiter (\d) Set statement delimiter.<br>ego       (\G) Send command to mysql server, display result vertically.<br>exit      (\q) Exit mysql. Same as quit.<br>go        (\g) Send command to mysql server.<br>help      (\h) Display this help.<br>notee     (\t) Don’t write into outfile.<br>print     (\p) Print current command.<br>prompt    (\R) Change your mysql prompt.<br>quit      (\q) Quit mysql.<br>rehash    (#) Rebuild completion hash.<br>source    (.) Execute an SQL script file. Takes a file name as an argument.<br>status    (\s) Get status information from the server.<br>system    (!) Execute a system shell command.<br>tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.<br>use       (\u) Use another database. Takes database name as argument.<br>charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.<br>warnings  (\W) Show warnings after every statement.<br>nowarning (\w) Don’t show warnings after every statement.</p>
+<p>查看数据库：<br>在进入数据库后，使用show databases;<br>创建数据库：<br>在进入数据库后，使用create database 名字;(分号要加)<br>删除数据库：<br>在进入数据库后，使用drop database 名字;(分号要加)</p>
+<pre><code>    DOS命令操作数据库
+</code></pre>
+<p>创建tables是，一切都是用小括号包着的。<br>你想在一个库里面建表的时候 首先你要记得use 使用当前的库    use 库名;<br>【创建表】<br>create table 表名(id int ,name varchar(35),price int);<br>Id name table 是字段 后面的限制是类型<br>【删除表】<br>                  Drop table 表名字;<br>【查看表结构】<br>                    Desc 表名字;<br>【查看建表语句】<br>              Show create database 表名字;<br>【查看建表语句】<br>                 Show create table 表名字;<br>【修改表字段值】<br>        Alter table 表名 modify 字段名字 修改后的值;<br>【修改表字段】<br>        Alter table 表名 change 原来字段名 修改后字;<br>(你要修该成为的类型)<br>【添加表字段】<br>        Alter table 表名 add 字段名字; （字段类型）<br>【删除表字段】<br>        Alter table 表名 drop 字段名字 ;<br>【插入顺序的问题】<br>First<br>Alter table 表名 add 你要添加的字段（字段类型） first;<br>After<br>Alter table 表名 add 你要添加的字段名字（字段类型）after;<br>【修改表名字】<br>     Alter table 原表名 rename 新的名字</p>
+<p>【数据库插入方式】;<br>1.insert into 表名 values(对应的元素赋值);<br>2.（常用的）Insert into 表名 (形参)  values(实参),(实参),(实参)(可以有n个，可以添加n行);<br>3. Insert into 表名(形参) values(实参)（可以缺点东西;<br>                  【数据库表数据删除】：<br>1.delete from 表名 where 字段(username&#x3D;’名字’);<br>              【修改表中的数据】：<br>Update 表名 set username&#x3D;’测试’ where id&#x3D;1;<br>                      【查询】：<br>1.Select * from 表名；<br>2.select 表中数据 from 表名;<br>                 【去除重复值并打印】：<br>select distinct 表中的元素 from 表名;<br>———select * from 表 where id &#x3D; n;<br>———select * from 表 GROUP BY　CLASS LIMIT 0,2;（从第零个后开始数，即第一个，往后数两个并打印出来。）<br>———select * from 表 where age &gt; 30 order by chengji desc limit 5,5;（可以分为三部分，第一部分将age大于30的部分筛选出来，第二将该序列倒序，最后以limit结尾）<br>                  内联，左联，右联：<br>注意：（两表都有相同字段才能相互关联）<br>【内联】：select 表1.字段,表2.字段 from 表1 inner join 表2 on 条件（例如：表1.相同字段 &#x3D; 表2.相同字段）;<br>【左联】：select 表1.字段 form 表1 left join 表2 on 条件（例如：表1.相同字段 &#x3D; 表2.相同字段）;（以左边的表为基准）<br>【右联】：select 表1.元素 form 表1 right join 表2 on 条件（例如：表1.相同字段 &#x3D; 表2.相同字段）;（以右边的表为基准）</p>
+<p>【嵌套查询】<br>Select 字段 from 表 where 字段 in (select id from 表);<br>（以下的链接）（locahost&#x2F;base&#x2F;05&#x2F;01&#x2F;mysql.php）<br>PHP连接数据库：</p>
+<ol>
+<li><pre><code>    链接数据库。
+</code></pre>
+</li>
+</ol>
+<p>$link&#x3D;mysqli_connect(‘localhost’,’root’,’’);<br>var_dump($link);<br>2.判断是否链接成功。<br>If(!$link){<br>    Exit(‘数据库链接失败’);<br>}<br>3.设置字符库。<br>Mysqli_set_charset($link,’utf8’);<br>4.选择数据库。<br>Mysqli_select_db($link,’bbs’);<br>5.准备sql语句。<br>$sql &#x3D; “select * from bbs_user”;<br>6.发送sql语句。<br>$res&#x3D;Mysqli_query($link,$sql);<br>Var_dump($res);<br>7.处理结果集。<br>$result&#x3D;Mysqli_fetch_assoc($res);<br>8.关闭数据库。（释放资源）<br>Mysqli_close($link);</p>
+<p>如何获取其他网站的提交的信息：<br>$_GET[‘表单体检的name属性’];<br>常见函数：<br>1.$a&#x3D;mysqli_fetch_assoc($result);（将以一个结构体以关联的方式展现出来）。<br>2.$a&#x3D;mysqli_fetch_row($result);（将以一个结构体以索引的方式展现出来）。<br>3.$a&#x3D;mysqli_fetch_array($result);（将以一个结构体以索引和关联的方式展现出来）。<br>4.$a&#x3D;mysqli_num_rows($result);（直接写出有多少个结构体）。<br>5.$a&#x3D;mysqli_affected_rows($link,$result);（直接写出有多少个结构体）。<br>6.$a&#x3D;mysqli_insert_id($link);（返回最后插入的id值）<br>              数据库的增删改查：<br>           &nbsp;（空格）</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">http://odiws.github.io/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/mysql/"># mysql</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">python学习笔记（未完）</a>
+            
+            
+            <a class="next" rel="next" href="/2024/01/24/python-requests%E5%BA%93flask%E5%BA%93%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/">python-requests库flask库（未完）</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
