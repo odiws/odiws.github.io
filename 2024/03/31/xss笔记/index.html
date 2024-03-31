@@ -127,71 +127,6 @@
                 <div class="container">
     
     
-        <div class="post-toc">
-    <div class="tocbot-list">
-    </div>
-    <div class="tocbot-list-menu">
-        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
-        <a onclick="go_top()">Back to top</a>
-        <a onclick="go_bottom()">Go to bottom</a>
-    </div>
-</div>
-
-<script>
-    var tocbot_timer;
-    var DEPTH_MAX = 6; // 为 6 时展开所有
-    var tocbot_default_config = {
-        tocSelector: '.tocbot-list',
-        contentSelector: '.post-content',
-        headingSelector: 'h1, h2, h3, h4, h5',
-        orderedList: false,
-        scrollSmooth: true,
-        onClick: extend_click,
-    };
-
-    function extend_click() {
-        clearTimeout(tocbot_timer);
-        tocbot_timer = setTimeout(function() {
-            tocbot.refresh(obj_merge(tocbot_default_config, {
-                hasInnerContainers: true
-            }));
-        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
-    }
-
-    document.ready(function() {
-        tocbot.init(obj_merge(tocbot_default_config, {
-            collapseDepth: 1
-        }));
-    });
-
-    function expand_toc() {
-        var b = document.querySelector('.tocbot-toc-expand');
-        var expanded = b.getAttribute('data-expanded');
-        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
-        tocbot.refresh(obj_merge(tocbot_default_config, {
-            collapseDepth: expanded ? 1 : DEPTH_MAX
-        }));
-        b.innerText = expanded ? 'Expand all' : 'Collapse all';
-    }
-
-    function go_top() {
-        window.scrollTo(0, 0);
-    }
-
-    function go_bottom() {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-
-    function obj_merge(target, source) {
-        for (var item in source) {
-            if (source.hasOwnProperty(item)) {
-                target[item] = source[item];
-            }
-        }
-        return target;
-    }
-</script>
-    
 
     
     <article class="post-wrap">
@@ -228,8 +163,7 @@
 </code></pre>
 <p>1.窃取Cookie值<br>2.通过JavaScript攻击<br>3.篡改网页</p>
 <p>xss的分类：<br>按形式分：反射型XSS 存储型XSS<br>按介质分：JSXSS FlashXSS<br>按接口分：DOM base XSS , 非DOM XSS<br>注：因此没有反射型XSS、存储型XSS、DOM XSS这种分类，因为分类依据都不同…</p>
-<p>1.反射型：（不持久型xss）<br>    与服务器交互，但是交互的数据一般不会被存放在数据库中，一次性，所见即所得，一般出现在查询类页面上等。</p>
-<h1 id="一般是alert-123"><a href="#一般是alert-123" class="headerlink" title="一般是alert(123)#"></a>一般是<script>alert(123)</script>#</h1><p>2.存储型：（持久型xss）<br>    交互的数据会被存放在数据库中，永久性存储，一般出现在留言板，注册等页面。<br>#一般是#&lt;a href&#x3D;’’ onclick&#x3D;alert(‘xss’)&gt;click</a>#</p>
+<p>1.反射型：（不持久型xss）<br>    与服务器交互，但是交互的数据一般不会被存放在数据库中，一次性，所见即所得，一般出现在查询类页面上等。<br>  <!--  一般是<script>alert(123)</script>   --><br>2. 存储型：（持久型xss）<br>    交互的数据会被存放在数据库中，永久性存储，一般出现在留言板，注册等页面。<br>    <!--一般是#<a href='' onclick=alert('xss')>click</a>    --></p>
 <p>3.DOM型：<br>    不与后台服务器产生数据交互，是一种通过DOM操作前端代码输出的时候产生的漏洞，大部分属于反射型，少部分属于存储型。</p>
 <p>xss可能存在的漏洞：<br>    有用户输入输出的地方，用户交互等一些地方，都可能存在xss漏洞。</p>
 <p>PHP转义函数：</p>
