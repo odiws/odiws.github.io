@@ -13,7 +13,7 @@
 
 
 
-<title>Hexo</title>
+<title>python request库的基本用法 | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title"></h1>
+            <h1 class="post-title">python request库的基本用法</h1>
             
                 <div class="post-meta">
                     
@@ -205,17 +205,23 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">April 28, 2024&nbsp;&nbsp;22:37:49</a>
+                        Date: <a href="#">April 28, 2024&nbsp;&nbsp;22:48:16</a>
                         </span>
                     
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                            
+                        </span>
                     
                 </div>
             
         </header>
 
         <div class="post-content">
-            <p>title: python request库基本用法<br>date: 2024-4-22 22:15:56<br>tags: [python]<br>categories: 学习笔记</p>
-<h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><p>下面案例使用requests库中的get( )方法发送了一个get请求。</p>
+            <h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><p>下面案例使用requests库中的get( )方法发送了一个get请求。</p>
 <p>#导入requests库<br>import requests<br>#发送一个get请求并得到响应<br>r &#x3D; requests.get(‘<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>‘)<br>#查看响应对象的类型<br>print(type(r))<br>#查看响应状态码<br>print(r.status_code)<br>#查看响应内容的类型<br>print(type(r.text))<br>#查看响应的内容<br>print(r.text)<br>#查看cookies<br>print(r.cookies)<br> 这里调用了get( )方法实现urlopen( )相同的操作，结果返回一个响应对象，然后分别输出响应对象类型、状态码、响应体内容的类型、 响应体的内容、Cookies。通过运行结果可以得知：响应对象的类型是requests.models.Response，响应体内容的类型是str，Cookies 的类型是RequestCookieJar。如果要发送其他类型的请求直接调用其对应的方法即可：</p>
 <p>r &#x3D; requests.post(‘<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>‘)<br>r &#x3D; requests.put(‘<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>‘)<br>r &#x3D; requests.delete(‘<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>‘)<br>r &#x3D; requests.head(‘<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>‘)<br>r &#x3D; requests.options(‘<a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a>‘)</p>
 <h2 id="GET请求"><a href="#GET请求" class="headerlink" title="GET请求"></a>GET请求</h2><p>构建一个GET请求，请求<a target="_blank" rel="noopener" href="http://httpbin.org/get%EF%BC%88%E8%AF%A5%E7%BD%91%E7%AB%99%E4%BC%9A%E5%88%A4%E6%96%AD%E5%A6%82%E6%9E%9C%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%8F%91%E8%B5%B7%E7%9A%84%E6%98%AFGET%E8%AF%B7%E6%B1%82%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%AE%83%E8%BF%94%E5%9B%9E%E7%9B%B8%E5%BA%94%E7%9A%84%E4%BF%A1%E6%81%AF%EF%BC%89">http://httpbin.org/get（该网站会判断如果客户端发起的是GET请求的话，它返回相应的信息）</a></p>
@@ -299,7 +305,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://odiws.github.io/2024/04/28/python%20request%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">http://odiws.github.io/2024/04/28/python%20request%E5%BA%93%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</a></span>
+                        <span><a href="http://odiws.github.io/2024/04/28/2-txt/">http://odiws.github.io/2024/04/28/2-txt/</a></span>
                     </p>
                 
                 
@@ -322,6 +328,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/python/"># python</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -332,10 +342,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/04/28/4%E6%9C%8827%20ssrf%E6%BC%8F%E6%B4%9E/"></a>
+                <a class="prev" rel="prev" href="/2024/04/28/3-txt/">buuctf4月27日</a>
             
             
-            <a class="next" rel="next" href="/2024/04/28/buuctf%204%E6%9C%8828%E6%97%A5/"></a>
+            <a class="next" rel="next" href="/2024/04/28/1-txt/">buuctf4月27日</a>
             
         </section>
 
