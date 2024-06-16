@@ -13,7 +13,7 @@
 
 
 
-<title>cookbook&#39; | Hexo</title>
+<title>[nctf2019]truecookbook | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">cookbook&#39;</h1>
+            <h1 class="post-title">[nctf2019]truecookbook</h1>
             
                 <div class="post-meta">
                     
@@ -246,13 +246,13 @@
 <p>好的我们老样子，我们利用ssrf读内网文件。先用file协议读取相关的文件 &#x2F;etc&#x2F;passwd 和 &#x2F;etc&#x2F;hosts；当我们读取到hosts文件的时候，我们会发现有几个ip地址，我们便来访问一下，（到这里应该可以猜到是在打内网了）</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">只能想到利用xxe进行ssrf打内网，扫描一下内网ip的几个文件：/etc/hosts，/proc/net/arp，/proc/net/fib_trie</span><br></pre></td></tr></table></figure>
 
-<p>![2](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;2.png)![1](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;1.png)</p>
+<p><img src="/../images/%5BNCTF2019%5DTrueXMLcookbook/2.png" alt="2"><img src="/../images/%5BNCTF2019%5DTrueXMLcookbook/1.png" alt="1"></p>
 <p>然后就是找内网服务器了：读这个<a target="_blank" rel="noopener" href="http://173.113.242.10/">http://173.113.242.10</a></p>
 <p>没找到，还在报错</p>
-<p>![3](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;3.png)</p>
+<p><img src="/../images/%5BNCTF2019%5DTrueXMLcookbook/3.png" alt="3"></p>
 <p>换个服务器</p>
 <p><a target="_blank" rel="noopener" href="http://173.113.242.11/">http://173.113.242.11</a></p>
-<p>![11](..&#x2F;images&#x2F;[NCTF2019]True XML cookbook&#x2F;11.png)</p>
+<p><img src="/../images/%5BNCTF2019%5DTrueXMLcookbook/11.png" alt="11"></p>
 <p>获取flag，完成啦</p>
 
         </div>

