@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>[GYCTF2020]EasyThinking | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[GYCTF2020]EasyThinking</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">June 16, 2024&nbsp;&nbsp;20:39:45</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="GYCTF2020-EasyThinking"><a href="#GYCTF2020-EasyThinking" class="headerlink" title="[GYCTF2020]EasyThinking"></a>[GYCTF2020]EasyThinking</h2><p>先是源码泄露www,zip</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><img src="/../images/%5BGYCTF2020%5DEasyThinking/2.png" alt="2"></h2><p>登录后，少写一个字，发现是thinkphp（题目的名字也提醒了是这个考点）</p>
+<p>在web&#x2F;home&#x2F;controller有一个Member.php，得到网页源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace app\home\controller;</span><br><span class="line"></span><br><span class="line">use think\exception\ValidateException;</span><br><span class="line">use think\facade\Db;</span><br><span class="line">use think\facade\View;</span><br><span class="line">use app\common\model\User;</span><br><span class="line">use think\facade\Request;</span><br><span class="line">use app\common\controller\Auth;</span><br><span class="line"></span><br><span class="line">class Member extends Base</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        if (session(&quot;?UID&quot;))</span><br><span class="line">        &#123;</span><br><span class="line">            $data = [&quot;uid&quot; =&gt; session(&quot;UID&quot;)];</span><br><span class="line">            $record = session(&quot;Record&quot;);</span><br><span class="line">            $recordArr = explode(&quot;,&quot;, $record);</span><br><span class="line">            $username = Db::name(&quot;user&quot;)-&gt;where($data)-&gt;value(&quot;username&quot;);</span><br><span class="line">            return View::fetch(&#x27;member/index&#x27;,[&quot;username&quot; =&gt; $username,&quot;record_list&quot; =&gt; $recordArr]);</span><br><span class="line">        &#125;</span><br><span class="line">        return view(&#x27;member/index&#x27;,[&quot;username&quot; =&gt; &quot;Are you Login?&quot;,&quot;record_list&quot; =&gt; &quot;&quot;]);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public function login()</span><br><span class="line">    &#123;</span><br><span class="line">        if (Request::isPost())&#123;</span><br><span class="line">            $username = input(&quot;username&quot;);</span><br><span class="line">            $password = md5(input(&quot;password&quot;));</span><br><span class="line">            $data[&quot;username&quot;] = $username;</span><br><span class="line">            $data[&quot;password&quot;] = $password;</span><br><span class="line">            $userId = Db::name(&quot;user&quot;)-&gt;where($data)-&gt;value(&quot;uid&quot;);</span><br><span class="line">            $userStatus = Db::name(&quot;user&quot;)-&gt;where($data)-&gt;value(&quot;status&quot;);</span><br><span class="line">            if ($userStatus == 1)&#123;</span><br><span class="line">                return &quot;&lt;script&gt;alert(\&quot;该用户已被禁用，无法登陆\&quot;);history.go(-1)&lt;/script&gt;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            if ($userId)&#123;</span><br><span class="line">                session(&quot;UID&quot;,$userId);</span><br><span class="line">                return redirect(&quot;/home/member/index&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            return &quot;&lt;script&gt;alert(\&quot;用户名或密码错误\&quot;);history.go(-1)&lt;/script&gt;&quot;;</span><br><span class="line">     </span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return view(&#x27;login&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public function register()</span><br><span class="line">    &#123;</span><br><span class="line">        if (Request::isPost())&#123;</span><br><span class="line">            $data = input(&quot;post.&quot;);</span><br><span class="line">            if (!(new Auth)-&gt;validRegister($data))&#123;</span><br><span class="line">                return &quot;&lt;script&gt;alert(\&quot;当前用户名已注册\&quot;);history.go(-1)&lt;/script&gt;&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            $data[&quot;password&quot;] = md5($data[&quot;password&quot;]);</span><br><span class="line">            $data[&quot;status&quot;] = 0;</span><br><span class="line">            $res = User::create($data);</span><br><span class="line">            if ($res)&#123;</span><br><span class="line">                return redirect(&#x27;/home/member/login&#x27;);</span><br><span class="line">            &#125;</span><br><span class="line">            return &quot;&lt;script&gt;alert(\&quot;注册失败\&quot;);history.go(-1)&lt;/script&gt;&quot;;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return View(&quot;register&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public function logout()</span><br><span class="line">    &#123;</span><br><span class="line">        session(&quot;UID&quot;,NULL);</span><br><span class="line">     </span><br><span class="line">        return &quot;&lt;script&gt;location.href=&#x27;/home/member/login&#x27;&lt;/script&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public function updateUser()</span><br><span class="line">    &#123;</span><br><span class="line">        $data = input(&quot;post.&quot;);</span><br><span class="line">        $update = Db::name(&quot;user&quot;)-&gt;where(&quot;uid&quot;,session(&quot;UID&quot;))-&gt;update($data);</span><br><span class="line">        if($update)&#123;</span><br><span class="line">            return json([&quot;code&quot; =&gt; 1, &quot;msg&quot; =&gt; &quot;修改成功&quot;]);</span><br><span class="line">        &#125;</span><br><span class="line">        return json([&quot;code&quot; =&gt; 0, &quot;msg&quot; =&gt; &quot;修改失败&quot;]);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public function rePassword()</span><br><span class="line">    &#123;</span><br><span class="line">        $oldPassword = input(&quot;oldPassword&quot;);</span><br><span class="line">        $password = input(&quot;password&quot;);</span><br><span class="line">        $where[&quot;uid&quot;] = session(&quot;UID&quot;);</span><br><span class="line">        $where[&quot;password&quot;] = md5($oldPassword);</span><br><span class="line">        $res = Db::name(&quot;user&quot;)-&gt;where($where)-&gt;find();</span><br><span class="line">        if ($res)&#123;</span><br><span class="line">            $rePassword = User::update([&quot;password&quot; =&gt; md5($password)],[&quot;uid&quot;=&gt; session(&quot;UID&quot;)]);</span><br><span class="line">            if ($rePassword)&#123;</span><br><span class="line">                return json([&quot;code&quot; =&gt; 1, &quot;msg&quot; =&gt; &quot;修改成功&quot;]);</span><br><span class="line">            &#125;</span><br><span class="line">            return json([&quot;code&quot; =&gt; 0, &quot;msg&quot; =&gt; &quot;修改失败&quot;]);</span><br><span class="line">        &#125;</span><br><span class="line">        return json([&quot;code&quot; =&gt; 0, &quot;msg&quot; =&gt; &quot;原密码错误&quot;]);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    public function search()</span><br><span class="line">    &#123;</span><br><span class="line">        if (Request::isPost())&#123;</span><br><span class="line">            if (!session(&#x27;?UID&#x27;))</span><br><span class="line">            &#123;</span><br><span class="line">                return redirect(&#x27;/home/member/login&#x27;);            </span><br><span class="line">            &#125;</span><br><span class="line">            $data = input(&quot;post.&quot;);</span><br><span class="line">            $record = session(&quot;Record&quot;);</span><br><span class="line">            if (!session(&quot;Record&quot;))</span><br><span class="line">            &#123;</span><br><span class="line">                session(&quot;Record&quot;,$data[&quot;key&quot;]);</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                $recordArr = explode(&quot;,&quot;,$record);</span><br><span class="line">                $recordLen = sizeof($recordArr);</span><br><span class="line">                if ($recordLen &gt;= 3)&#123;</span><br><span class="line">                    array_shift($recordArr);</span><br><span class="line">                    session(&quot;Record&quot;,implode(&quot;,&quot;,$recordArr) . &quot;,&quot; . $data[&quot;key&quot;]);</span><br><span class="line">                    return View::fetch(&quot;result&quot;,[&quot;res&quot; =&gt; &quot;There&#x27;s nothing here&quot;]);</span><br><span class="line">                &#125;</span><br><span class="line">     </span><br><span class="line">            &#125;</span><br><span class="line">            session(&quot;Record&quot;,$record . &quot;,&quot; . $data[&quot;key&quot;]);</span><br><span class="line">            return View::fetch(&quot;result&quot;,[&quot;res&quot; =&gt; &quot;There&#x27;s nothing here&quot;]);</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return View(&quot;search&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>审计代码发现了session：ThinkPhP6 会默认在 &#x2F;runtime&#x2F;session 创建一个sess_xxxx格式的session文件，这里的xxxx就是PHPSESSID（32位），而文件的内容就是session的内容，也就是key的内容。并且发现了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if ($userId)&#123;</span><br><span class="line">                session(&quot;UID&quot;,$userId);</span><br><span class="line">                return redirect(&quot;/home/member/index&quot;);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里把uid写入当前的session中，即我们本来构造的PHPSESSID&#x3D;1111111111111111111111111111.php的session是没有uid的，没办法实现search功能，这里可以把uid赋给session，即可以在搜索页面写入马（都要放包那里修改并且放包，这样才会上传马）<br><img src="/../images/%5BGYCTF2020%5DEasyThinking/1.png" alt="1"></p>
+<p>先是穿上sessionid为1111111111111111111111111111.php</p>
+<p><img src="/../images/%5BGYCTF2020%5DEasyThinking/3.png" alt="3"></p>
+<p>再是传马上去，路径为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://0e4b69f8-bf90-4398-bf2d-d7fda1d4bbfd.node5.buuoj.cn:81/runtime/session/sess_1111111111111111111111111111.php</span><br></pre></td></tr></table></figure>
+
+<p>连上之后就用蚁剑连接；但是还有个disable_function绕过</p>
+<p><img src="/../images/%5BGYCTF2020%5DEasyThinking/4.png" alt="4"></p>
+<p><img src="/../images/%5BGYCTF2020%5DEasyThinking/5.png" alt="5"></p>
+<p>获得flag</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/06/16/GYCTF2020-EasyThinking/">http://odiws.github.io/2024/06/16/GYCTF2020-EasyThinking/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/thinkphpV6-0-0/"># thinkphpV6.0.0</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2024/06/16/Injection/">October 2019 Twice SQL Injection</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
