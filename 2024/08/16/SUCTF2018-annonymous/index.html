@@ -227,7 +227,7 @@
 <p>转回去找create_function函数的问题，发现一般都是利用它进行代码注入，但这里明显不行。</p>
 <p>后来看了别的大佬的WP才知道<br>create_function()这个函数的漏洞，他create之后会自动生成一个函数名为%00lambda_[0-999]，后面的数字会逐步递增</p>
 <p>create_function是返回函数名称的，函数返回一个唯一的字符串函数名， 出现错误的话则返回FALSE。</p>
-<p>这么说这个函数也只是动态的创建了一个函数，而这个函数是有函数名的，也就是说，其实这并不是匿名的。 只是创建了一个全局唯一的函数而已。<br>详细的可以看看这篇使用create_function()创建”匿名”函数</p>
+<p>这么说这个函数也只是动态的创建了一个函数，而这个函数是有函数名的，也就是说，其实这并不是匿名的。 只是创建了一个全局唯一的函数而已。<br>详细的可以看看这篇<a target="_blank" rel="noopener" href="https://my.oschina.net/2016jyh/blog/810916">https://my.oschina.net/2016jyh/blog/810916</a></p>
 <p>这道题中因为我们不知道前面有多少个匿名函数，所以得通过遍历数字来爆破，执行该函数</p>
 <p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cjdgg/article/details/116746808">https://blog.csdn.net/cjdgg/article/details/116746808</a></p>
 

