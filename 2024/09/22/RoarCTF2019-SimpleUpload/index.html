@@ -127,6 +127,71 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
 
     
     <article class="post-wrap">
@@ -156,7 +221,7 @@
         </header>
 
         <div class="post-content">
-            <p>推荐链接：<a target="_blank" rel="noopener" href="https://inanb.github.io/2021/09/15/RoarCTF-2019-Simple-Upload/">https://inanb.github.io/2021/09/15/RoarCTF-2019-Simple-Upload/</a></p>
+            <h2 id="RoarCTF2019-SimpleUpload"><a href="#RoarCTF2019-SimpleUpload" class="headerlink" title="[RoarCTF2019]SimpleUpload"></a>[RoarCTF2019]SimpleUpload</h2><p>推荐链接：<a target="_blank" rel="noopener" href="https://inanb.github.io/2021/09/15/RoarCTF-2019-Simple-Upload/">https://inanb.github.io/2021/09/15/RoarCTF-2019-Simple-Upload/</a></p>
 <p>源码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php</span><br><span class="line">namespace Home\Controller;</span><br><span class="line"></span><br><span class="line">use Think\Controller;</span><br><span class="line"></span><br><span class="line">class IndexController extends Controller</span><br><span class="line">&#123;</span><br><span class="line">    public function index()</span><br><span class="line">    &#123;</span><br><span class="line">        show_source(__FILE__);</span><br><span class="line">    &#125;</span><br><span class="line">    public function upload()</span><br><span class="line">    &#123;</span><br><span class="line">        $uploadFile = $_FILES[&#x27;file&#x27;] ;</span><br><span class="line">        </span><br><span class="line">        if (strstr(strtolower($uploadFile[&#x27;name&#x27;]), &quot;.php&quot;) ) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        $upload = new \Think\Upload();// 实例化上传类</span><br><span class="line">        $upload-&gt;maxSize  = 4096 ;// 设置附件上传大小</span><br><span class="line">        $upload-&gt;allowExts  = array(&#x27;jpg&#x27;, &#x27;gif&#x27;, &#x27;png&#x27;, &#x27;jpeg&#x27;);// 设置附件上传类型</span><br><span class="line">        $upload-&gt;rootPath = &#x27;./Public/Uploads/&#x27;;// 设置附件上传目录</span><br><span class="line">        $upload-&gt;savePath = &#x27;&#x27;;// 设置附件上传子目录</span><br><span class="line">        $info = $upload-&gt;upload() ;</span><br><span class="line">        if(!$info) &#123;// 上传错误提示错误信息</span><br><span class="line">          $this-&gt;error($upload-&gt;getError());</span><br><span class="line">          return;</span><br><span class="line">        &#125;else&#123;// 上传成功 获取上传文件信息</span><br><span class="line">          $url = __ROOT__.substr($upload-&gt;rootPath,1).$info[&#x27;file&#x27;][&#x27;savepath&#x27;].$info[&#x27;file&#x27;][&#x27;savename&#x27;] ;</span><br><span class="line">          echo json_encode(array(&quot;url&quot;=&gt;$url,&quot;success&quot;=&gt;1));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 
