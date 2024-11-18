@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>[NPUCTF2020]webdog | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[NPUCTF2020]webdog</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 14, 2024&nbsp;&nbsp;19:21:52</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="NPUCTF2020-webdog"><a href="#NPUCTF2020-webdog" class="headerlink" title="[NPUCTF2020]webdog"></a>[NPUCTF2020]webdog</h2><p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411141923070.png" alt="image-20241114192253842"></p>
+<p>源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&#x27;config.php&#x27;</span>);   <span class="comment"># $key,$flag</span></span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;METHOD&quot;</span>, <span class="string">&quot;aes-128-cbc&quot;</span>);  <span class="comment">//定义加密方式</span></span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;SECRET_KEY&quot;</span>, <span class="variable">$key</span>);    <span class="comment">//定义密钥</span></span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;IV&quot;</span>,<span class="string">&quot;6666666666666666&quot;</span>);    <span class="comment">//定义初始向量 16个6</span></span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;BR&quot;</span>,<span class="string">&#x27;&lt;br&gt;&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;source&#x27;</span>]))<span class="title function_ invoke__">header</span>(<span class="string">&#x27;location:./index.php?source=1&#x27;</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#var_dump($GLOBALS);   //听说你想看这个？</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aes_encrypt</span>(<span class="params"><span class="variable">$iv</span>,<span class="variable">$data</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;--------encrypt---------&quot;</span>.BR;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;IV:&#x27;</span>.<span class="variable">$iv</span>.BR;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">openssl_encrypt</span>(<span class="variable">$data</span>, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, <span class="variable">$iv</span>)).BR;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aes_decrypt</span>(<span class="params"><span class="variable">$iv</span>,<span class="variable">$data</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">openssl_decrypt</span>(<span class="title function_ invoke__">base64_decode</span>(<span class="variable">$data</span>),METHOD,SECRET_KEY,OPENSSL_RAW_DATA,<span class="variable">$iv</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&#x27;False&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;method&#x27;</span>]==<span class="string">&#x27;encrypt&#x27;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$iv</span> = IV;</span><br><span class="line">    <span class="variable">$data</span> = <span class="variable">$flag</span>;    </span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">aes_encrypt</span>(<span class="variable">$iv</span>,<span class="variable">$data</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;method&#x27;</span>]==<span class="string">&quot;decrypt&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$iv</span> = @<span class="variable">$_POST</span>[<span class="string">&#x27;iv&#x27;</span>];</span><br><span class="line">    <span class="variable">$data</span> = @<span class="variable">$_POST</span>[<span class="string">&#x27;data&#x27;</span>];</span><br><span class="line">    <span class="keyword">echo</span> <span class="title function_ invoke__">aes_decrypt</span>(<span class="variable">$iv</span>,<span class="variable">$data</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;我摊牌了，就是懒得写前端&quot;</span>.BR;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;source&#x27;</span>]==<span class="number">1</span>)<span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Padding-oracle-attack-与CBC翻转字节攻击"><a href="#Padding-oracle-attack-与CBC翻转字节攻击" class="headerlink" title="Padding oracle attack 与CBC翻转字节攻击"></a>Padding oracle attack 与CBC翻转字节攻击</h3><h4 id="异或（XOR）"><a href="#异或（XOR）" class="headerlink" title="异或（XOR）"></a>异或（XOR）</h4><p>何为异或? 异或是一种运算方法，简要概括就是同假异真</p>
+<p>代码语言：javascript</p>
+<p>复制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">true</span> xor <span class="literal">true</span> = <span class="literal">false</span>; <span class="literal">true</span> xor <span class="literal">false</span> = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">在二进制中:</span><br><span class="line"><span class="number">011</span> xor <span class="number">110</span> = <span class="number">101</span>; 二进制数每位数分别进行xor运算</span><br><span class="line">上面算式的运算步骤是这样的 <span class="number">0</span> xor <span class="number">1</span> = <span class="number">1</span>;<span class="number">1</span> xor <span class="number">1</span> = <span class="number">0</span>;<span class="number">1</span> xor <span class="number">0</span>=<span class="number">1</span></span><br><span class="line">然后把运算结果写在一起就是<span class="number">101</span>了</span><br><span class="line"></span><br><span class="line">在更高的进制中:</span><br><span class="line">以十进制为例: <span class="number">65</span> xor <span class="number">42</span> = <span class="number">107</span>; 原理就是把十进制数字先变为二进制数进行异或，再将异或得到的二进制数结果变为十进制数</span><br><span class="line"></span><br><span class="line">在字符中:</span><br><span class="line">对字符进行异或运算其实就是对字符的ascii码进行异或计算，计算得到的结果视作新的一个ascii码再将其转换为字符。</span><br></pre></td></tr></table></figure>
+
+<p>xor还有一个性质，就是 已知 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a xor b = c 那么 b xor c =a; a xor c = b.</span><br></pre></td></tr></table></figure>
+
+<p>即满足异或运算里只需知道任意两个数就能得到另一个数。</p>
+<p>CBC模式</p>
+<p>CBC是一种加密模型，采用的是分组链接模式，把明文分为一组一组的进行加密</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411141934838.png" alt="image-20241114193437702"></p>
+<p>上图为CBC加密流程，最开始一个特别别分组IV（初始向量）去和第一段密文XOR，得到的结果呗密钥加密，加密得到该组的密文，同时这个密文会充当最开始的特别分组IV的作用去参与下一组的加密，以此类推。</p>
+<p>CBC的每一个分组的加密结果都可以影响到下一个分组的加密结果，使原本独立的分组密码加密过程形成迭代，这可以强化加密算法的“敏感性”，即实现所谓的“雪崩效应”，在香浓理论中这就是”扰乱原则“。</p>
+<p>CBC只是一种模式，他经常把aes或des作为加密使用的算法，DES分组长度式八字节而AES分组长度式十六字节。</p>
+<p>接下来就是CBC解密</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411141940782.png" alt="image-20241114194056628"></p>
+<p>顺序依旧是从左到右，第一组密文被KEY解密后与IV xor得到第一组明文，同时第一组密文参与下一组的解密充当IV的作用</p>
+<h3 id="PKCS-5"><a href="#PKCS-5" class="headerlink" title="PKCS #5"></a><strong>PKCS #5</strong></h3><p>竟然CBC模式涉及到分组，那么就会出现最后一组字节没有被占满的情况。 比如原本一个分组是8字节，我们有15个字节的明文需要被加密，此时最后一个分组就不会被占满（还差一个字节占满），那么这个时候要怎么办呢？</p>
+<p>这时候就需要对最后一个分组进行填充，将其填充满。 对于采用des算法加密的内容，填充规则是PKC #5,而AES是 PKC #7. 这两者唯一区别是 PKCS #5填充是八字节分组而PKCS #7是十六字节 ，还记得上面我们说过的 DES分组长度是八字节而AES分组长度是十六字节 吗？就是这个分组字节数影响了填充方式。</p>
+<p>那么具体是怎么填充的呢，我们以PKC #5为例</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411141943624.png" alt="image-20241114194320377"></p>
+<p>当最后一组还剩n个字节未被填充时，就会填充n个 0xn字符上去. 上图是PKCS #5,其实PKCS #7和PKCS #5原理是一样的，不过是分组字节数大了点罢了（0~16）</p>
+<p>就是如果是alsdawgfqa这个按照4个一组的话就留了qa两个，在qa后加上\x02\x02,若是删除a，只有q，那就是\x03\x03\x03</p>
+<h4 id="Padding-oracle-attack-攻击场景举例"><a href="#Padding-oracle-attack-攻击场景举例" class="headerlink" title="Padding oracle attack 攻击场景举例"></a>Padding oracle attack 攻击场景举例</h4><p>首先我们假设一个场景，从而引出这个攻击。</p>
+<p>假设我们有一个任意文件包含场景</p>
+<p>代码语言：javascript</p>
+<p>复制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url?file=<span class="regexp">/etc/</span>passwd</span><br></pre></td></tr></table></figure>
+
+<p>黑客们看见了就会很轻而易举的去包含想要的文件。管理者发现了这个问题，对file参数采用了CBC加密，即当提交请求时，file参数的值是被加密的，然后<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/cvm/?from_column=20065&from=20065">服务器</a>用算法解密得到其想包含的文件，然后返回给客户端。</p>
+<p>代码语言：javascript</p>
+<p>复制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url?file=e28b2e3c972edab8 其中前<span class="number">8</span>位数是<span class="variable constant_">IV</span>，后八位数是密文。（这里是我瞎写的密文= =，你只需要理解到这里是一个<span class="variable constant_">CBC</span>加密后的密文就行了）</span><br></pre></td></tr></table></figure>
+
+<p>那么如何去实现我们的任意文件包含呢? padding oracle attack 出现了。</p>
+<h4 id="攻击原理"><a href="#攻击原理" class="headerlink" title="攻击原理"></a>攻击原理</h4><p>假设我们向刚刚那个任意文件包含的提交了一段密文。服务器就会尝试解密，就会出现三种结果。</p>
+<p>1.密文不能正常解密，这种原因是在于最后一组的填充字节出现了错误 2.密文能正常解密但解密出来的文件路径不存在 3.密文能正常解密且能成功包含</p>
+<p>其中第1种情况和2.3种情况网页返回的内容肯定是不同的。 比如说第一种情况可能就直接返回500了，2.3可能就是302跳转啥啥的，通过这个网页返回的信息，我们就有了可乘之机。</p>
+<p>我们先通过一个图感受一下第一组的解密流程</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411142009413.png" alt="image-20241114200918054"></p>
+<p>好的好的，感受了这个解密流程后，我们来说说攻击的事。 如果我们得到了 Intermediary Value(中间值)，并且可以手动修改IV，那么我们岂不是可以构造任意Decrypted Value（明文）了？ 所以padding oracle attack 的核心就是去获得中间值。 那么我们怎么去获取呢？</p>
+<p>还记得刚刚提到的3种情况吗？我们可以通过修改IV，通过判断网页返回内容来判断中间值，具体做法如下:</p>
+<p>我们先把IV全部设置为0x00，然后修改IV的最后一个数，当其与中间值XOR后的值为0x01则此时解密就会成功，若不是0x01解密就会失败，网页会返回不同的内容，以此来判断何时解密成功。然后把解密成功时的IV的最后一位数与0x01进行异或计算，即可得到中间值的最后一位</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411142009380.png" alt="image-20241114200941307"></p>
+<p>然后我们把IV最后一位数设置为能和中间值最后一位数异或后值为0x02的数，穷举IV倒数第二个数看看哪个数能和中间值倒数第二个数异或运算后值为0x02，然后我们就可得到中间值倒数第二个数，以此类推可以获得第一组的中间值（有点绕） 然后破解到了中间值我们再用最开始的IV（不是我们后面构造的IV）去和中间值异或就得到明文了 当然，你也可以再次构造IV，从而构造解密出来的字符（通过中间值与IV异或）</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411142010278.png" alt="image-20241114201047952"></p>
+<p>先获取密文：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ly7auKVQCZWum/W/4osuPA==</span><br></pre></td></tr></table></figure>
+
+<p>然后对其进行base64解密，发现其刚好是有16个字节，那么我们可以直接穷举IV得到中间值，然后凭此与初始IV（16个6）进行异或得到明文$flag.</p>
+<p>话不多说，爆破中间值的脚本安排上。(借鉴了一个大佬的WP）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">Intermediary=<span class="string">&quot;&quot;</span></span><br><span class="line">url=<span class="string">&quot;http://de1650aa-2b24-40e0-bb51-736ff5d38269.node3.buuoj.cn//index.php?source=1&amp;method=decrypt&quot;</span></span><br><span class="line">iv=<span class="string">&quot;&quot;</span></span><br><span class="line">hexs=<span class="string">&quot;&quot;</span></span><br><span class="line">IV=<span class="string">&quot;6666666666666666&quot;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">xor</span>(<span class="params">a,b</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;&quot;</span>.join([<span class="built_in">chr</span>(<span class="built_in">ord</span>(a[i])^<span class="built_in">ord</span>(b[i])) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(a))])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> step <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">17</span>):</span><br><span class="line">    padding=<span class="built_in">chr</span>(step)*(step-<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;第%s轮&quot;</span>%step)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">256</span>):</span><br><span class="line">        iv=<span class="built_in">chr</span>(<span class="number">0</span>)*(<span class="number">16</span>-step)+<span class="built_in">chr</span>(i)+xor(Intermediary,padding)</span><br><span class="line">        post=&#123;</span><br><span class="line">            <span class="string">&quot;iv&quot;</span>:iv,</span><br><span class="line">            <span class="string">&quot;data&quot;</span>:<span class="string">&quot;ly7auKVQCZWum/W/4osuPA==&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">        r=requests.post(url=url,data=post,proxies=&#123;<span class="string">&quot;http&quot;</span>:<span class="string">&quot;http://127.0.0.1:8080&quot;</span>&#125;)</span><br><span class="line">        time.sleep(<span class="number">0.1</span>)</span><br><span class="line">        <span class="built_in">print</span>(r.text+<span class="string">&quot;第%s轮i=%s &quot;</span>%(step,i))</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&quot;False&quot;</span> !=  r.text:</span><br><span class="line">            Intermediary=xor(<span class="built_in">chr</span>(i),<span class="built_in">chr</span>(step))+Intermediary</span><br><span class="line">            <span class="built_in">print</span>(Intermediary)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(Intermediary)):</span><br><span class="line">    hexs=<span class="string">&quot;%&quot;</span>+<span class="built_in">str</span>(<span class="built_in">ord</span>(Intermediary[k]))+hexs</span><br><span class="line"><span class="built_in">print</span>(hexs)</span><br><span class="line"><span class="built_in">print</span>(xor(Intermediary,IV))</span><br></pre></td></tr></table></figure>
+
+<p>爆出了中间值以及$flag明文</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411142012040.png" alt="image-20241114201206936"></p>
+<h3 id="CBC翻转字节攻击"><a href="#CBC翻转字节攻击" class="headerlink" title="CBC翻转字节攻击"></a>CBC翻转字节攻击</h3><p>在对CBC模式加密的数据进行解密时，若iv可控，则可以任意控制解密后的内容。 CBC翻转字节攻击不同于padding oracle attack，后者的核心是IV可控情况下获取中间值，从而可以获得明文或者任意控制密文解密后的数据。 而CBC翻转字节攻击的核心思想就不是获取中间值了，而是在IV可控的情况下，通过算法缺陷来直接控制密文解密后的数据。</p>
+<p>现在假定有中间值A,明文B1,IV C1</p>
+<p>那么就有</p>
+<p>代码语言：javascript</p>
+<p>复制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A^<span class="variable constant_">B1</span>=c1</span><br></pre></td></tr></table></figure>
+
+<p>一点错误都没有对吧。 现在又假定有中间值A,我们想要解密出的明文B2和与之对应的IV C2 那么就有</p>
+<p>代码语言：javascript</p>
+<p>复制</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">A^<span class="variable constant_">B2</span>=<span class="variable constant_">C2</span></span><br><span class="line">结合以上两个式子，有</span><br><span class="line">A=<span class="variable constant_">B1</span>^<span class="variable constant_">C1</span>=<span class="variable constant_">B2</span>^<span class="variable constant_">C2</span></span><br><span class="line">于是有</span><br><span class="line"><span class="variable constant_">B2</span>=<span class="variable constant_">B1</span>^<span class="variable constant_">C1</span>^<span class="variable constant_">C2</span></span><br><span class="line">或<span class="variable constant_">C2</span>=<span class="variable constant_">B1</span>^<span class="variable constant_">B2</span>^<span class="variable constant_">C1</span></span><br><span class="line">若我们已知<span class="variable constant_">B1</span>,<span class="variable constant_">C1</span>,且<span class="variable constant_">C2</span>可控,那么<span class="variable constant_">B2</span>即可控</span><br><span class="line">既满足刚刚我们说的，通过算法缺陷来直接控制密文解密后的数据。</span><br></pre></td></tr></table></figure>
+
+<p>FlagIsHere.php：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">ryino46QYgekMUTu0JFPMQ==</span><br><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line"><span class="comment">#error_reporting(0);</span></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&#x27;config.php&#x27;</span>);    <span class="comment">//$fl4g</span></span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;METHOD&quot;</span>, <span class="string">&quot;aes-128-cbc&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">define</span>(<span class="string">&quot;SECRET_KEY&quot;</span>, <span class="string">&quot;6666666&quot;</span>);</span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_iv</span>(<span class="params"></span>)</span>&#123;    <span class="comment">//生成随机初始向量IV</span></span><br><span class="line">    <span class="variable">$random_iv</span>=<span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;<span class="number">16</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">        <span class="variable">$random_iv</span>.=<span class="title function_ invoke__">chr</span>(<span class="title function_ invoke__">rand</span>(<span class="number">1</span>,<span class="number">255</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$random_iv</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$lalala</span> = <span class="string">&#x27;piapiapiapia&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;Identity&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$_SESSION</span>[<span class="string">&#x27;iv&#x27;</span>] = <span class="title function_ invoke__">get_iv</span>();</span><br><span class="line"></span><br><span class="line">    <span class="variable">$_SESSION</span>[<span class="string">&#x27;Identity&#x27;</span>] = <span class="title function_ invoke__">base64_encode</span>(<span class="title function_ invoke__">openssl_encrypt</span>(<span class="variable">$lalala</span>, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, <span class="variable">$_SESSION</span>[<span class="string">&#x27;iv&#x27;</span>]));</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">base64_encode</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;iv&#x27;</span>]).<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;iv&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$tmp_id</span> = <span class="title function_ invoke__">openssl_decrypt</span>(<span class="title function_ invoke__">base64_decode</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;Identity&#x27;</span>]), METHOD, SECRET_KEY, OPENSSL_RAW_DATA, <span class="title function_ invoke__">base64_decode</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;iv&#x27;</span>]));</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$tmp_id</span>.<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$tmp_id</span> ===<span class="string">&#x27;weber&#x27;</span>)<span class="keyword">die</span>(<span class="variable">$fl4g</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此时我们已知初始IV,初始密文，且IV可控，那么CBC翻转字节攻击条件成立，可以攻击。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">这里贴一个别人写的python2 CBC字节反转攻击脚本</span><br><span class="line">自己拿python3写了半天都没写出很好的效果...</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bxor</span>(<span class="params">b1, b2</span>): <span class="comment"># use xor for bytes</span></span><br><span class="line">    parts = []</span><br><span class="line">    <span class="keyword">for</span> b1, b2 <span class="keyword">in</span> <span class="built_in">zip</span>(b1, b2):</span><br><span class="line">        parts.append(<span class="built_in">bytes</span>([b1 ^ b2]))</span><br><span class="line">    <span class="keyword">return</span> <span class="string">b&#x27;&#x27;</span>.join(parts)</span><br><span class="line">iv = base64.b64decode(<span class="string">&quot;h34HL5RbMPw8oTaQ+P58nw==&quot;</span>)</span><br><span class="line">text = <span class="string">b&quot;piapiapiapia\x04\x04\x04\x04&quot;</span></span><br><span class="line">result = <span class="string">b&quot;weber\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b&quot;</span></span><br><span class="line">middle = bxor(iv,text)</span><br><span class="line">iv = bxor(middle,result)</span><br><span class="line"><span class="built_in">print</span>(base64.b64encode(iv))</span><br></pre></td></tr></table></figure>
+
+<p>把跑出来的结果POST过去，就会得到下一步了..</p>
+<p>直接有了链接，这个是buu的话，直接下载附件就行了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Source code recreated from a .class file by IntelliJ IDEA</span></span><br><span class="line"><span class="comment">// (powered by FernFlower decompiler)</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">HelloWorld</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] var0)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;众所周知，你是一名WEB选手，掌握javaweb也是一项必备技能，那么逆向个java应该不过分吧？&quot;</span>);</span><br><span class="line">        <span class="type">byte</span>[] var10000 = <span class="keyword">new</span> <span class="title class_">byte</span>[]&#123;<span class="number">102</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">103</span>, <span class="number">123</span>, <span class="number">119</span>, <span class="number">101</span>, <span class="number">54</span>, <span class="number">95</span>, <span class="number">52</span>, <span class="number">111</span>, <span class="number">103</span>, <span class="number">95</span>, <span class="number">49</span>, <span class="number">115</span>, <span class="number">95</span>, <span class="number">101</span>, <span class="number">52</span>, <span class="number">115</span>, <span class="number">121</span>, <span class="number">103</span>, <span class="number">48</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">125</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>获取了这个class文件，有一些字节东西可以查看</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="built_in">bytearray</span>(</span><br><span class="line">    [<span class="number">102</span>, <span class="number">108</span>, <span class="number">97</span>, <span class="number">103</span>, <span class="number">123</span>, <span class="number">119</span>, <span class="number">101</span>, <span class="number">54</span>, <span class="number">95</span>, <span class="number">52</span>, <span class="number">111</span>, <span class="number">103</span>, <span class="number">95</span>, <span class="number">49</span>, <span class="number">115</span>, <span class="number">95</span>, <span class="number">101</span>, <span class="number">52</span>, <span class="number">115</span>, <span class="number">121</span>, <span class="number">103</span>, <span class="number">48</span>, <span class="number">105</span>, <span class="number">110</span>, <span class="number">103</span>, <span class="number">125</span>]</span><br><span class="line">)</span><br><span class="line"><span class="built_in">print</span>(a.decode())</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411142041283.png" alt="image-20241114204159168"></p>
+<p>获取flag</p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1942522">https://cloud.tencent.com/developer/article/1942522</a></p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43610673/article/details/105898440">https://blog.csdn.net/weixin_43610673/article/details/105898440</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/11/14/NPUCTF2020-webdog/">http://odiws.github.io/2024/11/14/NPUCTF2020-webdog/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/Padding-oracle-attack-%E4%B8%8ECBC%E7%BF%BB%E8%BD%AC%E5%AD%97%E8%8A%82%E6%94%BB%E5%87%BB/"># Padding oracle attack 与CBC翻转字节攻击</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/11/14/java%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86/">java反射原理</a>
+            
+            
+            <a class="next" rel="next" href="/2024/11/12/FLAG/">FLAG</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

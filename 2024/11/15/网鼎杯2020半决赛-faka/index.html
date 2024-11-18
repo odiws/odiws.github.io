@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="odiws">
+
+
+
+
+
+<title>[网鼎杯2020半决赛]faka | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">[网鼎杯2020半决赛]faka</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">odiws</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">November 15, 2024&nbsp;&nbsp;21:15:12</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">刷题笔记</a>
+                            
+                                <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%BE%85%E5%A4%8D%E7%8E%B0/">待复现</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="网鼎杯2020半决赛-faka"><a href="#网鼎杯2020半决赛-faka" class="headerlink" title="[网鼎杯2020半决赛]faka"></a>[网鼎杯2020半决赛]faka</h2><p>给的源码代码审计</p>
+<p>有个sql文件</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152130243.png" alt="image-20241115213030036"></p>
+<p>在自己的本地部署一下小皮</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152131530.png" alt="image-20241115213141457"></p>
+<p>导入登录phpMyadmin即可</p>
+<p>在system_user的表里面有admin这个账号和密码</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152132469.png" alt="image-20241115213248329"></p>
+<p>md5解密得到密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">admincccbbb123</span><br></pre></td></tr></table></figure>
+
+<p>第一个一般是解密不出来的</p>
+<p>第二个方法就是：在admin&#x2F;Index&#x2F;info的网址里有（未授权访问：添加用户，但是没有authorize这个选项，如果直接创建就是一般用户，我们得是root，所以得用这个admin的选项是3）</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152143273.png" alt="image-20241115214304015"></p>
+<p>也是登录进来了</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152144308.png" alt="image-20241115214437909"></p>
+<p>文件上传</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152144090.png" alt="image-20241115214453875"></p>
+<p>因为有源码，可以不用一个一个盲传</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152146823.png" alt="image-20241115214605677"></p>
+<p>可以看见是tp5.0版本，有一个任意文件读取的漏洞</p>
+<p>位于&#x2F;application&#x2F;manage&#x2F;controller&#x2F;Backup.php的downloadBak方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">downloadBak</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$file_name</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="variable">$file_dir</span> = <span class="variable language_">$this</span>-&gt;config[<span class="string">&#x27;path&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_ invoke__">file_exists</span>(<span class="variable">$file_dir</span> . <span class="string">&quot;/&quot;</span> . <span class="variable">$file_name</span>)) &#123; <span class="comment">//检查文件是否存在</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$file</span> = <span class="title function_ invoke__">fopen</span>(<span class="variable">$file_dir</span> . <span class="string">&quot;/&quot;</span> . <span class="variable">$file_name</span>, <span class="string">&quot;r&quot;</span>); <span class="comment">// 打开文件</span></span><br><span class="line">        <span class="comment">// 输入文件标签</span></span><br><span class="line">        <span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Encoding: none&#x27;</span>);</span><br><span class="line">        <span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type: application/octet-stream&quot;</span>);</span><br><span class="line">        <span class="title function_ invoke__">header</span>(<span class="string">&quot;Accept-Ranges: bytes&quot;</span>);</span><br><span class="line">        <span class="title function_ invoke__">header</span>(<span class="string">&quot;Accept-Length: &quot;</span> . <span class="title function_ invoke__">filesize</span>(<span class="variable">$file_dir</span> . <span class="string">&quot;/&quot;</span> . <span class="variable">$file_name</span>));</span><br><span class="line">        <span class="title function_ invoke__">header</span>(<span class="string">&#x27;Content-Transfer-Encoding: binary&#x27;</span>);</span><br><span class="line">        <span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Disposition: attachment; filename=&quot;</span> . <span class="variable">$file_name</span>);  <span class="comment">//以真实文件名提供给浏览器下载</span></span><br><span class="line">        <span class="title function_ invoke__">header</span>(<span class="string">&#x27;Pragma: no-cache&#x27;</span>);</span><br><span class="line">        <span class="title function_ invoke__">header</span>(<span class="string">&#x27;Expires: 0&#x27;</span>);</span><br><span class="line">        <span class="comment">//输出文件内容</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">fread</span>(<span class="variable">$file</span>, <span class="title function_ invoke__">filesize</span>(<span class="variable">$file_dir</span> . <span class="string">&quot;/&quot;</span> . <span class="variable">$file_name</span>));</span><br><span class="line">        <span class="title function_ invoke__">fclose</span>(<span class="variable">$file</span>);</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个可以目录穿梭，可以直接..&#x2F;..&#x2F;..&#x2F;..&#x2F;flag.txt获取flag</p>
+<p>然后就是代码审计加文件上传了</p>
+<p>看一下upload方法（位于application&#x2F;admin&#x2F;controller&#x2F;Plugs.php）</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 通用文件上传</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> \think\response\Json</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">upload</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable language_">$this</span>-&gt;request-&gt;<span class="title function_ invoke__">file</span>(<span class="string">&#x27;file&#x27;</span>);</span><br><span class="line">    <span class="variable">$ext</span> = <span class="title function_ invoke__">strtolower</span>(<span class="title function_ invoke__">pathinfo</span>(<span class="variable">$file</span>-&gt;<span class="title function_ invoke__">getInfo</span>(<span class="string">&#x27;name&#x27;</span>), <span class="number">4</span>));</span><br><span class="line">    <span class="variable">$md5</span> = <span class="title function_ invoke__">str_split</span>(<span class="variable">$this</span>-&gt;request-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;md5&#x27;</span>), <span class="number">16</span>);</span><br><span class="line">    <span class="variable">$filename</span> = <span class="title function_ invoke__">join</span>(<span class="string">&#x27;/&#x27;</span>, <span class="variable">$md5</span>) . <span class="string">&quot;.<span class="subst">&#123;$ext&#125;</span>&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">strtolower</span>(<span class="variable">$ext</span>) == <span class="string">&#x27;php&#x27;</span> || !<span class="title function_ invoke__">in_array</span>(<span class="variable">$ext</span>, <span class="title function_ invoke__">explode</span>(<span class="string">&#x27;,&#x27;</span>, <span class="title function_ invoke__">strtolower</span>(<span class="title function_ invoke__">sysconf</span>(<span class="string">&#x27;storage_local_exts&#x27;</span>))))) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">json</span>([<span class="string">&#x27;code&#x27;</span> =&gt; <span class="string">&#x27;ERROR&#x27;</span>, <span class="string">&#x27;msg&#x27;</span> =&gt; <span class="string">&#x27;文件上传类型受限&#x27;</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 文件上传Token验证</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;request-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;token&#x27;</span>) !== <span class="title function_ invoke__">md5</span>(<span class="variable">$filename</span> . <span class="title function_ invoke__">session_id</span>())) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">json</span>([<span class="string">&#x27;code&#x27;</span> =&gt; <span class="string">&#x27;ERROR&#x27;</span>, <span class="string">&#x27;msg&#x27;</span> =&gt; <span class="string">&#x27;文件上传验证失败&#x27;</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 文件上传处理</span></span><br><span class="line">    <span class="keyword">if</span> ((<span class="variable">$info</span> = <span class="variable">$file</span>-&gt;<span class="title function_ invoke__">move</span>(<span class="string">&#x27;static&#x27;</span> . DS . <span class="string">&#x27;upload&#x27;</span> . DS . <span class="variable">$md5</span>[<span class="number">0</span>], <span class="variable">$md5</span>[<span class="number">1</span>], <span class="literal">true</span>))) &#123;</span><br><span class="line">        <span class="keyword">if</span> ((<span class="variable">$site_url</span> = <span class="title class_">FileService</span>::<span class="title function_ invoke__">getFileUrl</span>(<span class="variable">$filename</span>, <span class="string">&#x27;local&#x27;</span>))) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">json</span>([<span class="string">&#x27;data&#x27;</span> =&gt; [<span class="string">&#x27;site_url&#x27;</span> =&gt; <span class="variable">$site_url</span>], <span class="string">&#x27;code&#x27;</span> =&gt; <span class="string">&#x27;SUCCESS&#x27;</span>, <span class="string">&#x27;msg&#x27;</span> =&gt; <span class="string">&#x27;文件上传成功&#x27;</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">json</span>([<span class="string">&#x27;code&#x27;</span> =&gt; <span class="string">&#x27;ERROR&#x27;</span>, <span class="string">&#x27;msg&#x27;</span> =&gt; <span class="string">&#x27;文件上传失败&#x27;</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>他写了一个file类用来处理上传的文件，注意这个$md5 &#x3D; str_split($this-&gt;request-&gt;post(‘md5’), 16);，filename是这样拼接而来的：$filename &#x3D; join(‘&#x2F;‘, $md5) . “.{$ext}”;，然后检测后缀，不能是php，或者不是storage_local_exts里面的，这个是可以通过管理面板改配置来控制的。<br>接下来是token的验证：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">    <span class="comment">// 文件上传Token验证</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;request-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;token&#x27;</span>) !== <span class="title function_ invoke__">md5</span>(<span class="variable">$filename</span> . <span class="title function_ invoke__">session_id</span>())) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">json</span>([<span class="string">&#x27;code&#x27;</span> =&gt; <span class="string">&#x27;ERROR&#x27;</span>, <span class="string">&#x27;msg&#x27;</span> =&gt; <span class="string">&#x27;文件上传验证失败&#x27;</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">默认<span class="title function_ invoke__">session_id</span>()是空，所以这里的token也很容易构造出来。</span><br><span class="line">接下来就是进入<span class="title function_ invoke__">move</span>()函数：</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file</span>-&gt;<span class="title function_ invoke__">move</span>(<span class="string">&#x27;static&#x27;</span> . DS . <span class="string">&#x27;upload&#x27;</span> . DS . <span class="variable">$md5</span>[<span class="number">0</span>], <span class="variable">$md5</span>[<span class="number">1</span>], <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 移动文件</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@access</span> public</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span>  string      $path     保存路径</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span>  string|bool $savename 保存的文件名 默认自动生成</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span>  boolean     $replace  同名文件是否覆盖</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@return</span> false|File</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">move</span>(<span class="params"><span class="variable">$path</span>, <span class="variable">$savename</span> = <span class="literal">true</span>, <span class="variable">$replace</span> = <span class="literal">true</span></span>)</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">      <span class="comment">// 文件上传失败，捕获错误代码</span></span><br><span class="line">      <span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable language_">$this</span>-&gt;info[<span class="string">&#x27;error&#x27;</span>])) &#123;</span><br><span class="line">          <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">error</span>(<span class="variable">$this</span>-&gt;info[<span class="string">&#x27;error&#x27;</span>]);</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 检测合法性</span></span><br><span class="line">      <span class="keyword">if</span> (!<span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">isValid</span>()) &#123;</span><br><span class="line">          <span class="variable language_">$this</span>-&gt;error = <span class="string">&#x27;upload illegal files&#x27;</span>;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 验证上传</span></span><br><span class="line">      <span class="keyword">if</span> (!<span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">check</span>()) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="variable">$path</span> = <span class="title function_ invoke__">rtrim</span>(<span class="variable">$path</span>, DS) . DS;</span><br><span class="line">      <span class="comment">// 文件保存命名规则</span></span><br><span class="line">      <span class="variable">$saveName</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">buildSaveName</span>(<span class="variable">$savename</span>);</span><br><span class="line">      <span class="variable">$filename</span> = <span class="variable">$path</span> . <span class="variable">$saveName</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 检测目录</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="literal">false</span> === <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">checkPath</span>(<span class="title function_ invoke__">dirname</span>(<span class="variable">$filename</span>))) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 不覆盖同名文件</span></span><br><span class="line">      <span class="keyword">if</span> (!<span class="variable">$replace</span> &amp;&amp; <span class="title function_ invoke__">is_file</span>(<span class="variable">$filename</span>)) &#123;</span><br><span class="line">          <span class="variable language_">$this</span>-&gt;error = [<span class="string">&#x27;has the same filename: &#123;:filename&#125;&#x27;</span>, [<span class="string">&#x27;filename&#x27;</span> =&gt; <span class="variable">$filename</span>]];</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">/* 移动文件 */</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;isTest) &#123;</span><br><span class="line">          <span class="title function_ invoke__">rename</span>(<span class="variable">$this</span>-&gt;filename, <span class="variable">$filename</span>);</span><br><span class="line">      &#125; <span class="keyword">elseif</span> (!<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$this</span>-&gt;filename, <span class="variable">$filename</span>)) &#123;</span><br><span class="line">          <span class="variable language_">$this</span>-&gt;error = <span class="string">&#x27;upload write error&#x27;</span>;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 返回 File 对象实例</span></span><br><span class="line">      <span class="variable">$file</span> = <span class="keyword">new</span> <span class="built_in">self</span>(<span class="variable">$filename</span>);</span><br><span class="line">      <span class="variable">$file</span>-&gt;<span class="title function_ invoke__">setSaveName</span>(<span class="variable">$saveName</span>)-&gt;<span class="title function_ invoke__">setUploadInfo</span>(<span class="variable">$this</span>-&gt;info);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> <span class="variable">$file</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>前面是一些检测，在check()函数中有是否是图片的检测，利用图片头绕过即可。<br>之后注意这里：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$path</span> = <span class="title function_ invoke__">rtrim</span>(<span class="variable">$path</span>, DS) . DS;</span><br><span class="line"><span class="comment">// 文件保存命名规则</span></span><br><span class="line"><span class="variable">$saveName</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">buildSaveName</span>(<span class="variable">$savename</span>);</span><br><span class="line"><span class="variable">$filename</span> = <span class="variable">$path</span> . <span class="variable">$saveName</span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>$savename</code>是<code>$md5[1]</code>，跟进<code>$this-&gt;buildSaveName</code>函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取保存文件名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@access</span> protected</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  string|bool $savename 保存的文件名 默认自动生成</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> string</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">buildSaveName</span>(<span class="params"><span class="variable">$savename</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 自动生成文件名</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">true</span> === <span class="variable">$savename</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">$this</span>-&gt;rule <span class="keyword">instanceof</span> \<span class="built_in">Closure</span>) &#123;</span><br><span class="line">            <span class="variable">$savename</span> = <span class="title function_ invoke__">call_user_func_array</span>(<span class="variable">$this</span>-&gt;rule, [<span class="variable">$this</span>]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">switch</span> (<span class="variable language_">$this</span>-&gt;rule) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">&#x27;date&#x27;</span>:</span><br><span class="line">                    <span class="variable">$savename</span> = <span class="title function_ invoke__">date</span>(<span class="string">&#x27;Ymd&#x27;</span>) . DS . <span class="title function_ invoke__">md5</span>(<span class="title function_ invoke__">microtime</span>(<span class="literal">true</span>));</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">if</span> (<span class="title function_ invoke__">in_array</span>(<span class="variable">$this</span>-&gt;rule, <span class="title function_ invoke__">hash_algos</span>())) &#123;</span><br><span class="line">                        <span class="variable">$hash</span>     = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">hash</span>(<span class="variable">$this</span>-&gt;rule);</span><br><span class="line">                        <span class="variable">$savename</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$hash</span>, <span class="number">0</span>, <span class="number">2</span>) . DS . <span class="title function_ invoke__">substr</span>(<span class="variable">$hash</span>, <span class="number">2</span>);</span><br><span class="line">                    &#125; <span class="keyword">elseif</span> (<span class="title function_ invoke__">is_callable</span>(<span class="variable">$this</span>-&gt;rule)) &#123;</span><br><span class="line">                        <span class="variable">$savename</span> = <span class="title function_ invoke__">call_user_func</span>(<span class="variable">$this</span>-&gt;rule);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="variable">$savename</span> = <span class="title function_ invoke__">date</span>(<span class="string">&#x27;Ymd&#x27;</span>) . DS . <span class="title function_ invoke__">md5</span>(<span class="title function_ invoke__">microtime</span>(<span class="literal">true</span>));</span><br><span class="line">                    &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">elseif</span> (<span class="string">&#x27;&#x27;</span> === <span class="variable">$savename</span> || <span class="literal">false</span> === <span class="variable">$savename</span>) &#123;</span><br><span class="line">        <span class="variable">$savename</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getInfo</span>(<span class="string">&#x27;name&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_ invoke__">strpos</span>(<span class="variable">$savename</span>, <span class="string">&#x27;.&#x27;</span>)) &#123;</span><br><span class="line">        <span class="variable">$savename</span> .= <span class="string">&#x27;.&#x27;</span> . <span class="title function_ invoke__">pathinfo</span>(<span class="variable">$this</span>-&gt;<span class="title function_ invoke__">getInfo</span>(<span class="string">&#x27;name&#x27;</span>), PATHINFO_EXTENSION);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$savename</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这些代码起作用：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="title function_ invoke__">strpos</span>(<span class="variable">$savename</span>, <span class="string">&#x27;.&#x27;</span>)) &#123;</span><br><span class="line">    <span class="variable">$savename</span> .= <span class="string">&#x27;.&#x27;</span> . <span class="title function_ invoke__">pathinfo</span>(<span class="variable">$this</span>-&gt;<span class="title function_ invoke__">getInfo</span>(<span class="string">&#x27;name&#x27;</span>), PATHINFO_EXTENSION);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="variable">$savename</span>;</span><br></pre></td></tr></table></figure>
+<p>最终相当于写入的文件是static&#x2F;upload&#x2F;$md5[0]&#x2F;$md5[1].$ext<br>因此php文件写不了，虽然可写入的其他后缀可控，但是没法写入.htaccess之类的，因此也解析不了，正常是没法写马的，我把这些代码看了一遍后也是这么想的，所以我还是太菜了。</p>
+<p>仔细想想，还是这里：</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152225334.png" alt="image-20241115222520140"></p>
+<p>能不来token但是你那个什么上传文件包的都没有，逆天</p>
+<p>以后再看看吧，现在估计是搞了了</p>
+<p>再贴个wp（出不来的）：</p>
+<p>这个系统的后台上传是有两个步骤首先会调用 admin模块plugin控制器的update方法 通过 post的md5 和 filename 生成一个加密token 这个token会用于后面的检验</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152227277.png" alt="image-20241115222720121"></p>
+<p>对应源码：</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152227204.png" alt="image-20241115222757062"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152228475.png" alt="image-20241115222805351"></p>
+<p>再来看看第二步 当然就是上传文件拉 下面就是个平常的上传文件包</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152228501.png" alt="image-20241115222819370"></p>
+<p>对应的源码：</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152228187.png" alt="image-20241115222835096"></p>
+<p>这里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if ($this-&gt;request-&gt;post(&#x27;token&#x27;) !== md5($filename . session_id()))</span><br></pre></td></tr></table></figure>
+
+<p>这一个判断是可以绕过的 因为这里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$filename = join(&#x27;/&#x27;, $md5) . &quot;.&#123;$ext&#125;&quot;;</span><br></pre></td></tr></table></figure>
+
+<p>而 $md5是可以控制的 ext 也是可以控制的 所以$filename可以控制 而且 post 的token也可以控制 这样当然可以绕过 具体的生成方法就是利用上传文件的第一步 自己可以随意构造post的md5值 并且没有检验针对post的md5参数 这是getshell的背景之一</p>
+<p>然后关键点在</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$info = $file-&gt;move(&#x27;static&#x27; . DS . &#x27;upload&#x27; . DS . $md5[0], $md5[1], true))</span><br></pre></td></tr></table></figure>
+
+<p>这个move函数里 跟进这个move函数 在这个move函数里有一个关键的调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$saveName = $this-&gt;buildSaveName($savename);</span><br><span class="line">        $filename = $path . $saveName;</span><br></pre></td></tr></table></figure>
+
+<p>我们来看看这个buildsavename函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">protected function buildSaveName($savename)</span><br><span class="line">    &#123;</span><br><span class="line">        // 自动生成文件名</span><br><span class="line">        if (true === $savename) &#123;</span><br><span class="line">            if ($this-&gt;rule instanceof \Closure) &#123;</span><br><span class="line">                $savename = call_user_func_array($this-&gt;rule, [$this]);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                switch ($this-&gt;rule) &#123;</span><br><span class="line">                    case &#x27;date&#x27;:</span><br><span class="line">                        $savename = date(&#x27;Ymd&#x27;) . DS . md5(microtime(true));</span><br><span class="line">                        break;</span><br><span class="line">                    default:</span><br><span class="line">                        if (in_array($this-&gt;rule, hash_algos())) &#123;</span><br><span class="line">                            $hash     = $this-&gt;hash($this-&gt;rule);</span><br><span class="line">                            $savename = substr($hash, 0, 2) . DS . substr($hash, 2);</span><br><span class="line">                        &#125; elseif (is_callable($this-&gt;rule)) &#123;</span><br><span class="line">                            $savename = call_user_func($this-&gt;rule);</span><br><span class="line">                        &#125; else &#123;</span><br><span class="line">                            $savename = date(&#x27;Ymd&#x27;) . DS . md5(microtime(true));</span><br><span class="line">                        &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; elseif (&#x27;&#x27; === $savename || false === $savename) &#123;</span><br><span class="line">            $savename = $this-&gt;getInfo(&#x27;name&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">        if (!strpos($savename, &#x27;.&#x27;)) &#123;</span><br><span class="line">            $savename .= &#x27;.&#x27; . pathinfo($this-&gt;getInfo(&#x27;name&#x27;), PATHINFO_EXTENSION);</span><br><span class="line">        &#125;</span><br><span class="line">        return $savename;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>兄弟萌 看见没 hh 关键点就在 最后一个if判断上 判断 $savename里是否有. 有的话就会直接 return $savename 那么这个savename是什么呢 看前面的调用发现 这个savename就是 调用move函数的第二个参数 也就是 $md5[1] 这个是咱们可以控制的 而且看move函数后面是将这个作为文件名了的 那么我们将$md5[1]设置成xxxx.php(要长与16位) 是不是已经成了!!! hh</p>
+<p>还需要注意一下 上传的时候 png图片前面一部分的格式需要保留 因为有检测 php代码丢后面就好 或者直接用图片马什么的【</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152228460.png" alt="image-20241115222851341"></p>
+<p>你别看它返回的是上传失败 其实已经上传成功了 路径就是 xxxxx&#x2F;static&#x2F;upload&#x2F;$md5[0]&#x2F;$md5[1]</p>
+<p>我刚开始百思不得其解为什么会上传失败 一切都这么的流畅…. 最后看了几遍找不出错在哪,不得已自己在本地搭建了环境，然后实验，偶然间,去瞟了一眼上传目录,发现……其实已经上传成功了….. 应该自己去访问一下的 这个地方有点傻了</p>
+<p><strong>最终</strong>：</p>
+<p>弄了个phpinfo上去</p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411152229639.png" alt="image-20241115222903472"></p>
+<p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/7838?u_atoken=04a843600b8c30a58b59f2cb26591b33&u_asig=ac11000117316796642016072e013e">https://xz.aliyun.com/t/7838?u_atoken=04a843600b8c30a58b59f2cb26591b33&amp;u_asig=ac11000117316796642016072e013e</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/rfrder/article/details/115067196">https://blog.csdn.net/rfrder/article/details/115067196</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>odiws</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://odiws.github.io/2024/11/15/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E5%8D%8A%E5%86%B3%E8%B5%9B-faka/">http://odiws.github.io/2024/11/15/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E5%8D%8A%E5%86%B3%E8%B5%9B-faka/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/buuctf/"># buuctf</a>
+                    
+                        <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"># 文件上传</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2024/11/17/HCTF2018-Hideandseek/">[HCTF2018]Hideandseek</a>
+            
+            
+            <a class="next" rel="next" href="/2024/11/14/java%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86/">java反射原理</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© odiws | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
