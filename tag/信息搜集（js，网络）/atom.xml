@@ -99,6 +99,14 @@
     <category term="FFI预处理" />
     <category term="thinkphp3.2.4" />
     <category term="jwt" />
+    <category term="sql二次注入" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="create_function()函数" />
+    <category term="sqlע��" />
+    <category term="jwt身份验证" />
+    <category term="rc4" />
     <entry>
         <id>http://odiws.github.io/2024/06/20/Mars/</id>
         <title>[b01lers2020]lifeMars</title>

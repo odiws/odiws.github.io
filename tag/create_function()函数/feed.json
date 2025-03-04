@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"create_function()函数\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/08/16/SUCTF2018-annonymous/",
+            "url": "http://odiws.github.io/2024/08/16/SUCTF2018-annonymous/",
+            "title": "[SUCTF2018]annonymous",
+            "date_published": "2024-08-16T04:22:19.000Z",
+            "content_html": "<h2 id=\"suctf2018annonymous\"><a class=\"markdownIt-Anchor\" href=\"#suctf2018annonymous\">#</a> [SUCTF2018]annonymous</h2>\n<p>这题代码很少，就这几行<br>\n首先创建了一个匿名函数，会输出 flag<br>\n 接着 openssl_random_pseudo_bytes (32) 生成一个随机数，然后将其转成了十六进制，将其赋值给 $hash<br>\n 接着 SUCTF_和 hash 拼接成一个新的函数名，函数会执行上面构造的匿名函数<br>\n所以，要想获得 flag 就只有两种办法，直接执行匿名函数，或者执行 SUCTF_和 hash 拼接成的新函数</p>\n<p>下面的 func_name 可以传一个函数名进去并执行该函数</p>\n<p>这题最初想着直接传 $MY 进去看能不能执行，结果不可以，那就只能执行下面那个函数名拼接的函数了，但是这样的话我们首先得破解它所生成的随机数，搜了很久都没有找到办法，这个好像是不可破解的。</p>\n<p>转回去找 create_function 函数的问题，发现一般都是利用它进行代码注入，但这里明显不行。</p>\n<p>后来看了别的大佬的 WP 才知道<br>\n create_function () 这个函数的漏洞，他 create 之后会自动生成一个函数名为 %00lambda_[0-999]，后面的数字会逐步递增</p>\n<p>create_function 是返回函数名称的，函数返回一个唯一的字符串函数名， 出现错误的话则返回 FALSE。</p>\n<p>这么说这个函数也只是动态的创建了一个函数，而这个函数是有函数名的，也就是说，其实这并不是匿名的。 只是创建了一个全局唯一的函数而已。<br>\n详细的可以看看这篇 https://my.oschina.net/2016jyh/blog/810916</p>\n<p>这道题中因为我们不知道前面有多少个匿名函数，所以得通过遍历数字来爆破，执行该函数</p>\n<p>参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NqZGdnL2FydGljbGUvZGV0YWlscy8xMTY3NDY4MDg=\">https://blog.csdn.net/cjdgg/article/details/116746808</span></p>\n",
+            "tags": [
+                "buuctf",
+                "create_function()函数"
+            ]
+        }
+    ]
+}

@@ -99,6 +99,14 @@
     <category term="FFI预处理" />
     <category term="thinkphp3.2.4" />
     <category term="jwt" />
+    <category term="sql二次注入" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="create_function()函数" />
+    <category term="sqlע��" />
+    <category term="jwt身份验证" />
+    <category term="rc4" />
     <entry>
         <id>http://odiws.github.io/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/</id>
         <title>NewStarCTF_2023_公开赛道Include</title>

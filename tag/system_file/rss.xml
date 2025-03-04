@@ -102,6 +102,14 @@
         <category>FFI预处理</category>
         <category>thinkphp3.2.4</category>
         <category>jwt</category>
+        <category>sql二次注入</category>
+        <category>MD5碰撞</category>
+        <category>jwt密码爆破</category>
+        <category>cms</category>
+        <category>create_function()函数</category>
+        <category>sqlע��</category>
+        <category>jwt身份验证</category>
+        <category>rc4</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/07/26/1/</guid>
             <title>easybypass</title>
