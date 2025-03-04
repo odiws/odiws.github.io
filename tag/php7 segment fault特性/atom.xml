@@ -4,10 +4,20 @@
     <title>Hexo • Posts by &#34;php7 segment fault特性&#34; tag</title>
     <link href="http://odiws.github.io" />
     <updated>2024-06-07T14:00:34.000Z</updated>
+    <category term="python" />
     <category term="buuctf" />
     <category term="system:file" />
+    <category term="文件内无字符rce" />
+    <category term="xxe漏洞" />
+    <category term="sql文件读取" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
     <category term="ctf" />
+    <category term="文件上传" />
+    <category term="xml文件上传" />
+    <category term="php反序列化" />
     <category term="regexp注入" />
+    <category term="buuctf， 反序列化" />
     <category term="phar反序列化" />
     <category term="thinkphpV6.0.0" />
     <category term="php7 segment fault特性" />

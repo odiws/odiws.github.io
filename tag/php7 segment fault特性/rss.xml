@@ -7,10 +7,20 @@
         <language>en</language>
         <pubDate>Fri, 07 Jun 2024 22:00:34 +0800</pubDate>
         <lastBuildDate>Fri, 07 Jun 2024 22:00:34 +0800</lastBuildDate>
+        <category>python</category>
         <category>buuctf</category>
         <category>system:file</category>
+        <category>文件内无字符rce</category>
+        <category>xxe漏洞</category>
+        <category>sql文件读取</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
         <category>ctf</category>
+        <category>文件上传</category>
+        <category>xml文件上传</category>
+        <category>php反序列化</category>
         <category>regexp注入</category>
+        <category>buuctf， 反序列化</category>
         <category>phar反序列化</category>
         <category>thinkphpV6.0.0</category>
         <category>php7 segment fault特性</category>

