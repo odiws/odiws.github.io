@@ -70,6 +70,12 @@
         <category>HTTP走私攻击</category>
         <category>json数据unicode转码绕过</category>
         <category>对sqlite的sql注入</category>
+        <category>未理解</category>
+        <category>命令执行</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/12/10/De1CTF-2019-Giftbox/</guid>
             <title>[De1CTF_2019]Giftbox</title>

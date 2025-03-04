@@ -67,6 +67,12 @@
     <category term="HTTP走私攻击" />
     <category term="json数据unicode转码绕过" />
     <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
     <entry>
         <id>http://odiws.github.io/2024/05/29/cookbook-1/</id>
         <title>[nctf2019]truecookbook</title>
