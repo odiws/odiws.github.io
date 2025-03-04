@@ -76,6 +76,8 @@
         <category>python_seed函数</category>
         <category>session伪造</category>
         <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/08/01/FireshellCTF2020-CaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/</guid>
             <title>[FireshellCTF2020]CaasC的预处理</title>

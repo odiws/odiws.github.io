@@ -76,6 +76,8 @@
         <category>python_seed函数</category>
         <category>session伪造</category>
         <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/</guid>
             <title>&#39;[GWCTF 2019]枯燥的抽奖&#39;</title>

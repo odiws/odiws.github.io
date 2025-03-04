@@ -73,6 +73,8 @@
     <category term="python_seed函数" />
     <category term="session伪造" />
     <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
     <entry>
         <id>http://odiws.github.io/2024/10/15/CSAWQual2016-i-got-id/</id>
         <title>[CSAWQual2016]i_got_id</title>

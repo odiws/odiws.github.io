@@ -5,6 +5,17 @@
     "home_page_url": "http://odiws.github.io",
     "items": [
         {
+            "id": "http://odiws.github.io/2024/06/16/Injection/",
+            "url": "http://odiws.github.io/2024/06/16/Injection/",
+            "title": "October 2019 Twice SQL Injection",
+            "date_published": "2024-06-16T06:35:04.000Z",
+            "content_html": "<h2 id=\"october-2019-twice-sql-injection\"><a class=\"markdownIt-Anchor\" href=\"#october-2019-twice-sql-injection\">#</a> October 2019 Twice SQL Injection</h2>\n<p>二次注入（个人理解二次注入不是立马生效，而是在另一个界面时被调用，SQL 语句在那个界面被调用生效）</p>\n<p><img data-src=\"../images/October2019TwiceSQLInjection/2.png\" alt=\"2\"></p>\n<p>进行注册；</p>\n<p><img data-src=\"../images/October2019TwiceSQLInjection/3.png\" alt=\"3\"></p>\n<p>（ps：跟我做的登陆页面好像）</p>\n<p>注入点就在这里 username，没有任何过滤，但是很难想到，因为进去后有一个修改信息的东西过滤了‘和 “，我直接在那里面搞好久，发现不能用宽字节绕过，（然后就不知道怎么办 了）所以就看了 wp，发现就是这里有注入点。</p>\n<pre><code class=\"language-none\">\nusername =1' union select group_concat(column_name) from information_schema.columns where table_name='flag'#\n\nusername =1' union select flag from flag #\n</code></pre>\n<p>常规操作，但是没找到注入点，有点可惜。</p>\n<p><img data-src=\"../images/October2019TwiceSQLInjection/1.png\" alt=\"1\"></p>\n",
+            "tags": [
+                "buuctf",
+                "sql injection"
+            ]
+        },
+        {
             "id": "http://odiws.github.io/2024/06/03/GYCTF2020-Ezsqli/",
             "url": "http://odiws.github.io/2024/06/03/GYCTF2020-Ezsqli/",
             "title": "'[GYCTF2020]Ezsqli'",

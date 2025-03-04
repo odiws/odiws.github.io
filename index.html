@@ -88,12 +88,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipey84bjtj20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipesng5oej20zk0m87d4.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicivghyooj20zk0m8dir.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciundwu5j20zk0m8n9e.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipevo9j1jj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeyhsblkj20zk0m81kx.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclj61ylzj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipey0a334j20zk0m8qpt.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipexw3o58j20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclflwv2aj20zk0m84qp.jpg"></li>
         </ul>
       </div>
     </header>
@@ -120,7 +120,7 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/03/03/hello-world/" itemprop="url" title="Hello World"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipexe4oykj20zk0m87ji.jpg"></a>
+    <a href="/2025/03/03/hello-world/" itemprop="url" title="Hello World"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclhpw3lwj20zk0m8gvw.jpg"></a>
   </div>
   <div class="info">
     
@@ -149,7 +149,43 @@ h$...
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" itemprop="url" title="aliyunctf部分复现"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipexoj0moj20zk0m8kgu.jpg"></a>
+    <a href="/2025/02/26/HMGCTF2022-Fan-Website/" itemprop="url" title="[HMGCTF2022]Fan_Website"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gicmnywqgpj20zk0m8dwx.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2025-02-26 22:09:15">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-02-26T22:09:15+08:00">2025-02-26</time>
+  </span>
+</div>
+
+    <h3><a href="/2025/02/26/HMGCTF2022-Fan-Website/" itemprop="url" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></h3>
+    <div class="excerpt">
+        # [HMGCTF2022]Fan_Website
+/www.zip 得到源码
+审计代码发现题目有个 album 路由，并且控制器只有一个 /module/Album/src/Controller/AlbumController.php
+
+白名单只允许 jpg，jpeg，png 通过
+
+还不能用这些东西，HALT_COMPILER 就是 phar 反序列化，如果可以绕过的话，那就包是 phar 反序列化的
+上网搜这个组件的漏洞发现了一个反序列化漏洞 https://xz.aliyun.com/t/8975，那就好说了，我们可以上传一个 phar 文件，然后删除文件调用 unlink...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2025/02/26/HMGCTF2022-Fan-Website/" itemprop="url" title="[HMGCTF2022]Fan_Website" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" itemprop="url" title="aliyunctf部分复现"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipevarprfj20zk0m8npd.jpg"></a>
   </div>
   <div class="info">
     
@@ -182,7 +218,7 @@ import osimport subprocessimport uuidimport jsonfrom flask import Flask, request
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/" itemprop="url" title="[Dest0g3_520迎新赛]SimpleRCE"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipeubcbajj20zk0m8h1h.jpg"></a>
+    <a href="/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/" itemprop="url" title="[Dest0g3_520迎新赛]SimpleRCE"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipeyvx1d4j20zk0m8hdt.jpg"></a>
   </div>
   <div class="info">
     
@@ -212,7 +248,7 @@ import osimport subprocessimport uuidimport jsonfrom flask import Flask, request
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/23/HFCTF-2021-Final-hatenum/" itemprop="url" title="[HFCTF_2021_Final]hatenum"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipex2cdtbj20zk0m8x6p.jpg"></a>
+    <a href="/2025/02/23/HFCTF-2021-Final-hatenum/" itemprop="url" title="[HFCTF_2021_Final]hatenum"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclwuom7cj20zk0m8dvn.jpg"></a>
   </div>
   <div class="info">
     
@@ -242,7 +278,7 @@ function sql_waf($str)&amp;#123; if(preg_match(&#39;/union|select|or|and|\&#39;|
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/09/BSidesCF2019-Sequel/" itemprop="url" title="[BSidesCF2019]Sequel"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giph4baakhj20zk0m8h5q.jpg"></a>
+    <a href="/2025/02/09/BSidesCF2019-Sequel/" itemprop="url" title="[BSidesCF2019]Sequel"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipeyvx1d4j20zk0m8hdt.jpg"></a>
   </div>
   <div class="info">
     
@@ -280,7 +316,7 @@ import requestsimport base64import stringimport timeurl = &quot;http://0eaa6072-
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/12/10/De1CTF-2019-Giftbox/" itemprop="url" title="[De1CTF_2019]Giftbox"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipexe4oykj20zk0m87ji.jpg"></a>
+    <a href="/2024/12/10/De1CTF-2019-Giftbox/" itemprop="url" title="[De1CTF_2019]Giftbox"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipeun65urj20zk0m81ii.jpg"></a>
   </div>
   <div class="info">
     
@@ -314,7 +350,7 @@ TOTP 是基于散列的消息认证码（HMAC）的示例。它使用加密哈�
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/12/10/b01lers2020-Spac-Noodles/" itemprop="url" title="[b01lers2020]Spac_Noodles"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclx6phq6j20zk0m8e36.jpg"></a>
+    <a href="/2024/12/10/b01lers2020-Spac-Noodles/" itemprop="url" title="[b01lers2020]Spac_Noodles"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipet8c1a2j20zk0m8kct.jpg"></a>
   </div>
   <div class="info">
     
@@ -374,7 +410,7 @@ HTTP/1.1...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/12/06/ctfshow-web-java/" itemprop="url" title="ctfshow_web_java"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gicivghyooj20zk0m8dir.jpg"></a>
+    <a href="/2024/12/06/ctfshow-web-java/" itemprop="url" title="ctfshow_web_java"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipesng5oej20zk0m87d4.jpg"></a>
   </div>
   <div class="info">
     
@@ -409,70 +445,32 @@ HTTP/1.1...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/11/19/BSidesCF-2020-Cards/" itemprop="url" title="[BSidesCF-2020]Cards"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1gipewr8iypj20zk0m8b29.jpg"></a>
+    <a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" itemprop="url" title="[HMGCTF2022]Smarty-Calculator"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipeu1usa7j20zk0m8b29.jpg"></a>
   </div>
   <div class="info">
     
 <div class="meta">
-  <span class="item" title="Created: 2024-11-19 15:21:50">
+  <span class="item" title="Created: 2024-11-22 20:21:41">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-11-19T15:21:50+08:00">2024-11-19</time>
+    <time itemprop="dateCreated datePublished" datetime="2024-11-22T20:21:41+08:00">2024-11-22</time>
   </span>
 </div>
 
-    <h3><a href="/2024/11/19/BSidesCF-2020-Cards/" itemprop="url" title="[BSidesCF-2020]Cards">[BSidesCF-2020]Cards</a></h3>
+    <h3><a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" itemprop="url" title="[HMGCTF2022]Smarty-Calculator">[HMGCTF2022]Smarty-Calculator</a></h3>
     <div class="excerpt">
-        # [BSidesCF 2020]Cards
-
-发现大量字符，用&amp;#123;&amp;#125;包括的是json数据“”：“”
-
-我们在每次请求都会有一个 SecretState 参数，用来保存游戏状态，并且在客户端和服务端同步。这个参数没法篡改。每次请求，服务端都会生成一个新的 SecretState，但是旧的 SecretState 并不失效，问题就出在于此。
-游戏如果赢了，就更新 SecretState，如果输了，则不更新 SecretState。这样就可以达到类似一种分数只增不减的效果。
-但是有个问题，下注之后要开牌的话，必须得用新的...
+        # [HMGCTF2022]Smarty Calculator
+进入页面，随便输入一个字符，发现还未登录，没有提示就是文件泄露
+www.zip，发现文件，泄露查看源码：
+if(isset($_POST[&#39;data&#39;]))&amp;#123; if(isset($_COOKIE[&#39;login&#39;])) &amp;#123; $data = waf($_POST[&#39;data&#39;]); echo &quot;&amp;lt;div...
     </div>
     <div class="meta footer">
       <span>
         <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
       </span>
     </div>
-    <a href="/2024/11/19/BSidesCF-2020-Cards/" itemprop="url" title="[BSidesCF-2020]Cards" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/11/18/BSidesCF-2019-Mixer/" itemprop="url" title="[BSidesCF-2019]Mixer"><img data-src="https://tva4.sinaimg.cn/mw690/6833939bly1giclhtuo6nj20zk0m8ttm.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-11-18 21:35:10">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-11-18T21:35:10+08:00">2024-11-18</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/11/18/BSidesCF-2019-Mixer/" itemprop="url" title="[BSidesCF-2019]Mixer">[BSidesCF-2019]Mixer</a></h3>
-    <div class="excerpt">
-        # [BSidesCF-2019]Mixer
-
-主页，有一些提示
-It looks like you aren&#39;t admin, though! Better work on that! Remember, is_admin must bet set to 1 (integer)! And you can safely ignore the rack.session cookie. Like actually. But that other cookie, however....
-
-这就说明可能不是 session 加密解密了，得用密码学的东西来解释一下了
-登录抓包后发现有了一个...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/11/18/BSidesCF-2019-Mixer/" itemprop="url" title="[BSidesCF-2019]Mixer" class="btn">more...</a>
+    <a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" itemprop="url" title="[HMGCTF2022]Smarty-Calculator" class="btn">more...</a>
   </div>
 </article>
 
@@ -511,7 +509,7 @@ It looks like you aren&#39;t admin, though! Better work on that! Remember, is_ad
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">72</span>
+        <span class="count">78</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -523,7 +521,7 @@ It looks like you aren&#39;t admin, though! Better work on that! Remember, is_ad
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">69</span>
+        <span class="count">71</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -573,30 +571,19 @@ It looks like you aren&#39;t admin, though! Better work on that! Remember, is_ad
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/04/29/5-txt/" title="buuctf4月29日">buuctf4月29日</a></span>
+    <span><a href="/2024/11/20/ISCTF2024%E5%A4%8D%E7%8E%B0/" title="ISCTF2024复现">ISCTF2024复现</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+<a href="/categories/misc/" title="In misc">misc</a>
 </div>
 
-    <span><a href="/2024/04/28/2_1/" title="python request库的基本用法">python request库的基本用法</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/08/31/GWCTF2019-mypassword/" title="[GWCTF2019]mypassword">[GWCTF2019]mypassword</a></span>
+    <span><a href="/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/" title="zip伪加密">zip伪加密</a></span>
   </li>
 
       
@@ -606,7 +593,7 @@ It looks like you aren&#39;t admin, though! Better work on that! Remember, is_ad
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
+    <span><a href="/2024/10/11/GYCTF2020-NodeGame-nodejs/" title="[GYCTF2020]NodeGame-nodejs">[GYCTF2020]NodeGame-nodejs</a></span>
   </li>
 
       
@@ -616,17 +603,7 @@ It looks like you aren&#39;t admin, though! Better work on that! Remember, is_ad
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/05/29/cookbook-1/" title="[nctf2019]truecookbook">[nctf2019]truecookbook</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/07/26/1/" title="easybypass">easybypass</a></span>
+    <span><a href="/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/" title="buuctf5月26日">buuctf5月26日</a></span>
   </li>
 
       
@@ -646,7 +623,7 @@ It looks like you aren&#39;t admin, though! Better work on that! Remember, is_ad
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/03/CISCN2021Quals-upload/" title="[CISCN2021Quals]upload">[CISCN2021Quals]upload</a></span>
+    <span><a href="/2024/10/15/HarekazeCTF2019-EasyNotes-1/" title="[HarekazeCTF2019]EasyNotes">[HarekazeCTF2019]EasyNotes</a></span>
   </li>
 
       
@@ -656,7 +633,7 @@ It looks like you aren&#39;t admin, though! Better work on that! Remember, is_ad
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/07/28/2019-SVGMagic/" title="[BSidesCF2019]SVGMagic">[BSidesCF2019]SVGMagic</a></span>
+    <span><a href="/2024/10/15/CSAWQual2016-i-got-id/" title="[CSAWQual2016]i_got_id">[CSAWQual2016]i_got_id</a></span>
   </li>
 
       
@@ -666,7 +643,27 @@ It looks like you aren&#39;t admin, though! Better work on that! Remember, is_ad
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" title="&#39;[NPUCTF2020]ezinclude&#39;">'[NPUCTF2020]ezinclude'</a></span>
+    <span><a href="/2024/08/04/HarekazeCTF2019-AvatarUploader1/" title="[HarekazeCTF2019]AvatarUploader1">[HarekazeCTF2019]AvatarUploader1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/06/16/GYCTF2020-EasyThinking/" title="[GYCTF2020]EasyThinking">[GYCTF2020]EasyThinking</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/08/13/2019%E5%BC%BA%E7%BD%91%E6%9D%AFUpload%E9%A2%98/" title="2019强网杯Upload题">2019强网杯Upload题</a></span>
   </li>
 
   </ul>

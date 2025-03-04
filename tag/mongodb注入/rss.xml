@@ -76,6 +76,8 @@
         <category>python_seed函数</category>
         <category>session伪造</category>
         <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/</guid>
             <title>[2021祥云杯]PackageManager2021</title>

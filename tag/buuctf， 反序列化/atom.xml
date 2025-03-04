@@ -73,6 +73,8 @@
     <category term="python_seed函数" />
     <category term="session伪造" />
     <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
     <entry>
         <id>http://odiws.github.io/2024/05/05/5%E6%9C%885%E6%97%A5buu/</id>
         <title>buuctf5月5日</title>

@@ -76,6 +76,8 @@
         <category>python_seed函数</category>
         <category>session伪造</category>
         <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/06/07/[NPUCTF2020]ezinclude/</guid>
             <title>&#39;[NPUCTF2020]ezinclude&#39;</title>

@@ -73,6 +73,8 @@
     <category term="python_seed函数" />
     <category term="session伪造" />
     <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
     <entry>
         <id>http://odiws.github.io/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/</id>
         <title>[CISCN2019华东南赛区]Web4</title>
