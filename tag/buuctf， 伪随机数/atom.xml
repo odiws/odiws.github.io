@@ -112,6 +112,9 @@
     <category term="PDO堆叠注入" />
     <category term="test" />
     <category term="tag2" />
+    <category term="shell反弹" />
+    <category term="phpexit绕过" />
+    <category term="require_once函数" />
     <entry>
         <id>http://odiws.github.io/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/</id>
         <title>&#39;[GWCTF 2019]枯燥的抽奖&#39;</title>

@@ -115,6 +115,9 @@
         <category>PDO堆叠注入</category>
         <category>test</category>
         <category>tag2</category>
+        <category>shell反弹</category>
+        <category>phpexit绕过</category>
+        <category>require_once函数</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/01/26/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-EasyLogin/</guid>
             <title>[NewStarCTF2023公开赛道]EasyLogin</title>

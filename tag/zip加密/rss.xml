@@ -115,6 +115,9 @@
         <category>PDO堆叠注入</category>
         <category>test</category>
         <category>tag2</category>
+        <category>shell反弹</category>
+        <category>phpexit绕过</category>
+        <category>require_once函数</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/</guid>
             <title>zip伪加密</title>

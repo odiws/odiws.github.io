@@ -112,6 +112,9 @@
     <category term="PDO堆叠注入" />
     <category term="test" />
     <category term="tag2" />
+    <category term="shell反弹" />
+    <category term="phpexit绕过" />
+    <category term="require_once函数" />
     <entry>
         <id>http://odiws.github.io/2024/06/11/HarekazeCTF2019-encode-and-encode/</id>
         <title>[HarekazeCTF2019]encode_and_encode</title>

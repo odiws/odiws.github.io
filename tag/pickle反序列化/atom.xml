@@ -112,6 +112,9 @@
     <category term="PDO堆叠注入" />
     <category term="test" />
     <category term="tag2" />
+    <category term="shell反弹" />
+    <category term="phpexit绕过" />
+    <category term="require_once函数" />
     <entry>
         <id>http://odiws.github.io/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/</id>
         <title>buuctf5月26日</title>

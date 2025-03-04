@@ -115,6 +115,9 @@
         <category>PDO堆叠注入</category>
         <category>test</category>
         <category>tag2</category>
+        <category>shell反弹</category>
+        <category>phpexit绕过</category>
+        <category>require_once函数</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/10/17/HITCON2016-Leaking/</guid>
             <title>[HITCON2016]Leaking</title>

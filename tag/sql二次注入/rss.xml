@@ -115,6 +115,9 @@
         <category>PDO堆叠注入</category>
         <category>test</category>
         <category>tag2</category>
+        <category>shell反弹</category>
+        <category>phpexit绕过</category>
+        <category>require_once函数</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/08/11/SUCTF2018-MultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/</guid>
             <title>[SUCTF2018]MultiSQL-MySQL预处理学习</title>

