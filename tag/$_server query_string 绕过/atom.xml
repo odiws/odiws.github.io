@@ -6,7 +6,10 @@
     <updated>2024-06-17T11:04:47.000Z</updated>
     <category term="python" />
     <category term="buuctf" />
+    <category term="文件内无字符rce" />
+    <category term="sql文件读取" />
     <category term="ctf" />
+    <category term="文件上传" />
     <category term="http" />
     <category term="php原生类利用" />
     <category term="php反序列化" />

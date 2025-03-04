@@ -9,7 +9,10 @@
         <lastBuildDate>Sun, 28 Apr 2024 22:48:16 +0800</lastBuildDate>
         <category>python</category>
         <category>buuctf</category>
+        <category>文件内无字符rce</category>
+        <category>sql文件读取</category>
         <category>ctf</category>
+        <category>文件上传</category>
         <category>http</category>
         <category>php原生类利用</category>
         <category>php反序列化</category>

