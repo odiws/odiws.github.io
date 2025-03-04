@@ -118,6 +118,7 @@
         <category>shell反弹</category>
         <category>phpexit绕过</category>
         <category>require_once函数</category>
+        <category>xss</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/05/HXBCT-2021-easywill/</guid>
             <title>[HXBCT_2021]easywill</title>

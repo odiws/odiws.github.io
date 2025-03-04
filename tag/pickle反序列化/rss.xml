@@ -5,8 +5,8 @@
         <link>http://odiws.github.io</link>
         <description></description>
         <language>en</language>
-        <pubDate>Sun, 26 May 2024 19:13:55 +0800</pubDate>
-        <lastBuildDate>Sun, 26 May 2024 19:13:55 +0800</lastBuildDate>
+        <pubDate>Mon, 07 Oct 2024 14:07:46 +0800</pubDate>
+        <lastBuildDate>Mon, 07 Oct 2024 14:07:46 +0800</lastBuildDate>
         <category>buuctf</category>
         <category>system_file</category>
         <category>sql文件读取</category>
@@ -118,6 +118,15 @@
         <category>shell反弹</category>
         <category>phpexit绕过</category>
         <category>require_once函数</category>
+        <category>xss</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/10/07/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/</guid>
+            <title>反序列化漏洞总结</title>
+            <link>http://odiws.github.io/2024/10/07/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/</link>
+            <category>pickle反序列化</category>
+            <pubDate>Mon, 07 Oct 2024 14:07:46 +0800</pubDate>
+            <description><![CDATA[  ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/</guid>
             <title>buuctf5月26日</title>

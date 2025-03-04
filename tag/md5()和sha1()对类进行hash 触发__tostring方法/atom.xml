@@ -115,6 +115,7 @@
     <category term="shell反弹" />
     <category term="phpexit绕过" />
     <category term="require_once函数" />
+    <category term="xss" />
     <entry>
         <id>http://odiws.github.io/2024/07/28/2020-Greatphp/</id>
         <title>[极客大挑战2020]Greatphp</title>

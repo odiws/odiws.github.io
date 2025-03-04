@@ -115,6 +115,7 @@
     <category term="shell反弹" />
     <category term="phpexit绕过" />
     <category term="require_once函数" />
+    <category term="xss" />
     <entry>
         <id>http://odiws.github.io/2024/03/25/sql%E6%B3%A8%E5%85%A5/</id>
         <title>sqli-labs��sqlע��ѧϰ�ʼ�</title>

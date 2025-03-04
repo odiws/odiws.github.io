@@ -115,6 +115,7 @@
     <category term="shell反弹" />
     <category term="phpexit绕过" />
     <category term="require_once函数" />
+    <category term="xss" />
     <entry>
         <id>http://odiws.github.io/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/</id>
         <title>SHctf-2024部分复现</title>

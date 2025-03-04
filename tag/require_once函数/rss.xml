@@ -118,6 +118,7 @@
         <category>shell反弹</category>
         <category>phpexit绕过</category>
         <category>require_once函数</category>
+        <category>xss</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/09/06/WMCTF2020-MakePHPGreatAgain2-0/</guid>
             <title>[WMCTF2020]MakePHPGreatAgain2.0</title>

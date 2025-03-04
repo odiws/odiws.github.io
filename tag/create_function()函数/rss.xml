@@ -118,6 +118,7 @@
         <category>shell反弹</category>
         <category>phpexit绕过</category>
         <category>require_once函数</category>
+        <category>xss</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/08/16/SUCTF2018-annonymous/</guid>
             <title>[SUCTF2018]annonymous</title>

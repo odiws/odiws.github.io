@@ -118,6 +118,7 @@
         <category>shell反弹</category>
         <category>phpexit绕过</category>
         <category>require_once函数</category>
+        <category>xss</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/</guid>
             <title>NewStarCTF2023新生赛_BabySSTI_Three</title>

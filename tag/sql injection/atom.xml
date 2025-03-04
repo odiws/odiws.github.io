@@ -115,6 +115,7 @@
     <category term="shell反弹" />
     <category term="phpexit绕过" />
     <category term="require_once函数" />
+    <category term="xss" />
     <entry>
         <id>http://odiws.github.io/2024/06/16/Injection/</id>
         <title>October 2019 Twice SQL Injection</title>

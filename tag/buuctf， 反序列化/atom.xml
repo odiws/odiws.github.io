@@ -115,6 +115,7 @@
     <category term="shell反弹" />
     <category term="phpexit绕过" />
     <category term="require_once函数" />
+    <category term="xss" />
     <entry>
         <id>http://odiws.github.io/2024/05/05/5%E6%9C%885%E6%97%A5buu/</id>
         <title>buuctf5月5日</title>

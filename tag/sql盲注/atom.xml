@@ -115,6 +115,7 @@
     <category term="shell反弹" />
     <category term="phpexit绕过" />
     <category term="require_once函数" />
+    <category term="xss" />
     <entry>
         <id>http://odiws.github.io/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/</id>
         <title>[PwnThyBytes——2019]Baby_SQL</title>
