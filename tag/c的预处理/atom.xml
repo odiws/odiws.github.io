@@ -107,6 +107,11 @@
     <category term="sqlע��" />
     <category term="jwt身份验证" />
     <category term="rc4" />
+    <category term="CRLF" />
+    <category term="任意文件读取" />
+    <category term="PDO堆叠注入" />
+    <category term="test" />
+    <category term="tag2" />
     <entry>
         <id>http://odiws.github.io/2024/08/01/FireshellCTF2020-CaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/</id>
         <title>[FireshellCTF2020]CaasC的预处理</title>

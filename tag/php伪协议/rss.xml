@@ -110,6 +110,11 @@
         <category>sqlע��</category>
         <category>jwt身份验证</category>
         <category>rc4</category>
+        <category>CRLF</category>
+        <category>任意文件读取</category>
+        <category>PDO堆叠注入</category>
+        <category>test</category>
+        <category>tag2</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/</guid>
             <title>[NewStarCTF2023公开赛道]include0。0</title>

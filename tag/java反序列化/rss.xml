@@ -110,6 +110,11 @@
         <category>sqlע��</category>
         <category>jwt身份验证</category>
         <category>rc4</category>
+        <category>CRLF</category>
+        <category>任意文件读取</category>
+        <category>PDO堆叠注入</category>
+        <category>test</category>
+        <category>tag2</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
             <title>java反序列化学习笔记</title>

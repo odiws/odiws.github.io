@@ -107,6 +107,11 @@
     <category term="sqlע��" />
     <category term="jwt身份验证" />
     <category term="rc4" />
+    <category term="CRLF" />
+    <category term="任意文件读取" />
+    <category term="PDO堆叠注入" />
+    <category term="test" />
+    <category term="tag2" />
     <entry>
         <id>http://odiws.github.io/2024/03/25/sql%E6%B3%A8%E5%85%A5/</id>
         <title>sqli-labs��sqlע��ѧϰ�ʼ�</title>

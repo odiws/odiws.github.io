@@ -110,6 +110,11 @@
         <category>sqlע��</category>
         <category>jwt身份验证</category>
         <category>rc4</category>
+        <category>CRLF</category>
+        <category>任意文件读取</category>
+        <category>PDO堆叠注入</category>
+        <category>test</category>
+        <category>tag2</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
             <title>java反序列化学习笔记</title>
@@ -1306,6 +1311,40 @@ IP地址转换成十进制：
 &lt;li&gt;屏蔽返回的详细信息。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&#34;https://img2020.cnblogs.com/blog/1423858/202112/1423858-20211226122257716-1416179109.png&#34;&gt;&lt;img data-src=&#34;https://img2020.cnblogs.com/blog/1423858/202112/1423858-20211226122257716-1416179109.png&#34; alt=&#34;img&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/03/25/upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%AC%94%E8%AE%B0/</guid>
+            <title>upload文件上传靶场学习笔记</title>
+            <link>http://odiws.github.io/2024/03/25/upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%AC%94%E8%AE%B0/</link>
+            <category>文件上传</category>
+            <pubDate>Mon, 25 Mar 2024 16:48:15 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;特点：一句话木马尽量都写在一行里，不然容易出错&lt;br&gt;
+ 12 关的要求要把 php 扩展里的参数设置里的 magic-quotes-gpc 取消掉&lt;br&gt;
+ 1. 前端的 js 绕过（在前端进行过滤）（控制台 F12 设置禁用 js 使用）&lt;br&gt;
+2.content-type 绕过（该请求体用来判断文件的类型）&lt;br&gt;
+3. 特殊类型绕过（php 可以用 php3，php5 来绕过）&lt;br&gt;
+4.（.htaccess 绕过）可以在 httpd-conf 文件中添加配置以增加特殊类型 （先要在 httpd-conf 中设置 allowoverrice 从 None 改成 All）    —（AddType application/x-httpd-php .png）&lt;br&gt;
+5…user.ini 绕过（与.htaccess 相似）—（auto_prepend_file=111.jpg）&lt;br&gt;
+点加空格加点绕过（windows 系统会忽略。和 ，可以绕过检测，到文件下会自动删除）&lt;br&gt;
+6. 大写绕过&lt;br&gt;
+ 7. 空格绕过&lt;br&gt;
+ 8. 后缀加点绕过&lt;br&gt;
+ 9. 在抓包后在文件后加入::&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;D&lt;/mi&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;mtext&gt;来绕过检测（&lt;/mtext&gt;&lt;mi&gt;w&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;w&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mtext&gt;系统会忽略&lt;/mtext&gt;&lt;mo&gt;:&lt;/mo&gt;&lt;mo&gt;:&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;DATA来绕过检测（windows系统会忽略::&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.69444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;D&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.13889em;&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;来&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;绕&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;过&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;检&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;测&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;（&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02691em;&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02691em;&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;系&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;统&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;会&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;忽&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;略&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;:&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.43056em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;:&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;DATA 可以绕过检测，到文件下会自动删除）&lt;br&gt;
+10. 点空格点绕过&lt;br&gt;
+ 11. 会删除后缀名（双写后缀名（phphpp），直接让他删一个留一个完整的 php 进行绕过）&lt;br&gt;
+12. 在 save_path=…/upload/ 加上文件名.php%00&lt;br&gt;
+ 用 %00 可以注释&lt;br&gt;
+ 13. 在 save_path 下面的…/upload/ 加上（文件名）.php  加上空格在 burpsuite 右边的 CODE HEX 换成 00&lt;br&gt;
+14.（2.）界面上文件包含漏洞点击进去在 url 上面写？file=upload / 上传的文件名&lt;br&gt;
+（1.）将 png 等白名单文件后缀换成 php 文件在里面加一句话木马&lt;br&gt;
+ 15. 在图片文件夹里的路径格里填入 cmd+enter 键 写入 copy 照片名 /b+1.php 新名字.png&lt;br&gt;
+16. 与 15 关一样&lt;br&gt;
+ 17. 图片二次渲染：先把原 gif 文件保存，在上传获取重写后的 gif 文件，用 010editer 来看相同的区域未被改写，再在该区域写 php 一句话木马。再上传&lt;br&gt;
+ 18. 条件竞争：逻辑漏洞，先上传到服务器在进行检测，可以通过 burp suite 进行多线程攻击，对服务器而言，处理文件需要时间，可以通过这个时间来进行文件读写操作。（1. 在上传时截断。2. 查看该文件（/upload/1.php）（可以通过一个 burp suite 阶段 1，再截断 2 或者直接在 python 写脚本））&lt;br&gt;
+19. 条件竞争：与 18 关一样。&lt;br&gt;
+20. 后缀绕过的总结，就是上方的总结&lt;br&gt;
+ 21. 该关原理是一个数组按顺序排序，取第一个元素，与最后的元素结合组成文件名，可以通过上传数组来绕过是否是数组的判断，再在数组的元素不连续，那么数组找最后的元素是通过数组【length-1】，这样就找不到最后的元素，那么就不会写入文件，利用 burp suite 来截断，第一个元素写 1.php，再写一个数组【只要不是 1 都可以】，上传就可以了&lt;/p&gt;
  ]]></description>
         </item>
         <item>

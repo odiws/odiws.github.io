@@ -110,6 +110,11 @@
         <category>sqlע��</category>
         <category>jwt身份验证</category>
         <category>rc4</category>
+        <category>CRLF</category>
+        <category>任意文件读取</category>
+        <category>PDO堆叠注入</category>
+        <category>test</category>
+        <category>tag2</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/09/18/Quals-Bnv/</guid>
             <title>Quals]Bnv</title>

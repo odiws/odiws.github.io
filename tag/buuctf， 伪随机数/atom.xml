@@ -107,6 +107,11 @@
     <category term="sqlע��" />
     <category term="jwt身份验证" />
     <category term="rc4" />
+    <category term="CRLF" />
+    <category term="任意文件读取" />
+    <category term="PDO堆叠注入" />
+    <category term="test" />
+    <category term="tag2" />
     <entry>
         <id>http://odiws.github.io/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/</id>
         <title>&#39;[GWCTF 2019]枯燥的抽奖&#39;</title>

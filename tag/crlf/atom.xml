@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;crlf&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2025-02-24T13:22:28.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="mysql" />
+    <category term="信息搜集（js，网络）" />
+    <category term="异或" />
+    <category term="密码爆破" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
+    <category term="sql盲注" />
+    <category term="php7.4" />
+    <category term="FFI预处理" />
+    <category term="thinkphp3.2.4" />
+    <category term="jwt" />
+    <category term="sql二次注入" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="create_function()函数" />
+    <category term="sqlע��" />
+    <category term="jwt身份验证" />
+    <category term="rc4" />
+    <category term="CRLF" />
+    <category term="任意文件读取" />
+    <category term="PDO堆叠注入" />
+    <category term="test" />
+    <category term="tag2" />
+    <entry>
+        <id>http://odiws.github.io/2025/02/24/SWPUCTF-2016-Web7/</id>
+        <title>[SWPUCTF_2016]Web7</title>
+        <link rel="alternate" href="http://odiws.github.io/2025/02/24/SWPUCTF-2016-Web7/"/>
+        <content type="html">&lt;h2 id=&#34;swpuctf_2016web7&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#swpuctf_2016web7&#34;&gt;#&lt;/a&gt; [SWPUCTF_2016]Web7&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502242123993.png&#34; alt=&#34;image-20250224212323881&#34;&gt;&lt;/p&gt;
+&lt;p&gt;进入就是这个，随便 aaa&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502242123477.png&#34; alt=&#34;image-20250224212344321&#34;&gt;&lt;/p&gt;
+&lt;p&gt;提示是 python2 的 urlopen 函数，就是 crlf 了，可以用 set admin admin 来设置 admin 的密码，&lt;/p&gt;
+&lt;p&gt;payload：（%0d%0a 就是回车键（回车换行））通过 urllib 注入 redis。修改 admin 密码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;submit：http://127.0.0.1%0d%0a%0d%0aset%20admin%20admin%0d%0aHost:%20127.0.0.1:6379
+login：admin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502242125952.png&#34; alt=&#34;image-20250224212539675&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ndW9rZXlhLmdpdGh1Yi5pby9wb3N0L3N3cHVjdGYtMjAxNndlYjd1cmxsaWItdG91LXpodS1ydS1zc3JmLw==&#34;&gt;https://guokeya.github.io/post/swpuctf-2016web7urllib-tou-zhu-ru-ssrf/&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="CRLF" />
+        <updated>2025-02-24T13:22:28.000Z</updated>
+    </entry>
+</feed>
