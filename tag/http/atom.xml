@@ -75,6 +75,12 @@
     <category term="js-vm沙箱逃逸" />
     <category term="willphp2.2" />
     <category term="ssti-smarty3.1.39" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="java反序列化" />
     <entry>
         <id>http://odiws.github.io/2024/12/10/b01lers2020-Spac-Noodles/</id>
         <title>[b01lers2020]Spac_Noodles</title>

