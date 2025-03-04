@@ -119,6 +119,8 @@
         <category>phpexit绕过</category>
         <category>require_once函数</category>
         <category>xss</category>
+        <category>302跳转</category>
+        <category>反序列化</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/</guid>
             <title>SHctf-2024部分复现</title>

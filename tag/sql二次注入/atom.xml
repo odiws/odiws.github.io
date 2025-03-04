@@ -116,6 +116,8 @@
     <category term="phpexit绕过" />
     <category term="require_once函数" />
     <category term="xss" />
+    <category term="302跳转" />
+    <category term="反序列化" />
     <entry>
         <id>http://odiws.github.io/2024/08/11/SUCTF2018-MultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/</id>
         <title>[SUCTF2018]MultiSQL-MySQL预处理学习</title>

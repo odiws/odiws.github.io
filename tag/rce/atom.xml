@@ -116,6 +116,8 @@
     <category term="phpexit绕过" />
     <category term="require_once函数" />
     <category term="xss" />
+    <category term="302跳转" />
+    <category term="反序列化" />
     <entry>
         <id>http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/</id>
         <title>[Dest0g3_520迎新赛]SimpleRCE</title>

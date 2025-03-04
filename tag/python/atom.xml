@@ -116,6 +116,8 @@
     <category term="phpexit绕过" />
     <category term="require_once函数" />
     <category term="xss" />
+    <category term="302跳转" />
+    <category term="反序列化" />
     <entry>
         <id>http://odiws.github.io/2024/04/28/2_1/</id>
         <title>python request库的基本用法</title>

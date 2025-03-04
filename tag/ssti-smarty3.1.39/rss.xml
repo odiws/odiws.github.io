@@ -119,6 +119,8 @@
         <category>phpexit绕过</category>
         <category>require_once函数</category>
         <category>xss</category>
+        <category>302跳转</category>
+        <category>反序列化</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/22/HMGCTF2022-Smarty-Calculator/</guid>
             <title>[HMGCTF2022]Smarty-Calculator</title>
