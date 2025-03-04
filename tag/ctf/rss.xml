@@ -60,6 +60,9 @@
         <category>xss攻击</category>
         <category>c的预处理</category>
         <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/04/28/1_1/</guid>
             <title>buuctf4月27日</title>

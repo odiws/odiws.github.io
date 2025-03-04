@@ -60,6 +60,9 @@
         <category>xss攻击</category>
         <category>c的预处理</category>
         <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/</guid>
             <title>[CISCN2019华东南赛区]Web4</title>

