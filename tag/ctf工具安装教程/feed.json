@@ -1,0 +1,18 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"ctf工具安装教程\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/",
+            "url": "http://odiws.github.io/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/",
+            "title": "'ctf工具总结'",
+            "date_published": "2024-05-29T07:44:25.000Z",
+            "content_html": "<p>源码泄露工具：dirsearch</p>\n<p>用法：python <span class=\"exturl\" data-url=\"aHR0cDovL2RpcnNlYXJjaC5weQ==\">dirsearch.py</span> -u url 地址</p>\n<p>githack：git 源码泄露的工具（dirsearch 扫 git 泄露可能乱码，githack 不会）</p>\n<p>python <span class=\"exturl\" data-url=\"aHR0cDovL2dpdGhhY2sucHk=\">githack.py</span> url+/.git/</p>\n<p>直接在 githack 文件夹里面找到文件。</p>\n<p>c-jwt-cracker:(jwt 爆破找到密钥)</p>\n<p><span class=\"exturl\" data-url=\"aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbGl0bHVvL3AvYy1qd3QtY3JhY2tlci5odG1s\">快速安装 c-jwt-cracker - litluo - 博客园 (cnblogs.com)</span></p>\n<p>php_mt_seed:(为了找到伪随机数漏洞的种子，用种子可以反推随机的字符串)：</p>\n<p><span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU4Nzg0Mzc5L2FydGljbGUvZGV0YWlscy8xMjE3MTUwNzI=\">PHP 伪随机数漏洞，以及 php_mt_seed 脚本的使用_php 伪随机漏洞 - CSDN 博客</span></p>\n<p>Arjun：一款 http 参数扫描器，主要就是爆破 url 参数的（jinja2 模板注入的参数爆破）：<br>\n下载源码：看 readme.md 有安装方法，先安装才能用。</p>\n<p><span class=\"exturl\" data-url=\"aHR0cHM6Ly9naXRodWIuY29tL3MwbWQzdi9Bcmp1bg==\">https://github.com/s0md3v/Arjun</span></p>\n<p>用法：python3 <span class=\"exturl\" data-url=\"aHR0cDovL2FyanVuLnB5\">arjun.py</span> -u <span class=\"exturl\" data-url=\"aHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZW5kcG9pbnQ=\">https://api.example.com/endpoint</span> --get</p>\n<p>fenjing：焚靖是一个针对<span class=\"exturl\" data-url=\"aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1DVEYmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw\"> CTF</span> 比赛中 Jinja SSTI 绕过 WAF 的全自动脚本，可以自动攻击给定的网站或接口。</p>\n<p>下载地址：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9naXRodWIuY29tL01hcnZlbjExL0Zlbmppbmc=\">https://github.com/Marven11/Fenjing</span></p>\n<p>使用说明：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzYxMTU1MjI2L2FydGljbGUvZGV0YWlscy8xMzE2NzExMzE=\">https://blog.csdn.net/m0_61155226/article/details/131671131</span></p>\n",
+            "tags": [
+                "ctf工具安装教程"
+            ]
+        }
+    ]
+}

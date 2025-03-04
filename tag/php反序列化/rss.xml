@@ -49,6 +49,11 @@
         <category>buuctf，Perl后端文件上传</category>
         <category>buuctf，xxe漏洞</category>
         <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/08/13/2019%E5%BC%BA%E7%BD%91%E6%9D%AFUpload%E9%A2%98/</guid>
             <title>2019强网杯Upload题</title>

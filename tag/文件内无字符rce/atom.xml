@@ -46,6 +46,11 @@
     <category term="buuctf，Perl后端文件上传" />
     <category term="buuctf，xxe漏洞" />
     <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
     <entry>
         <id>http://odiws.github.io/2024/06/19/2018-GetShell/</id>
         <title>[suctf2018]GetShell</title>

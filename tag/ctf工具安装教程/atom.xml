@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;ctf工具安装教程&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-05-29T07:44:25.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <entry>
+        <id>http://odiws.github.io/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/</id>
+        <title>&#39;ctf工具总结&#39;</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/"/>
+        <content type="html">&lt;p&gt;源码泄露工具：dirsearch&lt;/p&gt;
+&lt;p&gt;用法：python &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2RpcnNlYXJjaC5weQ==&#34;&gt;dirsearch.py&lt;/span&gt; -u url 地址&lt;/p&gt;
+&lt;p&gt;githack：git 源码泄露的工具（dirsearch 扫 git 泄露可能乱码，githack 不会）&lt;/p&gt;
+&lt;p&gt;python &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2dpdGhhY2sucHk=&#34;&gt;githack.py&lt;/span&gt; url+/.git/&lt;/p&gt;
+&lt;p&gt;直接在 githack 文件夹里面找到文件。&lt;/p&gt;
+&lt;p&gt;c-jwt-cracker:(jwt 爆破找到密钥)&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbGl0bHVvL3AvYy1qd3QtY3JhY2tlci5odG1s&#34;&gt;快速安装 c-jwt-cracker - litluo - 博客园 (cnblogs.com)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;php_mt_seed:(为了找到伪随机数漏洞的种子，用种子可以反推随机的字符串)：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU4Nzg0Mzc5L2FydGljbGUvZGV0YWlscy8xMjE3MTUwNzI=&#34;&gt;PHP 伪随机数漏洞，以及 php_mt_seed 脚本的使用_php 伪随机漏洞 - CSDN 博客&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Arjun：一款 http 参数扫描器，主要就是爆破 url 参数的（jinja2 模板注入的参数爆破）：&lt;br&gt;
+下载源码：看 readme.md 有安装方法，先安装才能用。&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL3MwbWQzdi9Bcmp1bg==&#34;&gt;https://github.com/s0md3v/Arjun&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;用法：python3 &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2FyanVuLnB5&#34;&gt;arjun.py&lt;/span&gt; -u &lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZW5kcG9pbnQ=&#34;&gt;https://api.example.com/endpoint&lt;/span&gt; --get&lt;/p&gt;
+&lt;p&gt;fenjing：焚靖是一个针对&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1DVEYmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt; CTF&lt;/span&gt; 比赛中 Jinja SSTI 绕过 WAF 的全自动脚本，可以自动攻击给定的网站或接口。&lt;/p&gt;
+&lt;p&gt;下载地址：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL01hcnZlbjExL0Zlbmppbmc=&#34;&gt;https://github.com/Marven11/Fenjing&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;使用说明：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzYxMTU1MjI2L2FydGljbGUvZGV0YWlscy8xMzE2NzExMzE=&#34;&gt;https://blog.csdn.net/m0_61155226/article/details/131671131&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="ctf工具安装教程" />
+        <updated>2024-05-29T07:44:25.000Z</updated>
+    </entry>
+</feed>
