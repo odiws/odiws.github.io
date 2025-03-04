@@ -8,6 +8,8 @@
         <pubDate>Mon, 23 Sep 2024 15:32:41 +0800</pubDate>
         <lastBuildDate>Mon, 23 Sep 2024 15:32:41 +0800</lastBuildDate>
         <category>buuctf</category>
+        <category>system:file</category>
+        <category>ctf</category>
         <category>regexp注入</category>
         <category>phar反序列化</category>
         <category>thinkphpV6.0.0</category>

@@ -5,6 +5,8 @@
     <link href="http://odiws.github.io" />
     <updated>2024-06-06T13:19:01.000Z</updated>
     <category term="buuctf" />
+    <category term="system:file" />
+    <category term="ctf" />
     <category term="regexp注入" />
     <category term="phar反序列化" />
     <category term="thinkphpV6.0.0" />
