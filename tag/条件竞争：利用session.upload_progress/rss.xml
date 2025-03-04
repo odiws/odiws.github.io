@@ -11,6 +11,8 @@
         <category>buuctf</category>
         <category>文件内无字符rce</category>
         <category>sql文件读取</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
         <category>ctf</category>
         <category>文件上传</category>
         <category>http</category>
