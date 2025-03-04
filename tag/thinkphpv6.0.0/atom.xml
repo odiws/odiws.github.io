@@ -6,7 +6,9 @@
     <updated>2024-09-23T07:32:41.000Z</updated>
     <category term="buuctf" />
     <category term="regexp注入" />
+    <category term="phar反序列化" />
     <category term="thinkphpV6.0.0" />
+    <category term="php7 segment fault特性" />
     <category term="zip加密" />
     <entry>
         <id>http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/</id>

