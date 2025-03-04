@@ -94,6 +94,7 @@
     <category term="xpath注入" />
     <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="php" />
+    <category term="sql盲注" />
     <entry>
         <id>http://odiws.github.io/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/</id>
         <title>[NewStarCT_2023_公开赛道]Upload_again!</title>

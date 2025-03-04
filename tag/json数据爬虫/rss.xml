@@ -97,6 +97,7 @@
         <category>xpath注入</category>
         <category>Padding oracle attack 与CBC翻转字节攻击</category>
         <category>php</category>
+        <category>sql盲注</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/19/BSidesCF-2020-Cards/</guid>
             <title>[BSidesCF-2020]Cards</title>

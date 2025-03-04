@@ -94,6 +94,7 @@
     <category term="xpath注入" />
     <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="php" />
+    <category term="sql盲注" />
     <entry>
         <id>http://odiws.github.io/2024/07/29/ISITDTU2019-EasyPHP/</id>
         <title>[羊城杯2020]easyphp</title>

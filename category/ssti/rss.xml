@@ -97,6 +97,7 @@
         <category>xpath注入</category>
         <category>Padding oracle attack 与CBC翻转字节攻击</category>
         <category>php</category>
+        <category>sql盲注</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/06/08/[SWPUCTF%202018]SimplePHP/</guid>
             <title>[SWPUCTF 2018]SimplePHP</title>

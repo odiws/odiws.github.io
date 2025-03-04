@@ -97,6 +97,7 @@
         <category>xpath注入</category>
         <category>Padding oracle attack 与CBC翻转字节攻击</category>
         <category>php</category>
+        <category>sql盲注</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/09/24/NESTCTF2019-LoveMath2/</guid>
             <title>[NESTCTF2019]LoveMath2</title>

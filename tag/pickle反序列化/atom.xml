@@ -94,6 +94,7 @@
     <category term="xpath注入" />
     <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="php" />
+    <category term="sql盲注" />
     <entry>
         <id>http://odiws.github.io/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/</id>
         <title>buuctf5月26日</title>

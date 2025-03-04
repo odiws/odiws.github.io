@@ -94,6 +94,7 @@
     <category term="xpath注入" />
     <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="php" />
+    <category term="sql盲注" />
     <entry>
         <id>http://odiws.github.io/2024/10/17/HITCON2016-Leaking/</id>
         <title>[HITCON2016]Leaking</title>

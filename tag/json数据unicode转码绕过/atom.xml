@@ -94,6 +94,7 @@
     <category term="xpath注入" />
     <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="php" />
+    <category term="sql盲注" />
     <entry>
         <id>http://odiws.github.io/2024/06/11/HarekazeCTF2019-encode-and-encode/</id>
         <title>[HarekazeCTF2019]encode_and_encode</title>

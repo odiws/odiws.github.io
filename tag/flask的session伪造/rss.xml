@@ -97,6 +97,7 @@
         <category>xpath注入</category>
         <category>Padding oracle attack 与CBC翻转字节攻击</category>
         <category>php</category>
+        <category>sql盲注</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/</guid>
             <title>[CISCN2019华东南赛区]Web4</title>

@@ -88,12 +88,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeyvx1d4j20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeun65urj20zk0m81ii.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeubcbajj20zk0m8h1h.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclh3brzpj20zk0m8ann.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclhpw3lwj20zk0m8gvw.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclhfehz7j20zk0m8u0x.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeuv80yoj20zk0m8kjl.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicitf0kl1j20zk0m87fe.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicm0n457cj20zk0m8e81.jpg"></li>
         </ul>
       </div>
     </header>
@@ -119,7 +119,165 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="mysql学习笔记"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipevarprfj20zk0m8npd.jpg"></a>
+    <a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giclize41wj20zk0m87gk.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-04-28 22:48:23">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-04-28T22:48:23+08:00">2024-04-28</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日">buuctf4月27日</a></h3>
+    <div class="excerpt">
+        # [RoarCTF 2019]Easy Calc
+#
+页面发现什么也没有 F12 发现有 calc.php 这个文件，进去发现有源码
+&lt;?php
+error_reporting(0);
+if(!isset($_GET[&#39;num&#39;])){
+	show_source(__FILE__);
+}else{
+	$str = $_GET[&#39;num&#39;];
+	$blacklist = [&#39; &#39;, &#39;\t&#39;, &#39;\r&#39;, &#39;\n&#39;,&#39;\&#39;&#39;, &#39;&quot;&#39;,...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/04/28/2_1/" itemprop="url" title="python request库的基本用法"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipex2cdtbj20zk0m8x6p.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-04-28 22:48:16">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-04-28T22:48:16+08:00">2024-04-28</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/04/28/2_1/" itemprop="url" title="python request库的基本用法">python request库的基本用法</a></h3>
+    <div class="excerpt">
+        # 基本用法
+下面案例使用 requests 库中的 get ( ) 方法发送了一个 get 请求。
+#导入 requests 库
+import requests
+# 发送一个 get 请求并得到响应
+r = requests.get (‘https://www.baidu.com’)
+# 查看响应对象的类型
+print (type®)
+# 查看响应状态码
+print (r.status_code)
+# 查看响应内容的类型
+print (type (r.text))
+# 查看响应的内容
+print (r.text)
+# 查看 cookies
+print(r.cookies)
+这里调用了 get...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="学习笔记"><i class="ic i-flag"></i>学习笔记</a>
+      </span>
+    </div>
+    <a href="/2024/04/28/2_1/" itemprop="url" title="python request库的基本用法" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipetfk5zwj20zk0m8e81.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-04-28 22:45:54">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-04-28T22:45:54+08:00">2024-04-28</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日">buuctf4月27日</a></h3>
+    <div class="excerpt">
+        # ssrf 漏洞
+# 1.ssrf 是什么？
+ssrf（服务器端请求伪造）: 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。本质上是属于信息泄露漏洞
+一般情况下，SSRF 攻击的目标是从外网无法访问的内部系统。（正是因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内部系统）
+# 2.SSRF 漏洞原理？
+
+意思是攻击者将一个代码是主机 A 向主机 b（内网的主机）发起请求访问文件
+SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。例如，黑客操作服务端从指定 URL...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="学习笔记"><i class="ic i-flag"></i>学习笔记</a>
+      </span>
+    </div>
+    <a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="python学习笔记（未完）"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giph4fomxoj20zk0m8axp.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-01-24 11:05:44">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-01-24T11:05:44+08:00">2024-01-24</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="python学习笔记（未完）">python学习笔记（未完）</a></h3>
+    <div class="excerpt">
+        Python 笔记
+1.python 中的缩进是有严格规定的
+2.Python 有控制台应用程序和 GUI（图形化用户界面）应用程序两种
+3.GUI 应用程序主要用 Tkinter 和 PyQt 两种，前者自带，后者需安装。
+4. 输入输出：
+（a）输入：变量 = input (” 文本（可以不写，在文本之后输入）”)
+注意：该输入的变量将自动变成字符串，若需要别的类型，则可以强制转换
+（b）输出：print (“文本 %.x 格式化字符” % 变量（若需要计算，要用大括号括住）)
+5.（1）pyhon 中的主函数入口：
+if name==”main”:
+5...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="学习笔记"><i class="ic i-flag"></i>学习笔记</a>
+      </span>
+    </div>
+    <a href="/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="python学习笔记（未完）" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="mysql学习笔记"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipeyvx1d4j20zk0m8hdt.jpg"></a>
   </div>
   <div class="info">
     
@@ -156,7 +314,45 @@ go (\g) Send command...
         
 <article class="item">
   <div class="cover">
-    <a href="/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="PHP学习笔记"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gicli3sbvtj20zk0m8x6p.jpg"></a>
+    <a href="/2024/01/24/python-requests%E5%BA%93flask%E5%BA%93%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/" itemprop="url" title="python-requests库flask库（未完）"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipewkhf1zj20zk0m81kx.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-01-24 09:42:39">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-01-24T09:42:39+08:00">2024-01-24</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/01/24/python-requests%E5%BA%93flask%E5%BA%93%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/" itemprop="url" title="python-requests库flask库（未完）">python-requests库flask库（未完）</a></h3>
+    <div class="excerpt">
+        HTTP协议：超文本传输协议，是一个基于“请求于响应”模式的，无状态的应用层协议。
+HTTP协议采用URL作为定位网络资源的标识。
+URL格式：http://host[:port][path]
+Host:合法的internet主机域名或IP地址
+Port：端口号，可以省略，省略则是80
+Path:请求资源的路径。
+
+Request 库的常见用法：
+r = requests.get(url,params=None,**kwargs)
+（url：拟获取页面的 url 链接；params:url 中的额外参数，字典或字节流格式，可选，**kwargs:12...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="学习笔记"><i class="ic i-flag"></i>学习笔记</a>
+      </span>
+    </div>
+    <a href="/2024/01/24/python-requests%E5%BA%93flask%E5%BA%93%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/" itemprop="url" title="python-requests库flask库（未完）" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="PHP学习笔记"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giclh3brzpj20zk0m8ann.jpg"></a>
   </div>
   <div class="info">
     
@@ -203,7 +399,7 @@ echo
         
 <article class="item">
   <div class="cover">
-    <a href="/2023/12/10/page/" itemprop="url" title="page"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclfdu6exj20zk0m87hw.jpg"></a>
+    <a href="/2023/12/10/page/" itemprop="url" title="page"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giclgi503lj20zk0m8hdt.jpg"></a>
   </div>
   <div class="info">
     
@@ -259,7 +455,7 @@ echo
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">103</span>
+        <span class="count">108</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -271,7 +467,7 @@ echo
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">90</span>
+        <span class="count">91</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -321,10 +517,79 @@ echo
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/" title="zip伪加密">zip伪加密</a></span>
+    <span><a href="/2024/09/25/DDCTF2019-homebreweventloop/" title="[DDCTF2019]homebreweventloop">[DDCTF2019]homebreweventloop</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/1_1/" title="buuctf4月27日">buuctf4月27日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/2_1/" title="python request库的基本用法">python request库的基本用法</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/05/25/buuctf5%E6%9C%8825%E6%97%A5/" title="buu5月25日">buu5月25日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/06/16/GYCTF2020-EasyThinking/" title="[GYCTF2020]EasyThinking">[GYCTF2020]EasyThinking</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" title="&#39;ctf工具总结&#39;">'ctf工具总结'</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/23/HFCTF-2021-Final-hatenum/" title="[HFCTF_2021_Final]hatenum">[HFCTF_2021_Final]hatenum</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/06/03/GYCTF2020-Ezsqli/" title="&#39;[GYCTF2020]Ezsqli&#39;">'[GYCTF2020]Ezsqli'</a></span>
   </li>
 
       
@@ -346,76 +611,7 @@ echo
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/06/11/2019-EasyWeb/" title="[SUCTF 2019]EasyWeb">[SUCTF 2019]EasyWeb</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2024/11/14/java%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86/" title="java反射原理">java反射原理</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/10/15/HarekazeCTF2019-EasyNotes-1/" title="[HarekazeCTF2019]EasyNotes">[HarekazeCTF2019]EasyNotes</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/06/16/Injection/" title="October 2019 Twice SQL Injection">October 2019 Twice SQL Injection</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" title="[HarekazeCTF2019]encode_and_encode">[HarekazeCTF2019]encode_and_encode</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/" title="[2021祥云杯]PackageManager2021">[2021祥云杯]PackageManager2021</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
-</div>
-
-    <span><a href="/2024/04/28/1_1/" title="buuctf4月27日">buuctf4月27日</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/06/19/2018-GetShell/" title="[suctf2018]GetShell">[suctf2018]GetShell</a></span>
+    <span><a href="/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/" title="&#39;[GWCTF 2019]枯燥的抽奖&#39;">'[GWCTF 2019]枯燥的抽奖'</a></span>
   </li>
 
   </ul>

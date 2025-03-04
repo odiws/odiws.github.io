@@ -97,6 +97,7 @@
         <category>xpath注入</category>
         <category>Padding oracle attack 与CBC翻转字节攻击</category>
         <category>php</category>
+        <category>sql盲注</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/12/06/ctfshow-web-java/</guid>
             <title>ctfshow_web_java</title>

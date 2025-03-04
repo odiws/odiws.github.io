@@ -94,6 +94,7 @@
     <category term="xpath注入" />
     <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="php" />
+    <category term="sql盲注" />
     <entry>
         <id>http://odiws.github.io/2025/02/26/HMGCTF2022-Fan-Website/</id>
         <title>[HMGCTF2022]Fan_Website</title>
