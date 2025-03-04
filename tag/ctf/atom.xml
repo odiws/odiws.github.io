@@ -91,6 +91,9 @@
     <category term="文件包含" />
     <category term="php伪协议" />
     <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
     <entry>
         <id>http://odiws.github.io/2024/04/28/1_1/</id>
         <title>buuctf4月27日</title>

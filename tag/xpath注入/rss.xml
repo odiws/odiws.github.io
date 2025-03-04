@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;xpath注入&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Sun, 22 Sep 2024 19:24:56 +0800</pubDate>
+        <lastBuildDate>Sun, 22 Sep 2024 19:24:56 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
+        <category>sql injection</category>
+        <category>文件上传(头像上传)</category>
+        <category>session反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>json数据unicode转码绕过</category>
+        <category>对sqlite的sql注入</category>
+        <category>未理解</category>
+        <category>命令执行</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
+        <category>./htaccess文件上传</category>
+        <category>php未解析</category>
+        <category>利用环境变量构造bash命令</category>
+        <category>利用.htaccess构成后门</category>
+        <category>通过php_value来设置preg_macth正则回溯次数</category>
+        <category>java反序列化</category>
+        <category>伪随机数</category>
+        <category>mysql</category>
+        <category>信息搜集（js，网络）</category>
+        <category>异或</category>
+        <category>密码爆破</category>
+        <category>sqlmap使用</category>
+        <category>SQL注入</category>
+        <category>文件包含</category>
+        <category>php伪协议</category>
+        <category>pearcmd文件包含</category>
+        <category>xpath注入</category>
+        <category>Padding oracle attack 与CBC翻转字节攻击</category>
+        <category>php</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/09/22/NPUCTF2020-ezlogin/</guid>
+            <title>[NPUCTF2020]ezlogin</title>
+            <link>http://odiws.github.io/2024/09/22/NPUCTF2020-ezlogin/</link>
+            <category>buuctf</category>
+            <category>xpath注入</category>
+            <pubDate>Sun, 22 Sep 2024 19:24:56 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;npuctf2020ezlogin&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#npuctf2020ezlogin&#34;&gt;#&lt;/a&gt; [NPUCTF2020]ezlogin&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/NPUCTF2020-ezlogin/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;首先发现一个&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;username&amp;gt;&amp;lt;/username&amp;gt;&amp;lt;password&amp;gt;&amp;lt;/pwssword&amp;gt;&amp;lt;token&amp;gt;&amp;lt;/token&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;的模板，以为是 xss，注入半天搞不了，(content-type:application/xml) 结果是 xpath 注入:&lt;/p&gt;
+&lt;h2 id=&#34;xpath注入&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#xpath注入&#34;&gt;#&lt;/a&gt; &lt;strong&gt;xpath 注入&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/backlion/p/8554749.html&#34;&gt;&lt;strong&gt;xpath 注入详细介绍&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在我对 xpath 注入的理解是类似于 SQL 注入。&lt;/p&gt;
+&lt;p&gt;在 xpath 中的查询语句为：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;/root/users/user[username/text()=&#39;&amp;quot;.$name.&amp;quot;&#39; and password/text()=&#39;&amp;quot;.$pwd.&amp;quot;&#39;]&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mtext&gt;和&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;name和&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.68333em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;和&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; pwd 是我们输入的字符，这里对字符没有经过任何的过滤。&lt;/p&gt;
+&lt;p&gt;当 $name= admin‘ or 1=1 or ‘’=’&lt;/p&gt;
+&lt;p&gt;拼接后的语句为：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;/root/users/user[username/text()=&#39;admin&#39; or 1=1 or &#39;&#39;=&#39;&#39; and password/text()=&#39;&amp;quot;.$pwd.&amp;quot;&#39;]&amp;quot;;   //成为永真使，万能密码
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;值得注意的是在 xpath 的查询语句中没有注释。&lt;/p&gt;
+&lt;p&gt;输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&#39;or count(/)=1  or &#39;&#39;=&#39;     //count函数是查询节点个数
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/NPUCTF2020-ezlogin/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&#39;or count(/)=2  or &#39;&#39;=&#39; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/NPUCTF2020-ezlogin/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;存在有不同的特征值，可以用布尔盲注&lt;/p&gt;
+&lt;p&gt;先附上一句 playload，并解释一下：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/NPUCTF2020-ezlogin/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;username&gt;里面的 {X} 中的 X 是一个变量，它指的是查询的元素 X 个字符，Y 也是一个变量，是指我们猜测的字符，如果 X=Y 那么就会返回 true，对应的我们的题目就会返回 “非法操作！”&lt;/p&gt;
+&lt;p&gt;要注意的是，因为页面会不断的刷新，这个 token 的值也会一直变化，注意拿到最新的 token 值&lt;/p&gt;
+&lt;p&gt;注意在第八行设置 head 时候千万不要用 cookie 和 UA，一定要有 content-type，我看其他人的脚本都有这个，结果爬出的数据都是 “超时” 的界面。&lt;/p&gt;
+&lt;p&gt;最后爆出来直接登录在？flie=welcome 加入 php 伪协议（大小写去掉 read）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Php://filter/convert.Base64-Encode/resource=/flag
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/NPUCTF2020-ezlogin/5.png&#34; alt=&#34;5&#34;&gt; 参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbHRobHN5L3AvMTQ4NDMwNTIuaHRtbA==&#34;&gt;https://www.cnblogs.com/lthlsy/p/14843052.html&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

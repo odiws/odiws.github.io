@@ -94,6 +94,9 @@
         <category>文件包含</category>
         <category>php伪协议</category>
         <category>pearcmd文件包含</category>
+        <category>xpath注入</category>
+        <category>Padding oracle attack 与CBC翻转字节攻击</category>
+        <category>php</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/08/01/FireshellCTF2020-CaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/</guid>
             <title>[FireshellCTF2020]CaasC的预处理</title>

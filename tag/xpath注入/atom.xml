@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;xpath注入&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-09-22T11:24:56.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="mysql" />
+    <category term="信息搜集（js，网络）" />
+    <category term="异或" />
+    <category term="密码爆破" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
+    <entry>
+        <id>http://odiws.github.io/2024/09/22/NPUCTF2020-ezlogin/</id>
+        <title>[NPUCTF2020]ezlogin</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/09/22/NPUCTF2020-ezlogin/"/>
+        <content type="html">&lt;h2 id=&#34;npuctf2020ezlogin&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#npuctf2020ezlogin&#34;&gt;#&lt;/a&gt; [NPUCTF2020]ezlogin&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/NPUCTF2020-ezlogin/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;首先发现一个&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;username&amp;gt;&amp;lt;/username&amp;gt;&amp;lt;password&amp;gt;&amp;lt;/pwssword&amp;gt;&amp;lt;token&amp;gt;&amp;lt;/token&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;的模板，以为是 xss，注入半天搞不了，(content-type:application/xml) 结果是 xpath 注入:&lt;/p&gt;
+&lt;h2 id=&#34;xpath注入&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#xpath注入&#34;&gt;#&lt;/a&gt; &lt;strong&gt;xpath 注入&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/backlion/p/8554749.html&#34;&gt;&lt;strong&gt;xpath 注入详细介绍&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在我对 xpath 注入的理解是类似于 SQL 注入。&lt;/p&gt;
+&lt;p&gt;在 xpath 中的查询语句为：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;/root/users/user[username/text()=&#39;&amp;quot;.$name.&amp;quot;&#39; and password/text()=&#39;&amp;quot;.$pwd.&amp;quot;&#39;]&amp;quot;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其中&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mtext&gt;和&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;name和&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.68333em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;和&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; pwd 是我们输入的字符，这里对字符没有经过任何的过滤。&lt;/p&gt;
+&lt;p&gt;当 $name= admin‘ or 1=1 or ‘’=’&lt;/p&gt;
+&lt;p&gt;拼接后的语句为：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;quot;/root/users/user[username/text()=&#39;admin&#39; or 1=1 or &#39;&#39;=&#39;&#39; and password/text()=&#39;&amp;quot;.$pwd.&amp;quot;&#39;]&amp;quot;;   //成为永真使，万能密码
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;值得注意的是在 xpath 的查询语句中没有注释。&lt;/p&gt;
+&lt;p&gt;输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&#39;or count(/)=1  or &#39;&#39;=&#39;     //count函数是查询节点个数
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/NPUCTF2020-ezlogin/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;输入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&#39;or count(/)=2  or &#39;&#39;=&#39; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/NPUCTF2020-ezlogin/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;存在有不同的特征值，可以用布尔盲注&lt;/p&gt;
+&lt;p&gt;先附上一句 playload，并解释一下：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/NPUCTF2020-ezlogin/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;username&gt;里面的 {X} 中的 X 是一个变量，它指的是查询的元素 X 个字符，Y 也是一个变量，是指我们猜测的字符，如果 X=Y 那么就会返回 true，对应的我们的题目就会返回 “非法操作！”&lt;/p&gt;
+&lt;p&gt;要注意的是，因为页面会不断的刷新，这个 token 的值也会一直变化，注意拿到最新的 token 值&lt;/p&gt;
+&lt;p&gt;注意在第八行设置 head 时候千万不要用 cookie 和 UA，一定要有 content-type，我看其他人的脚本都有这个，结果爬出的数据都是 “超时” 的界面。&lt;/p&gt;
+&lt;p&gt;最后爆出来直接登录在？flie=welcome 加入 php 伪协议（大小写去掉 read）：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Php://filter/convert.Base64-Encode/resource=/flag
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/NPUCTF2020-ezlogin/5.png&#34; alt=&#34;5&#34;&gt; 参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbHRobHN5L3AvMTQ4NDMwNTIuaHRtbA==&#34;&gt;https://www.cnblogs.com/lthlsy/p/14843052.html&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="xpath注入" />
+        <updated>2024-09-22T11:24:56.000Z</updated>
+    </entry>
+</feed>

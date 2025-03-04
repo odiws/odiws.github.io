@@ -94,6 +94,9 @@
         <category>文件包含</category>
         <category>php伪协议</category>
         <category>pearcmd文件包含</category>
+        <category>xpath注入</category>
+        <category>Padding oracle attack 与CBC翻转字节攻击</category>
+        <category>php</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/05/29/cookbook-1/</guid>
             <title>[nctf2019]truecookbook</title>

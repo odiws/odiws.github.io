@@ -88,12 +88,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeyonbf9j20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giph4lm9i7j20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclize41wj20zk0m87gk.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicm0n457cj20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicit31ffoj20zk0m8naf.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeu1usa7j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeyhsblkj20zk0m81kx.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclgrvbd6j20zk0m8qv5.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipewkhf1zj20zk0m81kx.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclimtf7dj20zk0m8qav.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclhpw3lwj20zk0m8gvw.jpg"></li>
         </ul>
       </div>
     </header>
@@ -119,7 +119,215 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/18/2021-easycms/" itemprop="url" title="GKCTF 2021：easycms"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipeybxm1pj20zk0m8niv.jpg"></a>
+    <a href="/2024/06/21/Again/" itemprop="url" title="[WMCTF2020]Make PHP Great Again"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipewf5l51j20zk0m8b29.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-06-21 20:48:52">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-06-21T20:48:52+08:00">2024-06-21</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/06/21/Again/" itemprop="url" title="[WMCTF2020]Make PHP Great Again">[WMCTF2020]Make PHP Great Again</a></h3>
+    <div class="excerpt">
+        # [WMCTF2020]Make PHP Great Again
+前言：
+关键字:[require_once|proc | 文件包含 | session|session.upload_progress]
+&amp;lt;?phphighlight_file(__FILE__);require_once &#39;flag.php&#39;;if(isset($_GET[&#39;file&#39;])) &amp;#123; require_once $_GET[&#39;file&#39;];&amp;#125;# 题解
+绕过不能重复包含文件的限制
+# 解法 1
+
+PHP 最新版的小...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/06/21/Again/" itemprop="url" title="[WMCTF2020]Make PHP Great Again" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/06/20/Mars/" itemprop="url" title="[b01lers2020]lifeMars"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giph4lm9i7j20zk0m84qp.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-06-20 20:21:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-06-20T20:21:48+08:00">2024-06-20</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/06/20/Mars/" itemprop="url" title="[b01lers2020]lifeMars">[b01lers2020]lifeMars</a></h3>
+    <div class="excerpt">
+        进来是这样的场景：用 f12 进入网络发现有些一样的传参：
+
+发现有个 search 的传参：（结合源码（ctrl+u）发现有个 life on mars 这个文件）
+life on mars.js
+
+function get_life(query) &amp;#123;
+$.ajax(&amp;#123;
+type: &amp;quot;GET&amp;quot;,
+url: &amp;quot;/query?search=&amp;quot; + query,
+data: &amp;quot;&amp;#123;&amp;#125;&amp;quot;,
+contentType:...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/06/20/Mars/" itemprop="url" title="[b01lers2020]lifeMars" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/06/19/2018-GetShell/" itemprop="url" title="[suctf2018]GetShell"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclize41wj20zk0m87gk.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-06-19 21:42:44">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-06-19T21:42:44+08:00">2024-06-19</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/06/19/2018-GetShell/" itemprop="url" title="[suctf2018]GetShell">[suctf2018]GetShell</a></h3>
+    <div class="excerpt">
+        # [suctf2018]GetShell
+参考 p 神利用取反来获取可用字符：
+&amp;lt;?php
+error_reporting(0);
+$a = ~垂;
+echo $a.&amp;quot;\n&amp;quot;;
+echo $a[1];
+/*
+运行得：
+a&amp;#125;
+a
+*/
+?&amp;gt;
+
+🐎一下汉字：
+echo ~茉**[**$____**]**;//s
+
+echo ~内**[**$____**]**;//y
+
+echo ~茉**[**$____**]**;//s
+
+echo ~苏**[**$____**]**;//t
+
+echo...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/06/19/2018-GetShell/" itemprop="url" title="[suctf2018]GetShell" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/06/19/HFCTF2020-JustEscape/" itemprop="url" title="[HFCTF2020]JustEscape"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-06-19 21:35:43">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-06-19T21:35:43+08:00">2024-06-19</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/06/19/HFCTF2020-JustEscape/" itemprop="url" title="[HFCTF2020]JustEscape">[HFCTF2020]JustEscape</a></h3>
+    <div class="excerpt">
+        # [HFCTF2020]JustEscape
+题目说真的不是 PHP 吗？
+十有八九不是，猜测可能是 Java，结果是 js。
+# 用 Error().stack , 看一下报错信息。
+
+报错显示是 vm.js ，考的 vm 沙箱逃逸。
+POC 参考：
+https://github.com/patriksimek/vm2/issues/225
+payload1:
+(function...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/06/19/HFCTF2020-JustEscape/" itemprop="url" title="[HFCTF2020]JustEscape" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/06/18/GXYCTF2019-StrongestMind/" itemprop="url" title="[GXYCTF2019]StrongestMind"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipeuv80yoj20zk0m8kjl.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-06-18 16:59:24">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-06-18T16:59:24+08:00">2024-06-18</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/06/18/GXYCTF2019-StrongestMind/" itemprop="url" title="[GXYCTF2019]StrongestMind">[GXYCTF2019]StrongestMind</a></h3>
+    <div class="excerpt">
+        # [GXYCTF2019]StrongestMind
+搞了个计算机，要算 1000 次正确就给 flag
+直接上脚本：
+import requests
+import re
+import time
+
+url = &#39;http://6f50dc2f-2732-4820-9115-f988593362dd.node5.buuoj.cn:81/&#39;
+session = requests.session()
+req = session.get(url).text
+flag = &amp;quot;&amp;quot;
+
+for i in range(1010):
+try:
+result =...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/06/18/GXYCTF2019-StrongestMind/" itemprop="url" title="[GXYCTF2019]StrongestMind" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/06/18/2021-easycms/" itemprop="url" title="GKCTF 2021：easycms"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclxp31goj20zk0m8qv5.jpg"></a>
   </div>
   <div class="info">
     
@@ -158,7 +366,7 @@ dirsearch 扫目录发现 admin.php 进入后台登录页面
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/17/BJDCTF2020-EzPHP/" itemprop="url" title="[BJDCTF2020]ezPHP"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></a>
+    <a href="/2024/06/17/BJDCTF2020-EzPHP/" itemprop="url" title="[BJDCTF2020]ezPHP"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclj61ylzj20zk0m8b29.jpg"></a>
   </div>
   <div class="info">
     
@@ -194,7 +402,7 @@ base32解码后：
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/16/GYCTF2020-EasyThinking/" itemprop="url" title="[GYCTF2020]EasyThinking"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></a>
+    <a href="/2024/06/16/GYCTF2020-EasyThinking/" itemprop="url" title="[GYCTF2020]EasyThinking"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclj9410cj20zk0m8h12.jpg"></a>
   </div>
   <div class="info">
     
@@ -235,7 +443,7 @@ use...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/16/Injection/" itemprop="url" title="October 2019 Twice SQL Injection"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gicli9lfebj20zk0m84qp.jpg"></a>
+    <a href="/2024/06/16/Injection/" itemprop="url" title="October 2019 Twice SQL Injection"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclffsa1cj20zk0m811l.jpg"></a>
   </div>
   <div class="info">
     
@@ -272,7 +480,7 @@ username =1&#39; union select group_concat(column_name) from...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/11/2019-EasyWeb/" itemprop="url" title="[SUCTF 2019]EasyWeb"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipet8c1a2j20zk0m8kct.jpg"></a>
+    <a href="/2024/06/11/2019-EasyWeb/" itemprop="url" title="[SUCTF 2019]EasyWeb"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></a>
   </div>
   <div class="info">
     
@@ -303,201 +511,6 @@ $userdir =...
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" itemprop="url" title="[HarekazeCTF2019]encode_and_encode"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipewr8iypj20zk0m8b29.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-11 14:34:01">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-11T14:34:01+08:00">2024-06-11</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" itemprop="url" title="[HarekazeCTF2019]encode_and_encode">[HarekazeCTF2019]encode_and_encode</a></h3>
-    <div class="excerpt">
-        # [HarekazeCTF2019]encode_and_encode
-直接看代码：
-&amp;lt;?phperror_reporting(0);if (isset($_GET[&#39;source&#39;])) &amp;#123; show_source(__FILE__); exit();&amp;#125;function is_valid($str) &amp;#123; $banword = [ // no path traversal &#39;\.\.&#39;, // no stream wrapper...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" itemprop="url" title="[HarekazeCTF2019]encode_and_encode" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/10/2018-Comment/" itemprop="url" title="&#39;[网鼎杯 2018]Comment&#39;"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipey84bjtj20zk0m8hdt.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-10 20:48:57">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-10T20:48:57+08:00">2024-06-10</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/10/2018-Comment/" itemprop="url" title="&#39;[网鼎杯 2018]Comment&#39;">'[网鼎杯 2018]Comment'</a></h3>
-    <div class="excerpt">
-        # [网鼎杯 2018] Comment
-### 知识点
-
-git 泄露
-SQL 二次注入
-SQL 文件读取
-特殊文件识别和利用
-
-用 githack 将文件下载下来：
-
-&amp;lt;?phpinclude &quot;mysql.php&quot;;session_start();if($_SESSION[&#39;login&#39;] != &#39;yes&#39;)&amp;#123; header(&quot;Location: ./login.php&quot;);...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/06/10/2018-Comment/" itemprop="url" title="&#39;[网鼎杯 2018]Comment&#39;" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/08/%5BSWPUCTF%202018%5DSimplePHP/" itemprop="url" title="[SWPUCTF 2018]SimplePHP"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gicliwyw55j20zk0m8hdt.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-08 21:00:07">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-08T21:00:07+08:00">2024-06-08</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/08/%5BSWPUCTF%202018%5DSimplePHP/" itemprop="url" title="[SWPUCTF 2018]SimplePHP">[SWPUCTF 2018]SimplePHP</a></h3>
-    <div class="excerpt">
-        # [SWPUCTF 2018]SimplePHP
-有读取文件，能读到如下文件：
-file.php?file=index.php/base.php/upload_file.php/function.php/file.php/class.php
-file.php 文件内容如下：
-&amp;lt;?php
-header(&amp;quot;content-type:text/html;charset=utf-8&amp;quot;);
-include &#39;function.php&#39;;
-include...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" itemprop="url" title="ssti"><i class="ic i-flag"></i>ssti</a>
-      </span>
-    </div>
-    <a href="/2024/06/08/%5BSWPUCTF%202018%5DSimplePHP/" itemprop="url" title="[SWPUCTF 2018]SimplePHP" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" itemprop="url" title="&#39;[NPUCTF2020]ezinclude&#39;"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclxfdlttj20zk0m8npd.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-07 22:00:34">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-07T22:00:34+08:00">2024-06-07</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" itemprop="url" title="&#39;[NPUCTF2020]ezinclude&#39;">'[NPUCTF2020]ezinclude'</a></h3>
-    <div class="excerpt">
-        # [NPUCTF2020]ezinclude
-
-进去发现是用户名与密码错误
-F12 发现提示：
-
-要 md5name 后的字符串等于 pass，不知道 pass，可以 bp 发现传送回来的东西有 hash 这个东西
-直接加入 pass 等于这个 hash 值得到：
-
-得到 flflflflag.php 这个文件。
-但是他会直接进到 404.html 文件
-然后就不会了；接着就是大佬的操作了：
-大佬看到了 php 的版本 7.0.33，直接就是：
-# php7 segment fault 特性
-扫目录可得 dir.php
-
-…… 扫不出来
-
-向 PHP 发送含有文件区块的数据包时，让 PHP...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" itemprop="url" title="&#39;[NPUCTF2020]ezinclude&#39;" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giph4wqtg4j20zk0m8x6p.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-06 21:19:01">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-06T21:19:01+08:00">2024-06-06</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;">'[NCTF2019]SQLi'</a></h3>
-    <div class="excerpt">
-        # [NCTF2019]SQLi
-源码泄露：
-
-找到 hint.php
-目的明确：
-只要密码是 admin 的密码就可以获得 flag
-得到提示，这题过滤了好多关键字，只要 password 的密码等于 admin 的密码就能拿到 flag 了，但是怎么拿呢？看了 dalao 的 wp 才发现有 regexp 注入
-# regexp 注入（正则注入）
-这个注入方式呢相当于布尔盲注吧，若是猜对了就返回正确的页面，我们本地测试一下正则，先看一下全部数据，然后 ^ 匹配 e 开头的 password
-
-再找个 a 开头的：没有
-
-分析
-回到题目里，提示给了串 SQL 语句
-select * from...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -505,7 +518,7 @@ select * from...
   
   <nav class="pagination">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="ic i-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/9/"><i class="ic i-angle-right" aria-label="Next page"></i></a>
     </div>
   </nav>
 
@@ -533,7 +546,7 @@ select * from...
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">96</span>
+        <span class="count">103</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -545,7 +558,7 @@ select * from...
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">87</span>
+        <span class="count">90</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -599,7 +612,7 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/17/HCTF2018-Hideandseek/" title="[HCTF2018]Hideandseek">[HCTF2018]Hideandseek</a></span>
+    <span><a href="/2024/06/20/Mars/" title="[b01lers2020]lifeMars">[b01lers2020]lifeMars</a></span>
   </li>
 
       
@@ -609,7 +622,17 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/" title="[CISCN2019华东南赛区]Web4">[CISCN2019华东南赛区]Web4</a></span>
+    <span><a href="/2024/08/19/bestphp-srevenge/" title="bestphp&#39;srevenge">bestphp'srevenge</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/" title="&#39;[GWCTF 2019]枯燥的抽奖&#39;">'[GWCTF 2019]枯燥的抽奖'</a></span>
   </li>
 
       
@@ -629,7 +652,7 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" title="[HMGCTF2022]Smarty-Calculator">[HMGCTF2022]Smarty-Calculator</a></span>
+    <span><a href="/2025/01/26/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-EasyLogin/" title="[NewStarCTF2023公开赛道]EasyLogin">[NewStarCTF2023公开赛道]EasyLogin</a></span>
   </li>
 
       
@@ -639,7 +662,7 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/10/15/CSAWQual2016-i-got-id/" title="[CSAWQual2016]i_got_id">[CSAWQual2016]i_got_id</a></span>
+    <span><a href="/2024/09/25/DDCTF2019-homebreweventloop/" title="[DDCTF2019]homebreweventloop">[DDCTF2019]homebreweventloop</a></span>
   </li>
 
       
@@ -649,7 +672,7 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/04/28/4-txt/" title="buuctf4月28日">buuctf4月28日</a></span>
+    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
   </li>
 
       
@@ -659,7 +682,7 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/04/29/5-txt/" title="buuctf4月29日">buuctf4月29日</a></span>
+    <span><a href="/2024/06/18/2021-easycms/" title="GKCTF 2021：easycms">GKCTF 2021：easycms</a></span>
   </li>
 
       
@@ -669,7 +692,7 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/05/HXBCT-2021-easywill/" title="[HXBCT_2021]easywill">[HXBCT_2021]easywill</a></span>
+    <span><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></span>
   </li>
 
       
@@ -679,17 +702,7 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/01/FireshellCTF2020-CaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/" title="[FireshellCTF2020]CaasC的预处理">[FireshellCTF2020]CaasC的预处理</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/06/11/2019-EasyWeb/" title="[SUCTF 2019]EasyWeb">[SUCTF 2019]EasyWeb</a></span>
+    <span><a href="/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/" title="NewStarCTF_2023_公开赛道Include">NewStarCTF_2023_公开赛道Include</a></span>
   </li>
 
   </ul>

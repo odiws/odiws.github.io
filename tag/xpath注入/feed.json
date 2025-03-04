@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"xpath注入\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/09/22/NPUCTF2020-ezlogin/",
+            "url": "http://odiws.github.io/2024/09/22/NPUCTF2020-ezlogin/",
+            "title": "[NPUCTF2020]ezlogin",
+            "date_published": "2024-09-22T11:24:56.000Z",
+            "content_html": "<h2 id=\"npuctf2020ezlogin\"><a class=\"markdownIt-Anchor\" href=\"#npuctf2020ezlogin\">#</a> [NPUCTF2020]ezlogin</h2>\n<p><img data-src=\"../images/NPUCTF2020-ezlogin/1.png\" alt=\"1\"></p>\n<p>首先发现一个</p>\n<pre><code>&lt;username&gt;&lt;/username&gt;&lt;password&gt;&lt;/pwssword&gt;&lt;token&gt;&lt;/token&gt;\n</code></pre>\n<p>的模板，以为是 xss，注入半天搞不了，(content-type:application/xml) 结果是 xpath 注入:</p>\n<h2 id=\"xpath注入\"><a class=\"markdownIt-Anchor\" href=\"#xpath注入\">#</a> <strong>xpath 注入</strong></h2>\n<p><a href=\"https://www.cnblogs.com/backlion/p/8554749.html\"><strong>xpath 注入详细介绍</strong></a></p>\n<p>在我对 xpath 注入的理解是类似于 SQL 注入。</p>\n<p>在 xpath 中的查询语句为：</p>\n<pre><code>&quot;/root/users/user[username/text()='&quot;.$name.&quot;' and password/text()='&quot;.$pwd.&quot;']&quot;;\n</code></pre>\n<p>其中<span class=\"katex\"><span class=\"katex-mathml\"><math xmlns=\"http://www.w3.org/1998/Math/MathML\"><semantics><mrow><mi>n</mi><mi>a</mi><mi>m</mi><mi>e</mi><mtext>和</mtext></mrow><annotation encoding=\"application/x-tex\">name和</annotation></semantics></math></span><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height:0.68333em;vertical-align:0em;\"></span><span class=\"mord mathnormal\">n</span><span class=\"mord mathnormal\">a</span><span class=\"mord mathnormal\">m</span><span class=\"mord mathnormal\">e</span><span class=\"mord cjk_fallback\">和</span></span></span></span> pwd 是我们输入的字符，这里对字符没有经过任何的过滤。</p>\n<p>当 $name= admin‘ or 1=1 or ‘’=’</p>\n<p>拼接后的语句为：</p>\n<pre><code>&quot;/root/users/user[username/text()='admin' or 1=1 or ''='' and password/text()='&quot;.$pwd.&quot;']&quot;;   //成为永真使，万能密码\n</code></pre>\n<p>值得注意的是在 xpath 的查询语句中没有注释。</p>\n<p>输入：</p>\n<pre><code>'or count(/)=1  or ''='     //count函数是查询节点个数\n</code></pre>\n<p><img data-src=\"../images/NPUCTF2020-ezlogin/2.png\" alt=\"2\"></p>\n<p>输入：</p>\n<pre><code>'or count(/)=2  or ''=' \n</code></pre>\n<p><img data-src=\"../images/NPUCTF2020-ezlogin/3.png\" alt=\"3\"></p>\n<p>存在有不同的特征值，可以用布尔盲注</p>\n<p>先附上一句 playload，并解释一下：</p>\n<p><img data-src=\"../images/NPUCTF2020-ezlogin/4.png\" alt=\"4\"></p>\n<p>在<username>里面的 {X} 中的 X 是一个变量，它指的是查询的元素 X 个字符，Y 也是一个变量，是指我们猜测的字符，如果 X=Y 那么就会返回 true，对应的我们的题目就会返回 “非法操作！”</p>\n<p>要注意的是，因为页面会不断的刷新，这个 token 的值也会一直变化，注意拿到最新的 token 值</p>\n<p>注意在第八行设置 head 时候千万不要用 cookie 和 UA，一定要有 content-type，我看其他人的脚本都有这个，结果爬出的数据都是 “超时” 的界面。</p>\n<p>最后爆出来直接登录在？flie=welcome 加入 php 伪协议（大小写去掉 read）：</p>\n<pre><code>Php://filter/convert.Base64-Encode/resource=/flag\n</code></pre>\n<p><img data-src=\"../images/NPUCTF2020-ezlogin/5.png\" alt=\"5\"> 参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vbHRobHN5L3AvMTQ4NDMwNTIuaHRtbA==\">https://www.cnblogs.com/lthlsy/p/14843052.html</span></p>\n",
+            "tags": [
+                "buuctf",
+                "xpath注入"
+            ]
+        }
+    ]
+}

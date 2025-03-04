@@ -91,6 +91,9 @@
     <category term="文件包含" />
     <category term="php伪协议" />
     <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
     <entry>
         <id>http://odiws.github.io/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/</id>
         <title>&#39;[GWCTF 2019]枯燥的抽奖&#39;</title>

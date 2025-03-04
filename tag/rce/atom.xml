@@ -91,6 +91,9 @@
     <category term="文件包含" />
     <category term="php伪协议" />
     <category term="pearcmd文件包含" />
+    <category term="xpath注入" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="php" />
     <entry>
         <id>http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/</id>
         <title>[Dest0g3_520迎新赛]SimpleRCE</title>
