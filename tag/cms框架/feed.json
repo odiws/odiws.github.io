@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"cms框架\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/06/18/2021-easycms/",
+            "url": "http://odiws.github.io/2024/06/18/2021-easycms/",
+            "title": "GKCTF 2021：easycms",
+            "date_published": "2024-06-18T08:32:01.000Z",
+            "content_html": "<h2 id=\"gkctf-2021easycms\"><a class=\"markdownIt-Anchor\" href=\"#gkctf-2021easycms\">#</a> [GKCTF 2021]easycms</h2>\n<p>dirsearch 扫目录发现 admin.php 进入后台登录页面</p>\n<p>猜 admin 的 12345</p>\n<p>因为首页的提示显示密码是五位数</p>\n<p>这种 CMS，第一时间想到主题。</p>\n<p>试了下主题可以导出，主题这里想导入需要创建这个文件</p>\n<p>![1](…/images/NSS[GKCTF 2021]easycms/1.png)</p>\n<p>所以要创建一个文件</p>\n<pre><code class=\"language-none\">/var/www/html/system/tmp/qgak.txt\n</code></pre>\n<p>在设计 - 组件 - 素材库里可以上传文件然后重命名</p>\n<p>将名称换成</p>\n<pre><code>../../../../../../../../../../../../var/www/html/system/tmp/qgak\n</code></pre>\n<p>他会自动加.txt</p>\n<p>直接在主题的高级里面加马（蚁剑连接）或者直接</p>\n<pre><code>&lt;?php system('cat /flag'); ?&gt;\n</code></pre>\n<p>最后就是主页展示：（这是在全局文件上改的）</p>\n<p>![2](…/images/NSS[GKCTF 2021]easycms/2.png)</p>\n",
+            "tags": [
+                "buuctf",
+                "cms框架"
+            ]
+        }
+    ]
+}

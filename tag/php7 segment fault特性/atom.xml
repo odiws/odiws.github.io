@@ -6,22 +6,34 @@
     <updated>2024-06-07T14:00:34.000Z</updated>
     <category term="python" />
     <category term="buuctf" />
-    <category term="system:file" />
-    <category term="文件内无字符rce" />
-    <category term="xxe漏洞" />
-    <category term="sql文件读取" />
-    <category term="php绕过open_basedir设置" />
-    <category term="无字母rce" />
     <category term="ctf" />
-    <category term="文件上传" />
-    <category term="xml文件上传" />
+    <category term="http" />
+    <category term="php原生类利用" />
     <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="mongodb注入" />
+    <category term="cms框架" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="json数据爬虫" />
     <category term="regexp注入" />
+    <category term="js" />
+    <category term="ECB加密" />
     <category term="buuctf， 反序列化" />
     <category term="phar反序列化" />
     <category term="thinkphpV6.0.0" />
     <category term="php7 segment fault特性" />
+    <category term="pickle反序列化" />
+    <category term="buuctf， 伪随机数" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
     <category term="zip加密" />
+    <category term="system_file" />
     <entry>
         <id>http://odiws.github.io/2024/06/07/[NPUCTF2020]ezinclude/</id>
         <title>&#39;[NPUCTF2020]ezinclude&#39;</title>

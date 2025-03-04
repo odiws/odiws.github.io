@@ -9,22 +9,34 @@
         <lastBuildDate>Sat, 08 Jun 2024 21:00:07 +0800</lastBuildDate>
         <category>python</category>
         <category>buuctf</category>
-        <category>system:file</category>
-        <category>文件内无字符rce</category>
-        <category>xxe漏洞</category>
-        <category>sql文件读取</category>
-        <category>php绕过open_basedir设置</category>
-        <category>无字母rce</category>
         <category>ctf</category>
-        <category>文件上传</category>
-        <category>xml文件上传</category>
+        <category>http</category>
+        <category>php原生类利用</category>
         <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>mongodb注入</category>
+        <category>cms框架</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>json数据爬虫</category>
         <category>regexp注入</category>
+        <category>js</category>
+        <category>ECB加密</category>
         <category>buuctf， 反序列化</category>
         <category>phar反序列化</category>
         <category>thinkphpV6.0.0</category>
         <category>php7 segment fault特性</category>
+        <category>pickle反序列化</category>
+        <category>buuctf， 伪随机数</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
         <category>zip加密</category>
+        <category>system_file</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/06/08/[SWPUCTF%202018]SimplePHP/</guid>
             <title>[SWPUCTF 2018]SimplePHP</title>

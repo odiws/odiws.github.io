@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"ecb加密\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/11/18/BSidesCF-2019-Mixer/",
+            "url": "http://odiws.github.io/2024/11/18/BSidesCF-2019-Mixer/",
+            "title": "[BSidesCF-2019]Mixer",
+            "date_published": "2024-11-18T13:35:10.000Z",
+            "content_html": "<h2 id=\"bsidescf-2019mixer\"><a class=\"markdownIt-Anchor\" href=\"#bsidescf-2019mixer\">#</a> [BSidesCF-2019]Mixer</h2>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411182137101.png\" alt=\"image-20241118213754642\"></p>\n<p>主页，有一些提示</p>\n<pre><code>It looks like you aren't admin, though! Better work on that! Remember, is_admin must bet set to 1 (integer)! And you can safely ignore the rack.session cookie. Like actually. But that other cookie, however....\n</code></pre>\n<p>这就说明可能不是 session 加密解密了，得用密码学的东西来解释一下了</p>\n<p>登录抓包后发现有了一个 user 的 session，肯定不是 jwt，也不会是 flask 的 session，密码的话有两个大类的分组密码，一个是加密后的密文参与下一组的明文加密，一个是直接加密的，分组的密文互不影响，这个 user 很可能是密码加密的，我可以直接修改一点值，将头三个字符换成 123</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411182142731.png\" alt=\"image-20241118214245512\"></p>\n<p>发现存在有正常的回显，那就是互不影响的密码加密（ECB 加密）</p>\n<p>ECB 加密是 16 位一组，并且每组互相独立，加密后每组为 32 位。又因为在 JSON 中 1.0 = 1，所以如果替换成这样：</p>\n<pre><code>第一个块\n\n&#123;“first_name”:”A\n\n第二个块\n1.00000000000000\n\n第三个块\n“,”last_name”:”1\n\n第四个块\n231″,”is_admin”:\n\n第五个块\n0&#125;\n</code></pre>\n<p>将第二块加到第四块后面就行了</p>\n<figure class=\"highlight python\"><figcaption data-lang=\"python\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre>s<span class=\"token operator\">=</span><span class=\"token string\">'227f846a99b58fab1ba58859ca38e4af78ba38397fd14ba8a08e18b5cb318e22989561536b419cd4053214349996364eab0cfaf489d5309500bf83df1de3b2f4c2980bfa0bbac594d039877e4d4c14db'</span></pre></td></tr><tr><td data-num=\"2\"></td><td><pre>res <span class=\"token operator\">=</span> s<span class=\"token punctuation\">[</span><span class=\"token punctuation\">:</span><span class=\"token number\">128</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">+</span> s<span class=\"token punctuation\">[</span><span class=\"token number\">32</span><span class=\"token punctuation\">:</span><span class=\"token number\">64</span><span class=\"token punctuation\">]</span> <span class=\"token operator\">+</span> s<span class=\"token punctuation\">[</span><span class=\"token number\">128</span><span class=\"token punctuation\">:</span><span class=\"token punctuation\">]</span></pre></td></tr><tr><td data-num=\"3\"></td><td><pre><span class=\"token keyword\">print</span><span class=\"token punctuation\">(</span>res<span class=\"token punctuation\">)</span></pre></td></tr></table></figure><p>参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDAzNzI5Ni9hcnRpY2xlL2RldGFpbHMvMTEyMzcwNTEw\">https://blog.csdn.net/weixin_44037296/article/details/112370510</span></p>\n<p><span class=\"exturl\" data-url=\"aHR0cHM6Ly93d3cuc2hhd3Jvb3QuY2MvODc0Lmh0bWw=\">https://www.shawroot.cc/874.html</span></p>\n",
+            "tags": [
+                "buuctf",
+                "ECB加密"
+            ]
+        }
+    ]
+}

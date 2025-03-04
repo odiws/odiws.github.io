@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;js&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-10-17T12:16:13.000Z</updated>
+    <category term="python" />
+    <category term="buuctf" />
+    <category term="ctf" />
+    <category term="http" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="mongodb注入" />
+    <category term="cms框架" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="json数据爬虫" />
+    <category term="regexp注入" />
+    <category term="js" />
+    <category term="ECB加密" />
+    <category term="buuctf， 反序列化" />
+    <category term="phar反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="php7 segment fault特性" />
+    <category term="pickle反序列化" />
+    <category term="buuctf， 伪随机数" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="zip加密" />
+    <category term="system_file" />
+    <entry>
+        <id>http://odiws.github.io/2024/10/17/BSidesCF-2019-PickTacToe/</id>
+        <title>[BSidesCF2019]Pick Tac Toe</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/10/17/BSidesCF-2019-PickTacToe/"/>
+        <content type="html">&lt;h2 id=&#34;bsidescf-2019pick-tac-toe&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#bsidescf-2019pick-tac-toe&#34;&gt;#&lt;/a&gt; [BSidesCF 2019]Pick Tac Toe&lt;/h2&gt;
+&lt;p&gt;基本上就是 ctrl+u（看见 /move 的路由，有一些 id，有 POST 方法，试一下 /move,POST:move=id）发现只能改一次，但是也够了用 move=r,i 第二行最后一个就行&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BRCTF2019%5DNextphp/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="js" />
+        <updated>2024-10-17T12:16:13.000Z</updated>
+    </entry>
+</feed>

@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;buuctf， 伪随机数&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Tue, 28 May 2024 21:02:31 +0800</pubDate>
+        <lastBuildDate>Tue, 28 May 2024 21:02:31 +0800</lastBuildDate>
+        <category>python</category>
+        <category>buuctf</category>
+        <category>ctf</category>
+        <category>http</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>mongodb注入</category>
+        <category>cms框架</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>json数据爬虫</category>
+        <category>regexp注入</category>
+        <category>js</category>
+        <category>ECB加密</category>
+        <category>buuctf， 反序列化</category>
+        <category>phar反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>php7 segment fault特性</category>
+        <category>pickle反序列化</category>
+        <category>buuctf， 伪随机数</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>zip加密</category>
+        <category>system_file</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/</guid>
+            <title>&#39;[GWCTF 2019]枯燥的抽奖&#39;</title>
+            <link>http://odiws.github.io/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/</link>
+            <category>buuctf， 伪随机数</category>
+            <pubDate>Tue, 28 May 2024 21:02:31 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;gwctf-2019枯燥的抽奖&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gwctf-2019枯燥的抽奖&#34;&gt;#&lt;/a&gt; [GWCTF 2019] 枯燥的抽奖&lt;/h2&gt;
+&lt;h3 id=&#34;知识点伪随机数mt_rand函数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#知识点伪随机数mt_rand函数&#34;&gt;#&lt;/a&gt; 知识点：伪随机数：mt_rand () 函数&lt;/h3&gt;
+&lt;p&gt;伪随机数（引用上面的链接内容）&lt;br&gt;
+伪随机数是用确定性的算法计算出来的随机数序列，它并不真正的随机，但具有类似于随机数的统计特征，如均匀性、独立性等。在计算伪随机数时，若使用的初值（种子）不变，那么伪随机数的数序也不变。伪随机数可以用计算机大量生成，在模拟研究中为了提高模拟效率，一般采用伪随机数代替真正的随机数。模拟中使用的一般是循环周期极长并能通过随机数检验的伪随机数，以保证计算结果的随机性。伪随机数的生成方法有线性同余法、单向散列函数法、密码法等。&lt;/p&gt;
+&lt;p&gt;mt_rand 就是一个伪随机数生成函数，它由可确定的函数，通过一个种子产生的伪随机数。这意味着：如果知道了种子，或者已经产生的随机数，都可能获得接下来随机数序列的信息（可预测性）。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%E6%9E%AF%E7%87%A5%E7%9A%84%E6%8A%BD%E5%A5%96/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;进来是这样的界面，发现是要写一些字符串，要写出剩下的字符串，源码有 check.php, 进去发现是源码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;5qfWJ4LPJv
+
+&amp;lt;?php
+#这不是抽奖程序的源代码！不许看！
+header(&amp;quot;Content-Type: text/html;charset=utf-8&amp;quot;);
+session_start();
+if(!isset($_SESSION[&#39;seed&#39;]))&amp;#123;
+$_SESSION[&#39;seed&#39;]=rand(0,999999999);
+&amp;#125;
+
+mt_srand($_SESSION[&#39;seed&#39;]);
+$str_long1 = &amp;quot;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&amp;quot;;
+$str=&#39;&#39;;
+$len1=20;
+for ( $i = 0; $i &amp;lt; $len1; $i++ )&amp;#123;
+    $str.=substr($str_long1, mt_rand(0, strlen($str_long1) - 1), 1);       
+&amp;#125;
+$str_show = substr($str, 0, 10);
+echo &amp;quot;&amp;lt;p id=&#39;p1&#39;&amp;gt;&amp;quot;.$str_show.&amp;quot;&amp;lt;/p&amp;gt;&amp;quot;;
+
+
+if(isset($_POST[&#39;num&#39;]))&amp;#123;
+    if($_POST[&#39;num&#39;]===$str)&amp;#123;x
+        echo &amp;quot;&amp;lt;p id=flag&amp;gt;抽奖，就是那么枯燥且无味，给你flag&amp;#123;xxxxxxxxx&amp;#125;&amp;lt;/p&amp;gt;&amp;quot;;
+    &amp;#125;
+    else&amp;#123;
+        echo &amp;quot;&amp;lt;p id=flag&amp;gt;没抽中哦，再试试吧&amp;lt;/p&amp;gt;&amp;quot;;
+    &amp;#125;
+&amp;#125;
+show_source(&amp;quot;check.php&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;发现 mt_rand 函数，直接 php_mt_seed 启动！！！（不不不，还没，先把要字符串改成 php_mt_rand 看得懂的东西再说）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str1=&#39;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#39;
+str2=&#39;8D2SWQCXgH&#39;
+length = len(str2)
+res=&#39;&#39;
+for i in range(len(str2)):
+    for j in range(len(str1)):
+        if str2[i] == str1[j]:
+            res+=str(j)+&#39; &#39;+str(j)+&#39; &#39;+&#39;0&#39;+&#39; &#39;+str(len(str1)-1)+&#39; &#39;
+            break
+print(res)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%E6%9E%AF%E7%87%A5%E7%9A%84%E6%8A%BD%E5%A5%96/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获得了一串可被 php_mt_seed 识别的数字&lt;/p&gt;
+&lt;p&gt;直接进入 php_mt_seed:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;make
+./php_mt_seed 这串数字
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%E6%9E%AF%E7%87%A5%E7%9A%84%E6%8A%BD%E5%A5%96/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获得 seed 后通过脚本：&lt;/p&gt;
+&lt;figure class=&#34;highlight php&#34;&gt;&lt;figcaption data-lang=&#34;PHP&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token php language-php&#34;&gt;&lt;span class=&#34;token delimiter important&#34;&gt;&amp;lt;?php&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;mt_srand&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;你的种子，如&lt;span class=&#34;token number&#34;&gt;880310233&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$str_long1&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$str&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$len1&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$i&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$i&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$len1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$i&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;++&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token variable&#34;&gt;$str&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;.=&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;substr&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$str_long1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;mt_rand&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;strlen&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$str_long1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;       &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$str&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token delimiter important&#34;&gt;?&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;../images/%E6%9E%AF%E7%87%A5%E7%9A%84%E6%8A%BD%E5%A5%96/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接写入后获得 flag&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%E6%9E%AF%E7%87%A5%E7%9A%84%E6%8A%BD%E5%A5%96/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;（工具真难下）&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

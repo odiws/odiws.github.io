@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;cms框架&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-06-18T08:32:01.000Z</updated>
+    <category term="python" />
+    <category term="buuctf" />
+    <category term="ctf" />
+    <category term="http" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="mongodb注入" />
+    <category term="cms框架" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="json数据爬虫" />
+    <category term="regexp注入" />
+    <category term="js" />
+    <category term="ECB加密" />
+    <category term="buuctf， 反序列化" />
+    <category term="phar反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="php7 segment fault特性" />
+    <category term="pickle反序列化" />
+    <category term="buuctf， 伪随机数" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="zip加密" />
+    <category term="system_file" />
+    <entry>
+        <id>http://odiws.github.io/2024/06/18/2021-easycms/</id>
+        <title>GKCTF 2021：easycms</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/06/18/2021-easycms/"/>
+        <content type="html">&lt;h2 id=&#34;gkctf-2021easycms&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gkctf-2021easycms&#34;&gt;#&lt;/a&gt; [GKCTF 2021]easycms&lt;/h2&gt;
+&lt;p&gt;dirsearch 扫目录发现 admin.php 进入后台登录页面&lt;/p&gt;
+&lt;p&gt;猜 admin 的 12345&lt;/p&gt;
+&lt;p&gt;因为首页的提示显示密码是五位数&lt;/p&gt;
+&lt;p&gt;这种 CMS，第一时间想到主题。&lt;/p&gt;
+&lt;p&gt;试了下主题可以导出，主题这里想导入需要创建这个文件&lt;/p&gt;
+&lt;p&gt;![1](…/images/NSS[GKCTF 2021]easycms/1.png)&lt;/p&gt;
+&lt;p&gt;所以要创建一个文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-none&#34;&gt;/var/www/html/system/tmp/qgak.txt
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在设计 - 组件 - 素材库里可以上传文件然后重命名&lt;/p&gt;
+&lt;p&gt;将名称换成&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;../../../../../../../../../../../../var/www/html/system/tmp/qgak
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;他会自动加.txt&lt;/p&gt;
+&lt;p&gt;直接在主题的高级里面加马（蚁剑连接）或者直接&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php system(&#39;cat /flag&#39;); ?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;最后就是主页展示：（这是在全局文件上改的）&lt;/p&gt;
+&lt;p&gt;![2](…/images/NSS[GKCTF 2021]easycms/2.png)&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="cms框架" />
+        <updated>2024-06-18T08:32:01.000Z</updated>
+    </entry>
+</feed>
