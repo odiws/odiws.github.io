@@ -95,6 +95,10 @@
     <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="php" />
     <category term="sql盲注" />
+    <category term="php7.4" />
+    <category term="FFI预处理" />
+    <category term="thinkphp3.2.4" />
+    <category term="jwt" />
     <entry>
         <id>http://odiws.github.io/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/</id>
         <title>[CISCN2019华东南赛区]Web4</title>

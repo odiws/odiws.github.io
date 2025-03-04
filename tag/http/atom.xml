@@ -95,6 +95,10 @@
     <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="php" />
     <category term="sql盲注" />
+    <category term="php7.4" />
+    <category term="FFI预处理" />
+    <category term="thinkphp3.2.4" />
+    <category term="jwt" />
     <entry>
         <id>http://odiws.github.io/2024/12/10/b01lers2020-Spac-Noodles/</id>
         <title>[b01lers2020]Spac_Noodles</title>

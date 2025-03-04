@@ -98,6 +98,10 @@
         <category>Padding oracle attack 与CBC翻转字节攻击</category>
         <category>php</category>
         <category>sql盲注</category>
+        <category>php7.4</category>
+        <category>FFI预处理</category>
+        <category>thinkphp3.2.4</category>
+        <category>jwt</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/</guid>
             <title>[Dest0g3_520迎新赛]SimpleRCE</title>

@@ -98,6 +98,10 @@
         <category>Padding oracle attack 与CBC翻转字节攻击</category>
         <category>php</category>
         <category>sql盲注</category>
+        <category>php7.4</category>
+        <category>FFI预处理</category>
+        <category>thinkphp3.2.4</category>
+        <category>jwt</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/06/20/Mars/</guid>
             <title>[b01lers2020]lifeMars</title>

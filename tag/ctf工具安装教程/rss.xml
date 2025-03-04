@@ -98,6 +98,10 @@
         <category>Padding oracle attack 与CBC翻转字节攻击</category>
         <category>php</category>
         <category>sql盲注</category>
+        <category>php7.4</category>
+        <category>FFI预处理</category>
+        <category>thinkphp3.2.4</category>
+        <category>jwt</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/</guid>
             <title>&#39;ctf工具总结&#39;</title>

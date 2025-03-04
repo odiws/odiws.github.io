@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"jwt\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/09/24/RootersCTF2019-ImgXweb/",
+            "url": "http://odiws.github.io/2024/09/24/RootersCTF2019-ImgXweb/",
+            "title": "[RootersCTF2019]ImgXweb",
+            "date_published": "2024-09-24T13:24:42.000Z",
+            "content_html": "<h2 id=\"rootersctf2019imgxweb\"><a class=\"markdownIt-Anchor\" href=\"#rootersctf2019imgxweb\">#</a> [RootersCTF2019]ImgXweb</h2>\n<h2 id=\"6\"><a class=\"markdownIt-Anchor\" href=\"#6\">#</a> <img data-src=\"../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/6.png\" alt=\"6\"></h2>\n<p>注册登录在 / Home 这里发现 cookie，感觉是 jwt，直接上传<span class=\"exturl\" data-url=\"aHR0cHM6Ly9qd3QuaW8v\"> JSON Web Tokens - jwt.io</span><img data-src=\"../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/7.png\" alt=\"7\"></p>\n<p>要有密码才能修改：信息搜集发现 robots.txt：</p>\n<p><img data-src=\"../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/8.png\" alt=\"8\"></p>\n<p>发现密码 you-will-never-guess</p>\n<p>修改 user 名为 admin：换 jwt 发现有了 flag.png</p>\n<p>可以直接搞一个 curl（抓包也可以）</p>\n<p><img data-src=\"../images/%5BGWCTF2019%5D%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/9.png\" alt=\"9\"></p>\n",
+            "tags": [
+                "buuctf",
+                "jwt"
+            ]
+        }
+    ]
+}

