@@ -89,6 +89,8 @@
     <category term="sqlmap使用" />
     <category term="SQL注入" />
     <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
     <entry>
         <id>http://odiws.github.io/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/</id>
         <title>&#39;ctf工具总结&#39;</title>

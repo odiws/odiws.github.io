@@ -92,6 +92,8 @@
         <category>sqlmap使用</category>
         <category>SQL注入</category>
         <category>文件包含</category>
+        <category>php伪协议</category>
+        <category>pearcmd文件包含</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/17/HCTF2018-Hideandseek/</guid>
             <title>[HCTF2018]Hideandseek</title>

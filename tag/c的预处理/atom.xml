@@ -89,6 +89,8 @@
     <category term="sqlmap使用" />
     <category term="SQL注入" />
     <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
     <entry>
         <id>http://odiws.github.io/2024/08/01/FireshellCTF2020-CaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/</id>
         <title>[FireshellCTF2020]CaasC的预处理</title>

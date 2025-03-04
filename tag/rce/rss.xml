@@ -92,6 +92,8 @@
         <category>sqlmap使用</category>
         <category>SQL注入</category>
         <category>文件包含</category>
+        <category>php伪协议</category>
+        <category>pearcmd文件包含</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/</guid>
             <title>[Dest0g3_520迎新赛]SimpleRCE</title>

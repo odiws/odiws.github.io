@@ -89,6 +89,8 @@
     <category term="sqlmap使用" />
     <category term="SQL注入" />
     <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
     <entry>
         <id>http://odiws.github.io/2024/08/09/GYCTF2020-Ez-Express/</id>
         <title>[GYCTF2020]Ez_Express</title>

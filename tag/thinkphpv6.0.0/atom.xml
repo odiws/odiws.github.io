@@ -89,6 +89,8 @@
     <category term="sqlmap使用" />
     <category term="SQL注入" />
     <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
     <entry>
         <id>http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/</id>
         <title>[安洵杯2019]iamthinking</title>

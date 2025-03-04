@@ -89,6 +89,8 @@
     <category term="sqlmap使用" />
     <category term="SQL注入" />
     <category term="文件包含" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
     <entry>
         <id>http://odiws.github.io/2024/11/22/HMGCTF2022-Smarty-Calculator/</id>
         <title>[HMGCTF2022]Smarty-Calculator</title>
