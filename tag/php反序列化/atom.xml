@@ -43,6 +43,9 @@
     <category term="xml_upload" />
     <category term="flask的session伪造" />
     <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
     <entry>
         <id>http://odiws.github.io/2024/08/13/2019%E5%BC%BA%E7%BD%91%E6%9D%AFUpload%E9%A2%98/</id>
         <title>2019强网杯Upload题</title>

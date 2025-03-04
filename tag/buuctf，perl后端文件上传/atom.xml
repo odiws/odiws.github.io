@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;buuctf，perl后端文件上传&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-10-15T06:15:57.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <entry>
+        <id>http://odiws.github.io/2024/10/15/CSAWQual2016-i-got-id/</id>
+        <title>[CSAWQual2016]i_got_id</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/10/15/CSAWQual2016-i-got-id/"/>
+        <content type="html">&lt;h2 id=&#34;csawqual2016i_got_id&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#csawqual2016i_got_id&#34;&gt;#&lt;/a&gt; [CSAWQual2016]i_got_id&lt;/h2&gt;
+&lt;p&gt;开局三个超链接：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;helloworld 提示 perl：&lt;/p&gt;
+&lt;p&gt;Forms 登陆页面，没有有用的信息，正常显示，无二次注入点，SQL 注入，ssti 都没有&lt;/p&gt;
+&lt;p&gt;就是 files 上传文件了，可以发现要上传 perl 文件：&lt;/p&gt;
+&lt;p&gt;直接猜测后端代码：&lt;/p&gt;
+&lt;figure class=&#34;highlight perl&#34;&gt;&lt;figcaption data-lang=&#34;perl&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;use&lt;/span&gt; strict&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;use&lt;/span&gt; warnings&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;use&lt;/span&gt; CGI&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;my&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$cgi&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; CGI&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;new&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$cgi&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;upload&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;file&#39;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;my&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$cgi&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;param&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;file&#39;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$file&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;$_&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;解释：&lt;/p&gt;
+&lt;p&gt;my $file= $cgi-&amp;gt;param( ‘file’ );：&lt;br&gt;
+param () 函数返回一个列表的文件。但是只有第一个文件会被放入 file 变量中。&lt;/p&gt;
+&lt;p&gt;while (&amp;lt;$file&amp;gt; ) 中，&amp;lt;&amp;gt; 不能处理字符串，除非是 ARGV，因此循环遍历并将每个值使用 open ()&lt;br&gt;
+ 调用。&lt;/p&gt;
+&lt;p&gt;对于读文件，如果传入一个 ARGV 的文件，那么 Perl 会将传入的参数作为文件名读出来。&lt;br&gt;
+所以，在上传的正常文件前加上一个文件上传项 ARGV，然后在 URL 中传入文件路径参数，就可以读取任意文件。&lt;/p&gt;
+&lt;p&gt;抓包：将里面的东西删除，复制 15，16 行空一行粘贴&lt;/p&gt;
+&lt;p&gt;第一个 ------- 删除 Content-Type，加的那个加上这个，在添加的地方前面加上 ARGV&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在 url 加上？cat+/etc/passwd (cat+/flag)(空格用 + 替代):&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;然后就出了：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/IGotIt/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：[CSAW 2016 I Got Id – Web200] i_got_id](&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly90c3VibG9ncy53b3JkcHJlc3MuY29tLzIwMTYvMDkvMTgvNjA2Lw==&#34;&gt;https://tsublogs.wordpress.com/2016/09/18/606/&lt;/span&gt;)&lt;/p&gt;
+</content>
+        <category term="buuctf，Perl后端文件上传" />
+        <updated>2024-10-15T06:15:57.000Z</updated>
+    </entry>
+</feed>

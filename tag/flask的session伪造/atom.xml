@@ -43,6 +43,9 @@
     <category term="xml_upload" />
     <category term="flask的session伪造" />
     <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
     <entry>
         <id>http://odiws.github.io/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/</id>
         <title>[CISCN2019华东南赛区]Web4</title>

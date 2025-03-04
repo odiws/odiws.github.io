@@ -43,6 +43,9 @@
     <category term="xml_upload" />
     <category term="flask的session伪造" />
     <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
     <entry>
         <id>http://odiws.github.io/2024/07/25/2019-Web-Unagi/</id>
         <title>[CSAWQual2019]Web_Unagi</title>

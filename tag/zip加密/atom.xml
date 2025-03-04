@@ -43,6 +43,9 @@
     <category term="xml_upload" />
     <category term="flask的session伪造" />
     <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
     <entry>
         <id>http://odiws.github.io/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/</id>
         <title>zip伪加密</title>

@@ -46,6 +46,9 @@
         <category>xml_upload</category>
         <category>flask的session伪造</category>
         <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/06/10/2018-Comment/</guid>
             <title>&#39;[网鼎杯 2018]Comment&#39;</title>
