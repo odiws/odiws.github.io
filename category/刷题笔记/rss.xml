@@ -1,26 +1,15 @@
 <?xml version="1.0"?>
 <rss version="2.0">
     <channel>
-        <title>Hexo</title>
+        <title>Hexo • Posts by &#34;刷题笔记&#34; category</title>
         <link>http://odiws.github.io</link>
         <description></description>
         <language>en</language>
-        <pubDate>Mon, 04 Nov 2024 22:08:36 +0800</pubDate>
-        <lastBuildDate>Mon, 04 Nov 2024 22:08:36 +0800</lastBuildDate>
+        <pubDate>Mon, 23 Sep 2024 15:32:41 +0800</pubDate>
+        <lastBuildDate>Mon, 23 Sep 2024 15:32:41 +0800</lastBuildDate>
         <category>buuctf</category>
         <category>thinkphpV6.0.0</category>
         <category>zip加密</category>
-        <item>
-            <guid isPermalink="true">http://odiws.github.io/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/</guid>
-            <title>zip伪加密</title>
-            <link>http://odiws.github.io/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/</link>
-            <category>zip加密</category>
-            <pubDate>Mon, 04 Nov 2024 22:08:36 +0800</pubDate>
-            <description><![CDATA[ &lt;h3 id=&#34;zip伪加密&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#zip伪加密&#34;&gt;#&lt;/a&gt; zip 伪加密&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411042210275.png&#34; alt=&#34;image-20241104221006220&#34;&gt;&lt;/p&gt;
-&lt;p&gt;将红色的地方改成 00 就可以绕过加密密码（不知道是什么原理）&lt;/p&gt;
- ]]></description>
-        </item>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/</guid>
             <title>[安洵杯2019]iamthinking</title>
