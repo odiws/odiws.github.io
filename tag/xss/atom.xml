@@ -124,6 +124,8 @@
     <category term="fastcgi-php-FPM" />
     <category term="disable_function" />
     <category term="nodejs" />
+    <category term="hash_hamc函数" />
+    <category term="取反异或" />
     <entry>
         <id>http://odiws.github.io/2024/03/31/xss%E7%AC%94%E8%AE%B0/</id>
         <title>xss漏洞学习笔记</title>

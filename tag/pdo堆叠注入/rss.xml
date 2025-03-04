@@ -127,6 +127,8 @@
         <category>fastcgi-php-FPM</category>
         <category>disable_function</category>
         <category>nodejs</category>
+        <category>hash_hamc函数</category>
+        <category>取反异或</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/</guid>
             <title>[红明谷CTF-2021]EasyTP</title>

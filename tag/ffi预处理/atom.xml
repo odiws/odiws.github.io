@@ -124,6 +124,8 @@
     <category term="fastcgi-php-FPM" />
     <category term="disable_function" />
     <category term="nodejs" />
+    <category term="hash_hamc函数" />
+    <category term="取反异或" />
     <entry>
         <id>http://odiws.github.io/2024/10/17/RCTF2019-Nextphp/</id>
         <title>[RCTF2019]Nextphp</title>

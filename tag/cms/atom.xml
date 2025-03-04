@@ -124,6 +124,8 @@
     <category term="fastcgi-php-FPM" />
     <category term="disable_function" />
     <category term="nodejs" />
+    <category term="hash_hamc函数" />
+    <category term="取反异或" />
     <entry>
         <id>http://odiws.github.io/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/</id>
         <title>SHctf-2024部分复现</title>

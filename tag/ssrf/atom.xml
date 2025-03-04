@@ -124,6 +124,8 @@
     <category term="fastcgi-php-FPM" />
     <category term="disable_function" />
     <category term="nodejs" />
+    <category term="hash_hamc函数" />
+    <category term="取反异或" />
     <entry>
         <id>http://odiws.github.io/2024/11/20/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E5%8D%8A%E5%86%B3%E8%B5%9B-BabyJS/</id>
         <title>[网鼎杯-2020-半决赛]BabyJS</title>

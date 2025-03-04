@@ -124,6 +124,8 @@
     <category term="fastcgi-php-FPM" />
     <category term="disable_function" />
     <category term="nodejs" />
+    <category term="hash_hamc函数" />
+    <category term="取反异或" />
     <entry>
         <id>http://odiws.github.io/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/</id>
         <title>NewStarCTF2023新生赛_BabySSTI_Three</title>

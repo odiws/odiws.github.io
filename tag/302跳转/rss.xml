@@ -127,6 +127,8 @@
         <category>fastcgi-php-FPM</category>
         <category>disable_function</category>
         <category>nodejs</category>
+        <category>hash_hamc函数</category>
+        <category>取反异或</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/12/10/%E5%9B%BD%E5%9F%8E%E6%9D%AF/</guid>
             <title>国城杯</title>

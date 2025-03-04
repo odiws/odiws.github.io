@@ -124,6 +124,8 @@
     <category term="fastcgi-php-FPM" />
     <category term="disable_function" />
     <category term="nodejs" />
+    <category term="hash_hamc函数" />
+    <category term="取反异或" />
     <entry>
         <id>http://odiws.github.io/2025/02/24/SWPUCTF-2016-Web7/</id>
         <title>[SWPUCTF_2016]Web7</title>

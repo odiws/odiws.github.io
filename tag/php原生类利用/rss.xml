@@ -127,6 +127,8 @@
         <category>fastcgi-php-FPM</category>
         <category>disable_function</category>
         <category>nodejs</category>
+        <category>hash_hamc函数</category>
+        <category>取反异或</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/07/28/2020-Greatphp/</guid>
             <title>[极客大挑战2020]Greatphp</title>

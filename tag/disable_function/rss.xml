@@ -127,6 +127,8 @@
         <category>fastcgi-php-FPM</category>
         <category>disable_function</category>
         <category>nodejs</category>
+        <category>hash_hamc函数</category>
+        <category>取反异或</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/07/%E8%93%9D%E5%B8%BD%E6%9D%AF-2021-One-Pointer-PHP/</guid>
             <title>[蓝帽杯_2021]One_Pointer_PHP</title>

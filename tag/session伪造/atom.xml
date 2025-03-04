@@ -124,6 +124,8 @@
     <category term="fastcgi-php-FPM" />
     <category term="disable_function" />
     <category term="nodejs" />
+    <category term="hash_hamc函数" />
+    <category term="取反异或" />
     <entry>
         <id>http://odiws.github.io/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/</id>
         <title>[PwnThyBytes——2019]Baby_SQL</title>

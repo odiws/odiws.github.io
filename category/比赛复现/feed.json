@@ -56,6 +56,14 @@
                 "jwt密码爆破",
                 "cms"
             ]
+        },
+        {
+            "id": "http://odiws.github.io/2024/07/26/%E6%AD%A6%E5%8A%9F%E8%AE%BA%E5%89%91wp%E5%A4%8D%E7%8E%B0/",
+            "url": "http://odiws.github.io/2024/07/26/%E6%AD%A6%E5%8A%9F%E8%AE%BA%E5%89%91wp%E5%A4%8D%E7%8E%B0/",
+            "title": "武功论剑wp复现web方向",
+            "date_published": "2024-07-26T04:33:24.000Z",
+            "content_html": "",
+            "tags": []
         }
     ]
 }

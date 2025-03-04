@@ -88,12 +88,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipevo9j1jj20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclip4jbpj20zk0m87cv.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclwuom7cj20zk0m8dvn.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclg5ms2rj20zk0m8u0x.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclj9410cj20zk0m8h12.jpg"></li>
-          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclhtuo6nj20zk0m8ttm.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipexbei4hj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclx6phq6j20zk0m8e36.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclx29mstj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciukx8a7j20zk0m8aio.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipewr8iypj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg"></li>
         </ul>
       </div>
     </header>
@@ -119,7 +119,187 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/" itemprop="url" title="&#39;[GWCTF 2019]枯燥的抽奖&#39;"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipesx5fdwj20zk0m81kx.jpg"></a>
+    <a href="/2024/06/02/2017-SSRFme/" itemprop="url" title="‘’[HITCON 2017]SSRFme‘’"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipevo9j1jj20zk0m8e81.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-06-02 14:57:07">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-06-02T14:57:07+08:00">2024-06-02</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/06/02/2017-SSRFme/" itemprop="url" title="‘’[HITCON 2017]SSRFme‘’">‘’[HITCON 2017]SSRFme‘’</a></h3>
+    <div class="excerpt">
+        # [HITCON 2017]SSRFme
+127.0.0.1&amp;lt;?php
+if (isset($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;])) &amp;#123;
+$http_x_headers = explode(&#39;,&#39;, $_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;]);
+$_SERVER[&#39;REMOTE_ADDR&#39;] = $http_x_headers[0];
+&amp;#125;
+
+echo...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/06/02/2017-SSRFme/" itemprop="url" title="‘’[HITCON 2017]SSRFme‘’" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/05/30/Web1-Dropbox/" itemprop="url" title="Web1]Dropbox"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gicis3attqj20zk0m8k7l.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-05-30 19:43:38">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-05-30T19:43:38+08:00">2024-05-30</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/05/30/Web1-Dropbox/" itemprop="url" title="Web1]Dropbox">Web1]Dropbox</a></h3>
+    <div class="excerpt">
+        # [CISCN2019 华北赛区 Day1 Web1] Dropbox
+巨抽象的题：
+# 知识点：phar 反序列化
+Phar 反序列化_葫芦娃 42 的博客 - CSDN 博客
+一进来就是注册
+
+有两个选项：一个下载，一个删除。
+
+# 一般看见下载 / 删除，都会有一个 download.php 可能会存在任意文件下载的漏洞
+#
+通过测试，发现 filename 参数可控 下载 index.php 发现文件不存在，可能是路径原因 通过测试，index.php 在其上级目录的上级目录
+filename=…/…/index.php
+看见 index.php 里 include 了...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/05/30/Web1-Dropbox/" itemprop="url" title="Web1]Dropbox" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/05/30/Web5-CyberPunk/" itemprop="url" title="Web5]CyberPunk"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipewkhf1zj20zk0m81kx.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-05-30 19:11:31">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-05-30T19:11:31+08:00">2024-05-30</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/05/30/Web5-CyberPunk/" itemprop="url" title="Web5]CyberPunk">Web5]CyberPunk</a></h3>
+    <div class="excerpt">
+        # [CISCN2019 华北赛区 Day1 Web5] CyberPunk
+
+F12 找到提示？file 找值，读文件可以采用 php 伪协议
+php://filter/convert.base64-encode/resource=index.php(config.php,delete.php,search.php,confirm.php,change.php)
+
+&amp;lt;?php
+#change.php
+require_once...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/05/30/Web5-CyberPunk/" itemprop="url" title="Web5]CyberPunk" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/05/29/cookbook-1/" itemprop="url" title="[nctf2019]truecookbook"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclflwv2aj20zk0m84qp.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-05-29 21:46:38">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-05-29T21:46:38+08:00">2024-05-29</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/05/29/cookbook-1/" itemprop="url" title="[nctf2019]truecookbook">[nctf2019]truecookbook</a></h3>
+    <div class="excerpt">
+        # [NCTF2019]True XML cookbook
+# xxe 漏洞：
+与 Fake XML Cookbook 一样的类型，比 fake 难一些
+Fake XML Cookbook：
+这个是直接 xxe 漏洞：
+&lt;!DOCTYPE note [
+&lt;!ENTITY admin SYSTEM...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/05/29/cookbook-1/" itemprop="url" title="[nctf2019]truecookbook" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" itemprop="url" title="&#39;ctf工具总结&#39;"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1giclffsa1cj20zk0m811l.jpg"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-05-29 15:44:25">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-05-29T15:44:25+08:00">2024-05-29</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" itemprop="url" title="&#39;ctf工具总结&#39;">'ctf工具总结'</a></h3>
+    <div class="excerpt">
+        源码泄露工具：dirsearch
+用法：python dirsearch.py -u url 地址
+githack：git 源码泄露的工具（dirsearch 扫 git 泄露可能乱码，githack 不会）
+python githack.py url+/.git/
+直接在 githack 文件夹里面找到文件。
+c-jwt-cracker:(jwt 爆破找到密钥)
+快速安装 c-jwt-cracker - litluo - 博客园 (cnblogs.com)
+php_mt_seed:(为了找到伪随机数漏洞的种子，用种子可以反推随机的字符串)：
+PHP 伪随机数漏洞，以及 php_mt_seed...
+    </div>
+    <a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" itemprop="url" title="&#39;ctf工具总结&#39;" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/" itemprop="url" title="&#39;[GWCTF 2019]枯燥的抽奖&#39;"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gicm07ih54j20zk0m84qp.jpg"></a>
   </div>
   <div class="info">
     
@@ -152,7 +332,7 @@ mt_rand...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/05/27/buuctf5%E6%9C%8827%E6%97%A5/" itemprop="url" title="[红明谷CTF 2021]write_shell"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giclj9410cj20zk0m8h12.jpg"></a>
+    <a href="/2024/05/27/buuctf5%E6%9C%8827%E6%97%A5/" itemprop="url" title="[红明谷CTF 2021]write_shell"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipeun65urj20zk0m81ii.jpg"></a>
   </div>
   <div class="info">
     
@@ -189,7 +369,7 @@ if(preg_match(&amp;quot;/&#39;| |_|php|;|~|\\^|\\+|eval|&amp;#123;|&amp;#125;/i&
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/" itemprop="url" title="buuctf5月26日"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giciub8ja1j20zk0m81ky.jpg"></a>
+    <a href="/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/" itemprop="url" title="buuctf5月26日"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipevgoki5j20zk0m84qp.jpg"></a>
   </div>
   <div class="info">
     
@@ -232,7 +412,7 @@ break
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/05/25/buuctf5%E6%9C%8825%E6%97%A5/" itemprop="url" title="buu5月25日"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></a>
+    <a href="/2024/05/25/buuctf5%E6%9C%8825%E6%97%A5/" itemprop="url" title="buu5月25日"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipeyhsblkj20zk0m81kx.jpg"></a>
   </div>
   <div class="info">
     
@@ -266,7 +446,7 @@ exit(&amp;quot;I don&#39;t know what you are thinking, but I won&#39;t let you r
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/05/05/5%E6%9C%885%E6%97%A5buu/" itemprop="url" title="buuctf5月5日"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipevarprfj20zk0m8npd.jpg"></a>
+    <a href="/2024/05/05/5%E6%9C%885%E6%97%A5buu/" itemprop="url" title="buuctf5月5日"><img data-src="https://tva3.sinaimg.cn/mw690/6833939bly1gipesx5fdwj20zk0m81kx.jpg"></a>
   </div>
   <div class="info">
     
@@ -298,200 +478,6 @@ if (!isset($_GET[&#39;img&#39;]) ||...
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/04/29/5-txt/" itemprop="url" title="buuctf4月29日"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giclj61ylzj20zk0m8b29.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-04-29 22:48:35">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-04-29T22:48:35+08:00">2024-04-29</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/04/29/5-txt/" itemprop="url" title="buuctf4月29日">buuctf4月29日</a></h3>
-    <div class="excerpt">
-        # [BJDCTF2020]The mystery of ip
-#
-Flag 点进去看看，发现有个回显，是我的 ip 地址，着说明访问了我的 ip 地址，可以用伪造 IP 地址看看，这就想到用 X-Forwarded-For，可以看到不管我们输入什么都会回显，盲猜
-# ssti 注入
-# 输入 {config} 看看配置，是 smarty
-
-# 看看版本 {$smarty.version}，上网找它特点呗
-
-# 也就是 if 是配对用的 if 和 /if，且 if 内可以运行 php 代码
-{if system (“ls”)}{/if}, 这里的 flag.php...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/04/29/5-txt/" itemprop="url" title="buuctf4月29日" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/04/28/4-txt/" itemprop="url" title="buuctf4月28日"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gicm07ih54j20zk0m84qp.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-04-28 22:48:29">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-04-28T22:48:29+08:00">2024-04-28</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/04/28/4-txt/" itemprop="url" title="buuctf4月28日">buuctf4月28日</a></h3>
-    <div class="excerpt">
-        # [CISCN2019 华北赛区 Day2 Web1] Hack World
-# 盲注：脚本
-# [网鼎杯 2018] Fakebook
-先用 dirsearch 扫一遍，有一个 robots.txt，里面有个文件，直接打开下载源码，发现
-
-先注册吧，注册进去有个超链接的名字点进去
-
-有参数可以注入，sql 注入，发现是数字型，且在第二个数字这里有回显，直接可以注入，找表，列，以及数据
-/view.php?no=0 union//select 1,group_concat (table_name),3,4 from information_schema.tables where...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/04/28/4-txt/" itemprop="url" title="buuctf4月28日" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giph4fomxoj20zk0m8axp.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-04-28 22:48:23">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-04-28T22:48:23+08:00">2024-04-28</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日">buuctf4月27日</a></h3>
-    <div class="excerpt">
-        # [RoarCTF 2019]Easy Calc
-#
-页面发现什么也没有 F12 发现有 calc.php 这个文件，进去发现有源码
-&lt;?php
-error_reporting(0);
-if(!isset($_GET[&#39;num&#39;])){
-	show_source(__FILE__);
-}else{
-	$str = $_GET[&#39;num&#39;];
-	$blacklist = [&#39; &#39;, &#39;\t&#39;, &#39;\r&#39;, &#39;\n&#39;,&#39;\&#39;&#39;, &#39;&quot;&#39;,...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/04/28/2_1/" itemprop="url" title="python request库的基本用法"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1gipewf5l51j20zk0m8b29.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-04-28 22:48:16">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-04-28T22:48:16+08:00">2024-04-28</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/04/28/2_1/" itemprop="url" title="python request库的基本用法">python request库的基本用法</a></h3>
-    <div class="excerpt">
-        # 基本用法
-下面案例使用 requests 库中的 get ( ) 方法发送了一个 get 请求。
-#导入 requests 库
-import requests
-# 发送一个 get 请求并得到响应
-r = requests.get (‘https://www.baidu.com’)
-# 查看响应对象的类型
-print (type®)
-# 查看响应状态码
-print (r.status_code)
-# 查看响应内容的类型
-print (type (r.text))
-# 查看响应的内容
-print (r.text)
-# 查看 cookies
-print(r.cookies)
-这里调用了 get...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="学习笔记"><i class="ic i-flag"></i>学习笔记</a>
-      </span>
-    </div>
-    <a href="/2024/04/28/2_1/" itemprop="url" title="python request库的基本用法" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日"><img data-src="https://tva2.sinaimg.cn/mw690/6833939bly1giph4fomxoj20zk0m8axp.jpg"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-04-28 22:45:54">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-04-28T22:45:54+08:00">2024-04-28</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日">buuctf4月27日</a></h3>
-    <div class="excerpt">
-        # ssrf 漏洞
-# 1.ssrf 是什么？
-ssrf（服务器端请求伪造）: 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。本质上是属于信息泄露漏洞
-一般情况下，SSRF 攻击的目标是从外网无法访问的内部系统。（正是因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内部系统）
-# 2.SSRF 漏洞原理？
-
-意思是攻击者将一个代码是主机 A 向主机 b（内网的主机）发起请求访问文件
-SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。例如，黑客操作服务端从指定 URL...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="学习笔记"><i class="ic i-flag"></i>学习笔记</a>
-      </span>
-    </div>
-    <a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -499,7 +485,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
   
   <nav class="pagination">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/15/"><i class="ic i-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/15/"><i class="ic i-angle-right" aria-label="Next page"></i></a>
     </div>
   </nav>
 
@@ -527,7 +513,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">149</span>
+        <span class="count">154</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -539,7 +525,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">120</span>
+        <span class="count">122</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -593,7 +579,26 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/10/%E5%85%A5%E7%BE%A4%E9%A2%98-Web/" title="入群题]Web">入群题]Web</a></span>
+    <span><a href="/2024/09/06/WMCTF2020-MakePHPGreatAgain2-0/" title="[WMCTF2020]MakePHPGreatAgain2.0">[WMCTF2020]MakePHPGreatAgain2.0</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2024/11/20/ISCTF2024%E5%A4%8D%E7%8E%B0/" title="ISCTF2024复现">ISCTF2024复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/" title="SHctf-2024部分复现">SHctf-2024部分复现</a></span>
   </li>
 
       
@@ -603,7 +608,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/05/30/Web1-Dropbox/" title="Web1]Dropbox">Web1]Dropbox</a></span>
+    <span><a href="/2024/09/08/HFCTF2020-BabyUpload/" title="[HFCTF2020]BabyUpload">[HFCTF2020]BabyUpload</a></span>
   </li>
 
       
@@ -613,7 +618,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/10/17/BSidesCF-2019-PickTacToe/" title="[BSidesCF2019]Pick Tac Toe">[BSidesCF2019]Pick Tac Toe</a></span>
+    <span><a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" title="[HarekazeCTF2019]encode_and_encode">[HarekazeCTF2019]encode_and_encode</a></span>
   </li>
 
       
@@ -623,7 +628,26 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/08/JMCTF2021-UploadHub/" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></span>
+    <span><a href="/2024/11/04/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982020-Roamphp2-Myblog/" title="[极客大挑战2020]Roamphp2-Myblog">[极客大挑战2020]Roamphp2-Myblog</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/08/19/bestphp-srevenge/" title="bestphp&#39;srevenge">bestphp'srevenge</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2023/12/10/page/" title="page">page</a></span>
   </li>
 
       
@@ -635,7 +659,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
 </div>
 
-    <span><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;">'[RootersCTF2019]I_<3_Flask'</a></span>
+    <span><a href="/2024/10/20/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E9%9D%92%E9%BE%99%E7%BB%84-notes/" title="[网鼎杯2020青龙组]notes">[网鼎杯2020青龙组]notes</a></span>
   </li>
 
       
@@ -645,47 +669,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/24/SWPUCTF-2016-Web7/" title="[SWPUCTF_2016]Web7">[SWPUCTF_2016]Web7</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/09/22/RoarCTF2019-SimpleUpload/" title="[RoarCTF2019]SimpleUpload">[RoarCTF2019]SimpleUpload</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/" title="[Dest0g3_520迎新赛]SimpleRCE">[Dest0g3_520迎新赛]SimpleRCE</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
-</div>
-
-    <span><a href="/2024/11/04/%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84%E7%A7%98%E5%AF%86/" title="文件里的秘密">文件里的秘密</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/08/09/GYCTF2020-Ez-Express/" title="[GYCTF2020]Ez_Express">[GYCTF2020]Ez_Express</a></span>
+    <span><a href="/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/" title="&#39;[GWCTF 2019]枯燥的抽奖&#39;">'[GWCTF 2019]枯燥的抽奖'</a></span>
   </li>
 
   </ul>
