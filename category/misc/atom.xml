@@ -3,7 +3,7 @@
     <id>http://odiws.github.io</id>
     <title>Hexo • Posts by &#34;misc&#34; category</title>
     <link href="http://odiws.github.io" />
-    <updated>2024-11-12T06:58:37.000Z</updated>
+    <updated>2024-12-04T11:23:59.000Z</updated>
     <category term="buuctf" />
     <category term="system_file" />
     <category term="sql文件读取" />
@@ -118,6 +118,27 @@
     <category term="xss" />
     <category term="302跳转" />
     <category term="反序列化" />
+    <category term="F5隐写" />
+    <category term="php伪协议+文件上传" />
+    <category term="无字符rce" />
+    <category term="fastcgi-php-FPM" />
+    <category term="disable_function" />
+    <category term="nodejs" />
+    <entry>
+        <id>http://odiws.github.io/2024/12/04/%E5%88%B7%E6%96%B0%E8%BF%87%E7%9A%84%E5%9B%BE%E7%89%87/</id>
+        <title>刷新过的图片</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/12/04/%E5%88%B7%E6%96%B0%E8%BF%87%E7%9A%84%E5%9B%BE%E7%89%87/"/>
+        <content type="html">&lt;h2 id=&#34;刷新过的图片&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#刷新过的图片&#34;&gt;#&lt;/a&gt; 刷新过的图片&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241204192427890.png&#34; alt=&#34;image-20241204192427890&#34;&gt;&lt;/p&gt;
+&lt;p&gt;豪堪，stegsolve 和随波逐流一把梭不出来（新手是这样的），直接 wp 学习大法&lt;/p&gt;
+&lt;p&gt;这个题目有两个考点：&lt;/p&gt;
+&lt;p&gt;1.F5 隐写&lt;/p&gt;
+&lt;p&gt;2.zip 伪加密&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="F5隐写" />
+        <updated>2024-12-04T11:23:59.000Z</updated>
+    </entry>
     <entry>
         <id>http://odiws.github.io/2024/11/12/FLAG/</id>
         <title>FLAG</title>
@@ -149,5 +170,18 @@
 </content>
         <category term="zip加密" />
         <updated>2024-11-04T14:08:36.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/11/04/%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84%E7%A7%98%E5%AF%86/</id>
+        <title>文件里的秘密</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/11/04/%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84%E7%A7%98%E5%AF%86/"/>
+        <content type="html">&lt;h3 id=&#34;文件里的秘密&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#文件里的秘密&#34;&gt;#&lt;/a&gt; 文件里的秘密&lt;/h3&gt;
+&lt;p&gt;（也是有第二方向哩）&lt;/p&gt;
+&lt;p&gt;直接解压后属性里的详细信息&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411042157599.png&#34; alt=&#34;image-20241104215729394&#34;&gt;&lt;/p&gt;
+&lt;p&gt;010editor 也可以直接打开找到&lt;/p&gt;
+</content>
+        <category term="图片类" />
+        <updated>2024-11-04T13:55:32.000Z</updated>
     </entry>
 </feed>

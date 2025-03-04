@@ -121,6 +121,12 @@
         <category>xss</category>
         <category>302跳转</category>
         <category>反序列化</category>
+        <category>F5隐写</category>
+        <category>php伪协议+文件上传</category>
+        <category>无字符rce</category>
+        <category>fastcgi-php-FPM</category>
+        <category>disable_function</category>
+        <category>nodejs</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/</guid>
             <title>[NewStarCTF-2023-公开赛道]ez_sql</title>

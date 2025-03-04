@@ -118,6 +118,12 @@
     <category term="xss" />
     <category term="302跳转" />
     <category term="反序列化" />
+    <category term="F5隐写" />
+    <category term="php伪协议+文件上传" />
+    <category term="无字符rce" />
+    <category term="fastcgi-php-FPM" />
+    <category term="disable_function" />
+    <category term="nodejs" />
     <entry>
         <id>http://odiws.github.io/2024/11/12/FLAG/</id>
         <title>FLAG</title>
@@ -138,5 +144,18 @@
 </content>
         <category term="图片类" />
         <updated>2024-11-12T06:58:37.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/11/04/%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84%E7%A7%98%E5%AF%86/</id>
+        <title>文件里的秘密</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/11/04/%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84%E7%A7%98%E5%AF%86/"/>
+        <content type="html">&lt;h3 id=&#34;文件里的秘密&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#文件里的秘密&#34;&gt;#&lt;/a&gt; 文件里的秘密&lt;/h3&gt;
+&lt;p&gt;（也是有第二方向哩）&lt;/p&gt;
+&lt;p&gt;直接解压后属性里的详细信息&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411042157599.png&#34; alt=&#34;image-20241104215729394&#34;&gt;&lt;/p&gt;
+&lt;p&gt;010editor 也可以直接打开找到&lt;/p&gt;
+</content>
+        <category term="图片类" />
+        <updated>2024-11-04T13:55:32.000Z</updated>
     </entry>
 </feed>

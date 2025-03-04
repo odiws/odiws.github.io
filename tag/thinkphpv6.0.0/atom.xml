@@ -118,6 +118,12 @@
     <category term="xss" />
     <category term="302跳转" />
     <category term="反序列化" />
+    <category term="F5隐写" />
+    <category term="php伪协议+文件上传" />
+    <category term="无字符rce" />
+    <category term="fastcgi-php-FPM" />
+    <category term="disable_function" />
+    <category term="nodejs" />
     <entry>
         <id>http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/</id>
         <title>[安洵杯2019]iamthinking</title>

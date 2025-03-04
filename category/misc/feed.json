@@ -5,6 +5,17 @@
     "home_page_url": "http://odiws.github.io",
     "items": [
         {
+            "id": "http://odiws.github.io/2024/12/04/%E5%88%B7%E6%96%B0%E8%BF%87%E7%9A%84%E5%9B%BE%E7%89%87/",
+            "url": "http://odiws.github.io/2024/12/04/%E5%88%B7%E6%96%B0%E8%BF%87%E7%9A%84%E5%9B%BE%E7%89%87/",
+            "title": "刷新过的图片",
+            "date_published": "2024-12-04T11:23:59.000Z",
+            "content_html": "<h2 id=\"刷新过的图片\"><a class=\"markdownIt-Anchor\" href=\"#刷新过的图片\">#</a> 刷新过的图片</h2>\n<p><img data-src=\"C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241204192427890.png\" alt=\"image-20241204192427890\"></p>\n<p>豪堪，stegsolve 和随波逐流一把梭不出来（新手是这样的），直接 wp 学习大法</p>\n<p>这个题目有两个考点：</p>\n<p>1.F5 隐写</p>\n<p>2.zip 伪加密</p>\n",
+            "tags": [
+                "buuctf",
+                "F5隐写"
+            ]
+        },
+        {
             "id": "http://odiws.github.io/2024/11/12/FLAG/",
             "url": "http://odiws.github.io/2024/11/12/FLAG/",
             "title": "FLAG",
@@ -22,6 +33,16 @@
             "content_html": "<h3 id=\"zip伪加密\"><a class=\"markdownIt-Anchor\" href=\"#zip伪加密\">#</a> zip 伪加密</h3>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411042210275.png\" alt=\"image-20241104221006220\"></p>\n<p>将红色的地方改成 00 就可以绕过加密密码（不知道是什么原理）</p>\n",
             "tags": [
                 "zip加密"
+            ]
+        },
+        {
+            "id": "http://odiws.github.io/2024/11/04/%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84%E7%A7%98%E5%AF%86/",
+            "url": "http://odiws.github.io/2024/11/04/%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84%E7%A7%98%E5%AF%86/",
+            "title": "文件里的秘密",
+            "date_published": "2024-11-04T13:55:32.000Z",
+            "content_html": "<h3 id=\"文件里的秘密\"><a class=\"markdownIt-Anchor\" href=\"#文件里的秘密\">#</a> 文件里的秘密</h3>\n<p>（也是有第二方向哩）</p>\n<p>直接解压后属性里的详细信息</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411042157599.png\" alt=\"image-20241104215729394\"></p>\n<p>010editor 也可以直接打开找到</p>\n",
+            "tags": [
+                "图片类"
             ]
         }
     ]

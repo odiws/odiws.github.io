@@ -118,6 +118,12 @@
     <category term="xss" />
     <category term="302跳转" />
     <category term="反序列化" />
+    <category term="F5隐写" />
+    <category term="php伪协议+文件上传" />
+    <category term="无字符rce" />
+    <category term="fastcgi-php-FPM" />
+    <category term="disable_function" />
+    <category term="nodejs" />
     <entry>
         <id>http://odiws.github.io/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/</id>
         <title>NewStarCTF_2023_公开赛道Include</title>

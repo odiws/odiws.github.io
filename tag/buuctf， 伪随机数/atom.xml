@@ -118,6 +118,12 @@
     <category term="xss" />
     <category term="302跳转" />
     <category term="反序列化" />
+    <category term="F5隐写" />
+    <category term="php伪协议+文件上传" />
+    <category term="无字符rce" />
+    <category term="fastcgi-php-FPM" />
+    <category term="disable_function" />
+    <category term="nodejs" />
     <entry>
         <id>http://odiws.github.io/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/</id>
         <title>&#39;[GWCTF 2019]枯燥的抽奖&#39;</title>
