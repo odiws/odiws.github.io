@@ -1,6 +1,6 @@
 {
     "version": "https://jsonfeed.org/version/1",
-    "title": "Hexo",
+    "title": "Hexo • All posts by \"学习笔记\" category",
     "description": "",
     "home_page_url": "http://odiws.github.io",
     "items": [
@@ -13,33 +13,6 @@
             "tags": [
                 "php"
             ]
-        },
-        {
-            "id": "http://odiws.github.io/2023/12/10/page/",
-            "url": "http://odiws.github.io/2023/12/10/page/",
-            "title": "page",
-            "date_published": "2023-12-10T12:19:52.000Z",
-            "content_html": "",
-            "tags": []
-        },
-        {
-            "id": "http://odiws.github.io/2023/12/10/Test1/",
-            "url": "http://odiws.github.io/2023/12/10/Test1/",
-            "title": "Test1",
-            "date_published": "2023-12-10T12:11:29.000Z",
-            "content_html": "<h3 id=\"1this-is-a-blog-test\"><a class=\"markdownIt-Anchor\" href=\"#1this-is-a-blog-test\">#</a> 1.This is a blog Test</h3>\n<hr>\n<h3 id=\"2show-text\"><a class=\"markdownIt-Anchor\" href=\"#2show-text\">#</a> 2.show Text</h3>\n<ul>\n<li><strong>这是加粗</strong></li>\n</ul>\n<blockquote>\n<p><em>这是斜体</em></p>\n</blockquote>\n<h3 id=\"3tag\"><a class=\"markdownIt-Anchor\" href=\"#3tag\">#</a> 3.tag</h3>\n",
-            "tags": [
-                "test",
-                "tag2"
-            ]
-        },
-        {
-            "id": "http://odiws.github.io/2023/12/10/hello-world/",
-            "url": "http://odiws.github.io/2023/12/10/hello-world/",
-            "title": "Hello World",
-            "date_published": "2023-12-10T10:31:21.106Z",
-            "content_html": "<p>Welcome to <span class=\"exturl\" data-url=\"aHR0cHM6Ly9oZXhvLmlvLw==\">Hexo</span>! This is your very first post. Check <span class=\"exturl\" data-url=\"aHR0cHM6Ly9oZXhvLmlvL2RvY3Mv\">documentation</span> for more info. If you get any problems when using Hexo, you can find the answer in <span class=\"exturl\" data-url=\"aHR0cHM6Ly9oZXhvLmlvL2RvY3MvdHJvdWJsZXNob290aW5nLmh0bWw=\">troubleshooting</span> or you can ask me on <span class=\"exturl\" data-url=\"aHR0cHM6Ly9naXRodWIuY29tL2hleG9qcy9oZXhvL2lzc3Vlcw==\">GitHub</span>.</p>\n<h2 id=\"quick-start\"><a class=\"markdownIt-Anchor\" href=\"#quick-start\">#</a> Quick Start</h2>\n<h3 id=\"create-a-new-post\"><a class=\"markdownIt-Anchor\" href=\"#create-a-new-post\">#</a> Create a new post</h3>\n<figure class=\"highlight bash\"><figcaption data-lang=\"bash\"><span>h</span></figcaption><table><tr><td data-num=\"1\"></td><td><pre>$ hexo new <span class=\"token string\">\"My New Post\"</span></pre></td></tr></table></figure><p>More info: <span class=\"exturl\" data-url=\"aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvd3JpdGluZy5odG1s\">Writing</span></p>\n<h3 id=\"run-server\"><a class=\"markdownIt-Anchor\" href=\"#run-server\">#</a> Run server</h3>\n<figure class=\"highlight bash\"><figcaption data-lang=\"bash\"><span>h</span></figcaption><table><tr><td data-num=\"1\"></td><td><pre>$ hexo server</pre></td></tr></table></figure><p>More info: <span class=\"exturl\" data-url=\"aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvc2VydmVyLmh0bWw=\">Server</span></p>\n<h3 id=\"generate-static-files\"><a class=\"markdownIt-Anchor\" href=\"#generate-static-files\">#</a> Generate static files</h3>\n<figure class=\"highlight bash\"><figcaption data-lang=\"bash\"><span>h</span></figcaption><table><tr><td data-num=\"1\"></td><td><pre>$ hexo generate</pre></td></tr></table></figure><p>More info: <span class=\"exturl\" data-url=\"aHR0cHM6Ly9oZXhvLmlvL2RvY3MvZ2VuZXJhdGluZy5odG1s\">Generating</span></p>\n<h3 id=\"deploy-to-remote-sites\"><a class=\"markdownIt-Anchor\" href=\"#deploy-to-remote-sites\">#</a> Deploy to remote sites</h3>\n<figure class=\"highlight bash\"><figcaption data-lang=\"bash\"><span>h</span></figcaption><table><tr><td data-num=\"1\"></td><td><pre>$ hexo deploy</pre></td></tr></table></figure><p>More info: <span class=\"exturl\" data-url=\"aHR0cHM6Ly9oZXhvLmlvL2RvY3Mvb25lLWNvbW1hbmQtZGVwbG95bWVudC5odG1s\">Deployment</span></p>\n",
-            "tags": []
         }
     ]
 }
