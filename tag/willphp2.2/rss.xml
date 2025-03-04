@@ -84,6 +84,8 @@
         <category>利用.htaccess构成后门</category>
         <category>通过php_value来设置preg_macth正则回溯次数</category>
         <category>java反序列化</category>
+        <category>伪随机数</category>
+        <category>信息搜集（js，网络）</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/05/HXBCT-2021-easywill/</guid>
             <title>[HXBCT_2021]easywill</title>

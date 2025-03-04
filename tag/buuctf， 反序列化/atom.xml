@@ -81,6 +81,8 @@
     <category term="利用.htaccess构成后门" />
     <category term="通过php_value来设置preg_macth正则回溯次数" />
     <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="信息搜集（js，网络）" />
     <entry>
         <id>http://odiws.github.io/2024/05/05/5%E6%9C%885%E6%97%A5buu/</id>
         <title>buuctf5月5日</title>

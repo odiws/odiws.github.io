@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;伪随机数&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-07-24T13:26:30.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="信息搜集（js，网络）" />
+    <entry>
+        <id>http://odiws.github.io/2024/07/24/MRCTF2020-Ezaudit/</id>
+        <title>[MRCTF2020]Ezaudit</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/07/24/MRCTF2020-Ezaudit/"/>
+        <content type="html">&lt;h2 id=&#34;mrctf2020ezaudit&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mrctf2020ezaudit&#34;&gt;#&lt;/a&gt; [MRCTF2020]Ezaudit&lt;/h2&gt;
+&lt;p&gt;打开题目是个漂亮的前端，扫一下发现 &lt;code&gt;www.zip&lt;/code&gt;  文件泄露，下载审计&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php 
+header(&#39;Content-type:text/html; charset=utf-8&#39;);
+error_reporting(0);
+if(isset($_POST[&#39;login&#39;]))&amp;#123;
+    $username = $_POST[&#39;username&#39;];
+    $password = $_POST[&#39;password&#39;];
+    $Private_key = $_POST[&#39;Private_key&#39;];
+    if (($username == &#39;&#39;) || ($password == &#39;&#39;) ||($Private_key == &#39;&#39;)) &amp;#123;
+        // 若为空,视为未填写,提示错误,并3秒后返回登录界面
+        header(&#39;refresh:2; url=login.html&#39;);
+        echo &amp;quot;用户名、密码、密钥不能为空啦,crispr会让你在2秒后跳转到登录界面的!&amp;quot;;
+        exit;
+&amp;#125;
+    else if($Private_key != &#39;*************&#39; )
+    &amp;#123;
+        header(&#39;refresh:2; url=login.html&#39;);
+        echo &amp;quot;假密钥，咋会让你登录?crispr会让你在2秒后跳转到登录界面的!&amp;quot;;
+        exit;
+    &amp;#125;
+
+    else&amp;#123;
+        if($Private_key === &#39;************&#39;)&amp;#123;
+        $getuser = &amp;quot;SELECT flag FROM user WHERE username= &#39;crispr&#39; AND password = &#39;$password&#39;&amp;quot;.&#39;;&#39;; 
+        $link=mysql_connect(&amp;quot;localhost&amp;quot;,&amp;quot;root&amp;quot;,&amp;quot;root&amp;quot;);
+        mysql_select_db(&amp;quot;test&amp;quot;,$link);
+        $result = mysql_query($getuser);
+        while($row=mysql_fetch_assoc($result))&amp;#123;
+            echo &amp;quot;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;quot;.$row[&amp;quot;username&amp;quot;].&amp;quot;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;quot;.$row[&amp;quot;flag&amp;quot;].&amp;quot;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;quot;;
+        &amp;#125;
+    &amp;#125;
+    &amp;#125;
+
+&amp;#125; 
+// genarate public_key 
+function public_key($length = 16) &amp;#123;
+    $strings1 = &#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#39;;
+    $public_key = &#39;&#39;;
+    for ( $i = 0; $i &amp;lt; $length; $i++ )
+    $public_key .= substr($strings1, mt_rand(0, strlen($strings1) - 1), 1);
+    return $public_key;
+  &amp;#125;
+
+  //genarate private_key
+  function private_key($length = 12) &amp;#123;
+    $strings2 = &#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#39;;
+    $private_key = &#39;&#39;;
+    for ( $i = 0; $i &amp;lt; $length; $i++ )
+    $private_key .= substr($strings2, mt_rand(0, strlen($strings2) - 1), 1);
+    return $private_key;
+  &amp;#125;
+  $Public_key = public_key();
+  //$Public_key = KVQP0LdJKRaV3n9D  how to get crispr&#39;s private_key???
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;根据最后一行提示，我们需要通过公钥找到私钥，这里使用了 mt_rand () 函数，具体可以看一下链接文章讲的很详细。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;爆破 seed&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str1=&#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#39;
+str2=&#39;KVQP0LdJKRaV3n9D&#39;
+str3 = str1[::-1]
+length = len(str2)
+res=&#39;&#39;
+for i in range(len(str2)):  
+    for j in range(len(str1)):
+        if str2[i] == str1[j]:
+            res+=str(j)+&#39; &#39;+str(j)+&#39; &#39;+&#39;0&#39;+&#39; &#39;+str(len(str1)-1)+&#39; &#39;
+            break
+print(res)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;用 php_mt_seed 算出种子为 1775196155&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BMRCTF2020%5DEzaudit/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;算出私钥&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+mt_srand(1775196155);
+//公钥
+function public_key($length = 16) &amp;#123;
+    $strings1 = &#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#39;;
+    $public_key = &#39;&#39;;
+    for ( $i = 0; $i &amp;lt; $length; $i++ )
+    $public_key .= substr($strings1, mt_rand(0, strlen($strings1) - 1), 1);
+    return $public_key;
+&amp;#125;
+//私钥
+function private_key($length = 12) &amp;#123;
+	
+	$strings2 = &#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#39;;
+	$private_key = &#39;&#39;;
+	for ( $i = 0; $i &amp;lt; $length; $i++ )
+	$private_key .= substr($strings2, mt_rand(0, strlen($strings2) - 1), 1);
+	return $private_key;
+&amp;#125;
+echo public_key();
+echo private_key();
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;index.php 中有一个 login.html 直接访问，输入账号密码私钥登录得到 flag（万能密码）&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BMRCTF2020%5DEzaudit/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;end&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="伪随机数" />
+        <updated>2024-07-24T13:26:30.000Z</updated>
+    </entry>
+</feed>

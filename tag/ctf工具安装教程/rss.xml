@@ -84,6 +84,8 @@
         <category>利用.htaccess构成后门</category>
         <category>通过php_value来设置preg_macth正则回溯次数</category>
         <category>java反序列化</category>
+        <category>伪随机数</category>
+        <category>信息搜集（js，网络）</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/</guid>
             <title>&#39;ctf工具总结&#39;</title>

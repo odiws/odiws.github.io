@@ -81,6 +81,8 @@
     <category term="利用.htaccess构成后门" />
     <category term="通过php_value来设置preg_macth正则回溯次数" />
     <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="信息搜集（js，网络）" />
     <entry>
         <id>http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/</id>
         <title>[安洵杯2019]iamthinking</title>

