@@ -51,6 +51,8 @@
     <category term="sql注入" />
     <category term="php绕过open_opedir设置" />
     <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
     <entry>
         <id>http://odiws.github.io/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/</id>
         <title>&#39;ctf工具总结&#39;</title>

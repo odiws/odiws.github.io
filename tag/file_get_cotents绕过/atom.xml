@@ -51,6 +51,8 @@
     <category term="sql注入" />
     <category term="php绕过open_opedir设置" />
     <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
     <entry>
         <id>http://odiws.github.io/2024/06/17/BJDCTF2020-EzPHP/</id>
         <title>[BJDCTF2020]ezPHP</title>

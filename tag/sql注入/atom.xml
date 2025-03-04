@@ -51,6 +51,8 @@
     <category term="sql注入" />
     <category term="php绕过open_opedir设置" />
     <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
     <entry>
         <id>http://odiws.github.io/2024/12/10/De1CTF-2019-Giftbox/</id>
         <title>[De1CTF_2019]Giftbox</title>

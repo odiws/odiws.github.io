@@ -51,6 +51,8 @@
     <category term="sql注入" />
     <category term="php绕过open_opedir设置" />
     <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
     <entry>
         <id>http://odiws.github.io/2024/10/17/BSidesCF-2019-PickTacToe/</id>
         <title>[BSidesCF2019]Pick Tac Toe</title>

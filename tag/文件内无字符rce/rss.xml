@@ -54,6 +54,8 @@
         <category>sql注入</category>
         <category>php绕过open_opedir设置</category>
         <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/06/19/2018-GetShell/</guid>
             <title>[suctf2018]GetShell</title>

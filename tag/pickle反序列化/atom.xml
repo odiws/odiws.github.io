@@ -51,6 +51,8 @@
     <category term="sql注入" />
     <category term="php绕过open_opedir设置" />
     <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
     <entry>
         <id>http://odiws.github.io/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/</id>
         <title>buuctf5月26日</title>

