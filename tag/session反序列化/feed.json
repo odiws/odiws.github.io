@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"session反序列化\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/10/15/HarekazeCTF2019-EasyNotes-1/",
+            "url": "http://odiws.github.io/2024/10/15/HarekazeCTF2019-EasyNotes-1/",
+            "title": "[HarekazeCTF2019]EasyNotes",
+            "date_published": "2024-10-15T06:16:38.000Z",
+            "content_html": "<h2 id=\"harekazectf2019easynotes\"><a class=\"markdownIt-Anchor\" href=\"#harekazectf2019easynotes\">#</a> [HarekazeCTF2019]EasyNotes</h2>\n<p>session 反序列化（php 的默认）：</p>\n",
+            "tags": [
+                "buuctf",
+                "session反序列化"
+            ]
+        }
+    ]
+}

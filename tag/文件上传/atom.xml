@@ -60,6 +60,13 @@
     <category term="爬虫" />
     <category term="js原型链污染" />
     <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
     <entry>
         <id>http://odiws.github.io/2024/11/03/CISCN2021Quals-upload/</id>
         <title>[CISCN2021Quals]upload</title>

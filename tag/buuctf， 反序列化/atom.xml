@@ -60,6 +60,13 @@
     <category term="爬虫" />
     <category term="js原型链污染" />
     <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
     <entry>
         <id>http://odiws.github.io/2024/05/05/5%E6%9C%885%E6%97%A5buu/</id>
         <title>buuctf5月5日</title>

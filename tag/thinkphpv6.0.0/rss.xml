@@ -63,6 +63,13 @@
         <category>爬虫</category>
         <category>js原型链污染</category>
         <category>反序列化字符串逃逸</category>
+        <category>sql injection</category>
+        <category>文件上传(头像上传)</category>
+        <category>session反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>json数据unicode转码绕过</category>
+        <category>对sqlite的sql注入</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/</guid>
             <title>[安洵杯2019]iamthinking</title>
