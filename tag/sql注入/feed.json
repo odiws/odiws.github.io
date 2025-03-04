@@ -16,6 +16,18 @@
                 "php绕过open_opedir设置",
                 "TOTP"
             ]
+        },
+        {
+            "id": "http://odiws.github.io/2024/11/18/FBCTF2019-Products-Manager/",
+            "url": "http://odiws.github.io/2024/11/18/FBCTF2019-Products-Manager/",
+            "title": "[FBCTF2019]Products-Manager",
+            "date_published": "2024-11-18T12:37:39.000Z",
+            "content_html": "<h2 id=\"fbctf2019products-manager\"><a class=\"markdownIt-Anchor\" href=\"#fbctf2019products-manager\">#</a> [FBCTF2019]Products-Manager</h2>\n<p>考点：</p>\n<ol>\n<li>基于约束的 SQL 攻击</li>\n<li>数据库字符串比较</li>\n<li>INSERT 截断</li>\n</ol>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411182038091.png\" alt=\"image-20241118203842900\"></p>\n<p>给了源码，分析一下的话，footer.php 没有东西，index.php 也差不多</p>\n<p>但是 db.php 里面的：</p>\n<pre><code class=\"language-mysql\">/*\nCREATE TABLE products (\n  name char(64),\n  secret char(64),\n  description varchar(250)\n);\n\nINSERT INTO products VALUES('facebook', sha256(....), 'FLAG_HERE');\nINSERT INTO products VALUES('messenger', sha256(....), ....);\nINSERT INTO products VALUES('instagram', sha256(....), ....);\nINSERT INTO products VALUES('whatsapp', sha256(....), ....);\nINSERT INTO products VALUES('oculus-rift', sha256(....), ....);\n*/\n</code></pre>\n<p>SQL 语言，有一些插入的数据，可以发现 flag 在 facebook 里面，那基本上就是用一些手段讲 facebook 的密码套出来，或是直接修改</p>\n<p>知识点：</p>\n<h4 id=\"1数据库字符串比较\"><a class=\"markdownIt-Anchor\" href=\"#1数据库字符串比较\">#</a> <strong>1. 数据库字符串比较</strong></h4>\n<p>在数据库对字符串进行比较时，如果两个字符串的长度不一样，则会将较短的字符串末尾填充空格，使两个字符串的长度一致，比如，字符串 A:[String] 和字符串 B:[String2] 进行比较时，由于 String2 比 String 多了一个字符串，这时 MySQL 会将字符串 A 填充为 [String ]，即在原来字符串后面加了一个空格，使两个字符串长度一致。</p>\n<p>如下两条查询语句：</p>\n<p>select * from users where username=‘Dumb’</p>\n<p>select * from users where username='Dumb ’</p>\n<p>它们的查询结果是一致的，即第二条查询语句中 Dumb 后面的空格并没有对查询有任何影响。因为在 MySQL 把查询语句里的 username 和数据库里的 username 值进行比较时，它们就是一个字符串的比较操作，符合上述特征。</p>\n<h4 id=\"2-insert截断\"><a class=\"markdownIt-Anchor\" href=\"#2-insert截断\">#</a> <strong>2. INSERT 截断</strong></h4>\n<p>这是数据库的另一个特性，当设计一个字段时，我们都必须对其设定一个最大长度，比如 CHAR (10)，VARCHAR (20) 等等。但是当实际插入数据的长度超过限制时，数据库就会将其进行截断，只保留限定的长度。</p>\n<p>这里已经知道了那个定义的长度 64，我可以用</p>\n<pre><code>facebook                                                                                                123     \n</code></pre>\n<p>注册一个，insert 会截断 64 位（空格也算）之后的字符，但是空格又会在比较时自动对齐，就不用理会</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411182046419.png\" alt=\"image-20241118204624151\"></p>\n",
+            "tags": [
+                "buuctf",
+                "sql注入",
+                "insert截断"
+            ]
         }
     ]
 }

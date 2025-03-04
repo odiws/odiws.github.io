@@ -56,6 +56,10 @@
         <category>TOTP</category>
         <category>rce</category>
         <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/12/10/De1CTF-2019-Giftbox/</guid>
             <title>[De1CTF_2019]Giftbox</title>
@@ -98,6 +102,55 @@ exit
 &lt;p&gt;参考连接：&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NoaW55Z29kL2FydGljbGUvZGV0YWlscy8xMjQ1ODY1NDI=&#34;&gt;https://blog.csdn.net/shinygod/article/details/124586542&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuemhhb2ouaW4vcmVhZC02MTcwLmh0bWwjMHgwM0dpZnRib3g=&#34;&gt;glzjin&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/11/18/FBCTF2019-Products-Manager/</guid>
+            <title>[FBCTF2019]Products-Manager</title>
+            <link>http://odiws.github.io/2024/11/18/FBCTF2019-Products-Manager/</link>
+            <category>buuctf</category>
+            <category>sql注入</category>
+            <category>insert截断</category>
+            <pubDate>Mon, 18 Nov 2024 20:37:39 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;fbctf2019products-manager&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#fbctf2019products-manager&#34;&gt;#&lt;/a&gt; [FBCTF2019]Products-Manager&lt;/h2&gt;
+&lt;p&gt;考点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;基于约束的 SQL 攻击&lt;/li&gt;
+&lt;li&gt;数据库字符串比较&lt;/li&gt;
+&lt;li&gt;INSERT 截断&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411182038091.png&#34; alt=&#34;image-20241118203842900&#34;&gt;&lt;/p&gt;
+&lt;p&gt;给了源码，分析一下的话，footer.php 没有东西，index.php 也差不多&lt;/p&gt;
+&lt;p&gt;但是 db.php 里面的：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-mysql&#34;&gt;/*
+CREATE TABLE products (
+  name char(64),
+  secret char(64),
+  description varchar(250)
+);
+
+INSERT INTO products VALUES(&#39;facebook&#39;, sha256(....), &#39;FLAG_HERE&#39;);
+INSERT INTO products VALUES(&#39;messenger&#39;, sha256(....), ....);
+INSERT INTO products VALUES(&#39;instagram&#39;, sha256(....), ....);
+INSERT INTO products VALUES(&#39;whatsapp&#39;, sha256(....), ....);
+INSERT INTO products VALUES(&#39;oculus-rift&#39;, sha256(....), ....);
+*/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;SQL 语言，有一些插入的数据，可以发现 flag 在 facebook 里面，那基本上就是用一些手段讲 facebook 的密码套出来，或是直接修改&lt;/p&gt;
+&lt;p&gt;知识点：&lt;/p&gt;
+&lt;h4 id=&#34;1数据库字符串比较&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1数据库字符串比较&#34;&gt;#&lt;/a&gt; &lt;strong&gt;1. 数据库字符串比较&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;在数据库对字符串进行比较时，如果两个字符串的长度不一样，则会将较短的字符串末尾填充空格，使两个字符串的长度一致，比如，字符串 A:[String] 和字符串 B:[String2] 进行比较时，由于 String2 比 String 多了一个字符串，这时 MySQL 会将字符串 A 填充为 [String ]，即在原来字符串后面加了一个空格，使两个字符串长度一致。&lt;/p&gt;
+&lt;p&gt;如下两条查询语句：&lt;/p&gt;
+&lt;p&gt;select * from users where username=‘Dumb’&lt;/p&gt;
+&lt;p&gt;select * from users where username=&#39;Dumb ’&lt;/p&gt;
+&lt;p&gt;它们的查询结果是一致的，即第二条查询语句中 Dumb 后面的空格并没有对查询有任何影响。因为在 MySQL 把查询语句里的 username 和数据库里的 username 值进行比较时，它们就是一个字符串的比较操作，符合上述特征。&lt;/p&gt;
+&lt;h4 id=&#34;2-insert截断&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#2-insert截断&#34;&gt;#&lt;/a&gt; &lt;strong&gt;2. INSERT 截断&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;这是数据库的另一个特性，当设计一个字段时，我们都必须对其设定一个最大长度，比如 CHAR (10)，VARCHAR (20) 等等。但是当实际插入数据的长度超过限制时，数据库就会将其进行截断，只保留限定的长度。&lt;/p&gt;
+&lt;p&gt;这里已经知道了那个定义的长度 64，我可以用&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;facebook                                                                                                123     
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;注册一个，insert 会截断 64 位（空格也算）之后的字符，但是空格又会在比较时自动对齐，就不用理会&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411182046419.png&#34; alt=&#34;image-20241118204624151&#34;&gt;&lt;/p&gt;
  ]]></description>
         </item>
     </channel>

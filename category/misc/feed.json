@@ -5,6 +5,16 @@
     "home_page_url": "http://odiws.github.io",
     "items": [
         {
+            "id": "http://odiws.github.io/2024/11/12/FLAG/",
+            "url": "http://odiws.github.io/2024/11/12/FLAG/",
+            "title": "FLAG",
+            "date_published": "2024-11-12T06:58:37.000Z",
+            "content_html": "<h3 id=\"flag\"><a class=\"markdownIt-Anchor\" href=\"#flag\">#</a> FLAG</h3>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121459098.png\" alt=\"image-20241112145948515\"></p>\n<p>直接 stegsolve 打开：</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121500287.png\" alt=\"image-20241112150026054\"></p>\n<p>如图所示提取然后 Save bin，因为首字母为 PK, 设成 zip 文件，这个得放入 L</p>\n<p>inux 系统才能打开，</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121501387.png\" alt=\"image-20241112150151267\"></p>\n<pre><code>file 1   //查看文件类型是elf文件（可拖入ida直接运行）\n</code></pre>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121502830.png\" alt=\"image-20241112150205585\"></p>\n<p>也可以 strings 1</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121503740.png\" alt=\"image-20241112150334623\"></p>\n<p>获得 flag</p>\n",
+            "tags": [
+                "图片类"
+            ]
+        },
+        {
             "id": "http://odiws.github.io/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/",
             "url": "http://odiws.github.io/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/",
             "title": "zip伪加密",

@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;c的预处理&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Thu, 01 Aug 2024 20:15:24 +0800</pubDate>
+        <lastBuildDate>Thu, 01 Aug 2024 20:15:24 +0800</lastBuildDate>
+        <category>buuctf</category>
+        <category>system_file</category>
+        <category>sql文件读取</category>
+        <category>文件内无字符rce</category>
+        <category>文件上传</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>ctf</category>
+        <category>php原生类利用</category>
+        <category>php反序列化</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>http</category>
+        <category>cms框架</category>
+        <category>python</category>
+        <category>mongodb注入</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>buuctf， 反序列化</category>
+        <category>regexp注入</category>
+        <category>ECB加密</category>
+        <category>php7 segment fault特性</category>
+        <category>json数据爬虫</category>
+        <category>phar反序列化</category>
+        <category>js</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>pickle反序列化</category>
+        <category>thinkphpV6.0.0</category>
+        <category>buuctf， 伪随机数</category>
+        <category>zip加密</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>flask的session伪造</category>
+        <category>二次渲染</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>java</category>
+        <category>flask</category>
+        <category>ctf工具安装教程</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/08/01/FireshellCTF2020-CaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/</guid>
+            <title>[FireshellCTF2020]CaasC的预处理</title>
+            <link>http://odiws.github.io/2024/08/01/FireshellCTF2020-CaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/</link>
+            <category>buuctf</category>
+            <category>c的预处理</category>
+            <pubDate>Thu, 01 Aug 2024 20:15:24 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;fireshellctf2020caas-c的预处理&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#fireshellctf2020caas-c的预处理&#34;&gt;#&lt;/a&gt; [FireshellCTF2020] Caas C 的预处理&lt;/h2&gt;
+&lt;h2 id=&#34;1&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1&#34;&gt;#&lt;/a&gt; &lt;img data-src=&#34;../images/%5BFireshellCTF2020%5DCaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/1.png&#34; alt=&#34;1&#34;&gt;&lt;/h2&gt;
+&lt;p&gt;进入可以看到是一个编译器 ，输入简单的 php 代码试试&lt;/p&gt;
+&lt;figure class=&#34;highlight php&#34;&gt;&lt;figcaption data-lang=&#34;PHP&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token php language-php&#34;&gt;&lt;span class=&#34;token delimiter important&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;phpinfo&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token delimiter important&#34;&gt;?&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;../images/%5BFireshellCTF2020%5DCaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;不知道什么的报错，直接复制报错代码&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT0lRTclOTklQkUlRTUlQkElQTYlRTQlQjglODAlRTQlQjglOEImYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt;百度一下&lt;/span&gt;看看（仔细地可以看见最前面有一个后缀.c）&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BFireshellCTF2020%5DCaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发现清一色的 C 语言报错，那我们找个 c 语言代码传进去试试&lt;/p&gt;
+&lt;figure class=&#34;highlight cpp&#34;&gt;&lt;figcaption data-lang=&#34;C++&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token macro property&#34;&gt;&lt;span class=&#34;token directive-hash&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;token directive keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&amp;lt;stdio.h&gt;&lt;/span&gt;  &lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;     &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;hello, world&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;下载出来一个不知什么文件&lt;/p&gt;
+&lt;p&gt;思路到这里就断了，其实可以猜到 flag 在服务器的某个文件下，也许就是 /flag，但是不知道怎么读取，难道是一个 c 语言漏洞么，感觉给出的文件又看不懂&lt;/p&gt;
+&lt;p&gt;看了别人的考的是 c 语言的预处理&lt;img data-src=&#34;../images/%5BFireshellCTF2020%5DCaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;p&gt;利用 include 预处理将我们所需的文件包含进来&lt;img data-src=&#34;../images/%5BFireshellCTF2020%5DCaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/6.png&#34; alt=&#34;6&#34;&gt;&lt;/p&gt;
+&lt;p&gt;试试&lt;/p&gt;
+&lt;figure class=&#34;highlight objectivec&#34;&gt;&lt;figcaption data-lang=&#34;Objective-C&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token macro property&#34;&gt;&lt;span class=&#34;token directive-hash&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;token directive keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;token char&#34;&gt;&#39;etc/passwd&#39;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;../images/%5BFireshellCTF2020%5DCaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/7.png&#34; alt=&#34;7&#34;&gt;&lt;/p&gt;
+&lt;p&gt;叫我们用 &amp;lt;&amp;gt; 或者双引号包含文件名&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BFireshellCTF2020%5DCaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/8.png&#34; alt=&#34;8&#34;&gt;&lt;/p&gt;
+&lt;p&gt;发现报错了，但是仔细看文件内容已经出来了&lt;/p&gt;
+&lt;figure class=&#34;highlight cobol&#34;&gt;&lt;figcaption data-lang=&#34;cobol&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;#include &lt;span class=&#34;token operator&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;proc&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;self&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;cmdline&lt;span class=&#34;token operator&#34;&gt;&gt;&lt;/span&gt; 看一下执行什么命令&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;../images/%5BFireshellCTF2020%5DCaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/9.png&#34; alt=&#34;9&#34;&gt;&lt;/p&gt;
+&lt;p&gt;用处不大&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BFireshellCTF2020%5DCaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/10.png&#34; alt=&#34;10&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT1jd2QmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt;cwd&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BFireshellCTF2020%5DCaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/11.png&#34; alt=&#34;11&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接 /flag ，发现尖括号报错信息没出来，但是双引号可以&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;../images/%5BFireshellCTF2020%5DCaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/12.png&#34; alt=&#34;12&#34;&gt;&lt;/p&gt;
+&lt;p&gt;上面那个 cwd 之所以出不来是因为我们 include 是包含一个文件而不是 cwd 目录，/proc/self/cwd 返回的当前目录有哪些文件&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzU0OTI5ODkxL2FydGljbGUvZGV0YWlscy8xMjQ3ODE3NDk=&#34;&gt;https://blog.csdn.net/qq_54929891/article/details/124781749&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

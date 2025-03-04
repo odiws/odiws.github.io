@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;图片类&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-11-12T06:58:37.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <entry>
+        <id>http://odiws.github.io/2024/11/12/FLAG/</id>
+        <title>FLAG</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/11/12/FLAG/"/>
+        <content type="html">&lt;h3 id=&#34;flag&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#flag&#34;&gt;#&lt;/a&gt; FLAG&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121459098.png&#34; alt=&#34;image-20241112145948515&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接 stegsolve 打开：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121500287.png&#34; alt=&#34;image-20241112150026054&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如图所示提取然后 Save bin，因为首字母为 PK, 设成 zip 文件，这个得放入 L&lt;/p&gt;
+&lt;p&gt;inux 系统才能打开，&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121501387.png&#34; alt=&#34;image-20241112150151267&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;file 1   //查看文件类型是elf文件（可拖入ida直接运行）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121502830.png&#34; alt=&#34;image-20241112150205585&#34;&gt;&lt;/p&gt;
+&lt;p&gt;也可以 strings 1&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121503740.png&#34; alt=&#34;image-20241112150334623&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获得 flag&lt;/p&gt;
+</content>
+        <category term="图片类" />
+        <updated>2024-11-12T06:58:37.000Z</updated>
+    </entry>
+</feed>

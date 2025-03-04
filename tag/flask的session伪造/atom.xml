@@ -53,6 +53,10 @@
     <category term="TOTP" />
     <category term="rce" />
     <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
     <entry>
         <id>http://odiws.github.io/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/</id>
         <title>[CISCN2019华东南赛区]Web4</title>

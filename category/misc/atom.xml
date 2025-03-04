@@ -3,7 +3,7 @@
     <id>http://odiws.github.io</id>
     <title>Hexo • Posts by &#34;misc&#34; category</title>
     <link href="http://odiws.github.io" />
-    <updated>2024-11-04T14:08:36.000Z</updated>
+    <updated>2024-11-12T06:58:37.000Z</updated>
     <category term="buuctf" />
     <category term="system_file" />
     <category term="sql文件读取" />
@@ -53,6 +53,31 @@
     <category term="TOTP" />
     <category term="rce" />
     <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <entry>
+        <id>http://odiws.github.io/2024/11/12/FLAG/</id>
+        <title>FLAG</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/11/12/FLAG/"/>
+        <content type="html">&lt;h3 id=&#34;flag&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#flag&#34;&gt;#&lt;/a&gt; FLAG&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121459098.png&#34; alt=&#34;image-20241112145948515&#34;&gt;&lt;/p&gt;
+&lt;p&gt;直接 stegsolve 打开：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121500287.png&#34; alt=&#34;image-20241112150026054&#34;&gt;&lt;/p&gt;
+&lt;p&gt;如图所示提取然后 Save bin，因为首字母为 PK, 设成 zip 文件，这个得放入 L&lt;/p&gt;
+&lt;p&gt;inux 系统才能打开，&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121501387.png&#34; alt=&#34;image-20241112150151267&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;file 1   //查看文件类型是elf文件（可拖入ida直接运行）
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121502830.png&#34; alt=&#34;image-20241112150205585&#34;&gt;&lt;/p&gt;
+&lt;p&gt;也可以 strings 1&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411121503740.png&#34; alt=&#34;image-20241112150334623&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获得 flag&lt;/p&gt;
+</content>
+        <category term="图片类" />
+        <updated>2024-11-12T06:58:37.000Z</updated>
+    </entry>
     <entry>
         <id>http://odiws.github.io/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/</id>
         <title>zip伪加密</title>

@@ -56,6 +56,10 @@
         <category>TOTP</category>
         <category>rce</category>
         <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/10/15/CSAWQual2016-i-got-id/</guid>
             <title>[CSAWQual2016]i_got_id</title>

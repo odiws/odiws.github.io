@@ -56,6 +56,10 @@
         <category>TOTP</category>
         <category>rce</category>
         <category>ssti</category>
+        <category>insert截断</category>
+        <category>xss攻击</category>
+        <category>c的预处理</category>
+        <category>图片类</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/06/18/2021-easycms/</guid>
             <title>GKCTF 2021：easycms</title>

@@ -53,6 +53,10 @@
     <category term="TOTP" />
     <category term="rce" />
     <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
     <entry>
         <id>http://odiws.github.io/2024/05/29/cookbook-1/</id>
         <title>[nctf2019]truecookbook</title>
