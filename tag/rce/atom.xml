@@ -82,7 +82,13 @@
     <category term="通过php_value来设置preg_macth正则回溯次数" />
     <category term="java反序列化" />
     <category term="伪随机数" />
+    <category term="mysql" />
     <category term="信息搜集（js，网络）" />
+    <category term="异或" />
+    <category term="密码爆破" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="文件包含" />
     <entry>
         <id>http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/</id>
         <title>[Dest0g3_520迎新赛]SimpleRCE</title>

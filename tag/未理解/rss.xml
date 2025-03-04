@@ -85,7 +85,13 @@
         <category>通过php_value来设置preg_macth正则回溯次数</category>
         <category>java反序列化</category>
         <category>伪随机数</category>
+        <category>mysql</category>
         <category>信息搜集（js，网络）</category>
+        <category>异或</category>
+        <category>密码爆破</category>
+        <category>sqlmap使用</category>
+        <category>SQL注入</category>
+        <category>文件包含</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/02/23/HFCTF-2021-Final-hatenum/</guid>
             <title>[HFCTF_2021_Final]hatenum</title>

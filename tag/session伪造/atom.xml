@@ -82,7 +82,13 @@
     <category term="通过php_value来设置preg_macth正则回溯次数" />
     <category term="java反序列化" />
     <category term="伪随机数" />
+    <category term="mysql" />
     <category term="信息搜集（js，网络）" />
+    <category term="异或" />
+    <category term="密码爆破" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="文件包含" />
     <entry>
         <id>http://odiws.github.io/2024/09/08/HFCTF2020-BabyUpload/</id>
         <title>[HFCTF2020]BabyUpload</title>
