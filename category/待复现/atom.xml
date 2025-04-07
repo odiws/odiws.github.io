@@ -126,6 +126,18 @@
     <category term="nodejs" />
     <category term="hash_hamc函数" />
     <category term="取反异或" />
+    <category term="misc" />
+    <category term="图片" />
+    <category term="CRC" />
+    <category term="vulhub" />
+    <category term="ActiveMQ" />
+    <category term="javaweb" />
+    <category term="Go" />
+    <category term="sqlmap" />
+    <category term="pydash" />
+    <category term="rust" />
+    <category term="流量分析" />
+    <category term="jpg特征" />
     <entry>
         <id>http://odiws.github.io/2024/11/15/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E5%8D%8A%E5%86%B3%E8%B5%9B-faka/</id>
         <title>[网鼎杯2020半决赛]faka</title>

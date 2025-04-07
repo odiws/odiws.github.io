@@ -129,6 +129,18 @@
         <category>nodejs</category>
         <category>hash_hamc函数</category>
         <category>取反异或</category>
+        <category>misc</category>
+        <category>图片</category>
+        <category>CRC</category>
+        <category>vulhub</category>
+        <category>ActiveMQ</category>
+        <category>javaweb</category>
+        <category>Go</category>
+        <category>sqlmap</category>
+        <category>pydash</category>
+        <category>rust</category>
+        <category>流量分析</category>
+        <category>jpg特征</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/12/06/ctfshow-web-java/</guid>
             <title>ctfshow_web_java</title>

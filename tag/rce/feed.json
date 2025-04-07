@@ -5,6 +5,17 @@
     "home_page_url": "http://odiws.github.io",
     "items": [
         {
+            "id": "http://odiws.github.io/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/",
+            "url": "http://odiws.github.io/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/",
+            "title": "[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!",
+            "date_published": "2025-03-16T07:53:29.000Z",
+            "content_html": "",
+            "tags": [
+                "buuctf",
+                "rce"
+            ]
+        },
+        {
             "id": "http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/",
             "url": "http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/",
             "title": "[Dest0g3_520迎新赛]SimpleRCE",

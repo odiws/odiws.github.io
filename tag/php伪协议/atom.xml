@@ -126,6 +126,18 @@
     <category term="nodejs" />
     <category term="hash_hamc函数" />
     <category term="取反异或" />
+    <category term="misc" />
+    <category term="图片" />
+    <category term="CRC" />
+    <category term="vulhub" />
+    <category term="ActiveMQ" />
+    <category term="javaweb" />
+    <category term="Go" />
+    <category term="sqlmap" />
+    <category term="pydash" />
+    <category term="rust" />
+    <category term="流量分析" />
+    <category term="jpg特征" />
     <entry>
         <id>http://odiws.github.io/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/</id>
         <title>[NewStarCTF2023公开赛道]include0。0</title>

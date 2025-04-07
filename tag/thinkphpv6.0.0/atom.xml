@@ -126,12 +126,24 @@
     <category term="nodejs" />
     <category term="hash_hamc函数" />
     <category term="取反异或" />
+    <category term="misc" />
+    <category term="图片" />
+    <category term="CRC" />
+    <category term="vulhub" />
+    <category term="ActiveMQ" />
+    <category term="javaweb" />
+    <category term="Go" />
+    <category term="sqlmap" />
+    <category term="pydash" />
+    <category term="rust" />
+    <category term="流量分析" />
+    <category term="jpg特征" />
     <entry>
         <id>http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/</id>
         <title>[安洵杯2019]iamthinking</title>
         <link rel="alternate" href="http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/"/>
         <content type="html">&lt;h2 id=&#34;安洵杯-2019iamthinking&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#安洵杯-2019iamthinking&#34;&gt;#&lt;/a&gt; [安洵杯 2019] iamthinking&lt;/h2&gt;
-&lt;h2 id=&#34;1&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1&#34;&gt;#&lt;/a&gt; &lt;img data-src=&#34;../images/%5B%E5%AE%89%E6%B4%B5%E6%9D%AF2019%5Diamthinking/1.png&#34; alt=&#34;1&#34;&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;1&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1&#34;&gt;#&lt;/a&gt; &lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052005688.png&#34; alt=&#34;1&#34;&gt;&lt;/h2&gt;
 &lt;p&gt;dirsearch 搜集到 www.zip 文件：&lt;/p&gt;
 &lt;p&gt;发现是 thinkphp6.0 版本：&lt;/p&gt;
 &lt;p&gt;thinkphp6.0 有两个计较明显的漏洞：&lt;br&gt;

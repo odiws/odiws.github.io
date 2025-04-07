@@ -3,7 +3,7 @@
     <id>http://odiws.github.io</id>
     <title>Hexo • Posts by &#34;rce&#34; tag</title>
     <link href="http://odiws.github.io" />
-    <updated>2025-02-23T13:15:35.000Z</updated>
+    <updated>2025-03-16T07:53:29.000Z</updated>
     <category term="buuctf" />
     <category term="system_file" />
     <category term="sql文件读取" />
@@ -126,6 +126,27 @@
     <category term="nodejs" />
     <category term="hash_hamc函数" />
     <category term="取反异或" />
+    <category term="misc" />
+    <category term="图片" />
+    <category term="CRC" />
+    <category term="vulhub" />
+    <category term="ActiveMQ" />
+    <category term="javaweb" />
+    <category term="Go" />
+    <category term="sqlmap" />
+    <category term="pydash" />
+    <category term="rust" />
+    <category term="流量分析" />
+    <category term="jpg特征" />
+    <entry>
+        <id>http://odiws.github.io/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/</id>
+        <title>[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</title>
+        <link rel="alternate" href="http://odiws.github.io/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/"/>
+        <content type="html"></content>
+        <category term="buuctf" />
+        <category term="rce" />
+        <updated>2025-03-16T07:53:29.000Z</updated>
+    </entry>
     <entry>
         <id>http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/</id>
         <title>[Dest0g3_520迎新赛]SimpleRCE</title>

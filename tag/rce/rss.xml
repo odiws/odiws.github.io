@@ -5,8 +5,8 @@
         <link>http://odiws.github.io</link>
         <description></description>
         <language>en</language>
-        <pubDate>Sun, 23 Feb 2025 21:15:35 +0800</pubDate>
-        <lastBuildDate>Sun, 23 Feb 2025 21:15:35 +0800</lastBuildDate>
+        <pubDate>Sun, 16 Mar 2025 15:53:29 +0800</pubDate>
+        <lastBuildDate>Sun, 16 Mar 2025 15:53:29 +0800</lastBuildDate>
         <category>buuctf</category>
         <category>system_file</category>
         <category>sql文件读取</category>
@@ -129,6 +129,27 @@
         <category>nodejs</category>
         <category>hash_hamc函数</category>
         <category>取反异或</category>
+        <category>misc</category>
+        <category>图片</category>
+        <category>CRC</category>
+        <category>vulhub</category>
+        <category>ActiveMQ</category>
+        <category>javaweb</category>
+        <category>Go</category>
+        <category>sqlmap</category>
+        <category>pydash</category>
+        <category>rust</category>
+        <category>流量分析</category>
+        <category>jpg特征</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/</guid>
+            <title>[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</title>
+            <link>http://odiws.github.io/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/</link>
+            <category>buuctf</category>
+            <category>rce</category>
+            <pubDate>Sun, 16 Mar 2025 15:53:29 +0800</pubDate>
+            <description><![CDATA[  ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/</guid>
             <title>[Dest0g3_520迎新赛]SimpleRCE</title>

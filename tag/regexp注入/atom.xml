@@ -126,6 +126,18 @@
     <category term="nodejs" />
     <category term="hash_hamc函数" />
     <category term="取反异或" />
+    <category term="misc" />
+    <category term="图片" />
+    <category term="CRC" />
+    <category term="vulhub" />
+    <category term="ActiveMQ" />
+    <category term="javaweb" />
+    <category term="Go" />
+    <category term="sqlmap" />
+    <category term="pydash" />
+    <category term="rust" />
+    <category term="流量分析" />
+    <category term="jpg特征" />
     <entry>
         <id>http://odiws.github.io/2025/03/02/PyCalX-1/</id>
         <title>PyCalX_1</title>
@@ -711,16 +723,16 @@ var
         <link rel="alternate" href="http://odiws.github.io/2024/06/06/[NCTF2019]SQLi/"/>
         <content type="html">&lt;h2 id=&#34;nctf2019sqli&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nctf2019sqli&#34;&gt;#&lt;/a&gt; [NCTF2019]SQLi&lt;/h2&gt;
 &lt;p&gt;源码泄露：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004343.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
 &lt;p&gt;找到 hint.php&lt;/p&gt;
 &lt;p&gt;目的明确：&lt;/p&gt;
 &lt;p&gt;只要密码是 admin 的密码就可以获得 flag&lt;/p&gt;
 &lt;p&gt;得到提示，这题过滤了好多关键字，只要 password 的密码等于 admin 的密码就能拿到 flag 了，但是怎么拿呢？看了 dalao 的 wp 才发现有 regexp 注入&lt;/p&gt;
 &lt;h3 id=&#34;regexp注入正则注入&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#regexp注入正则注入&#34;&gt;#&lt;/a&gt; regexp 注入（正则注入）&lt;/h3&gt;
 &lt;p&gt;这个注入方式呢相当于&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9zby5jc2RuLm5ldC9zby9zZWFyY2g/cT0lRTUlQjglODMlRTUlQjAlOTQlRTclOUIlQjIlRTYlQjMlQTgmYW1wO3NwbT0xMDAxLjIxMDEuMzAwMS43MDIw&#34;&gt;布尔盲注&lt;/span&gt;吧，若是猜对了就返回正确的页面，我们本地测试一下正则，先看一下全部数据，然后 ^ 匹配 e 开头的 password&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004344.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
 &lt;p&gt;再找个 a 开头的：没有&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004345.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
 &lt;p&gt;分析&lt;br&gt;
 回到题目里，提示给了串 SQL 语句&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;select * from users where username=&#39;&#39; and passwd=&#39;&#39;
@@ -741,8 +753,8 @@ var
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;相当于&lt;/p&gt;
 &lt;figure class=&#34;highlight sql&#34;&gt;&lt;figcaption data-lang=&#34;SQL&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;select&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;from&lt;/span&gt; users &lt;span class=&#34;token keyword&#34;&gt;where&lt;/span&gt; &lt;span class=&#34;token comment&#34;&gt;/**/&lt;/span&gt;passwd&lt;span class=&#34;token comment&#34;&gt;/**/&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;regexp&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;/**/&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;^x&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;00&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;先用 burpsuite 跑一下（注意该一下爆破频率，不然 429），看看正确与错误的情况，好写脚本跑&lt;br&gt;
-&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/5.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004346.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004347.png&#34; alt=&#34;5&#34;&gt;&lt;/p&gt;
 &lt;p&gt;跑完后发现错误的话会有个 js 的弹窗出来，跑对了就没有 ，这里可以看到密码第一位是 y（或 Y，不区分大小写），以此写个 python 脚本&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;#buuctf web [NCTF2019]SQLi
 import requests
@@ -765,9 +777,9 @@ while True:
             pw = pw + i
             print(pw)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/6.png&#34; alt=&#34;6&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004348.png&#34; alt=&#34;6&#34;&gt;&lt;/p&gt;
 &lt;p&gt;交到密码获得 flag：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BNCTF2019%5DSQLi/7.png&#34; alt=&#34;7&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004349.png&#34; alt=&#34;7&#34;&gt;&lt;/p&gt;
 </content>
         <category term="buuctf" />
         <category term="regexp注入" />

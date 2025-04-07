@@ -129,6 +129,18 @@
         <category>nodejs</category>
         <category>hash_hamc函数</category>
         <category>取反异或</category>
+        <category>misc</category>
+        <category>图片</category>
+        <category>CRC</category>
+        <category>vulhub</category>
+        <category>ActiveMQ</category>
+        <category>javaweb</category>
+        <category>Go</category>
+        <category>sqlmap</category>
+        <category>pydash</category>
+        <category>rust</category>
+        <category>流量分析</category>
+        <category>jpg特征</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/11/05/WMCTF2020-Web-Check-in-2-0/</guid>
             <title>[WMCTF2020]Web-Check-in-2.0</title>

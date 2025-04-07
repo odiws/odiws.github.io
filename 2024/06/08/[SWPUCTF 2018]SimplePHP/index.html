@@ -102,12 +102,12 @@ Yume Shoka = Hexo</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicitzannuj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giph47e9vtj20zk0m8x6l.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giclflwv2aj20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipew8gmvyj20zk0m87wh.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciub8ja1j20zk0m81ky.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipexe4oykj20zk0m87ji.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipex2cdtbj20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicliwyw55j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclxfdlttj20zk0m8npd.jpg"></li>
         </ul>
       </div>
     </header>
@@ -284,7 +284,7 @@ public function __wakeup()
 <p>除了 unserialize () 来利用反序列化漏洞之外，还可以利用 phar 文件以序列化的形式存储用户自定义的 meta-data 这一特性，扩大 php 反序列化漏洞的攻击面。该方法在文件系统函数（file_exists ()、is_dir () 等）参数可控的情况下，配合 phar:// 伪协议，可以不依赖 unserialize () 直接进行反序列化操作。</p>
 </blockquote>
 <p>受影响的函数如下：</p>
-<p><img data-src="../images/%5BSWPUCTF2018%5DSimplePHP/2.png" alt="2"></p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004421.png" alt="2"></p>
 <p>这道题满足这几个条件：</p>
 <ul>
 <li>存在受影响的函数 file_get_contents、file_exists。</li>
@@ -380,11 +380,11 @@ $phar-&gt;addFromString(&quot;test.txt&quot;, &quot;test&quot;); //添加要压�
 $phar-&gt;stopBuffering();
 </code></pre>
 <p>抓包上传改后缀：</p>
-<p><img data-src="../images/%5BSWPUCTF2018%5DSimplePHP/wIq9Vx.png" alt="wIq9Vx"></p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004422.png" alt="wIq9Vx"></p>
 <p>找到文件路径，通过查看 function.php 可得知文件存在 upload 文件夹内，恰好这个文件夹可以访问 qwq。</p>
 <blockquote>
 <p>file.php?file=phar://upload/090b0844ab952f0df2b28e1f9bc24dad.jpg</p>
-<p><img data-src="../images/%5BSWPUCTF2018%5DSimplePHP/woSN5R.png" alt="woSN5R"></p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004423.png" alt="woSN5R"></p>
 </blockquote>
 <p>base64 解码得到 flag</p>
 <p>出自：<span class="exturl" data-url="aHR0cHM6Ly93d3cuc2hhd3Jvb3QuY2MvMTE0MS5odG1s">https://www.shawroot.cc/1141.html</span></p>
@@ -403,7 +403,7 @@ $phar-&gt;stopBuffering();
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2024-06-16 19:55:53" itemprop="dateModified" datetime="2024-06-16T19:55:53+08:00">2024-06-16</time>
+    <time title="Modified: 2025-03-05 20:04:39" itemprop="dateModified" datetime="2025-03-05T20:04:39+08:00">2025-03-05</time>
   </span>
 </div>
 
@@ -458,7 +458,7 @@ $phar-&gt;stopBuffering();
     <div class="item left">
       
 
-  <a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclgi503lj20zk0m8hdt.jpg" title="&#39;[NPUCTF2020]ezinclude&#39;">
+  <a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipey84bjtj20zk0m8hdt.jpg" title="&#39;[NPUCTF2020]ezinclude&#39;">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>'[NPUCTF2020]ezinclude'</h3>
@@ -468,7 +468,7 @@ $phar-&gt;stopBuffering();
     <div class="item right">
       
 
-  <a href="/2024/06/10/2018-Comment/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicli9lfebj20zk0m84qp.jpg" title="&#39;[网鼎杯 2018]Comment&#39;">
+  <a href="/2024/06/10/2018-Comment/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclxxcb6rj20zk0m8b29.jpg" title="&#39;[网鼎杯 2018]Comment&#39;">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>'[网鼎杯 2018]Comment'</h3>
@@ -508,19 +508,19 @@ $phar-&gt;stopBuffering();
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">154</span>
+        <span class="count">166</span>
         <span class="name">posts</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">9</span>
+        <span class="count">11</span>
         <span class="name">categories</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">122</span>
+        <span class="count">134</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -575,7 +575,17 @@ $phar-&gt;stopBuffering();
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/" title="[NewStarCTF2023公开赛道]include0。0">[NewStarCTF2023公开赛道]include0。0</a></span>
+    <span><a href="/2024/09/22/RoarCTF2019-SimpleUpload/" title="[RoarCTF2019]SimpleUpload">[RoarCTF2019]SimpleUpload</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="PHP学习笔记">PHP学习笔记</a></span>
   </li>
 
       
@@ -585,7 +595,39 @@ $phar-&gt;stopBuffering();
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/10/17/HITCON2016-Leaking/" title="[HITCON2016]Leaking">[HITCON2016]Leaking</a></span>
+    <span><a href="/2024/11/08/JMCTF2021-UploadHub/" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2024/12/04/%E5%88%B7%E6%96%B0%E8%BF%87%E7%9A%84%E5%9B%BE%E7%89%87/" title="刷新过的图片">刷新过的图片</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/01/24/python-requests%E5%BA%93flask%E5%BA%93%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/" title="python-requests库flask库（未完）">python-requests库flask库（未完）</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/2_1/" title="python request库的基本用法">python request库的基本用法</a></span>
   </li>
 
       
@@ -595,7 +637,17 @@ $phar-&gt;stopBuffering();
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/24/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-Easyphp2/" title="[羊城杯2020]Easyphp2">[羊城杯2020]Easyphp2</a></span>
+    <span><a href="/2024/11/08/HarekazeCTF2019-Sqlite-Voting/" title="[HarekazeCTF2019]Sqlite-Voting">[HarekazeCTF2019]Sqlite-Voting</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="In 漏洞复现">漏洞复现</a>
+</div>
+
+    <span><a href="/2025/03/18/CVE-2015-5254/" title="CVE-2015-5254">CVE-2015-5254</a></span>
   </li>
 
       
@@ -605,7 +657,7 @@ $phar-&gt;stopBuffering();
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/04/29/5-txt/" title="buuctf4月29日">buuctf4月29日</a></span>
+    <span><a href="/2024/08/17/RootersCTF2019-babyWeb/" title="[RootersCTF2019]babyWeb">[RootersCTF2019]babyWeb</a></span>
   </li>
 
       
@@ -615,57 +667,7 @@ $phar-&gt;stopBuffering();
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/08/HFCTF2020-BabyUpload/" title="[HFCTF2020]BabyUpload">[HFCTF2020]BabyUpload</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/" title="buuctf5月26日">buuctf5月26日</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/11/18/BSidesCF-2019-Mixer/" title="[BSidesCF-2019]Mixer">[BSidesCF-2019]Mixer</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2025/03/02/PyCalX-1/" title="PyCalX_1">PyCalX_1</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/06/21/Again/" title="[WMCTF2020]Make PHP Great Again">[WMCTF2020]Make PHP Great Again</a></span>
+    <span><a href="/2024/10/21/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-EasySer/" title="[羊城杯2020]EasySer">[羊城杯2020]EasySer</a></span>
   </li>
 
   </ul>

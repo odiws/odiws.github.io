@@ -1,0 +1,44 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"misc\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/",
+            "url": "http://odiws.github.io/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/",
+            "title": "[ACTF新生赛2020]outguess",
+            "date_published": "2025-03-13T13:29:35.000Z",
+            "content_html": "<h2 id=\"actf新生赛2020outguess\"><a class=\"markdownIt-Anchor\" href=\"#actf新生赛2020outguess\">#</a> [ACTF 新生赛 2020] outguess</h2>\n<p>010 有 PK，但是不是 zip 文件，不能改 zip 文件解压，也不能 foremost 提取文件，属性里面有个</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132131792.png\" alt=\"image-20250313213109721\"></p>\n<p>在网站解密</p>\n<p><span class=\"exturl\" data-url=\"aHR0cDovL3d3dy5oaWVuY29kZS5jb20vY3ZlbmNvZGUuaHRtbA==\">http://www.hiencode.com/cvencode.html</span></p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132131337.png\" alt=\"image-20250313213135228\"></p>\n<p>获取解压密码：abc</p>\n<p>用 outguess 提取文件：(题目提示)：</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132132675.png\" alt=\"image-20250313213222516\"></p>\n<p>获得 flag：</p>\n<pre><code>ACTF&#123;gue33_Gu3Ss!2020&#125;\n</code></pre>\n",
+            "tags": [
+                "buuctf",
+                "misc",
+                "图片"
+            ]
+        },
+        {
+            "id": "http://odiws.github.io/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/",
+            "url": "http://odiws.github.io/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/",
+            "title": "梅花香自苦寒来",
+            "date_published": "2025-03-13T12:14:08.000Z",
+            "content_html": "<h2 id=\"梅花香自苦寒来\"><a class=\"markdownIt-Anchor\" href=\"#梅花香自苦寒来\">#</a> 梅花香自苦寒来</h2>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132015425.png\" alt=\"image-20250313201524372\"></p>\n<p>给了这个东西直接 010 看一下，没有 PK，没有隐藏 zip 文件</p>\n<p>但是是 jpg 文件以 FF D8 开头，FF D9 结尾</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132016418.png\" alt=\"image-20250313201647362\"></p>\n<p>后面还有好多字符</p>\n<p>将这些十六进制字符转换一下换成这样：</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132110147.png\" alt=\"image-20250313211033087\"></p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132110207.png\" alt=\"image-20250313211022001\"></p>\n<p>扫描二维码就好了</p>\n",
+            "tags": [
+                "buuctf",
+                "misc",
+                "图片"
+            ]
+        },
+        {
+            "id": "http://odiws.github.io/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/",
+            "url": "http://odiws.github.io/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/",
+            "title": "谁赢了比赛？",
+            "date_published": "2025-03-13T11:56:17.000Z",
+            "content_html": "<h2 id=\"谁赢了比赛\"><a class=\"markdownIt-Anchor\" href=\"#谁赢了比赛\">#</a> 谁赢了比赛？</h2>\n<p>一张图片，拖入 010 看是不是隐藏了 zip 文件</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132001817.png\" alt=\"image-20250313200053710\"></p>\n<p>果然有，直接随波逐流解码文件</p>\n<p>archpr 爆破 1020：</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132001479.png\" alt=\"image-20250313200119443\"></p>\n<p>两个文件</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132002312.png\" alt=\"image-20250313200201272\"></p>\n<p>flag.txt 没有 flag</p>\n<p>就只有 hehe.gif 这个图片了</p>\n<p>用 stegslove 这个软件：</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132004587.png\" alt=\"image-20250313200455543\"></p>\n<p>有这一帧</p>\n<p>保存下来：</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202503132006847.png\" alt=\"image-20250313200610785\"></p>\n<p>下面的 save</p>\n<p>在 Red plane 0 获取一个二维码扫一下就有了</p>\n<pre><code>flag&#123;shanxiajingwu_won_the_game&#125;\n</code></pre>\n",
+            "tags": [
+                "buuctf",
+                "misc",
+                "图片"
+            ]
+        }
+    ]
+}

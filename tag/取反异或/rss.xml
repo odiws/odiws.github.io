@@ -129,6 +129,18 @@
         <category>nodejs</category>
         <category>hash_hamc函数</category>
         <category>取反异或</category>
+        <category>misc</category>
+        <category>图片</category>
+        <category>CRC</category>
+        <category>vulhub</category>
+        <category>ActiveMQ</category>
+        <category>javaweb</category>
+        <category>Go</category>
+        <category>sqlmap</category>
+        <category>pydash</category>
+        <category>rust</category>
+        <category>流量分析</category>
+        <category>jpg特征</category>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2024/08/04/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-easyphp/</guid>
             <title>[ISITDTU 2019]EasyPHP</title>
