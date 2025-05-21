@@ -4,145 +4,233 @@
     <title>Hexo • Posts by &#34;vulhub&#34; tag</title>
     <link href="http://odiws.github.io" />
     <updated>2025-03-18T12:59:11.000Z</updated>
-    <category term="buuctf" />
     <category term="system_file" />
-    <category term="sql文件读取" />
+    <category term="buuctf" />
     <category term="文件内无字符rce" />
-    <category term="文件上传" />
+    <category term="ctf" />
     <category term="php绕过open_basedir设置" />
     <category term="无字母rce" />
-    <category term="ctf" />
-    <category term="php原生类利用" />
+    <category term="sql文件读取" />
+    <category term="文件上传" />
+    <category term="xxe" />
+    <category term="xml_upload" />
     <category term="php反序列化" />
-    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
     <category term="http" />
+    <category term="php原生类利用" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
     <category term="cms框架" />
-    <category term="python" />
     <category term="mongodb注入" />
+    <category term="python" />
+    <category term="buuctf，无字符rce" />
     <category term="条件竞争：利用session.upload_progress" />
+    <category term="misc" />
+    <category term="图片" />
+    <category term="buuctf， 反序列化" />
+    <category term="CRC" />
+    <category term="ECB加密" />
+    <category term="json数据爬虫" />
+    <category term="regexp注入" />
+    <category term="js" />
     <category term="preg_match绕过" />
     <category term="$_server query_string 绕过" />
     <category term="$_request绕过" />
     <category term="file_get_cotents绕过" />
     <category term="sha1函数比较数组绕过" />
     <category term="create_function运用" />
-    <category term="buuctf， 反序列化" />
-    <category term="regexp注入" />
-    <category term="ECB加密" />
-    <category term="php7 segment fault特性" />
-    <category term="json数据爬虫" />
-    <category term="phar反序列化" />
-    <category term="js" />
-    <category term="CRLF Injection" />
-    <category term="soap" />
-    <category term="pickle反序列化" />
-    <category term="thinkphpV6.0.0" />
-    <category term="buuctf， 伪随机数" />
-    <category term="zip加密" />
-    <category term="xxe" />
-    <category term="xml_upload" />
     <category term="flask的session伪造" />
-    <category term="二次渲染" />
     <category term="buuctf，Perl后端文件上传" />
-    <category term="buuctf，xxe漏洞" />
-    <category term="java" />
     <category term="flask" />
-    <category term="ctf工具安装教程" />
+    <category term="二次渲染" />
     <category term="sql注入" />
     <category term="php绕过open_opedir设置" />
     <category term="TOTP" />
     <category term="rce" />
     <category term="ssti" />
-    <category term="insert截断" />
-    <category term="xss攻击" />
     <category term="c的预处理" />
+    <category term="javaweb" />
     <category term="图片类" />
+    <category term="xss攻击" />
+    <category term="insert截断" />
     <category term="爬虫" />
-    <category term="js原型链污染" />
     <category term="反序列化字符串逃逸" />
+    <category term="thinkphpV6.0.0" />
     <category term="sql injection" />
-    <category term="文件上传(头像上传)" />
-    <category term="session反序列化" />
+    <category term="字频统计" />
+    <category term="phar反序列化" />
     <category term="ssrf" />
     <category term="HTTP走私攻击" />
-    <category term="json数据unicode转码绕过" />
-    <category term="对sqlite的sql注入" />
-    <category term="未理解" />
-    <category term="命令执行" />
     <category term="zip软链接" />
     <category term="python_seed函数" />
+    <category term="js原型链污染" />
+    <category term="未理解" />
     <category term="session伪造" />
     <category term="js-vm沙箱逃逸" />
-    <category term="willphp2.2" />
     <category term="ssti-smarty3.1.39" />
-    <category term="./htaccess文件上传" />
-    <category term="php未解析" />
-    <category term="利用环境变量构造bash命令" />
+    <category term="session反序列化" />
+    <category term="命令执行" />
+    <category term="对sqlite的sql注入" />
+    <category term="willphp2.2" />
+    <category term="json数据unicode转码绕过" />
     <category term="利用.htaccess构成后门" />
     <category term="通过php_value来设置preg_macth正则回溯次数" />
-    <category term="java反序列化" />
+    <category term="文件上传(头像上传)" />
+    <category term="Go" />
     <category term="伪随机数" />
-    <category term="mysql" />
-    <category term="信息搜集（js，网络）" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
     <category term="异或" />
-    <category term="密码爆破" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="信息搜集（js，网络）" />
+    <category term="sqlmap" />
+    <category term="pydash" />
+    <category term="xpath注入" />
+    <category term="文件包含" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="sqlmap使用" />
     <category term="SQL注入" />
-    <category term="文件包含" />
     <category term="php伪协议" />
     <category term="pearcmd文件包含" />
-    <category term="xpath注入" />
-    <category term="Padding oracle attack 与CBC翻转字节攻击" />
-    <category term="php" />
+    <category term="密码爆破" />
     <category term="sql盲注" />
+    <category term="thinkphp3.2.4" />
     <category term="php7.4" />
     <category term="FFI预处理" />
-    <category term="thinkphp3.2.4" />
     <category term="jwt" />
-    <category term="sql二次注入" />
     <category term="MD5碰撞" />
     <category term="jwt密码爆破" />
     <category term="cms" />
+    <category term="sql二次注入" />
     <category term="create_function()函数" />
-    <category term="sqlע��" />
-    <category term="jwt身份验证" />
+    <category term="音频类" />
+    <category term="敲击码" />
+    <category term="010编码" />
     <category term="rc4" />
     <category term="CRLF" />
-    <category term="任意文件读取" />
-    <category term="PDO堆叠注入" />
+    <category term="jwt身份验证" />
     <category term="test" />
     <category term="tag2" />
-    <category term="shell反弹" />
-    <category term="phpexit绕过" />
+    <category term="NTFs数据流" />
     <category term="require_once函数" />
-    <category term="xss" />
-    <category term="302跳转" />
-    <category term="反序列化" />
-    <category term="F5隐写" />
-    <category term="php伪协议+文件上传" />
-    <category term="无字符rce" />
-    <category term="fastcgi-php-FPM" />
-    <category term="disable_function" />
-    <category term="nodejs" />
-    <category term="hash_hamc函数" />
-    <category term="取反异或" />
-    <category term="misc" />
-    <category term="图片" />
-    <category term="CRC" />
+    <category term="phpexit绕过" />
+    <category term="PDO堆叠注入" />
+    <category term="php7 segment fault特性" />
     <category term="vulhub" />
     <category term="ActiveMQ" />
-    <category term="javaweb" />
-    <category term="Go" />
-    <category term="sqlmap" />
-    <category term="pydash" />
+    <category term="pickle反序列化" />
+    <category term="buuctf， 伪随机数" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="ctf工具安装教程" />
+    <category term="java" />
+    <category term="java反序列化" />
+    <category term="php" />
+    <category term="mysql" />
     <category term="rust" />
+    <category term="python原型链污染" />
+    <category term="任意文件读取" />
+    <category term="sqlע��" />
+    <category term="xss" />
+    <category term="zip加密" />
+    <category term="shell反弹" />
+    <category term="F5隐写" />
+    <category term="302跳转" />
+    <category term="无字符rce" />
+    <category term="php伪协议+文件上传" />
+    <category term="反序列化" />
+    <category term="hash_hamc函数" />
+    <category term="取反异或" />
+    <category term="fastcgi-php-FPM" />
+    <category term="disable_function" />
     <category term="流量分析" />
     <category term="jpg特征" />
+    <category term="nodejs" />
     <entry>
-        <id>http://odiws.github.io/2025/03/18/CVE-2015-5254/</id>
+        <id>http://odiws.github.io/2025/03/18/activeMQ/</id>
         <title>CVE-2015-5254</title>
-        <link rel="alternate" href="http://odiws.github.io/2025/03/18/CVE-2015-5254/"/>
-        <content type="html">&lt;h2 id=&#34;cve-2015-5254&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cve-2015-5254&#34;&gt;#&lt;/a&gt; CVE-2015-5254&lt;/h2&gt;
+        <link rel="alternate" href="http://odiws.github.io/2025/03/18/activeMQ/"/>
+        <content type="html">&lt;h2 id=&#34;activemq&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#activemq&#34;&gt;#&lt;/a&gt; activeMQ&lt;/h2&gt;
+&lt;p&gt;前言：不知道改学些什么，就按 vulhub 里面的 CVE 漏洞来复现算了&lt;/p&gt;
+&lt;h3 id=&#34;cve-2015-5254jmet&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cve-2015-5254jmet&#34;&gt;#&lt;/a&gt; CVE-2015-5254：jmet&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201946995.png&#34; alt=&#34;image-20250420194626856&#34;&gt;&lt;/p&gt;
+&lt;p&gt;这里就是主页，可以进行扫目录，有 admin，然后就是 admin/admin 弱密码登录&lt;/p&gt;
+&lt;p&gt;在 /admin/queues.jsp 这里就有反序列化漏洞，用 jmet 这个工具即可直接反序列化，但是需要点击这个 id 才会有反序列化生成&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201948098.png&#34; alt=&#34;image-20250420194834023&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;jmet安装使用得用jdk8&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#jmet安装使用得用jdk8&#34;&gt;#&lt;/a&gt; jmet 安装 (使用得用 jdk8）&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;#下载jmet的jar包
+wget https://github.com/matthiaskaiser/jmet/releases/download/0.1.0/jmet-0.1.0-all.jar
+#创建external目录
+mkdir external
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;使用&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;java&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-jar&lt;/span&gt; jmet-0.1.0-all.jar &lt;span class=&#34;token parameter variable&#34;&gt;-Q&lt;/span&gt; event &lt;span class=&#34;token parameter variable&#34;&gt;-I&lt;/span&gt; ActiveMQ &lt;span class=&#34;token parameter variable&#34;&gt;-s&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-Y&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;touch /tmp/sucess&#34;&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-Yp&lt;/span&gt; ROME &lt;span class=&#34;token number&#34;&gt;192.200&lt;/span&gt;.30.72 &lt;span class=&#34;token number&#34;&gt;61616&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;pre&gt;&lt;code&gt;【命令解释】：调用java -jar 运行 jmet的jar包，-Q是插入一个名为event的队列，-I 是选择装载ActiveMQ模块 ，-s 是选择ysoserial payload ，-Y 是攻击模式和内容， -Yp 是选择攻击利用链，这里的选择是ROME， 之后带上IP加端口。
+-Q 比如我修改event为hack 就成为插入一个名为hack的队列。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201951696.png&#34; alt=&#34;image-20250420195149625&#34;&gt;&lt;/p&gt;
+&lt;p&gt;生成这样的就好了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201952664.png&#34; alt=&#34;image-20250420195206585&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在这里就会有一个队列 event 生成&lt;/p&gt;
+&lt;p&gt;得点击里面的 id 才能触发&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201953052.png&#34; alt=&#34;image-20250420195308012&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201954388.png&#34; alt=&#34;image-20250420195457325&#34;&gt;&lt;/p&gt;
+&lt;p&gt;复现成功&lt;/p&gt;
+&lt;h4 id=&#34;补充&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#补充&#34;&gt;#&lt;/a&gt; 补充：&lt;/h4&gt;
+&lt;p&gt;我开的这个 docker 容器的东西不是和我本身的机器共享的&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;进入我开的这个容器的指令：
+docker exec -it [容器ID] bash
+容器id怎么拿：
+docker ps
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201957635.png&#34; alt=&#34;image-20250420195722589&#34;&gt;&lt;/p&gt;
+&lt;p&gt;第一个 id 就是了&lt;/p&gt;
+&lt;h3 id=&#34;cve-2016-3088任意文件写入&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cve-2016-3088任意文件写入&#34;&gt;#&lt;/a&gt; CVE-2016-3088 任意文件写入&lt;/h3&gt;
+&lt;p&gt;背景简述：&lt;br&gt;
+Acctive 的 web 控制台分为三个应用，admin，api 和 fileserver，其中 admin 是管理员页面，api 是接口，fileserver 是储存文件的接口；admin 和 api 都需要登录后才能使用，fileserver 无需登录。&lt;/p&gt;
+&lt;p&gt;fileserver 是一个 ESful API 接口，我们可以通过 GET，PUT，DELETE 等 HTTP 请求对其中存储的文件进行读写操作，其设计目的是为了弥补消息队列操作不能传输，存储二进制文件的缺陷，但后来发现：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;其使用率不高
+文件操作容易出现漏洞
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;所以，ActiveMQ 在 5.12.x-&amp;gt;5.13.x 版本中，已经默认关闭了 file server 这个应用（可以在 conf/jetty。xml 中开启）；在 5.14.0 版本以后，彻底删除了 fileserver 这个应用&lt;/p&gt;
+&lt;p&gt;在测试过程中，可以关注 ActiveMQ 的版本，避免走弯路。&lt;/p&gt;
+&lt;h4 id=&#34;漏洞详情&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#漏洞详情&#34;&gt;#&lt;/a&gt; 漏洞详情：&lt;/h4&gt;
+&lt;p&gt;本漏洞出现在 fileserver 应用中，fileserver 支持写入文件（但是不解析 jsp），同时是吃移动文件（MOVE 请求），所以，我们只需要写入一个文件，然后使用 MOVE 请求将其移动到人难以位置，造成任意文件写入漏洞。&lt;/p&gt;
+&lt;h4 id=&#34;文件写入的几种利用方法&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#文件写入的几种利用方法&#34;&gt;#&lt;/a&gt; 文件写入的几种利用方法&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;写入webshell    方便，但是这里不解析，而且admin和api两个应用都需要登录才能访问
+写入cron或sshj key等文件  直接反弹拿shell，但是需要root权限
+写入jar或jetty.xml等库和配置文件   麻烦，但是靠谱
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;知识扩展&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#知识扩展&#34;&gt;#&lt;/a&gt; 知识扩展：&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;cron是什么
+
+反弹shell是什么
+
+cron或ssh key和反弹shell的关系
+
+jetty和jetty.xml是什么
+
+linux文件权限
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;复现失败，原因是上传不上去，只有将 jsp 一句话木马 url 一下后才能上传，但是这个网页不解码，就离谱，我们直接下一个，这个以后才说&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzUxNjgzNjUzL2FydGljbGUvZGV0YWlscy8xMjkyNDA1Mjg=&#34;&gt;【vulhub 漏洞复现】CVE-2016-3088 ActiveMQ 任意文件写入漏洞 - CSDN 博客&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vaHVhbmd4aWFvc2FuL3AvMTQyMjI2OTQuaHRtbA==&#34;&gt;CVE-2016-3088（ActiveMQ 任意文件写入漏洞） - toby123 - 博客园&lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&#34;cve-2022-41678远程rce&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#cve-2022-41678远程rce&#34;&gt;#&lt;/a&gt; CVE-2022-41678：远程 rce&lt;/h3&gt;
+&lt;p&gt;介绍：CVE-2022-41678 是一个 Apache ActiveMQ 中的远程代码执行漏洞，其主要原理是利用 Jolokia 服务中的不当配置。&lt;strong&gt;Jolokia&lt;/strong&gt; 是一个 JMX 通过 HTTP 的桥接服务，允许通过 HTTP 请求来操作 JMX MBEANS。在手影响的 Apache ActiveMQ 版本中，经过身份验证的用户可以通过 /api/jolokia/ 接口操作 MBean。&lt;/p&gt;
+&lt;h4 id=&#34;理论&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#理论&#34;&gt;#&lt;/a&gt; 理论：&lt;/h4&gt;
+&lt;p&gt;漏洞核心是 FlightRecorder MBean，这是 JDK11 及以上版本中提供的一个功能，用于记录内存，垃圾回收，调用栈等等信息。攻击者可以利用一下方法进行攻击：&lt;/p&gt;
+&lt;p&gt;newRecording - 新键一个记录绘画&lt;/p&gt;
+&lt;p&gt;setConfiguration - 更改记录会话的配置&lt;/p&gt;
+&lt;p&gt;startRecording - 开始记录&lt;/p&gt;
+&lt;p&gt;stopRecording - 结束记录&lt;/p&gt;
+&lt;p&gt;copyTo - 将记录的数据导出到文件。&lt;/p&gt;
+&lt;p&gt;攻击者可以通过 setConfiguration 方法修改配置，将一些键名改为 JSP 段代码。这样，在记录的数据中就会包含攻击者注入的 JSP 代码。然后，攻击者使用 copyTo 方法将包含恶意代码的记录导出到 ActivveMQ 的 web 目录中，从而在服务器上执行远程代码。&lt;/p&gt;
+&lt;h4 id=&#34;要求&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#要求&#34;&gt;#&lt;/a&gt; 要求：&lt;/h4&gt;
+&lt;p&gt;需要我们能登录后台管理界面，通常是 8161 端口登录，admin/admin&lt;/p&gt;
+&lt;h4 id=&#34;漏洞复现&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#漏洞复现&#34;&gt;#&lt;/a&gt; 漏洞复现：&lt;/h4&gt;
+&lt;h5 id=&#34;1查看所有mbean&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1查看所有mbean&#34;&gt;#&lt;/a&gt; 1. 查看所有 Mbean&lt;/h5&gt;
+&lt;p&gt;使用 Bp 进行抓包，访问 “/api/jolokia/list” 这个 api 可以查看当前服务器里所有的 MBeans（路径改为 **/api/jolokia/list**, 然后添加&lt;strong&gt; Request-header&lt;/strong&gt;：Origin:&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL2lw&#34;&gt;http://ip&lt;/span&gt;）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意后面必须要有两行空行，不然回显不了&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504222015401.png&#34; alt=&#34;image-20250422201545238&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获取 MBean 值：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504222020292.png&#34; alt=&#34;image-20250422202048134&#34;&gt;&lt;/p&gt;
 </content>
         <category term="vulhub" />
         <category term="ActiveMQ" />

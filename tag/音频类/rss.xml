@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Hexo • Posts by &#34;音频类&#34; tag</title>
+        <link>http://odiws.github.io</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Wed, 21 May 2025 13:12:59 +0800</pubDate>
+        <lastBuildDate>Wed, 21 May 2025 13:12:59 +0800</lastBuildDate>
+        <category>system_file</category>
+        <category>buuctf</category>
+        <category>文件内无字符rce</category>
+        <category>ctf</category>
+        <category>php绕过open_basedir设置</category>
+        <category>无字母rce</category>
+        <category>sql文件读取</category>
+        <category>文件上传</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
+        <category>php反序列化</category>
+        <category>http</category>
+        <category>php原生类利用</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
+        <category>cms框架</category>
+        <category>mongodb注入</category>
+        <category>python</category>
+        <category>buuctf，无字符rce</category>
+        <category>条件竞争：利用session.upload_progress</category>
+        <category>misc</category>
+        <category>图片</category>
+        <category>buuctf， 反序列化</category>
+        <category>CRC</category>
+        <category>ECB加密</category>
+        <category>json数据爬虫</category>
+        <category>regexp注入</category>
+        <category>js</category>
+        <category>preg_match绕过</category>
+        <category>$_server query_string 绕过</category>
+        <category>$_request绕过</category>
+        <category>file_get_cotents绕过</category>
+        <category>sha1函数比较数组绕过</category>
+        <category>create_function运用</category>
+        <category>flask的session伪造</category>
+        <category>buuctf，Perl后端文件上传</category>
+        <category>flask</category>
+        <category>二次渲染</category>
+        <category>sql注入</category>
+        <category>php绕过open_opedir设置</category>
+        <category>TOTP</category>
+        <category>rce</category>
+        <category>ssti</category>
+        <category>c的预处理</category>
+        <category>javaweb</category>
+        <category>图片类</category>
+        <category>xss攻击</category>
+        <category>insert截断</category>
+        <category>爬虫</category>
+        <category>反序列化字符串逃逸</category>
+        <category>thinkphpV6.0.0</category>
+        <category>sql injection</category>
+        <category>字频统计</category>
+        <category>phar反序列化</category>
+        <category>ssrf</category>
+        <category>HTTP走私攻击</category>
+        <category>zip软链接</category>
+        <category>python_seed函数</category>
+        <category>js原型链污染</category>
+        <category>未理解</category>
+        <category>session伪造</category>
+        <category>js-vm沙箱逃逸</category>
+        <category>ssti-smarty3.1.39</category>
+        <category>session反序列化</category>
+        <category>命令执行</category>
+        <category>对sqlite的sql注入</category>
+        <category>willphp2.2</category>
+        <category>json数据unicode转码绕过</category>
+        <category>利用.htaccess构成后门</category>
+        <category>通过php_value来设置preg_macth正则回溯次数</category>
+        <category>文件上传(头像上传)</category>
+        <category>Go</category>
+        <category>伪随机数</category>
+        <category>./htaccess文件上传</category>
+        <category>php未解析</category>
+        <category>异或</category>
+        <category>利用环境变量构造bash命令</category>
+        <category>信息搜集（js，网络）</category>
+        <category>sqlmap</category>
+        <category>pydash</category>
+        <category>xpath注入</category>
+        <category>文件包含</category>
+        <category>Padding oracle attack 与CBC翻转字节攻击</category>
+        <category>sqlmap使用</category>
+        <category>SQL注入</category>
+        <category>php伪协议</category>
+        <category>pearcmd文件包含</category>
+        <category>密码爆破</category>
+        <category>sql盲注</category>
+        <category>thinkphp3.2.4</category>
+        <category>php7.4</category>
+        <category>FFI预处理</category>
+        <category>jwt</category>
+        <category>MD5碰撞</category>
+        <category>jwt密码爆破</category>
+        <category>cms</category>
+        <category>sql二次注入</category>
+        <category>create_function()函数</category>
+        <category>音频类</category>
+        <category>敲击码</category>
+        <category>010编码</category>
+        <category>rc4</category>
+        <category>CRLF</category>
+        <category>jwt身份验证</category>
+        <category>test</category>
+        <category>tag2</category>
+        <category>NTFs数据流</category>
+        <category>require_once函数</category>
+        <category>phpexit绕过</category>
+        <category>PDO堆叠注入</category>
+        <category>php7 segment fault特性</category>
+        <category>vulhub</category>
+        <category>ActiveMQ</category>
+        <category>pickle反序列化</category>
+        <category>buuctf， 伪随机数</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>ctf工具安装教程</category>
+        <category>java</category>
+        <category>java反序列化</category>
+        <category>php</category>
+        <category>mysql</category>
+        <category>rust</category>
+        <category>python原型链污染</category>
+        <category>任意文件读取</category>
+        <category>sqlע��</category>
+        <category>xss</category>
+        <category>zip加密</category>
+        <category>shell反弹</category>
+        <category>F5隐写</category>
+        <category>302跳转</category>
+        <category>无字符rce</category>
+        <category>php伪协议+文件上传</category>
+        <category>反序列化</category>
+        <category>hash_hamc函数</category>
+        <category>取反异或</category>
+        <category>fastcgi-php-FPM</category>
+        <category>disable_function</category>
+        <category>流量分析</category>
+        <category>jpg特征</category>
+        <category>nodejs</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/</guid>
+            <title>[SWPU2019]你有没有好好看网课?</title>
+            <link>http://odiws.github.io/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/</link>
+            <category>音频类</category>
+            <category>敲击码</category>
+            <pubDate>Wed, 21 May 2025 13:12:59 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;swpu2019你有没有好好看网课&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#swpu2019你有没有好好看网课&#34;&gt;#&lt;/a&gt; [SWPU2019] 你有没有好好看网课？&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211314744.png&#34; alt=&#34;image-20250521131427598&#34;&gt;&lt;/p&gt;
+&lt;p&gt;打开有两个文件，需要解压，先考虑是不是伪加密，好像不是&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211315789.png&#34; alt=&#34;image-20250521131551618&#34;&gt;&lt;/p&gt;
+&lt;p&gt;若是伪加密，就是 00 00，01 的意思就是确实是加密了&lt;/p&gt;
+&lt;p&gt;flag3 给了解压密码提示：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211318785.png&#34; alt=&#34;image-20250521131803710&#34;&gt;&lt;/p&gt;
+&lt;p&gt;掩码一下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211318219.png&#34; alt=&#34;image-20250521131837104&#34;&gt;&lt;/p&gt;
+&lt;p&gt;拿到密码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;183792
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;解压出来就是一个 docx 文件和一个音频文件&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211319682.png&#34; alt=&#34;image-20250521131925403&#34;&gt;&lt;/p&gt;
+&lt;p&gt;给了 5.20，711 的提示，估计是在文件的 5.20-7.11 之间有个提示，可以看一下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211329602.png&#34; alt=&#34;image-20250521132952365&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在 5.63 秒这里有一个信息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;..... ../... ./... ./... ../
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;敲击码&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#敲击码&#34;&gt;#&lt;/a&gt; 敲击码&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211336384.png&#34; alt=&#34;image-20250521133622307&#34;&gt;&lt;/p&gt;
+&lt;p&gt;以 / 为划分：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;..... ../... ./... ./... ../
+  5,2     3,1    3,1    3,2
+   W       L      L      M
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在 7.33 这里又找到了一个信息：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211331837.png&#34; alt=&#34;image-20250521133157642&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dXBfdXBfdXA=
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;C:\Users\86182&amp;gt;php -r &amp;quot;var_dump(base64_decode(&#39;dXBfdXBfdXA=&#39;));&amp;quot;
+Command line code:1:
+string(8) &amp;quot;up_up_up&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;联合一下就是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wllmup_up_up
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;解压搜 flag 可得：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211337168.png&#34; alt=&#34;image-20250521133755090&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;swpuctf&amp;#123;A2e_Y0u_Ok?&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vY2h1Nzc3Nzc3Ny9hcnRpY2xlL2RldGFpbHMvMTA5NDQ5NDk0&#34;&gt;https://blog.csdn.net/mochu7777777/article/details/109449494&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

@@ -102,12 +102,12 @@ Yume Shoka = Hexo</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclh5u05ej20zk0m87df.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeu1usa7j20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicljitigmj20zk0m87fp.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclxxcb6rj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipewf5l51j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gicliwyw55j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclh5u05ej20zk0m87df.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipevuctzzj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1giclffsa1cj20zk0m811l.jpg"></li>
+          <li class="item" data-background-image="https://tva2.sinaimg.cn/large/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></li>
         </ul>
       </div>
     </header>
@@ -673,7 +673,17 @@ let none = plus_one(None); // 仍然是 None
 元素必须有相同的类型
 依次线性排列
 </code></pre>
-
+<p>数组越界会直接报错</p>
+<p>数组的赋值：</p>
+<figure class="highlight rust"><figcaption data-lang="rust"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">i32</span><span class="token punctuation">:</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//let a:[i32;3]=[4,4,4];</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">[</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token number">4</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token number">4</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token number">4</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token punctuation">]</span></pre></td></tr></table></figure><p>这里仅限于基础类型，如果是复杂类型</p>
+<p>就得这样写：</p>
+<figure class="highlight rust"><figcaption data-lang="rust"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">let</span> array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token string">"rust is good!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token string">"rust is good!"</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token string">"rust is good!"</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"&#123;:#?&#125;"</span><span class="token punctuation">,</span> array<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>也可以调用 std::array::from_fn</p>
+<figure class="highlight rust"><figcaption data-lang="rust"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">let</span> array<span class="token punctuation">:</span><span class="token punctuation">[</span><span class="token class-name">String</span><span class="token punctuation">;</span><span class="token number">8</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token namespace">std<span class="token punctuation">::</span>array<span class="token punctuation">::</span></span><span class="token function">from_fn</span><span class="token punctuation">(</span><span class="token closure-params"><span class="token closure-punctuation punctuation">|</span>_i<span class="token closure-punctuation punctuation">|</span></span> <span class="token class-name">String</span><span class="token punctuation">::</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token string">"rust is good!"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"&#123;:#?&#125;"</span><span class="token punctuation">,</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token punctuation">[</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token string">"rust is good!"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token string">"rust is good!"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token string">"rust is good!"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token string">"rust is good!"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token string">"rust is good!"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token string">"rust is good!"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token string">"rust is good!"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token string">"rust is good!"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">]</span></pre></td></tr></table></figure><h3 id="数组切片"><a class="markdownIt-Anchor" href="#数组切片">#</a> 数组切片：</h3>
+<figure class="highlight rust"><figcaption data-lang="rust"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">let</span> a<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token keyword">i32</span><span class="token punctuation">;</span> <span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">let</span> slice<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token punctuation">[</span><span class="token keyword">i32</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token operator">&amp;</span>a<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">..</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token macro property">assert_eq!</span><span class="token punctuation">(</span>slice<span class="token punctuation">,</span> <span class="token operator">&amp;</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><h2 id="流程控制"><a class="markdownIt-Anchor" href="#流程控制">#</a> 流程控制</h2>
+<p>语法:</p>
+<figure class="highlight rust"><figcaption data-lang="rust"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">if</span> condition<span class="token operator">==</span><span class="token boolean">true</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">//A...</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">//B...</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>但是 if 和 else 返回值不统一时会报错（用 if 赋值时）</p>
+<figure class="highlight rust"><figcaption data-lang="rust"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">if</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token keyword">else</span></pre></td></tr></table></figure><p>for 循环：</p>
+<figure class="highlight rust"><figcaption data-lang="rust"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token number">1</span><span class="token punctuation">..=</span><span class="token number">5</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token macro property">println!</span><span class="token punctuation">(</span><span class="token string">"&#123;&#125;"</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure>
       <div class="tags">
           <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
           <a href="/tags/rust/" rel="tag"><i class="ic i-tag"></i> rust</a>
@@ -688,7 +698,7 @@ let none = plus_one(None); // 仍然是 None
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2025-03-30 22:34:45" itemprop="dateModified" datetime="2025-03-30T22:34:45+08:00">2025-03-30</time>
+    <time title="Modified: 2025-04-07 22:28:28" itemprop="dateModified" datetime="2025-04-07T22:28:28+08:00">2025-04-07</time>
   </span>
 </div>
 
@@ -743,7 +753,7 @@ let none = plus_one(None); // 仍然是 None
     <div class="item left">
       
 
-  <a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicljgocqbj20zk0m8e81.jpg" title="Nctf_web部分复现">
+  <a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclflwv2aj20zk0m84qp.jpg" title="Nctf_web部分复现">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> 比赛复现</span>
   <h3>Nctf_web部分复现</h3>
@@ -751,6 +761,14 @@ let none = plus_one(None); // 仍然是 None
 
     </div>
     <div class="item right">
+      
+
+  <a href="/2025/04/07/http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva2.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitspjpbj20zk0m81ky.jpg" title="http请求走私漏洞">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>http请求走私漏洞</h3>
+  </a>
+
     </div>
 </div>
 
@@ -767,7 +785,7 @@ let none = plus_one(None); // 仍然是 None
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text"> Rust 学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text"> 变量声明：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 数值类型：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 整数类型：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 浮点型：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 运算:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 位运算：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%8F%E5%88%97"><span class="toc-number">1.2.5.</span> <span class="toc-text"> 序列（***）：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#as%E5%AE%8C%E6%88%90%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.6.</span> <span class="toc-text"> AS 完成类型转换：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%B8%83%E5%B0%94%E5%8D%95%E5%85%83%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.7.</span> <span class="toc-text"> 字符，布尔，单元类型：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E5%8F%A5%E4%B8%8E%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.2.8.</span> <span class="toc-text"> 语句与表达式：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text"> 函数：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%9D%83%E4%B8%8E%E5%80%9F%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text"> 所有权与借用：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%9D%83"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 所有权：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%88%E4%B8%8E%E5%A0%86"><span class="toc-number">2.1.1.1.</span> <span class="toc-text"> 栈与堆：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%A0%88"><span class="toc-number">2.1.1.1.1.</span> <span class="toc-text"> 栈：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%A0%86"><span class="toc-number">2.1.1.1.2.</span> <span class="toc-text"> 堆：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E5%8C%BA%E5%88%AB"><span class="toc-number">2.1.1.1.3.</span> <span class="toc-text"> 性能区别：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%9D%83%E4%B8%8E%E5%A0%86%E6%A0%88"><span class="toc-number">2.1.1.1.4.</span> <span class="toc-text"> 所有权与堆栈</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%9D%83%E5%8E%9F%E5%88%99"><span class="toc-number">2.1.1.2.</span> <span class="toc-text"> 所有权原则：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%BB%91%E5%AE%9A%E8%83%8C%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92"><span class="toc-number">2.1.1.2.1.</span> <span class="toc-text"> 变量绑定背后的数据交互：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E4%B8%8E%E8%A7%A3%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 引用与解引用</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.2.0.1.</span> <span class="toc-text"> 不可变引用：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.2.0.2.</span> <span class="toc-text"> 可变引用：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BF%99%E4%B8%A4%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB"><span class="toc-number">2.1.2.0.3.</span> <span class="toc-text"> 这两者的区别与联系:</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%AC%E5%9E%82%E5%BC%95%E7%94%A8dangling-references"><span class="toc-number">2.2.</span> <span class="toc-text"> 悬垂引用 (Dangling References)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%80%9F%E7%94%A8%E8%A7%84%E5%88%99%E6%80%BB%E7%BB%93"><span class="toc-number">2.2.0.0.1.</span> <span class="toc-text"> 借用规则总结</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text"> 复合类型：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E5%88%87%E7%89%87"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 字符串与切片：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.3.1.1.</span> <span class="toc-text"> 字符串：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%87%E7%89%87"><span class="toc-number">2.3.1.2.</span> <span class="toc-text"> 切片：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#string%E4%B8%8Estr%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.3.1.3.</span> <span class="toc-text"> String 与 &amp; str 的转换：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B4%A2%E5%BC%95"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 字符串索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E5%85%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%86%85%E9%83%A8"><span class="toc-number">2.3.3.</span> <span class="toc-text"> 深入字符串内部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%8D%E5%90%8C%E8%A1%A8%E7%8E%B0%E5%BD%A2%E5%BC%8F"><span class="toc-number">2.3.4.</span> <span class="toc-text"> 字符串的不同表现形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%87%E7%89%87"><span class="toc-number">2.3.5.</span> <span class="toc-text"> 字符串切片</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="toc-number">2.4.</span> <span class="toc-text"> 字符串操作（***）：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%BD%E5%8A%A0-push"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 追加 (Push)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5-insert"><span class="toc-number">2.4.2.</span> <span class="toc-text"> 插入 (Insert)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2-replace"><span class="toc-number">2.4.3.</span> <span class="toc-text"> 替换 (Replace)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4-delete"><span class="toc-number">2.4.4.</span> <span class="toc-text"> 删除 (Delete)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5-concatenate"><span class="toc-number">2.4.5.</span> <span class="toc-text"> 连接 (Concatenate)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E4%B9%89"><span class="toc-number">2.5.</span> <span class="toc-text"> 字符串转义：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6"><span class="toc-number">2.5.1.</span> <span class="toc-text"> 字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E8%8A%82"><span class="toc-number">2.5.2.</span> <span class="toc-text"> 字节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%90%E4%B8%B2"><span class="toc-number">2.5.3.</span> <span class="toc-text"> 获取子串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90"><span class="toc-number">2.6.</span> <span class="toc-text"> 字符串深度剖析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%BB%84"><span class="toc-number">3.</span> <span class="toc-text"> 元组：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">3.0.1.</span> <span class="toc-text"> 语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="toc-number">3.0.2.</span> <span class="toc-text"> 模式匹配：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E8%AE%BF%E9%97%AE%E5%85%83%E7%BB%84"><span class="toc-number">3.0.3.</span> <span class="toc-text"> 用。访问元组</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">4.</span> <span class="toc-text"> 结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95-2"><span class="toc-number">4.0.1.</span> <span class="toc-text"> 语法:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E8%AE%BF%E9%97%AE%E7%BB%93%E6%9E%84%E4%BD%93%E5%AD%97%E6%AE%B5"><span class="toc-number">4.0.2.</span> <span class="toc-text"> 用。访问结构体字段：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8C%96%E7%BB%93%E6%9E%84%E4%BD%93%E5%88%9B%E5%BB%BA"><span class="toc-number">4.0.3.</span> <span class="toc-text"> 简化结构体创建：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E6%9B%B4%E6%96%B0%E8%AF%AD%E6%B3%95"><span class="toc-number">4.0.4.</span> <span class="toc-text"> 结构体更新语法：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E6%98%AF-user1-%E5%BF%85%E9%A1%BB%E5%9C%A8%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E5%B0%BE%E9%83%A8%E4%BD%BF%E7%94%A8"><span class="toc-number">4.0.4.0.1.</span> <span class="toc-text"> 需要注意的是  ..user1  必须在结构体的尾部使用。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E5%86%85%E5%AD%98%E6%8E%92%E5%88%97"><span class="toc-number">4.0.5.</span> <span class="toc-text"> 结构体的内存排列：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%BB%84%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">4.1.</span> <span class="toc-text"> 元组结构体：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">4.2.</span> <span class="toc-text"> 单元结构体：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE"><span class="toc-number">5.</span> <span class="toc-text"> 枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE-2"><span class="toc-number">5.1.</span> <span class="toc-text"> 枚举：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E5%80%BC"><span class="toc-number">5.2.</span> <span class="toc-text"> 枚举值：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E4%B8%80%E5%8C%96%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.3.</span> <span class="toc-text"> 同一化类型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#option%E6%9E%9A%E4%B8%BE%E7%94%A8%E4%BA%8E%E5%A4%84%E7%90%86%E7%A9%BA%E5%80%BC"><span class="toc-number">5.4.</span> <span class="toc-text"> option 枚举用于处理空值：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#rust-%E7%9A%84%E5%81%9A%E6%B3%95-optiont"><span class="toc-number">5.4.0.1.</span> <span class="toc-text"> Rust 的做法 ——  Option&lt;T&gt;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%E5%AE%9A%E4%B9%89-optiont-%E5%8F%98%E9%87%8F"><span class="toc-number">5.4.0.2.</span> <span class="toc-text"> 例子：定义  Option&lt;T&gt;  变量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-optiont-%E6%AF%94-null-%E5%A5%BD"><span class="toc-number">5.4.0.3.</span> <span class="toc-text"> 为什么  Option&lt;T&gt;  比  null  好？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8F%96%E5%87%BA-optiont-%E7%9A%84%E5%80%BC"><span class="toc-number">5.4.0.4.</span> <span class="toc-text"> 如何取出  Option&lt;T&gt;  的值？</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">6.</span> <span class="toc-text"> 数组</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text"> Rust 学习笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E"><span class="toc-number">1.1.</span> <span class="toc-text"> 变量声明：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text"> 数值类型：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 整数类型：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E5%9E%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 浮点型：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 运算:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="toc-number">1.2.4.</span> <span class="toc-text"> 位运算：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BA%8F%E5%88%97"><span class="toc-number">1.2.5.</span> <span class="toc-text"> 序列（***）：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#as%E5%AE%8C%E6%88%90%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.2.6.</span> <span class="toc-text"> AS 完成类型转换：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%B8%83%E5%B0%94%E5%8D%95%E5%85%83%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.7.</span> <span class="toc-text"> 字符，布尔，单元类型：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E5%8F%A5%E4%B8%8E%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">1.2.8.</span> <span class="toc-text"> 语句与表达式：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">2.</span> <span class="toc-text"> 函数：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%9D%83%E4%B8%8E%E5%80%9F%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text"> 所有权与借用：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%9D%83"><span class="toc-number">2.1.1.</span> <span class="toc-text"> 所有权：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A0%88%E4%B8%8E%E5%A0%86"><span class="toc-number">2.1.1.1.</span> <span class="toc-text"> 栈与堆：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%A0%88"><span class="toc-number">2.1.1.1.1.</span> <span class="toc-text"> 栈：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%A0%86"><span class="toc-number">2.1.1.1.2.</span> <span class="toc-text"> 堆：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E5%8C%BA%E5%88%AB"><span class="toc-number">2.1.1.1.3.</span> <span class="toc-text"> 性能区别：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%9D%83%E4%B8%8E%E5%A0%86%E6%A0%88"><span class="toc-number">2.1.1.1.4.</span> <span class="toc-text"> 所有权与堆栈</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%89%80%E6%9C%89%E6%9D%83%E5%8E%9F%E5%88%99"><span class="toc-number">2.1.1.2.</span> <span class="toc-text"> 所有权原则：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%BB%91%E5%AE%9A%E8%83%8C%E5%90%8E%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92"><span class="toc-number">2.1.1.2.1.</span> <span class="toc-text"> 变量绑定背后的数据交互：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E4%B8%8E%E8%A7%A3%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.2.</span> <span class="toc-text"> 引用与解引用</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.2.0.1.</span> <span class="toc-text"> 不可变引用：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%8F%AF%E5%8F%98%E5%BC%95%E7%94%A8"><span class="toc-number">2.1.2.0.2.</span> <span class="toc-text"> 可变引用：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%BF%99%E4%B8%A4%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB"><span class="toc-number">2.1.2.0.3.</span> <span class="toc-text"> 这两者的区别与联系:</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%AC%E5%9E%82%E5%BC%95%E7%94%A8dangling-references"><span class="toc-number">2.2.</span> <span class="toc-text"> 悬垂引用 (Dangling References)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%80%9F%E7%94%A8%E8%A7%84%E5%88%99%E6%80%BB%E7%BB%93"><span class="toc-number">2.2.0.0.1.</span> <span class="toc-text"> 借用规则总结</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text"> 复合类型：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E5%88%87%E7%89%87"><span class="toc-number">2.3.1.</span> <span class="toc-text"> 字符串与切片：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.3.1.1.</span> <span class="toc-text"> 字符串：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%87%E7%89%87"><span class="toc-number">2.3.1.2.</span> <span class="toc-text"> 切片：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#string%E4%B8%8Estr%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.3.1.3.</span> <span class="toc-text"> String 与 &amp; str 的转换：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B4%A2%E5%BC%95"><span class="toc-number">2.3.2.</span> <span class="toc-text"> 字符串索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B7%B1%E5%85%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%86%85%E9%83%A8"><span class="toc-number">2.3.3.</span> <span class="toc-text"> 深入字符串内部</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E4%B8%8D%E5%90%8C%E8%A1%A8%E7%8E%B0%E5%BD%A2%E5%BC%8F"><span class="toc-number">2.3.4.</span> <span class="toc-text"> 字符串的不同表现形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%87%E7%89%87"><span class="toc-number">2.3.5.</span> <span class="toc-text"> 字符串切片</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%93%8D%E4%BD%9C"><span class="toc-number">2.4.</span> <span class="toc-text"> 字符串操作（***）：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%BD%E5%8A%A0-push"><span class="toc-number">2.4.1.</span> <span class="toc-text"> 追加 (Push)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%92%E5%85%A5-insert"><span class="toc-number">2.4.2.</span> <span class="toc-text"> 插入 (Insert)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2-replace"><span class="toc-number">2.4.3.</span> <span class="toc-text"> 替换 (Replace)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4-delete"><span class="toc-number">2.4.4.</span> <span class="toc-text"> 删除 (Delete)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5-concatenate"><span class="toc-number">2.4.5.</span> <span class="toc-text"> 连接 (Concatenate)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E4%B9%89"><span class="toc-number">2.5.</span> <span class="toc-text"> 字符串转义：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6"><span class="toc-number">2.5.1.</span> <span class="toc-text"> 字符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E8%8A%82"><span class="toc-number">2.5.2.</span> <span class="toc-text"> 字节</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%AD%90%E4%B8%B2"><span class="toc-number">2.5.3.</span> <span class="toc-text"> 获取子串</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%B7%B1%E5%BA%A6%E5%89%96%E6%9E%90"><span class="toc-number">2.6.</span> <span class="toc-text"> 字符串深度剖析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E7%BB%84"><span class="toc-number">3.</span> <span class="toc-text"> 元组：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-number">3.0.1.</span> <span class="toc-text"> 语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="toc-number">3.0.2.</span> <span class="toc-text"> 模式匹配：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E8%AE%BF%E9%97%AE%E5%85%83%E7%BB%84"><span class="toc-number">3.0.3.</span> <span class="toc-text"> 用。访问元组</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">4.</span> <span class="toc-text"> 结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95-2"><span class="toc-number">4.0.1.</span> <span class="toc-text"> 语法:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8%E8%AE%BF%E9%97%AE%E7%BB%93%E6%9E%84%E4%BD%93%E5%AD%97%E6%AE%B5"><span class="toc-number">4.0.2.</span> <span class="toc-text"> 用。访问结构体字段：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8C%96%E7%BB%93%E6%9E%84%E4%BD%93%E5%88%9B%E5%BB%BA"><span class="toc-number">4.0.3.</span> <span class="toc-text"> 简化结构体创建：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E6%9B%B4%E6%96%B0%E8%AF%AD%E6%B3%95"><span class="toc-number">4.0.4.</span> <span class="toc-text"> 结构体更新语法：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E6%98%AF-user1-%E5%BF%85%E9%A1%BB%E5%9C%A8%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E5%B0%BE%E9%83%A8%E4%BD%BF%E7%94%A8"><span class="toc-number">4.0.4.0.1.</span> <span class="toc-text"> 需要注意的是  ..user1  必须在结构体的尾部使用。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E5%86%85%E5%AD%98%E6%8E%92%E5%88%97"><span class="toc-number">4.0.5.</span> <span class="toc-text"> 结构体的内存排列：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%BB%84%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">4.1.</span> <span class="toc-text"> 元组结构体：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-number">4.2.</span> <span class="toc-text"> 单元结构体：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE"><span class="toc-number">5.</span> <span class="toc-text"> 枚举</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE-2"><span class="toc-number">5.1.</span> <span class="toc-text"> 枚举：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E5%80%BC"><span class="toc-number">5.2.</span> <span class="toc-text"> 枚举值：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%8C%E4%B8%80%E5%8C%96%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.3.</span> <span class="toc-text"> 同一化类型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#option%E6%9E%9A%E4%B8%BE%E7%94%A8%E4%BA%8E%E5%A4%84%E7%90%86%E7%A9%BA%E5%80%BC"><span class="toc-number">5.4.</span> <span class="toc-text"> option 枚举用于处理空值：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#rust-%E7%9A%84%E5%81%9A%E6%B3%95-optiont"><span class="toc-number">5.4.0.1.</span> <span class="toc-text"> Rust 的做法 ——  Option&lt;T&gt;</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BE%8B%E5%AD%90%E5%AE%9A%E4%B9%89-optiont-%E5%8F%98%E9%87%8F"><span class="toc-number">5.4.0.2.</span> <span class="toc-text"> 例子：定义  Option&lt;T&gt;  变量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-optiont-%E6%AF%94-null-%E5%A5%BD"><span class="toc-number">5.4.0.3.</span> <span class="toc-text"> 为什么  Option&lt;T&gt;  比  null  好？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%8F%96%E5%87%BA-optiont-%E7%9A%84%E5%80%BC"><span class="toc-number">5.4.0.4.</span> <span class="toc-text"> 如何取出  Option&lt;T&gt;  的值？</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84"><span class="toc-number">6.</span> <span class="toc-text"> 数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%88%87%E7%89%87"><span class="toc-number">6.1.</span> <span class="toc-text"> 数组切片：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">7.</span> <span class="toc-text"> 流程控制</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
         <ul>
@@ -785,19 +803,19 @@ let none = plus_one(None); // 仍然是 None
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">166</span>
+        <span class="count">179</span>
         <span class="name">posts</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">11</span>
+        <span class="count">13</span>
         <span class="name">categories</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">134</span>
+        <span class="count">141</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -822,10 +840,12 @@ let none = plus_one(None); // 仍然是 None
 
   <ul id="quick">
     <li class="prev pjax">
+        <a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
+        <a href="/2025/04/07/http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -847,9 +867,40 @@ let none = plus_one(None); // 仍然是 None
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
 </div>
 
-    <span><a href="/2024/07/13/2020-Roamphp1-Welcome/" title="2020]Roamphp1-Welcome">2020]Roamphp1-Welcome</a></span>
+    <span><a href="/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/" title="[PwnThyBytes——2019]Baby_SQL">[PwnThyBytes——2019]Baby_SQL</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/07/24/MRCTF2020-Ezaudit/" title="[MRCTF2020]Ezaudit">[MRCTF2020]Ezaudit</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/03/25/upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%AC%94%E8%AE%B0/" title="upload文件上传靶场学习笔记">upload文件上传靶场学习笔记</a></span>
   </li>
 
       
@@ -869,7 +920,7 @@ let none = plus_one(None); // 仍然是 None
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/08/HarekazeCTF2019-Sqlite-Voting/" title="[HarekazeCTF2019]Sqlite-Voting">[HarekazeCTF2019]Sqlite-Voting</a></span>
+    <span><a href="/2024/07/29/ISITDTU2019-EasyPHP/" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></span>
   </li>
 
       
@@ -879,7 +930,26 @@ let none = plus_one(None); // 仍然是 None
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/" title="&#39;[GWCTF 2019]枯燥的抽奖&#39;">'[GWCTF 2019]枯燥的抽奖'</a></span>
+    <span><a href="/2024/06/21/Again/" title="[WMCTF2020]Make PHP Great Again">[WMCTF2020]Make PHP Great Again</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/10/07/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" title="反序列化漏洞总结">反序列化漏洞总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/07/http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E/" title="http请求走私漏洞">http请求走私漏洞</a></span>
   </li>
 
       
@@ -889,57 +959,7 @@ let none = plus_one(None); // 仍然是 None
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/10/15/SWPU2019-Web3/" title="[SWPU2019]Web3">[SWPU2019]Web3</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/11/05/WMCTF2020-Web-Check-in-2-0/" title="[WMCTF2020]Web-Check-in-2.0">[WMCTF2020]Web-Check-in-2.0</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/04/29/5-txt/" title="buuctf4月29日">buuctf4月29日</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/05/05/5%E6%9C%885%E6%97%A5buu/" title="buuctf5月5日">buuctf5月5日</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" title="[HarekazeCTF2019]encode_and_encode">[HarekazeCTF2019]encode_and_encode</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" title="[安洵杯2019]不是文件上传">[安洵杯2019]不是文件上传</a></span>
+    <span><a href="/2024/06/16/GYCTF2020-EasyThinking/" title="[GYCTF2020]EasyThinking">[GYCTF2020]EasyThinking</a></span>
   </li>
 
   </ul>

@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://odiws.github.io</id>
+    <title>Hexo • Posts by &#34;字频统计&#34; tag</title>
+    <link href="http://odiws.github.io" />
+    <updated>2025-05-06T12:32:03.000Z</updated>
+    <category term="system_file" />
+    <category term="buuctf" />
+    <category term="文件内无字符rce" />
+    <category term="ctf" />
+    <category term="php绕过open_basedir设置" />
+    <category term="无字母rce" />
+    <category term="sql文件读取" />
+    <category term="文件上传" />
+    <category term="xxe" />
+    <category term="xml_upload" />
+    <category term="php反序列化" />
+    <category term="http" />
+    <category term="php原生类利用" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
+    <category term="cms框架" />
+    <category term="mongodb注入" />
+    <category term="python" />
+    <category term="buuctf，无字符rce" />
+    <category term="条件竞争：利用session.upload_progress" />
+    <category term="misc" />
+    <category term="图片" />
+    <category term="buuctf， 反序列化" />
+    <category term="CRC" />
+    <category term="ECB加密" />
+    <category term="json数据爬虫" />
+    <category term="regexp注入" />
+    <category term="js" />
+    <category term="preg_match绕过" />
+    <category term="$_server query_string 绕过" />
+    <category term="$_request绕过" />
+    <category term="file_get_cotents绕过" />
+    <category term="sha1函数比较数组绕过" />
+    <category term="create_function运用" />
+    <category term="flask的session伪造" />
+    <category term="buuctf，Perl后端文件上传" />
+    <category term="flask" />
+    <category term="二次渲染" />
+    <category term="sql注入" />
+    <category term="php绕过open_opedir设置" />
+    <category term="TOTP" />
+    <category term="rce" />
+    <category term="ssti" />
+    <category term="c的预处理" />
+    <category term="javaweb" />
+    <category term="图片类" />
+    <category term="xss攻击" />
+    <category term="insert截断" />
+    <category term="爬虫" />
+    <category term="反序列化字符串逃逸" />
+    <category term="thinkphpV6.0.0" />
+    <category term="sql injection" />
+    <category term="字频统计" />
+    <category term="phar反序列化" />
+    <category term="ssrf" />
+    <category term="HTTP走私攻击" />
+    <category term="zip软链接" />
+    <category term="python_seed函数" />
+    <category term="js原型链污染" />
+    <category term="未理解" />
+    <category term="session伪造" />
+    <category term="js-vm沙箱逃逸" />
+    <category term="ssti-smarty3.1.39" />
+    <category term="session反序列化" />
+    <category term="命令执行" />
+    <category term="对sqlite的sql注入" />
+    <category term="willphp2.2" />
+    <category term="json数据unicode转码绕过" />
+    <category term="利用.htaccess构成后门" />
+    <category term="通过php_value来设置preg_macth正则回溯次数" />
+    <category term="文件上传(头像上传)" />
+    <category term="Go" />
+    <category term="伪随机数" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
+    <category term="异或" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="信息搜集（js，网络）" />
+    <category term="sqlmap" />
+    <category term="pydash" />
+    <category term="xpath注入" />
+    <category term="文件包含" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
+    <category term="sqlmap使用" />
+    <category term="SQL注入" />
+    <category term="php伪协议" />
+    <category term="pearcmd文件包含" />
+    <category term="密码爆破" />
+    <category term="sql盲注" />
+    <category term="thinkphp3.2.4" />
+    <category term="php7.4" />
+    <category term="FFI预处理" />
+    <category term="jwt" />
+    <category term="MD5碰撞" />
+    <category term="jwt密码爆破" />
+    <category term="cms" />
+    <category term="sql二次注入" />
+    <category term="create_function()函数" />
+    <category term="音频类" />
+    <category term="敲击码" />
+    <category term="010编码" />
+    <category term="rc4" />
+    <category term="CRLF" />
+    <category term="jwt身份验证" />
+    <category term="test" />
+    <category term="tag2" />
+    <category term="NTFs数据流" />
+    <category term="require_once函数" />
+    <category term="phpexit绕过" />
+    <category term="PDO堆叠注入" />
+    <category term="php7 segment fault特性" />
+    <category term="vulhub" />
+    <category term="ActiveMQ" />
+    <category term="pickle反序列化" />
+    <category term="buuctf， 伪随机数" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="ctf工具安装教程" />
+    <category term="java" />
+    <category term="java反序列化" />
+    <category term="php" />
+    <category term="mysql" />
+    <category term="rust" />
+    <category term="python原型链污染" />
+    <category term="任意文件读取" />
+    <category term="sqlע��" />
+    <category term="xss" />
+    <category term="zip加密" />
+    <category term="shell反弹" />
+    <category term="F5隐写" />
+    <category term="302跳转" />
+    <category term="无字符rce" />
+    <category term="php伪协议+文件上传" />
+    <category term="反序列化" />
+    <category term="hash_hamc函数" />
+    <category term="取反异或" />
+    <category term="fastcgi-php-FPM" />
+    <category term="disable_function" />
+    <category term="流量分析" />
+    <category term="jpg特征" />
+    <category term="nodejs" />
+    <entry>
+        <id>http://odiws.github.io/2025/05/06/GXYCTF2019-gakki/</id>
+        <title>[GXYCTF2019]gakki</title>
+        <link rel="alternate" href="http://odiws.github.io/2025/05/06/GXYCTF2019-gakki/"/>
+        <content type="html">&lt;h2 id=&#34;gxyctf2019gakki&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gxyctf2019gakki&#34;&gt;#&lt;/a&gt; [GXYCTF2019]gakki&lt;/h2&gt;
+&lt;p&gt;前面就是 foremost 分离，然后就是压缩包爆破密码，然后得到 flag.txt&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062033736.png&#34; alt=&#34;image-20250506203349595&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获得大量字符：&lt;/p&gt;
+&lt;p&gt;想到字频解码脚本：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# -*- coding:utf-8 -*-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#Author: mochu7&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;alphabet &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&amp;amp;*()_+- =\\&amp;#123;\\&amp;#125;[]&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;strings &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;./flag.txt&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;read&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;result &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; alphabet&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	counts &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; strings&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;count&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;&amp;#123;0&amp;#125;&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	result&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; counts&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;res &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;sorted&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;result&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;items&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;key&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;lambda&lt;/span&gt; item&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;item&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;reverse&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; data &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; res&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;data&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; res&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	flag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;flag&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;end&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062038576.png&#34; alt=&#34;image-20250506203856465&#34;&gt;&lt;/p&gt;
+</content>
+        <category term="字频统计" />
+        <updated>2025-05-06T12:32:03.000Z</updated>
+    </entry>
+</feed>

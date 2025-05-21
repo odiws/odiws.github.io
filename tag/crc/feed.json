@@ -5,6 +5,16 @@
     "home_page_url": "http://odiws.github.io",
     "items": [
         {
+            "id": "http://odiws.github.io/2025/05/06/MRCTF2020-ezmisc/",
+            "url": "http://odiws.github.io/2025/05/06/MRCTF2020-ezmisc/",
+            "title": "[MRCTF2020]ezmisc",
+            "date_published": "2025-05-06T12:21:00.000Z",
+            "content_html": "<h2 id=\"mrctf2020ezmisc\"><a class=\"markdownIt-Anchor\" href=\"#mrctf2020ezmisc\">#</a> [MRCTF2020]ezmisc</h2>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062022926.png\" alt=\"image-20250506202221806\"></p>\n<p>放进 010 看一下</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062023436.png\" alt=\"image-20250506202324305\"></p>\n<p>有这个 CRC 的问题提示：<br>\n修改宽高：</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062024262.png\" alt=\"image-20250506202424168\"></p>\n<p>【</p>\n<p><img data-src=\"https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062024797.png\" alt=\"image-20250506202432709\"></p>\n<pre><code>flag&#123;1ts_vEryyyyyy_ez!&#125;\n</code></pre>\n",
+            "tags": [
+                "CRC"
+            ]
+        },
+        {
             "id": "http://odiws.github.io/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/",
             "url": "http://odiws.github.io/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/",
             "title": "[BJDCTF2020]一叶障目",

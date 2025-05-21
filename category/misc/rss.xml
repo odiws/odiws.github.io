@@ -5,142 +5,289 @@
         <link>http://odiws.github.io</link>
         <description></description>
         <language>en</language>
-        <pubDate>Mon, 10 Mar 2025 22:19:25 +0800</pubDate>
-        <lastBuildDate>Mon, 10 Mar 2025 22:19:25 +0800</lastBuildDate>
-        <category>buuctf</category>
+        <pubDate>Wed, 21 May 2025 13:12:59 +0800</pubDate>
+        <lastBuildDate>Wed, 21 May 2025 13:12:59 +0800</lastBuildDate>
         <category>system_file</category>
-        <category>sql文件读取</category>
+        <category>buuctf</category>
         <category>文件内无字符rce</category>
-        <category>文件上传</category>
+        <category>ctf</category>
         <category>php绕过open_basedir设置</category>
         <category>无字母rce</category>
-        <category>ctf</category>
-        <category>php原生类利用</category>
+        <category>sql文件读取</category>
+        <category>文件上传</category>
+        <category>xxe</category>
+        <category>xml_upload</category>
         <category>php反序列化</category>
-        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
         <category>http</category>
+        <category>php原生类利用</category>
+        <category>md5()和sha1()对类进行hash 触发__toString方法</category>
         <category>cms框架</category>
-        <category>python</category>
         <category>mongodb注入</category>
+        <category>python</category>
+        <category>buuctf，无字符rce</category>
         <category>条件竞争：利用session.upload_progress</category>
+        <category>misc</category>
+        <category>图片</category>
+        <category>buuctf， 反序列化</category>
+        <category>CRC</category>
+        <category>ECB加密</category>
+        <category>json数据爬虫</category>
+        <category>regexp注入</category>
+        <category>js</category>
         <category>preg_match绕过</category>
         <category>$_server query_string 绕过</category>
         <category>$_request绕过</category>
         <category>file_get_cotents绕过</category>
         <category>sha1函数比较数组绕过</category>
         <category>create_function运用</category>
-        <category>buuctf， 反序列化</category>
-        <category>regexp注入</category>
-        <category>ECB加密</category>
-        <category>php7 segment fault特性</category>
-        <category>json数据爬虫</category>
-        <category>phar反序列化</category>
-        <category>js</category>
-        <category>CRLF Injection</category>
-        <category>soap</category>
-        <category>pickle反序列化</category>
-        <category>thinkphpV6.0.0</category>
-        <category>buuctf， 伪随机数</category>
-        <category>zip加密</category>
-        <category>xxe</category>
-        <category>xml_upload</category>
         <category>flask的session伪造</category>
-        <category>二次渲染</category>
         <category>buuctf，Perl后端文件上传</category>
-        <category>buuctf，xxe漏洞</category>
-        <category>java</category>
         <category>flask</category>
-        <category>ctf工具安装教程</category>
+        <category>二次渲染</category>
         <category>sql注入</category>
         <category>php绕过open_opedir设置</category>
         <category>TOTP</category>
         <category>rce</category>
         <category>ssti</category>
-        <category>insert截断</category>
-        <category>xss攻击</category>
         <category>c的预处理</category>
+        <category>javaweb</category>
         <category>图片类</category>
+        <category>xss攻击</category>
+        <category>insert截断</category>
         <category>爬虫</category>
-        <category>js原型链污染</category>
         <category>反序列化字符串逃逸</category>
+        <category>thinkphpV6.0.0</category>
         <category>sql injection</category>
-        <category>文件上传(头像上传)</category>
-        <category>session反序列化</category>
+        <category>字频统计</category>
+        <category>phar反序列化</category>
         <category>ssrf</category>
         <category>HTTP走私攻击</category>
-        <category>json数据unicode转码绕过</category>
-        <category>对sqlite的sql注入</category>
-        <category>未理解</category>
-        <category>命令执行</category>
         <category>zip软链接</category>
         <category>python_seed函数</category>
+        <category>js原型链污染</category>
+        <category>未理解</category>
         <category>session伪造</category>
         <category>js-vm沙箱逃逸</category>
-        <category>willphp2.2</category>
         <category>ssti-smarty3.1.39</category>
-        <category>./htaccess文件上传</category>
-        <category>php未解析</category>
-        <category>利用环境变量构造bash命令</category>
+        <category>session反序列化</category>
+        <category>命令执行</category>
+        <category>对sqlite的sql注入</category>
+        <category>willphp2.2</category>
+        <category>json数据unicode转码绕过</category>
         <category>利用.htaccess构成后门</category>
         <category>通过php_value来设置preg_macth正则回溯次数</category>
-        <category>java反序列化</category>
+        <category>文件上传(头像上传)</category>
+        <category>Go</category>
         <category>伪随机数</category>
-        <category>mysql</category>
-        <category>信息搜集（js，网络）</category>
+        <category>./htaccess文件上传</category>
+        <category>php未解析</category>
         <category>异或</category>
-        <category>密码爆破</category>
+        <category>利用环境变量构造bash命令</category>
+        <category>信息搜集（js，网络）</category>
+        <category>sqlmap</category>
+        <category>pydash</category>
+        <category>xpath注入</category>
+        <category>文件包含</category>
+        <category>Padding oracle attack 与CBC翻转字节攻击</category>
         <category>sqlmap使用</category>
         <category>SQL注入</category>
-        <category>文件包含</category>
         <category>php伪协议</category>
         <category>pearcmd文件包含</category>
-        <category>xpath注入</category>
-        <category>Padding oracle attack 与CBC翻转字节攻击</category>
-        <category>php</category>
+        <category>密码爆破</category>
         <category>sql盲注</category>
+        <category>thinkphp3.2.4</category>
         <category>php7.4</category>
         <category>FFI预处理</category>
-        <category>thinkphp3.2.4</category>
         <category>jwt</category>
-        <category>sql二次注入</category>
         <category>MD5碰撞</category>
         <category>jwt密码爆破</category>
         <category>cms</category>
+        <category>sql二次注入</category>
         <category>create_function()函数</category>
-        <category>sqlע��</category>
-        <category>jwt身份验证</category>
+        <category>音频类</category>
+        <category>敲击码</category>
+        <category>010编码</category>
         <category>rc4</category>
         <category>CRLF</category>
-        <category>任意文件读取</category>
-        <category>PDO堆叠注入</category>
+        <category>jwt身份验证</category>
         <category>test</category>
         <category>tag2</category>
-        <category>shell反弹</category>
-        <category>phpexit绕过</category>
+        <category>NTFs数据流</category>
         <category>require_once函数</category>
-        <category>xss</category>
-        <category>302跳转</category>
-        <category>反序列化</category>
-        <category>F5隐写</category>
-        <category>php伪协议+文件上传</category>
-        <category>无字符rce</category>
-        <category>fastcgi-php-FPM</category>
-        <category>disable_function</category>
-        <category>nodejs</category>
-        <category>hash_hamc函数</category>
-        <category>取反异或</category>
-        <category>misc</category>
-        <category>图片</category>
-        <category>CRC</category>
+        <category>phpexit绕过</category>
+        <category>PDO堆叠注入</category>
+        <category>php7 segment fault特性</category>
         <category>vulhub</category>
         <category>ActiveMQ</category>
-        <category>javaweb</category>
-        <category>Go</category>
-        <category>sqlmap</category>
-        <category>pydash</category>
+        <category>pickle反序列化</category>
+        <category>buuctf， 伪随机数</category>
+        <category>buuctf，xxe漏洞</category>
+        <category>CRLF Injection</category>
+        <category>soap</category>
+        <category>ctf工具安装教程</category>
+        <category>java</category>
+        <category>java反序列化</category>
+        <category>php</category>
+        <category>mysql</category>
         <category>rust</category>
+        <category>python原型链污染</category>
+        <category>任意文件读取</category>
+        <category>sqlע��</category>
+        <category>xss</category>
+        <category>zip加密</category>
+        <category>shell反弹</category>
+        <category>F5隐写</category>
+        <category>302跳转</category>
+        <category>无字符rce</category>
+        <category>php伪协议+文件上传</category>
+        <category>反序列化</category>
+        <category>hash_hamc函数</category>
+        <category>取反异或</category>
+        <category>fastcgi-php-FPM</category>
+        <category>disable_function</category>
         <category>流量分析</category>
         <category>jpg特征</category>
+        <category>nodejs</category>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/</guid>
+            <title>[SWPU2019]你有没有好好看网课?</title>
+            <link>http://odiws.github.io/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/</link>
+            <category>音频类</category>
+            <category>敲击码</category>
+            <pubDate>Wed, 21 May 2025 13:12:59 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;swpu2019你有没有好好看网课&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#swpu2019你有没有好好看网课&#34;&gt;#&lt;/a&gt; [SWPU2019] 你有没有好好看网课？&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211314744.png&#34; alt=&#34;image-20250521131427598&#34;&gt;&lt;/p&gt;
+&lt;p&gt;打开有两个文件，需要解压，先考虑是不是伪加密，好像不是&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211315789.png&#34; alt=&#34;image-20250521131551618&#34;&gt;&lt;/p&gt;
+&lt;p&gt;若是伪加密，就是 00 00，01 的意思就是确实是加密了&lt;/p&gt;
+&lt;p&gt;flag3 给了解压密码提示：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211318785.png&#34; alt=&#34;image-20250521131803710&#34;&gt;&lt;/p&gt;
+&lt;p&gt;掩码一下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211318219.png&#34; alt=&#34;image-20250521131837104&#34;&gt;&lt;/p&gt;
+&lt;p&gt;拿到密码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;183792
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;解压出来就是一个 docx 文件和一个音频文件&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211319682.png&#34; alt=&#34;image-20250521131925403&#34;&gt;&lt;/p&gt;
+&lt;p&gt;给了 5.20，711 的提示，估计是在文件的 5.20-7.11 之间有个提示，可以看一下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211329602.png&#34; alt=&#34;image-20250521132952365&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在 5.63 秒这里有一个信息&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;..... ../... ./... ./... ../
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;敲击码&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#敲击码&#34;&gt;#&lt;/a&gt; 敲击码&lt;/h4&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211336384.png&#34; alt=&#34;image-20250521133622307&#34;&gt;&lt;/p&gt;
+&lt;p&gt;以 / 为划分：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;..... ../... ./... ./... ../
+  5,2     3,1    3,1    3,2
+   W       L      L      M
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在 7.33 这里又找到了一个信息：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211331837.png&#34; alt=&#34;image-20250521133157642&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;dXBfdXBfdXA=
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;C:\Users\86182&amp;gt;php -r &amp;quot;var_dump(base64_decode(&#39;dXBfdXBfdXA=&#39;));&amp;quot;
+Command line code:1:
+string(8) &amp;quot;up_up_up&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;联合一下就是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;wllmup_up_up
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;解压搜 flag 可得：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505211337168.png&#34; alt=&#34;image-20250521133755090&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;swpuctf&amp;#123;A2e_Y0u_Ok?&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;参考链接：&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21vY2h1Nzc3Nzc3Ny9hcnRpY2xlL2RldGFpbHMvMTA5NDQ5NDk0&#34;&gt;https://blog.csdn.net/mochu7777777/article/details/109449494&lt;/span&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/</guid>
+            <title>[SWPU2019]伟大的侦探</title>
+            <link>http://odiws.github.io/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/</link>
+            <category>010编码</category>
+            <pubDate>Tue, 06 May 2025 21:10:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;swpu2019伟大的侦探&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#swpu2019伟大的侦探&#34;&gt;#&lt;/a&gt; [SWPU2019] 伟大的侦探&lt;/h1&gt;
+&lt;p&gt;解压不能全部解压，而且不能直接爆破，我们就可以看看解压了的文件，有个密码.txt，直接打开是乱码，010 打开也是乱码，但是&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062112601.png&#34; alt=&#34;image-20250506211212495&#34;&gt;&lt;/p&gt;
+&lt;p&gt;像这样子换成 EDBCDIC 编码就可以看见解码密码了&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062113492.png&#34; alt=&#34;image-20250506211316436&#34;&gt;&lt;/p&gt;
+&lt;p&gt;得到 misc 里面的内容：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062114266.png&#34; alt=&#34;image-20250506211435154&#34;&gt;&lt;/p&gt;
+&lt;p&gt;题目是伟大的侦探，和侦探有关系，可以想到福尔摩斯小人密码&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062115459.png&#34; alt=&#34;image-20250506211536352&#34;&gt;&lt;/p&gt;
+&lt;p&gt;对比一下就好了&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;flag&amp;#123;iloveholmesandwllm&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/05/06/BUUCTF%EF%BC%9A%E9%BB%91%E5%AE%A2%E5%B8%9D%E5%9B%BD/</guid>
+            <title>BUUCTF：黑客帝国</title>
+            <link>http://odiws.github.io/2025/05/06/BUUCTF%EF%BC%9A%E9%BB%91%E5%AE%A2%E5%B8%9D%E5%9B%BD/</link>
+            <pubDate>Tue, 06 May 2025 20:52:49 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;黑客帝国&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#黑客帝国&#34;&gt;#&lt;/a&gt; 黑客帝国&lt;/h2&gt;
+&lt;p&gt;打开附件就是一个 txt 文件，&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062054057.png&#34; alt=&#34;image-20250506205445935&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062055348.png&#34; alt=&#34;image-20250506205508287&#34;&gt;&lt;/p&gt;
+&lt;p&gt;刚好是一样的&lt;/p&gt;
+&lt;p&gt;就可以将这个内容写到一个 rar 文件中&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; binascii&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;hex_data &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;文件内容&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;out &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;res.rar&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;wb&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;out&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;write&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;binascii&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;unhexlify&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;hex_data&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;out&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;close&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;写到里面解压爆破密码是 3690：&lt;/p&gt;
+&lt;p&gt;得到是一个 jpg 文件，010 查看：&lt;br&gt;
+&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062058016.png&#34; alt=&#34;image-20250506205824941&#34;&gt;&lt;/p&gt;
+&lt;p&gt;开头是 png，但是最后不是&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062058218.png&#34; alt=&#34;image-20250506205849184&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062059969.png&#34; alt=&#34;image-20250506205904810&#34;&gt;&lt;/p&gt;
+&lt;p&gt;可以试试是不是 jpg 文件&lt;/p&gt;
+&lt;p&gt;修改之前：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062101015.png&#34; alt=&#34;image-20250506210125888&#34;&gt;&lt;/p&gt;
+&lt;p&gt;修改之后：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062101552.png&#34; alt=&#34;image-20250506210102508&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062101876.png&#34; alt=&#34;image-20250506210157623&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;flag&amp;#123;57cd4cfd4e07505b98048ca106132125&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/05/06/GXYCTF2019-gakki/</guid>
+            <title>[GXYCTF2019]gakki</title>
+            <link>http://odiws.github.io/2025/05/06/GXYCTF2019-gakki/</link>
+            <category>字频统计</category>
+            <pubDate>Tue, 06 May 2025 20:32:03 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;gxyctf2019gakki&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#gxyctf2019gakki&#34;&gt;#&lt;/a&gt; [GXYCTF2019]gakki&lt;/h2&gt;
+&lt;p&gt;前面就是 foremost 分离，然后就是压缩包爆破密码，然后得到 flag.txt&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062033736.png&#34; alt=&#34;image-20250506203349595&#34;&gt;&lt;/p&gt;
+&lt;p&gt;获得大量字符：&lt;/p&gt;
+&lt;p&gt;想到字频解码脚本：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;# -*- coding:utf-8 -*-&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token comment&#34;&gt;#Author: mochu7&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;alphabet &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&amp;amp;*()_+- =\\&amp;#123;\\&amp;#125;[]&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;strings &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;./flag.txt&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;read&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;result &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; alphabet&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	counts &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; strings&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;count&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	i &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;&amp;#123;0&amp;#125;&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;format&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	result&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; counts&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;res &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;sorted&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;result&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;items&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;key&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;lambda&lt;/span&gt; item&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;item&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;reverse&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token boolean&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; data &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; res&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;data&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; res&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	flag &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;flag&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;end&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062038576.png&#34; alt=&#34;image-20250506203856465&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/05/06/MRCTF2020-ezmisc/</guid>
+            <title>[MRCTF2020]ezmisc</title>
+            <link>http://odiws.github.io/2025/05/06/MRCTF2020-ezmisc/</link>
+            <category>CRC</category>
+            <pubDate>Tue, 06 May 2025 20:21:00 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;mrctf2020ezmisc&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#mrctf2020ezmisc&#34;&gt;#&lt;/a&gt; [MRCTF2020]ezmisc&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062022926.png&#34; alt=&#34;image-20250506202221806&#34;&gt;&lt;/p&gt;
+&lt;p&gt;放进 010 看一下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062023436.png&#34; alt=&#34;image-20250506202324305&#34;&gt;&lt;/p&gt;
+&lt;p&gt;有这个 CRC 的问题提示：&lt;br&gt;
+修改宽高：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062024262.png&#34; alt=&#34;image-20250506202424168&#34;&gt;&lt;/p&gt;
+&lt;p&gt;【&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062024797.png&#34; alt=&#34;image-20250506202432709&#34;&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;flag&amp;#123;1ts_vEryyyyyy_ez!&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/</guid>
+            <title>[SWPU2019]我有一只马里奥</title>
+            <link>http://odiws.github.io/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/</link>
+            <category>NTFs数据流</category>
+            <pubDate>Tue, 06 May 2025 20:15:23 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;swpu2019我有一只马里奥&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#swpu2019我有一只马里奥&#34;&gt;#&lt;/a&gt; [SWPU2019] 我有一只马里奥&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062017708.png&#34; alt=&#34;image-20250506201700538&#34;&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/</guid>
             <title>[BJDCTF2020]一叶障目</title>
