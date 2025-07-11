@@ -88,12 +88,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?405533"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?262731"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?336445"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?940873"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?310141"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?15313"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?709698"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?451899"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?73483"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?138901"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?377685"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?733597"></li>
         </ul>
       </div>
     </header>
@@ -119,7 +119,50 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" itemprop="url" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;"><img data-src="https://www.loliapi.com/acg/?19993"></a>
+    <a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;"><img data-src="https://www.loliapi.com/acg/?342720"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-06-06 21:19:01">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-06-06T21:19:01+08:00">2024-06-06</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;">'[NCTF2019]SQLi'</a></h3>
+    <div class="excerpt">
+        # [NCTF2019]SQLi
+源码泄露：
+
+找到 hint.php
+目的明确：
+只要密码是 admin 的密码就可以获得 flag
+得到提示，这题过滤了好多关键字，只要 password 的密码等于 admin 的密码就能拿到 flag 了，但是怎么拿呢？看了 dalao 的 wp 才发现有 regexp 注入
+# regexp 注入（正则注入）
+这个注入方式呢相当于布尔盲注吧，若是猜对了就返回正确的页面，我们本地测试一下正则，先看一下全部数据，然后 ^ 匹配 e 开头的 password
+
+再找个 a 开头的：没有
+
+分析
+回到题目里，提示给了串 SQL 语句
+select * from...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" itemprop="url" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;"><img data-src="https://www.loliapi.com/acg/?831447"></a>
   </div>
   <div class="info">
     
@@ -153,7 +196,7 @@ arjun 工具用于
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" itemprop="url" title="&#39;ctf工具总结&#39;"><img data-src="https://www.loliapi.com/acg/?416558"></a>
+    <a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" itemprop="url" title="&#39;ctf工具总结&#39;"><img data-src="https://www.loliapi.com/acg/?286205"></a>
   </div>
   <div class="info">
     
@@ -185,7 +228,7 @@ PHP 伪随机数漏洞，以及 php_mt_seed...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日"><img data-src="https://www.loliapi.com/acg/?279726"></a>
+    <a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日"><img data-src="https://www.loliapi.com/acg/?136736"></a>
   </div>
   <div class="info">
     
@@ -223,7 +266,7 @@ blacklist = [&#39; &#39;, &#39;\t&#39;, &#39;\r&#39;, &#39;\n&#39;,&#39;\&#39;&#
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日"><img data-src="https://www.loliapi.com/acg/?594219"></a>
+    <a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日"><img data-src="https://www.loliapi.com/acg/?406694"></a>
   </div>
   <div class="info">
     
@@ -291,7 +334,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">134</span>
+        <span class="count">135</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -353,10 +396,10 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/" title="[SWPU2019]伟大的侦探">[SWPU2019]伟大的侦探</a></span>
+    <span><a href="/2025/03/02/PyCalX-1/" title="PyCalX_1">PyCalX_1</a></span>
   </li>
 
       
@@ -366,37 +409,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/" title="[CISCN2019华东南赛区]Web4">[CISCN2019华东南赛区]Web4</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/09/26/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-Blackcat/" title="[羊城杯2020]Blackcat">[羊城杯2020]Blackcat</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/09/25/DDCTF2019-homebreweventloop/" title="[DDCTF2019]homebreweventloop">[DDCTF2019]homebreweventloop</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></span>
+    <span><a href="/2024/09/06/WMCTF2020-MakePHPGreatAgain2-0/" title="[WMCTF2020]MakePHPGreatAgain2.0">[WMCTF2020]MakePHPGreatAgain2.0</a></span>
   </li>
 
       
@@ -406,7 +419,27 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
 </div>
 
-    <span><a href="/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" title="aliyunctf部分复现">aliyunctf部分复现</a></span>
+    <span><a href="/2024/10/28/newstarctf2024/" title="newstarctf2024">newstarctf2024</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/23/HFCTF-2021-Final-hatenum/" title="[HFCTF_2021_Final]hatenum">[HFCTF_2021_Final]hatenum</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></span>
   </li>
 
       
@@ -425,7 +458,17 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></span>
+    <span><a href="/2024/11/14/NPUCTF2020-webdog/" title="NPUCTF2020webdog">NPUCTF2020webdog</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/" title="[SWPU2019]伟大的侦探">[SWPU2019]伟大的侦探</a></span>
   </li>
 
       
@@ -435,7 +478,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/09/BSidesCF2019-Sequel/" title="[BSidesCF2019]Sequel">[BSidesCF2019]Sequel</a></span>
+    <span><a href="/2024/08/11/SUCTF2018-MultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/" title="[SUCTF2018]MultiSQL-MySQL预处理学习">[SUCTF2018]MultiSQL-MySQL预处理学习</a></span>
   </li>
 
       
@@ -445,7 +488,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/31/GWCTF2019-mypassword/" title="[GWCTF2019]mypassword">[GWCTF2019]mypassword</a></span>
+    <span><a href="/2024/11/07/%E8%93%9D%E5%B8%BD%E6%9D%AF-2021-One-Pointer-PHP/" title="[蓝帽杯_2021]One_Pointer_PHP">[蓝帽杯_2021]One_Pointer_PHP</a></span>
   </li>
 
   </ul>
