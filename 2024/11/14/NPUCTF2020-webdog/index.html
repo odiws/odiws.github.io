@@ -1,0 +1,569 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="buuctf,Padding oracle attack 与CBC翻转字节攻击" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2024/11/14/NPUCTF2020-webdog/">
+
+
+
+  <title>
+[NPUCTF2020]webdog - 刷题笔记 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">[NPUCTF2020]webdog
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-11-14 19:21:52">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-11-14T19:21:52+08:00">2024-11-14</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?833098"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?14447"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?73382"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?987673"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?759363"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?152480"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 刷题笔记"><span itemprop="name">刷题笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/11/14/NPUCTF2020-webdog/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="npuctf2020webdog"><a class="anchor" href="#npuctf2020webdog">#</a> [NPUCTF2020]webdog</h2>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411141923070.png" alt="image-20241114192253842" /></p>
+<p>源码：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token php language-php"><span class="token delimiter important">&lt;?php</span> </pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">include</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'config.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment"># $key,$flag</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token function">define</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"METHOD"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"aes-128-cbc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 定义加密方式</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token function">define</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"SECRET_KEY"</span><span class="token punctuation">,</span> <span class="token variable">$key</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 定义密钥</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">define</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"IV"</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"6666666666666666"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 定义初始向量 16 个 6</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token function">define</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"BR"</span><span class="token punctuation">,</span><span class="token string single-quoted-string">'&lt;br>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'source'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token function">header</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'location:./index.php?source=1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token comment">#var_dump ($GLOBALS);   // 听说你想看这个？</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">function</span> <span class="token function-definition function">aes_encrypt</span><span class="token punctuation">(</span><span class="token variable">$iv</span><span class="token punctuation">,</span><span class="token variable">$data</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">echo</span> <span class="token string double-quoted-string">"--------encrypt---------"</span><span class="token operator">.</span><span class="token constant">BR</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token keyword">echo</span> <span class="token string single-quoted-string">'IV:'</span><span class="token operator">.</span><span class="token variable">$iv</span><span class="token operator">.</span><span class="token constant">BR</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token keyword">return</span> <span class="token function">base64_encode</span><span class="token punctuation">(</span><span class="token function">openssl_encrypt</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">,</span> <span class="token constant">METHOD</span><span class="token punctuation">,</span> <span class="token constant">SECRET_KEY</span><span class="token punctuation">,</span> <span class="token constant">OPENSSL_RAW_DATA</span><span class="token punctuation">,</span> <span class="token variable">$iv</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">.</span><span class="token constant">BR</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token keyword">function</span> <span class="token function-definition function">aes_decrypt</span><span class="token punctuation">(</span><span class="token variable">$iv</span><span class="token punctuation">,</span><span class="token variable">$data</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">return</span> <span class="token function">openssl_decrypt</span><span class="token punctuation">(</span><span class="token function">base64_decode</span><span class="token punctuation">(</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token constant">METHOD</span><span class="token punctuation">,</span><span class="token constant">SECRET_KEY</span><span class="token punctuation">,</span><span class="token constant">OPENSSL_RAW_DATA</span><span class="token punctuation">,</span><span class="token variable">$iv</span><span class="token punctuation">)</span> <span class="token keyword">or</span> <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'False'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'method'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string single-quoted-string">'encrypt'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>    <span class="token variable">$iv</span> <span class="token operator">=</span> <span class="token constant">IV</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token variable">$data</span> <span class="token operator">=</span> <span class="token variable">$flag</span><span class="token punctuation">;</span>    </pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token keyword">echo</span> <span class="token function">aes_encrypt</span><span class="token punctuation">(</span><span class="token variable">$iv</span><span class="token punctuation">,</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'method'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token string double-quoted-string">"decrypt"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="28"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token variable">$iv</span> <span class="token operator">=</span> @<span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'iv'</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>    <span class="token variable">$data</span> <span class="token operator">=</span> @<span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'data'</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token keyword">echo</span> <span class="token function">aes_decrypt</span><span class="token punctuation">(</span><span class="token variable">$iv</span><span class="token punctuation">,</span><span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="33"></td><td><pre><span class="token keyword">echo</span> <span class="token string double-quoted-string">"我摊牌了，就是懒得写前端"</span><span class="token operator">.</span><span class="token constant">BR</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="34"></td><td><pre></pre></td></tr><tr><td data-num="35"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'source'</span><span class="token punctuation">]</span><span class="token operator">==</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre><span class="token delimiter important">?></span></span></pre></td></tr></table></figure><h3 id="padding-oracle-attack-与cbc翻转字节攻击"><a class="anchor" href="#padding-oracle-attack-与cbc翻转字节攻击">#</a> Padding oracle attack 与 CBC 翻转字节攻击</h3>
+<h4 id="异或xor"><a class="anchor" href="#异或xor">#</a> 异或（XOR）</h4>
+<p>何为异或？异或是一种运算方法，简要概括就是同假异真</p>
+<p>代码语言：javascript</p>
+<p>复制</p>
+<figure class="highlight javascript"><figcaption data-lang="javascript"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token boolean">true</span> xor <span class="token boolean">true</span> <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token boolean">true</span> xor <span class="token boolean">false</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token literal-property property">在二进制中</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token number">011</span> xor <span class="token number">110</span> <span class="token operator">=</span> <span class="token number">101</span><span class="token punctuation">;</span> 二进制数每位数分别进行xor运算</pre></td></tr><tr><td data-num="5"></td><td><pre>上面算式的运算步骤是这样的 <span class="token number">0</span> xor <span class="token number">1</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span class="token number">1</span> xor <span class="token number">1</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token number">1</span> xor <span class="token number">0</span><span class="token operator">=</span><span class="token number">1</span></pre></td></tr><tr><td data-num="6"></td><td><pre>然后把运算结果写在一起就是<span class="token number">101</span>了</pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token literal-property property">在更高的进制中</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token literal-property property">以十进制为例</span><span class="token operator">:</span> <span class="token number">65</span> xor <span class="token number">42</span> <span class="token operator">=</span> <span class="token number">107</span><span class="token punctuation">;</span> 原理就是把十进制数字先变为二进制数进行异或，再将异或得到的二进制数结果变为十进制数</pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token literal-property property">在字符中</span><span class="token operator">:</span></pre></td></tr><tr><td data-num="12"></td><td><pre>对字符进行异或运算其实就是对字符的ascii码进行异或计算，计算得到的结果视作新的一个ascii码再将其转换为字符。</pre></td></tr></table></figure><p>xor 还有一个性质，就是 已知</p>
+<pre><code>a xor b = c 那么 b xor c =a; a xor c = b.
+</code></pre>
+<p>即满足异或运算里只需知道任意两个数就能得到另一个数。</p>
+<p>CBC 模式</p>
+<p>CBC 是一种加密模型，采用的是分组链接模式，把明文分为一组一组的进行加密</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411141934838.png" alt="image-20241114193437702" /></p>
+<p>上图为 CBC 加密流程，最开始一个特别别分组 IV（初始向量）去和第一段密文 XOR，得到的结果呗密钥加密，加密得到该组的密文，同时这个密文会充当最开始的特别分组 IV 的作用去参与下一组的加密，以此类推。</p>
+<p>CBC 的每一个分组的加密结果都可以影响到下一个分组的加密结果，使原本独立的分组密码加密过程形成迭代，这可以强化加密算法的 “敏感性”，即实现所谓的 “雪崩效应”，在香浓理论中这就是” 扰乱原则 “。</p>
+<p>CBC 只是一种模式，他经常把 aes 或 des 作为加密使用的算法，DES 分组长度式八字节而 AES 分组长度式十六字节。</p>
+<p>接下来就是 CBC 解密</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411141940782.png" alt="image-20241114194056628" /></p>
+<p>顺序依旧是从左到右，第一组密文被 KEY 解密后与 IV xor 得到第一组明文，同时第一组密文参与下一组的解密充当 IV 的作用</p>
+<h3 id="pkcs-5"><a class="anchor" href="#pkcs-5">#</a> <strong>PKCS #5</strong></h3>
+<p>竟然 CBC 模式涉及到分组，那么就会出现最后一组字节没有被占满的情况。 比如原本一个分组是 8 字节，我们有 15 个字节的明文需要被加密，此时最后一个分组就不会被占满（还差一个字节占满），那么这个时候要怎么办呢？</p>
+<p>这时候就需要对最后一个分组进行填充，将其填充满。 对于采用 des 算法加密的内容，填充规则是 PKC #5, 而 AES 是 PKC #7. 这两者唯一区别是 PKCS #5 填充是八字节分组而 PKCS #7 是十六字节 ，还记得上面我们说过的 DES 分组长度是八字节而 AES 分组长度是十六字节 吗？就是这个分组字节数影响了填充方式。</p>
+<p>那么具体是怎么填充的呢，我们以 PKC #5 为例</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411141943624.png" alt="image-20241114194320377" /></p>
+<p>当最后一组还剩 n 个字节未被填充时，就会填充 n 个 0xn 字符上去。上图是 PKCS #5, 其实 PKCS #7 和 PKCS #5 原理是一样的，不过是分组字节数大了点罢了（0~16）</p>
+<p>就是如果是 alsdawgfqa 这个按照 4 个一组的话就留了 qa 两个，在 qa 后加上 \x02\x02, 若是删除 a，只有 q，那就是 \x03\x03\x03</p>
+<h4 id="padding-oracle-attack-攻击场景举例"><a class="anchor" href="#padding-oracle-attack-攻击场景举例">#</a> Padding oracle attack 攻击场景举例</h4>
+<p>首先我们假设一个场景，从而引出这个攻击。</p>
+<p>假设我们有一个任意文件包含场景</p>
+<p>代码语言：javascript</p>
+<p>复制</p>
+<figure class="highlight javascript"><figcaption data-lang="javascript"></figcaption><table><tr><td data-num="1"></td><td><pre>url<span class="token operator">?</span>file<span class="token operator">=</span><span class="token operator">/</span>etc<span class="token operator">/</span>passwd</pre></td></tr></table></figure><p>黑客们看见了就会很轻而易举的去包含想要的文件。管理者发现了这个问题，对 file 参数采用了 CBC 加密，即当提交请求时，file 参数的值是被加密的，然后<span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9wcm9kdWN0L2N2bS8/ZnJvbV9jb2x1bW49MjAwNjUmYW1wO2Zyb209MjAwNjU=">服务器</span>用算法解密得到其想包含的文件，然后返回给客户端。</p>
+<p>代码语言：javascript</p>
+<p>复制</p>
+<figure class="highlight javascript"><figcaption data-lang="javascript"></figcaption><table><tr><td data-num="1"></td><td><pre>url<span class="token operator">?</span>file<span class="token operator">=</span>e28b2e3c972edab8 其中前<span class="token number">8</span>位数是<span class="token constant">IV</span>，后八位数是密文。（这里是我瞎写的密文<span class="token operator">=</span> <span class="token operator">=</span>，你只需要理解到这里是一个<span class="token constant">CBC</span>加密后的密文就行了）</pre></td></tr></table></figure><p>那么如何去实现我们的任意文件包含呢？padding oracle attack 出现了。</p>
+<h4 id="攻击原理"><a class="anchor" href="#攻击原理">#</a> 攻击原理</h4>
+<p>假设我们向刚刚那个任意文件包含的提交了一段密文。服务器就会尝试解密，就会出现三种结果。</p>
+<p>1. 密文不能正常解密，这种原因是在于最后一组的填充字节出现了错误 2. 密文能正常解密但解密出来的文件路径不存在 3. 密文能正常解密且能成功包含</p>
+<p>其中第 1 种情况和 2.3 种情况网页返回的内容肯定是不同的。 比如说第一种情况可能就直接返回 500 了，2.3 可能就是 302 跳转啥啥的，通过这个网页返回的信息，我们就有了可乘之机。</p>
+<p>我们先通过一个图感受一下第一组的解密流程</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411142009413.png" alt="image-20241114200918054" /></p>
+<p>好的好的，感受了这个解密流程后，我们来说说攻击的事。 如果我们得到了 Intermediary Value (中间值)，并且可以手动修改 IV，那么我们岂不是可以构造任意 Decrypted Value（明文）了？ 所以 padding oracle attack 的核心就是去获得中间值。 那么我们怎么去获取呢？</p>
+<p>还记得刚刚提到的 3 种情况吗？我们可以通过修改 IV，通过判断网页返回内容来判断中间值，具体做法如下:</p>
+<p>我们先把 IV 全部设置为 0x00，然后修改 IV 的最后一个数，当其与中间值 XOR 后的值为 0x01 则此时解密就会成功，若不是 0x01 解密就会失败，网页会返回不同的内容，以此来判断何时解密成功。然后把解密成功时的 IV 的最后一位数与 0x01 进行异或计算，即可得到中间值的最后一位</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411142009380.png" alt="image-20241114200941307" /></p>
+<p>然后我们把 IV 最后一位数设置为能和中间值最后一位数异或后值为 0x02 的数，穷举 IV 倒数第二个数看看哪个数能和中间值倒数第二个数异或运算后值为 0x02，然后我们就可得到中间值倒数第二个数，以此类推可以获得第一组的中间值（有点绕） 然后破解到了中间值我们再用最开始的 IV（不是我们后面构造的 IV）去和中间值异或就得到明文了 当然，你也可以再次构造 IV，从而构造解密出来的字符（通过中间值与 IV 异或）</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411142010278.png" alt="image-20241114201047952" /></p>
+<p>先获取密文：</p>
+<pre><code>ly7auKVQCZWum/W/4osuPA==
+</code></pre>
+<p>然后对其进行 base64 解密，发现其刚好是有 16 个字节，那么我们可以直接穷举 IV 得到中间值，然后凭此与初始 IV（16 个 6）进行异或得到明文 $flag.</p>
+<p>话不多说，爆破中间值的脚本安排上。(借鉴了一个大佬的 WP）</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> requests</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> base64</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> time</pre></td></tr><tr><td data-num="4"></td><td><pre>Intermediary<span class="token operator">=</span><span class="token string">""</span></pre></td></tr><tr><td data-num="5"></td><td><pre>url<span class="token operator">=</span><span class="token string">"http://de1650aa-2b24-40e0-bb51-736ff5d38269.node3.buuoj.cn//index.php?source=1&amp;method=decrypt"</span></pre></td></tr><tr><td data-num="6"></td><td><pre>iv<span class="token operator">=</span><span class="token string">""</span></pre></td></tr><tr><td data-num="7"></td><td><pre>hexs<span class="token operator">=</span><span class="token string">""</span></pre></td></tr><tr><td data-num="8"></td><td><pre>IV<span class="token operator">=</span><span class="token string">"6666666666666666"</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token keyword">def</span> <span class="token function">xor</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span>b<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token keyword">return</span> <span class="token string">""</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">^</span><span class="token builtin">ord</span><span class="token punctuation">(</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">for</span> step <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    padding<span class="token operator">=</span><span class="token builtin">chr</span><span class="token punctuation">(</span>step<span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span>step<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"第%s轮"</span><span class="token operator">%</span>step<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        iv<span class="token operator">=</span><span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token operator">-</span>step<span class="token punctuation">)</span><span class="token operator">+</span><span class="token builtin">chr</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token operator">+</span>xor<span class="token punctuation">(</span>Intermediary<span class="token punctuation">,</span>padding<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        post<span class="token operator">=</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>            <span class="token string">"iv"</span><span class="token punctuation">:</span>iv<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="19"></td><td><pre>            <span class="token string">"data"</span><span class="token punctuation">:</span><span class="token string">"ly7auKVQCZWum/W/4osuPA=="</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        r<span class="token operator">=</span>requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span>data<span class="token operator">=</span>post<span class="token punctuation">,</span>proxies<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token string">"http"</span><span class="token punctuation">:</span><span class="token string">"http://127.0.0.1:8080"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        time<span class="token punctuation">.</span>sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token operator">+</span><span class="token string">"第%s轮i=%s "</span><span class="token operator">%</span><span class="token punctuation">(</span>step<span class="token punctuation">,</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token keyword">if</span> <span class="token string">"False"</span> <span class="token operator">!=</span>  r<span class="token punctuation">.</span>text<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="25"></td><td><pre>            Intermediary<span class="token operator">=</span>xor<span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token builtin">chr</span><span class="token punctuation">(</span>step<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span>Intermediary</pre></td></tr><tr><td data-num="26"></td><td><pre>            <span class="token keyword">print</span><span class="token punctuation">(</span>Intermediary<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="27"></td><td><pre>            <span class="token keyword">break</span></pre></td></tr><tr><td data-num="28"></td><td><pre><span class="token keyword">for</span> k <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>Intermediary<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    hexs<span class="token operator">=</span><span class="token string">"%"</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">(</span>Intermediary<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span>hexs</pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>hexs<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="31"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>xor<span class="token punctuation">(</span>Intermediary<span class="token punctuation">,</span>IV<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>爆出了中间值以及 $flag 明文</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411142012040.png" alt="image-20241114201206936" /></p>
+<h3 id="cbc翻转字节攻击"><a class="anchor" href="#cbc翻转字节攻击">#</a> CBC 翻转字节攻击</h3>
+<p>在对 CBC 模式加密的数据进行解密时，若 iv 可控，则可以任意控制解密后的内容。 CBC 翻转字节攻击不同于 padding oracle attack，后者的核心是 IV 可控情况下获取中间值，从而可以获得明文或者任意控制密文解密后的数据。 而 CBC 翻转字节攻击的核心思想就不是获取中间值了，而是在 IV 可控的情况下，通过算法缺陷来直接控制密文解密后的数据。</p>
+<p>现在假定有中间值 A, 明文 B1,IV C1</p>
+<p>那么就有</p>
+<p>代码语言：javascript</p>
+<p>复制</p>
+<figure class="highlight javascript"><figcaption data-lang="javascript"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token constant">A</span><span class="token operator">^</span><span class="token constant">B1</span><span class="token operator">=</span>c1</pre></td></tr></table></figure><p>一点错误都没有对吧。 现在又假定有中间值 A, 我们想要解密出的明文 B2 和与之对应的 IV C2 那么就有</p>
+<p>代码语言：javascript</p>
+<p>复制</p>
+<figure class="highlight javascript"><figcaption data-lang="javascript"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token constant">A</span><span class="token operator">^</span><span class="token constant">B2</span><span class="token operator">=</span><span class="token constant">C2</span></pre></td></tr><tr><td data-num="2"></td><td><pre>结合以上两个式子，有</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token constant">A</span><span class="token operator">=</span><span class="token constant">B1</span><span class="token operator">^</span><span class="token constant">C1</span><span class="token operator">=</span><span class="token constant">B2</span><span class="token operator">^</span><span class="token constant">C2</span></pre></td></tr><tr><td data-num="4"></td><td><pre>于是有</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token constant">B2</span><span class="token operator">=</span><span class="token constant">B1</span><span class="token operator">^</span><span class="token constant">C1</span><span class="token operator">^</span><span class="token constant">C2</span></pre></td></tr><tr><td data-num="6"></td><td><pre>或<span class="token constant">C2</span><span class="token operator">=</span><span class="token constant">B1</span><span class="token operator">^</span><span class="token constant">B2</span><span class="token operator">^</span><span class="token constant">C1</span></pre></td></tr><tr><td data-num="7"></td><td><pre>若我们已知<span class="token constant">B1</span><span class="token punctuation">,</span><span class="token constant">C1</span><span class="token punctuation">,</span>且<span class="token constant">C2</span>可控<span class="token punctuation">,</span>那么<span class="token constant">B2</span>即可控</pre></td></tr><tr><td data-num="8"></td><td><pre>既满足刚刚我们说的，通过算法缺陷来直接控制密文解密后的数据。</pre></td></tr></table></figure><p>FlagIsHere.php：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre>ryino46QYgekMUTu0JFPMQ==</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token php language-php"><span class="token delimiter important">&lt;?php</span> </pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">#error_reporting(0);</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">include</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'config.php'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//$fl4g</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token function">define</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"METHOD"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"aes-128-cbc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">define</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"SECRET_KEY"</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">"6666666"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token function">session_start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token keyword">function</span> <span class="token function-definition function">get_iv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>    <span class="token comment">// 生成随机初始向量 IV</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token variable">$random_iv</span><span class="token operator">=</span><span class="token string single-quoted-string">''</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token variable">$i</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token variable">$i</span><span class="token operator">&lt;</span><span class="token number">16</span><span class="token punctuation">;</span><span class="token variable">$i</span><span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token variable">$random_iv</span><span class="token operator">.=</span><span class="token function">chr</span><span class="token punctuation">(</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">return</span> <span class="token variable">$random_iv</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token variable">$lalala</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'piapiapiapia'</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'Identity'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'iv'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">get_iv</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'Identity'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">base64_encode</span><span class="token punctuation">(</span><span class="token function">openssl_encrypt</span><span class="token punctuation">(</span><span class="token variable">$lalala</span><span class="token punctuation">,</span> <span class="token constant">METHOD</span><span class="token punctuation">,</span> <span class="token constant">SECRET_KEY</span><span class="token punctuation">,</span> <span class="token constant">OPENSSL_RAW_DATA</span><span class="token punctuation">,</span> <span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'iv'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="24"></td><td><pre><span class="token keyword">echo</span> <span class="token function">base64_encode</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'iv'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">.</span><span class="token string double-quoted-string">"&lt;br>"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre></pre></td></tr><tr><td data-num="26"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'iv'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>    <span class="token variable">$tmp_id</span> <span class="token operator">=</span> <span class="token function">openssl_decrypt</span><span class="token punctuation">(</span><span class="token function">base64_decode</span><span class="token punctuation">(</span><span class="token variable">$_SESSION</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'Identity'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token constant">METHOD</span><span class="token punctuation">,</span> <span class="token constant">SECRET_KEY</span><span class="token punctuation">,</span> <span class="token constant">OPENSSL_RAW_DATA</span><span class="token punctuation">,</span> <span class="token function">base64_decode</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'iv'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>    <span class="token keyword">echo</span> <span class="token variable">$tmp_id</span><span class="token operator">.</span><span class="token string double-quoted-string">"&lt;br>"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$tmp_id</span> <span class="token operator">===</span><span class="token string single-quoted-string">'weber'</span><span class="token punctuation">)</span><span class="token keyword">die</span><span class="token punctuation">(</span><span class="token variable">$fl4g</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="31"></td><td><pre></pre></td></tr><tr><td data-num="32"></td><td><pre><span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre><span class="token delimiter important">?></span></span></pre></td></tr></table></figure><p>此时我们已知初始 IV, 初始密文，且 IV 可控，那么 CBC 翻转字节攻击条件成立，可以攻击。</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>这里贴一个别人写的python2 CBC字节反转攻击脚本</pre></td></tr><tr><td data-num="2"></td><td><pre>自己拿python3写了半天都没写出很好的效果<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> base64</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">def</span> <span class="token function">bxor</span><span class="token punctuation">(</span>b1<span class="token punctuation">,</span> b2<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment"># use xor for bytes</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    parts <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">for</span> b1<span class="token punctuation">,</span> b2 <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>b1<span class="token punctuation">,</span> b2<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        parts<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">bytes</span><span class="token punctuation">(</span><span class="token punctuation">[</span>b1 <span class="token operator">^</span> b2<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">return</span> <span class="token string">b''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>parts<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>iv <span class="token operator">=</span> base64<span class="token punctuation">.</span>b64decode<span class="token punctuation">(</span><span class="token string">"h34HL5RbMPw8oTaQ+P58nw=="</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>text <span class="token operator">=</span> <span class="token string">b"piapiapiapia\x04\x04\x04\x04"</span></pre></td></tr><tr><td data-num="11"></td><td><pre>result <span class="token operator">=</span> <span class="token string">b"weber\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b\x0b"</span></pre></td></tr><tr><td data-num="12"></td><td><pre>middle <span class="token operator">=</span> bxor<span class="token punctuation">(</span>iv<span class="token punctuation">,</span>text<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>iv <span class="token operator">=</span> bxor<span class="token punctuation">(</span>middle<span class="token punctuation">,</span>result<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>base64<span class="token punctuation">.</span>b64encode<span class="token punctuation">(</span>iv<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>把跑出来的结果 POST 过去，就会得到下一步了..</p>
+<p>直接有了链接，这个是 buu 的话，直接下载附件就行了</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">//</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">// Source code recreated from a .class file by IntelliJ IDEA</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment">// (powered by FernFlower decompiler)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">//</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloWorld</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">HelloWorld</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> var0<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"众所周知，你是一名WEB选手，掌握javaweb也是一项必备技能，那么逆向个java应该不过分吧？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> var10000 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#123;</span><span class="token number">102</span><span class="token punctuation">,</span> <span class="token number">108</span><span class="token punctuation">,</span> <span class="token number">97</span><span class="token punctuation">,</span> <span class="token number">103</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">,</span> <span class="token number">119</span><span class="token punctuation">,</span> <span class="token number">101</span><span class="token punctuation">,</span> <span class="token number">54</span><span class="token punctuation">,</span> <span class="token number">95</span><span class="token punctuation">,</span> <span class="token number">52</span><span class="token punctuation">,</span> <span class="token number">111</span><span class="token punctuation">,</span> <span class="token number">103</span><span class="token punctuation">,</span> <span class="token number">95</span><span class="token punctuation">,</span> <span class="token number">49</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> <span class="token number">95</span><span class="token punctuation">,</span> <span class="token number">101</span><span class="token punctuation">,</span> <span class="token number">52</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> <span class="token number">121</span><span class="token punctuation">,</span> <span class="token number">103</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token punctuation">,</span> <span class="token number">105</span><span class="token punctuation">,</span> <span class="token number">110</span><span class="token punctuation">,</span> <span class="token number">103</span><span class="token punctuation">,</span> <span class="token number">125</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>获取了这个 class 文件，有一些字节东西可以查看</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>a <span class="token operator">=</span> <span class="token builtin">bytearray</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token punctuation">[</span><span class="token number">102</span><span class="token punctuation">,</span> <span class="token number">108</span><span class="token punctuation">,</span> <span class="token number">97</span><span class="token punctuation">,</span> <span class="token number">103</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">,</span> <span class="token number">119</span><span class="token punctuation">,</span> <span class="token number">101</span><span class="token punctuation">,</span> <span class="token number">54</span><span class="token punctuation">,</span> <span class="token number">95</span><span class="token punctuation">,</span> <span class="token number">52</span><span class="token punctuation">,</span> <span class="token number">111</span><span class="token punctuation">,</span> <span class="token number">103</span><span class="token punctuation">,</span> <span class="token number">95</span><span class="token punctuation">,</span> <span class="token number">49</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> <span class="token number">95</span><span class="token punctuation">,</span> <span class="token number">101</span><span class="token punctuation">,</span> <span class="token number">52</span><span class="token punctuation">,</span> <span class="token number">115</span><span class="token punctuation">,</span> <span class="token number">121</span><span class="token punctuation">,</span> <span class="token number">103</span><span class="token punctuation">,</span> <span class="token number">48</span><span class="token punctuation">,</span> <span class="token number">105</span><span class="token punctuation">,</span> <span class="token number">110</span><span class="token punctuation">,</span> <span class="token number">103</span><span class="token punctuation">,</span> <span class="token number">125</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411142041283.png" alt="image-20241114204159168" /></p>
+<p>获取 flag</p>
+<p>参考链接：<span class="exturl" data-url="aHR0cHM6Ly9jbG91ZC50ZW5jZW50LmNvbS9kZXZlbG9wZXIvYXJ0aWNsZS8xOTQyNTIy">https://cloud.tencent.com/developer/article/1942522</span></p>
+<p>参考链接：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzYxMDY3My9hcnRpY2xlL2RldGFpbHMvMTA1ODk4NDQw">https://blog.csdn.net/weixin_43610673/article/details/105898440</span></p>
+
+      <div class="tags">
+          <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
+          <a href="/tags/Padding-oracle-attack-%E4%B8%8ECBC%E7%BF%BB%E8%BD%AC%E5%AD%97%E8%8A%82%E6%94%BB%E5%87%BB/" rel="tag"><i class="ic i-tag"></i> Padding oracle attack 与CBC翻转字节攻击</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-11-17 20:43:38" itemprop="dateModified" datetime="2024-11-17T20:43:38+08:00">2024-11-17</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/11/14/NPUCTF2020-webdog/" title="[NPUCTF2020]webdog">http://odiws.github.io/2024/11/14/NPUCTF2020-webdog/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/11/12/FLAG/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?530554" title="FLAG">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> misc</span>
+  <h3>FLAG</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/11/14/java%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?777837" title="java反射原理">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>java反射原理</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#npuctf2020webdog"><span class="toc-number">1.</span> <span class="toc-text"> [NPUCTF2020]webdog</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#padding-oracle-attack-%E4%B8%8Ecbc%E7%BF%BB%E8%BD%AC%E5%AD%97%E8%8A%82%E6%94%BB%E5%87%BB"><span class="toc-number">1.1.</span> <span class="toc-text"> Padding oracle attack 与 CBC 翻转字节攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%88%96xor"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 异或（XOR）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pkcs-5"><span class="toc-number">1.2.</span> <span class="toc-text"> PKCS #5</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#padding-oracle-attack-%E6%94%BB%E5%87%BB%E5%9C%BA%E6%99%AF%E4%B8%BE%E4%BE%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text"> Padding oracle attack 攻击场景举例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%BB%E5%87%BB%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 攻击原理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cbc%E7%BF%BB%E8%BD%AC%E5%AD%97%E8%8A%82%E6%94%BB%E5%87%BB"><span class="toc-number">1.3.</span> <span class="toc-text"> CBC 翻转字节攻击</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2024/04/28/3-txt/" rel="bookmark" title="buuctf4月27日">buuctf4月27日</a></li><li><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" rel="bookmark" title="'[RootersCTF2019]I_<3_Flask'">'[RootersCTF2019]I_<3_Flask'</a></li><li><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" rel="bookmark" title="'[NCTF2019]SQLi'">'[NCTF2019]SQLi'</a></li><li><a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" rel="bookmark" title="'[NPUCTF2020]ezinclude'">'[NPUCTF2020]ezinclude'</a></li><li><a href="/2024/06/11/2019-EasyWeb/" rel="bookmark" title="[SUCTF 2019]EasyWeb">[SUCTF 2019]EasyWeb</a></li><li><a href="/2024/07/25/2019-Web-Unagi/" rel="bookmark" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></li><li><a href="/2024/07/26/1/" rel="bookmark" title="easybypass">easybypass</a></li><li><a href="/2024/07/28/2020-Greatphp/" rel="bookmark" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></li><li><a href="/2024/07/28/2019-SVGMagic/" rel="bookmark" title="[BSidesCF2019]SVGMagic">[BSidesCF2019]SVGMagic</a></li><li><a href="/2024/07/29/ISITDTU2019-EasyPHP/" rel="bookmark" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></li><li><a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="bookmark" title="[安洵杯2019]不是文件上传">[安洵杯2019]不是文件上传</a></li><li><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" rel="bookmark" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></li><li><a href="/2024/11/08/JMCTF2021-UploadHub/" rel="bookmark" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></li><li><a href="/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/" rel="bookmark" title="[NewStarCTF-2023-公开赛道]ez_sql">[NewStarCTF-2023-公开赛道]ez_sql</a></li><li class="active"><a href="/2024/11/14/NPUCTF2020-webdog/" rel="bookmark" title="[NPUCTF2020]webdog">[NPUCTF2020]webdog</a></li><li><a href="/2024/11/15/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E5%8D%8A%E5%86%B3%E8%B5%9B-faka/" rel="bookmark" title="[网鼎杯2020半决赛]faka">[网鼎杯2020半决赛]faka</a></li><li><a href="/2024/11/17/HCTF2018-Hideandseek/" rel="bookmark" title="[HCTF2018]Hideandseek">[HCTF2018]Hideandseek</a></li><li><a href="/2024/11/18/FBCTF2019-Products-Manager/" rel="bookmark" title="[FBCTF2019]Products-Manager">[FBCTF2019]Products-Manager</a></li><li><a href="/2024/11/18/BSidesCF-2019-Mixer/" rel="bookmark" title="[BSidesCF-2019]Mixer">[BSidesCF-2019]Mixer</a></li><li><a href="/2024/11/19/BSidesCF-2020-Cards/" rel="bookmark" title="[BSidesCF-2020]Cards">[BSidesCF-2020]Cards</a></li><li><a href="/2024/11/19/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2020-Roamphp4-Rceme/" rel="bookmark" title="[极客大挑战-2020]Roamphp4-Rceme">[极客大挑战-2020]Roamphp4-Rceme</a></li><li><a href="/2024/11/20/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E5%8D%8A%E5%86%B3%E8%B5%9B-BabyJS/" rel="bookmark" title="[网鼎杯-2020-半决赛]BabyJS">[网鼎杯-2020-半决赛]BabyJS</a></li><li><a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" rel="bookmark" title="[HMGCTF2022]Smarty-Calculator">[HMGCTF2022]Smarty-Calculator</a></li><li><a href="/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/" rel="bookmark" title="[红明谷CTF-2021]EasyTP">[红明谷CTF-2021]EasyTP</a></li><li><a href="/2024/12/01/LineCTF2022-BB/" rel="bookmark" title="[LineCTF2022]BB">[LineCTF2022]BB</a></li><li><a href="/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/" rel="bookmark" title="[NewStarCT_2023_公开赛道]Upload_again!">[NewStarCT_2023_公开赛道]Upload_again!</a></li><li><a href="/2024/12/04/%E5%88%B7%E6%96%B0%E8%BF%87%E7%9A%84%E5%9B%BE%E7%89%87/" rel="bookmark" title="刷新过的图片">刷新过的图片</a></li><li><a href="/2024/12/04/MRCTF2020-Ezpop-Revenge/" rel="bookmark" title="[MRCTF2020]Ezpop_Revenge">[MRCTF2020]Ezpop_Revenge</a></li><li><a href="/2024/12/10/b01lers2020-Spac-Noodles/" rel="bookmark" title="[b01lers2020]Spac_Noodles">[b01lers2020]Spac_Noodles</a></li><li><a href="/2024/12/10/De1CTF-2019-Giftbox/" rel="bookmark" title="[De1CTF_2019]Giftbox">[De1CTF_2019]Giftbox</a></li><li><a href="/2025/01/26/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-EasyLogin/" rel="bookmark" title="[NewStarCTF2023公开赛道]EasyLogin">[NewStarCTF2023公开赛道]EasyLogin</a></li><li><a href="/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/" rel="bookmark" title="NewStarCTF2023新生赛_BabySSTI_Three">NewStarCTF2023新生赛_BabySSTI_Three</a></li><li><a href="/2025/02/09/%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-UnserializeOne/" rel="bookmark" title="公开赛赛道]UnserializeOne">公开赛赛道]UnserializeOne</a></li><li><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" rel="bookmark" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></li><li><a href="/2025/02/09/BSidesCF2019-Sequel/" rel="bookmark" title="[BSidesCF2019]Sequel">[BSidesCF2019]Sequel</a></li><li><a href="/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/" rel="bookmark" title="NewStarCTF_2023_公开赛道Include">NewStarCTF_2023_公开赛道Include</a></li><li><a href="/2025/02/23/HFCTF-2021-Final-hatenum/" rel="bookmark" title="[HFCTF_2021_Final]hatenum">[HFCTF_2021_Final]hatenum</a></li><li><a href="/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/" rel="bookmark" title="[Dest0g3_520迎新赛]SimpleRCE">[Dest0g3_520迎新赛]SimpleRCE</a></li><li><a href="/2025/02/24/SWPUCTF-2016-Web7/" rel="bookmark" title="[SWPUCTF_2016]Web7">[SWPUCTF_2016]Web7</a></li><li><a href="/2025/02/26/HMGCTF2022-Fan-Website/" rel="bookmark" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></li><li><a href="/2025/03/02/PyCalX-1/" rel="bookmark" title="PyCalX_1">PyCalX_1</a></li><li><a href="/2025/03/11/GKCTF-2021-babycat-revenge/" rel="bookmark" title="[GKCTF_2021]babycat-revenge">[GKCTF_2021]babycat-revenge</a></li><li><a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" rel="bookmark" title="谁赢了比赛？">谁赢了比赛？</a></li><li><a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" rel="bookmark" title="梅花香自苦寒来">梅花香自苦寒来</a></li><li><a href="/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/" rel="bookmark" title="[ACTF新生赛2020]outguess">[ACTF新生赛2020]outguess</a></li><li><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" rel="bookmark" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></li><li><a href="/2025/03/18/JMCTF-2021-GoOSS/" rel="bookmark" title="[JMCTF_2021]GoOSS">[JMCTF_2021]GoOSS</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">80</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">11</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">69</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2024/11/12/FLAG/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/11/14/java%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/23/HFCTF-2021-Final-hatenum/" title="[HFCTF_2021_Final]hatenum">[HFCTF_2021_Final]hatenum</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/19/BSidesCF-2020-Cards/" title="[BSidesCF-2020]Cards">[BSidesCF-2020]Cards</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/17/springweb/" title="springweb">springweb</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/" title="[NewStarCTF-2023-公开赛道]ez_sql">[NewStarCTF-2023-公开赛道]ez_sql</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/BUUCTF%EF%BC%9A%E9%BB%91%E5%AE%A2%E5%B8%9D%E5%9B%BD/" title="BUUCTF：黑客帝国">BUUCTF：黑客帝国</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/" title="NewStarCTF_2023_公开赛道Include">NewStarCTF_2023_公开赛道Include</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/07/29/ISITDTU2019-EasyPHP/" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2024/11/20/ISCTF2024%E5%A4%8D%E7%8E%B0/" title="ISCTF2024复现">ISCTF2024复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2025/02/24/vnctf%E5%A4%8D%E7%8E%B0/" title="vnctf复现">vnctf复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" title="&#39;[NCTF2019]SQLi&#39;">'[NCTF2019]SQLi'</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/11/14/NPUCTF2020-webdog/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
