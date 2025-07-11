@@ -1,0 +1,843 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="python" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2024/04/28/2_1/">
+
+
+
+  <title>
+python request库的基本用法 - 学习笔记 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">python request库的基本用法
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-04-28 22:48:16">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-04-28T22:48:16+08:00">2024-04-28</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?469252"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?112447"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?369815"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?755313"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?426788"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?424958"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 学习笔记"><span itemprop="name">学习笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/04/28/2_1/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="基本用法"><a class="anchor" href="#基本用法">#</a> 基本用法</h1>
+<p>下面案例使用 requests 库中的 get ( ) 方法发送了一个 get 请求。</p>
+<p>#导入 requests 库<br />
+ import requests<br />
+# 发送一个 get 请求并得到响应<br />
+ r = requests.get ('<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29t">https://www.baidu.com</span>')<br />
+# 查看响应对象的类型<br />
+ print (type (r))<br />
+# 查看响应状态码<br />
+ print (r.status_code)<br />
+# 查看响应内容的类型<br />
+ print (type (r.text))<br />
+# 查看响应的内容<br />
+ print (r.text)<br />
+# 查看 cookies<br />
+print(r.cookies)<br />
+ 这里调用了 get () 方法实现 urlopen () 相同的操作，结果返回一个响应对象，然后分别输出响应对象类型、状态码、响应体内容的类型、 响应体的内容、Cookies。通过运行结果可以得知：响应对象的类型是 requests.models.Response，响应体内容的类型是 str，Cookies 的类型是 RequestCookieJar。如果要发送其他类型的请求直接调用其对应的方法即可：</p>
+<p>r = requests.post('<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29t">https://www.baidu.com</span>')<br />
+r = requests.put('<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29t">https://www.baidu.com</span>')<br />
+r = requests.delete('<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29t">https://www.baidu.com</span>')<br />
+r = requests.head('<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29t">https://www.baidu.com</span>')<br />
+r = requests.options('<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29t">https://www.baidu.com</span>')</p>
+<h2 id="get请求"><a class="anchor" href="#get请求">#</a> GET 请求</h2>
+<p>构建一个 GET 请求，请求 http://httpbin.org/get（该网站会判断如果客户端发起的是 GET 请求的话，它返回相应的信息）</p>
+<p>import requests<br />
+r = requests.get('<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL2dldA==">http://httpbin.org/get</span>')<br />
+print(r.text)</p>
+<p>1）如果要添加请求参数，比如添加两个请求参数，其中 name 值是 germey，age 值是 20。虽然可以写成如下形式：</p>
+<p>r = requests.get('<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL2dldD9uYW1lPWdlcm1leSZhbXA7YWdlPTIw">http://httpbin.org/get?name=germey&amp;age=20</span>')<br />
+1<br />
+ 但较好的写法是下面这种写法：</p>
+<p>import requests<br />
+data = {<br />
+'name':'germey',<br />
+'age':22<br />
+}<br />
+r = requests.get('<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL2dldA==">http://httpbin.org/get</span>',params=data)<br />
+print(r.text)</p>
+<p>通过运行结果可以看出，请求的 URL 最终被构造成了 “<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL2dldD9uYW1lPWdlcm1leSZhbXA7YWdlPTIwJUUyJTgwJTlEJUUzJTgwJTgy">http://httpbin.org/get?name=germey&amp;age=20”。</span></p>
+<p>2）网页的返回内容的类型是 str 类型的，如果它符合 JSON 格式，则可以使用 json ( ) 方法将其转换为字典类型，以方便解析。</p>
+<p>import requests<br />
+r = requests.get('<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL2dldA==">http://httpbin.org/get</span>')<br />
+#str 类型<br />
+ print (type (r.text))<br />
+# 返回响应内容的字典形式<br />
+ print (r.json ())<br />
+#dict 类型<br />
+ print (type (r.json ()))<br />
+ 但需要注意，如果返回的内容不是 JSON 格式，调用 json ( ) 方法便会出现错误，抛出 json.decoder.JSONDecodeError 异常。</p>
+<h2 id="post请求"><a class="anchor" href="#post请求">#</a> POST 请求</h2>
+<h3 id="1发送post请求"><a class="anchor" href="#1发送post请求">#</a> 1）发送 POST 请求。</h3>
+<p>import requests<br />
+r = requests.post('<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL3Bvc3Q=">http://httpbin.org/post</span>')<br />
+print(r.text)<br />
+ 2）发送带有请求参数的 POST 请求。</p>
+<p>import requests<br />
+data = {<br />
+&quot;name&quot;:&quot;germey&quot;,<br />
+&quot;age&quot;:&quot;22&quot;<br />
+}<br />
+r = requests.post('<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL3Bvc3Q=">http://httpbin.org/post</span>',data=data)<br />
+print(r.text)</p>
+<p>在 POST 请求方法中，form 部分就是请求参数。</p>
+<h3 id="设置请求头"><a class="anchor" href="#设置请求头">#</a> 设置请求头</h3>
+<p>import requests<br />
+headers = {<br />
+'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0',<br />
+'my-test':'Hello'<br />
+}<br />
+r = requests.get('<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL2dldA==">http://httpbin.org/get</span>',headers=headers)<br />
+print(r.text)</p>
+<h3 id="响应"><a class="anchor" href="#响应">#</a> 响应</h3>
+<p>1）发送请求后，返回一个响应，它具有很多属性，通过它的属性来获取状态码、响应头、Cookies、响应内容等。如下：</p>
+<p>import requests<br />
+r = requests.get('<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29tLw==">https://www.baidu.com/</span>')<br />
+# 响应内容（str 类型）<br />
+print(type(r.text),r.text)<br />
+# 响应内容（bytes 类型）<br />
+print(type(r.content),r.content)<br />
+# 状态码<br />
+ print (type (r.status_code),r.status_code)<br />
+# 响应头<br />
+ print (type (r.headers),r.headers)<br />
+#Cookies<br />
+print(type(r.cookies),r.cookies)<br />
+#URL<br />
+print(type(r.url),r.url)<br />
+# 请求历史<br />
+ print (type (r.history),r.history)</p>
+<p>2）状态码常用来判断请求是否成功，除了可以使用 HTTP 提供的状态码，requests 库中也提供了一个内置的状态码查询对象，叫做 requests.codes，实际上两者都是等价的。示例如下：</p>
+<p>import requests<br />
+r = requests.get('<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29tLw==">https://www.baidu.com/</span>')<br />
+if not r.status_code==requests.codes.ok:<br />
+print('Request Fail')<br />
+else:<br />
+print('Request Successfully')<br />
+ requests.codes 对象拥有的状态码如下：</p>
+<p>#信息性状态码<br />
+ 100：('continue',),<br />
+101：('switching_protocols',),<br />
+102：('processing',),<br />
+103：('checkpoint',),<br />
+122：('uri_too_long','request_uri_too_long'),</p>
+<p>#成功状态码<br />
+ 200：('ok','okay','all_ok','all_okay','all_good','\o/','√'),<br />
+201：('created',),<br />
+202：('accepted',),<br />
+203：('non_authoritative_info','non_authoritative_information'),<br />
+204：('no_content',),<br />
+205：('reset_content','reset'),<br />
+206：('partial_content','partial'),<br />
+207：('multi_status','multiple_status','multi_stati','multiple_stati'),<br />
+208：('already_reported',),<br />
+226：('im_used',),</p>
+<p>#重定向状态码<br />
+ 300：('multiple_choices',),<br />
+301：('moved_permanently','moved','\o-'),<br />
+302：('found',),<br />
+303：('see_other','other'),<br />
+304：('not_modified',),<br />
+305：('user_proxy',),<br />
+306：('switch_proxy',),<br />
+307：('temporary_redirect','temporary_moved','temporary'),<br />
+308：('permanent_redirect',),</p>
+<p>#客户端请求错误<br />
+ 400：('bad_request','bad'),<br />
+401：('unauthorized',),<br />
+402：('payment_required','payment'),<br />
+403：('forbiddent',),<br />
+404：('not_found','-o-'),<br />
+405：('method_not_allowed','not_allowed'),<br />
+406：('not_acceptable',),<br />
+407：('proxy_authentication_required','proxy_auth','proxy_authentication'),<br />
+408：('request_timeout','timeout'),<br />
+409：('conflict',),<br />
+410：('gone',),<br />
+411：('length_required',),<br />
+412：('precondition_failed','precondition'),<br />
+413：('request_entity_too_large',),<br />
+414：('request_uri_too_large',),<br />
+415：('unsupported_media_type','unsupported_media','media_type'),<br />
+416：('request_range_not_satisfiable','requested_range','range_not_satisfiable'),<br />
+417：('expectation_failed',),<br />
+418：('im_a_teapot','teapot','i_am_a_teapot'),<br />
+421：('misdirected_request',),<br />
+422：('unprocessable_entity','unprocessable'),<br />
+423：('locked'),<br />
+424：('failed_dependency','dependency'),<br />
+425：('unordered_collection','unordered'),<br />
+426：('upgrade_required','upgrade'),<br />
+428：('precondition_required','precondition'),<br />
+429：('too_many_requests','too_many'),<br />
+431：('header_fields_too_large','fields_too_large'),<br />
+444：('no_response','none'),<br />
+449：('retry_with','retry'),<br />
+450：('blocked_by_windows_parental_controls','parental_controls'),<br />
+451：('unavailable_for_legal_reasons','legal_reasons'),<br />
+499：('client_closed_request',),</p>
+<p>#服务端错误状态码<br />
+ 500：('internal_server_error','server_error','/o\','×')<br />
+501：('not_implemented',),<br />
+502：('bad_gateway',),<br />
+503：('service_unavailable','unavailable'),<br />
+504：('gateway_timeout',),<br />
+505：('http_version_not_supported','http_version'),<br />
+506：('variant_also_negotiates',),<br />
+507：('insufficient_storage',),<br />
+509：('bandwidth_limit_exceeded','bandwith'),<br />
+510：('not_extended',),<br />
+511：('network_authentication_required','network_auth','network_authentication')</p>
+<h2 id="爬取二进制数据"><a class="anchor" href="#爬取二进制数据">#</a> 爬取二进制数据</h2>
+<p>图片、音频、视频这些文件本质上都是由二进制码组成的，所以想要爬取它们，就要拿到它们的二进制码。以爬取百度的站点图标（选项卡上的小图标）为例：</p>
+<p>import requests<br />
+# 向资源 URL 发送一个 GET 请求<br />
+ r = requests.get ('<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29tL2Zhdmljb24uaWNv">https://www.baidu.com/favicon.ico</span>')<br />
+with open('favicon.ico','wb') as f:<br />
+f.write(r.content)<br />
+ 使用 open ( ) 方法，它的第一个参数是要保存文件名（可带路径），第二个参数表示以二进制的形式写入数据。运行结束之后，可以在当前目录下发现保存的名为 favicon.ico 的图标。同样的，音频和视频也可以用这种方法获取。</p>
+<h2 id="文件上传"><a class="anchor" href="#文件上传">#</a> 文件上传</h2>
+<p>requests 可以模拟提交一些数据。假如某网站需要上传文件，我们也可以实现。</p>
+<p>import requests<br />
+# 以二进制方式读取当前目录下的 favicon.ico 文件，并将其赋给 file<br />
+files = {'file':open('favicon.ico','rb')}<br />
+# 进行上传<br />
+ r = requests.post ('<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL3Bvc3Q=">http://httpbin.org/post</span>',files=files)<br />
+print(r.text)</p>
+<h2 id="处理cookies"><a class="anchor" href="#处理cookies">#</a> 处理 Cookies</h2>
+<p>使用 urllib 处理 Cookies 比较复杂，而使用 requests 处理 Cookies 非常简单。</p>
+<p>1）获取 Cookies。</p>
+<p>import requests<br />
+r = requests.get('<span class="exturl" data-url="aHR0cHM6Ly93d3cuYmFpZHUuY29t">https://www.baidu.com</span>')<br />
+# 打印 Cookies 对象<br />
+ print (r.cookies)<br />
+# 遍历 Cookies<br />
+for key,value in r.cookies.items():<br />
+print(key+'='+value)<br />
+ 通过响应对象调用 cookies 属性即可获得 Cookies，它是一个 RequestCookiesJar 类型的对象，然后用 items ( ) 方法将其转换为元组组成 的列表，遍历输出每一个 Cookies 的名称和值。</p>
+<p>2）使用 Cookies 来维持登录状态。以知乎为例，首先登录知乎，进入一个登录之后才可以访问的页面，在浏览器开发者工具中将 Headers 中的 Cookies 复制下来（有时候这样直接复制的 Cookies 中包含省略号，会导致程序出错，此时可以在 Console 项下输 document.cookie 即可得到完整的 Cookie），在程序中使用它，将其设置到 Headers 里面，然后发送请求。</p>
+<p>import requests<br />
+headers = {<br />
+'Cookie':'_zap=616ef976-1fdb-4b8c-a3cb-9327ff629ff1; _xsrf=0CCNkbCLtTAlz5BfwhMHBHJWW791ZkK6; d_c0=&quot;AKBQTnFIRhSPTpoYIf6mUxSic2UjzSp4BYM=|1641093994&quot;; __snaker__id=mMv5F3gmBHIC9jJg; gdxidpyhxdE=E%2BNK7sMAt0%2F3aZ5Ke%2FSRfBRK7B1QBmCtaOwrqJm%2F1ONP3VPItkrXCcMiAX3%2FIsSxUwudQPyuDGO%2BlHGPvNqGqO9bX1%2B58o7wmf%2FZewh8xSPg%2FH3T2HoWsrs7ZhsSGND0C0la%2BXkLIIG5XXV85PxV5g99d%5CMph%2BbkX1JQBGhDnL3N0zRf%3A1641094897088; <em>9755xjdesxxd</em>=32; YD00517437729195%3AWM_NI=rMeMx2d5Yt3mg0yHPvuPGTjPnGtjL%2Bn%2FPSBnVn%2FHFAVZnIEABUIPITBdsHmMX1iCHfKauO4qhW%2Bi5bTy12Cg91vrxMPgOHtnaAylN8zk7MFpoTr%2FTeKVo3%2FKSSM6T5cNSGE%3D; YD00517437729195%3AWM_NIKE=9ca17ae2e6ffcda170e2e6ee8bea40f8e7a4b2cf69b3b48fb7c54b979b8fbaf17e93909b91fb338ebaaeadec2af0fea7c3b92ab293abaefb3aa8eb9795b267a5f0b7a9d37eb79089b5e95cae99bc8bcf21aef1a0b4c16696b2e1a9c54b9686a2aac84b828b87b1cc6082bcbda9f0479cefa7a4cb6e89bfbbb0b77bac89e58ab86a98a7ffd3c26dfbefba93fb4794b981a9f766a39fb78dcd34bab5f9aec57cad8cbed0d76f898aa1d4ae41918d83d7d73fa1929da8c837e2a3; YD00517437729195%3AWM_TID=Kji43bLtZbRAAAVABFMu4upmK4C%2BEGQH; KLBRSID=9d75f80756f65c61b0a50d80b4ca9b13|1641268679|1641267986; tst=r; NOT_UNREGISTER_WAITING=1; SESSIONID=lbWS7Y8pmp5qM1DErkXJCahgQwwyl79eT8XAOC6qC7A; JOID=V1wXAUwzD9BQH284PTQMxsZMqrkrXmuHBio3Bk1cfuMhV1x9fiHKBjYcaD44XxiWm2kKD5TjJvk-7iTeM3d6aYA=; osd=VVoQAk0xCddTHm0-OjcNxMBLqbgpWGyEBygxAU5dfOUmVF1_eCbJBzQabz05XR6RmGgICZPgJ_s46SffMXF9aoE=; Hm_lvt_98beee57fd2ef70ccdd5ca52b9740c49=1640500881,1641093994,1641267987; Hm_lpvt_98beee57fd2ef70ccdd5ca52b9740c49=1641268678',<br />
+'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0',<br />
+'Host':'<span class="exturl" data-url="aHR0cDovL3d3dy56aGlodS5jb20=">www.zhihu.com</span>'<br />
+}<br />
+r = requests.get('<span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS94aW5nLWZ1LXNoaS1mZW4tZG91LWNodS1sYWktZGUtNjUtMTg=">https://www.zhihu.com/people/xing-fu-shi-fen-dou-chu-lai-de-65-18</span>',headers=headers)<br />
+print(r.text)<br />
+ 运行之后，结果中包含了登录后的内容，说明获取登录状态成功。</p>
+<p>3）也可以通过 cookies 参数来设置，不过这样就需要构造 RequestCookieJar 对象，而且需要分割以下 cookies，相对繁琐，但效果是一 样。</p>
+<p>import requests</p>
+<p>cookies ='_zap=616ef976-1fdb-4b8c-a3cb-9327ff629ff1; _xsrf=0CCNkbCLtTAlz5BfwhMHBHJWW791ZkK6; d_c0=&quot;AKBQTnFIRhSPTpoYIf6mUxSic2UjzSp4BYM=|1641093994&quot;; __snaker__id=mMv5F3gmBHIC9jJg; gdxidpyhxdE=E%2BNK7sMAt0%2F3aZ5Ke%2FSRfBRK7B1QBmCtaOwrqJm%2F1ONP3VPItkrXCcMiAX3%2FIsSxUwudQPyuDGO%2BlHGPvNqGqO9bX1%2B58o7wmf%2FZewh8xSPg%2FH3T2HoWsrs7ZhsSGND0C0la%2BXkLIIG5XXV85PxV5g99d%5CMph%2BbkX1JQBGhDnL3N0zRf%3A1641094897088; <em>9755xjdesxxd</em>=32; YD00517437729195%3AWM_NI=rMeMx2d5Yt3mg0yHPvuPGTjPnGtjL%2Bn%2FPSBnVn%2FHFAVZnIEABUIPITBdsHmMX1iCHfKauO4qhW%2Bi5bTy12Cg91vrxMPgOHtnaAylN8zk7MFpoTr%2FTeKVo3%2FKSSM6T5cNSGE%3D; YD00517437729195%3AWM_NIKE=9ca17ae2e6ffcda170e2e6ee8bea40f8e7a4b2cf69b3b48fb7c54b979b8fbaf17e93909b91fb338ebaaeadec2af0fea7c3b92ab293abaefb3aa8eb9795b267a5f0b7a9d37eb79089b5e95cae99bc8bcf21aef1a0b4c16696b2e1a9c54b9686a2aac84b828b87b1cc6082bcbda9f0479cefa7a4cb6e89bfbbb0b77bac89e58ab86a98a7ffd3c26dfbefba93fb4794b981a9f766a39fb78dcd34bab5f9aec57cad8cbed0d76f898aa1d4ae41918d83d7d73fa1929da8c837e2a3; YD00517437729195%3AWM_TID=Kji43bLtZbRAAAVABFMu4upmK4C%2BEGQH; KLBRSID=9d75f80756f65c61b0a50d80b4ca9b13|1641268679|1641267986; tst=r; NOT_UNREGISTER_WAITING=1; SESSIONID=lbWS7Y8pmp5qM1DErkXJCahgQwwyl79eT8XAOC6qC7A; JOID=V1wXAUwzD9BQH284PTQMxsZMqrkrXmuHBio3Bk1cfuMhV1x9fiHKBjYcaD44XxiWm2kKD5TjJvk-7iTeM3d6aYA=; osd=VVoQAk0xCddTHm0-OjcNxMBLqbgpWGyEBygxAU5dfOUmVF1_eCbJBzQabz05XR6RmGgICZPgJ_s46SffMXF9aoE=; Hm_lvt_98beee57fd2ef70ccdd5ca52b9740c49=1640500881,1641093994,1641267987; Hm_lpvt_98beee57fd2ef70ccdd5ca52b9740c49=1641268678'<br />
+jar = requests.cookies.RequestsCookieJar()<br />
+headers = {<br />
+'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0',<br />
+'Host':'<span class="exturl" data-url="aHR0cDovL3d3dy56aGlodS5jb20=">www.zhihu.com</span>'<br />
+}<br />
+for cookie in cookies.split(';'):<br />
+key,value = cookie.split('=',1)<br />
+jar.set(key,value)<br />
+r = requests.get('<span class="exturl" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS94aW5nLWZ1LXNoaS1mZW4tZG91LWNodS1sYWktZGUtNjUtMTg=">https://www.zhihu.com/people/xing-fu-shi-fen-dou-chu-lai-de-65-18</span>',headers=headers)<br />
+print(r.text)</p>
+<h2 id="会话维持"><a class="anchor" href="#会话维持">#</a> 会话维持</h2>
+<p>通过调用 get () 或 post () 等方法可以做到模拟网页的请求，但是这实际上是相当于不同的会话，也就是说相当于你用了两个浏览器打开不同的页面。如果第一个请求利用 post ( ) 方法登录了网站，第二次想获取登录成功后的自己的个人信息，又使用了一次 get ( ) 方法取请求个人信息，实际上，这相当于打开了两个浏览器，所以是不能成功的获取到个人信息的。为此，需要会话维持，你可以在两次请求时设置一样的 Cookies，但这样很繁琐，而通过 Session 类可以很轻松地维持一个会话。</p>
+<p>import requests<br />
+s = requests.Session()<br />
+s.get('<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL2Nvb2tpZXMvc2V0L251bWJlci8xMjM0NTY3ODk=">http://httpbin.org/cookies/set/number/123456789</span>')<br />
+r = s.get('<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL2Nvb2tpZXM=">http://httpbin.org/cookies</span>')<br />
+print(r.text)<br />
+ 首先通过 requests 打开一个会话，然后通过该会话发送了一个 get 请求，该请求用于向 cookies 中设置参数 number，参数值为 123456789；接着又使用该发起了一个 get 请求，用于获取 Cookies，然后打印获取的内容。</p>
+<p>成功获取。</p>
+<h2 id="ssl证书验证"><a class="anchor" href="#ssl证书验证">#</a> SSL 证书验证</h2>
+<p>requests 还提供了证书验证功能，当发送 HTTP 请求的时候，它会检查 SSL 证书，我们可以使用 verify 参数控制是否检查 SSL 证书。</p>
+<p>1）请求一个 HTTPS 网站时，如果该网站的证书没有被 CA 机构信任，程序将会出错，提示 SSL 证书验证错误。对此，只需要将 verify 参数 设置为 False 即可。如下：</p>
+<p>import requests<br />
+resposne = requests.get('<span class="exturl" data-url="aHR0cHM6Ly93d3cuMTIzMDYuY24=">https://www.12306.cn</span>',verify=False)<br />
+print(response.status_code)<br />
+ 也可以指定一个本地证书用作客户端证书，它可以是单个文件（包含密钥和证书）或一个包含两个文件路径的元组。</p>
+<p>import requests<br />
+# 本地需要有 crt 和 key 文件（key 必须是解密状态，加密状态的 key 是不支持的），并指定它们的路径，<br />
+response = requests.get('<span class="exturl" data-url="aHR0cHM6Ly93d3cuMTIzMDYuY24=">https://www.12306.cn</span>',cert('/path/server.crt','/path/key'))<br />
+print(response.status_code)<br />
+ 2）在请求 SSL 证书不被 CA 机构认可的 HTTPS 网站时，虽然设置了 verify 参数为 False，但程序运行可能会产生警告，警告中建议我们给它 指定证书，可以通过设置忽略警告的方式来屏蔽这个警告：</p>
+<p>import requests<br />
+from requests.packages import urllib3<br />
+urllib3.disable_warnings()<br />
+response = requests.get('<span class="exturl" data-url="aHR0cHM6Ly93d3cuMTIzMDYuY24=">https://www.12306.cn</span>',verify=False)<br />
+print(response.status_code)<br />
+ 或者通过捕获警告到日志的方式忽略警告：<br />
+1<br />
+import logging<br />
+import requests<br />
+logging.captureWarnings(True)<br />
+response = requests.get('<span class="exturl" data-url="aHR0cHM6Ly93d3cuMTIzMDYuY24=">https://www.12306.cn</span>',verify=False)<br />
+print(response.status_code)</p>
+<h2 id="代理设置"><a class="anchor" href="#代理设置">#</a> 代理设置</h2>
+<p>对于某些网站，在测试的时候请求几次，能正常获取内容。但是一旦开始大规模、频繁地爬取，网站可能会弹出验证码，或者跳转到登录验证页面，更有甚者可能会直接封禁客户端的 IP，导致一定时间内无法访问。为了防止这种情况，我们需要使用代理来解决这个问题，这就需要用到 proxies 参数。</p>
+<h3 id="1设置代理"><a class="anchor" href="#1设置代理">#</a> 1）设置代理</h3>
+<p>import requests</p>
+<p>proxies = {<br />
+# 该代理服务器在免费代理网站上得到的，这样的网站有很多<br />
+ 'http': '<span class="exturl" data-url="aHR0cDovLzE2MS4zNS40LjIwMTo4MA==">http://161.35.4.201:80</span>',<br />
+'https': '<span class="exturl" data-url="aHR0cHM6Ly8xNjEuMzUuNC4yMDE6ODA=">https://161.35.4.201:80</span>'<br />
+}<br />
+try:<br />
+response = requests.get('<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL2dldA==">http://httpbin.org/get</span>', proxies=proxies)<br />
+print(response.text)<br />
+except requests.exceptions.ConnectionError as e:<br />
+print('Error', e.args)</p>
+<p>可以发现，我们使用的是代理服务器进行访问的。</p>
+<p>2）如果代理需要使用 HTTP Basic Auth，可以使用类似 http://user:password@host:port 这样的语法来设置代理。</p>
+<p>import requests<br />
+proxies = {<br />
+&quot;http&quot;:&quot;<span class="exturl" data-url="aHR0cDovL3VzZXI6cGFzc3dvcmRAMTYxLjM1LjQuMjAxOjgw">http://user:password@161.35.4.201:80</span>&quot;<br />
+}<br />
+r = requests.get(&quot;<span class="exturl" data-url="aHR0cHM6Ly93d3cudGFvYmFvLmNvbQ==">https://www.taobao.com</span>&quot;,proxies=proxies)<br />
+print(r.text)<br />
+ 3）除了基本的 HTTP 代理外，requests 还支持 SOCKS 协议的代理。首先需要安装 socks 这个库：</p>
+<p>pip3 install 'requests[socks]'<br />
+1<br />
+import requests<br />
+proxies = {<br />
+'http':'socks5://user:password@host:port',<br />
+'https':'socks5://user:password@host:port'<br />
+}<br />
+request.get('<span class="exturl" data-url="aHR0cHM6Ly93d3cudGFvYmFvLmNvbQ==">https://www.taobao.com</span>',proxies=proxies)<br />
+ 然后就可以使用 SOCKS 协议代理了</p>
+<p>import requests<br />
+proxies = {<br />
+'http':'socks5://user:password@host:port',<br />
+'https':'socks5://user:password@host:port'<br />
+}<br />
+requests.get('<span class="exturl" data-url="aHR0cHM6Ly93d3cudGFvYmFvLmNvbQ==">https://www.taobao.com</span>',proxies=proxies)</p>
+<h2 id="超时设置"><a class="anchor" href="#超时设置">#</a> 超时设置</h2>
+<p>在本机网络状况不好或者服务器网络响应太慢甚至无响应时，我们可能会等待特别久的时间才可能收到响应，甚至到最后收不到响应而报错。为了应对这种情况，应设置一个超时时间，这个时间是计算机发出请求到服务器返回响应的时间，如果请求超过了这个超时时间还没有得到响应，就抛出错误。这就需要使用 timeout 参数实现，单位为秒。</p>
+<p>1）指定请求总的超时时间</p>
+<p>import requests<br />
+# 向淘宝发出请求，如果 1 秒内没有得到响应，则抛出错误<br />
+ r = requests.get ('<span class="exturl" data-url="aHR0cHM6Ly93d3cudGFvYmFvLmNvbQ==">https://www.taobao.com</span>',timeout=1)<br />
+print(r.status_code)</p>
+<p>2）分别指定超时时间。实际上，请求分为两个阶段：连接（connect）和读取（read）。如果给 timeout 参数指定一个整数值，则超时时 间是这两个阶段的总和；如果要分别指定，就可以传入一个元组，连接超时时间和读取超时时间：</p>
+<p>import requests<br />
+# 向淘宝发出请求，如果连接阶段 5 秒内没有得到响应或读取阶段 30 秒内没有得到响应，则抛出错误<br />
+ r = requests.get ('<span class="exturl" data-url="aHR0cHM6Ly93d3cudGFvYmFvLmNvbQ==">https://www.taobao.com</span>',timeout=(5,30))<br />
+print(r.status_code)</p>
+<p>3）如果想永久等待，可以直接 timeout 设置为 None，或者不设置 timeout 参数，因为它的默认值就是 None。</p>
+<p>import requests<br />
+# 向淘宝发出请求，如果连接阶段 5 秒内没有得到响应或读取阶段 30 秒内没有得到响应，则抛出错误<br />
+ r = requests.get ('<span class="exturl" data-url="aHR0cHM6Ly93d3cudGFvYmFvLmNvbQ==">https://www.taobao.com</span>',timeout=None))<br />
+print(r.status_code)</p>
+<h2 id="身份验证"><a class="anchor" href="#身份验证">#</a> 身份验证</h2>
+<p>访问某网站时，可能会遇到如下的验证页面：</p>
+<p>1）此时可以使用 requests 自带的身份验证功能，通过 HTTPBasicAuth 类实现。</p>
+<p>import requests<br />
+from requests.auth import HTTPBasicAuth<br />
+r = requests.get('<span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo4MDgwL21hbmFnZXIvaHRtbCcsYXV0aD1IVFRQQmFzaWNBdXRoKCdhZG1pbicsJzEyMzQ1Ng==">http://localhost:8080/manager/html',auth=HTTPBasicAuth('admin','123456</span>'))<br />
+print(r.status_code)</p>
+<p>如果用户名和密码正确的话，返回 200 状态码；如果不正确，则返回 401 状态码。也可以不使用 HTTPBasicAuth 类，而是直接传入一个 元组，它会默认使用 HTTPBasicAuth 这个类来验证。</p>
+<p>import requests<br />
+from requests.auth import HTTPBasicAuth<br />
+r = requests.get('<span class="exturl" data-url="aHR0cDovL2xvY2FsaG9zdDo4MDgwL21hbmFnZXIvaHRtbCcsYXV0aD0oJ2FkbWluJywnMTIzNDU2">http://localhost:8080/manager/html',auth=('admin','123456</span>'))<br />
+print(r.status_code)</p>
+<p>2）requests 还提供了其他验证方式，如 OAuth 验证，不过需要安装 oauth 包，安装命令如下：</p>
+<p>pip3 install requests_oauthlib<br />
+1<br />
+ 使用 OAuth 验证的方法如下：</p>
+<p>import requests<br />
+from requests_oauthlib import OAuth1<br />
+url = '<span class="exturl" data-url="aHR0cHM6Ly9hcGkudHdpdHRlci5jb20vMS4xL2FjY291bnQvdmVyaWZ5X2NyZWRlbnRpYWxzLmpzb24=">https://api.twitter.com/1.1/account/verify_credentials.json</span>'<br />
+auth = OAuth1(&quot;YOUR_APP_KEY&quot;,&quot;YOUR_APP_SECRET&quot;,&quot;USER_OAUTH_TOKEN&quot;,&quot;USER_OAUTH_TOKEN_SECRET&quot;)<br />
+requests.get(url,auth=auth)</p>
+<h2 id="prepared-request"><a class="anchor" href="#prepared-request">#</a> Prepared Request</h2>
+<p>在学习 urllib 库时，发送请求如果需要设置请求头，需要通过一个 Request 对象来表示。在 requests 库中，存在一个与之类似的类，称为 Prepared Request。</p>
+<p>from requests import Request,Session<br />
+url = '<span class="exturl" data-url="aHR0cDovL2h0dHBiaW4ub3JnL3Bvc3Q=">http://httpbin.org/post</span>'<br />
+data = {<br />
+'name':'germey'<br />
+}<br />
+headers = {<br />
+'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0'<br />
+}<br />
+s = Session()<br />
+req = Request('POST',url,data=data,headers=headers)<br />
+prepped = s.prepare_request(req)<br />
+r = s.send(prepped)<br />
+print(r.text)</p>
+<p>这里引入了 Request，然后用 url、data 和 headers 参数构造了一个 Request 对象，这时需要再调用 Session 的 prepare_request () 方法将其转换为一个 Prepared Request 对象，然后调用 send () 方法发送。这样做的好处时：可以利用 Request 将请求当作独立的对象来看待，这样在进行队列调度时会非常方便，后面会用它来构造一个 Request 队列。</p>
+
+      <div class="tags">
+          <a href="/tags/python/" rel="tag"><i class="ic i-tag"></i> python</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-04-28 22:50:44" itemprop="dateModified" datetime="2024-04-28T22:50:44+08:00">2024-04-28</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/04/28/2_1/" title="python request库的基本用法">http://odiws.github.io/2024/04/28/2_1/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/04/28/1_1/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?51836" title="buuctf4月27日">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> 学习笔记</span>
+  <h3>buuctf4月27日</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/04/28/3-txt/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?728304" title="buuctf4月27日">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>buuctf4月27日</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text"> 基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#get%E8%AF%B7%E6%B1%82"><span class="toc-number">1.1.</span> <span class="toc-text"> GET 请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#post%E8%AF%B7%E6%B1%82"><span class="toc-number">1.2.</span> <span class="toc-text"> POST 请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E5%8F%91%E9%80%81post%E8%AF%B7%E6%B1%82"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 1）发送 POST 请求。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 设置请求头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 响应</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%AC%E5%8F%96%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.</span> <span class="toc-text"> 爬取二进制数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.4.</span> <span class="toc-text"> 文件上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%84%E7%90%86cookies"><span class="toc-number">1.5.</span> <span class="toc-text"> 处理 Cookies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E7%BB%B4%E6%8C%81"><span class="toc-number">1.6.</span> <span class="toc-text"> 会话维持</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssl%E8%AF%81%E4%B9%A6%E9%AA%8C%E8%AF%81"><span class="toc-number">1.7.</span> <span class="toc-text"> SSL 证书验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.8.</span> <span class="toc-text"> 代理设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="toc-number">1.8.1.</span> <span class="toc-text"> 1）设置代理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E6%97%B6%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.9.</span> <span class="toc-text"> 超时设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81"><span class="toc-number">1.10.</span> <span class="toc-text"> 身份验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prepared-request"><span class="toc-number">1.11.</span> <span class="toc-text"> Prepared Request</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="PHP学习笔记">PHP学习笔记</a></li><li><a href="/2024/01/24/python-requests%E5%BA%93flask%E5%BA%93%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/" rel="bookmark" title="python-requests库flask库（未完）">python-requests库flask库（未完）</a></li><li><a href="/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="mysql学习笔记">mysql学习笔记</a></li><li><a href="/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="python学习笔记（未完）">python学习笔记（未完）</a></li><li><a href="/2024/03/25/upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="upload文件上传靶场学习笔记">upload文件上传靶场学习笔记</a></li><li><a href="/2024/03/31/xss%E7%AC%94%E8%AE%B0/" rel="bookmark" title="xss漏洞学习笔记">xss漏洞学习笔记</a></li><li><a href="/2024/04/28/1_1/" rel="bookmark" title="buuctf4月27日">buuctf4月27日</a></li><li class="active"><a href="/2024/04/28/2_1/" rel="bookmark" title="python request库的基本用法">python request库的基本用法</a></li><li><a href="/2024/10/07/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" rel="bookmark" title="反序列化漏洞总结">反序列化漏洞总结</a></li><li><a href="/2024/10/15/PwnThyBytes%E2%80%94%E2%80%942019-Baby-SQL/" rel="bookmark" title="[PwnThyBytes——2019]Baby_SQL">[PwnThyBytes——2019]Baby_SQL</a></li><li><a href="/2024/12/06/ctfshow-web-java/" rel="bookmark" title="ctfshow_web_java">ctfshow_web_java</a></li><li><a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="java反序列化学习笔记">java反序列化学习笔记</a></li><li><a href="/2025/03/28/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="bookmark" title="rust学习笔记">rust学习笔记</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">180</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">13</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">141</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2024/04/28/1_1/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/04/28/3-txt/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/10/15/SWPU2019-Web3/" title="[SWPU2019]Web3">[SWPU2019]Web3</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/" title="SHctf-2024部分复现">SHctf-2024部分复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2024/11/20/ISCTF2024%E5%A4%8D%E7%8E%B0/" title="ISCTF2024复现">ISCTF2024复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/06/17/BJDCTF2020-EzPHP/" title="[BJDCTF2020]ezPHP">[BJDCTF2020]ezPHP</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/1_1/" title="buuctf4月27日">buuctf4月27日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/04/29/5-txt/" title="buuctf4月29日">buuctf4月29日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/ciscn2024/" title="In ciscn2024">ciscn2024</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/ciscn2024/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2025/05/14/python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/" title="python原型链污染">python原型链污染</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/24/SWPUCTF-2016-Web7/" title="[SWPUCTF_2016]Web7">[SWPUCTF_2016]Web7</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
+</div>
+
+    <span><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;">'[RootersCTF2019]I_<3_Flask'</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2024/07/13/2020-Roamphp1-Welcome/" title="2020]Roamphp1-Welcome">2020]Roamphp1-Welcome</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/04/28/2_1/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

