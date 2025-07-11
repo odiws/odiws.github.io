@@ -88,12 +88,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?817243"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?692899"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?102562"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?579044"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?381391"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?705089"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?521109"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?834503"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?449439"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?365155"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?766190"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?398797"></li>
         </ul>
       </div>
     </header>
@@ -119,7 +119,199 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/07/28/2020-Greatphp/" itemprop="url" title="[极客大挑战2020]Greatphp"><img data-src="https://www.loliapi.com/acg/?377095"></a>
+    <a href="/2024/11/08/JMCTF2021-UploadHub/" itemprop="url" title="[JMCTF2021]UploadHub"><img data-src="https://www.loliapi.com/acg/?587192"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-11-08 20:54:57">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-11-08T20:54:57+08:00">2024-11-08</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/11/08/JMCTF2021-UploadHub/" itemprop="url" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></h3>
+    <div class="excerpt">
+        # [JMCTF2021]UploadHub
+一进来就是经典上传页面
+
+直接上传🐎
+
+能上传，但是不能被解析为 php 代码，可以想到应该是设置的问题，提到设置，基本上就是./htaccess 文件或者是.user.ini, 这个地方可以用./htaccess 文件，之前有过一个题目也是./htaccess 文件上传，但是只是可以在 htaccess 上执行 php 代码，但是不解析这个的设置之前没学过
+# 方法一
+# SetHandler 和 ForceType
+强制所有匹配的文件被一个指定的处理器处理 用法：
+ForceType...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/11/08/JMCTF2021-UploadHub/" itemprop="url" title="[JMCTF2021]UploadHub" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" itemprop="url" title="[安洵杯2019]iamthinking"><img data-src="https://www.loliapi.com/acg/?113994"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-09-23 15:32:41">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-09-23T15:32:41+08:00">2024-09-23</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" itemprop="url" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></h3>
+    <div class="excerpt">
+        # [安洵杯 2019] iamthinking
+#
+dirsearch 搜集到 www.zip 文件：
+发现是 thinkphp6.0 版本：
+thinkphp6.0 有两个计较明显的漏洞：
+一个文件上传：要开启 session（本题没开）
+一个就是反序列化：本体有个 unserilize 函数
+那就是反序列化了
+php 脚本：
+&amp;lt;?php
+
+namespace think\model\concern;
+
+trait Attribute
+&amp;#123;
+private $data = [&amp;quot;key&amp;quot; =&amp;gt;...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" itemprop="url" title="[安洵杯2019]iamthinking" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" itemprop="url" title="[安洵杯2019]不是文件上传"><img data-src="https://www.loliapi.com/acg/?317538"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-08-15 18:12:36">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-08-15T18:12:36+08:00">2024-08-15</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" itemprop="url" title="[安洵杯2019]不是文件上传">[安洵杯2019]不是文件上传</a></h3>
+    <div class="excerpt">
+        传传传，各种传
+*1*|***1*** 文件上传
+1.MIME 类型检测绕过
+设置为 image/jpeg，无果
+2. 黑名单绕过
+尝试设置后缀如 php3,php5, 无果
+3.%00 截断
+尝试，无果。
+4. 应用程序解析绕过
+.php.jpg。上传成功！
+
+发现怎么后缀是 jpg，然后通过路径访问的话报 404，这里我就开始奇怪了，难道真的不是文件上传，毕竟就算上传成功也需要爆出路径才能利用，但是这明显是假路径。
+思考其他的方向，既然 buu 给了 github 源码，那就看看源码吧，看了看，主要逻辑代码在 helper.php
+*1*|***2***...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" itemprop="url" title="[安洵杯2019]不是文件上传" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/07/29/ISITDTU2019-EasyPHP/" itemprop="url" title="[羊城杯2020]easyphp"><img data-src="https://www.loliapi.com/acg/?350025"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-07-29 22:20:52">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-07-29T22:20:52+08:00">2024-07-29</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/07/29/ISITDTU2019-EasyPHP/" itemprop="url" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></h3>
+    <div class="excerpt">
+        # [羊城杯 2020] easyphp
+和 [XNUCA2019Qualifier] EasyPHP 基本一样，唯一的区别就是少了 include_once 导致没办法通过 error_log 来做，预期解应该就是那道题的非预期。
+&amp;lt;?php $files = scandir(&#39;./&#39;); foreach($files as $file) &amp;#123; if(is_file($file))&amp;#123; if ($file !== &quot;index.php&quot;) &amp;#123; unlink($file); &amp;#125;...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/07/29/ISITDTU2019-EasyPHP/" itemprop="url" title="[羊城杯2020]easyphp" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/07/28/2019-SVGMagic/" itemprop="url" title="[BSidesCF2019]SVGMagic"><img data-src="https://www.loliapi.com/acg/?112832"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-07-28 23:18:59">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-07-28T23:18:59+08:00">2024-07-28</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/07/28/2019-SVGMagic/" itemprop="url" title="[BSidesCF2019]SVGMagic">[BSidesCF2019]SVGMagic</a></h3>
+    <div class="excerpt">
+        # [BSidesCF 2019]SVGMagic
+标题说把 SVG 转为 PNG
+SVG 是一种用 XML 定义的语言，SVG 图形是可交互的和动态的，可以在 SVG 文件中嵌入动画元素或通过脚本来定义动画。
+也就是说这里的 SVG 是个 XML, 并且存在可控的内容，那么自然就会想到 XXE。
+究极详细讲解：https://www.freebuf.com/vuls/175451.html
+我的理解是：
+首先我们要知道，XML 被设计用来传输和存储数据。
+然后这个漏洞就是利用了，应用程序在解析XML输入时，没有禁止外部实体的加载。
+就拿下面的这个来说&amp;lt;!ENTITY file...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/07/28/2019-SVGMagic/" itemprop="url" title="[BSidesCF2019]SVGMagic" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/07/28/2020-Greatphp/" itemprop="url" title="[极客大挑战2020]Greatphp"><img data-src="https://www.loliapi.com/acg/?267500"></a>
   </div>
   <div class="info">
     
@@ -150,7 +342,7 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/07/26/1/" itemprop="url" title="easybypass"><img data-src="https://www.loliapi.com/acg/?818918"></a>
+    <a href="/2024/07/26/1/" itemprop="url" title="easybypass"><img data-src="https://www.loliapi.com/acg/?940526"></a>
   </div>
   <div class="info">
     
@@ -186,7 +378,7 @@ $comm2 =...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/07/25/2019-Web-Unagi/" itemprop="url" title="[CSAWQual2019]Web_Unagi"><img data-src="https://www.loliapi.com/acg/?363136"></a>
+    <a href="/2024/07/25/2019-Web-Unagi/" itemprop="url" title="[CSAWQual2019]Web_Unagi"><img data-src="https://www.loliapi.com/acg/?46732"></a>
   </div>
   <div class="info">
     
@@ -220,7 +412,7 @@ $comm2 =...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/11/2019-EasyWeb/" itemprop="url" title="[SUCTF 2019]EasyWeb"><img data-src="https://www.loliapi.com/acg/?283482"></a>
+    <a href="/2024/06/11/2019-EasyWeb/" itemprop="url" title="[SUCTF 2019]EasyWeb"><img data-src="https://www.loliapi.com/acg/?700866"></a>
   </div>
   <div class="info">
     
@@ -254,7 +446,7 @@ $userdir =...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" itemprop="url" title="&#39;[NPUCTF2020]ezinclude&#39;"><img data-src="https://www.loliapi.com/acg/?897514"></a>
+    <a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" itemprop="url" title="&#39;[NPUCTF2020]ezinclude&#39;"><img data-src="https://www.loliapi.com/acg/?447698"></a>
   </div>
   <div class="info">
     
@@ -297,189 +489,6 @@ F12 发现提示：
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;"><img data-src="https://www.loliapi.com/acg/?853425"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-06 21:19:01">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-06T21:19:01+08:00">2024-06-06</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;">'[NCTF2019]SQLi'</a></h3>
-    <div class="excerpt">
-        # [NCTF2019]SQLi
-源码泄露：
-
-找到 hint.php
-目的明确：
-只要密码是 admin 的密码就可以获得 flag
-得到提示，这题过滤了好多关键字，只要 password 的密码等于 admin 的密码就能拿到 flag 了，但是怎么拿呢？看了 dalao 的 wp 才发现有 regexp 注入
-# regexp 注入（正则注入）
-这个注入方式呢相当于布尔盲注吧，若是猜对了就返回正确的页面，我们本地测试一下正则，先看一下全部数据，然后 ^ 匹配 e 开头的 password
-
-再找个 a 开头的：没有
-
-分析
-回到题目里，提示给了串 SQL 语句
-select * from...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" itemprop="url" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;"><img data-src="https://www.loliapi.com/acg/?290487"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-06 19:43:07">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-06T19:43:07+08:00">2024-06-06</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" itemprop="url" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;">'[RootersCTF2019]I_<3_Flask'</a></h3>
-    <div class="excerpt">
-        # [RootersCTF2019]I_❤️_Flask
-
-arjun 工具用于
-
-这题没有过滤，直接用常规的注入语句即可
-?name=&amp;#123;% for c in [].__class__.__base__.__subclasses__() %&amp;#125;&amp;#123;% if c.__name__==&#39;catch_warnings&#39; %&amp;#125;&amp;#123;&amp;#123;...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" itemprop="url" title="ssti"><i class="ic i-flag"></i>ssti</a>
-      </span>
-    </div>
-    <a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" itemprop="url" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" itemprop="url" title="&#39;ctf工具总结&#39;"><img data-src="https://www.loliapi.com/acg/?127774"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-05-29 15:44:25">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-05-29T15:44:25+08:00">2024-05-29</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" itemprop="url" title="&#39;ctf工具总结&#39;">'ctf工具总结'</a></h3>
-    <div class="excerpt">
-        源码泄露工具：dirsearch
-用法：python dirsearch.py -u url 地址
-githack：git 源码泄露的工具（dirsearch 扫 git 泄露可能乱码，githack 不会）
-python githack.py url+/.git/
-直接在 githack 文件夹里面找到文件。
-c-jwt-cracker:(jwt 爆破找到密钥)
-快速安装 c-jwt-cracker - litluo - 博客园 (cnblogs.com)
-php_mt_seed:(为了找到伪随机数漏洞的种子，用种子可以反推随机的字符串)：
-PHP 伪随机数漏洞，以及 php_mt_seed...
-    </div>
-    <a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" itemprop="url" title="&#39;ctf工具总结&#39;" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日"><img data-src="https://www.loliapi.com/acg/?137323"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-04-28 22:48:23">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-04-28T22:48:23+08:00">2024-04-28</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日">buuctf4月27日</a></h3>
-    <div class="excerpt">
-        # [RoarCTF 2019]Easy Calc
-#
-页面发现什么也没有 F12 发现有 calc.php 这个文件，进去发现有源码
-&amp;lt;?php
-error_reporting(0);
-if(!isset($_GET[&#39;num&#39;])){
-show_source(FILE);
-}else{
-$str = $_GET[&#39;num&#39;];
-blacklist = [&#39; &#39;, &#39;\t&#39;, &#39;\r&#39;, &#39;\n&#39;,&#39;\&#39;&#39;, &#39;&quot;&#39;,...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日"><img data-src="https://www.loliapi.com/acg/?100413"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-04-28 22:45:54">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-04-28T22:45:54+08:00">2024-04-28</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日">buuctf4月27日</a></h3>
-    <div class="excerpt">
-        # ssrf 漏洞
-# 1.ssrf 是什么？
-ssrf（服务器端请求伪造）: 是一种由攻击者构造形成由服务端发起请求的一个安全漏洞。本质上是属于信息泄露漏洞
-一般情况下，SSRF 攻击的目标是从外网无法访问的内部系统。（正是因为它是由服务端发起的，所以它能够请求到与它相连而与外网隔离的内部系统）
-# 2.SSRF 漏洞原理？
-
-意思是攻击者将一个代码是主机 A 向主机 b（内网的主机）发起请求访问文件
-SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。例如，黑客操作服务端从指定 URL...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="学习笔记"><i class="ic i-flag"></i>学习笔记</a>
-      </span>
-    </div>
-    <a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -487,7 +496,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
   
   <nav class="pagination">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="ic i-angle-right" aria-label="Next page"></i></a>
     </div>
   </nav>
 
@@ -515,7 +524,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">70</span>
+        <span class="count">75</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -527,7 +536,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">57</span>
+        <span class="count">63</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -557,6 +566,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
+        <a href="/page/8/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -580,16 +590,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/09/%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-UnserializeOne/" title="公开赛赛道]UnserializeOne">公开赛赛道]UnserializeOne</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/04/07/http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E/" title="http请求走私漏洞">http请求走私漏洞</a></span>
+    <span><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></span>
   </li>
 
       
@@ -606,9 +607,10 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/26/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%85%A5%E9%97%A8/" title="java反序列化入门">java反序列化入门</a></span>
+    <span><a href="/2024/07/25/2019-Web-Unagi/" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></span>
   </li>
 
       
@@ -617,7 +619,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" title="&#39;ctf工具总结&#39;">'ctf工具总结'</a></span>
+    <span><a href="/2025/04/17/springweb/" title="springweb">springweb</a></span>
   </li>
 
       
@@ -627,7 +629,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/03/02/PyCalX-1/" title="PyCalX_1">PyCalX_1</a></span>
+    <span><a href="/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/" title="[ACTF新生赛2020]outguess">[ACTF新生赛2020]outguess</a></span>
   </li>
 
       
@@ -637,7 +639,37 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/24/SWPUCTF-2016-Web7/" title="[SWPUCTF_2016]Web7">[SWPUCTF_2016]Web7</a></span>
+    <span><a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" title="&#39;[NPUCTF2020]ezinclude&#39;">'[NPUCTF2020]ezinclude'</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/12/01/LineCTF2022-BB/" title="[LineCTF2022]BB">[LineCTF2022]BB</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/19/BSidesCF-2020-Cards/" title="[BSidesCF-2020]Cards">[BSidesCF-2020]Cards</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/" title="[SWPU2019]伟大的侦探">[SWPU2019]伟大的侦探</a></span>
   </li>
 
       
@@ -648,27 +680,6 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
 </div>
 
     <span><a href="/2024/04/28/1_1/" title="buuctf4月27日">buuctf4月27日</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/04/17/MyBatis/" title="MyBatis">MyBatis</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
-</div>
-
-    <span><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;">'[RootersCTF2019]I_<3_Flask'</a></span>
   </li>
 
   </ul>

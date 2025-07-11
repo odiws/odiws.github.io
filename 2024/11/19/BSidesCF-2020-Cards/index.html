@@ -1,0 +1,511 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="buuctf,json数据爬虫" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2024/11/19/BSidesCF-2020-Cards/">
+
+
+
+  <title>
+[BSidesCF-2020]Cards - 刷题笔记 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">[BSidesCF-2020]Cards
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-11-19 15:21:50">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-11-19T15:21:50+08:00">2024-11-19</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?73287"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?780447"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?239663"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?607648"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?67087"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?287961"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 刷题笔记"><span itemprop="name">刷题笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/11/19/BSidesCF-2020-Cards/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="bsidescf-2020cards"><a class="anchor" href="#bsidescf-2020cards">#</a> [BSidesCF 2020]Cards</h2>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411191523521.png" alt="image-20241119152319230" /></p>
+<pre><code>发现大量字符，用&#123;&#125;包括的是json数据“”：“”
+</code></pre>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411191524476.png" alt="image-20241119152437375" /></p>
+<p>我们在每次请求都会有一个 SecretState 参数，用来保存游戏状态，并且在客户端和服务端同步。这个参数没法篡改。每次请求，服务端都会生成一个新的 SecretState，但是旧的 SecretState 并不失效，问题就出在于此。<br />
+游戏如果赢了，就更新 SecretState，如果输了，则不更新 SecretState。这样就可以达到类似一种分数只增不减的效果。<br />
+但是有个问题，下注之后要开牌的话，必须得用新的 SecretState，而下注的时候分数已经扣了，这样输的状态依然存在。<br />
+这就需要利用 21 点里一个规则，如果先发的 2 张牌已经是 21 点（black jack），则直接赢（直接 1.5 倍）。这种状态下可以省去开牌那一步。<br />
+首先在这个 url 下面获取一个 secret，因为后面在出牌的时候需要使用<br />
+（旧 SecretState 还有效带来的问题，再加上 21 点特殊的规则，发牌在特定情况下可以直接赢）</p>
+<p>直接在每次 dea 时提交 A+10 的 SecretState 就行了</p>
+<p>python 脚本：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">#secret='6dcf49949620f7d43497fe0971b059e8a3fa599b4d8b4493072fcf8aca667d0da69365f3ec9aa0ca520001dc65f731b5faacb84d3af689bd405a7594f44eaddff55bf568678d098ade861b65f83419b71716c102b08beadc37e05cdfc7cebd9cca47426b3ec8199bc08c04645243e2c38e4f86e758d112a950b2924bbbd01535841db11c7e2ee38f916284ca2d689d27c6c05d71d561d727010775290b07078cb24bb5d247af49a963df723806d97bb0fe9db886355866976ff65e2bc2d3ac10405e181723d20865f9ab3763dfdab13f5597022b970d7cd1f627886efe517e4e603e3b9a9d75a4d3caddeacbad24683157bcb169d02758059187aac0a4f8347a16760ce25d3813129fe13d95bb1bc994dc56aadf3de983bac4c84da0ae959382eb4ddbf74320eb970fb601232d1b7b9b0db6780c19273e14ad6da0a210607d8acda0af308be2454942929a48862a9e4bec5a66d0793e4f7303e807d1f151216948d5b527bad3f5599d83fb6a67e082996d382eb1ca8681b2db2a61288fe2b0609b212cba182719ecf55f53bc6dd4f763fa89a6a6db9255beee51dd1901d95233726c98eaa2611752f394f6312e34dcd8c2b11be916dc03ec0f6339da4a37864304ad715a00ccf8252ed54ac82245dddb34e5f3b31a9103ea5789cd66cc37b88fec2afc2e2bafce0eb22ed81abba8c4a10451fb49e2c9dc193dd2aeefd0cb4257844c4a6e231ff495c05686c841e11f1ba3392151c907c330a2a9c88002693b06482de03c68ed5257bdd51b683c93111068fff57d4de157981cb3189831c4a8b022b84544a377ce0f157e1d7453d795d6698e785ea69001890949807e6fa97f26540617c9f43b5d687c4848226da7d57f17a35b0b68f2362371a2c1b213641dd3ca10f4a096644e3f2afbf8679bcbf437a154f3881eaeb2c0b546746740d88b57430f2965eb39d6a17892468d48796652cb4f66425d12236d262ef21b3e04164682220b1c7e86464795c1765f665754a4d0073563492854e3d7b7aa5d2f5dfc5d3cba7ef8ad992e97712d2ec9053da948919cc25812857a769541f9cde5e374520bd0237058f250f2f2bd49b79fc8b8492a6f927b6db4e9ef7de14a4cb2bf03e608fad99ef76fe54f8b204d478f7d78b707b5d48f1dbd15eb5f5a623a3c45ffc7d673d40c916b162047bf6e9b08f3ec41086b09b0dad4489d565b56dea64c83ffb2d698580567f4af25fdb027ad00e7ad214589b87fd6ede106eaeb188a9c0431cbafcf567f3831df8ca0df6ab97602b0261acdaa3815523d0c719c204ebdf9e63edf7bd356b883e9aa22cca9e221b7cdd5f2fcb45c4b8d1904e7d1f30238b440a8ddb8788b104a583e26ea5224d7170cc0ac5d8258e15a52052d6f000180b0d847aabbf66561f9856fea706eb526d6938d038eb45f1dd10ccf90c1e3aabed756cf1bf7469a836008af0b391e61558f5a961dc1a488511047adadda4a93519387b4f19fc2ccfa7ca79bafce508d0da40bab1055b47b104f49e0e1cc41a3790cc8ae06f71f8c2058434a4670e38d99160815af9704f7c90f43329bb5a73db512d2f6d2edbef386e71ef13423c8be41baa568059d7bfdc4e210a84d7503b1f6a7884d0aff42928f8f8c673338b2b09f2dc62d856530ff87814d68289ae07f85f655262f51aae96e427d892a1920d77163ebbbbf3758fce7d44c2d4f7c2c223f84ee9463291c987f814ff0f880f5b8a98d790079271ba82cc962def32286a6a7b72b68c089ea2ed542812204bb10a9915ffe9853c3a618ef524ae905b1'</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">#json 数据 --------</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token comment"># &#123;"SecretState":"1c5e9c5b10f834d4be72062c24408ff21f8a97263d472f0ed7cd55265ca2098be59a00c15513407acdf420d61303716eed1bd276d903daa479d4bdf1565b838d13862b03d62eae2f2fc36f2b55ae50219071ddd4ce5ef58978a3461869c4eaad361534f7d3de410d9455cd9562958a5253b2cc2c2378a1adf45eeaf680c2e147b5a663d60b59d0c1b3de99d87bc8b1e9c9db3b43eaa4e942caf3c2bf2b789099fda1d345e095df6e8c7e1add44786da4a7f6fcbcaa3fad8f95497c1133c395f95905e1f83b8ffa6052cd5dbdb9ef026da6cb6cced8f15dd15fd46b8494ee3b736b595b88a00188ad202d35f6d17b834ec79e899f769d8e0ee8b318271b887c1db19254e20dfdf55abea753865a914b9cdd9d6499587b04299c1965e0a3f4d58699f6e731717c54647ab3a21baf6cc7bfa566a3bf88a437ba9b58c6affba9e8f8d11581418cf8dbe4b41a1712dc55965f960744ebad61b1f5cc7fdcbd19aec0d64e234d5e66c3f96c3c71c4ff6f1f6130499a78b7f74fd45a917e643449945f469a020c2126bc44547b110c1f016a18945e741e1f168f5ea63f01dd8c42ea361d5374893410ed515f393e57778c5429cd4012016eb2ac7c91b88a1295ec7cab5b3506c3897e860d222c1927fcc85c94dd63d3e0d712810b8dee2086ee986a27e829c12cccd4a26417404a91e423c0839f8e96596fcc40ab75e5fb039cf964da22e16e22e52d41f9397728639142b768da1e7719d99a58268a61fbc8794bd52c9e80aabeb6fdaa1786b2468a5a25825b2992e4acb37728226982b1604f325a534796f95aecb80e5a30c6fc90c88a24fb0538ea1fed62cc5c191aa8592af57fd1617e465f3f8fc4913eeb05d1810ec49c7118761ea4b74d27cf7dcd4f7b88c14cc9fcda15148430f789ad974a3ea5049f3a7b5b47fbd73db2903b8e3179a7cb3988703b84aa9ac174d54189be2a6041baef88ff7f0a04d3a1a94cf685da1cdeaffbf31db37bfbe7b7f5f455e66423d36d2a55560a8ed2b32fa171e68596be3f19e30b9174d62a104d84607a7b9b54d879830968c73aa61b56b6ac9bcdf083270dfef8b261b07cf57fc9542c9fd70afa32870685b8bae85f0d58e8ad18bd6e320796e40643857d6e4b044656231efb80106e4850e3a9bad72a9e61bb11f01dbb7f492244c974bd92323f2171987955ed051183c37da90e4eb7f72e2f36e2a045877cd2097db6d4a56c269df2983736f4323f43f80bb0b8d7325675a8b4c237a96b22ba3c8b93830f01388530668a59e258eec7e628a665d2c5598e5325efeab5e8c8be9901702f28340c0de3245f26d43b9ecc68d2486e2c78b03fec0110f1ffbe14d057481f8b15af0becba884af906bc56ad1db5ca2b37072eb75fbec79182255eb2bb9c04d4dae6f8a116987e9b0b10565c9a17a764503a16c3b7a6c577029f5c8bea506ed407f20ffc373e13d147c1c5f19498b81b055797bb3fe0985b9defab811d9b3333bc991ac747ce7f1b61c6ff87901fe77915bc051d2ec15532e3899535d546444c2e97422dc9b61d096ebe91a510dc0a7e8485e28b15e42addadf8db0e666fc812dd3495d79312cd949802b1273877b652fefd329df451bd980c05b120a81d582f3ccf5ce10e6eaa755c75ae8f7023feb35b02ec5ab0e594da5a4618a5e930868e080d733ff7","PlayerHand":[],"DealerHand":[],"Balance":1000,"GameState":"Idle","SessionState":"Playing","Bet":0&#125;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">#-----------------</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">import</span> requests</pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>start <span class="token operator">=</span> <span class="token string">"http://a459185f-ff4c-4d00-8013-34498ee7de73.node5.buuoj.cn:81/api"</span></pre></td></tr><tr><td data-num="8"></td><td><pre>deal <span class="token operator">=</span> start <span class="token operator">+</span> <span class="token string">"/deal"</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token comment"># 开局</span></pre></td></tr><tr><td data-num="12"></td><td><pre>state <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>start<span class="token punctuation">)</span><span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">"SecretState"</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="13"></td><td><pre></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token comment"># 下注</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token keyword">try</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        resp <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>deal<span class="token punctuation">,</span> json<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token string">"Bet"</span><span class="token punctuation">:</span> <span class="token number">500</span><span class="token punctuation">,</span> <span class="token string">"SecretState"</span><span class="token punctuation">:</span> state<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span>json<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token keyword">except</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token keyword">continue</span></pre></td></tr><tr><td data-num="20"></td><td><pre></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token keyword">if</span> resp<span class="token punctuation">[</span><span class="token string">'GameState'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'Blackjack'</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        state <span class="token operator">=</span> resp<span class="token punctuation">[</span><span class="token string">'SecretState'</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="23"></td><td><pre></pre></td></tr><tr><td data-num="24"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>resp<span class="token punctuation">[</span><span class="token string">'Balance'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token keyword">if</span> resp<span class="token punctuation">[</span><span class="token string">'Balance'</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">100000</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token keyword">print</span><span class="token punctuation">(</span>resp<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token keyword">break</span></pre></td></tr></table></figure><p>（这个题目在于 json 数据的提交，之前都没见过～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～～）</p>
+<p>参考链接：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3NvbGl0dWRpL2FydGljbGUvZGV0YWlscy8xMDkxODYwNjE=">https://blog.csdn.net/solitudi/article/details/109186061</span></p>
+
+      <div class="tags">
+          <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
+          <a href="/tags/json%E6%95%B0%E6%8D%AE%E7%88%AC%E8%99%AB/" rel="tag"><i class="ic i-tag"></i> json数据爬虫</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-11-19 15:32:36" itemprop="dateModified" datetime="2024-11-19T15:32:36+08:00">2024-11-19</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/11/19/BSidesCF-2020-Cards/" title="[BSidesCF-2020]Cards">http://odiws.github.io/2024/11/19/BSidesCF-2020-Cards/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/11/18/BSidesCF-2019-Mixer/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?748265" title="[BSidesCF-2019]Mixer">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[BSidesCF-2019]Mixer</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/11/19/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2020-Roamphp4-Rceme/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?715467" title="[极客大挑战-2020]Roamphp4-Rceme">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[极客大挑战-2020]Roamphp4-Rceme</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bsidescf-2020cards"><span class="toc-number">1.</span> <span class="toc-text"> [BSidesCF 2020]Cards</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2024/04/28/3-txt/" rel="bookmark" title="buuctf4月27日">buuctf4月27日</a></li><li><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" rel="bookmark" title="'[RootersCTF2019]I_<3_Flask'">'[RootersCTF2019]I_<3_Flask'</a></li><li><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" rel="bookmark" title="'[NCTF2019]SQLi'">'[NCTF2019]SQLi'</a></li><li><a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" rel="bookmark" title="'[NPUCTF2020]ezinclude'">'[NPUCTF2020]ezinclude'</a></li><li><a href="/2024/06/11/2019-EasyWeb/" rel="bookmark" title="[SUCTF 2019]EasyWeb">[SUCTF 2019]EasyWeb</a></li><li><a href="/2024/07/25/2019-Web-Unagi/" rel="bookmark" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></li><li><a href="/2024/07/26/1/" rel="bookmark" title="easybypass">easybypass</a></li><li><a href="/2024/07/28/2020-Greatphp/" rel="bookmark" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></li><li><a href="/2024/07/28/2019-SVGMagic/" rel="bookmark" title="[BSidesCF2019]SVGMagic">[BSidesCF2019]SVGMagic</a></li><li><a href="/2024/07/29/ISITDTU2019-EasyPHP/" rel="bookmark" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></li><li><a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="bookmark" title="[安洵杯2019]不是文件上传">[安洵杯2019]不是文件上传</a></li><li><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" rel="bookmark" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></li><li><a href="/2024/11/08/JMCTF2021-UploadHub/" rel="bookmark" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></li><li><a href="/2024/11/18/FBCTF2019-Products-Manager/" rel="bookmark" title="[FBCTF2019]Products-Manager">[FBCTF2019]Products-Manager</a></li><li><a href="/2024/11/18/BSidesCF-2019-Mixer/" rel="bookmark" title="[BSidesCF-2019]Mixer">[BSidesCF-2019]Mixer</a></li><li class="active"><a href="/2024/11/19/BSidesCF-2020-Cards/" rel="bookmark" title="[BSidesCF-2020]Cards">[BSidesCF-2020]Cards</a></li><li><a href="/2024/11/19/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2020-Roamphp4-Rceme/" rel="bookmark" title="[极客大挑战-2020]Roamphp4-Rceme">[极客大挑战-2020]Roamphp4-Rceme</a></li><li><a href="/2024/11/20/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E5%8D%8A%E5%86%B3%E8%B5%9B-BabyJS/" rel="bookmark" title="[网鼎杯-2020-半决赛]BabyJS">[网鼎杯-2020-半决赛]BabyJS</a></li><li><a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" rel="bookmark" title="[HMGCTF2022]Smarty-Calculator">[HMGCTF2022]Smarty-Calculator</a></li><li><a href="/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/" rel="bookmark" title="[红明谷CTF-2021]EasyTP">[红明谷CTF-2021]EasyTP</a></li><li><a href="/2024/12/01/LineCTF2022-BB/" rel="bookmark" title="[LineCTF2022]BB">[LineCTF2022]BB</a></li><li><a href="/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/" rel="bookmark" title="[NewStarCT_2023_公开赛道]Upload_again!">[NewStarCT_2023_公开赛道]Upload_again!</a></li><li><a href="/2024/12/04/%E5%88%B7%E6%96%B0%E8%BF%87%E7%9A%84%E5%9B%BE%E7%89%87/" rel="bookmark" title="刷新过的图片">刷新过的图片</a></li><li><a href="/2024/12/04/MRCTF2020-Ezpop-Revenge/" rel="bookmark" title="[MRCTF2020]Ezpop_Revenge">[MRCTF2020]Ezpop_Revenge</a></li><li><a href="/2024/12/10/b01lers2020-Spac-Noodles/" rel="bookmark" title="[b01lers2020]Spac_Noodles">[b01lers2020]Spac_Noodles</a></li><li><a href="/2024/12/10/De1CTF-2019-Giftbox/" rel="bookmark" title="[De1CTF_2019]Giftbox">[De1CTF_2019]Giftbox</a></li><li><a href="/2025/01/26/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-EasyLogin/" rel="bookmark" title="[NewStarCTF2023公开赛道]EasyLogin">[NewStarCTF2023公开赛道]EasyLogin</a></li><li><a href="/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/" rel="bookmark" title="NewStarCTF2023新生赛_BabySSTI_Three">NewStarCTF2023新生赛_BabySSTI_Three</a></li><li><a href="/2025/02/09/%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-UnserializeOne/" rel="bookmark" title="公开赛赛道]UnserializeOne">公开赛赛道]UnserializeOne</a></li><li><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" rel="bookmark" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></li><li><a href="/2025/02/09/BSidesCF2019-Sequel/" rel="bookmark" title="[BSidesCF2019]Sequel">[BSidesCF2019]Sequel</a></li><li><a href="/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/" rel="bookmark" title="NewStarCTF_2023_公开赛道Include">NewStarCTF_2023_公开赛道Include</a></li><li><a href="/2025/02/23/HFCTF-2021-Final-hatenum/" rel="bookmark" title="[HFCTF_2021_Final]hatenum">[HFCTF_2021_Final]hatenum</a></li><li><a href="/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/" rel="bookmark" title="[Dest0g3_520迎新赛]SimpleRCE">[Dest0g3_520迎新赛]SimpleRCE</a></li><li><a href="/2025/02/24/SWPUCTF-2016-Web7/" rel="bookmark" title="[SWPUCTF_2016]Web7">[SWPUCTF_2016]Web7</a></li><li><a href="/2025/02/26/HMGCTF2022-Fan-Website/" rel="bookmark" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></li><li><a href="/2025/03/02/PyCalX-1/" rel="bookmark" title="PyCalX_1">PyCalX_1</a></li><li><a href="/2025/03/11/GKCTF-2021-babycat-revenge/" rel="bookmark" title="[GKCTF_2021]babycat-revenge">[GKCTF_2021]babycat-revenge</a></li><li><a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" rel="bookmark" title="谁赢了比赛？">谁赢了比赛？</a></li><li><a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" rel="bookmark" title="梅花香自苦寒来">梅花香自苦寒来</a></li><li><a href="/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/" rel="bookmark" title="[ACTF新生赛2020]outguess">[ACTF新生赛2020]outguess</a></li><li><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" rel="bookmark" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></li><li><a href="/2025/03/18/JMCTF-2021-GoOSS/" rel="bookmark" title="[JMCTF_2021]GoOSS">[JMCTF_2021]GoOSS</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">75</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">10</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">63</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2024/11/18/BSidesCF-2019-Mixer/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/11/19/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2020-Roamphp4-Rceme/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/1_1/" title="buuctf4月27日">buuctf4月27日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/07/28/2019-SVGMagic/" title="[BSidesCF2019]SVGMagic">[BSidesCF2019]SVGMagic</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/17/springweb/" title="springweb">springweb</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/12/06/ctfshow-web-java/" title="ctfshow_web_java">ctfshow_web_java</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/07/29/ISITDTU2019-EasyPHP/" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/" title="[红明谷CTF-2021]EasyTP">[红明谷CTF-2021]EasyTP</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/12/10/b01lers2020-Spac-Noodles/" title="[b01lers2020]Spac_Noodles">[b01lers2020]Spac_Noodles</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/12/01/LineCTF2022-BB/" title="[LineCTF2022]BB">[LineCTF2022]BB</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/11/19/BSidesCF-2020-Cards/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
