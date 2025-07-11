@@ -24,13 +24,15 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
+  <meta name="keywords" content="buuctf,CRC" />
 
-<link rel="canonical" href="http://odiws.github.io/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/">
+
+<link rel="canonical" href="http://odiws.github.io/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/">
 
 
 
   <title>
-ecshop复现 |
+[BJDCTF2020]一叶障目 - 刷题笔记 - misc |
 zty153’s_blog = Hexo</title>
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -58,16 +60,16 @@ zty153’s_blog = Hexo</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">ecshop复现
+  <h1 itemprop="name headline">[BJDCTF2020]一叶障目
   </h1>
   
 <div class="meta">
-  <span class="item" title="Created: 2025-06-17 11:38:05">
+  <span class="item" title="Created: 2025-03-10 22:19:25">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">Posted on</span>
-    <time itemprop="dateCreated datePublished" datetime="2025-06-17T11:38:05+08:00">2025-06-17</time>
+    <time itemprop="dateCreated datePublished" datetime="2025-03-10T22:19:25+08:00">2025-03-10</time>
   </span>
 </div>
 
@@ -100,12 +102,12 @@ zty153’s_blog = Hexo</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?470905"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?573267"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?692795"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?502094"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?499584"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?917576"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?178177"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?518237"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?414294"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?222171"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?620928"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?983966"></li>
         </ul>
       </div>
     </header>
@@ -130,11 +132,16 @@ zty153’s_blog = Hexo</title>
     
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
-<span><a href="/">Home</a></span>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/misc/" itemprop="item" rel="index" title="In misc"><span itemprop="name">misc</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/misc/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 刷题笔记"><span itemprop="name">刷题笔记</span></a>
+<meta itemprop="position" content="2" /></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
-  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -149,24 +156,17 @@ zty153’s_blog = Hexo</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <p>首先先起 docker：</p>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">docker-compose</span> up <span class="token parameter variable">-d</span>      ----d这个配置是都起，不然数据库可能就起不来，直接报错</pre></td></tr></table></figure><p>然后 docker ps 找到这个的容器号，</p>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>root@hcss-ecs-7f85:~/靶场/vulhub-master/ecshop/xianzhi-2017-02-82239600<span class="token comment"># docker ps </span></pre></td></tr><tr><td data-num="2"></td><td><pre>CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                   NAMES</pre></td></tr><tr><td data-num="3"></td><td><pre>af16791ab7eb   vulhub/ecshop:3.6.0   <span class="token string">"docker-php-entrypoi…"</span>   <span class="token number">12</span> minutes ago   Up <span class="token number">12</span> minutes   <span class="token number">0.0</span>.0.0:8081-<span class="token operator">></span><span class="token number">80</span>/tcp, :::8081-<span class="token operator">></span><span class="token number">80</span>/tcp   xianzhi20170282239600_ecshop36_1</pre></td></tr><tr><td data-num="4"></td><td><pre>32164643c5c7   vulhub/ecshop:2.7.3   <span class="token string">"docker-php-entrypoi…"</span>   <span class="token number">12</span> minutes ago   Up <span class="token number">4</span> minutes    <span class="token number">0.0</span>.0.0:8080-<span class="token operator">></span><span class="token number">80</span>/tcp, :::8080-<span class="token operator">></span><span class="token number">80</span>/tcp   xianzhi20170282239600_ecshop27_1</pre></td></tr><tr><td data-num="5"></td><td><pre>3b79c717fdb1   mysql:5.5             <span class="token string">"docker-entrypoint.s…"</span>   <span class="token number">12</span> minutes ago   Up <span class="token number">12</span> minutes   <span class="token number">3306</span>/tcp                                xianzhi20170282239600_mysql_1</pre></td></tr></table></figure><p>我的报了一下错，可以</p>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token function">docker</span> <span class="token builtin class-name">exec</span> <span class="token parameter variable">-it</span> xianzhi20170282239600_mysql_1 mysql <span class="token parameter variable">-uroot</span> <span class="token parameter variable">-proot</span></pre></td></tr></table></figure><p>这个名字是在那个起的时候开始的几行就是了</p>
-<pre><code>root@hcss-ecs-7f85:~/靶场/vulhub-master/ecshop/xianzhi-2017-02-82239600# docker-compose up -d
-Creating network &quot;xianzhi20170282239600_default&quot; with the default driver
-Creating xianzhi20170282239600_mysql_1 ... 
-Creating xianzhi20170282239600_mysql_1 ... done
-Creating xianzhi20170282239600_ecshop36_1 ... 
-Creating xianzhi20170282239600_ecshop27_1 ... 
-Creating xianzhi20170282239600_ecshop27_1
-Creating xianzhi20170282239600_ecshop36_1 ... done
+    <h2 id="bjdctf2020一叶障目"><a class="anchor" href="#bjdctf2020一叶障目">#</a> [BJDCTF2020] 一叶障目</h2>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202503102221782.png" alt="image-20250310222101523" /></p>
+<p>用 010 打开就是一个提示，是 CRC 报错，CRC 报错一般就是修改了宽高</p>
+<p>可以手动修改测试</p>
+<pre><code>
 </code></pre>
-<p>然后就可以看看有些什么</p>
-<p>然后就是 /install 安装，配置数据库时的地址是 mysql,root/root, 数据库名字为 ecshop</p>
-<p>然后就进来了</p>
-<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202506171144560.png" alt="image-20250617114401629" /></p>
 
+      <div class="tags">
+          <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
+          <a href="/tags/CRC/" rel="tag"><i class="ic i-tag"></i> CRC</a>
+      </div>
   </div>
 
    <footer>
@@ -177,7 +177,7 @@ Creating xianzhi20170282239600_ecshop36_1 ... done
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2025-06-17 12:16:58" itemprop="dateModified" datetime="2025-06-17T12:16:58+08:00">2025-06-17</time>
+    <time title="Modified: 2025-03-10 22:28:52" itemprop="dateModified" datetime="2025-03-10T22:28:52+08:00">2025-03-10</time>
   </span>
 </div>
 
@@ -213,7 +213,7 @@ Creating xianzhi20170282239600_ecshop36_1 ... done
   </li>
   <li class="link">
     <strong>Post link: </strong>
-    <a href="http://odiws.github.io/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" title="ecshop复现">http://odiws.github.io/2025/06/17/ecshop复现/</a>
+    <a href="http://odiws.github.io/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/" title="[BJDCTF2020]一叶障目">http://odiws.github.io/2025/03/10/BJDCTF2020-一叶障目/</a>
   </li>
   <li class="license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
@@ -232,20 +232,20 @@ Creating xianzhi20170282239600_ecshop36_1 ... done
     <div class="item left">
       
 
-  <a href="/2025/05/21/sqltest/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?354544" title="sqltest">
+  <a href="/2025/03/10/%E8%8F%9C%E5%88%80666/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?563171" title="菜刀666">
   <span class="type">Previous Post</span>
-  <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>sqltest</h3>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>菜刀666</h3>
   </a>
 
     </div>
     <div class="item right">
       
 
-  <a href="/2025/07/08/java-sec-code%E5%A4%8D%E7%8E%B0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?780451" title="java-sec-code复现">
+  <a href="/2025/03/11/GKCTF-2021-babycat-revenge/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?92183" title="[GKCTF_2021]babycat-revenge">
   <span class="type">Next Post</span>
-  <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>java-sec-code复现</h3>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[GKCTF_2021]babycat-revenge</h3>
   </a>
 
     </div>
@@ -264,8 +264,12 @@ Creating xianzhi20170282239600_ecshop36_1 ... done
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bjdctf2020%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text"> [BJDCTF2020] 一叶障目</span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2025/03/10/%E8%8F%9C%E5%88%80666/" rel="bookmark" title="菜刀666">菜刀666</a></li><li class="active"><a href="/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/" rel="bookmark" title="[BJDCTF2020]一叶障目">[BJDCTF2020]一叶障目</a></li>
+        </ul>
       </div>
       <div class="overview panel" data-title="Overview">
         <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -315,12 +319,12 @@ Creating xianzhi20170282239600_ecshop36_1 ... done
 
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/2025/05/21/sqltest/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+        <a href="/2025/03/10/%E8%8F%9C%E5%88%80666/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/2025/07/08/java-sec-code%E5%A4%8D%E7%8E%B0/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+        <a href="/2025/03/11/GKCTF-2021-babycat-revenge/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -342,9 +346,10 @@ Creating xianzhi20170282239600_ecshop36_1 ... done
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/04/17/springweb/" title="springweb">springweb</a></span>
+    <span><a href="/2025/03/18/JMCTF-2021-GoOSS/" title="[JMCTF_2021]GoOSS">[JMCTF_2021]GoOSS</a></span>
   </li>
 
       
@@ -354,17 +359,38 @@ Creating xianzhi20170282239600_ecshop36_1 ... done
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
+    <span><a href="/2025/03/11/GKCTF-2021-babycat-revenge/" title="[GKCTF_2021]babycat-revenge">[GKCTF_2021]babycat-revenge</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="In 漏洞复现">漏洞复现</a>
 </div>
 
-    <span><a href="/2025/03/18/activeMQ/" title="CVE-2015-5254">CVE-2015-5254</a></span>
+    <span><a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" title="ecshop复现">ecshop复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" title="梅花香自苦寒来">梅花香自苦寒来</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
+</div>
+
+    <span><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;">'[RootersCTF2019]I_<3_Flask'</a></span>
   </li>
 
       
@@ -381,29 +407,10 @@ Creating xianzhi20170282239600_ecshop36_1 ... done
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" title="谁赢了比赛？">谁赢了比赛？</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/04/23/Spring-MVC/" title="Spring_MVC">Spring_MVC</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/misc/" title="In misc">misc</a>
 </div>
 
-    <span><a href="/2025/05/06/BUUCTF%EF%BC%9A%E9%BB%91%E5%AE%A2%E5%B8%9D%E5%9B%BD/" title="BUUCTF：黑客帝国">BUUCTF：黑客帝国</a></span>
+    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
   </li>
 
       
@@ -412,17 +419,17 @@ Creating xianzhi20170282239600_ecshop36_1 ... done
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" title="ecshop复现">ecshop复现</a></span>
+    <span><a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" title="&#39;ctf工具总结&#39;">'ctf工具总结'</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
 </div>
 
-    <span><a href="/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/" title="[SWPU2019]伟大的侦探">[SWPU2019]伟大的侦探</a></span>
+    <span><a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" title="Nctf_web部分复现">Nctf_web部分复现</a></span>
   </li>
 
       
@@ -432,7 +439,7 @@ Creating xianzhi20170282239600_ecshop36_1 ... done
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" title="梅花香自苦寒来">梅花香自苦寒来</a></span>
+    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
   </li>
 
   </ul>
@@ -463,7 +470,7 @@ Creating xianzhi20170282239600_ecshop36_1 ... done
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2025/06/17/ecshop复现/',
+    path: '2025/03/10/BJDCTF2020-一叶障目/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"
