@@ -88,12 +88,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?442263"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?710906"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?113286"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?761042"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?147786"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?983504"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?939872"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?159008"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?631411"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?217869"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?257453"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?905453"></li>
         </ul>
       </div>
     </header>
@@ -119,7 +119,7 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/09/05/pasecactf-2019-flask-ssti/" itemprop="url" title="[pasecactf_2019]flask_ssti"><img data-src="https://www.loliapi.com/acg/?998299"></a>
+    <a href="/2024/09/05/pasecactf-2019-flask-ssti/" itemprop="url" title="[pasecactf_2019]flask_ssti"><img data-src="https://www.loliapi.com/acg/?911910"></a>
   </div>
   <div class="info">
     
@@ -156,7 +156,294 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" itemprop="url" title="[安洵杯2019]不是文件上传"><img data-src="https://www.loliapi.com/acg/?670788"></a>
+    <a href="/2024/08/31/GWCTF2019-mypassword/" itemprop="url" title="[GWCTF2019]mypassword"><img data-src="https://www.loliapi.com/acg/?95482"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-08-31 23:05:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-08-31T23:05:00+08:00">2024-08-31</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/08/31/GWCTF2019-mypassword/" itemprop="url" title="[GWCTF2019]mypassword">[GWCTF2019]mypassword</a></h3>
+    <div class="excerpt">
+        # [GWCTF 2019]mypassword
+注册登录
+
+这里加载了一个 js 文件
+60d487b4-04d2-4e33-9aad-fbe0264c5ac6.node3.buuoj.cn/js/login.js
+if (document.cookie &amp;amp;&amp;amp; document.cookie != &#39;&#39;) &amp;#123;
+	var cookies = document.cookie.split(&#39;; &#39;);
+	var cookie = &amp;#123;&amp;#125;;
+	for (var i = 0; i...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/08/31/GWCTF2019-mypassword/" itemprop="url" title="[GWCTF2019]mypassword" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/08/28/RoarCTF2019-OnlineProxy/" itemprop="url" title="[RoarCTF2019]OnlineProxy"><img data-src="https://www.loliapi.com/acg/?479633"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-08-28 21:58:14">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-08-28T21:58:14+08:00">2024-08-28</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/08/28/RoarCTF2019-OnlineProxy/" itemprop="url" title="[RoarCTF2019]OnlineProxy">[RoarCTF2019]OnlineProxy</a></h3>
+    <div class="excerpt">
+        # [RoarCTF2019]OnlineProxy
+这里发现通过修改 X-FORWARDED-FOR 的值注释部分的内容也随之改变
+尝试盲注，上传命令时第一次为 Current Ip 发现并不能执行，再次上传 Current Ip 时上次的 Current Ip 变为 Last Ip 也没有执行，再次 send 即可正常执行命令
+简单尝试使用盲注得到所有库名，这里可以看到该方法是没问题的
+爆破库名：
+0&#39; or...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/08/28/RoarCTF2019-OnlineProxy/" itemprop="url" title="[RoarCTF2019]OnlineProxy" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/08/27/EIS2019-EzPOP/" itemprop="url" title="[EIS2019]EzPOP"><img data-src="https://www.loliapi.com/acg/?613599"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-08-27 12:23:27">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-08-27T12:23:27+08:00">2024-08-27</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/08/27/EIS2019-EzPOP/" itemprop="url" title="[EIS2019]EzPOP">[EIS2019]EzPOP</a></h3>
+    <div class="excerpt">
+        # [EIS 2019]EzPOP
+#
+&amp;lt;?phperror_reporting(0);class A &amp;#123; protected $store; protected $key; protected $expire; public function __construct($store, $key = &#39;flysystem&#39;, $expire = null) &amp;#123; $this-&gt;key = $key; $this-&gt;store = $store; $this-&gt;expire = $expire; &amp;#125;...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/08/27/EIS2019-EzPOP/" itemprop="url" title="[EIS2019]EzPOP" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/" itemprop="url" title="[CISCN2019华东南赛区]Web4"><img data-src="https://www.loliapi.com/acg/?716048"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-08-23 21:06:15">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-08-23T21:06:15+08:00">2024-08-23</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/" itemprop="url" title="[CISCN2019华东南赛区]Web4">[CISCN2019华东南赛区]Web4</a></h3>
+    <div class="excerpt">
+        # [CISCN2019 华东南赛区] Web4
+
+打开有一个链接，那先点击一下
+
+发现 url 处，很像命令执行，试一试。发现无论是什么都是 no response，又是各种尝试
+
+发现直接传？url=/etc/passwwd 可以爆出回显，难道不是命令执行，是代码执行
+先尝试一下目录穿越，发现 flag 被禁了
+又是一波各种尝试，最后发现 app/appp.py 处可以获得源码。
+这里记一点：url/read?id=xxxx 这种在 url 和参数中间又会有一段字符串的，可以考虑是写了路由，不是 php 后端，可能是 python...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/" itemprop="url" title="[CISCN2019华东南赛区]Web4" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/08/21/GXYCTF2019-BabysqliV3-0/" itemprop="url" title="[GXYCTF2019]BabysqliV3.0"><img data-src="https://www.loliapi.com/acg/?900508"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-08-21 12:16:34">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-08-21T12:16:34+08:00">2024-08-21</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/08/21/GXYCTF2019-BabysqliV3-0/" itemprop="url" title="[GXYCTF2019]BabysqliV3.0">[GXYCTF2019]BabysqliV3.0</a></h3>
+    <div class="excerpt">
+        # [GXYCTF2019]BabysqliV3.0
+文件包含获取源码：
+home.php
+&amp;lt;?php
+session_start();
+echo &amp;quot;&amp;lt;meta http-equiv=\&amp;quot;Content-Type\&amp;quot; content=\&amp;quot;text/html; charset=utf-8\&amp;quot; /&amp;gt;...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/08/21/GXYCTF2019-BabysqliV3-0/" itemprop="url" title="[GXYCTF2019]BabysqliV3.0" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/08/19/bestphp-srevenge/" itemprop="url" title="bestphp&#39;srevenge"><img data-src="https://www.loliapi.com/acg/?438874"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-08-19 10:22:38">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-08-19T10:22:38+08:00">2024-08-19</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/08/19/bestphp-srevenge/" itemprop="url" title="bestphp&#39;srevenge">bestphp'srevenge</a></h3>
+    <div class="excerpt">
+        # bestphp&#39;s revenge
+# index.php
+&amp;lt;?php
+highlight_file(__FILE__);
+$b = &#39;implode&#39;;
+call_user_func($_GET[&#39;f&#39;], $_POST);
+session_start();
+if (isset($_GET[&#39;name&#39;])) &amp;#123;
+$_SESSION[&#39;name&#39;] = $_GET[&#39;name&#39;];
+&amp;#125;
+var_dump($_SESSION);
+$a =...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/08/19/bestphp-srevenge/" itemprop="url" title="bestphp&#39;srevenge" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/08/17/RootersCTF2019-babyWeb/" itemprop="url" title="[RootersCTF2019]babyWeb"><img data-src="https://www.loliapi.com/acg/?118731"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-08-17 20:22:01">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-08-17T20:22:01+08:00">2024-08-17</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/08/17/RootersCTF2019-babyWeb/" itemprop="url" title="[RootersCTF2019]babyWeb">[RootersCTF2019]babyWeb</a></h3>
+    <div class="excerpt">
+        # [RootersCTF2019]babyWeb
+分析
+页面中告诉我们要找一串数字输进去，且过滤了一些关键词。
+UNION 被过滤了说明堆叠注入没法用了，并且他还把 sql 语句给我们了，那大概率是报错注入了，试下看看。
+SELECT * FROM users WHERE uniqueid=1
+
+果然是报错注入，这边的 || 功能和 and 一样，用 and 也一样。
+果然是报错注入，这边的 || 功能和 and 一样，用 and 也一样。
+接下来就慢慢构造呗，这边有一个小的知识点，题目虽然过滤了引号，但我们可以用 16...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/08/17/RootersCTF2019-babyWeb/" itemprop="url" title="[RootersCTF2019]babyWeb" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/08/16/SUCTF2018-annonymous/" itemprop="url" title="[SUCTF2018]annonymous"><img data-src="https://www.loliapi.com/acg/?122854"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-08-16 12:22:19">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-08-16T12:22:19+08:00">2024-08-16</time>
+  </span>
+</div>
+
+    <h3><a href="/2024/08/16/SUCTF2018-annonymous/" itemprop="url" title="[SUCTF2018]annonymous">[SUCTF2018]annonymous</a></h3>
+    <div class="excerpt">
+        # [SUCTF2018]annonymous
+这题代码很少，就这几行
+首先创建了一个匿名函数，会输出 flag
+接着 openssl_random_pseudo_bytes (32) 生成一个随机数，然后将其转成了十六进制，将其赋值给 $hash
+接着 SUCTF_和 hash 拼接成一个新的函数名，函数会执行上面构造的匿名函数
+所以，要想获得 flag 就只有两种办法，直接执行匿名函数，或者执行 SUCTF_和 hash 拼接成的新函数
+下面的 func_name 可以传一个函数名进去并执行该函数
+这题最初想着直接传 $MY...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/08/16/SUCTF2018-annonymous/" itemprop="url" title="[SUCTF2018]annonymous" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" itemprop="url" title="[安洵杯2019]不是文件上传"><img data-src="https://www.loliapi.com/acg/?237003"></a>
   </div>
   <div class="info">
     
@@ -195,298 +482,6 @@
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/07/29/ISITDTU2019-EasyPHP/" itemprop="url" title="[羊城杯2020]easyphp"><img data-src="https://www.loliapi.com/acg/?342100"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-07-29 22:20:52">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-07-29T22:20:52+08:00">2024-07-29</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/07/29/ISITDTU2019-EasyPHP/" itemprop="url" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></h3>
-    <div class="excerpt">
-        # [羊城杯 2020] easyphp
-和 [XNUCA2019Qualifier] EasyPHP 基本一样，唯一的区别就是少了 include_once 导致没办法通过 error_log 来做，预期解应该就是那道题的非预期。
-&amp;lt;?php $files = scandir(&#39;./&#39;); foreach($files as $file) &amp;#123; if(is_file($file))&amp;#123; if ($file !== &quot;index.php&quot;) &amp;#123; unlink($file); &amp;#125;...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/07/29/ISITDTU2019-EasyPHP/" itemprop="url" title="[羊城杯2020]easyphp" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/07/28/2019-SVGMagic/" itemprop="url" title="[BSidesCF2019]SVGMagic"><img data-src="https://www.loliapi.com/acg/?152596"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-07-28 23:18:59">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-07-28T23:18:59+08:00">2024-07-28</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/07/28/2019-SVGMagic/" itemprop="url" title="[BSidesCF2019]SVGMagic">[BSidesCF2019]SVGMagic</a></h3>
-    <div class="excerpt">
-        # [BSidesCF 2019]SVGMagic
-标题说把 SVG 转为 PNG
-SVG 是一种用 XML 定义的语言，SVG 图形是可交互的和动态的，可以在 SVG 文件中嵌入动画元素或通过脚本来定义动画。
-也就是说这里的 SVG 是个 XML, 并且存在可控的内容，那么自然就会想到 XXE。
-究极详细讲解：https://www.freebuf.com/vuls/175451.html
-我的理解是：
-首先我们要知道，XML 被设计用来传输和存储数据。
-然后这个漏洞就是利用了，应用程序在解析XML输入时，没有禁止外部实体的加载。
-就拿下面的这个来说&amp;lt;!ENTITY file...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/07/28/2019-SVGMagic/" itemprop="url" title="[BSidesCF2019]SVGMagic" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/07/28/2020-Greatphp/" itemprop="url" title="[极客大挑战2020]Greatphp"><img data-src="https://www.loliapi.com/acg/?495826"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-07-28 22:19:51">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-07-28T22:19:51+08:00">2024-07-28</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/07/28/2020-Greatphp/" itemprop="url" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></h3>
-    <div class="excerpt">
-        # [极客大挑战 2020] Greatphp
-源码：
-&amp;lt;?phperror_reporting(0);class SYCLOVER &amp;#123; public $syc; public $lover; public function __wakeup()&amp;#123; if( ($this-&gt;syc != $this-&gt;lover) &amp;amp;&amp;amp; (md5($this-&gt;syc) === md5($this-&gt;lover)) &amp;amp;&amp;amp; (sha1($this-&gt;syc)===...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/07/28/2020-Greatphp/" itemprop="url" title="[极客大挑战2020]Greatphp" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/07/26/1/" itemprop="url" title="easybypass"><img data-src="https://www.loliapi.com/acg/?99623"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-07-26 22:15:52">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-07-26T22:15:52+08:00">2024-07-26</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/07/26/1/" itemprop="url" title="easybypass">easybypass</a></h3>
-    <div class="excerpt">
-        # easybypass
-源码：
-&amp;lt;?php
-
-highlight_file(__FILE__);
-
-$comm1 = $_GET[&#39;comm1&#39;];
-$comm2 =...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/07/26/1/" itemprop="url" title="easybypass" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/07/25/2019-Web-Unagi/" itemprop="url" title="[CSAWQual2019]Web_Unagi"><img data-src="https://www.loliapi.com/acg/?886738"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-07-25 19:42:26">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-07-25T19:42:26+08:00">2024-07-25</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/07/25/2019-Web-Unagi/" itemprop="url" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></h3>
-    <div class="excerpt">
-        # [CSAWQual2019]Web_Unagi
-
-提示需要上传 xml 文件，flag 在 /flag 中。很容易联想到 XXE 漏洞来读取。
-&amp;lt;?xml version=&#39;1.0&#39;?&amp;gt;
-&amp;lt;!DOCTYPE users [
-&amp;lt;!ENTITY xxe SYSTEM &amp;quot;file:///flag&amp;quot;...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/07/25/2019-Web-Unagi/" itemprop="url" title="[CSAWQual2019]Web_Unagi" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/11/2019-EasyWeb/" itemprop="url" title="[SUCTF 2019]EasyWeb"><img data-src="https://www.loliapi.com/acg/?148407"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-11 14:43:38">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-11T14:43:38+08:00">2024-06-11</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/11/2019-EasyWeb/" itemprop="url" title="[SUCTF 2019]EasyWeb">[SUCTF 2019]EasyWeb</a></h3>
-    <div class="excerpt">
-        # [SUCTF 2019]EasyWeb
-代码审计题：
-&amp;lt;?php
-function get_the_flag()&amp;#123;
-// webadmin will remove your upload file every 20 min!!!!
-$userdir =...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/06/11/2019-EasyWeb/" itemprop="url" title="[SUCTF 2019]EasyWeb" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" itemprop="url" title="&#39;[NPUCTF2020]ezinclude&#39;"><img data-src="https://www.loliapi.com/acg/?315082"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-07 22:00:34">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-07T22:00:34+08:00">2024-06-07</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" itemprop="url" title="&#39;[NPUCTF2020]ezinclude&#39;">'[NPUCTF2020]ezinclude'</a></h3>
-    <div class="excerpt">
-        # [NPUCTF2020]ezinclude
-
-进去发现是用户名与密码错误
-F12 发现提示：
-
-要 md5name 后的字符串等于 pass，不知道 pass，可以 bp 发现传送回来的东西有 hash 这个东西
-直接加入 pass 等于这个 hash 值得到：
-
-得到 flflflflag.php 这个文件。
-但是他会直接进到 404.html 文件
-然后就不会了；接着就是大佬的操作了：
-大佬看到了 php 的版本 7.0.33，直接就是：
-# php7 segment fault 特性
-扫目录可得 dir.php
-
-…… 扫不出来
-
-向 PHP 发送含有文件区块的数据包时，让 PHP...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" itemprop="url" title="&#39;[NPUCTF2020]ezinclude&#39;" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;"><img data-src="https://www.loliapi.com/acg/?721928"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-06 21:19:01">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-06T21:19:01+08:00">2024-06-06</time>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;">'[NCTF2019]SQLi'</a></h3>
-    <div class="excerpt">
-        # [NCTF2019]SQLi
-源码泄露：
-
-找到 hint.php
-目的明确：
-只要密码是 admin 的密码就可以获得 flag
-得到提示，这题过滤了好多关键字，只要 password 的密码等于 admin 的密码就能拿到 flag 了，但是怎么拿呢？看了 dalao 的 wp 才发现有 regexp 注入
-# regexp 注入（正则注入）
-这个注入方式呢相当于布尔盲注吧，若是猜对了就返回正确的页面，我们本地测试一下正则，先看一下全部数据，然后 ^ 匹配 e 开头的 password
-
-再找个 a 开头的：没有
-
-分析
-回到题目里，提示给了串 SQL 语句
-select * from...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/06/06/%5BNCTF2019%5DSQLi/" itemprop="url" title="&#39;[NCTF2019]SQLi&#39;" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -494,7 +489,7 @@ select * from...
   
   <nav class="pagination">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/11/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/13/"><i class="ic i-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/11/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/page/13/">13</a><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/13/"><i class="ic i-angle-right" aria-label="Next page"></i></a>
     </div>
   </nav>
 
@@ -522,7 +517,7 @@ select * from...
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">124</span>
+        <span class="count">134</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -534,7 +529,7 @@ select * from...
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">105</span>
+        <span class="count">110</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -588,7 +583,7 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/05/HFCTF2021Quals-Unsetme/" title="[HFCTF2021Quals]Unsetme">[HFCTF2021Quals]Unsetme</a></span>
+    <span><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" title="&#39;[NCTF2019]SQLi&#39;">'[NCTF2019]SQLi'</a></span>
   </li>
 
       
@@ -598,17 +593,7 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/09/BSidesCF2019-Sequel/" title="[BSidesCF2019]Sequel">[BSidesCF2019]Sequel</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
-</div>
-
-    <span><a href="/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/" title="[SWPU2019]我有一只马里奥">[SWPU2019]我有一只马里奥</a></span>
+    <span><a href="/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/" title="[NewStarCT_2023_公开赛道]Upload_again!">[NewStarCT_2023_公开赛道]Upload_again!</a></span>
   </li>
 
       
@@ -618,7 +603,17 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/18/Quals-Bnv/" title="Quals]Bnv">Quals]Bnv</a></span>
+    <span><a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" title="梅花香自苦寒来">梅花香自苦寒来</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></span>
   </li>
 
       
@@ -638,7 +633,16 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/12/01/LineCTF2022-BB/" title="[LineCTF2022]BB">[LineCTF2022]BB</a></span>
+    <span><a href="/2024/09/25/DDCTF2019-homebreweventloop/" title="[DDCTF2019]homebreweventloop">[DDCTF2019]homebreweventloop</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/17/springweb/" title="springweb">springweb</a></span>
   </li>
 
       
@@ -648,35 +652,27 @@ select * from...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/22/NPUCTF2020-ezlogin/" title="[NPUCTF2020]ezlogin">[NPUCTF2020]ezlogin</a></span>
+    <span><a href="/2024/08/28/RoarCTF2019-OnlineProxy/" title="[RoarCTF2019]OnlineProxy">[RoarCTF2019]OnlineProxy</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/03/28/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="rust学习笔记">rust学习笔记</a></span>
+    <span><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/03/12/GHCTF2025web%E5%A4%8D%E7%8E%B0/" title="GHCTF2025web复现">GHCTF2025web复现</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2024/11/14/java%E5%8F%8D%E5%B0%84%E5%8E%9F%E7%90%86/" title="java反射原理">java反射原理</a></span>
+    <span><a href="/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/" title="[CISCN2019华东南赛区]Web4">[CISCN2019华东南赛区]Web4</a></span>
   </li>
 
   </ul>
