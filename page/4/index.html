@@ -88,12 +88,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?880903"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?208262"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?174915"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?420336"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?867495"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?928301"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?404258"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?802373"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?653704"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?943527"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?7449"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?774366"></li>
         </ul>
       </div>
     </header>
@@ -119,7 +119,43 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" itemprop="url" title="aliyunctf部分复现"><img data-src="https://www.loliapi.com/acg/?555750"></a>
+    <a href="/2025/02/26/HMGCTF2022-Fan-Website/" itemprop="url" title="[HMGCTF2022]Fan_Website"><img data-src="https://www.loliapi.com/acg/?901551"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2025-02-26 22:09:15">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-02-26T22:09:15+08:00">2025-02-26</time>
+  </span>
+</div>
+
+    <h3><a href="/2025/02/26/HMGCTF2022-Fan-Website/" itemprop="url" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></h3>
+    <div class="excerpt">
+        # [HMGCTF2022]Fan_Website
+/www.zip 得到源码
+审计代码发现题目有个 album 路由，并且控制器只有一个 /module/Album/src/Controller/AlbumController.php
+
+白名单只允许 jpg，jpeg，png 通过
+
+还不能用这些东西，HALT_COMPILER 就是 phar 反序列化，如果可以绕过的话，那就包是 phar 反序列化的
+上网搜这个组件的漏洞发现了一个反序列化漏洞 https://xz.aliyun.com/t/8975，那就好说了，我们可以上传一个 phar 文件，然后删除文件调用 unlink...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2025/02/26/HMGCTF2022-Fan-Website/" itemprop="url" title="[HMGCTF2022]Fan_Website" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" itemprop="url" title="aliyunctf部分复现"><img data-src="https://www.loliapi.com/acg/?716658"></a>
   </div>
   <div class="info">
     
@@ -152,7 +188,7 @@ import osimport subprocessimport uuidimport jsonfrom flask import Flask, request
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/24/SWPUCTF-2016-Web7/" itemprop="url" title="[SWPUCTF_2016]Web7"><img data-src="https://www.loliapi.com/acg/?943457"></a>
+    <a href="/2025/02/24/SWPUCTF-2016-Web7/" itemprop="url" title="[SWPUCTF_2016]Web7"><img data-src="https://www.loliapi.com/acg/?825628"></a>
   </div>
   <div class="info">
     
@@ -186,7 +222,7 @@ payload：（%0d%0a 就是回车键（回车换行））通过 urllib 注入 red
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/24/vnctf%E5%A4%8D%E7%8E%B0/" itemprop="url" title="vnctf复现"><img data-src="https://www.loliapi.com/acg/?900331"></a>
+    <a href="/2025/02/24/vnctf%E5%A4%8D%E7%8E%B0/" itemprop="url" title="vnctf复现"><img data-src="https://www.loliapi.com/acg/?454540"></a>
   </div>
   <div class="info">
     
@@ -223,7 +259,7 @@ payload：（%0d%0a 就是回车键（回车换行））通过 urllib 注入 red
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/" itemprop="url" title="[Dest0g3_520迎新赛]SimpleRCE"><img data-src="https://www.loliapi.com/acg/?273079"></a>
+    <a href="/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/" itemprop="url" title="[Dest0g3_520迎新赛]SimpleRCE"><img data-src="https://www.loliapi.com/acg/?156858"></a>
   </div>
   <div class="info">
     
@@ -253,7 +289,7 @@ payload：（%0d%0a 就是回车键（回车换行））通过 urllib 注入 red
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/23/HFCTF-2021-Final-hatenum/" itemprop="url" title="[HFCTF_2021_Final]hatenum"><img data-src="https://www.loliapi.com/acg/?149592"></a>
+    <a href="/2025/02/23/HFCTF-2021-Final-hatenum/" itemprop="url" title="[HFCTF_2021_Final]hatenum"><img data-src="https://www.loliapi.com/acg/?291736"></a>
   </div>
   <div class="info">
     
@@ -283,7 +319,7 @@ function sql_waf($str)&amp;#123; if(preg_match(&#39;/union|select|or|and|\&#39;|
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/" itemprop="url" title="NewStarCTF_2023_公开赛道Include"><img data-src="https://www.loliapi.com/acg/?7351"></a>
+    <a href="/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/" itemprop="url" title="NewStarCTF_2023_公开赛道Include"><img data-src="https://www.loliapi.com/acg/?825089"></a>
   </div>
   <div class="info">
     
@@ -318,7 +354,7 @@ if(preg_match(&#39;/flag|log|session|filter|input|data/i&#39;, $file))...
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="java反序列化学习笔记"><img data-src="https://www.loliapi.com/acg/?322280"></a>
+    <a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="java反序列化学习笔记"><img data-src="https://www.loliapi.com/acg/?267411"></a>
   </div>
   <div class="info">
     
@@ -356,7 +392,7 @@ Burp...
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/09/BSidesCF2019-Sequel/" itemprop="url" title="[BSidesCF2019]Sequel"><img data-src="https://www.loliapi.com/acg/?597820"></a>
+    <a href="/2025/02/09/BSidesCF2019-Sequel/" itemprop="url" title="[BSidesCF2019]Sequel"><img data-src="https://www.loliapi.com/acg/?53562"></a>
   </div>
   <div class="info">
     
@@ -394,7 +430,7 @@ import requestsimport base64import stringimport timeurl = &quot;http://0eaa6072-
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" itemprop="url" title="[NewStarCTF公开赛赛道]BabySSTI_Two"><img data-src="https://www.loliapi.com/acg/?787495"></a>
+    <a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" itemprop="url" title="[NewStarCTF公开赛赛道]BabySSTI_Two"><img data-src="https://www.loliapi.com/acg/?472314"></a>
   </div>
   <div class="info">
     
@@ -426,36 +462,6 @@ SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2025/02/09/%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-UnserializeOne/" itemprop="url" title="公开赛赛道]UnserializeOne"><img data-src="https://www.loliapi.com/acg/?311114"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2025-02-09 19:14:54">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2025-02-09T19:14:54+08:00">2025-02-09</time>
-  </span>
-</div>
-
-    <h3><a href="/2025/02/09/%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-UnserializeOne/" itemprop="url" title="公开赛赛道]UnserializeOne">公开赛赛道]UnserializeOne</a></h3>
-    <div class="excerpt">
-        # [NewStarCTF 公开赛赛道] UnserializeOne
-&amp;lt;?phperror_reporting(0);highlight_file(__FILE__);#Something useful for you : https://zhuanlan.zhihu.com/p/377676274class Start&amp;#123; public $name; protected $func; public function __destruct() &amp;#123; echo &quot;Welcome to NewStarCTF,...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2025/02/09/%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-UnserializeOne/" itemprop="url" title="公开赛赛道]UnserializeOne" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -463,7 +469,7 @@ SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)
   
   <nav class="pagination">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="ic i-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/"><i class="ic i-angle-right" aria-label="Next page"></i></a>
     </div>
   </nav>
 
@@ -491,7 +497,7 @@ SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">80</span>
+        <span class="count">97</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -503,7 +509,7 @@ SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">69</span>
+        <span class="count">87</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -557,7 +563,7 @@ SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/03/18/JMCTF-2021-GoOSS/" title="[JMCTF_2021]GoOSS">[JMCTF_2021]GoOSS</a></span>
+    <span><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></span>
   </li>
 
       
@@ -567,7 +573,17 @@ SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/08/JMCTF2021-UploadHub/" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></span>
+    <span><a href="/2024/11/04/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982020-Roamphp2-Myblog/" title="[极客大挑战2020]Roamphp2-Myblog">[极客大挑战2020]Roamphp2-Myblog</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2025/03/28/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="rust学习笔记">rust学习笔记</a></span>
   </li>
 
       
@@ -577,27 +593,7 @@ SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
-</div>
-
-    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
-</div>
-
-    <span><a href="/2024/12/10/%E5%9B%BD%E5%9F%8E%E6%9D%AF/" title="国城杯">国城杯</a></span>
+    <span><a href="/2024/07/26/1/" title="easybypass">easybypass</a></span>
   </li>
 
       
@@ -607,16 +603,7 @@ SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" title="ecshop复现">ecshop复现</a></span>
+    <span><a href="/2024/11/18/BSidesCF-2019-Mixer/" title="[BSidesCF-2019]Mixer">[BSidesCF-2019]Mixer</a></span>
   </li>
 
       
@@ -626,7 +613,28 @@ SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/19/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2020-Roamphp4-Rceme/" title="[极客大挑战-2020]Roamphp4-Rceme">[极客大挑战-2020]Roamphp4-Rceme</a></span>
+    <span><a href="/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/" title="[NewStarCTF-2023-公开赛道]ez_sql">[NewStarCTF-2023-公开赛道]ez_sql</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%BE%85%E5%A4%8D%E7%8E%B0/" title="In 待复现">待复现</a>
+</div>
+
+    <span><a href="/2024/11/15/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E5%8D%8A%E5%86%B3%E8%B5%9B-faka/" title="[网鼎杯2020半决赛]faka">[网鼎杯2020半决赛]faka</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/07/http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E/" title="http请求走私漏洞">http请求走私漏洞</a></span>
   </li>
 
       
@@ -636,7 +644,7 @@ SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/07/25/2019-Web-Unagi/" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></span>
+    <span><a href="/2025/02/26/HMGCTF2022-Fan-Website/" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></span>
   </li>
 
       
@@ -646,7 +654,7 @@ SSTI / 沙盒逃逸详细总结 - 安全客 - 安全资讯平台 (anquanke.com)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/06/11/2019-EasyWeb/" title="[SUCTF 2019]EasyWeb">[SUCTF 2019]EasyWeb</a></span>
+    <span><a href="/2025/03/11/GKCTF-2021-babycat-revenge/" title="[GKCTF_2021]babycat-revenge">[GKCTF_2021]babycat-revenge</a></span>
   </li>
 
   </ul>
