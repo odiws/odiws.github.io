@@ -1,0 +1,578 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="vulhub,ActiveMQ" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2025/03/18/activeMQ/">
+
+
+
+  <title>
+CVE-2015-5254 - 漏洞复现 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">CVE-2015-5254
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2025-03-18 20:59:11">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-03-18T20:59:11+08:00">2025-03-18</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?369372"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?203758"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?948062"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?222102"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?178237"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?32564"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" itemprop="item" rel="index" title="In 漏洞复现"><span itemprop="name">漏洞复现</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2025/03/18/activeMQ/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="activemq"><a class="anchor" href="#activemq">#</a> activeMQ</h2>
+<p>前言：不知道改学些什么，就按 vulhub 里面的 CVE 漏洞来复现算了</p>
+<h3 id="cve-2015-5254jmet"><a class="anchor" href="#cve-2015-5254jmet">#</a> CVE-2015-5254：jmet</h3>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201946995.png" alt="image-20250420194626856" /></p>
+<p>这里就是主页，可以进行扫目录，有 admin，然后就是 admin/admin 弱密码登录</p>
+<p>在 /admin/queues.jsp 这里就有反序列化漏洞，用 jmet 这个工具即可直接反序列化，但是需要点击这个 id 才会有反序列化生成</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201948098.png" alt="image-20250420194834023" /></p>
+<h4 id="jmet安装使用得用jdk8"><a class="anchor" href="#jmet安装使用得用jdk8">#</a> jmet 安装 (使用得用 jdk8）</h4>
+<pre><code>#下载jmet的jar包
+wget https://github.com/matthiaskaiser/jmet/releases/download/0.1.0/jmet-0.1.0-all.jar
+#创建external目录
+mkdir external
+</code></pre>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre>使用</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token function">java</span> <span class="token parameter variable">-jar</span> jmet-0.1.0-all.jar <span class="token parameter variable">-Q</span> event <span class="token parameter variable">-I</span> ActiveMQ <span class="token parameter variable">-s</span> <span class="token parameter variable">-Y</span> <span class="token string">"touch /tmp/sucess"</span> <span class="token parameter variable">-Yp</span> ROME <span class="token number">192.200</span>.30.72 <span class="token number">61616</span></pre></td></tr></table></figure><pre><code>【命令解释】：调用java -jar 运行 jmet的jar包，-Q是插入一个名为event的队列，-I 是选择装载ActiveMQ模块 ，-s 是选择ysoserial payload ，-Y 是攻击模式和内容， -Yp 是选择攻击利用链，这里的选择是ROME， 之后带上IP加端口。
+-Q 比如我修改event为hack 就成为插入一个名为hack的队列。
+</code></pre>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201951696.png" alt="image-20250420195149625" /></p>
+<p>生成这样的就好了</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201952664.png" alt="image-20250420195206585" /></p>
+<p>在这里就会有一个队列 event 生成</p>
+<p>得点击里面的 id 才能触发</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201953052.png" alt="image-20250420195308012" /></p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201954388.png" alt="image-20250420195457325" /></p>
+<p>复现成功</p>
+<h4 id="补充"><a class="anchor" href="#补充">#</a> 补充：</h4>
+<p>我开的这个 docker 容器的东西不是和我本身的机器共享的</p>
+<pre><code>进入我开的这个容器的指令：
+docker exec -it [容器ID] bash
+容器id怎么拿：
+docker ps
+</code></pre>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202504201957635.png" alt="image-20250420195722589" /></p>
+<p>第一个 id 就是了</p>
+<h3 id="cve-2016-3088任意文件写入"><a class="anchor" href="#cve-2016-3088任意文件写入">#</a> CVE-2016-3088 任意文件写入</h3>
+<p>背景简述：<br />
+Acctive 的 web 控制台分为三个应用，admin，api 和 fileserver，其中 admin 是管理员页面，api 是接口，fileserver 是储存文件的接口；admin 和 api 都需要登录后才能使用，fileserver 无需登录。</p>
+<p>fileserver 是一个 ESful API 接口，我们可以通过 GET，PUT，DELETE 等 HTTP 请求对其中存储的文件进行读写操作，其设计目的是为了弥补消息队列操作不能传输，存储二进制文件的缺陷，但后来发现：</p>
+<pre><code>其使用率不高
+文件操作容易出现漏洞
+</code></pre>
+<p>所以，ActiveMQ 在 5.12.x-&gt;5.13.x 版本中，已经默认关闭了 file server 这个应用（可以在 conf/jetty。xml 中开启）；在 5.14.0 版本以后，彻底删除了 fileserver 这个应用</p>
+<p>在测试过程中，可以关注 ActiveMQ 的版本，避免走弯路。</p>
+<h4 id="漏洞详情"><a class="anchor" href="#漏洞详情">#</a> 漏洞详情：</h4>
+<p>本漏洞出现在 fileserver 应用中，fileserver 支持写入文件（但是不解析 jsp），同时是吃移动文件（MOVE 请求），所以，我们只需要写入一个文件，然后使用 MOVE 请求将其移动到人难以位置，造成任意文件写入漏洞。</p>
+<h4 id="文件写入的几种利用方法"><a class="anchor" href="#文件写入的几种利用方法">#</a> 文件写入的几种利用方法</h4>
+<pre><code>写入webshell    方便，但是这里不解析，而且admin和api两个应用都需要登录才能访问
+写入cron或sshj key等文件  直接反弹拿shell，但是需要root权限
+写入jar或jetty.xml等库和配置文件   麻烦，但是靠谱
+</code></pre>
+<h4 id="知识扩展"><a class="anchor" href="#知识扩展">#</a> 知识扩展：</h4>
+<pre><code>cron是什么
+
+反弹shell是什么
+
+cron或ssh key和反弹shell的关系
+
+jetty和jetty.xml是什么
+
+linux文件权限
+</code></pre>
+<p>复现失败，原因是上传不上去，只有将 jsp 一句话木马 url 一下后才能上传，但是这个网页不解码，就离谱，我们直接下一个，这个以后才说</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzUxNjgzNjUzL2FydGljbGUvZGV0YWlscy8xMjkyNDA1Mjg=">【vulhub 漏洞复现】CVE-2016-3088 ActiveMQ 任意文件写入漏洞 - CSDN 博客</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vaHVhbmd4aWFvc2FuL3AvMTQyMjI2OTQuaHRtbA==">CVE-2016-3088（ActiveMQ 任意文件写入漏洞） - toby123 - 博客园</span></p>
+<h3 id="cve-2022-41678远程rce"><a class="anchor" href="#cve-2022-41678远程rce">#</a> CVE-2022-41678：远程 rce</h3>
+<p>介绍：CVE-2022-41678 是一个 Apache ActiveMQ 中的远程代码执行漏洞，其主要原理是利用 Jolokia 服务中的不当配置。<strong>Jolokia</strong> 是一个 JMX 通过 HTTP 的桥接服务，允许通过 HTTP 请求来操作 JMX MBEANS。在手影响的 Apache ActiveMQ 版本中，经过身份验证的用户可以通过 /api/jolokia/ 接口操作 MBean。</p>
+<h4 id="理论"><a class="anchor" href="#理论">#</a> 理论：</h4>
+<p>漏洞核心是 FlightRecorder MBean，这是 JDK11 及以上版本中提供的一个功能，用于记录内存，垃圾回收，调用栈等等信息。攻击者可以利用一下方法进行攻击：</p>
+<p>newRecording - 新键一个记录绘画</p>
+<p>setConfiguration - 更改记录会话的配置</p>
+<p>startRecording - 开始记录</p>
+<p>stopRecording - 结束记录</p>
+<p>copyTo - 将记录的数据导出到文件。</p>
+<p>攻击者可以通过 setConfiguration 方法修改配置，将一些键名改为 JSP 段代码。这样，在记录的数据中就会包含攻击者注入的 JSP 代码。然后，攻击者使用 copyTo 方法将包含恶意代码的记录导出到 ActivveMQ 的 web 目录中，从而在服务器上执行远程代码。</p>
+<h4 id="要求"><a class="anchor" href="#要求">#</a> 要求：</h4>
+<p>需要我们能登录后台管理界面，通常是 8161 端口登录，admin/admin</p>
+<h4 id="漏洞复现"><a class="anchor" href="#漏洞复现">#</a> 漏洞复现：</h4>
+<h5 id="1查看所有mbean"><a class="anchor" href="#1查看所有mbean">#</a> 1. 查看所有 Mbean</h5>
+<p>使用 Bp 进行抓包，访问 “/api/jolokia/list” 这个 api 可以查看当前服务器里所有的 MBeans（路径改为 **/api/jolokia/list**, 然后添加<strong> Request-header</strong>：Origin:<span class="exturl" data-url="aHR0cDovL2lw">http://ip</span>）</p>
+<p><strong>注意后面必须要有两行空行，不然回显不了</strong></p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202504222015401.png" alt="image-20250422201545238" /></p>
+<p>获取 MBean 值：</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202504222020292.png" alt="image-20250422202048134" /></p>
+
+      <div class="tags">
+          <a href="/tags/vulhub/" rel="tag"><i class="ic i-tag"></i> vulhub</a>
+          <a href="/tags/ActiveMQ/" rel="tag"><i class="ic i-tag"></i> ActiveMQ</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2025-05-08 18:03:29" itemprop="dateModified" datetime="2025-05-08T18:03:29+08:00">2025-05-08</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2025/03/18/activeMQ/" title="CVE-2015-5254">http://odiws.github.io/2025/03/18/activeMQ/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?929457" title="java反序列化学习笔记">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> 学习笔记</span>
+  <h3>java反序列化学习笔记</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2025/04/14/springboot-web/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?395021" title="springboot_web">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>springboot_web</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#activemq"><span class="toc-number">1.</span> <span class="toc-text"> activeMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cve-2015-5254jmet"><span class="toc-number">1.1.</span> <span class="toc-text"> CVE-2015-5254：jmet</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jmet%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E5%BE%97%E7%94%A8jdk8"><span class="toc-number">1.1.1.</span> <span class="toc-text"> jmet 安装 (使用得用 jdk8）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 补充：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cve-2016-3088%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5"><span class="toc-number">1.2.</span> <span class="toc-text"> CVE-2016-3088 任意文件写入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E8%AF%A6%E6%83%85"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 漏洞详情：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%86%99%E5%85%A5%E7%9A%84%E5%87%A0%E7%A7%8D%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 文件写入的几种利用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E6%89%A9%E5%B1%95"><span class="toc-number">1.2.3.</span> <span class="toc-text"> 知识扩展：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cve-2022-41678%E8%BF%9C%E7%A8%8Brce"><span class="toc-number">1.3.</span> <span class="toc-text"> CVE-2022-41678：远程 rce</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%90%86%E8%AE%BA"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 理论：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A6%81%E6%B1%82"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 要求：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 漏洞复现：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89mbean"><span class="toc-number">1.3.3.1.</span> <span class="toc-text"> 1. 查看所有 Mbean</span></a></li></ol></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2025/03/18/activeMQ/" rel="bookmark" title="CVE-2015-5254">CVE-2015-5254</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">19</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">6</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">16</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2025/04/14/springboot-web/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/07/08/java-sec-code%E5%A4%8D%E7%8E%B0/" title="java-sec-code复现">java-sec-code复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/" title="[SWPU2019]伟大的侦探">[SWPU2019]伟大的侦探</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/07/28/2020-Greatphp/" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/GXYCTF2019-gakki/" title="[GXYCTF2019]gakki">[GXYCTF2019]gakki</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/ciscn2024/" title="In ciscn2024">ciscn2024</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/ciscn2024/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2025/05/14/python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/" title="python原型链污染">python原型链污染</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/17/MyBatis/" title="MyBatis">MyBatis</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/23/Spring-MVC/" title="Spring_MVC">Spring_MVC</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="java反序列化学习笔记">java反序列化学习笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/BUUCTF%EF%BC%9A%E9%BB%91%E5%AE%A2%E5%B8%9D%E5%9B%BD/" title="BUUCTF：黑客帝国">BUUCTF：黑客帝国</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2025/03/18/activeMQ/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>

