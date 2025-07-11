@@ -1,0 +1,514 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="Hexo" href="http://odiws.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="Hexo" href="http://odiws.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="Hexo" href="http://odiws.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="buuctf,Go" />
+
+
+<link rel="canonical" href="http://odiws.github.io/2025/03/18/JMCTF-2021-GoOSS/">
+
+
+
+  <title>
+[JMCTF_2021]GoOSS - 刷题笔记 |
+zty153’s_blog = Hexo</title>
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">[JMCTF_2021]GoOSS
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="Created: 2025-03-18 19:08:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">Posted on</span>
+    <time itemprop="dateCreated datePublished" datetime="2025-03-18T19:08:48+08:00">2025-03-18</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="Toggle navigation bar">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">zty153’s_blog</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?884292"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?858443"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?263841"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?693213"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?389464"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?822507"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">Home</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="item" rel="index" title="In 刷题笔记"><span itemprop="name">刷题笔记</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="en">
+  <link itemprop="mainEntityOfPage" href="http://odiws.github.io/2025/03/18/JMCTF-2021-GoOSS/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="odiws">
+    <meta itemprop="description" content=", ">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Hexo">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h2 id="jmctf_2021gooss"><a class="anchor" href="#jmctf_2021gooss">#</a> [JMCTF_2021]GoOSS</h2>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202503181910929.png" alt="image-20250318191045829" /></p>
+<p>典型的 json 的页面，有源码可以下载代码审计</p>
+<figure class="highlight go"><figcaption data-lang="go"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">package</span> main</pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> <span class="token punctuation">(</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token string">"bytes"</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	<span class="token string">"crypto/md5"</span></pre></td></tr><tr><td data-num="6"></td><td><pre>	<span class="token string">"encoding/hex"</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	<span class="token string">"github.com/gin-gonic/gin"</span></pre></td></tr><tr><td data-num="8"></td><td><pre>	<span class="token string">"io"</span></pre></td></tr><tr><td data-num="9"></td><td><pre>	<span class="token string">"io/ioutil"</span></pre></td></tr><tr><td data-num="10"></td><td><pre>	<span class="token string">"net/http"</span></pre></td></tr><tr><td data-num="11"></td><td><pre>	<span class="token string">"os"</span></pre></td></tr><tr><td data-num="12"></td><td><pre>	<span class="token string">"strings"</span></pre></td></tr><tr><td data-num="13"></td><td><pre>	<span class="token string">"time"</span></pre></td></tr><tr><td data-num="14"></td><td><pre><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token keyword">type</span> File <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>	Content <span class="token builtin">string</span> <span class="token string">`json:"content" binding:"required"`</span></pre></td></tr><tr><td data-num="18"></td><td><pre>	Name <span class="token builtin">string</span> <span class="token string">`json:"name" binding:"required"`</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token keyword">type</span> Url <span class="token keyword">struct</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="21"></td><td><pre>	Url <span class="token builtin">string</span> <span class="token string">`json:"url" binding:"required"`</span></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="23"></td><td><pre></pre></td></tr><tr><td data-num="24"></td><td><pre><span class="token keyword">func</span> <span class="token function">md5sum</span><span class="token punctuation">(</span>data <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token builtin">string</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="25"></td><td><pre>	s <span class="token operator">:=</span> md5<span class="token punctuation">.</span><span class="token function">Sum</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="26"></td><td><pre>	<span class="token keyword">return</span> hex<span class="token punctuation">.</span><span class="token function">EncodeToString</span><span class="token punctuation">(</span>s<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="28"></td><td><pre></pre></td></tr><tr><td data-num="29"></td><td><pre></pre></td></tr><tr><td data-num="30"></td><td><pre></pre></td></tr><tr><td data-num="31"></td><td><pre></pre></td></tr><tr><td data-num="32"></td><td><pre><span class="token keyword">func</span> fileMidderware <span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>	fileSystem <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">Dir</span><span class="token punctuation">(</span><span class="token string">"./files/"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="34"></td><td><pre>	<span class="token keyword">if</span> c<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"/"</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="36"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="37"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="38"></td><td><pre>	f<span class="token punctuation">,</span>err <span class="token operator">:=</span> fileSystem<span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="39"></td><td><pre>	<span class="token keyword">if</span> f <span class="token operator">==</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="41"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="42"></td><td><pre>	<span class="token comment">//</span></pre></td></tr><tr><td data-num="43"></td><td><pre>	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="44"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">Next</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="45"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="46"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="47"></td><td><pre>	<span class="token keyword">defer</span> f<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="48"></td><td><pre>	fi<span class="token punctuation">,</span> err <span class="token operator">:=</span> f<span class="token punctuation">.</span><span class="token function">Stat</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="49"></td><td><pre>	<span class="token keyword">if</span>  err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="50"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusInternalServerError<span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"error"</span><span class="token punctuation">:</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="51"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="52"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="53"></td><td><pre></pre></td></tr><tr><td data-num="54"></td><td><pre>	<span class="token keyword">if</span> fi<span class="token punctuation">.</span><span class="token function">IsDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="55"></td><td><pre></pre></td></tr><tr><td data-num="56"></td><td><pre>		<span class="token keyword">if</span> <span class="token operator">!</span>strings<span class="token punctuation">.</span><span class="token function">HasSuffix</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"/"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="57"></td><td><pre>			c<span class="token punctuation">.</span><span class="token function">Redirect</span><span class="token punctuation">(</span><span class="token number">302</span><span class="token punctuation">,</span>c<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"/"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="58"></td><td><pre>		<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="59"></td><td><pre>			files <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="60"></td><td><pre>			l<span class="token punctuation">,</span><span class="token boolean">_</span> <span class="token operator">:=</span> f<span class="token punctuation">.</span><span class="token function">Readdir</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="61"></td><td><pre>			<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span>i <span class="token operator">:=</span> <span class="token keyword">range</span> l <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="62"></td><td><pre>				files <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>files<span class="token punctuation">,</span> i<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="63"></td><td><pre>			<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="64"></td><td><pre></pre></td></tr><tr><td data-num="65"></td><td><pre>			c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusOK<span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="66"></td><td><pre>				<span class="token string">"files"</span> <span class="token punctuation">:</span>files<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="67"></td><td><pre>			<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="68"></td><td><pre>		<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="69"></td><td><pre></pre></td></tr><tr><td data-num="70"></td><td><pre></pre></td></tr><tr><td data-num="71"></td><td><pre>	<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="72"></td><td><pre>		data<span class="token punctuation">,</span><span class="token boolean">_</span> <span class="token operator">:=</span> ioutil<span class="token punctuation">.</span><span class="token function">ReadAll</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="73"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">Header</span><span class="token punctuation">(</span><span class="token string">"content-disposition"</span><span class="token punctuation">,</span> <span class="token string">`attachment; filename=`</span> <span class="token operator">+</span> fi<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="74"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">Data</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> <span class="token string">"text/plain"</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="75"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="76"></td><td><pre></pre></td></tr><tr><td data-num="77"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="78"></td><td><pre></pre></td></tr><tr><td data-num="79"></td><td><pre><span class="token keyword">func</span> <span class="token function">uploadController</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="80"></td><td><pre>	<span class="token keyword">var</span> file File</pre></td></tr><tr><td data-num="81"></td><td><pre>	<span class="token keyword">if</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">ShouldBindJSON</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="82"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"msg"</span><span class="token punctuation">:</span> err<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="83"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="84"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="85"></td><td><pre></pre></td></tr><tr><td data-num="86"></td><td><pre>	dir <span class="token operator">:=</span> <span class="token function">md5sum</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span>Name<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="87"></td><td><pre></pre></td></tr><tr><td data-num="88"></td><td><pre>	<span class="token boolean">_</span><span class="token punctuation">,</span>err<span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">Dir</span><span class="token punctuation">(</span><span class="token string">"./files"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="89"></td><td><pre>	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="90"></td><td><pre>		e <span class="token operator">:=</span> os<span class="token punctuation">.</span><span class="token function">Mkdir</span><span class="token punctuation">(</span><span class="token string">"./files/"</span><span class="token operator">+</span>dir<span class="token punctuation">,</span>os<span class="token punctuation">.</span>ModePerm<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="91"></td><td><pre>		<span class="token boolean">_</span><span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">=</span> http<span class="token punctuation">.</span><span class="token function">Dir</span><span class="token punctuation">(</span><span class="token string">"./files"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Open</span><span class="token punctuation">(</span>dir<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="92"></td><td><pre>		<span class="token keyword">if</span> e <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="93"></td><td><pre>			c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusInternalServerError<span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"error"</span><span class="token punctuation">:</span> e<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="94"></td><td><pre>			<span class="token keyword">return</span></pre></td></tr><tr><td data-num="95"></td><td><pre></pre></td></tr><tr><td data-num="96"></td><td><pre>		<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="97"></td><td><pre></pre></td></tr><tr><td data-num="98"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="99"></td><td><pre>	filename <span class="token operator">:=</span> <span class="token function">md5sum</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span>Content<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="100"></td><td><pre>	path <span class="token operator">:=</span> <span class="token string">"./files/"</span><span class="token operator">+</span>dir<span class="token operator">+</span><span class="token string">"/"</span><span class="token operator">+</span>filename</pre></td></tr><tr><td data-num="101"></td><td><pre>	err <span class="token operator">=</span> ioutil<span class="token punctuation">.</span><span class="token function">WriteFile</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span>Content<span class="token punctuation">)</span><span class="token punctuation">,</span> os<span class="token punctuation">.</span>ModePerm<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="102"></td><td><pre>	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="103"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusInternalServerError<span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"error"</span><span class="token punctuation">:</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="104"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="105"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="106"></td><td><pre></pre></td></tr><tr><td data-num="107"></td><td><pre>	c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="108"></td><td><pre>		<span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"file upload succ, path: "</span><span class="token operator">+</span>dir<span class="token operator">+</span><span class="token string">"/"</span><span class="token operator">+</span>filename<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="109"></td><td><pre>	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="110"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="111"></td><td><pre><span class="token keyword">func</span> <span class="token function">vulController</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="112"></td><td><pre></pre></td></tr><tr><td data-num="113"></td><td><pre>	<span class="token keyword">var</span> url Url</pre></td></tr><tr><td data-num="114"></td><td><pre>	<span class="token keyword">if</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">ShouldBindJSON</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="115"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"msg"</span><span class="token punctuation">:</span> err<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="116"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="117"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="118"></td><td><pre></pre></td></tr><tr><td data-num="119"></td><td><pre>	<span class="token keyword">if</span> <span class="token operator">!</span>strings<span class="token punctuation">.</span><span class="token function">HasPrefix</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>Url<span class="token punctuation">,</span><span class="token string">"http://127.0.0.1:1234/"</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="120"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">403</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"msg"</span><span class="token punctuation">:</span> <span class="token string">"url forbidden"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="121"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="122"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="123"></td><td><pre>	client <span class="token operator">:=</span> <span class="token operator">&amp;</span>http<span class="token punctuation">.</span>Client<span class="token punctuation">&#123;</span>Timeout<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="124"></td><td><pre></pre></td></tr><tr><td data-num="125"></td><td><pre>	resp<span class="token punctuation">,</span> err <span class="token operator">:=</span> client<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>Url<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="126"></td><td><pre>	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="127"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusInternalServerError<span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"error"</span><span class="token punctuation">:</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="128"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="129"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="130"></td><td><pre>	<span class="token keyword">defer</span> resp<span class="token punctuation">.</span>Body<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="131"></td><td><pre>	<span class="token keyword">var</span> buffer <span class="token punctuation">[</span><span class="token number">512</span><span class="token punctuation">]</span><span class="token builtin">byte</span></pre></td></tr><tr><td data-num="132"></td><td><pre>	result <span class="token operator">:=</span> bytes<span class="token punctuation">.</span><span class="token function">NewBuffer</span><span class="token punctuation">(</span><span class="token boolean">nil</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="133"></td><td><pre>	<span class="token keyword">for</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="134"></td><td><pre>		n<span class="token punctuation">,</span> err <span class="token operator">:=</span> resp<span class="token punctuation">.</span>Body<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buffer<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="135"></td><td><pre>		result<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>buffer<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="136"></td><td><pre>		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">&amp;&amp;</span> err <span class="token operator">==</span> io<span class="token punctuation">.</span>EOF <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="137"></td><td><pre></pre></td></tr><tr><td data-num="138"></td><td><pre>			<span class="token keyword">break</span></pre></td></tr><tr><td data-num="139"></td><td><pre>		<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="140"></td><td><pre>			c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusInternalServerError<span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"error"</span><span class="token punctuation">:</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="141"></td><td><pre>			<span class="token keyword">return</span></pre></td></tr><tr><td data-num="142"></td><td><pre>		<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="143"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="144"></td><td><pre>	c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusOK<span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"data"</span><span class="token punctuation">:</span> result<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="145"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="146"></td><td><pre><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="147"></td><td><pre>	r <span class="token operator">:=</span> gin<span class="token punctuation">.</span><span class="token function">Default</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="148"></td><td><pre>	r<span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span>fileMidderware<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="149"></td><td><pre>	r<span class="token punctuation">.</span><span class="token function">POST</span><span class="token punctuation">(</span><span class="token string">"/vul"</span><span class="token punctuation">,</span>vulController<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="150"></td><td><pre>	r<span class="token punctuation">.</span><span class="token function">POST</span><span class="token punctuation">(</span><span class="token string">"/upload"</span><span class="token punctuation">,</span>uploadController<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="151"></td><td><pre>	r<span class="token punctuation">.</span><span class="token function">GET</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="152"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="153"></td><td><pre>			<span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"pong"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="154"></td><td><pre>		<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="155"></td><td><pre>	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="156"></td><td><pre>	<span class="token boolean">_</span> <span class="token operator">=</span> r<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token string">":1234"</span><span class="token punctuation">)</span> <span class="token comment">// listen and serve on 0.0.0.0:8080</span></pre></td></tr><tr><td data-num="157"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>还有一个 php 文件：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token php language-php"><span class="token delimiter important">&lt;?php</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">// php in localhost port 80</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token function">readfile</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'file'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token delimiter important">?></span></span></pre></td></tr></table></figure><p>基本上就是直接访问这个文件就可以进行文件包含了</p>
+<p>在端口 80 上，看来估计就是需要 ssrf 了</p>
+<p>在 main.go 发现是 gin 框架</p>
+<figure class="highlight go"><figcaption data-lang="go"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>	r <span class="token operator">:=</span> gin<span class="token punctuation">.</span><span class="token function">Default</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>	r<span class="token punctuation">.</span><span class="token function">Use</span><span class="token punctuation">(</span>fileMidderware<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	r<span class="token punctuation">.</span><span class="token function">POST</span><span class="token punctuation">(</span><span class="token string">"/vul"</span><span class="token punctuation">,</span>vulController<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	r<span class="token punctuation">.</span><span class="token function">POST</span><span class="token punctuation">(</span><span class="token string">"/upload"</span><span class="token punctuation">,</span>uploadController<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>	r<span class="token punctuation">.</span><span class="token function">GET</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>			<span class="token string">"message"</span><span class="token punctuation">:</span> <span class="token string">"pong"</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="9"></td><td><pre>		<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>	<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>	<span class="token boolean">_</span> <span class="token operator">=</span> r<span class="token punctuation">.</span><span class="token function">Run</span><span class="token punctuation">(</span><span class="token string">":1234"</span><span class="token punctuation">)</span> <span class="token comment">// listen and serve on 0.0.0.0:8080</span></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>有两个路由：vul 和 upload 在 1234 端口</p>
+<p>看一下这两个路由的函数怎么写的：</p>
+<figure class="highlight go"><figcaption data-lang="go"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">func</span> <span class="token function">vulController</span><span class="token punctuation">(</span>c <span class="token operator">*</span>gin<span class="token punctuation">.</span>Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>	<span class="token keyword">var</span> url Url</pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token keyword">if</span> err <span class="token operator">:=</span> c<span class="token punctuation">.</span><span class="token function">ShouldBindJSON</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"msg"</span><span class="token punctuation">:</span> err<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="7"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>	<span class="token keyword">if</span> <span class="token operator">!</span>strings<span class="token punctuation">.</span><span class="token function">HasPrefix</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>Url<span class="token punctuation">,</span><span class="token string">"http://127.0.0.1:1234/"</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">403</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"msg"</span><span class="token punctuation">:</span> <span class="token string">"url forbidden"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="12"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>	client <span class="token operator">:=</span> <span class="token operator">&amp;</span>http<span class="token punctuation">.</span>Client<span class="token punctuation">&#123;</span>Timeout<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>	resp<span class="token punctuation">,</span> err <span class="token operator">:=</span> client<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>Url<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>	<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusInternalServerError<span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"error"</span><span class="token punctuation">:</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="19"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>	<span class="token keyword">defer</span> resp<span class="token punctuation">.</span>Body<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="21"></td><td><pre>	<span class="token keyword">var</span> buffer <span class="token punctuation">[</span><span class="token number">512</span><span class="token punctuation">]</span><span class="token builtin">byte</span></pre></td></tr><tr><td data-num="22"></td><td><pre>	result <span class="token operator">:=</span> bytes<span class="token punctuation">.</span><span class="token function">NewBuffer</span><span class="token punctuation">(</span><span class="token boolean">nil</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="23"></td><td><pre>	<span class="token keyword">for</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>		n<span class="token punctuation">,</span> err <span class="token operator">:=</span> resp<span class="token punctuation">.</span>Body<span class="token punctuation">.</span><span class="token function">Read</span><span class="token punctuation">(</span>buffer<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="25"></td><td><pre>		result<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span>buffer<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">:</span>n<span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="26"></td><td><pre>		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token operator">&amp;&amp;</span> err <span class="token operator">==</span> io<span class="token punctuation">.</span>EOF <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="27"></td><td><pre></pre></td></tr><tr><td data-num="28"></td><td><pre>			<span class="token keyword">break</span></pre></td></tr><tr><td data-num="29"></td><td><pre>		<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="30"></td><td><pre>			c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusInternalServerError<span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"error"</span><span class="token punctuation">:</span> err<span class="token punctuation">.</span><span class="token function">Error</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="31"></td><td><pre>			<span class="token keyword">return</span></pre></td></tr><tr><td data-num="32"></td><td><pre>		<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>	c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusOK<span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"data"</span><span class="token punctuation">:</span> result<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="35"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>只允许 http://127.0.0.1:1234 / 开头的访问，否则 403</p>
+<p>再看看其他的代码：</p>
+<figure class="highlight go"><figcaption data-lang="go"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">if</span> fi<span class="token punctuation">.</span><span class="token function">IsDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre></pre></td></tr><tr><td data-num="3"></td><td><pre>		<span class="token keyword">if</span> <span class="token operator">!</span>strings<span class="token punctuation">.</span><span class="token function">HasSuffix</span><span class="token punctuation">(</span>c<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"/"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>			c<span class="token punctuation">.</span><span class="token function">Redirect</span><span class="token punctuation">(</span><span class="token number">302</span><span class="token punctuation">,</span>c<span class="token punctuation">.</span>Request<span class="token punctuation">.</span>URL<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"/"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre>		<span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>			files <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="7"></td><td><pre>			l<span class="token punctuation">,</span><span class="token boolean">_</span> <span class="token operator">:=</span> f<span class="token punctuation">.</span><span class="token function">Readdir</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="8"></td><td><pre>			<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span>i <span class="token operator">:=</span> <span class="token keyword">range</span> l <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>				files <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>files<span class="token punctuation">,</span> i<span class="token punctuation">.</span><span class="token function">Name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>			<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre>			c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusOK<span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>				<span class="token string">"files"</span> <span class="token punctuation">:</span>files<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="14"></td><td><pre>			<span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="15"></td><td><pre>		<span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>如果传的值是文件夹且 c.Request.URL.String () 不以 “/” 结尾的话，那么就会重定向到 c.Request.URL.String ()+&quot;/&quot;，实质上就是进行了一次请求，而 c.Request.URL.String () 是我们可控的，所以这里村子啊 ssrf，但是直接再浏览器中构造发现无论怎么构造最后解析的路由都是 “/”，无法利用，禹是游把目光放到之前的 /vul 路由上</p>
+<figure class="highlight go"><figcaption data-lang="go"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">if</span> <span class="token operator">!</span>strings<span class="token punctuation">.</span><span class="token function">HasPrefix</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>Url<span class="token punctuation">,</span><span class="token string">"http://127.0.0.1:1234/"</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>		c<span class="token punctuation">.</span><span class="token function">JSON</span><span class="token punctuation">(</span><span class="token number">403</span><span class="token punctuation">,</span> gin<span class="token punctuation">.</span>H<span class="token punctuation">&#123;</span><span class="token string">"msg"</span><span class="token punctuation">:</span> <span class="token string">"url forbidden"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>		<span class="token keyword">return</span></pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>	client <span class="token operator">:=</span> <span class="token operator">&amp;</span>http<span class="token punctuation">.</span>Client<span class="token punctuation">&#123;</span>Timeout<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>	resp<span class="token punctuation">,</span> err <span class="token operator">:=</span> client<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>Url<span class="token punctuation">)</span></pre></td></tr></table></figure><p>虽然这里的 client.Get () 限制了 url 必须以 http://127.0.0.1:1234 / 开头，但是我们之前发现的那段 302 的代码不也正是这个端口的服务吗，我们可以试试通过这里的请求执行 302 跳转</p>
+<pre><code>可以试试http://127.0.0.1:1234//127.0.0.1/..
+</code></pre>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202503181933755.png" alt="image-20250318193306629" /></p>
+<p>可以直接读文件了（那么这时候只需要通过 get 传一个文件名过去，就可以读到 flag 文件了，但是我们不能控制 url 的后半段，所以我们只能通过绝对路径来读 flag 文件，但是在最后加上.. 之后又会跳转，读不到文件，这时想到 url 带参数的符号是 &amp;，于是加了一个 &amp; 试试，就读到 flag 了。）</p>
+<pre><code>&#123;&quot;url&quot;:&quot;http://127.0.0.1:1234//127.0.0.1/index.php?file=/flag&amp;../../../..&quot;&#125;
+</code></pre>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202503181934249.png" alt="image-20250318193435150" /></p>
+<p>参考链接：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vWWhjay9wLzE1ODEwNjQxLmh0bWw=">BUUCTF-GoOss wp - Yhck - 博客园</span></p>
+
+      <div class="tags">
+          <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
+          <a href="/tags/Go/" rel="tag"><i class="ic i-tag"></i> Go</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">Edited on</span>
+    <time title="Modified: 2025-03-18 19:37:32" itemprop="dateModified" datetime="2025-03-18T19:37:32+08:00">2025-03-18</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> Donate</button>
+  <p>Give me a cup of [coffee]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="odiws WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="odiws Alipay">
+        <p>Alipay</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="odiws PayPal">
+        <p>PayPal</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>Post author:  </strong>odiws <i class="ic i-at"><em>@</em></i>Hexo
+  </li>
+  <li class="link">
+    <strong>Post link: </strong>
+    <a href="http://odiws.github.io/2025/03/18/JMCTF-2021-GoOSS/" title="[JMCTF_2021]GoOSS">http://odiws.github.io/2025/03/18/JMCTF-2021-GoOSS/</a>
+  </li>
+  <li class="license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?916679" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">
+  <span class="type">Previous Post</span>
+  <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
+  <h3>[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+      
+
+  <a href="/2025/03/18/activeMQ/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?638718" title="CVE-2015-5254">
+  <span class="type">Next Post</span>
+  <span class="category"><i class="ic i-flag"></i> 漏洞复现</span>
+  <h3>CVE-2015-5254</h3>
+  </a>
+
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="Contents">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#jmctf_2021gooss"><span class="toc-number">1.</span> <span class="toc-text"> [JMCTF_2021]GoOSS</span></a></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="Related">
+        <ul>
+          <li><a href="/2024/04/28/3-txt/" rel="bookmark" title="buuctf4月27日">buuctf4月27日</a></li><li><a href="/2024/07/25/2019-Web-Unagi/" rel="bookmark" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></li><li><a href="/2024/07/28/2020-Greatphp/" rel="bookmark" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></li><li><a href="/2024/07/29/ISITDTU2019-EasyPHP/" rel="bookmark" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></li><li><a href="/2025/02/26/HMGCTF2022-Fan-Website/" rel="bookmark" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></li><li><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" rel="bookmark" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></li><li class="active"><a href="/2025/03/18/JMCTF-2021-GoOSS/" rel="bookmark" title="[JMCTF_2021]GoOSS">[JMCTF_2021]GoOSS</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="Overview">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="odiws"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">odiws</p>
+  <div class="description" itemprop="description"></div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">27</span>
+        <span class="name">posts</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">7</span>
+        <span class="name">categories</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">25</span>
+        <span class="name">tags</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>Home</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+        <a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" rel="prev" title="Previous Post"><i class="ic i-chevron-left"></i></a>
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+        <a href="/2025/03/18/activeMQ/" rel="next" title="Next Post"><i class="ic i-chevron-right"></i></a>
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>Random Posts</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/07/28/2020-Greatphp/" title="[极客大挑战2020]Greatphp">[极客大挑战2020]Greatphp</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/GXYCTF2019-gakki/" title="[GXYCTF2019]gakki">[GXYCTF2019]gakki</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/BUUCTF%EF%BC%9A%E9%BB%91%E5%AE%A2%E5%B8%9D%E5%9B%BD/" title="BUUCTF：黑客帝国">BUUCTF：黑客帝国</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" title="Nctf_web部分复现">Nctf_web部分复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/17/springweb/" title="springweb">springweb</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/" title="[SWPU2019]我有一只马里奥">[SWPU2019]我有一只马里奥</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" title="ecshop复现">ecshop复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/07/http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E/" title="http请求走私漏洞">http请求走私漏洞</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2025/03/28/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="rust学习笔记">rust学习笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/07/08/java-sec-code%E5%A4%8D%E7%8E%B0/" title="java-sec-code复现">java-sec-code复现</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>Recent Comments</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">odiws @ zty153’s_blog</span>
+  </div>
+  <div class="powered-by">
+    Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2025/03/18/JMCTF-2021-GoOSS/',
+    favicon: {
+      show: "（●´3｀●）Goooood",
+      hide: "(´Д｀)Booooom"
+    },
+    search : {
+      placeholder: "Search for Posts",
+      empty: "We didn't find any results for the search: ${query}",
+      stats: "${hits} results found in ${time} ms"
+    },
+    valine: true,fancybox: true,
+    copyright: 'Copied to clipboard successfully! <br> All articles in this blog are licensed under <i class="ic i-creative-commons"></i>BY-NC-SA.',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
