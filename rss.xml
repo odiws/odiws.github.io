@@ -353,7 +353,7 @@ public String hutoolHttp(String url)&amp;#123;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;换汤不换药，该库也能 SSRF, 不过禁止了重定向：&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://ttycp3.oss-cn-beijing.aliyuncs.com/img/image-20240930162620184.png&#34; alt=&#34;image-20240930162620184&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;8路由ssrfdenrebindvuln&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#8路由ssrfdenrebindvuln&#34;&gt;#&lt;/a&gt; 8. 路由 /ssrf/denrebind/vuln&lt;/h3&gt;
+&lt;h3 id=&#34;8路由ssrfdnsrebindvuln&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#8路由ssrfdnsrebindvuln&#34;&gt;#&lt;/a&gt; 8. 路由 /ssrf/dnsrebind/vuln&lt;/h3&gt;
 &lt;p&gt;漏洞代码：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;@GetMapping(&amp;quot;/dnsrebind/vuln&amp;quot;)
 public String DnsRebind(String url) &amp;#123;
@@ -834,6 +834,125 @@ java复制代码1234
 &lt;p&gt;换了个库，原理 payload 同上&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202507221637176.png&#34; alt=&#34;image-20250722163757999&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;cookie伪造&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cookie伪造&#34;&gt;#&lt;/a&gt; cookie 伪造&lt;/h2&gt;
+&lt;h3 id=&#34;1路由cookievuln01&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1路由cookievuln01&#34;&gt;#&lt;/a&gt; 1. 路由 /cookie/vuln01&lt;/h3&gt;
+&lt;p&gt;漏洞代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    private static String NICK = &amp;quot;nick&amp;quot;;
+
+    @GetMapping(value = &amp;quot;/vuln01&amp;quot;)
+    public String vuln01(HttpServletRequest req) &amp;#123;
+        String nick = WebUtils.getCookieValueByName(req, NICK); // key code
+        return &amp;quot;Cookie nick: &amp;quot; + nick;
+    &amp;#125;
+java复制代码1234567
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;2路由cookievuln02&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2路由cookievuln02&#34;&gt;#&lt;/a&gt; 2. 路由 /cookie/vuln02&lt;/h3&gt;
+&lt;p&gt;漏洞代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; @GetMapping(value = &amp;quot;/vuln02&amp;quot;)
+    public String vuln02(HttpServletRequest req) &amp;#123;
+        String nick = null;
+        Cookie[] cookie = req.getCookies();
+
+        if (cookie != null) &amp;#123;
+            nick = getCookie(req, NICK).getValue();  // key code
+        &amp;#125;
+
+        return &amp;quot;Cookie nick: &amp;quot; + nick;
+    &amp;#125;
+Java复制代码1234567891011
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;3路由cookievuln03&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3路由cookievuln03&#34;&gt;#&lt;/a&gt; 3. 路由 /cookie/vuln03&lt;/h3&gt;
+&lt;p&gt;漏洞代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;   @GetMapping(value = &amp;quot;/vuln03&amp;quot;)
+    public String vuln03(HttpServletRequest req) &amp;#123;
+        String nick = null;
+        Cookie cookies[] = req.getCookies();
+        if (cookies != null) &amp;#123;
+            for (Cookie cookie : cookies) &amp;#123;
+                // key code. Equals can also be equalsIgnoreCase.
+                if (NICK.equals(cookie.getName())) &amp;#123;
+                    nick = cookie.getValue();
+                &amp;#125;
+            &amp;#125;
+        &amp;#125;
+        return &amp;quot;Cookie nick: &amp;quot; + nick;
+    &amp;#125;
+Java复制代码1234567891011121314
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;4路由cookievuln04&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#4路由cookievuln04&#34;&gt;#&lt;/a&gt; 4. 路由 /cookie/vuln04&lt;/h3&gt;
+&lt;p&gt;漏洞代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@GetMapping(value = &amp;quot;/vuln04&amp;quot;)
+    public String vuln04(HttpServletRequest req) &amp;#123;
+        String nick = null;
+        Cookie cookies[] = req.getCookies();
+        if (cookies != null) &amp;#123;
+            for (Cookie cookie : cookies) &amp;#123;
+                if (cookie.getName().equalsIgnoreCase(NICK)) &amp;#123;  // key code
+                    nick = cookie.getValue();
+                &amp;#125;
+            &amp;#125;
+        &amp;#125;
+        return &amp;quot;Cookie nick: &amp;quot; + nick;
+    &amp;#125;
+Java复制代码12345678910111213
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;5路由cookievuln05&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#5路由cookievuln05&#34;&gt;#&lt;/a&gt; 5. 路由 /cookie/vuln05&lt;/h3&gt;
+&lt;p&gt;漏洞代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;   @GetMapping(value = &amp;quot;/vuln05&amp;quot;)
+    public String vuln05(@CookieValue(&amp;quot;nick&amp;quot;) String nick) &amp;#123;
+        return &amp;quot;Cookie nick: &amp;quot; + nick;
+    &amp;#125;
+Java复制代码1234
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;6路由cookievuln06&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#6路由cookievuln06&#34;&gt;#&lt;/a&gt; 6. 路由 /cookie/vuln06&lt;/h3&gt;
+&lt;p&gt;漏洞代码:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@GetMapping(value = &amp;quot;/vuln06&amp;quot;)
+    public String vuln06(@CookieValue(value = &amp;quot;nick&amp;quot;) String nick) &amp;#123;
+        return &amp;quot;Cookie nick: &amp;quot; + nick;
+    &amp;#125;
+复制代码1234
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;漏洞利用&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#漏洞利用&#34;&gt;#&lt;/a&gt; 漏洞利用&lt;/h3&gt;
+&lt;p&gt;我们可以直接通过修改 cookie 的值实现对 nick 值的修改，某些情况可能会存在越权漏洞，操作如下：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202507221648475.png&#34; alt=&#34;image-20250722164822134&#34; /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;cors&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#cors&#34;&gt;#&lt;/a&gt; CORS&lt;/h2&gt;
+&lt;p&gt;CORS（跨域资源共享）是用来实现跨域资源访问的，&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL3huLS1hMS14eDJjeWE5MzVqMGxjdjAxYm95aS54bi0tY29tYjEtdG45aC5jb20=&#34;&gt;比如有两个域 a1.com 和 b1.com&lt;/span&gt;，假设 b1.com 上面有个接口能够获取一些返回的数据，那么如果我们从 a1.com 写一段 js 去请求这个接口的数据，一般来说是请求不了的，会在浏览器爆出 CORS 错误，但如果有 CORS 设置，就可以实现这样的访问，甚至可以能够使用 b1.com 上的 cookie。&lt;/p&gt;
+&lt;h3 id=&#34;1路由corsvulnorigin&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#1路由corsvulnorigin&#34;&gt;#&lt;/a&gt; 1. 路由 /cors/vuln/origin&lt;/h3&gt;
+&lt;p&gt;漏洞代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    private static String info = &amp;quot;&amp;#123;\&amp;quot;name\&amp;quot;: \&amp;quot;JoyChou\&amp;quot;, \&amp;quot;phone\&amp;quot;: \&amp;quot;18200001111\&amp;quot;&amp;#125;&amp;quot;;
+
+    @GetMapping(&amp;quot;/vuln/origin&amp;quot;)
+    public String vuls1(HttpServletRequest request, HttpServletResponse response) &amp;#123;
+        String origin = request.getHeader(&amp;quot;origin&amp;quot;);
+        response.setHeader(&amp;quot;Access-Control-Allow-Origin&amp;quot;, origin); // set origin from header
+        response.setHeader(&amp;quot;Access-Control-Allow-Credentials&amp;quot;, &amp;quot;true&amp;quot;);  // allow cookie
+        return info;
+    &amp;#125;
+java复制代码123456789
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;2路由corsvulnsetheader&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#2路由corsvulnsetheader&#34;&gt;#&lt;/a&gt; 2. 路由 /cors/vuln/setHeader&lt;/h3&gt;
+&lt;p&gt;漏洞代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@GetMapping(&amp;quot;/vuln/setHeader&amp;quot;)
+    public String vuls2(HttpServletResponse response) &amp;#123;
+        // 后端设置Access-Control-Allow-Origin为*的情况下，跨域的时候前端如果设置withCredentials为true会异常
+        response.setHeader(&amp;quot;Access-Control-Allow-Origin&amp;quot;, &amp;quot;*&amp;quot;);
+        return info;
+    &amp;#125;
+java复制代码123456
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;3路由corsvulncrossorigin&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#3路由corsvulncrossorigin&#34;&gt;#&lt;/a&gt; 3. 路由 /cors/vuln/crossOrigin&lt;/h3&gt;
+&lt;p&gt;漏洞代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    @GetMapping(&amp;quot;*&amp;quot;)
+    @RequestMapping(&amp;quot;/vuln/crossOrigin&amp;quot;)
+    public String vuls3() &amp;#123;
+        return info;
+    &amp;#125;
+Java复制代码12345
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;漏洞验证&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#漏洞验证&#34;&gt;#&lt;/a&gt; 漏洞验证&lt;/h3&gt;
+&lt;p&gt;可通过抓包修改 origin 字段验证漏洞&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202507221720812.png&#34; alt=&#34;image-20250722172007570&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;不为空时，验证白名单：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202507221720728.png&#34; alt=&#34;image-20250722172034590&#34; /&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>

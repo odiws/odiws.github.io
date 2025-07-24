@@ -74,7 +74,7 @@ zty153’s_blog = 网安 = web学习</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>33k</span>
+    <span>36k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -82,7 +82,7 @@ zty153’s_blog = 网安 = web学习</title>
       <i class="ic i-clock"></i>
     </span>
     <span class="text">Reading time</span>
-    <span>30 mins.</span>
+    <span>33 mins.</span>
   </span>
 </div>
 
@@ -115,12 +115,12 @@ zty153’s_blog = 网安 = web学习</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?162267"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?618517"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?196978"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?683836"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?947332"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?886740"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?671346"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?768985"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?609348"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?603634"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?367988"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?689747"></li>
         </ul>
       </div>
     </header>
@@ -431,7 +431,7 @@ public String hutoolHttp(String url)&#123;
 </code></pre>
 <p>换汤不换药，该库也能 SSRF, 不过禁止了重定向：</p>
 <p><img data-src="https://ttycp3.oss-cn-beijing.aliyuncs.com/img/image-20240930162620184.png" alt="image-20240930162620184" /></p>
-<h3 id="8路由ssrfdenrebindvuln"><a class="anchor" href="#8路由ssrfdenrebindvuln">#</a> 8. 路由 /ssrf/denrebind/vuln</h3>
+<h3 id="8路由ssrfdnsrebindvuln"><a class="anchor" href="#8路由ssrfdnsrebindvuln">#</a> 8. 路由 /ssrf/dnsrebind/vuln</h3>
 <p>漏洞代码：</p>
 <pre><code>@GetMapping(&quot;/dnsrebind/vuln&quot;)
 public String DnsRebind(String url) &#123;
@@ -912,6 +912,125 @@ java复制代码1234
 <p>换了个库，原理 payload 同上</p>
 <p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202507221637176.png" alt="image-20250722163757999" /></p>
 <h2 id="cookie伪造"><a class="anchor" href="#cookie伪造">#</a> cookie 伪造</h2>
+<h3 id="1路由cookievuln01"><a class="anchor" href="#1路由cookievuln01">#</a> 1. 路由 /cookie/vuln01</h3>
+<p>漏洞代码：</p>
+<pre><code>    private static String NICK = &quot;nick&quot;;
+
+    @GetMapping(value = &quot;/vuln01&quot;)
+    public String vuln01(HttpServletRequest req) &#123;
+        String nick = WebUtils.getCookieValueByName(req, NICK); // key code
+        return &quot;Cookie nick: &quot; + nick;
+    &#125;
+java复制代码1234567
+</code></pre>
+<h3 id="2路由cookievuln02"><a class="anchor" href="#2路由cookievuln02">#</a> 2. 路由 /cookie/vuln02</h3>
+<p>漏洞代码：</p>
+<pre><code> @GetMapping(value = &quot;/vuln02&quot;)
+    public String vuln02(HttpServletRequest req) &#123;
+        String nick = null;
+        Cookie[] cookie = req.getCookies();
+
+        if (cookie != null) &#123;
+            nick = getCookie(req, NICK).getValue();  // key code
+        &#125;
+
+        return &quot;Cookie nick: &quot; + nick;
+    &#125;
+Java复制代码1234567891011
+</code></pre>
+<h3 id="3路由cookievuln03"><a class="anchor" href="#3路由cookievuln03">#</a> 3. 路由 /cookie/vuln03</h3>
+<p>漏洞代码：</p>
+<pre><code>   @GetMapping(value = &quot;/vuln03&quot;)
+    public String vuln03(HttpServletRequest req) &#123;
+        String nick = null;
+        Cookie cookies[] = req.getCookies();
+        if (cookies != null) &#123;
+            for (Cookie cookie : cookies) &#123;
+                // key code. Equals can also be equalsIgnoreCase.
+                if (NICK.equals(cookie.getName())) &#123;
+                    nick = cookie.getValue();
+                &#125;
+            &#125;
+        &#125;
+        return &quot;Cookie nick: &quot; + nick;
+    &#125;
+Java复制代码1234567891011121314
+</code></pre>
+<h3 id="4路由cookievuln04"><a class="anchor" href="#4路由cookievuln04">#</a> 4. 路由 /cookie/vuln04</h3>
+<p>漏洞代码：</p>
+<pre><code>@GetMapping(value = &quot;/vuln04&quot;)
+    public String vuln04(HttpServletRequest req) &#123;
+        String nick = null;
+        Cookie cookies[] = req.getCookies();
+        if (cookies != null) &#123;
+            for (Cookie cookie : cookies) &#123;
+                if (cookie.getName().equalsIgnoreCase(NICK)) &#123;  // key code
+                    nick = cookie.getValue();
+                &#125;
+            &#125;
+        &#125;
+        return &quot;Cookie nick: &quot; + nick;
+    &#125;
+Java复制代码12345678910111213
+</code></pre>
+<h3 id="5路由cookievuln05"><a class="anchor" href="#5路由cookievuln05">#</a> 5. 路由 /cookie/vuln05</h3>
+<p>漏洞代码：</p>
+<pre><code>   @GetMapping(value = &quot;/vuln05&quot;)
+    public String vuln05(@CookieValue(&quot;nick&quot;) String nick) &#123;
+        return &quot;Cookie nick: &quot; + nick;
+    &#125;
+Java复制代码1234
+</code></pre>
+<h3 id="6路由cookievuln06"><a class="anchor" href="#6路由cookievuln06">#</a> 6. 路由 /cookie/vuln06</h3>
+<p>漏洞代码:</p>
+<pre><code>@GetMapping(value = &quot;/vuln06&quot;)
+    public String vuln06(@CookieValue(value = &quot;nick&quot;) String nick) &#123;
+        return &quot;Cookie nick: &quot; + nick;
+    &#125;
+复制代码1234
+</code></pre>
+<h3 id="漏洞利用"><a class="anchor" href="#漏洞利用">#</a> 漏洞利用</h3>
+<p>我们可以直接通过修改 cookie 的值实现对 nick 值的修改，某些情况可能会存在越权漏洞，操作如下：</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202507221648475.png" alt="image-20250722164822134" /></p>
+<h2 id="cors"><a class="anchor" href="#cors">#</a> CORS</h2>
+<p>CORS（跨域资源共享）是用来实现跨域资源访问的，<span class="exturl" data-url="aHR0cDovL3huLS1hMS14eDJjeWE5MzVqMGxjdjAxYm95aS54bi0tY29tYjEtdG45aC5jb20=">比如有两个域 a1.com 和 b1.com</span>，假设 b1.com 上面有个接口能够获取一些返回的数据，那么如果我们从 a1.com 写一段 js 去请求这个接口的数据，一般来说是请求不了的，会在浏览器爆出 CORS 错误，但如果有 CORS 设置，就可以实现这样的访问，甚至可以能够使用 b1.com 上的 cookie。</p>
+<h3 id="1路由corsvulnorigin"><a class="anchor" href="#1路由corsvulnorigin">#</a> 1. 路由 /cors/vuln/origin</h3>
+<p>漏洞代码：</p>
+<pre><code>    private static String info = &quot;&#123;\&quot;name\&quot;: \&quot;JoyChou\&quot;, \&quot;phone\&quot;: \&quot;18200001111\&quot;&#125;&quot;;
+
+    @GetMapping(&quot;/vuln/origin&quot;)
+    public String vuls1(HttpServletRequest request, HttpServletResponse response) &#123;
+        String origin = request.getHeader(&quot;origin&quot;);
+        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, origin); // set origin from header
+        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);  // allow cookie
+        return info;
+    &#125;
+java复制代码123456789
+</code></pre>
+<h3 id="2路由corsvulnsetheader"><a class="anchor" href="#2路由corsvulnsetheader">#</a> 2. 路由 /cors/vuln/setHeader</h3>
+<p>漏洞代码：</p>
+<pre><code>@GetMapping(&quot;/vuln/setHeader&quot;)
+    public String vuls2(HttpServletResponse response) &#123;
+        // 后端设置Access-Control-Allow-Origin为*的情况下，跨域的时候前端如果设置withCredentials为true会异常
+        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);
+        return info;
+    &#125;
+java复制代码123456
+</code></pre>
+<h3 id="3路由corsvulncrossorigin"><a class="anchor" href="#3路由corsvulncrossorigin">#</a> 3. 路由 /cors/vuln/crossOrigin</h3>
+<p>漏洞代码：</p>
+<pre><code>    @GetMapping(&quot;*&quot;)
+    @RequestMapping(&quot;/vuln/crossOrigin&quot;)
+    public String vuls3() &#123;
+        return info;
+    &#125;
+Java复制代码12345
+</code></pre>
+<h3 id="漏洞验证"><a class="anchor" href="#漏洞验证">#</a> 漏洞验证</h3>
+<p>可通过抓包修改 origin 字段验证漏洞</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202507221720812.png" alt="image-20250722172007570" /></p>
+<p>不为空时，验证白名单：</p>
+<p><img data-src="https://zty--666.oss-cn-shanghai.aliyuncs.com/202507221720728.png" alt="image-20250722172034590" /></p>
 
   </div>
 
@@ -923,7 +1042,7 @@ java复制代码1234
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2025-07-22 16:41:49" itemprop="dateModified" datetime="2025-07-22T16:41:49+08:00">2025-07-22</time>
+    <time title="Modified: 2025-07-24 15:18:33" itemprop="dateModified" datetime="2025-07-24T15:18:33+08:00">2025-07-24</time>
   </span>
   <span id="2025/07/08/java-sec-code复现/" class="item leancloud_visitors" data-flag-title="java-sec-code复现" title="Views">
       <span class="icon">
@@ -986,7 +1105,7 @@ java复制代码1234
     <div class="item left">
       
 
-  <a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?574947" title="ecshop复现">
+  <a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?954589" title="ecshop复现">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>ecshop复现</h3>
@@ -996,7 +1115,7 @@ java复制代码1234
     <div class="item right">
       
 
-  <a href="/2025/07/11/YLctf2024/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?614835" title="Untitled">
+  <a href="/2025/07/11/YLctf2024/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?130234" title="Untitled">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> </span>
   <h3>Untitled</h3>
@@ -1018,7 +1137,7 @@ java复制代码1234
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="Contents">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java-sec-code%E9%9D%B6%E5%9C%BA%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text"> java-sec-code 靶场复现：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cmdinject"><span class="toc-number">1.1.</span> <span class="toc-text"> Cmdinject</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#codeinject"><span class="toc-number">1.1.1.</span> <span class="toc-text"> &#x2F;codeinject</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#start%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.1.1.1.</span> <span class="toc-text"> start（）函数详解：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%8A%8A%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text"> 1. 把命令参数转换为字符串数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%8F%82%E6%95%B0%E6%A3%80%E6%9F%A5"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text"> 2. 参数检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E8%A6%81%E6%89%A7%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%90%8D%E5%91%BD%E4%BB%A4%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="toc-number">1.1.1.1.3.</span> <span class="toc-text"> 3. 获取要执行的程序名（命令第一个元素）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E5%99%A8%E6%A3%80%E6%9F%A5"><span class="toc-number">1.1.1.1.4.</span> <span class="toc-text"> 4. 安全管理器检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E8%8E%B7%E5%8F%96%E6%89%A7%E8%A1%8C%E7%9B%AE%E5%BD%95%E8%B7%AF%E5%BE%84"><span class="toc-number">1.1.1.1.5.</span> <span class="toc-text"> 5. 获取执行目录路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E6%A3%80%E6%9F%A5%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E4%B8%AD%E6%98%AF%E5%90%A6%E5%90%AB%E6%9C%89%E9%9D%9E%E6%B3%95%E7%9A%84%E7%A9%BA%E5%AD%97%E7%AC%A6"><span class="toc-number">1.1.1.1.6.</span> <span class="toc-text"> 6. 检查命令参数中是否含有非法的空字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-%E5%90%AF%E5%8A%A8%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.1.1.1.7.</span> <span class="toc-text"> 7. 启动进程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#codeinjecthost"><span class="toc-number">1.1.2.</span> <span class="toc-text"> &#x2F;codeinject&#x2F;host</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsonp"><span class="toc-number">1.2.</span> <span class="toc-text"> jsonp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.3.</span> <span class="toc-text"> 文件上传：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%A9%BF%E8%B6%8A"><span class="toc-number">1.4.</span> <span class="toc-text"> 目录穿越</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5"><span class="toc-number">1.5.</span> <span class="toc-text"> SQL 注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#raw-sql"><span class="toc-number">1.5.0.1.</span> <span class="toc-text"> raw sql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#incorrect-preparestatement"><span class="toc-number">1.5.0.2.</span> <span class="toc-text"> Incorrect prepareStatement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#incorrect-mybatis"><span class="toc-number">1.5.0.3.</span> <span class="toc-text"> Incorrect mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%98%B2%E6%8A%A4%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.0.3.1.</span> <span class="toc-text"> 防护方案：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssrf"><span class="toc-number">1.6.</span> <span class="toc-text"> ssrf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1ssrfurlconnectionvuln"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 1. 路由 &#x2F;ssrf&#x2F;urlConnection&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1ssrfhttpurlconnectionvuln"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 2. 路由 &#x2F;ssrf&#x2F;HttpURLConnection&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1ssrfopenstream"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 3. 路由 &#x2F;ssrf&#x2F;openStream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1ssrfhttpsyncclientsvuln"><span class="toc-number">1.6.4.</span> <span class="toc-text"> 4. 路由 &#x2F;ssrf&#x2F;HttpSyncClients&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1ssrfresttemplatevuln1"><span class="toc-number">1.6.5.</span> <span class="toc-text"> 5. 路由 &#x2F;ssrf&#x2F;restTemplate&#x2F;vuln1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E8%B7%AF%E7%94%B1ssrfresttemplatevuln2"><span class="toc-number">1.6.6.</span> <span class="toc-text"> 6. 路由 &#x2F;ssrf&#x2F;restTemplate&#x2F;vuln2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E8%B7%AF%E7%94%B1ssrfhutoolvuln"><span class="toc-number">1.6.7.</span> <span class="toc-text"> 7. 路由 &#x2F;ssrf&#x2F;hutool&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E8%B7%AF%E7%94%B1ssrfdenrebindvuln"><span class="toc-number">1.6.8.</span> <span class="toc-text"> 8. 路由 &#x2F;ssrf&#x2F;denrebind&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns%E9%87%8D%E7%BB%91%E5%AE%9A"><span class="toc-number">1.6.9.</span> <span class="toc-text"> DNS 重绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dns"><span class="toc-number">1.6.9.1.</span> <span class="toc-text"> dns:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E7%9A%84%E8%AE%B0%E5%BD%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.9.2.</span> <span class="toc-text"> DNS 的记录类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E7%BB%91%E5%AE%9A%E6%8A%80%E6%9C%AF"><span class="toc-number">1.6.9.3.</span> <span class="toc-text"> DNS 绑定技术：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E9%87%8D%E7%BB%91%E5%AE%9A-2"><span class="toc-number">1.6.9.4.</span> <span class="toc-text"> DNS 重绑定：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E6%80%9D%E8%B7%AF"><span class="toc-number">1.6.9.5.</span> <span class="toc-text"> 防御思路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rce"><span class="toc-number">1.7.</span> <span class="toc-text"> rce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1rceruntimeexec"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 1. 路由 &#x2F;rce&#x2F;runtime&#x2F;exec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1rceprocessbuilder"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 2. 路由 &#x2F;rce&#x2F;processBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1rcejscmd"><span class="toc-number">1.7.3.</span> <span class="toc-text"> 3. 路由 &#x2F;rce&#x2F;jscmd</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#image-20250710111939201"><span class="toc-number">1.7.3.1.</span> <span class="toc-text"> </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1rcevulnyarm"><span class="toc-number">1.7.4.</span> <span class="toc-text"> 4. 路由 &#x2F;rce&#x2F;vuln&#x2F;yarm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1rcegroovy"><span class="toc-number">1.7.5.</span> <span class="toc-text"> 5. 路由 &#x2F;rce&#x2F;groovy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssti"><span class="toc-number">1.8.</span> <span class="toc-text"> SSTI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#velocityevaluate"><span class="toc-number">1.8.1.</span> <span class="toc-text"> Velocity.evaluate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#csrf"><span class="toc-number">1.9.</span> <span class="toc-text"> CSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1csrfpost"><span class="toc-number">1.9.1.</span> <span class="toc-text"> 1. 路由 &#x2F;csrf&#x2F;post</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#csrf%E9%98%B2%E6%8A%A4"><span class="toc-number">1.9.1.1.</span> <span class="toc-text"> csrf 防护：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8csrf-token"><span class="toc-number">1.9.1.1.1.</span> <span class="toc-text"> 使用 CSRF Token：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#samesite-cookie-%E5%B1%9E%E6%80%A7"><span class="toc-number">1.9.1.1.2.</span> <span class="toc-text"> SameSite Cookie 属性：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8C%E9%87%8Dcookie%E9%AA%8C%E8%AF%81"><span class="toc-number">1.9.1.1.3.</span> <span class="toc-text"> 双重 Cookie 验证：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5referer%E5%A4%B4"><span class="toc-number">1.9.1.1.4.</span> <span class="toc-text"> 检查 Referer 头：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#captcha"><span class="toc-number">1.9.1.1.5.</span> <span class="toc-text"> CAPTCHA：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss"><span class="toc-number">1.10.</span> <span class="toc-text"> XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1xssreflext"><span class="toc-number">1.10.1.</span> <span class="toc-text"> 1. 路由 &#x2F;xss&#x2F;reflext：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1xssstored"><span class="toc-number">1.10.2.</span> <span class="toc-text"> 2. 路由 &#x2F;xss&#x2F;stored</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xss%E6%94%BB%E5%87%BB%E9%98%B2%E6%8A%A4"><span class="toc-number">1.10.3.</span> <span class="toc-text"> XSS 攻击防护：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xxe"><span class="toc-number">1.11.</span> <span class="toc-text"> XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1xxexmlreadervuln"><span class="toc-number">1.11.1.</span> <span class="toc-text"> 1. 路由 &#x2F;xxe&#x2F;xmlReader&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1xxesaxbuildervuln"><span class="toc-number">1.11.2.</span> <span class="toc-text"> 2. 路由 &#x2F;xxe&#x2F;SAXBuilder&#x2F;vuln</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E4%BB%A3%E7%A0%81"><span class="toc-number">1.11.2.1.</span> <span class="toc-text"> 修复代码：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1xxesaxreadervuln"><span class="toc-number">1.11.3.</span> <span class="toc-text"> 3. 路由 &#x2F;xxe&#x2F;SAXReader&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E7%9A%84%E5%81%9A%E6%B3%95"><span class="toc-number">1.11.4.</span> <span class="toc-text"> 通用的做法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#external-dtd%E5%A4%96%E9%83%A8-dtd-%E5%8F%82%E6%95%B0%E5%AE%9E%E4%BD%93parameter-entity%E5%AE%9E%E7%8E%B0%E7%9A%84-blind-xxe-%E5%A4%96%E5%B8%A6%E6%94%BB%E5%87%BB"><span class="toc-number">1.11.4.1.</span> <span class="toc-text"> External DTD（外部 DTD）+ 参数实体（Parameter Entity）实现的 Blind XXE 外带攻击</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1xxesaxparservuln"><span class="toc-number">1.11.5.</span> <span class="toc-text"> 4. 路由 &#x2F;xxe&#x2F;SAXParser&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1xxedigestervuln"><span class="toc-number">1.11.6.</span> <span class="toc-text"> 5. 路由 &#x2F;xxe&#x2F;Digester&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E8%B7%AF%E7%94%B1xxedocumentbuildervuln"><span class="toc-number">1.11.7.</span> <span class="toc-text"> 6. 路由 &#x2F;xxe&#x2F;DocumentBuilder&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E8%B7%AF%E7%94%B1xxedocumentbuilderxincludevuln"><span class="toc-number">1.11.8.</span> <span class="toc-text"> 7. 路由 &#x2F;xxe&#x2F;DocumentBuilder&#x2F;xinclude&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E8%B7%AF%E7%94%B1xxexmlreadervuln"><span class="toc-number">1.11.9.</span> <span class="toc-text"> 8. 路由 &#x2F;xxe&#x2F;XMLReader&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E8%B7%AF%E7%94%B1xxedocumenthelpervuln"><span class="toc-number">1.11.10.</span> <span class="toc-text"> 9. 路由 &#x2F;xxe&#x2F;DocumentHelper&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E8%BF%B0%E5%AD%98%E5%9C%A8xxe%E6%BC%8F%E6%B4%9E%E5%BA%93%E5%AF%B9%E6%AF%94"><span class="toc-number">1.11.11.</span> <span class="toc-text"> 上述存在 XXE 漏洞库对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8payload"><span class="toc-number">1.11.11.1.</span> <span class="toc-text"> 统一漏洞利用 payload：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E4%BF%AE%E5%A4%8D%E4%BB%A3%E7%A0%81"><span class="toc-number">1.11.11.2.</span> <span class="toc-text"> 统一修复代码：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E8%B7%AF%E7%94%B1xxexmlbeamvuln"><span class="toc-number">1.11.12.</span> <span class="toc-text"> 10. 路由 &#x2F;xxe&#x2F;xmlbeam&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1ooxmlreadxlsx"><span class="toc-number">1.11.13.</span> <span class="toc-text"> 路由 &#x2F;ooxml&#x2F;readxlsx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E8%B7%AF%E7%94%B1xlsx-streamerreadxlsx"><span class="toc-number">1.11.14.</span> <span class="toc-text"> 12. 路由 &#x2F;xlsx-streamer&#x2F;readxlsx</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie%E4%BC%AA%E9%80%A0"><span class="toc-number">1.12.</span> <span class="toc-text"> cookie 伪造</span></a></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java-sec-code%E9%9D%B6%E5%9C%BA%E5%A4%8D%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text"> java-sec-code 靶场复现：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cmdinject"><span class="toc-number">1.1.</span> <span class="toc-text"> Cmdinject</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#codeinject"><span class="toc-number">1.1.1.</span> <span class="toc-text"> &#x2F;codeinject</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#start%E5%87%BD%E6%95%B0%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.1.1.1.</span> <span class="toc-text"> start（）函数详解：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%8A%8A%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84"><span class="toc-number">1.1.1.1.1.</span> <span class="toc-text"> 1. 把命令参数转换为字符串数组</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%8F%82%E6%95%B0%E6%A3%80%E6%9F%A5"><span class="toc-number">1.1.1.1.2.</span> <span class="toc-text"> 2. 参数检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E8%8E%B7%E5%8F%96%E8%A6%81%E6%89%A7%E8%A1%8C%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%90%8D%E5%91%BD%E4%BB%A4%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="toc-number">1.1.1.1.3.</span> <span class="toc-text"> 3. 获取要执行的程序名（命令第一个元素）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-%E5%AE%89%E5%85%A8%E7%AE%A1%E7%90%86%E5%99%A8%E6%A3%80%E6%9F%A5"><span class="toc-number">1.1.1.1.4.</span> <span class="toc-text"> 4. 安全管理器检查</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-%E8%8E%B7%E5%8F%96%E6%89%A7%E8%A1%8C%E7%9B%AE%E5%BD%95%E8%B7%AF%E5%BE%84"><span class="toc-number">1.1.1.1.5.</span> <span class="toc-text"> 5. 获取执行目录路径</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-%E6%A3%80%E6%9F%A5%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E4%B8%AD%E6%98%AF%E5%90%A6%E5%90%AB%E6%9C%89%E9%9D%9E%E6%B3%95%E7%9A%84%E7%A9%BA%E5%AD%97%E7%AC%A6"><span class="toc-number">1.1.1.1.6.</span> <span class="toc-text"> 6. 检查命令参数中是否含有非法的空字符</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-%E5%90%AF%E5%8A%A8%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.1.1.1.7.</span> <span class="toc-text"> 7. 启动进程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#codeinjecthost"><span class="toc-number">1.1.2.</span> <span class="toc-text"> &#x2F;codeinject&#x2F;host</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsonp"><span class="toc-number">1.2.</span> <span class="toc-text"> jsonp</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0"><span class="toc-number">1.3.</span> <span class="toc-text"> 文件上传：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E7%A9%BF%E8%B6%8A"><span class="toc-number">1.4.</span> <span class="toc-text"> 目录穿越</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5"><span class="toc-number">1.5.</span> <span class="toc-text"> SQL 注入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#raw-sql"><span class="toc-number">1.5.0.1.</span> <span class="toc-text"> raw sql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#incorrect-preparestatement"><span class="toc-number">1.5.0.2.</span> <span class="toc-text"> Incorrect prepareStatement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#incorrect-mybatis"><span class="toc-number">1.5.0.3.</span> <span class="toc-text"> Incorrect mybatis</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%98%B2%E6%8A%A4%E6%96%B9%E6%A1%88"><span class="toc-number">1.5.0.3.1.</span> <span class="toc-text"> 防护方案：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssrf"><span class="toc-number">1.6.</span> <span class="toc-text"> ssrf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1ssrfurlconnectionvuln"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 1. 路由 &#x2F;ssrf&#x2F;urlConnection&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1ssrfhttpurlconnectionvuln"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 2. 路由 &#x2F;ssrf&#x2F;HttpURLConnection&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1ssrfopenstream"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 3. 路由 &#x2F;ssrf&#x2F;openStream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1ssrfhttpsyncclientsvuln"><span class="toc-number">1.6.4.</span> <span class="toc-text"> 4. 路由 &#x2F;ssrf&#x2F;HttpSyncClients&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1ssrfresttemplatevuln1"><span class="toc-number">1.6.5.</span> <span class="toc-text"> 5. 路由 &#x2F;ssrf&#x2F;restTemplate&#x2F;vuln1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E8%B7%AF%E7%94%B1ssrfresttemplatevuln2"><span class="toc-number">1.6.6.</span> <span class="toc-text"> 6. 路由 &#x2F;ssrf&#x2F;restTemplate&#x2F;vuln2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E8%B7%AF%E7%94%B1ssrfhutoolvuln"><span class="toc-number">1.6.7.</span> <span class="toc-text"> 7. 路由 &#x2F;ssrf&#x2F;hutool&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E8%B7%AF%E7%94%B1ssrfdnsrebindvuln"><span class="toc-number">1.6.8.</span> <span class="toc-text"> 8. 路由 &#x2F;ssrf&#x2F;dnsrebind&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dns%E9%87%8D%E7%BB%91%E5%AE%9A"><span class="toc-number">1.6.9.</span> <span class="toc-text"> DNS 重绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dns"><span class="toc-number">1.6.9.1.</span> <span class="toc-text"> dns:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E7%9A%84%E8%AE%B0%E5%BD%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.6.9.2.</span> <span class="toc-text"> DNS 的记录类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E7%BB%91%E5%AE%9A%E6%8A%80%E6%9C%AF"><span class="toc-number">1.6.9.3.</span> <span class="toc-text"> DNS 绑定技术：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dns%E9%87%8D%E7%BB%91%E5%AE%9A-2"><span class="toc-number">1.6.9.4.</span> <span class="toc-text"> DNS 重绑定：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%B2%E5%BE%A1%E6%80%9D%E8%B7%AF"><span class="toc-number">1.6.9.5.</span> <span class="toc-text"> 防御思路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rce"><span class="toc-number">1.7.</span> <span class="toc-text"> rce</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1rceruntimeexec"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 1. 路由 &#x2F;rce&#x2F;runtime&#x2F;exec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1rceprocessbuilder"><span class="toc-number">1.7.2.</span> <span class="toc-text"> 2. 路由 &#x2F;rce&#x2F;processBuilder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1rcejscmd"><span class="toc-number">1.7.3.</span> <span class="toc-text"> 3. 路由 &#x2F;rce&#x2F;jscmd</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#image-20250710111939201"><span class="toc-number">1.7.3.1.</span> <span class="toc-text"> </span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1rcevulnyarm"><span class="toc-number">1.7.4.</span> <span class="toc-text"> 4. 路由 &#x2F;rce&#x2F;vuln&#x2F;yarm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1rcegroovy"><span class="toc-number">1.7.5.</span> <span class="toc-text"> 5. 路由 &#x2F;rce&#x2F;groovy</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssti"><span class="toc-number">1.8.</span> <span class="toc-text"> SSTI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#velocityevaluate"><span class="toc-number">1.8.1.</span> <span class="toc-text"> Velocity.evaluate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#csrf"><span class="toc-number">1.9.</span> <span class="toc-text"> CSRF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1csrfpost"><span class="toc-number">1.9.1.</span> <span class="toc-text"> 1. 路由 &#x2F;csrf&#x2F;post</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#csrf%E9%98%B2%E6%8A%A4"><span class="toc-number">1.9.1.1.</span> <span class="toc-text"> csrf 防护：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8csrf-token"><span class="toc-number">1.9.1.1.1.</span> <span class="toc-text"> 使用 CSRF Token：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#samesite-cookie-%E5%B1%9E%E6%80%A7"><span class="toc-number">1.9.1.1.2.</span> <span class="toc-text"> SameSite Cookie 属性：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%8C%E9%87%8Dcookie%E9%AA%8C%E8%AF%81"><span class="toc-number">1.9.1.1.3.</span> <span class="toc-text"> 双重 Cookie 验证：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5referer%E5%A4%B4"><span class="toc-number">1.9.1.1.4.</span> <span class="toc-text"> 检查 Referer 头：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#captcha"><span class="toc-number">1.9.1.1.5.</span> <span class="toc-text"> CAPTCHA：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xss"><span class="toc-number">1.10.</span> <span class="toc-text"> XSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1xssreflext"><span class="toc-number">1.10.1.</span> <span class="toc-text"> 1. 路由 &#x2F;xss&#x2F;reflext：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1xssstored"><span class="toc-number">1.10.2.</span> <span class="toc-text"> 2. 路由 &#x2F;xss&#x2F;stored</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xss%E6%94%BB%E5%87%BB%E9%98%B2%E6%8A%A4"><span class="toc-number">1.10.3.</span> <span class="toc-text"> XSS 攻击防护：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xxe"><span class="toc-number">1.11.</span> <span class="toc-text"> XXE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1xxexmlreadervuln"><span class="toc-number">1.11.1.</span> <span class="toc-text"> 1. 路由 &#x2F;xxe&#x2F;xmlReader&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1xxesaxbuildervuln"><span class="toc-number">1.11.2.</span> <span class="toc-text"> 2. 路由 &#x2F;xxe&#x2F;SAXBuilder&#x2F;vuln</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E4%BB%A3%E7%A0%81"><span class="toc-number">1.11.2.1.</span> <span class="toc-text"> 修复代码：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1xxesaxreadervuln"><span class="toc-number">1.11.3.</span> <span class="toc-text"> 3. 路由 &#x2F;xxe&#x2F;SAXReader&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E7%9A%84%E5%81%9A%E6%B3%95"><span class="toc-number">1.11.4.</span> <span class="toc-text"> 通用的做法：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#external-dtd%E5%A4%96%E9%83%A8-dtd-%E5%8F%82%E6%95%B0%E5%AE%9E%E4%BD%93parameter-entity%E5%AE%9E%E7%8E%B0%E7%9A%84-blind-xxe-%E5%A4%96%E5%B8%A6%E6%94%BB%E5%87%BB"><span class="toc-number">1.11.4.1.</span> <span class="toc-text"> External DTD（外部 DTD）+ 参数实体（Parameter Entity）实现的 Blind XXE 外带攻击</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1xxesaxparservuln"><span class="toc-number">1.11.5.</span> <span class="toc-text"> 4. 路由 &#x2F;xxe&#x2F;SAXParser&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1xxedigestervuln"><span class="toc-number">1.11.6.</span> <span class="toc-text"> 5. 路由 &#x2F;xxe&#x2F;Digester&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E8%B7%AF%E7%94%B1xxedocumentbuildervuln"><span class="toc-number">1.11.7.</span> <span class="toc-text"> 6. 路由 &#x2F;xxe&#x2F;DocumentBuilder&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E8%B7%AF%E7%94%B1xxedocumentbuilderxincludevuln"><span class="toc-number">1.11.8.</span> <span class="toc-text"> 7. 路由 &#x2F;xxe&#x2F;DocumentBuilder&#x2F;xinclude&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E8%B7%AF%E7%94%B1xxexmlreadervuln"><span class="toc-number">1.11.9.</span> <span class="toc-text"> 8. 路由 &#x2F;xxe&#x2F;XMLReader&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E8%B7%AF%E7%94%B1xxedocumenthelpervuln"><span class="toc-number">1.11.10.</span> <span class="toc-text"> 9. 路由 &#x2F;xxe&#x2F;DocumentHelper&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E8%BF%B0%E5%AD%98%E5%9C%A8xxe%E6%BC%8F%E6%B4%9E%E5%BA%93%E5%AF%B9%E6%AF%94"><span class="toc-number">1.11.11.</span> <span class="toc-text"> 上述存在 XXE 漏洞库对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8payload"><span class="toc-number">1.11.11.1.</span> <span class="toc-text"> 统一漏洞利用 payload：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E4%BF%AE%E5%A4%8D%E4%BB%A3%E7%A0%81"><span class="toc-number">1.11.11.2.</span> <span class="toc-text"> 统一修复代码：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10%E8%B7%AF%E7%94%B1xxexmlbeamvuln"><span class="toc-number">1.11.12.</span> <span class="toc-text"> 10. 路由 &#x2F;xxe&#x2F;xmlbeam&#x2F;vuln</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1ooxmlreadxlsx"><span class="toc-number">1.11.13.</span> <span class="toc-text"> 路由 &#x2F;ooxml&#x2F;readxlsx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E8%B7%AF%E7%94%B1xlsx-streamerreadxlsx"><span class="toc-number">1.11.14.</span> <span class="toc-text"> 12. 路由 &#x2F;xlsx-streamer&#x2F;readxlsx</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie%E4%BC%AA%E9%80%A0"><span class="toc-number">1.12.</span> <span class="toc-text"> cookie 伪造</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1cookievuln01"><span class="toc-number">1.12.1.</span> <span class="toc-text"> 1. 路由 &#x2F;cookie&#x2F;vuln01</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1cookievuln02"><span class="toc-number">1.12.2.</span> <span class="toc-text"> 2. 路由 &#x2F;cookie&#x2F;vuln02</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1cookievuln03"><span class="toc-number">1.12.3.</span> <span class="toc-text"> 3. 路由 &#x2F;cookie&#x2F;vuln03</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E8%B7%AF%E7%94%B1cookievuln04"><span class="toc-number">1.12.4.</span> <span class="toc-text"> 4. 路由 &#x2F;cookie&#x2F;vuln04</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E8%B7%AF%E7%94%B1cookievuln05"><span class="toc-number">1.12.5.</span> <span class="toc-text"> 5. 路由 &#x2F;cookie&#x2F;vuln05</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E8%B7%AF%E7%94%B1cookievuln06"><span class="toc-number">1.12.6.</span> <span class="toc-text"> 6. 路由 &#x2F;cookie&#x2F;vuln06</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8"><span class="toc-number">1.12.7.</span> <span class="toc-text"> 漏洞利用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cors"><span class="toc-number">1.13.</span> <span class="toc-text"> CORS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E8%B7%AF%E7%94%B1corsvulnorigin"><span class="toc-number">1.13.1.</span> <span class="toc-text"> 1. 路由 &#x2F;cors&#x2F;vuln&#x2F;origin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E8%B7%AF%E7%94%B1corsvulnsetheader"><span class="toc-number">1.13.2.</span> <span class="toc-text"> 2. 路由 &#x2F;cors&#x2F;vuln&#x2F;setHeader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E8%B7%AF%E7%94%B1corsvulncrossorigin"><span class="toc-number">1.13.3.</span> <span class="toc-text"> 3. 路由 &#x2F;cors&#x2F;vuln&#x2F;crossOrigin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%AA%8C%E8%AF%81"><span class="toc-number">1.13.4.</span> <span class="toc-text"> 漏洞验证</span></a></li></ol></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="Related">
       </div>
@@ -1100,7 +1219,16 @@ java复制代码1234
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/23/CISCN2019%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web4/" title="[CISCN2019华东南赛区]Web4">[CISCN2019华东南赛区]Web4</a></span>
+    <span><a href="/2024/11/14/NPUCTF2020-webdog/" title="NPUCTF2020webdog">NPUCTF2020webdog</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2024/07/13/2020-Roamphp1-Welcome/" title="2020]Roamphp1-Welcome">2020]Roamphp1-Welcome</a></span>
   </li>
 
       
@@ -1110,7 +1238,57 @@ java复制代码1234
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/" title="[2021祥云杯]PackageManager2021">[2021祥云杯]PackageManager2021</a></span>
+    <span><a href="/2024/11/19/BSidesCF-2020-Cards/" title="[BSidesCF-2020]Cards">[BSidesCF-2020]Cards</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/10/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-ez-sql/" title="[NewStarCTF-2023-公开赛道]ez_sql">[NewStarCTF-2023-公开赛道]ez_sql</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/12/10/b01lers2020-Spac-Noodles/" title="[b01lers2020]Spac_Noodles">[b01lers2020]Spac_Noodles</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/20/%E7%BD%91%E9%BC%8E%E6%9D%AF-2020-%E5%8D%8A%E5%86%B3%E8%B5%9B-BabyJS/" title="[网鼎杯-2020-半决赛]BabyJS">[网鼎杯-2020-半决赛]BabyJS</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/07/24/MRCTF2020-Ezaudit/" title="[MRCTF2020]Ezaudit">[MRCTF2020]Ezaudit</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="mysql学习笔记">mysql学习笔记</a></span>
   </li>
 
       
@@ -1120,7 +1298,7 @@ java复制代码1234
 <a href="/categories/misc/" title="In misc">misc</a>
 </div>
 
-    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
+    <span><a href="/2024/11/12/FLAG/" title="FLAG">FLAG</a></span>
   </li>
 
       
@@ -1130,65 +1308,7 @@ java复制代码1234
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/05/30/Web5-CyberPunk/" title="Web5]CyberPunk">Web5]CyberPunk</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/11/14/NPUCTF2020-webdog/" title="NPUCTF2020webdog">NPUCTF2020webdog</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/08/28/RoarCTF2019-OnlineProxy/" title="[RoarCTF2019]OnlineProxy">[RoarCTF2019]OnlineProxy</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2024/11/26/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%85%A5%E9%97%A8/" title="java反序列化入门">java反序列化入门</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/03/02/PWNHUB%E5%85%AC%E5%BC%80%E8%B5%9B2018-%E5%82%BBfufu-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%97%A5/" title="[PWNHUB公开赛2018]傻fufu_的工作日">[PWNHUB公开赛2018]傻fufu_的工作日</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/" title="buuctf5月26日">buuctf5月26日</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/10/21/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-EasySer/" title="[羊城杯2020]EasySer">[羊城杯2020]EasySer</a></span>
+    <span><a href="/2024/08/27/EIS2019-EzPOP/" title="[EIS2019]EzPOP">[EIS2019]EzPOP</a></span>
   </li>
 
   </ul>
@@ -1213,13 +1333,13 @@ java复制代码1234
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">648k words</span>
+    <span title="Symbols count total">651k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">9:49</span>
+    <span title="Reading time total">9:52</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
