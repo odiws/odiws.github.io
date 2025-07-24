@@ -89,12 +89,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?520773"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?46184"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?789491"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?763893"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?299311"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?713672"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?326808"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?973907"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?337304"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?493247"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?101904"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?656295"></li>
         </ul>
       </div>
     </header>
@@ -121,7 +121,98 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/07/11/YLctf2024/" itemprop="url" title="Untitled"><img data-src="https://www.loliapi.com/acg/?776963"></a>
+    <a href="/2025/07/24/JNDI%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86%E5%8F%8A%E5%88%A9%E7%94%A8%E6%8E%A2%E7%A9%B6/" itemprop="url" title="JNDI注入原理及利用探究"><img data-src="https://www.loliapi.com/acg/?809064"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2025-07-24 17:36:12">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-07-24T17:36:12+08:00">2025-07-24</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>6.8k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>6 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2025/07/24/JNDI%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86%E5%8F%8A%E5%88%A9%E7%94%A8%E6%8E%A2%E7%A9%B6/" itemprop="url" title="JNDI注入原理及利用探究">JNDI注入原理及利用探究</a></h3>
+    <div class="excerpt">
+        # JNDI 注入原理及利用探究
+# JNDI 是什么：
+JNDI (Java Naming and Directory Interface) 是一个应用程序设计的 API，一种标准的 java 命名系统接口。JNDI 提供统一的客户端 API，通过不同的访问提供者接口 JNDI 服务供应接口（SPI）的实现，由管理者将 JNDIAPI 映射为特定的命名服务和目录系统，是的 java 应用程序可以和这些命名服务和目录服务之间进行交互。
+通俗的来说就是若程序定义了 JNDI 的接口，就可以通过该接口 API 访问系统的命令服务和目录服务，如下图
+
+这里主要探究的时 LADP，RMI，DNS...
+    </div>
+    <a href="/2025/07/24/JNDI%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86%E5%8F%8A%E5%88%A9%E7%94%A8%E6%8E%A2%E7%A9%B6/" itemprop="url" title="JNDI注入原理及利用探究" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2025/07/24/DNSLog%E5%A4%96%E5%B8%A6%E5%A4%8D%E7%8E%B0/" itemprop="url" title="DNSLog外带总结复现"><img data-src="https://www.loliapi.com/acg/?997397"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2025-07-24 15:38:09">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-07-24T15:38:09+08:00">2025-07-24</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>986</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>1 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2025/07/24/DNSLog%E5%A4%96%E5%B8%A6%E5%A4%8D%E7%8E%B0/" itemprop="url" title="DNSLog外带总结复现">DNSLog外带总结复现</a></h3>
+    <div class="excerpt">
+        # DNSLog 外带复现
+# DNS：
+DNS 就是域名系统，负责把域名转换成 IP 地址；例如像浏览其访问 a.com，浏览器就会将其解析成真实的 IP 访问
+# DNSlog：
+DNS 的日志，DNS 在域名解析时会留下域名和解析 IP 的记录
+# DNSLog 外带原理：
+DNS 在解析是会留下日志，我们将信息放在高级域名中，传递到自己这里，然后通过读日志来获取信息。
+所以这里跟最初的猜想基本一致，原理也就是通过 DNS 请求后，通过读取日志来获取我们的请求信息。
+# mysql
+# load_file 前置条件:
+1. 首先有注入点
+2. 需要有 root 权限
+3....
+    </div>
+    <a href="/2025/07/24/DNSLog%E5%A4%96%E5%B8%A6%E5%A4%8D%E7%8E%B0/" itemprop="url" title="DNSLog外带总结复现" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2025/07/11/YLctf2024/" itemprop="url" title="Untitled"><img data-src="https://www.loliapi.com/acg/?617108"></a>
   </div>
   <div class="info">
     
@@ -164,7 +255,7 @@ categories: [比赛复现]
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/07/08/java-sec-code%E5%A4%8D%E7%8E%B0/" itemprop="url" title="java-sec-code复现"><img data-src="https://www.loliapi.com/acg/?223639"></a>
+    <a href="/2025/07/08/java-sec-code%E5%A4%8D%E7%8E%B0/" itemprop="url" title="java-sec-code复现"><img data-src="https://www.loliapi.com/acg/?15582"></a>
   </div>
   <div class="info">
     
@@ -179,14 +270,14 @@ categories: [比赛复现]
     <span class="icon">
       <i class="ic i-pen"></i>
     </span>
-    <span>36k</span>
+    <span>41k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
     <span class="icon">
       <i class="ic i-clock"></i>
     </span>
-    <span>33 mins.</span>
+    <span>37 mins.</span>
   </span>
 </div>
 
@@ -211,7 +302,7 @@ categories: [比赛复现]
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" itemprop="url" title="ecshop复现"><img data-src="https://www.loliapi.com/acg/?370829"></a>
+    <a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" itemprop="url" title="ecshop复现"><img data-src="https://www.loliapi.com/acg/?158430"></a>
   </div>
   <div class="info">
     
@@ -250,7 +341,7 @@ root@hcss-ecs-7f85:~/靶场/vulhub-master/ecshop/xianzhi-2017-02-82239600# docke
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/05/21/sqltest/" itemprop="url" title="sqltest"><img data-src="https://www.loliapi.com/acg/?808109"></a>
+    <a href="/2025/05/21/sqltest/" itemprop="url" title="sqltest"><img data-src="https://www.loliapi.com/acg/?789954"></a>
   </div>
   <div class="info">
     
@@ -287,7 +378,7 @@ root@hcss-ecs-7f85:~/靶场/vulhub-master/ecshop/xianzhi-2017-02-82239600# docke
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/" itemprop="url" title="[SWPU2019]你有没有好好看网课?"><img data-src="https://www.loliapi.com/acg/?944308"></a>
+    <a href="/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/" itemprop="url" title="[SWPU2019]你有没有好好看网课?"><img data-src="https://www.loliapi.com/acg/?275864"></a>
   </div>
   <div class="info">
     
@@ -352,7 +443,7 @@ flag3 给了解压密码提示：
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/05/14/python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/" itemprop="url" title="python原型链污染"><img data-src="https://www.loliapi.com/acg/?73502"></a>
+    <a href="/2025/05/14/python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/" itemprop="url" title="python原型链污染"><img data-src="https://www.loliapi.com/acg/?416438"></a>
   </div>
   <div class="info">
     
@@ -406,7 +497,7 @@ class...
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/" itemprop="url" title="[SWPU2019]伟大的侦探"><img data-src="https://www.loliapi.com/acg/?525159"></a>
+    <a href="/2025/05/06/SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2/" itemprop="url" title="[SWPU2019]伟大的侦探"><img data-src="https://www.loliapi.com/acg/?631217"></a>
   </div>
   <div class="info">
     
@@ -458,7 +549,7 @@ flag&amp;#123;iloveholmesandwllm&amp;#125;
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/05/06/BUUCTF%EF%BC%9A%E9%BB%91%E5%AE%A2%E5%B8%9D%E5%9B%BD/" itemprop="url" title="BUUCTF：黑客帝国"><img data-src="https://www.loliapi.com/acg/?598568"></a>
+    <a href="/2025/05/06/BUUCTF%EF%BC%9A%E9%BB%91%E5%AE%A2%E5%B8%9D%E5%9B%BD/" itemprop="url" title="BUUCTF：黑客帝国"><img data-src="https://www.loliapi.com/acg/?396142"></a>
   </div>
   <div class="info">
     
@@ -507,104 +598,6 @@ import binasciihex_data = &#39;文件内容&#39;out = open(&#39;res.rar&#39;, &#
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2025/05/06/GXYCTF2019-gakki/" itemprop="url" title="[GXYCTF2019]gakki"><img data-src="https://www.loliapi.com/acg/?757021"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2025-05-06 20:32:03">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2025-05-06T20:32:03+08:00">2025-05-06</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>479</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2025/05/06/GXYCTF2019-gakki/" itemprop="url" title="[GXYCTF2019]gakki">[GXYCTF2019]gakki</a></h3>
-    <div class="excerpt">
-        # [GXYCTF2019]gakki
-前面就是 foremost 分离，然后就是压缩包爆破密码，然后得到 flag.txt
-
-获得大量字符：
-想到字频解码脚本：
-# -*- coding:utf-8 -*-#Author: mochu7alphabet = &quot;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&amp;amp;*()_+- =\\&amp;#123;\\&amp;#125;[]&quot;strings =...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/misc/" itemprop="url" title="misc"><i class="ic i-flag"></i>misc</a>
-      </span>
-    </div>
-    <a href="/2025/05/06/GXYCTF2019-gakki/" itemprop="url" title="[GXYCTF2019]gakki" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2025/05/06/MRCTF2020-ezmisc/" itemprop="url" title="[MRCTF2020]ezmisc"><img data-src="https://www.loliapi.com/acg/?665381"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2025-05-06 20:21:00">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2025-05-06T20:21:00+08:00">2025-05-06</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>77</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2025/05/06/MRCTF2020-ezmisc/" itemprop="url" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></h3>
-    <div class="excerpt">
-        # [MRCTF2020]ezmisc
-
-放进 010 看一下
-
-有这个 CRC 的问题提示：
-修改宽高：
-
-【
-
-flag&amp;#123;1ts_vEryyyyyy_ez!&amp;#125;
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/misc/" itemprop="url" title="misc"><i class="ic i-flag"></i>misc</a>
-      </span>
-    </div>
-    <a href="/2025/05/06/MRCTF2020-ezmisc/" itemprop="url" title="[MRCTF2020]ezmisc" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -640,7 +633,7 @@ flag&amp;#123;1ts_vEryyyyyy_ez!&amp;#125;
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">178</span>
+        <span class="count">180</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -652,7 +645,7 @@ flag&amp;#123;1ts_vEryyyyyy_ez!&amp;#125;
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">139</span>
+        <span class="count">141</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -705,19 +698,7 @@ flag&amp;#123;1ts_vEryyyyyy_ez!&amp;#125;
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/06/11/2019-EasyWeb/" title="[SUCTF 2019]EasyWeb">[SUCTF 2019]EasyWeb</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
-</div>
-
-    <span><a href="/2024/06/13/%E7%BD%91%E9%BC%8E%E6%9D%AF2018-Unfinish/" title="[网鼎杯2018]Unfinish">[网鼎杯2018]Unfinish</a></span>
+    <span><a href="/2024/09/23/XNUCA2019Qualifier-EasyPHP/" title="[XNUCA2019Qualifier]EasyPHP">[XNUCA2019Qualifier]EasyPHP</a></span>
   </li>
 
       
@@ -727,16 +708,7 @@ flag&amp;#123;1ts_vEryyyyyy_ez!&amp;#125;
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/" title="[红明谷CTF-2021]EasyTP">[红明谷CTF-2021]EasyTP</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/07/08/java-sec-code%E5%A4%8D%E7%8E%B0/" title="java-sec-code复现">java-sec-code复现</a></span>
+    <span><a href="/2024/09/24/virink-2019-files-share/" title="virink_2019_files_share">virink_2019_files_share</a></span>
   </li>
 
       
@@ -746,7 +718,7 @@ flag&amp;#123;1ts_vEryyyyyy_ez!&amp;#125;
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/01/26/NewStarCTF2023%E6%96%B0%E7%94%9F%E8%B5%9B-BabySSTI-Three/" title="NewStarCTF2023新生赛_BabySSTI_Three">NewStarCTF2023新生赛_BabySSTI_Three</a></span>
+    <span><a href="/2024/04/28/4-txt/" title="buuctf4月28日">buuctf4月28日</a></span>
   </li>
 
       
@@ -763,10 +735,40 @@ flag&amp;#123;1ts_vEryyyyyy_ez!&amp;#125;
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/08/07/2018-eating-cms/" title="2018]eating_cms">2018]eating_cms</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/06/19/2018-GetShell/" title="[suctf2018]GetShell">[suctf2018]GetShell</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
 <a href="/categories/misc/" title="In misc">misc</a>
 </div>
 
-    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
+    <span><a href="/2025/05/06/GXYCTF2019-gakki/" title="[GXYCTF2019]gakki">[GXYCTF2019]gakki</a></span>
   </li>
 
       
@@ -776,7 +778,7 @@ flag&amp;#123;1ts_vEryyyyyy_ez!&amp;#125;
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/11/SUCTF2018-MultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/" title="[SUCTF2018]MultiSQL-MySQL预处理学习">[SUCTF2018]MultiSQL-MySQL预处理学习</a></span>
+    <span><a href="/2024/10/11/GYCTF2020-NodeGame-nodejs/" title="[GYCTF2020]NodeGame-nodejs">[GYCTF2020]NodeGame-nodejs</a></span>
   </li>
 
       
@@ -786,17 +788,7 @@ flag&amp;#123;1ts_vEryyyyyy_ez!&amp;#125;
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/19/BSidesCF-2020-Cards/" title="[BSidesCF-2020]Cards">[BSidesCF-2020]Cards</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/08/31/GWCTF2019-mypassword/" title="[GWCTF2019]mypassword">[GWCTF2019]mypassword</a></span>
+    <span><a href="/2024/09/26/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-Blackcat/" title="[羊城杯2020]Blackcat">[羊城杯2020]Blackcat</a></span>
   </li>
 
   </ul>
@@ -821,13 +813,13 @@ flag&amp;#123;1ts_vEryyyyyy_ez!&amp;#125;
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">651k words</span>
+    <span title="Symbols count total">664k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">9:52</span>
+    <span title="Reading time total">10:04</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

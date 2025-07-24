@@ -89,12 +89,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?529098"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?811203"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?46716"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?473422"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?255184"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?177556"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?839588"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?593146"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?958054"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?159385"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?526464"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?907770"></li>
         </ul>
       </div>
     </header>
@@ -120,7 +120,124 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/19/HFCTF2020-JustEscape/" itemprop="url" title="[HFCTF2020]JustEscape"><img data-src="https://www.loliapi.com/acg/?927067"></a>
+    <a href="/2024/06/20/Mars/" itemprop="url" title="[b01lers2020]lifeMars"><img data-src="https://www.loliapi.com/acg/?234808"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-06-20 20:21:48">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-06-20T20:21:48+08:00">2024-06-20</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>1.9k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>2 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2024/06/20/Mars/" itemprop="url" title="[b01lers2020]lifeMars">[b01lers2020]lifeMars</a></h3>
+    <div class="excerpt">
+        进来是这样的场景：用 f12 进入网络发现有些一样的传参：
+
+发现有个 search 的传参：（结合源码（ctrl+u）发现有个 life on mars 这个文件）
+life on mars.js
+
+function get_life(query) &amp;#123;
+$.ajax(&amp;#123;
+type: &amp;quot;GET&amp;quot;,
+url: &amp;quot;/query?search=&amp;quot; + query,
+data: &amp;quot;&amp;#123;&amp;#125;&amp;quot;,
+contentType:...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/06/20/Mars/" itemprop="url" title="[b01lers2020]lifeMars" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/06/19/2018-GetShell/" itemprop="url" title="[suctf2018]GetShell"><img data-src="https://www.loliapi.com/acg/?262600"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-06-19 21:42:44">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-06-19T21:42:44+08:00">2024-06-19</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>771</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>1 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2024/06/19/2018-GetShell/" itemprop="url" title="[suctf2018]GetShell">[suctf2018]GetShell</a></h3>
+    <div class="excerpt">
+        # [suctf2018]GetShell
+参考 p 神利用取反来获取可用字符：
+&amp;lt;?php
+error_reporting(0);
+$a = ~垂;
+echo $a.&amp;quot;\n&amp;quot;;
+echo $a[1];
+/*
+运行得：
+a&amp;#125;
+a
+*/
+?&amp;gt;
+
+🐎一下汉字：
+echo ~茉**[**$____**]**;//s
+
+echo ~内**[**$____**]**;//y
+
+echo ~茉**[**$____**]**;//s
+
+echo ~苏**[**$____**]**;//t
+
+echo...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/06/19/2018-GetShell/" itemprop="url" title="[suctf2018]GetShell" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/06/19/HFCTF2020-JustEscape/" itemprop="url" title="[HFCTF2020]JustEscape"><img data-src="https://www.loliapi.com/acg/?336258"></a>
   </div>
   <div class="info">
     
@@ -171,7 +288,7 @@ payload1:
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/18/GXYCTF2019-StrongestMind/" itemprop="url" title="[GXYCTF2019]StrongestMind"><img data-src="https://www.loliapi.com/acg/?643369"></a>
+    <a href="/2024/06/18/GXYCTF2019-StrongestMind/" itemprop="url" title="[GXYCTF2019]StrongestMind"><img data-src="https://www.loliapi.com/acg/?973505"></a>
   </div>
   <div class="info">
     
@@ -227,7 +344,7 @@ result =...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/18/2021-easycms/" itemprop="url" title="GKCTF 2021：easycms"><img data-src="https://www.loliapi.com/acg/?777451"></a>
+    <a href="/2024/06/18/2021-easycms/" itemprop="url" title="GKCTF 2021：easycms"><img data-src="https://www.loliapi.com/acg/?823266"></a>
   </div>
   <div class="info">
     
@@ -279,7 +396,7 @@ dirsearch 扫目录发现 admin.php 进入后台登录页面
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/17/BJDCTF2020-EzPHP/" itemprop="url" title="[BJDCTF2020]ezPHP"><img data-src="https://www.loliapi.com/acg/?525476"></a>
+    <a href="/2024/06/17/BJDCTF2020-EzPHP/" itemprop="url" title="[BJDCTF2020]ezPHP"><img data-src="https://www.loliapi.com/acg/?648646"></a>
   </div>
   <div class="info">
     
@@ -328,7 +445,7 @@ base32解码后：
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/16/GYCTF2020-EasyThinking/" itemprop="url" title="[GYCTF2020]EasyThinking"><img data-src="https://www.loliapi.com/acg/?327507"></a>
+    <a href="/2024/06/16/GYCTF2020-EasyThinking/" itemprop="url" title="[GYCTF2020]EasyThinking"><img data-src="https://www.loliapi.com/acg/?195896"></a>
   </div>
   <div class="info">
     
@@ -382,7 +499,7 @@ use...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/16/Injection/" itemprop="url" title="October 2019 Twice SQL Injection"><img data-src="https://www.loliapi.com/acg/?431203"></a>
+    <a href="/2024/06/16/Injection/" itemprop="url" title="October 2019 Twice SQL Injection"><img data-src="https://www.loliapi.com/acg/?869926"></a>
   </div>
   <div class="info">
     
@@ -432,7 +549,7 @@ username =1&#39; union select group_concat(column_name) from...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/13/Secret/" itemprop="url" title="’[CISCN2019 华东南赛区]Double Secret‘"><img data-src="https://www.loliapi.com/acg/?120682"></a>
+    <a href="/2024/06/13/Secret/" itemprop="url" title="’[CISCN2019 华东南赛区]Double Secret‘"><img data-src="https://www.loliapi.com/acg/?721604"></a>
   </div>
   <div class="info">
     
@@ -484,7 +601,7 @@ return &#39;Tell me your secret.I will encrypt it so others can\&#39;t...
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/06/13/%E7%BD%91%E9%BC%8E%E6%9D%AF2018-Unfinish/" itemprop="url" title="[网鼎杯2018]Unfinish"><img data-src="https://www.loliapi.com/acg/?497909"></a>
+    <a href="/2024/06/13/%E7%BD%91%E9%BC%8E%E6%9D%AF2018-Unfinish/" itemprop="url" title="[网鼎杯2018]Unfinish"><img data-src="https://www.loliapi.com/acg/?57347"></a>
   </div>
   <div class="info">
     
@@ -528,97 +645,6 @@ dirsearch 扫描：扫出 register.php 文件，进行注册
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/11/2019-EasyWeb/" itemprop="url" title="[SUCTF 2019]EasyWeb"><img data-src="https://www.loliapi.com/acg/?32872"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-11 14:43:38">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-11T14:43:38+08:00">2024-06-11</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>4.9k</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>4 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/11/2019-EasyWeb/" itemprop="url" title="[SUCTF 2019]EasyWeb">[SUCTF 2019]EasyWeb</a></h3>
-    <div class="excerpt">
-        # [SUCTF 2019]EasyWeb
-代码审计题：
-&amp;lt;?php
-function get_the_flag()&amp;#123;
-// webadmin will remove your upload file every 20 min!!!!
-$userdir =...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/06/11/2019-EasyWeb/" itemprop="url" title="[SUCTF 2019]EasyWeb" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" itemprop="url" title="[HarekazeCTF2019]encode_and_encode"><img data-src="https://www.loliapi.com/acg/?338706"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-06-11 14:34:01">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-06-11T14:34:01+08:00">2024-06-11</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>1.3k</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" itemprop="url" title="[HarekazeCTF2019]encode_and_encode">[HarekazeCTF2019]encode_and_encode</a></h3>
-    <div class="excerpt">
-        # [HarekazeCTF2019]encode_and_encode
-直接看代码：
-&amp;lt;?phperror_reporting(0);if (isset($_GET[&#39;source&#39;])) &amp;#123; show_source(__FILE__); exit();&amp;#125;function is_valid($str) &amp;#123; $banword = [ // no path traversal &#39;\.\.&#39;, // no stream wrapper...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" itemprop="url" title="[HarekazeCTF2019]encode_and_encode" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -654,7 +680,7 @@ $userdir =...
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">178</span>
+        <span class="count">180</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -666,7 +692,7 @@ $userdir =...
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">139</span>
+        <span class="count">141</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -717,28 +743,10 @@ $userdir =...
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/05/21/sqltest/" title="sqltest">sqltest</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
-</div>
-
-    <span><a href="/2024/11/12/FLAG/" title="FLAG">FLAG</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/03/12/GHCTF2025web%E5%A4%8D%E7%8E%B0/" title="GHCTF2025web复现">GHCTF2025web复现</a></span>
+    <span><a href="/2024/06/21/Again/" title="[WMCTF2020]Make PHP Great Again">[WMCTF2020]Make PHP Great Again</a></span>
   </li>
 
       
@@ -746,19 +754,11 @@ $userdir =...
     
 <div class="breadcrumb">
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
 </div>
 
-    <span><a href="/2024/06/02/2017-SSRFme/" title="‘’[HITCON 2017]SSRFme‘’">‘’[HITCON 2017]SSRFme‘’</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%D1%A7%CF%B0%EF%BF%BD%CA%BC%EF%BF%BD/" title="In ѧϰ�ʼ�">ѧϰ�ʼ�</a>
-</div>
-
-    <span><a href="/2024/03/25/sql%E6%B3%A8%E5%85%A5/" title="sqli-labs��sqlע��ѧϰ�ʼ�">sqli-labs��sqlע��ѧϰ�ʼ�</a></span>
+    <span><a href="/2024/06/06/%5BRootersCTF2019%5DI_3_Flask/" title="&#39;[RootersCTF2019]I_&lt;3_Flask&#39;">'[RootersCTF2019]I_<3_Flask'</a></span>
   </li>
 
       
@@ -768,7 +768,7 @@ $userdir =...
 <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
 </div>
 
-    <span><a href="/2024/04/28/2_1/" title="python request库的基本用法">python request库的基本用法</a></span>
+    <span><a href="/2025/02/19/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="java反序列化学习笔记">java反序列化学习笔记</a></span>
   </li>
 
       
@@ -778,7 +778,7 @@ $userdir =...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/07/29/ISITDTU2019-EasyPHP/" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></span>
+    <span><a href="/2024/08/11/SUCTF2018-MultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/" title="[SUCTF2018]MultiSQL-MySQL预处理学习">[SUCTF2018]MultiSQL-MySQL预处理学习</a></span>
   </li>
 
       
@@ -788,17 +788,7 @@ $userdir =...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/12/10/b01lers2020-Spac-Noodles/" title="[b01lers2020]Spac_Noodles">[b01lers2020]Spac_Noodles</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
-</div>
-
-    <span><a href="/2024/10/28/newstarctf2024/" title="newstarctf2024">newstarctf2024</a></span>
+    <span><a href="/2024/10/11/GYCTF2020-NodeGame-nodejs/" title="[GYCTF2020]NodeGame-nodejs">[GYCTF2020]NodeGame-nodejs</a></span>
   </li>
 
       
@@ -808,7 +798,47 @@ $userdir =...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/" title="[红明谷CTF-2021]EasyTP">[红明谷CTF-2021]EasyTP</a></span>
+    <span><a href="/2024/12/04/MRCTF2020-Ezpop-Revenge/" title="[MRCTF2020]Ezpop_Revenge">[MRCTF2020]Ezpop_Revenge</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/09/22/NPUCTF2020-ezlogin/" title="[NPUCTF2020]ezlogin">[NPUCTF2020]ezlogin</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/" title="[ACTF新生赛2020]outguess">[ACTF新生赛2020]outguess</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/10/23/NewStarCTF2023%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-include0%E3%80%820/" title="[NewStarCTF2023公开赛道]include0。0">[NewStarCTF2023公开赛道]include0。0</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
   </li>
 
   </ul>
@@ -833,13 +863,13 @@ $userdir =...
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">651k words</span>
+    <span title="Symbols count total">664k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">9:52</span>
+    <span title="Reading time total">10:04</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
