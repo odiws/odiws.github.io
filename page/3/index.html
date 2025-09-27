@@ -89,12 +89,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?419049"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?109018"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?43356"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?550402"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?540281"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?377704"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?567156"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?877658"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?613952"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?498674"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?686820"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?663398"></li>
         </ul>
       </div>
     </header>
@@ -120,7 +120,140 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/03/18/activeMQ/" itemprop="url" title="CVE-2015-5254"><img data-src="https://www.loliapi.com/acg/?831362"></a>
+    <a href="/2025/04/07/http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E/" itemprop="url" title="http请求走私漏洞"><img data-src="https://www.loliapi.com/acg/?223908"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2025-04-07 19:32:02">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-04-07T19:32:02+08:00">2025-04-07</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>8k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>7 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2025/04/07/http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E/" itemprop="url" title="http请求走私漏洞">http请求走私漏洞</a></h3>
+    <div class="excerpt">
+        # http 请求走私漏洞
+
+记得先把这个 Content-Length 更新修改
+# Http 1.1 的特性
+# keepalive
+tcp 的连接，再建立一次 tcp 连接的时候，他不会把 tcp 连接关掉，会一直挂起来，再有 tcp 请求时，还会用这个 tcp 连接请求，会将挂起来的 tcp 连接再用一次
+# pipeline
+可以在同一个请求发送两个 http 的包
+我可以利用这个特性传两个包，一个是正常的合法的包，一个是我的 payload 包，上传后会发送到后端，正常的和 payload...
+    </div>
+    <a href="/2025/04/07/http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E/" itemprop="url" title="http请求走私漏洞" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2025/03/28/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="rust学习笔记"><img data-src="https://www.loliapi.com/acg/?299521"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2025-03-28 19:58:38">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-03-28T19:58:38+08:00">2025-03-28</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>32k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>29 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2025/03/28/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="rust学习笔记">rust学习笔记</a></h3>
+    <div class="excerpt">
+        # Rust 学习笔记
+# 变量声明：
+struct Struct&amp;#123; e:i32&amp;#125;fn main() &amp;#123; // 若不使用变量时，需要在变量名前面写一个下划线，表示该变量不会被使用，这样才不会报错 // let mut _x = 5; // _x = 6; // println!(&quot;The value of x is: &amp;#123;&amp;#125;&quot;, _x); //let (a,mut b):(bool,bool)=(true,false); //println!(&quot;a is...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="学习笔记"><i class="ic i-flag"></i>学习笔记</a>
+      </span>
+    </div>
+    <a href="/2025/03/28/rust%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="rust学习笔记" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" itemprop="url" title="Nctf_web部分复现"><img data-src="https://www.loliapi.com/acg/?841476"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2025-03-25 20:26:51">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2025-03-25T20:26:51+08:00">2025-03-25</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>4.9k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>4 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" itemprop="url" title="Nctf_web部分复现">Nctf_web部分复现</a></h3>
+    <div class="excerpt">
+        # sqlmap
+源码：
+@app.post(&quot;/run&quot;)async def run(request: Request):data = await request.json()url = data.get(&quot;url&quot;)if not url:return &amp;#123;&quot;error&quot;: &quot;URL is required&quot;&amp;#125;command = f&#39;sqlmap -u &amp;#123;url&amp;#125; --batch --flush-session&#39;def...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" itemprop="url" title="比赛复现"><i class="ic i-flag"></i>比赛复现</a>
+      </span>
+    </div>
+    <a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" itemprop="url" title="Nctf_web部分复现" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2025/03/18/activeMQ/" itemprop="url" title="CVE-2015-5254"><img data-src="https://www.loliapi.com/acg/?149817"></a>
   </div>
   <div class="info">
     
@@ -171,7 +304,7 @@ wget...
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/03/18/JMCTF-2021-GoOSS/" itemprop="url" title="[JMCTF_2021]GoOSS"><img data-src="https://www.loliapi.com/acg/?227881"></a>
+    <a href="/2025/03/18/JMCTF-2021-GoOSS/" itemprop="url" title="[JMCTF_2021]GoOSS"><img data-src="https://www.loliapi.com/acg/?936888"></a>
   </div>
   <div class="info">
     
@@ -216,7 +349,7 @@ package mainimport (	&quot;bytes&quot;	&quot;crypto/md5&quot;	&quot;encoding/hex
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" itemprop="url" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!"><img data-src="https://www.loliapi.com/acg/?675135"></a>
+    <a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" itemprop="url" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!"><img data-src="https://www.loliapi.com/acg/?285752"></a>
   </div>
   <div class="info">
     
@@ -258,7 +391,7 @@ package mainimport (	&quot;bytes&quot;	&quot;crypto/md5&quot;	&quot;encoding/hex
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/" itemprop="url" title="[ACTF新生赛2020]outguess"><img data-src="https://www.loliapi.com/acg/?153241"></a>
+    <a href="/2025/03/13/ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess/" itemprop="url" title="[ACTF新生赛2020]outguess"><img data-src="https://www.loliapi.com/acg/?719409"></a>
   </div>
   <div class="info">
     
@@ -310,7 +443,7 @@ ACTF&amp;#123;gue33_Gu3Ss!2020&amp;#125;
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" itemprop="url" title="梅花香自苦寒来"><img data-src="https://www.loliapi.com/acg/?230775"></a>
+    <a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" itemprop="url" title="梅花香自苦寒来"><img data-src="https://www.loliapi.com/acg/?808714"></a>
   </div>
   <div class="info">
     
@@ -360,7 +493,7 @@ ACTF&amp;#123;gue33_Gu3Ss!2020&amp;#125;
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" itemprop="url" title="谁赢了比赛？"><img data-src="https://www.loliapi.com/acg/?840429"></a>
+    <a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" itemprop="url" title="谁赢了比赛？"><img data-src="https://www.loliapi.com/acg/?656228"></a>
   </div>
   <div class="info">
     
@@ -419,7 +552,7 @@ flag&amp;#123;shanxiajingwu_won_the_game&amp;#125;
         
 <article class="item">
   <div class="cover">
-    <a href="/2025/03/12/GHCTF2025web%E5%A4%8D%E7%8E%B0/" itemprop="url" title="GHCTF2025web复现"><img data-src="https://www.loliapi.com/acg/?280728"></a>
+    <a href="/2025/03/12/GHCTF2025web%E5%A4%8D%E7%8E%B0/" itemprop="url" title="GHCTF2025web复现"><img data-src="https://www.loliapi.com/acg/?373914"></a>
   </div>
   <div class="info">
     
@@ -453,165 +586,6 @@ flag&amp;#123;shanxiajingwu_won_the_game&amp;#125;
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2025/03/11/GKCTF-2021-babycat-revenge/" itemprop="url" title="[GKCTF_2021]babycat-revenge"><img data-src="https://www.loliapi.com/acg/?794377"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2025-03-11 16:35:58">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2025-03-11T16:35:58+08:00">2025-03-11</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>7.8k</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>7 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2025/03/11/GKCTF-2021-babycat-revenge/" itemprop="url" title="[GKCTF_2021]babycat-revenge">[GKCTF_2021]babycat-revenge</a></h3>
-    <div class="excerpt">
-        # [GKCTF_2021]babycat-revenge
-（第一道 javaweb，搞了好久）
-
-登录框，不是弱密码，先抓包看看：
-
-通过 json 数据进行传输，且是 login，可以试试看可以不可以直接改为 register 路由试试，
-
-猜测是正确的，注册成功
-
-登陆成功
-
-有上传和下载，上传不能动，得是 admin，我们得获取 admin 的权限，转一下下载的包
-
-出现 file，直接想到目录穿越，有路径的都可以想到文件穿梭，这时候就得知道 war 文件的文件目录了，
-
-在 web.xml 文件里面有 Class 文件的存放的地方，就可以先读 web.xml...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2025/03/11/GKCTF-2021-babycat-revenge/" itemprop="url" title="[GKCTF_2021]babycat-revenge" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/" itemprop="url" title="[BJDCTF2020]一叶障目"><img data-src="https://www.loliapi.com/acg/?68345"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2025-03-10 22:19:25">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2025-03-10T22:19:25+08:00">2025-03-10</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>59</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/" itemprop="url" title="[BJDCTF2020]一叶障目">[BJDCTF2020]一叶障目</a></h3>
-    <div class="excerpt">
-        # [BJDCTF2020] 一叶障目
-
-用 010 打开就是一个提示，是 CRC 报错，CRC 报错一般就是修改了宽高
-可以手动修改测试
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/misc/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2025/03/10/BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE/" itemprop="url" title="[BJDCTF2020]一叶障目" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2025/03/10/%E8%8F%9C%E5%88%80666/" itemprop="url" title="菜刀666"><img data-src="https://www.loliapi.com/acg/?950779"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2025-03-10 21:54:46">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2025-03-10T21:54:46+08:00">2025-03-10</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>920</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2025/03/10/%E8%8F%9C%E5%88%80666/" itemprop="url" title="菜刀666">菜刀666</a></h3>
-    <div class="excerpt">
-        # 菜刀 666
-
-题目描述就是流量分析题
-
-打开文件
-过滤 POST 的包
-http.request.method==POST在 tcp.stream eq 7 中发现了大量数据
-
-# jpg 图片的特征：
-FF D8开头FF D9结尾，判断为jpg图片，将这些十六进制复制出来，以原始文件流写入文件
-
-png特征
-解析：
-（固定）八个字节89 50 4E 47 0D 0A 1A 0A为png的文件头
-（固定）四个字节00 00 00 0D（即为十进制的13）代表数据块的长度为13
-（固定）四个字节49 48 44...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/misc/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
-      </span>
-    </div>
-    <a href="/2025/03/10/%E8%8F%9C%E5%88%80666/" itemprop="url" title="菜刀666" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -619,7 +593,7 @@ png特征
   
   <nav class="pagination">
     <div class="inner">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/4/"><i class="ic i-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="ic i-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/4/"><i class="ic i-angle-right" aria-label="Next page"></i></a>
     </div>
   </nav>
 
@@ -647,7 +621,7 @@ png特征
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">180</span>
+        <span class="count">182</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -659,7 +633,7 @@ png特征
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">141</span>
+        <span class="count">140</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -710,65 +684,6 @@ png特征
   <li class="item">
     
 <div class="breadcrumb">
-</div>
-
-    <span><a href="/2024/11/26/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%85%A5%E9%97%A8/" title="java反序列化入门">java反序列化入门</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2025/02/23/HFCTF-2021-Final-hatenum/" title="[HFCTF_2021_Final]hatenum">[HFCTF_2021_Final]hatenum</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
-</div>
-
-    <span><a href="/2024/12/06/ctfshow-web-java/" title="ctfshow_web_java">ctfshow_web_java</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
-</div>
-
-    <span><a href="/2025/05/06/GXYCTF2019-gakki/" title="[GXYCTF2019]gakki">[GXYCTF2019]gakki</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/" title="[2021祥云杯]PackageManager2021">[2021祥云杯]PackageManager2021</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
-</div>
-
-    <span><a href="/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/" title="[SWPU2019]我有一只马里奥">[SWPU2019]我有一只马里奥</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
@@ -782,7 +697,7 @@ png特征
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/29/%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-EasyTP/" title="[红明谷CTF-2021]EasyTP">[红明谷CTF-2021]EasyTP</a></span>
+    <span><a href="/2024/04/29/5-txt/" title="buuctf4月29日">buuctf4月29日</a></span>
   </li>
 
       
@@ -792,7 +707,7 @@ png特征
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/28/RoarCTF2019-OnlineProxy/" title="[RoarCTF2019]OnlineProxy">[RoarCTF2019]OnlineProxy</a></span>
+    <span><a href="/2024/10/15/FBCTF2019-Event/" title="[FBCTF2019]Event">[FBCTF2019]Event</a></span>
   </li>
 
       
@@ -802,7 +717,66 @@ png特征
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/09/BSidesCF2019-Sequel/" title="[BSidesCF2019]Sequel">[BSidesCF2019]Sequel</a></span>
+    <span><a href="/2024/09/24/virink-2019-files-share/" title="virink_2019_files_share">virink_2019_files_share</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/07/25/XMLDecoder-Encoder/" title="XMLDecoder&#x2F;Encoder">XMLDecoder/Encoder</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/18/JMCTF-2021-GoOSS/" title="[JMCTF_2021]GoOSS">[JMCTF_2021]GoOSS</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/17/HCTF2018-Hideandseek/" title="HCTF2018Hideandseek">HCTF2018Hideandseek</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/08/JMCTF2021-UploadHub/" title="[JMCTF2021]UploadHub">[JMCTF2021]UploadHub</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" title="Nctf_web部分复现">Nctf_web部分复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/13/%E6%A2%85%E8%8A%B1%E9%A6%99%E8%87%AA%E8%8B%A6%E5%AF%92%E6%9D%A5/" title="梅花香自苦寒来">梅花香自苦寒来</a></span>
   </li>
 
   </ul>
@@ -827,13 +801,13 @@ png特征
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">664k words</span>
+    <span title="Symbols count total">683k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">10:04</span>
+    <span title="Reading time total">10:21</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
