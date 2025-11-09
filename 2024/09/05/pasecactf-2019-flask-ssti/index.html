@@ -117,12 +117,12 @@ zty153’s_blog = 网安 = web学习</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?159409"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?629655"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?565197"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?790424"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?106143"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?416013"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?295763"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?114310"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?629841"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?482077"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?314064"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?85055"></li>
         </ul>
       </div>
     </header>
@@ -194,18 +194,7 @@ zty153’s_blog = 网安 = web学习</title>
 <figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> random</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> render_template_string<span class="token punctuation">,</span> render_template<span class="token punctuation">,</span> request</pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> os</pre></td></tr><tr><td data-num="4"></td><td><pre> </pre></td></tr><tr><td data-num="5"></td><td><pre>app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre>app<span class="token punctuation">.</span>config<span class="token punctuation">[</span><span class="token string">'SECRET_KEY'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'folow @osminogka.ann on instagram =)'</span></pre></td></tr><tr><td data-num="7"></td><td><pre> </pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token comment">#Tiaonmmn don't remember to remove this part on deploy so nobody will solve that hehe</span></pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token triple-quoted-string string">'''</pre></td></tr><tr><td data-num="10"></td><td><pre>def encode(line, key, key2):</pre></td></tr><tr><td data-num="11"></td><td><pre>    return ''.join(chr(x ^ ord(line[x]) ^ ord(key[::-1][x]) ^ ord(key2[x])) for x in range(len(line)))</pre></td></tr><tr><td data-num="12"></td><td><pre> </pre></td></tr><tr><td data-num="13"></td><td><pre>app.config['flag'] = encode('', 'GQIS5EmzfZA1Ci8NslaoMxPXqrvFB7hYOkbg9y20W3', 'xwdFqMck1vA0pl7B8WO3DrGLma4sZ2Y6ouCPEHSQVT')</pre></td></tr><tr><td data-num="14"></td><td><pre>'''</span></pre></td></tr><tr><td data-num="15"></td><td><pre> </pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token keyword">def</span> <span class="token function">encode</span><span class="token punctuation">(</span>line<span class="token punctuation">,</span> key<span class="token punctuation">,</span> key2<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span>x <span class="token operator">^</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>line<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>key<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>key2<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="18"></td><td><pre> </pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"/app/flag"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="20"></td><td><pre>flag <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="21"></td><td><pre> </pre></td></tr><tr><td data-num="22"></td><td><pre>app<span class="token punctuation">.</span>config<span class="token punctuation">[</span><span class="token string">'flag'</span><span class="token punctuation">]</span> <span class="token operator">=</span> encode<span class="token punctuation">(</span>flag<span class="token punctuation">,</span> <span class="token string">'GQIS5EmzfZA1Ci8NslaoMxPXqrvFB7hYOkbg9y20W3'</span><span class="token punctuation">,</span> <span class="token string">'xwdFqMck1vA0pl7B8WO3DrGLma4sZ2Y6ouCPEHSQVT'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="23"></td><td><pre>flag <span class="token operator">=</span> <span class="token string">""</span></pre></td></tr><tr><td data-num="24"></td><td><pre> </pre></td></tr><tr><td data-num="25"></td><td><pre>os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token string">"/app/flag"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="26"></td><td><pre> </pre></td></tr><tr><td data-num="27"></td><td><pre>nicknames <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'˜”*°★☆★_%s_★☆★°°*'</span><span class="token punctuation">,</span> <span class="token string">'%s ~♡ⓛⓞⓥⓔ♡~'</span><span class="token punctuation">,</span> <span class="token string">'%s Вêчңø в øĤлâйĤé'</span><span class="token punctuation">,</span> <span class="token string">'♪ ♪ ♪ %s ♪ ♪ ♪ '</span><span class="token punctuation">,</span> <span class="token string">'[♥♥♥%s♥♥♥]'</span><span class="token punctuation">,</span> <span class="token string">'%s, kOтO®Aя )(оТеЛ@ ©4@$tьЯ'</span><span class="token punctuation">,</span> <span class="token string">'♔%s♔'</span><span class="token punctuation">,</span> <span class="token string">'[♂+♂=♥]%s[♂+♂=♥]'</span><span class="token punctuation">]</span></pre></td></tr><tr><td data-num="28"></td><td><pre> </pre></td></tr><tr><td data-num="29"></td><td><pre><span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="30"></td><td><pre><span class="token keyword">def</span> <span class="token function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="31"></td><td><pre>    <span class="token keyword">if</span> request<span class="token punctuation">.</span>method <span class="token operator">==</span> <span class="token string">'POST'</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token keyword">try</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="33"></td><td><pre>            p <span class="token operator">=</span> request<span class="token punctuation">.</span>values<span class="token punctuation">.</span>get<span class="token punctuation">(</span><span class="token string">'nickname'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="34"></td><td><pre>            <span class="token builtin">id</span> <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>nicknames<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="35"></td><td><pre>            <span class="token keyword">if</span> p <span class="token operator">!=</span> <span class="token boolean">None</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="36"></td><td><pre>                <span class="token keyword">if</span> <span class="token string">'.'</span> <span class="token keyword">in</span> p <span class="token keyword">or</span> <span class="token string">'_'</span> <span class="token keyword">in</span> p <span class="token keyword">or</span> <span class="token string">'\''</span> <span class="token keyword">in</span> p<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="37"></td><td><pre>                    <span class="token keyword">return</span> <span class="token string">'Your nickname contains restricted characters!'</span></pre></td></tr><tr><td data-num="38"></td><td><pre>                <span class="token keyword">return</span> render_template_string<span class="token punctuation">(</span>nicknames<span class="token punctuation">[</span><span class="token builtin">id</span><span class="token punctuation">]</span> <span class="token operator">%</span> p<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="39"></td><td><pre> </pre></td></tr><tr><td data-num="40"></td><td><pre>        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span></pre></td></tr><tr><td data-num="41"></td><td><pre>            <span class="token keyword">print</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="42"></td><td><pre>            <span class="token keyword">return</span> <span class="token string">'Exception'</span></pre></td></tr><tr><td data-num="43"></td><td><pre> </pre></td></tr><tr><td data-num="44"></td><td><pre>    <span class="token keyword">return</span> render_template<span class="token punctuation">(</span><span class="token string">'index.html'</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="45"></td><td><pre> </pre></td></tr><tr><td data-num="46"></td><td><pre><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="47"></td><td><pre>    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">'0.0.0.0'</span><span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">1337</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p><img data-src="../images/%5Bpasecactf_2019%5Dflask_ssti/7.png" alt="7" /></p>
 <p>给出了 flag 的<img data-src="../images/%5Bpasecactf_2019%5Dflask_ssti/8.png" alt="8" /> 加密方式，加密后的 flag 存放在 config 中，那将 flag 读取出来再解密就好了</p>
 <p>pyhton 脚本：</p>
-<pre><code>key='GQIS5EmzfZA1Ci8NslaoMxPXqrvFB7hYOkbg9y20W3'
-key2='xwdFqMck1vA0pl7B8WO3DrGLma4sZ2Y6ouCPEHSQVT'
-flag_encoded='这里放加密后的flag'
-flag=''
-for x in range(len(flag_encoded)):
-    for i in range(33,127):
-        if flag_encoded[x]==chr(x ^ i ^ ord(key[::-1][x]) ^ ord(key2[x])):
-            flag+=chr(i)
-            print(flag)
-            break　
-</code></pre>
-<p><img data-src="../images/%5Bpasecactf_2019%5Dflask_ssti/9.png" alt="9" /></p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre>key<span class="token operator">=</span><span class="token string">'GQIS5EmzfZA1Ci8NslaoMxPXqrvFB7hYOkbg9y20W3'</span></pre></td></tr><tr><td data-num="2"></td><td><pre>key2<span class="token operator">=</span><span class="token string">'xwdFqMck1vA0pl7B8WO3DrGLma4sZ2Y6ouCPEHSQVT'</span></pre></td></tr><tr><td data-num="3"></td><td><pre>flag_encoded<span class="token operator">=</span><span class="token string">'这里放加密后的flag'</span></pre></td></tr><tr><td data-num="4"></td><td><pre>flag<span class="token operator">=</span><span class="token string">''</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>flag_encoded<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">33</span><span class="token punctuation">,</span><span class="token number">127</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token keyword">if</span> flag_encoded<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token operator">==</span><span class="token builtin">chr</span><span class="token punctuation">(</span>x <span class="token operator">^</span> i <span class="token operator">^</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>key<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">^</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>key2<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="8"></td><td><pre>            flag<span class="token operator">+=</span><span class="token builtin">chr</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            <span class="token keyword">print</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token keyword">break</span></pre></td></tr></table></figure><p><img data-src="../images/%5Bpasecactf_2019%5Dflask_ssti/9.png" alt="9" /></p>
 <p>参考链接：<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vMjAxNzUyMTFseXovcC8xMTQyNTM2OC5odG1s">https://www.cnblogs.com/20175211lyz/p/11425368.html</span></p>
 
       <div class="tags">
@@ -222,7 +211,7 @@ for x in range(len(flag_encoded)):
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2024-09-08 21:03:46" itemprop="dateModified" datetime="2024-09-08T21:03:46+08:00">2024-09-08</time>
+    <time title="Modified: 2025-10-10 11:24:02" itemprop="dateModified" datetime="2025-10-10T11:24:02+08:00">2025-10-10</time>
   </span>
   <span id="2024/09/05/pasecactf-2019-flask-ssti/" class="item leancloud_visitors" data-flag-title="[pasecactf_2019]flask_ssti" title="Views">
       <span class="icon">
@@ -285,7 +274,7 @@ for x in range(len(flag_encoded)):
     <div class="item left">
       
 
-  <a href="/2024/08/31/GWCTF2019-mypassword/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?904729" title="[GWCTF2019]mypassword">
+  <a href="/2024/08/31/GWCTF2019-mypassword/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?743067" title="[GWCTF2019]mypassword">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>[GWCTF2019]mypassword</h3>
@@ -295,7 +284,7 @@ for x in range(len(flag_encoded)):
     <div class="item right">
       
 
-  <a href="/2024/09/06/SWPU2019-Web4/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?804842" title="[SWPU2019]Web4">
+  <a href="/2024/09/06/SWPU2019-Web4/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?744078" title="[SWPU2019]Web4">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>[SWPU2019]Web4</h3>
@@ -402,37 +391,7 @@ for x in range(len(flag_encoded)):
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/11/SUCTF2018-MultiSQL-MySQL%E9%A2%84%E5%A4%84%E7%90%86%E5%AD%A6%E4%B9%A0/" title="[SUCTF2018]MultiSQL-MySQL预处理学习">[SUCTF2018]MultiSQL-MySQL预处理学习</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/06/13/Secret/" title="’[CISCN2019 华东南赛区]Double Secret‘">’[CISCN2019 华东南赛区]Double Secret‘</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/05/30/Web5-CyberPunk/" title="Web5]CyberPunk">Web5]CyberPunk</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/10/21/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-EasySer/" title="[羊城杯2020]EasySer">[羊城杯2020]EasySer</a></span>
+    <span><a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" title="谁赢了比赛？">谁赢了比赛？</a></span>
   </li>
 
       
@@ -442,26 +401,17 @@ for x in range(len(flag_encoded)):
 <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
 </div>
 
-    <span><a href="/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="PHP学习笔记">PHP学习笔记</a></span>
+    <span><a href="/2024/03/31/xss%E7%AC%94%E8%AE%B0/" title="xss漏洞学习笔记">xss漏洞学习笔记</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
 </div>
 
-    <span><a href="/2024/11/20/ISCTF2024%E5%A4%8D%E7%8E%B0/" title="ISCTF2024复现">ISCTF2024复现</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" title="[HMGCTF2022]Smarty-Calculator">[HMGCTF2022]Smarty-Calculator</a></span>
+    <span><a href="/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/" title="[SWPU2019]我有一只马里奥">[SWPU2019]我有一只马里奥</a></span>
   </li>
 
       
@@ -478,10 +428,10 @@ for x in range(len(flag_encoded)):
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<a href="/categories/misc/" title="In misc">misc</a>
 </div>
 
-    <span><a href="/2024/09/10/%E5%85%A5%E7%BE%A4%E9%A2%98-Web/" title="入群题]Web">入群题]Web</a></span>
+    <span><a href="/2024/11/04/zip%E4%BC%AA%E5%8A%A0%E5%AF%86/" title="zip伪加密">zip伪加密</a></span>
   </li>
 
       
@@ -491,7 +441,46 @@ for x in range(len(flag_encoded)):
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/27/EIS2019-EzPOP/" title="[EIS2019]EzPOP">[EIS2019]EzPOP</a></span>
+    <span><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="PHP学习笔记">PHP学习笔记</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2024/10/28/newstarctf2024/" title="newstarctf2024">newstarctf2024</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+</div>
+
+    <span><a href="/2025/03/25/Nctf-web%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" title="Nctf_web部分复现">Nctf_web部分复现</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/07/24/JNDI%E6%B3%A8%E5%85%A5%E5%8E%9F%E7%90%86%E5%8F%8A%E5%88%A9%E7%94%A8%E6%8E%A2%E7%A9%B6/" title="JNDI注入原理及利用探究">JNDI注入原理及利用探究</a></span>
   </li>
 
   </ul>
@@ -516,13 +505,13 @@ for x in range(len(flag_encoded)):
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">683k words</span>
+    <span title="Symbols count total">697k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">10:21</span>
+    <span title="Reading time total">10:34</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

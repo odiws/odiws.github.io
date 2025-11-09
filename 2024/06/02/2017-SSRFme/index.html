@@ -76,7 +76,7 @@ zty153’s_blog = 网安 = web学习</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>2k</span>
+    <span>1.9k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -117,12 +117,12 @@ zty153’s_blog = 网安 = web学习</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?377071"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?650854"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?935678"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?816620"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?608176"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?537547"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?882132"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?588396"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?48564"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?245269"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?331797"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?719605"></li>
         </ul>
       </div>
     </header>
@@ -169,27 +169,7 @@ zty153’s_blog = 网安 = web学习</title>
     
 
     <h2 id="hitcon-2017ssrfme"><a class="anchor" href="#hitcon-2017ssrfme">#</a> [HITCON 2017]SSRFme</h2>
-<pre><code>127.0.0.1&lt;?php
-    if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) &#123;
-        $http_x_headers = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
-        $_SERVER['REMOTE_ADDR'] = $http_x_headers[0];
-    &#125;
-
-    echo $_SERVER[&quot;REMOTE_ADDR&quot;];
-
-    $sandbox = &quot;sandbox/&quot; . md5(&quot;orange&quot; . $_SERVER[&quot;REMOTE_ADDR&quot;]);
-    @mkdir($sandbox);
-    @chdir($sandbox);
-
-    $data = shell_exec(&quot;GET &quot; . escapeshellarg($_GET[&quot;url&quot;]));
-    $info = pathinfo($_GET[&quot;filename&quot;]);
-    $dir  = str_replace(&quot;.&quot;, &quot;&quot;, basename($info[&quot;dirname&quot;]));
-    @mkdir($dir);
-    @chdir($dir);
-    @file_put_contents(basename($info[&quot;basename&quot;]), $data);
-    highlight_file(__FILE__);
-</code></pre>
-<p>实现发送 GET 请求给当前 GET 参数’url‘，并将其结果保存在 /sandbox/md5 (&quot;orange&quot; . $_SERVER [&quot;REMOTE_ADDR&quot;])/filename 中，其中 filename 为传入的 Get 参数。</p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre>127.0.0.1<span class="token php language-php"><span class="token delimiter important">&lt;?php</span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'HTTP_X_FORWARDED_FOR'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>        <span class="token variable">$http_x_headers</span> <span class="token operator">=</span> <span class="token function">explode</span><span class="token punctuation">(</span><span class="token string single-quoted-string">','</span><span class="token punctuation">,</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'HTTP_X_FORWARDED_FOR'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'REMOTE_ADDR'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token variable">$http_x_headers</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token keyword">echo</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"REMOTE_ADDR"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token variable">$sandbox</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"sandbox/"</span> <span class="token operator">.</span> <span class="token function">md5</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"orange"</span> <span class="token operator">.</span> <span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"REMOTE_ADDR"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    @<span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token variable">$sandbox</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    @<span class="token function">chdir</span><span class="token punctuation">(</span><span class="token variable">$sandbox</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token variable">$data</span> <span class="token operator">=</span> <span class="token function">shell_exec</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"GET "</span> <span class="token operator">.</span> <span class="token function">escapeshellarg</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"url"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token variable">$info</span> <span class="token operator">=</span> <span class="token function">pathinfo</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"filename"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token variable">$dir</span>  <span class="token operator">=</span> <span class="token function">str_replace</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"."</span><span class="token punctuation">,</span> <span class="token string double-quoted-string">""</span><span class="token punctuation">,</span> <span class="token function">basename</span><span class="token punctuation">(</span><span class="token variable">$info</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"dirname"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    @<span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    @<span class="token function">chdir</span><span class="token punctuation">(</span><span class="token variable">$dir</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    @<span class="token function">file_put_contents</span><span class="token punctuation">(</span><span class="token function">basename</span><span class="token punctuation">(</span><span class="token variable">$info</span><span class="token punctuation">[</span><span class="token string double-quoted-string">"basename"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="19"></td><td><pre>    <span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span></pre></td></tr></table></figure><p>实现发送 GET 请求给当前 GET 参数’url‘，并将其结果保存在 /sandbox/md5 (&quot;orange&quot; . $_SERVER [&quot;REMOTE_ADDR&quot;])/filename 中，其中 filename 为传入的 Get 参数。</p>
 <p>将 filename 存储在 /sandbox/md5 (&quot;orange&quot;+127.0.0.1)/filename 里面，url 是将读到的内容写入 filename 中</p>
 <p>通过 /sandbox/md5 (&quot;orange&quot;+127.0.0.1)/filename 可以访问得到</p>
 <h3 id="2-路径泄露"><a class="anchor" href="#2-路径泄露">#</a> 2. 路径泄露</h3>
@@ -237,7 +217,7 @@ zty153’s_blog = 网安 = web学习</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2024-06-16 19:42:55" itemprop="dateModified" datetime="2024-06-16T19:42:55+08:00">2024-06-16</time>
+    <time title="Modified: 2025-10-09 20:39:04" itemprop="dateModified" datetime="2025-10-09T20:39:04+08:00">2025-10-09</time>
   </span>
   <span id="2024/06/02/2017-SSRFme/" class="item leancloud_visitors" data-flag-title="‘’[HITCON 2017]SSRFme‘’" title="Views">
       <span class="icon">
@@ -300,7 +280,7 @@ zty153’s_blog = 网安 = web学习</title>
     <div class="item left">
       
 
-  <a href="/2024/05/30/Web1-Dropbox/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?987626" title="Web1]Dropbox">
+  <a href="/2024/05/30/Web1-Dropbox/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?113775" title="Web1]Dropbox">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>Web1]Dropbox</h3>
@@ -310,7 +290,7 @@ zty153’s_blog = 网安 = web学习</title>
     <div class="item right">
       
 
-  <a href="/2024/06/03/GYCTF2020-Ezsqli/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?26724" title="&#39;[GYCTF2020]Ezsqli&#39;">
+  <a href="/2024/06/03/GYCTF2020-Ezsqli/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?293929" title="&#39;[GYCTF2020]Ezsqli&#39;">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>'[GYCTF2020]Ezsqli'</h3>
@@ -414,19 +394,9 @@ zty153’s_blog = 网安 = web学习</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/01/FireshellCTF2020-CaasC%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86/" title="[FireshellCTF2020]CaasC的预处理">[FireshellCTF2020]CaasC的预处理</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" title="ecshop复现">ecshop复现</a></span>
+    <span><a href="/2025/04/07/http%E8%AF%B7%E6%B1%82%E8%B5%B0%E7%A7%81%E6%BC%8F%E6%B4%9E/" title="http请求走私漏洞">http请求走私漏洞</a></span>
   </li>
 
       
@@ -436,17 +406,7 @@ zty153’s_blog = 网安 = web学习</title>
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/05/pasecactf-2019-flask-ssti/" title="[pasecactf_2019]flask_ssti">[pasecactf_2019]flask_ssti</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
-</div>
-
-    <span><a href="/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="mysql学习笔记">mysql学习笔记</a></span>
+    <span><a href="/2024/06/16/Injection/" title="October 2019 Twice SQL Injection">October 2019 Twice SQL Injection</a></span>
   </li>
 
       
@@ -455,7 +415,7 @@ zty153’s_blog = 网安 = web学习</title>
 <div class="breadcrumb">
 </div>
 
-    <span><a href="/2025/07/24/DNSLog%E5%A4%96%E5%B8%A6%E5%A4%8D%E7%8E%B0/" title="DNSLog外带总结复现">DNSLog外带总结复现</a></span>
+    <span><a href="/2025/04/14/springboot-web/" title="springboot_web">springboot_web</a></span>
   </li>
 
       
@@ -465,7 +425,7 @@ zty153’s_blog = 网安 = web学习</title>
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/09/%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-UnserializeOne/" title="公开赛赛道]UnserializeOne">公开赛赛道]UnserializeOne</a></span>
+    <span><a href="/2024/07/30/Shop/" title="Shop">Shop</a></span>
   </li>
 
       
@@ -475,17 +435,7 @@ zty153’s_blog = 网安 = web学习</title>
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/23/XNUCA2019Qualifier-EasyPHP/" title="[XNUCA2019Qualifier]EasyPHP">[XNUCA2019Qualifier]EasyPHP</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
-</div>
-
-    <span><a href="/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/" title="[SWPU2019]我有一只马里奥">[SWPU2019]我有一只马里奥</a></span>
+    <span><a href="/2024/05/05/5%E6%9C%885%E6%97%A5buu/" title="buuctf5月5日">buuctf5月5日</a></span>
   </li>
 
       
@@ -495,7 +445,16 @@ zty153’s_blog = 网安 = web学习</title>
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" title="[HMGCTF2022]Smarty-Calculator">[HMGCTF2022]Smarty-Calculator</a></span>
+    <span><a href="/2024/12/10/b01lers2020-Spac-Noodles/" title="[b01lers2020]Spac_Noodles">[b01lers2020]Spac_Noodles</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2024/07/13/2020-Roamphp1-Welcome/" title="2020]Roamphp1-Welcome">2020]Roamphp1-Welcome</a></span>
   </li>
 
       
@@ -505,7 +464,26 @@ zty153’s_blog = 网安 = web学习</title>
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/09/NewStarCTF%E5%85%AC%E5%BC%80%E8%B5%9B%E8%B5%9B%E9%81%93-BabySSTI-Two/" title="[NewStarCTF公开赛赛道]BabySSTI_Two">[NewStarCTF公开赛赛道]BabySSTI_Two</a></span>
+    <span><a href="/2024/05/29/cookbook-1/" title="[nctf2019]truecookbook">[nctf2019]truecookbook</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/08/17/RootersCTF2019-babyWeb/" title="[RootersCTF2019]babyWeb">[RootersCTF2019]babyWeb</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/07/25/nepctf2025/" title="nepctf2025">nepctf2025</a></span>
   </li>
 
   </ul>
@@ -530,13 +508,13 @@ zty153’s_blog = 网安 = web学习</title>
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">683k words</span>
+    <span title="Symbols count total">697k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">10:21</span>
+    <span title="Reading time total">10:34</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

