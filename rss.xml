@@ -10,9 +10,398 @@
         </author>
         <description>学无止境</description>
         <language>en</language>
-        <pubDate>Fri, 25 Jul 2025 19:43:43 +0800</pubDate>
-        <lastBuildDate>Fri, 25 Jul 2025 19:43:43 +0800</lastBuildDate>
+        <pubDate>Sun, 09 Nov 2025 20:54:49 +0800</pubDate>
+        <lastBuildDate>Sun, 09 Nov 2025 20:54:49 +0800</lastBuildDate>
         <category term="zty" />
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/11/09/%E5%96%B5%E5%96%B5%E5%96%B5/</guid>
+            <title>喵喵喵</title>
+            <link>http://odiws.github.io/2025/11/09/%E5%96%B5%E5%96%B5%E5%96%B5/</link>
+            <category term="刷题笔记" scheme="http://odiws.github.io/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" />
+            <category term="buuctf" scheme="http://odiws.github.io/tags/buuctf/" />
+            <category term="misc" scheme="http://odiws.github.io/tags/misc/" />
+            <category term="图片" scheme="http://odiws.github.io/tags/%E5%9B%BE%E7%89%87/" />
+            <category term="ntfs文件流" scheme="http://odiws.github.io/tags/ntfs%E6%96%87%E4%BB%B6%E6%B5%81/" />
+            <pubDate>Sun, 09 Nov 2025 20:54:49 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202511092058941.png&#34; alt=&#34;image-20251109205809876&#34; /&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/11/09/WUSTCTF2020-%E7%88%AC/</guid>
+            <title>[WUSTCTF2020]爬</title>
+            <link>http://odiws.github.io/2025/11/09/WUSTCTF2020-%E7%88%AC/</link>
+            <category term="misc" scheme="http://odiws.github.io/categories/misc/" />
+            <category term="zip加密" scheme="http://odiws.github.io/tags/zip%E5%8A%A0%E5%AF%86/" />
+            <pubDate>Sun, 09 Nov 2025 20:43:37 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;1. 修改成 pdf 文件后发现需要删除那个爬的文件：&lt;/p&gt;
+&lt;p&gt;我们 可以用 word 文档打开这个 pdf 文件删除：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202511092045145.png&#34; alt=&#34;image-20251109204521002&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202511092045108.png&#34; alt=&#34;image-20251109204534056&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;0x77637466323032307b746831735f31735f405f7064665f616e645f7930755f63616e5f7573655f70686f7430736830707d
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;转换一下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202511092046753.png&#34; alt=&#34;image-20251109204609603&#34; /&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/11/09/%E5%B0%8F%E6%98%93%E7%9A%84u%E7%9B%98/</guid>
+            <title>小易的u盘</title>
+            <link>http://odiws.github.io/2025/11/09/%E5%B0%8F%E6%98%93%E7%9A%84u%E7%9B%98/</link>
+            <category term="刷题笔记" scheme="http://odiws.github.io/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" />
+            <category term="buuctf" scheme="http://odiws.github.io/tags/buuctf/" />
+            <category term="misc" scheme="http://odiws.github.io/tags/misc/" />
+            <category term="grep" scheme="http://odiws.github.io/tags/grep/" />
+            <pubDate>Sun, 09 Nov 2025 20:27:22 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;iiso 文件可以先看一下他是什么文件：&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202511092028864.png&#34; alt=&#34;image-20251109202829840&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;是 rar 文件解压：unrar x 1.iso&lt;/p&gt;
+&lt;p&gt;进入发现很多文件可以直接 grep 寻找：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; flag *&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;可以找到一个 inf 文件有一个提示是自动运行的是副本 32，可能有我们需要的东西，找一下&lt;/p&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202511092027059.png&#34; alt=&#34;image-20251109202736948&#34; /&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;figcaption data-lang=&#34;bash&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token function&#34;&gt;grep&lt;/span&gt; &lt;span class=&#34;token parameter variable&#34;&gt;-oiaP&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;flag&amp;#123;[^&amp;#125;]+&amp;#125;&#39;&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;./autoflag - 副本 (32).exe&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;pre&gt;&lt;code&gt;说明
+-o 只输出匹配到的片段
+-i 忽略大小写
+-a 把二进制文件当文本扫
+-P 启用 Perl 正则，直接捕获最常见的 flag&amp;#123;...&amp;#125; 格式
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202511092035988.png&#34; alt=&#34;image-20251109203542944&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;grep 使用方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;最简骨架 grep [OPTIONS] PATTERN [FILE...]&lt;/p&gt;
+&lt;p&gt;功能：在文本 / 文件里按 “行” 为单位查找匹配 PATTERN 的行并打印。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li&gt;核心选项速查（大写 = 长选项，小写 = 短选项）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;选项&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;-i, --ignore-case&lt;/td&gt;
+&lt;td&gt;忽略大小写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-v, --invert-match&lt;/td&gt;
+&lt;td&gt;反选：打印&lt;strong&gt;不匹配&lt;/strong&gt;的行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-n, --line-number&lt;/td&gt;
+&lt;td&gt;显示行号&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-c, --count&lt;/td&gt;
+&lt;td&gt;只输出匹配的行数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-l, --files-with-matches&lt;/td&gt;
+&lt;td&gt;只打印&lt;strong&gt;包含匹配的文件名&lt;/strong&gt;（常用于批量搜索）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-L, --files-without-match&lt;/td&gt;
+&lt;td&gt;只打印&lt;strong&gt;不含匹配的文件名&lt;/strong&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-o, --only-matching&lt;/td&gt;
+&lt;td&gt;只打印&lt;strong&gt;匹配到的文本&lt;/strong&gt;，而非整行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-q, --quiet / --silent&lt;/td&gt;
+&lt;td&gt;静默模式，找到即返回 0，脚本里做判断&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-s, --no-messages&lt;/td&gt;
+&lt;td&gt;不显示 “文件不存在” 等错误信息&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-r, -R, --recursive&lt;/td&gt;
+&lt;td&gt;递归目录； &lt;code&gt;-R&lt;/code&gt;  可跟随符号链接&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;--include=GLOB&lt;/td&gt;
+&lt;td&gt;只搜索符合通配符的文件（例： &lt;code&gt;--include=&amp;quot;*.c&amp;quot;&lt;/code&gt; ）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;--exclude=GLOB&lt;/td&gt;
+&lt;td&gt;排除文件&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;--exclude-dir=DIR&lt;/td&gt;
+&lt;td&gt;排除目录&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-w, --word-regexp&lt;/td&gt;
+&lt;td&gt;整词匹配（前后不能是字母数字下划线）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-x, --line-regexp&lt;/td&gt;
+&lt;td&gt;整行必须完全等于 PATTERN&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-A NUM, --after-context=NUM&lt;/td&gt;
+&lt;td&gt;匹配行后再打印 NUM 行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-B NUM, --before-context=NUM&lt;/td&gt;
+&lt;td&gt;匹配行前再打印 NUM 行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-C NUM, -NUM, --context=NUM&lt;/td&gt;
+&lt;td&gt;前后各 NUM 行（ &lt;code&gt;-C2&lt;/code&gt;  等价于  &lt;code&gt;-2&lt;/code&gt; ）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;--color[=WHEN]&lt;/td&gt;
+&lt;td&gt;高亮匹配文本（auto/always/never）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-m NUM, --max-count=NUM&lt;/td&gt;
+&lt;td&gt;每个文件最多匹配 NUM 次即停止&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-a, --text&lt;/td&gt;
+&lt;td&gt;强制把二进制文件当文本处理&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-P, --perl-regexp&lt;/td&gt;
+&lt;td&gt;启用 Perl 兼容正则（PCRE）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-E, --extended-regexp&lt;/td&gt;
+&lt;td&gt;启用扩展正则（ERE），等价于 egrep&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-F, --fixed-strings&lt;/td&gt;
+&lt;td&gt;禁用正则，纯文本查找，等价于 fgrep&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-f FILE, --file=FILE&lt;/td&gt;
+&lt;td&gt;从 FILE 中读取模式（每行一个）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;-e PATTERN, --regexp=PATTERN&lt;/td&gt;
+&lt;td&gt;显式指定模式，可多次出现（实现 “或” 逻辑）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li&gt;正则元字符（默认 BRE 基本正则）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;元字符&lt;/th&gt;
+&lt;th&gt;功能&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;.&lt;/td&gt;
+&lt;td&gt;任意单字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;td&gt;前一项 0 次或多次&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;^&lt;/td&gt;
+&lt;td&gt;行首&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$&lt;/td&gt;
+&lt;td&gt;行尾&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;[abc]&lt;/td&gt;
+&lt;td&gt;字符集&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;分组（BRE 需要反斜杠）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;\n&lt;/td&gt;
+&lt;td&gt;反向引用第 n 组&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td m,n=&#34;&#34;&gt;&lt;/td&gt;
+&lt;td&gt;区间重复（BRE 需转义）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;使用  &lt;code&gt;-E&lt;/code&gt;  后转义要求减少： &lt;code&gt;( ) &amp;#123; &amp;#125; + ? |&lt;/code&gt;  直接可用。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;高频实战示例&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;大小写不敏感、带行号、高亮&lt;/p&gt;
+&lt;p&gt;grep -in --color=auto &#39;error&#39; logfile&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;递归搜索当前目录下所有 .c/.h 文件，列出文件名&lt;/p&gt;
+&lt;p&gt;grep -Rl --include=&#39;*.{c,h}&#39; &#39;TODO&#39; .&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;整词匹配 “main”，不要 “mainly”&lt;/p&gt;
+&lt;p&gt;grep -w &#39;main&#39; *.c&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;输出匹配行及前后 2 行，并写入 result.txt&lt;/p&gt;
+&lt;p&gt;grep -C2 &#39;exception&#39; app.log &amp;gt; result.txt&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;多模式 “或”&lt;/p&gt;
+&lt;p&gt;grep -e &#39;fatal&#39; -e &#39;error&#39; -e &#39;panic&#39; /var/log/messages&lt;/p&gt;
+&lt;p&gt;或&lt;/p&gt;
+&lt;p&gt;grep -E &#39;fatal|error|panic&#39; /var/log/messages&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;反向引用（扩展正则）—— 找连续重复单词&lt;/p&gt;
+&lt;p&gt;grep -E &#39;(\b\w+\b).*\b\1\b&#39; file.txt&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;只打印匹配到的 IP 地址&lt;/p&gt;
+&lt;p&gt;grep -oE &#39;(&lt;span 1,3=&#34;&#34;&gt;0-9&lt;/span&gt;.){3}&lt;span 1,3=&#34;&#34;&gt;0-9&lt;/span&gt;&#39; access.log&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;二进制文件里搜字符串&lt;/p&gt;
+&lt;p&gt;grep -a &#39;flag&#39; firmware.bin&lt;/p&gt;
+&lt;p&gt;更干净：strings firmware.bin | grep &#39;flag&#39;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;脚本里判断 “是否包含”&lt;/p&gt;
+&lt;p&gt;if grep -q &#39;backup.*ok&#39; backup.log; then&lt;/p&gt;
+&lt;p&gt;echo &amp;quot;Backup succeeded&amp;quot;&lt;/p&gt;
+&lt;p&gt;fi&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;排除 svn/git 目录再搜索&lt;/p&gt;
+&lt;p&gt;grep -R --exclude-dir=&#39;.svn&#39; --exclude-dir=&#39;.git&#39; &#39;pattern&#39; .&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li&gt;性能小贴士&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;先限定文件范围（--include/--exclude）比事后过滤快。&lt;/li&gt;
+&lt;li&gt;对超大文件且只要 “有无” 时，用  &lt;code&gt;-q&lt;/code&gt;  或  &lt;code&gt;-m1&lt;/code&gt;  提前退出。&lt;/li&gt;
+&lt;li&gt;纯文本多关键字搜索，用  &lt;code&gt;-F -f keywords.txt&lt;/code&gt;  比正则快。&lt;/li&gt;
+&lt;li&gt;需要 PCRE 高级特性（零宽断言、非贪婪等）才加  &lt;code&gt;-P&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li&gt;与兄弟命令区别&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;egrep = grep -E&lt;/p&gt;
+&lt;p&gt;fgrep = grep -F （已废弃，但系统仍提供）&lt;/p&gt;
+&lt;p&gt;rg /ag/ack 第三方工具，递归速度更快、默认彩色、自动忽略 .git。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li&gt;一句话总结&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;grep 就是 “行过滤器”：先定&lt;strong&gt;范围&lt;/strong&gt;（文件 / 目录），再定&lt;strong&gt;模式&lt;/strong&gt;（正则 / 固定），最后定&lt;strong&gt;输出&lt;/strong&gt;（整行 / 仅匹配 / 前后文 / 计数 / 文件名）。把上面三张表背下来，90 % 的日常需求都能一行搞定。&lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">http://odiws.github.io/2025/11/09/GXYCTF2019-SXMgdGhpcyBiYXNlPw/</guid>
+            <title>[GXYCTF2019]SXMgdGhpcyBiYXNlPw==</title>
+            <link>http://odiws.github.io/2025/11/09/GXYCTF2019-SXMgdGhpcyBiYXNlPw/</link>
+            <category term="学习笔记" scheme="http://odiws.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+            <category term="buuctf" scheme="http://odiws.github.io/tags/buuctf/" />
+            <category term="misc" scheme="http://odiws.github.io/tags/misc/" />
+            <category term="base隐写" scheme="http://odiws.github.io/tags/base%E9%9A%90%E5%86%99/" />
+            <pubDate>Sun, 09 Nov 2025 20:01:10 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;SXMgdGhpcyBiYXNlPw==&lt;/p&gt;
+&lt;p&gt;解码后：Is this base?&lt;/p&gt;
+&lt;p&gt;base 隐写&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Q2V0dGUgbnVpdCwK
+SW50ZW5hYmxlIGluc29tbmllLAp=
+TGEgZm9saWUgbWUgZ3VldHRlLAo=
+SmUgc3VpcyBjZSBxdWUgamUgZnVpcwp=
+SmUgc3ViaXMsCt==
+Q2V0dGUgY2Fjb3Bob25pZSwK
+UXVpIG1lIHNjaWUgbGEgdOmUmnRlLAp=
+QXNzb21tYW50ZSBoYXJtb25pZSwK
+RWxsZSBtZSBkaXQsCo==
+VHUgcGFpZXJhcyB0ZXMgZGVsaXRzLAp=
+UXVvaSBxdSdpbCBhZHZpZW5uZSwK
+T24gdHJh5Y2vbmUgc2VzIGNoYeWNr25lcywK
+U2VzIHBlaW5lcywK
+SmUgdm91ZSBtZXMgbnVpdHMsCm==
+QSBsJ2Fzc2FzeW1waG9uaWUsCl==
+QXV4IHJlcXVpZW1zLAr=
+VHVhbnQgcGFyIGRlcGl0LAq=
+Q2UgcXVlIGplIHNlbWUsCt==
+SmUgdm91ZSBtZXMgbnVpdHMsCp==
+QSBsJ2Fzc2FzeW1waG9uaWUsCp==
+RXQgYXV4IGJsYXNwaGVtZXMsCo==
+Sidhdm91ZSBqZSBtYXVkaXMsCl==
+VG91cyBjZXV4IHF1aSBzJ2FpbWVudCwK
+TCdlbm5lbWksCu==
+VGFwaSBkYW5zIG1vbiBlc3ByaXQsCp==
+RumUmnRlIG1lcyBkZWZhaXRlcywK
+U2FucyByZXBpdCBtZSBkZWZpZSwK
+SmUgcmVuaWUsCq==
+TGEgZmF0YWxlIGhlcmVzaWUsCh==
+UXVpIHJvbmdlIG1vbiDplJp0cmUsCo==
+SmUgdmV1eCByZW5h5Y2vdHJlLAp=
+UmVuYeWNr3RyZSwK
+SmUgdm91ZSBtZXMgbnVpdHMsCn==
+QSBsJ2Fzc2FzeW1waG9uaWUsCq==
+QXV4IHJlcXVpZW1zLAp=
+VHVhbnQgcGFyIGRlcGl0LAq=
+Q2UgcXVlIGplIHNlbWUsCo==
+SmUgdm91ZSBtZXMgbnVpdHMsCm==
+QSBsJ2Fzc2FzeW1waG9uaWUsCl==
+RXQgYXV4IGJsYXNwaGVtZXMsCm==
+Sidhdm91ZSBqZSBtYXVkaXMsCu==
+VG91cyBjZXV4IHF1aSBzJ2FpbWVudCwK
+UGxldXJlbnQgbGVzIHZpb2xvbnMgZGUgbWEgdmllLAp=
+TGEgdmlvbGVuY2UgZGUgbWVzIGVudmllcywK
+U2lwaG9ubmVlIHN5bXBob25pZSwK
+RGVjb25jZXJ0YW50IGNvbmNlcnRvLAq=
+SmUgam91ZSBzYW5zIHRvdWNoZXIgbGUgRG8sCo==
+TW9uIHRhbGVudCBzb25uZSBmYXV4LAp=
+SmUgbm9pZSBtb24gZW5udWksCo==
+RGFucyBsYSBtZWxvbWFuaWUsCl==
+SmUgdHVlIG1lcyBwaG9iaWVzLAq=
+RGFucyBsYSBkZXNoYXJtb25pZSwK
+SmUgdm91ZSBtZXMgbnVpdHMsCv==
+QSBsJ2Fzc2FzeW1waG9uaWUsCn==
+QXV4IHJlcXVpZW1zLAp=
+VHVhbnQgcGFyIGRlcGl0LAo=
+Q2UgcXVlIGplIHNlbWUsCm==
+SmUgdm91ZSBtZXMgbnVpdHMsCp==
+QSBsJ2Fzc2FzeW1waG9uaWUsCm==
+RXQgYXV4IGJsYXNwaGVtZXMsCu==
+Sidhdm91ZSBqZSBtYXVkaXMsCm==
+VG91cyBjZXV4IHF1aSBzJ2FpbWVudCwK
+SmUgdm91ZSBtZXMgbnVpdHMsCn==
+QSBsJ2Fzc2FzeW1waG9uaWUgKGwnYXNzYXN5bXBob25pZSksCn==
+Sidhdm91ZSBqZSBtYXVkaXMsCt==
+VG91cyBjZXV4IHF1aSBzJ2FpbWVudA==
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;解释：&lt;/p&gt;
+&lt;p&gt;base64 加密流程：&lt;/p&gt;
+&lt;p&gt;abc: 01100001 01100010 01100011&lt;/p&gt;
+&lt;p&gt;011000 010110 001001 100011&lt;/p&gt;
+&lt;p&gt;换成十进制对应 &amp;quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&amp;quot; 的数据。变成密文：TWFu&lt;/p&gt;
+&lt;p&gt;若不足三的倍数，若是两个就是加一个 =，一个就是两个 == 填充，在解密时这个是没用的&lt;/p&gt;
+&lt;p&gt;例如：01001101 就变成了 010011 010000 变成 TQ== , 这后面 4 个字节我就可以用来隐写，因为解密时是不会影响的，会被丢弃，所以 base64 就可以用来隐写&lt;/p&gt;
+&lt;p&gt;base64 隐写脚本：&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;figcaption data-lang=&#34;python&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; base64&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;get_base64_diff_value&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;s1&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; s2&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    base64chars &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    res &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;s2&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; s1&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;!=&lt;/span&gt; s2&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;abs&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;base64chars&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;index&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;s1&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&lt;/span&gt; base64chars&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;index&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;s2&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; res&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;solve_stego&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;flag.txt&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;rb&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;as&lt;/span&gt; f&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        file_lines &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; f&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;readlines&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        bin_str &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; line &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; file_lines&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            steg_line &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; line&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;strip&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;decode&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            norm_line &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; base64&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;b64encode&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;base64&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;b64decode&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;line&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;strip&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;decode&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            diff &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; get_base64_diff_value&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;steg_line&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; norm_line&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;diff&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            pads_num &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; steg_line&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;count&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#39;=&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; diff&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                bin_str &lt;span class=&#34;token operator&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;bin&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;diff&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;zfill&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;pads_num &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                bin_str &lt;span class=&#34;token operator&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;0&#39;&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; pads_num &lt;span class=&#34;token operator&#34;&gt;*&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token keyword&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;goflag&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bin_str&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;goflag&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bin_str&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    res_str &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;&#39;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;for&lt;/span&gt; i &lt;span class=&#34;token keyword&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bin_str&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        res_str &lt;span class=&#34;token operator&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;token builtin&#34;&gt;chr&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token builtin&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;bin_str&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;i&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;i &lt;span class=&#34;token operator&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token number&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; res_str&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; __name__ &lt;span class=&#34;token operator&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#39;__main__&#39;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;34&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    solve_stego&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202511092009409.png&#34; alt=&#34;image-20251109200917318&#34; /&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">http://odiws.github.io/2025/07/25/nepctf2025/</guid>
             <title>nepctf2025</title>
@@ -2223,264 +2612,6 @@ directory_handler(Optional[DirectoryHandler],optional):这是一个更高级的�
             <pubDate>Tue, 06 May 2025 20:15:23 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;swpu2019我有一只马里奥&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#swpu2019我有一只马里奥&#34;&gt;#&lt;/a&gt; [SWPU2019] 我有一只马里奥&lt;/h2&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202505062017708.png&#34; alt=&#34;image-20250506201700538&#34; /&gt;&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">http://odiws.github.io/2025/04/23/Spring-MVC/</guid>
-            <title>Spring_MVC</title>
-            <link>http://odiws.github.io/2025/04/23/Spring-MVC/</link>
-            <pubDate>Wed, 23 Apr 2025 12:49:51 +0800</pubDate>
-            <description><![CDATA[  ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">http://odiws.github.io/2025/04/17/MyBatis/</guid>
-            <title>MyBatis</title>
-            <link>http://odiws.github.io/2025/04/17/MyBatis/</link>
-            <pubDate>Thu, 17 Apr 2025 20:49:14 +0800</pubDate>
-            <description><![CDATA[ &lt;h2 id=&#34;mybatis&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mybatis&#34;&gt;#&lt;/a&gt; mybatis&lt;/h2&gt;
-&lt;p&gt;&amp;lt;u&amp;gt; 什么是 MyBatis?&amp;lt;/u&amp;gt;&lt;br /&gt;
-M 小 yBatis 是一款优秀的&lt;strong&gt;持久层&lt;/strong&gt;&lt;strong&gt;&lt;strong&gt;框架&lt;/strong&gt;&lt;/strong&gt;，用于 &amp;lt;u&amp;gt;&lt;strong&gt; 简化 JDBC 开发&lt;/strong&gt; &amp;lt;/u&amp;gt;&lt;br /&gt;
-MyBatis 本是 Apache 的一个开源项目 iBatis,201O 年这个项目由 apache software&lt;br /&gt;
-foundation 迁移到了 google code, 并且改名为 MyBatis。2013 年 11 月迁移到 Github&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;官网：https://mybatis.org/mybatis-3/zh_CN/getting-started.html
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;持久层&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;负责将数据到保存到数据库的那一层代码&lt;/p&gt;
-&lt;p&gt;javaEE 三层架构：&lt;strong&gt;表现层，业务层，持久层&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;框架&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;框架就是一个半成品软件，是一套客场虫蛹的，通用的，如阿健基础代码模型&lt;/p&gt;
-&lt;p&gt;在框架的基础之上构建软件编写更加高效，规范，通用，可扩展&lt;/p&gt;
-&lt;p&gt;JDBC 缺点：&lt;/p&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;span&gt;a&lt;/span&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token number&#34;&gt;1.&lt;/span&gt;注册驱动&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;Class&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;forName&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;com.mysql.jdbc.Driver&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token operator&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;2.&lt;/span&gt;获取&lt;span class=&#34;token class-name&#34;&gt;Connection&lt;/span&gt;连接&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; url &lt;span class=&#34;token string&#34;&gt;&#34;jdbc:mysql:///db1?useSSL=false&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; uname&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;“root&#34;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; pwd &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;1234&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;Connection&lt;/span&gt; conn &lt;span class=&#34;token class-name&#34;&gt;DriverManager&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getConnection&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;url&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;uname&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;pwd&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;∥接收输入的查询条件&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; gender&lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;男&#34;&lt;/span&gt;；&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;∥定义sql&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; sql &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;select from tb_user where gender ?&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;∥获取ostmt对象&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;13&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;PreparedStatement&lt;/span&gt; pstmt conn&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;prepareStatement&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;sql&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;14&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;∥设置？的值&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;15&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;pstmt&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setString&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;gender&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;16&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;∥执行sql&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;17&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;ResultSet&lt;/span&gt; rs pstmt&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;executeQuery&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;18&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;∥遍历&lt;span class=&#34;token class-name&#34;&gt;Result&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;获取数据&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;19&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;User&lt;/span&gt; user &lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;20&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;ArrayList&lt;/span&gt;&lt;span class=&#34;token generics&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;users &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;ArrayList&lt;/span&gt;&lt;span class=&#34;token generics&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;21&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;rs&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;22&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;∥获取数据&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;23&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;int&lt;/span&gt; id rs&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getlnt&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;id&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;24&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; username rs&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getString&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;username&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;25&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; password rs&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getString&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;password&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;26&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;∥创建对象，设置属性值&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;27&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;User&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;28&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setld&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;id&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;29&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setUsername&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;username&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;30&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setPassword&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;password&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;31&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;user&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;setGender&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;gender&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;32&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;∥装入集合&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;33&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;users&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;user&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;1. 硬编码&lt;/p&gt;
-&lt;p&gt;需要改代码（密码账户修改，数据库也要改代码，SQL 语句）&lt;/p&gt;
-&lt;p&gt;2. 操作繁琐&lt;/p&gt;
-&lt;p&gt;手动设置参数&lt;/p&gt;
-&lt;p&gt;手动封装结果集&lt;/p&gt;
-&lt;h4 id=&#34;mybatis简化&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#mybatis简化&#34;&gt;#&lt;/a&gt; MyBatis 简化：&lt;/h4&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504172110196.png&#34; alt=&#34;image-20250417211043905&#34; /&gt;&lt;/p&gt;
-&lt;h4 id=&#34;快速入门&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#快速入门&#34;&gt;#&lt;/a&gt; 快速入门：&lt;/h4&gt;
-&lt;p&gt;查询 user 表中的所有数据&lt;/p&gt;
-&lt;p&gt;1. 创建 user 表，添加数据&lt;/p&gt;
-&lt;p&gt;2. 创建模块，导入坐标&lt;/p&gt;
-&lt;p&gt;3. 编写 MyBatis 核心配置文件 --》替换连接信息，解决硬编码问题&lt;/p&gt;
-&lt;p&gt;4. 编写 SQL 映射文件  --》统一管理 SQL 语句，解决硬编码问题&lt;/p&gt;
-&lt;p&gt;5. 编码&lt;/p&gt;
-&lt;p&gt;​      1. 定义 POJO 类&lt;/p&gt;
-&lt;p&gt;​      2. 加载核心配置文件，获取 SqlSessionFactory 对象&lt;/p&gt;
-&lt;p&gt;​      3. 获取 SqlSession 对象，执行 SQL 语句&lt;/p&gt;
-&lt;p&gt;​      4. 释放资源&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">http://odiws.github.io/2025/04/17/springweb/</guid>
-            <title>springweb</title>
-            <link>http://odiws.github.io/2025/04/17/springweb/</link>
-            <pubDate>Thu, 17 Apr 2025 20:43:47 +0800</pubDate>
-            <description><![CDATA[ &lt;h2 id=&#34;springweb开发学习笔记&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#springweb开发学习笔记&#34;&gt;#&lt;/a&gt; Springweb 开发学习笔记&lt;/h2&gt;
-&lt;p&gt;为什么要学习？&lt;/p&gt;
-&lt;p&gt;简化开发；框架整合&lt;/p&gt;
-&lt;p&gt;学什么？&lt;/p&gt;
-&lt;p&gt;简化开发：&lt;/p&gt;
-&lt;p&gt;IOC&lt;/p&gt;
-&lt;p&gt;AOP-----&amp;gt; 事务处理&lt;/p&gt;
-&lt;p&gt;框架整合：&lt;/p&gt;
-&lt;p&gt;MyBatis&lt;/p&gt;
-&lt;p&gt;Mybatis-plus&lt;/p&gt;
- ]]></description>
-        </item>
-        <item>
-            <guid isPermalink="true">http://odiws.github.io/2025/04/14/springboot-web/</guid>
-            <title>springboot_web</title>
-            <link>http://odiws.github.io/2025/04/14/springboot-web/</link>
-            <pubDate>Mon, 14 Apr 2025 22:35:49 +0800</pubDate>
-            <description><![CDATA[ &lt;h2 id=&#34;用springboot开发简单的网站&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#用springboot开发简单的网站&#34;&gt;#&lt;/a&gt; 用 SpringBoot 开发简单的网站&lt;/h2&gt;
-&lt;p&gt;springboot 到底帮我们配置了什么？我们能不能进行修改？能修改什么东西？能不能扩展？&lt;/p&gt;
-&lt;p&gt;xxxxAutoConfiguration.. 向容器中自动配置组件&lt;/p&gt;
-&lt;p&gt;xxxxProperties: 自动配置类，装配配置文件中自定义的一些内容&lt;/p&gt;
-&lt;p&gt;要解决的问题：&lt;/p&gt;
-&lt;p&gt;导入静态资源.......&lt;/p&gt;
-&lt;p&gt;首页&lt;/p&gt;
-&lt;p&gt;jsp，模板引擎 Thymelef&lt;/p&gt;
-&lt;p&gt;装配扩展 SpringMVC&lt;/p&gt;
-&lt;p&gt;增删改查&lt;/p&gt;
-&lt;p&gt;拦截器&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;目录名称&lt;/th&gt;
-&lt;th&gt;作用说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;config&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;配置类，放 Spring 配置、跨域配置、WebSocket 配置、安全配置等。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;controller&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;控制层，负责接收前端请求，调用 service，返回数据或视图。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;service&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;业务逻辑层，处理具体的业务操作。通常是 controller 调用它。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;model/entity&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;实体类，对应数据库表的字段结构。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;repository/dao&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;数据访问层，用来操作数据库，一般继承  &lt;code&gt;JpaRepository&lt;/code&gt;  或  &lt;code&gt;CrudRepository&lt;/code&gt; 。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;utils&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;工具类，比如日期处理、字符串处理、JWT 工具等。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;srcmainresources&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#srcmainresources&#34;&gt;#&lt;/a&gt; 📁  &lt;code&gt;src/main/resources&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;这是 Spring Boot 的资源文件目录。&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;文件 / 目录&lt;/th&gt;
-&lt;th&gt;作用说明&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;application.properties / application.yml&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;配置文件，比如端口、数据库、日志、缓存等配置。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;templates/&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;放 Thymeleaf 或 Freemarker 的 HTML 模板页面（必须要放在这儿才能渲染页面）。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;static/&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;放静态资源：CSS、JS、图片（这些不会被 Spring MVC 拦截，直接访问）。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;public/&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;也可以放静态资源，效果和 static 一样。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;banner.txt&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;启动 Spring Boot 时控制台打印的图标，可以自定义。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;srctestjava&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#srctestjava&#34;&gt;#&lt;/a&gt; 📁  &lt;code&gt;src/test/java&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;写单元测试的地方，比如使用 JUnit、Mockito 写服务层、控制器的测试。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;target&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#target&#34;&gt;#&lt;/a&gt; 📁  &lt;code&gt;target/&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;Maven 或 Gradle 构建后生成的文件目录，&lt;strong&gt;不用手动修改&lt;/strong&gt;。打包后的  &lt;code&gt;.jar&lt;/code&gt;  文件也在这里。&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h3 id=&#34;项目根目录下的文件&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#项目根目录下的文件&#34;&gt;#&lt;/a&gt; 📄 项目根目录下的文件&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;文件名&lt;/th&gt;
-&lt;th&gt;作用&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;pom.xml&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;Maven 项目的依赖管理文件，添加第三方库就靠它。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;build.gradle&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;如果你用 Gradle 管理项目，则是用这个文件。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;.gitignore&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;忽略不需要 Git 提交的文件，比如  &lt;code&gt;target/&lt;/code&gt; 、 &lt;code&gt;.idea/&lt;/code&gt; 。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;&lt;strong&gt;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cDovL1JFQURNRS5tZA==&#34;&gt;README.md&lt;/span&gt;&lt;/strong&gt;&lt;/td&gt;
-&lt;td&gt;项目说明文档。&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h3 id=&#34;静态资源&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#静态资源&#34;&gt;#&lt;/a&gt; 、静态资源&lt;/h3&gt;
-&lt;p&gt;直接全局搜索：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;WebMvcAutoConfigguration.class(自动配置类)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504151917480.png&#34; alt=&#34;image-20250415191709161&#34; /&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;WebMvcAutoConfigurationAdapter
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;在这个类里面找到 addResourceHandlers 这个增加资源处理器类&lt;/p&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;addResourceHandlers&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;ResourceHandlerRegistry&lt;/span&gt; registry&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;resourceProperties&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;isAddMappings&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;logger&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;debug&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;Default resource handling disabled&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addResourceHandler&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;registry&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;mvcProperties&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getWebjarsPathPattern&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;classpath:/META-INF/resources/webjars/&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addResourceHandler&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;registry&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;mvcProperties&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getStaticPathPattern&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;registration&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt; registration&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addResourceLocations&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;resourceProperties&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getStaticLocations&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;servletContext &lt;span class=&#34;token operator&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;ServletContextResource&lt;/span&gt; resource &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;ServletContextResource&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;servletContext&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;/&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;     registration&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addResourceLocations&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Resource&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;resource&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;            &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504151922093.png&#34; alt=&#34;image-20250415192249014&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;找到静态资源 path&lt;/p&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;private&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; staticPathPattern &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;/**&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;在这里找到&lt;/p&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@ConfigurationProperties&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    prefix &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;spring.mvc&#34;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;分析 addResourceHandlers 这个方法&lt;/p&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token operator&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;resourceProperties&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;isAddMappings&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;logger&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;debug&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;Default resource handling disabled&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;是如果自己在 application.properties 里面加上&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;spring.mvc.static-path-pattern=路径
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;是自己添加静态资源的路径&lt;/p&gt;
-&lt;p&gt;若不自己给路径：&lt;/p&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addResourceHandler&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;registry&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;mvcProperties&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getWebjarsPathPattern&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;classpath:/META-INF/resources/webjars/&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addResourceHandler&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;registry&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;mvcProperties&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getStaticPathPattern&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;registration&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token operator&#34;&gt;-&gt;&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;                    registration&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addResourceLocations&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;resourceProperties&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;getStaticLocations&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;这里就是默认的路径，但是在我们自己创建的文件中没见到 webjars 目录&lt;/p&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504151932162.png&#34; alt=&#34;image-20250415193204101&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;这里就是 webjars 文件的导入，可以在浏览器中直接搜索 webjars&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;https://www.webjars.org/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504151933619.png&#34; alt=&#34;image-20250415193327384&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;这里&lt;/p&gt;
-&lt;p&gt;在 pom,xml 这里用来导入依赖就好了&lt;/p&gt;
-&lt;p&gt;在&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;dependencies&amp;gt;在这里加入要加的依赖就行了&amp;lt;/dependencies&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504152042124.png&#34; alt=&#34;image-20250415204215473&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;在静态资源这里可以直接访问网站里面导入包的文件&lt;/p&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;servletContext &lt;span class=&#34;token operator&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;null&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;ServletContextResource&lt;/span&gt; resource &lt;span class=&#34;token operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;ServletContextResource&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;servletContext&lt;span class=&#34;token punctuation&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;/&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;     registration&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;token function&#34;&gt;addResourceLocations&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;Resource&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;resource&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;最后就是这个&lt;/p&gt;
-&lt;h3 id=&#34;模板引擎themeleaf&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#模板引擎themeleaf&#34;&gt;#&lt;/a&gt; 模板引擎 themeleaf&lt;/h3&gt;
-&lt;p&gt;依赖：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
-            &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-            &amp;lt;artifactId&amp;gt;spring-boot-starter-thymeleaf&amp;lt;/artifactId&amp;gt;
-        &amp;lt;/dependency&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这个可以在 templates 目录下有一个 index.html&lt;/p&gt;
-&lt;p&gt;在部署后 http://localhost:8080 这个下有一个默认的 index.html 就是这个 index.html&lt;/p&gt;
-&lt;p&gt;想访问 templates 下的其他 html 就得在 Controller 目录下写 java 来处理请求&lt;/p&gt;
-&lt;p&gt;简单就是：&lt;/p&gt;
-&lt;figure class=&#34;highlight java&#34;&gt;&lt;figcaption data-lang=&#34;java&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;token namespace&#34;&gt;com&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;studyweb&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;controller&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;token import&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;springframework&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;stereotype&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;Controller&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;token import&#34;&gt;&lt;span class=&#34;token namespace&#34;&gt;org&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;springframework&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;web&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;bind&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;annotation&lt;span class=&#34;token punctuation&#34;&gt;.&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token class-name&#34;&gt;GetMapping&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token annotation punctuation&#34;&gt;@Controller&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token keyword&#34;&gt;class&lt;/span&gt; _12333Controller &lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token annotation punctuation&#34;&gt;@GetMapping&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token string&#34;&gt;&#34;/12333&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;token class-name&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;token function&#34;&gt;index&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#123;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;        &lt;span class=&#34;token keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;token string&#34;&gt;&#34;12333&#34;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;11&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;12&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;#125;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;figure class=&#34;highlight html&#34;&gt;&lt;figcaption data-lang=&#34;HTML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token doctype&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;!&lt;/span&gt;&lt;span class=&#34;token doctype-tag&#34;&gt;DOCTYPE&lt;/span&gt; &lt;span class=&#34;token name&#34;&gt;html&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;html&lt;/span&gt; &lt;span class=&#34;token attr-name&#34;&gt;lang&lt;/span&gt;&lt;span class=&#34;token attr-value&#34;&gt;&lt;span class=&#34;token punctuation attr-equals&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;en&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;head&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;meta&lt;/span&gt; &lt;span class=&#34;token attr-name&#34;&gt;charset&lt;/span&gt;&lt;span class=&#34;token attr-value&#34;&gt;&lt;span class=&#34;token punctuation attr-equals&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;UTF-8&lt;span class=&#34;token punctuation&#34;&gt;&#34;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;title&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;Title&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;title&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;head&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;body&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;8&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;h1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;sqwe&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;h1&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;9&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;body&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;10&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;html&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;p&gt;&lt;img data-src=&#34;https://zty--666.oss-cn-shanghai.aliyuncs.com/202504161942415.png&#34; alt=&#34;image-20250416194243305&#34; /&gt;&lt;/p&gt;
-&lt;h3 id=&#34;thymeleaf模板语法&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#thymeleaf模板语法&#34;&gt;#&lt;/a&gt; Thymeleaf 模板语法：&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;th:each循环
-th:if if语句
-
-提取文本：th:text   /   th:utext(文本里的标签也会解析)
- 
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;示例：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;h3 th:each=&amp;quot;user:$&amp;#123;users&amp;#125;&amp;quot; th:text=&amp;quot;$&amp;#123;user&amp;#125;&amp;quot;&amp;gt;&amp;lt;/h3&amp;gt;
-&amp;lt;h3 th:each=&amp;quot;user:$&amp;#123;users&amp;#125;&amp;quot; [[$user]]&amp;gt;&amp;lt;/h3&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;这个将 users 的东西用 user 遍历一遍，将每一次遍历的对象用位版本提取出来&lt;/p&gt;
-&lt;h4 id=&#34;装配扩展springmvc&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#装配扩展springmvc&#34;&gt;#&lt;/a&gt; 装配扩展 SpringMVC&lt;/h4&gt;
-&lt;p&gt;感觉这个就是在 model 创建一个对象，我能在 repository 这里继承 JpaRepository：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;JpaRepository 是 Spring Data JPA 提供的一个接口，它是用来简化数据库访问操作的。它本身是一个泛型接口，继承自 PagingAndSortingRepository 和 CrudRepository，也就是说它不仅支持基本的增删改查（CRUD）功能，还支持分页和排序。
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;然后可以用里面的一个方法：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;JpaRepository&amp;lt;T, ID&amp;gt; 提供了很多现成的方法，比如：
-
-save(entity)：保存或更新一条记录
-
-findById(id)：根据主键查找
-
-findAll()：查找所有记录
-
-deleteById(id)：根据主键删除
-
-count()：统计记录总数
-
-existsById(id)：判断某条记录是否存在
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&#34;重新开始&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#重新开始&#34;&gt;#&lt;/a&gt; 重新开始：&lt;/h4&gt;
  ]]></description>
         </item>
     </channel>

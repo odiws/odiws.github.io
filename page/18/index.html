@@ -89,12 +89,12 @@
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?954800"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?40727"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?884938"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?284713"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?483647"></li>
-          <li class="item" data-background-image="https://www.loliapi.com/acg/?864734"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?843468"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?495163"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?603872"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?27613"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?577394"></li>
+          <li class="item" data-background-image="https://www.loliapi.com/acg/?5755"></li>
         </ul>
       </div>
     </header>
@@ -120,7 +120,208 @@
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/04/29/5-txt/" itemprop="url" title="buuctf4月29日"><img data-src="https://www.loliapi.com/acg/?832080"></a>
+    <a href="/2024/05/27/buuctf5%E6%9C%8827%E6%97%A5/" itemprop="url" title="[红明谷CTF 2021]write_shell"><img data-src="https://www.loliapi.com/acg/?944753"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-05-27 21:54:29">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-05-27T21:54:29+08:00">2024-05-27</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>993</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>1 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2024/05/27/buuctf5%E6%9C%8827%E6%97%A5/" itemprop="url" title="[红明谷CTF 2021]write_shell">[红明谷CTF 2021]write_shell</a></h3>
+    <div class="excerpt">
+        # [红明谷 CTF 2021] write_shell
+今天是考试日，但是还是得刷一题（虽然是签到题）
+代码如下：
+&amp;lt;?php
+error_reporting(0);
+highlight_file(__FILE__);
+function check($input)&amp;#123;
+if(preg_match(&amp;quot;/&#39;| |_|php|;|~|\\^|\\+|eval|&amp;#123;|&amp;#125;/i&amp;quot;,$input))&amp;#123;
+// if(preg_match(&amp;quot;/&#39;|...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/05/27/buuctf5%E6%9C%8827%E6%97%A5/" itemprop="url" title="[红明谷CTF 2021]write_shell" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/" itemprop="url" title="buuctf5月26日"><img data-src="https://www.loliapi.com/acg/?793489"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-05-26 19:13:55">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-05-26T19:13:55+08:00">2024-05-26</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>2.6k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>2 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/" itemprop="url" title="buuctf5月26日">buuctf5月26日</a></h3>
+    <div class="excerpt">
+        # [CISCN2019 华北赛区 Day1 Web2] ikun
+
+# 发现要先找到 lv6
+# 找到 lv6 的脚本：
+import requests
+url=&amp;quot;http://c0fe0b30-9fdd-41ce-b289-8d6630c49212.node5.buuoj.cn:81/shop?page=&amp;quot;
+
+for i in range(0,2000):
+print(i)
+r=requests.get( url + str(i) )
+if &#39;lv6.png&#39; in r.text:
+print (i)
+break
+
+#...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/05/26/buuctf5%E6%9C%8826%E6%97%A5/" itemprop="url" title="buuctf5月26日" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/05/25/buuctf5%E6%9C%8825%E6%97%A5/" itemprop="url" title="buu5月25日"><img data-src="https://www.loliapi.com/acg/?107239"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-05-25 15:49:49">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-05-25T15:49:49+08:00">2024-05-25</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>6.4k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>6 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2024/05/25/buuctf5%E6%9C%8825%E6%97%A5/" itemprop="url" title="buu5月25日">buu5月25日</a></h3>
+    <div class="excerpt">
+        # [Zer0pts2020]Can you guess it?
+&amp;lt;?php
+include &#39;config.php&#39;; // FLAG is defined in config.php
+
+if (preg_match(&#39;/config\.php\/*$/i&#39;, $_SERVER[&#39;PHP_SELF&#39;])) &amp;#123;
+exit(&amp;quot;I don&#39;t know what you are thinking, but I won&#39;t let you read it...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/05/25/buuctf5%E6%9C%8825%E6%97%A5/" itemprop="url" title="buu5月25日" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/05/05/5%E6%9C%885%E6%97%A5buu/" itemprop="url" title="buuctf5月5日"><img data-src="https://www.loliapi.com/acg/?255207"></a>
+  </div>
+  <div class="info">
+    
+<div class="meta">
+  <span class="item" title="Created: 2024-05-05 21:34:53">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <time itemprop="dateCreated datePublished" datetime="2024-05-05T21:34:53+08:00">2024-05-05</time>
+  </span>
+  <span class="item" title="Symbols count in article">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span>6.4k</span>
+    <span class="text">words</span>
+  </span>
+  <span class="item" title="Reading time">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span>6 mins.</span>
+  </span>
+</div>
+
+    <h3><a href="/2024/05/05/5%E6%9C%885%E6%97%A5buu/" itemprop="url" title="buuctf5月5日">buuctf5月5日</a></h3>
+    <div class="excerpt">
+        # [安洵杯 2019] easy_web
+进行两次 base64 解密，和 hex 转字符串，得到类似图片名 555.png。
+&amp;lt;?php
+error_reporting(E_ALL || ~ E_NOTICE);
+header(&#39;content-type:text/html;charset=utf-8&#39;);
+$cmd = GET[′cmd′];if(!isset(_GET[&amp;#x27;cmd&amp;#x27;];
+if (!isset(G​ET[′cmd′];if(!isset(_GET[&#39;img&#39;]) ||...
+    </div>
+    <div class="meta footer">
+      <span>
+        <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" itemprop="url" title="刷题笔记"><i class="ic i-flag"></i>刷题笔记</a>
+      </span>
+    </div>
+    <a href="/2024/05/05/5%E6%9C%885%E6%97%A5buu/" itemprop="url" title="buuctf5月5日" class="btn">more...</a>
+  </div>
+</article>
+
+        
+<article class="item">
+  <div class="cover">
+    <a href="/2024/04/29/5-txt/" itemprop="url" title="buuctf4月29日"><img data-src="https://www.loliapi.com/acg/?893936"></a>
   </div>
   <div class="info">
     
@@ -171,7 +372,7 @@ Flag 点进去看看，发现有个回显，是我的 ip 地址，着说明访�
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/04/28/4-txt/" itemprop="url" title="buuctf4月28日"><img data-src="https://www.loliapi.com/acg/?183046"></a>
+    <a href="/2024/04/28/4-txt/" itemprop="url" title="buuctf4月28日"><img data-src="https://www.loliapi.com/acg/?35064"></a>
   </div>
   <div class="info">
     
@@ -221,7 +422,7 @@ Flag 点进去看看，发现有个回显，是我的 ip 地址，着说明访�
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日"><img data-src="https://www.loliapi.com/acg/?238798"></a>
+    <a href="/2024/04/28/3-txt/" itemprop="url" title="buuctf4月27日"><img data-src="https://www.loliapi.com/acg/?736399"></a>
   </div>
   <div class="info">
     
@@ -272,7 +473,7 @@ blacklist = [&#39; &#39;, &#39;\t&#39;, &#39;\r&#39;, &#39;\n&#39;,&#39;\&#39;&#
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/04/28/2_1/" itemprop="url" title="python request库的基本用法"><img data-src="https://www.loliapi.com/acg/?551243"></a>
+    <a href="/2024/04/28/2_1/" itemprop="url" title="python request库的基本用法"><img data-src="https://www.loliapi.com/acg/?491304"></a>
   </div>
   <div class="info">
     
@@ -328,7 +529,7 @@ print (r.text)
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日"><img data-src="https://www.loliapi.com/acg/?824239"></a>
+    <a href="/2024/04/28/1_1/" itemprop="url" title="buuctf4月27日"><img data-src="https://www.loliapi.com/acg/?682362"></a>
   </div>
   <div class="info">
     
@@ -377,7 +578,7 @@ SSRF 的形成大多是由于服务端提供了从其他服务器应用获取数
         
 <article class="item">
   <div class="cover">
-    <a href="/2024/03/31/xss%E7%AC%94%E8%AE%B0/" itemprop="url" title="xss漏洞学习笔记"><img data-src="https://www.loliapi.com/acg/?687261"></a>
+    <a href="/2024/03/31/xss%E7%AC%94%E8%AE%B0/" itemprop="url" title="xss漏洞学习笔记"><img data-src="https://www.loliapi.com/acg/?826328"></a>
   </div>
   <div class="info">
     
@@ -429,201 +630,6 @@ xss 的分类：
   </div>
 </article>
 
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/03/25/sql%E6%B3%A8%E5%85%A5/" itemprop="url" title="sqli-labs��sqlע��ѧϰ�ʼ�"><img data-src="https://www.loliapi.com/acg/?210614"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-03-25 16:48:15">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-03-25T16:48:15+08:00">2024-03-25</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>5.4k</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>5 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2024/03/25/sql%E6%B3%A8%E5%85%A5/" itemprop="url" title="sqli-labs��sqlע��ѧϰ�ʼ�">sqli-labs��sqlע��ѧϰ�ʼ�</a></h3>
-    <div class="excerpt">
-        ���ϲ�ѯ��䣺 union select
-������from oo_user where username=��root�� union select * from oo_user where username=��dsa��;
-������Ҫ��ģ�root�� union select * from oo_user where username=��dsa
-Sqlע��Ļ�������
-1.�жϴ���������ֻ����ַ�������?id=1 and 1=2...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%D1%A7%CF%B0%EF%BF%BD%CA%BC%EF%BF%BD/" itemprop="url" title="ѧϰ�ʼ�"><i class="ic i-flag"></i>ѧϰ�ʼ�</a>
-      </span>
-    </div>
-    <a href="/2024/03/25/sql%E6%B3%A8%E5%85%A5/" itemprop="url" title="sqli-labs��sqlע��ѧϰ�ʼ�" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/03/25/upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="upload文件上传靶场学习笔记"><img data-src="https://www.loliapi.com/acg/?210275"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-03-25 16:48:15">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-03-25T16:48:15+08:00">2024-03-25</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>1.2k</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>1 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2024/03/25/upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="upload文件上传靶场学习笔记">upload文件上传靶场学习笔记</a></h3>
-    <div class="excerpt">
-        特点：一句话木马尽量都写在一行里，不然容易出错
-12 关的要求要把 php 扩展里的参数设置里的 magic-quotes-gpc 取消掉
-1. 前端的 js 绕过（在前端进行过滤）（控制台 F12 设置禁用 js 使用）
-2.content-type 绕过（该请求体用来判断文件的类型）
-3. 特殊类型绕过（php 可以用 php3，php5 来绕过）
-4.（.htaccess 绕过）可以在 httpd-conf 文件中添加配置以增加特殊类型 （先要在 httpd-conf 中设置 allowoverrice 从 None 改成 All） ---（AddType...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="学习笔记"><i class="ic i-flag"></i>学习笔记</a>
-      </span>
-    </div>
-    <a href="/2024/03/25/upload%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="upload文件上传靶场学习笔记" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="python学习笔记（未完）"><img data-src="https://www.loliapi.com/acg/?11778"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-01-24 11:05:44">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-01-24T11:05:44+08:00">2024-01-24</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>2.2k</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>2 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="python学习笔记（未完）">python学习笔记（未完）</a></h3>
-    <div class="excerpt">
-        Python 笔记
-1.python 中的缩进是有严格规定的
-2.Python 有控制台应用程序和 GUI（图形化用户界面）应用程序两种
-3.GUI 应用程序主要用 Tkinter 和 PyQt 两种，前者自带，后者需安装。
-4. 输入输出：
-（a）输入：变量 = input (” 文本（可以不写，在文本之后输入）”)
-注意：该输入的变量将自动变成字符串，若需要别的类型，则可以强制转换
-（b）输出：print (“文本 %.x 格式化字符” % 变量（若需要计算，要用大括号括住）)
-5.（1）pyhon 中的主函数入口：
-if name==”main”:
-5...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="学习笔记"><i class="ic i-flag"></i>学习笔记</a>
-      </span>
-    </div>
-    <a href="/2024/01/24/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="python学习笔记（未完）" class="btn">more...</a>
-  </div>
-</article>
-
-        
-<article class="item">
-  <div class="cover">
-    <a href="/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="mysql学习笔记"><img data-src="https://www.loliapi.com/acg/?897657"></a>
-  </div>
-  <div class="info">
-    
-<div class="meta">
-  <span class="item" title="Created: 2024-01-24 11:01:28">
-    <span class="icon">
-      <i class="ic i-calendar"></i>
-    </span>
-    <time itemprop="dateCreated datePublished" datetime="2024-01-24T11:01:28+08:00">2024-01-24</time>
-  </span>
-  <span class="item" title="Symbols count in article">
-    <span class="icon">
-      <i class="ic i-pen"></i>
-    </span>
-    <span>3.7k</span>
-    <span class="text">words</span>
-  </span>
-  <span class="item" title="Reading time">
-    <span class="icon">
-      <i class="ic i-clock"></i>
-    </span>
-    <span>3 mins.</span>
-  </span>
-</div>
-
-    <h3><a href="/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="mysql学习笔记">mysql学习笔记</a></h3>
-    <div class="excerpt">
-        Mysql数据库：
-
-常见的操作：
-clear (\c) Clear the current input statement.
-connect (\r) Reconnect to the server. Optional arguments are db and host.
-delimiter (\d) Set statement delimiter.
-ego (\G) Send command to mysql server, display result vertically.
-exit (\q) Exit mysql. Same as quit.
-go (\g) Send command...
-    </div>
-    <div class="meta footer">
-      <span>
-        <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="学习笔记"><i class="ic i-flag"></i>学习笔记</a>
-      </span>
-    </div>
-    <a href="/2024/01/24/mysql%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" title="mysql学习笔记" class="btn">more...</a>
-  </div>
-</article>
-
     </div>
 
   </div>
@@ -659,7 +665,7 @@ go (\g) Send command...
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">182</span>
+        <span class="count">186</span>
         <span class="name">posts</span>
       </a>
     </div>
@@ -671,7 +677,7 @@ go (\g) Send command...
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">140</span>
+        <span class="count">143</span>
         <span class="name">tags</span>
       </a>
     </div>
@@ -723,20 +729,9 @@ go (\g) Send command...
     
 <div class="breadcrumb">
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
-<i class="ic i-angle-right"></i>
-<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%BE%85%E5%A4%8D%E7%8E%B0/" title="In 待复现">待复现</a>
 </div>
 
-    <span><a href="/2024/11/15/%E7%BD%91%E9%BC%8E%E6%9D%AF2020%E5%8D%8A%E5%86%B3%E8%B5%9B-faka/" title="[网鼎杯2020半决赛]faka">[网鼎杯2020半决赛]faka</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-</div>
-
-    <span><a href="/2024/11/20/ISCTF2024%E5%A4%8D%E7%8E%B0/" title="ISCTF2024复现">ISCTF2024复现</a></span>
+    <span><a href="/2024/10/15/SWPU2019-Web3/" title="[SWPU2019]Web3">[SWPU2019]Web3</a></span>
   </li>
 
       
@@ -746,7 +741,26 @@ go (\g) Send command...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/11/18/BSidesCF-2019-Mixer/" title="[BSidesCF-2019]Mixer">[BSidesCF-2019]Mixer</a></span>
+    <span><a href="/2024/06/16/Injection/" title="October 2019 Twice SQL Injection">October 2019 Twice SQL Injection</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/04/17/springweb/" title="springweb">springweb</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
+</div>
+
+    <span><a href="/2024/11/17/HCTF2018-Hideandseek/" title="HCTF2018Hideandseek">HCTF2018Hideandseek</a></span>
   </li>
 
       
@@ -756,7 +770,7 @@ go (\g) Send command...
 <a href="/categories/misc/" title="In misc">misc</a>
 </div>
 
-    <span><a href="/2025/05/06/SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5/" title="[SWPU2019]我有一只马里奥">[SWPU2019]我有一只马里奥</a></span>
+    <span><a href="/2025/05/21/SWPU2019-%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E5%A5%BD%E5%A5%BD%E7%9C%8B%E7%BD%91%E8%AF%BE/" title="[SWPU2019]你有没有好好看网课?">[SWPU2019]你有没有好好看网课?</a></span>
   </li>
 
       
@@ -766,7 +780,7 @@ go (\g) Send command...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/05/29/cookbook-1/" title="[nctf2019]truecookbook">[nctf2019]truecookbook</a></span>
+    <span><a href="/2024/04/29/5-txt/" title="buuctf4月29日">buuctf4月29日</a></span>
   </li>
 
       
@@ -776,7 +790,16 @@ go (\g) Send command...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/09/08/HFCTF2020-BabyUpload/" title="[HFCTF2020]BabyUpload">[HFCTF2020]BabyUpload</a></span>
+    <span><a href="/2024/09/23/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-iamthinking/" title="[安洵杯2019]iamthinking">[安洵杯2019]iamthinking</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2025/06/17/ecshop%E5%A4%8D%E7%8E%B0/" title="ecshop复现">ecshop复现</a></span>
   </li>
 
       
@@ -786,7 +809,7 @@ go (\g) Send command...
 <a href="/categories/%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0/" title="In 比赛复现">比赛复现</a>
 </div>
 
-    <span><a href="/2025/02/24/vnctf%E5%A4%8D%E7%8E%B0/" title="vnctf复现">vnctf复现</a></span>
+    <span><a href="/2025/02/25/aliyunctf%E9%83%A8%E5%88%86%E5%A4%8D%E7%8E%B0/" title="aliyunctf部分复现">aliyunctf部分复现</a></span>
   </li>
 
       
@@ -796,27 +819,7 @@ go (\g) Send command...
 <a href="/categories/%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" title="In 刷题笔记">刷题笔记</a>
 </div>
 
-    <span><a href="/2024/08/15/%E5%AE%89%E6%B4%B5%E6%9D%AF2019-%E4%B8%8D%E6%98%AF%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" title="[安洵杯2019]不是文件上传">[安洵杯2019]不是文件上传</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/misc/" title="In misc">misc</a>
-</div>
-
-    <span><a href="/2025/05/06/GXYCTF2019-gakki/" title="[GXYCTF2019]gakki">[GXYCTF2019]gakki</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="In 学习笔记">学习笔记</a>
-</div>
-
-    <span><a href="/2024/01/24/python-requests%E5%BA%93flask%E5%BA%93%EF%BC%88%E6%9C%AA%E5%AE%8C%EF%BC%89/" title="python-requests库flask库（未完）">python-requests库flask库（未完）</a></span>
+    <span><a href="/2024/07/29/ISITDTU2019-EasyPHP/" title="[羊城杯2020]easyphp">[羊城杯2020]easyphp</a></span>
   </li>
 
   </ul>
@@ -841,13 +844,13 @@ go (\g) Send command...
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">697k words</span>
+    <span title="Symbols count total">702k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">10:34</span>
+    <span title="Reading time total">10:38</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
